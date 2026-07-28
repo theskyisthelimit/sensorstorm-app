@@ -74,7 +74,28 @@ python3 Tools/asc_metadata.py --attach-build 3
 
 ## Offen für 1.0.0
 
-* Screenshots: `Tools/asc_capture_screenshots.py` braucht noch die Launch-Hooks
-  (`SS_FIXTURE` / `SS_SCREEN`) in der App, siehe `App/ScreenshotFixtures.swift`.
-* Auf echter Hardware verifizieren: Kamera-Aufnahme mit Video, AirPods-Motion,
-  Barometer, Schrittzähler. Der Simulator hat davon nichts.
+Stand: Build 1 ist hochgeladen, Listing-Text (de-DE, en-US, en-GB), Kategorien und
+Content-Rights sind gesetzt. Es fehlen:
+
+Braucht eine Entscheidung oder eine URL:
+
+* **Support-URL** und **Datenschutz-URL** für alle drei Locales.
+  `Tools/asc_metadata.py --support-url https://… --privacy-url https://…`
+* **App-Review-Kontakt** (Name, Telefon, E-Mail) — ASC-Weboberfläche.
+* **Preis und Verfügbarkeit** — ASC-Weboberfläche, einmalig.
+
+Braucht noch Arbeit:
+
+* **Screenshots.** `Tools/asc_capture_screenshots.py` ist noch die Homeshift-Fassung.
+  Sie braucht die Launch-Hooks (`SS_FIXTURE` / `SS_SCREEN`) in der App plus eine
+  `App/ScreenshotFixtures.swift`, die eine Beispielaufnahme einspielt — sonst zeigen
+  die Bilder eine leere Bibliothek. Vorlage: `~/.claude/skills/ios-ship/assets/`.
+* **Build anhängen**, sobald die Verarbeitung durch ist:
+  `Tools/asc_metadata.py --attach-build 1`
+
+Auf echter Hardware verifizieren — der Simulator hat davon nichts:
+
+* Videoaufnahme samt Bild-zu-Sensor-Versatz (`video.startHostTime`)
+* Barometer, Schrittzähler, echte IMU bei 200 und 400 Hz
+* AirPods-Kopfbewegung
+* GPS im Hintergrund bei gesperrtem Bildschirm

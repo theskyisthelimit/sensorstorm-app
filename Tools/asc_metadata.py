@@ -143,6 +143,10 @@ Sensorstorm is available in German and English.""",
     },
 }
 
+# App Store Connect enabled en-GB on this app as well. It gets the same English
+# copy — a half-filled locale blocks submission.
+LISTING["en-GB"] = LISTING["en-US"]
+
 LIMITS = {"subtitle": 30, "promotionalText": 170, "description": 4000}
 
 
