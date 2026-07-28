@@ -1,0 +1,82 @@
+name: Sensorstorm
+options:
+  bundleIdPrefix: ch.sensorstorm
+  developmentLanguage: de
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+packages:
+  SensorstormCore:
+    path: .
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: "E3CQ6W7CY2"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_EMIT_LOC_STRINGS: "YES"
+    ENABLE_USER_SCRIPT_SANDBOXING: "YES"
+    SWIFT_STRICT_CONCURRENCY: complete
+
+targets:
+  Sensorstorm:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - path: Resources
+        excludes:
+          - Info.plist
+    dependencies:
+      - package: SensorstormCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.sensorstorm.app
+        PRODUCT_NAME: Sensorstorm
+        INFOPLIST_KEY_CFBundleDisplayName: Sensorstorm
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: "NO"
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDisplayName: Sensorstorm
+        CFBundleLocalizations: [de, en]
+        ITSAppUsesNonExemptEncryption: false
+        LSApplicationCategoryType: public.app-category.utilities
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIUserInterfaceStyle: Dark
+        # Sensor logging has to survive the screen locking mid-measurement.
+        UIBackgroundModes:
+          - location
+          - audio
+        # Recordings are meant to leave the phone — Files.app access is part of the product.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        NSMotionUsageDescription: >-
+          Sensorstorm zeichnet Beschleunigung, Drehrate, Orientierung, Magnetfeld und
+          Schritte auf.
+        NSLocationWhenInUseUsageDescription: >-
+          Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf und richtet die
+          Orientierungsdaten an Nordrichtung aus.
+        NSLocationAlwaysAndWhenInUseUsageDescription: >-
+          Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm
+          während einer Messung gesperrt wird.
+        NSMicrophoneUsageDescription: >-
+          Sensorstorm misst die Lautstärke und nimmt auf Wunsch den Ton zur Messung auf.
+        NSCameraUsageDescription: >-
+          Sensorstorm nimmt Video synchron zu den Sensordaten auf.

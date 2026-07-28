@@ -1,0 +1,25 @@
+.DS_Store
+
+# XcodeGen owns the project — never commit the generated one.
+*.xcodeproj
+*.xcworkspace
+# Generated from the `info.properties` block in project.yml.
+Resources/Info.plist
+
+__pycache__/
+*.pyc
+
+# Build output
+build/
+.derived-data/
+DerivedData/
+.build/
+*.xcarchive
+*.ipa
+
+# Screenshot capture output
+Screenshots/
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate

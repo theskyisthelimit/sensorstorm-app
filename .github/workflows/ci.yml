@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Test the core package
+        run: swift test
+
+      - name: Generate the Xcode project
+        run: xcodegen generate
+
+      # Signing and upload stay local: the CI certificate's private key is not in
+      # the repo and must not be.
+      - name: Build the app
+        run: >-
+          xcodebuild -quiet -project Sensorstorm.xcodeproj -scheme Sensorstorm
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath .derived-data
+          CODE_SIGNING_ALLOWED=NO build
