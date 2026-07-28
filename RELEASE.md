@@ -9,6 +9,7 @@ Feste Werte für diese App:
 | App Store Connect App-ID | `6795648479` |
 | Provisioning-Profil | `Sensorstorm CI Distribution` |
 | ASC API Key | `F5T7U925KM`, Issuer `69a6de84-dfc7-47e3-e053-5b8c7c11a4d1` |
+| TestFlight-Gruppe | `Intern` (`fafeb017-823d-43cd-aec4-46bde0cec150`), intern, `hasAccessToAllBuilds` |
 | .p8 | `~/.appstoreconnect/private_keys/AuthKey_F5T7U925KM.p8` |
 | CI-Signing | `~/.appstoreconnect/ci-signing/` — **team-weit geteilt, niemals löschen** |
 
@@ -50,6 +51,15 @@ Signiert wird erst beim Export, nicht beim Archivieren — dadurch braucht das
 Archiv keine Xcode-Sitzung und kein Cloud-Autosigning.
 
 Verarbeitung dauert 10–30 Minuten, danach ist der Build in TestFlight.
+
+Die Gruppe `Intern` hat `hasAccessToAllBuilds`: jeder neue Build erscheint dort
+automatisch, ohne Beta-Review und ohne weiteres Zutun. Nur die „Neuerungen“ pro
+Build sind noch von Hand zu setzen:
+
+```bash
+python3 Tools/asc.py GET '/v1/builds/<BUILD_ID>/betaBuildLocalizations'
+python3 Tools/asc.py POST /v1/betaBuildLocalizations whatsnew.json
+```
 
 Soll das Archiv im Organizer auftauchen, direkt dorthin archivieren:
 `~/Library/Developer/Xcode/Archives/<JJJJ-MM-TT>/Sensorstorm <TT.MM.JJJJ, HH.MM>.xcarchive`.
