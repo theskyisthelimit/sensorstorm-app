@@ -33,6 +33,11 @@ final class MotionSource: SensorSource, @unchecked Sendable {
     /// authorisation. Set before ``start(sensors:rateHz:wallToHostOffset:)``.
     var usesTrueNorthReference = false
 
+    /// The frame device motion is actually running in, `nil` while no fused stream is armed.
+    /// Read back rather than derived from ``usesTrueNorthReference``, because the metadata
+    /// has to state what happened, not what was asked for.
+    private(set) var activeReferenceFrame: AttitudeReferenceFrame?
+
     init(sink: SampleSink) {
         self.sink = sink
     }
@@ -131,6 +136,7 @@ final class MotionSource: SensorSource, @unchecked Sendable {
         headphoneManager.stopDeviceMotionUpdates()
         queue.cancelAllOperations()
         active = []
+        activeReferenceFrame = nil
     }
 
     // MARK: - Private
@@ -143,9 +149,13 @@ final class MotionSource: SensorSource, @unchecked Sendable {
         guard !fused.isEmpty else { return }
 
         manager.deviceMotionUpdateInterval = interval
-        let frame: CMAttitudeReferenceFrame = usesTrueNorthReference
+        let available = CMMotionManager.availableAttitudeReferenceFrames()
+        let wantsTrueNorth = usesTrueNorthReference
+            && available.contains(.xTrueNorthZVertical)
+        let frame: CMAttitudeReferenceFrame = wantsTrueNorth
             ? .xTrueNorthZVertical
             : .xArbitraryCorrectedZVertical
+        activeReferenceFrame = wantsTrueNorth ? .trueNorth : .arbitraryCorrected
 
         manager.startDeviceMotionUpdates(using: frame, to: queue) { [weak self] motion, _ in
             guard let self, let motion else { return }

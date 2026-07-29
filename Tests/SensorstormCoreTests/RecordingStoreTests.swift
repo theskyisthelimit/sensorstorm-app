@@ -80,6 +80,81 @@ struct RecordingStoreTests {
         #expect(FileManager.default.fileExists(atPath: store.directory(for: metadata.id).path) == false)
     }
 
+    /// Writes the folder a crash mid-recording leaves behind: samples on disk, no metadata.
+    @discardableResult
+    private func makeOrphan(in store: RecordingStore, samples: Int = 10) throws -> UUID {
+        let id = UUID()
+        let directory = try store.prepareDirectory(for: id)
+        let writer = try StreamWriter(sensor: .accelerometer, channelCount: 3,
+                                      directory: directory)
+        for i in 0..<samples {
+            writer.append(time: Double(i) * 0.01, values: [Double(i), 0.5, -9.81])
+        }
+        writer.close()
+        return id
+    }
+
+    @Test("A recording killed before its metadata was written is reported as an orphan")
+    func orphanIsFound() throws {
+        let store = try makeStore()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        try store.save(makeMetadata(name: "Heil"))
+        let crashed = try makeOrphan(in: store)
+
+        let orphans = store.orphanedRecordings()
+        #expect(orphans.map(\.id) == [crashed])
+        #expect(orphans[0].byteSize == store.byteSize(of: crashed))
+        #expect(orphans[0].byteSize > 0)
+        #expect(store.orphanedByteSize == orphans[0].byteSize)
+        // The healthy recording stays where it was; listing behaviour is untouched.
+        #expect(store.allRecordings().map(\.name) == ["Heil"])
+    }
+
+    @Test("Orphans come back largest first, so the biggest waste is named first")
+    func orphansSortBySize() throws {
+        let store = try makeStore()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        let small = try makeOrphan(in: store, samples: 5)
+        let large = try makeOrphan(in: store, samples: 500)
+
+        let orphans = store.orphanedRecordings()
+        #expect(orphans.map(\.id) == [large, small])
+        #expect(store.orphanedByteSize == orphans.reduce(0) { $0 + $1.byteSize })
+    }
+
+    @Test("Only UUID-named directories count as orphans")
+    func orphansIgnoreForeignClutter() throws {
+        let store = try makeStore()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        // Someone else's folder, and a stray file that happens to be named like a recording.
+        try FileManager.default.createDirectory(
+            at: store.root.appendingPathComponent("exports", isDirectory: true),
+            withIntermediateDirectories: true)
+        try Data("junk".utf8).write(
+            to: store.root.appendingPathComponent(UUID().uuidString))
+
+        #expect(store.orphanedRecordings().isEmpty)
+        #expect(store.orphanedByteSize == 0)
+    }
+
+    @Test("Deleting an orphan gives the disk space back")
+    func orphanDeletion() throws {
+        let store = try makeStore()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        let crashed = try makeOrphan(in: store)
+        #expect(store.orphanedByteSize > 0)
+
+        try store.delete(crashed)
+
+        #expect(store.orphanedRecordings().isEmpty)
+        #expect(store.orphanedByteSize == 0)
+        #expect(FileManager.default.fileExists(atPath: store.directory(for: crashed).path) == false)
+    }
+
     @Test("Annotations round-trip and come back in time order")
     func annotations() throws {
         let store = try makeStore()
@@ -172,7 +247,69 @@ struct SensorCatalogTests {
         #expect(SensorID.accelerometer.rawValue == "accelerometer")
         #expect(SensorID.userAcceleration.rawValue == "userAcceleration")
         #expect(SensorID.headphoneOrientation.rawValue == "headphoneOrientation")
-        #expect(SensorID.allCases.count == 17)
+        #expect(SensorID.cameraPose.rawValue == "cameraPose")
+        #expect(SensorID.allCases.count == 18)
+    }
+
+    @Test("The camera pose stream carries a full pinhole camera per frame")
+    func cameraPoseLayout() {
+        let channels = SensorID.cameraPose.descriptor.channels
+        #expect(channels.prefix(3) == ["px", "py", "pz"])
+        #expect(channels[3...6] == ["qx", "qy", "qz", "qw"])
+        #expect(channels[7...10] == ["fx", "fy", "cx", "cy"])
+        #expect(channels.suffix(2) == ["trackingState", "trackingReason"])
+        #expect(SensorID.engineControlled.contains(.cameraPose))
+    }
+}
+
+@Suite("Recording metadata")
+struct RecordingMetadataTests {
+
+    /// Build 1 shipped without these fields. A recording made with it has to keep opening,
+    /// and has to come back saying it does not know rather than guessing.
+    @Test("Metadata written before the pose fields existed still decodes")
+    func decodesLegacyMetadata() throws {
+        let legacy = """
+        {
+          "id": "3F2504E0-4F89-41D3-9A0C-0305E82C3301",
+          "name": "Alt",
+          "startedAt": "2026-01-02T03:04:05Z",
+          "startHostTime": 100.5,
+          "duration": 12.25,
+          "device": { "model": "iPhone17,1", "systemName": "iOS",
+                      "systemVersion": "18.2", "appVersion": "1.0.0 (1)" },
+          "streams": [],
+          "requestedRateHz": 100,
+          "notes": "",
+          "video": { "fileName": "video.mov", "startHostTime": 100.6, "duration": 12.0,
+                     "width": 1920, "height": 1080, "nominalFrameRate": 30,
+                     "hasAudio": true, "isFrontCamera": false }
+        }
+        """
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let metadata = try decoder.decode(RecordingMetadata.self, from: Data(legacy.utf8))
+
+        #expect(metadata.captureEngine == nil)
+        #expect(metadata.attitudeReferenceFrame == nil)
+        #expect(metadata.geodeticAnchor == nil)
+        #expect(metadata.video?.appliedRotationAngle == nil)
+        // Unknown rotation is not the same as no rotation.
+        #expect(metadata.video?.isSensorNative == false)
+    }
+
+    @Test("A sensor-native video is the only one intrinsics apply to unchanged")
+    func sensorNativeVideo() {
+        func video(rotation: Double?, mirrored: Bool?) -> VideoInfo {
+            VideoInfo(fileName: "v.mov", startHostTime: 0, duration: 1,
+                      width: 1920, height: 1080, nominalFrameRate: 30,
+                      hasAudio: false, isFrontCamera: false,
+                      appliedRotationAngle: rotation, isMirrored: mirrored)
+        }
+        #expect(video(rotation: 0, mirrored: false).isSensorNative)
+        #expect(video(rotation: 90, mirrored: false).isSensorNative == false)
+        #expect(video(rotation: 0, mirrored: true).isSensorNative == false)
+        #expect(video(rotation: nil, mirrored: nil).isSensorNative == false)
     }
 }
 

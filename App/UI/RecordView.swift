@@ -53,9 +53,16 @@ struct RecordView: View {
 
     // MARK: - Camera
 
+    @ViewBuilder
     private var cameraPreview: some View {
-        CameraPreviewView(session: hub.videoRecorder.session,
-                          isMirrored: hub.settings.videoMode.isFront)
+        Group {
+            if hub.usesARKit(for: hub.settings) {
+                ARPreviewView(session: hub.poseRecorder.session)
+            } else {
+                CameraPreviewView(session: hub.videoRecorder.session,
+                                  isMirrored: hub.settings.videoMode.isFront)
+            }
+        }
             .aspectRatio(3.0 / 4.0, contentMode: .fit)
             .clipShape(.rect(cornerRadius: 16))
             .overlay(alignment: .topLeading) {

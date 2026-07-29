@@ -10,6 +10,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var videoQuality: VideoQuality
     var recordsAudio: Bool
     var keepsScreenAwake: Bool
+    /// Which camera stack records the video. Optional so a settings blob written by an
+    /// earlier build still decodes; ``captureEngine`` resolves the default.
+    var preferredCaptureEngine: CaptureEngine?
 
     static let availableRates: [Double] = [10, 25, 50, 100, 200, 400]
 
@@ -19,8 +22,18 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         videoMode: .off,
         videoQuality: .hd1080,
         recordsAudio: true,
-        keepsScreenAwake: true
+        keepsScreenAwake: true,
+        preferredCaptureEngine: .classic
     )
+
+    var captureEngine: CaptureEngine {
+        get { preferredCaptureEngine ?? .classic }
+        set { preferredCaptureEngine = newValue }
+    }
+
+    /// ARKit owns the camera outright, so the front camera and the classic quality presets
+    /// do not apply — and it only makes sense with a camera running at all.
+    var usesARKit: Bool { captureEngine == .arkit && isVideoEnabled }
 
     func isEnabled(_ sensor: SensorID) -> Bool {
         enabledSensors.contains(sensor)

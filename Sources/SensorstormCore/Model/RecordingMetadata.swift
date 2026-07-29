@@ -21,6 +21,17 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     public var requestedRateHz: Double
     public var notes: String
 
+    /// Which capture path produced this recording. `nil` for recordings written before the
+    /// field existed — those are all ``CaptureEngine/classic``.
+    public var captureEngine: CaptureEngine?
+    /// Reference frame the ``SensorID/orientation`` quaternion is expressed in. `nil` means
+    /// the recording predates the field and the frame is genuinely unknown — which is the
+    /// difference between a yaw you can georeference and one you cannot.
+    public var attitudeReferenceFrame: AttitudeReferenceFrame?
+    /// First usable GPS fix, kept verbatim so a local metric frame can be rebuilt without
+    /// re-reading the location stream. `nil` when the recording never got a fix.
+    public var geodeticAnchor: GeodeticAnchor?
+
     public init(
         id: UUID = UUID(),
         name: String,
@@ -32,7 +43,10 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         video: VideoInfo? = nil,
         audio: AudioInfo? = nil,
         requestedRateHz: Double,
-        notes: String = ""
+        notes: String = "",
+        captureEngine: CaptureEngine? = nil,
+        attitudeReferenceFrame: AttitudeReferenceFrame? = nil,
+        geodeticAnchor: GeodeticAnchor? = nil
     ) {
         self.id = id
         self.name = name
@@ -45,6 +59,9 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.audio = audio
         self.requestedRateHz = requestedRateHz
         self.notes = notes
+        self.captureEngine = captureEngine
+        self.attitudeReferenceFrame = attitudeReferenceFrame
+        self.geodeticAnchor = geodeticAnchor
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {
@@ -53,6 +70,51 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
 
     public var totalSampleCount: Int {
         streams.reduce(0) { $0 + $1.sampleCount }
+    }
+}
+
+/// Which camera stack recorded the video, because it decides what else is in the folder.
+public enum CaptureEngine: String, Codable, Sendable, Hashable, CaseIterable {
+    /// `AVCaptureSession` + `AVAssetWriter`. Exact frame timing, no camera pose.
+    case classic
+    /// `ARWorldTrackingConfiguration`. Full 6-DoF pose and per-frame intrinsics.
+    case arkit
+}
+
+/// The frame ``SensorID/orientation`` is referenced to — `CMAttitudeReferenceFrame` by
+/// another name, recorded because it cannot be recovered from the samples themselves.
+public enum AttitudeReferenceFrame: String, Codable, Sendable, Hashable, CaseIterable {
+    /// `.xTrueNorthZVertical` — yaw is bearing from true north. Needs location authorisation.
+    case trueNorth
+    /// `.xArbitraryCorrectedZVertical` — yaw is relative to wherever the device was pointing
+    /// at start. Comparable within a recording, meaningless between two.
+    case arbitraryCorrected
+}
+
+/// The geodetic origin a recording's local metric frame hangs off.
+public struct GeodeticAnchor: Codable, Sendable, Hashable {
+    public var latitude: Double
+    public var longitude: Double
+    /// Orthometric height (`CLLocation.altitude`, roughly mean sea level).
+    public var altitude: Double
+    /// Height above the WGS84 ellipsoid. In Switzerland this sits ~46–52 m above the
+    /// orthometric value; confusing the two is the classic way to float a scene.
+    public var ellipsoidalAltitude: Double
+    public var horizontalAccuracy: Double
+    public var verticalAccuracy: Double
+    /// Host time of the fix, so it can be lined up with the rest of the streams.
+    public var hostTime: Double
+
+    public init(latitude: Double, longitude: Double, altitude: Double,
+                ellipsoidalAltitude: Double, horizontalAccuracy: Double,
+                verticalAccuracy: Double, hostTime: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
+        self.ellipsoidalAltitude = ellipsoidalAltitude
+        self.horizontalAccuracy = horizontalAccuracy
+        self.verticalAccuracy = verticalAccuracy
+        self.hostTime = hostTime
     }
 }
 
@@ -103,9 +165,19 @@ public struct VideoInfo: Codable, Sendable, Hashable {
     public var hasAudio: Bool
     public var isFrontCamera: Bool
 
+    /// Rotation in degrees that the capture connection applied to the stored pixels. `0`
+    /// means the file holds the sensor's native orientation, which is the only case where
+    /// camera intrinsics apply to it unchanged. `nil` for recordings written before this was
+    /// tracked — a rotation was applied then too, we just no longer know which.
+    public var appliedRotationAngle: Double?
+    /// Whether the stored pixels are mirrored. Mirroring flips the image's handedness
+    /// relative to the device axes and has to be undone before any reprojection.
+    public var isMirrored: Bool?
+
     public init(fileName: String, startHostTime: Double, duration: TimeInterval,
                 width: Int, height: Int, nominalFrameRate: Double,
-                hasAudio: Bool, isFrontCamera: Bool) {
+                hasAudio: Bool, isFrontCamera: Bool,
+                appliedRotationAngle: Double? = nil, isMirrored: Bool? = nil) {
         self.fileName = fileName
         self.startHostTime = startHostTime
         self.duration = duration
@@ -114,6 +186,14 @@ public struct VideoInfo: Codable, Sendable, Hashable {
         self.nominalFrameRate = nominalFrameRate
         self.hasAudio = hasAudio
         self.isFrontCamera = isFrontCamera
+        self.appliedRotationAngle = appliedRotationAngle
+        self.isMirrored = isMirrored
+    }
+
+    /// `true` when the stored pixels sit in the camera's native orientation and are not
+    /// mirrored — the precondition for applying intrinsics directly.
+    public var isSensorNative: Bool {
+        appliedRotationAngle == 0 && isMirrored == false
     }
 
     /// Offset of the video timeline relative to the recording timeline, in seconds.

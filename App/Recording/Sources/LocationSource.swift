@@ -1,6 +1,7 @@
 import CoreLocation
 import Foundation
 import SensorstormCore
+import os
 
 /// GPS and compass.
 ///
@@ -16,6 +17,23 @@ final class LocationSource: NSObject, SensorSource, CLLocationManagerDelegate, @
 
     /// Called on the main queue whenever authorisation changes.
     var onAuthorizationChange: (@Sendable (CLAuthorizationStatus) -> Void)?
+
+    /// First fix good enough to hang a local metric frame off. Written from the delegate
+    /// queue, read from the main actor at the end of a recording, hence the lock.
+    private let anchorLock = OSAllocatedUnfairLock<GeodeticAnchor?>(initialState: nil)
+
+    /// A fix worse than this is not an origin, it is a guess. 50 m still georeferences a
+    /// scene well enough to see whether the orientation is right.
+    private static let maxAnchorAccuracy: CLLocationAccuracy = 50
+
+    /// The anchor captured since the last ``resetAnchor()``.
+    var geodeticAnchor: GeodeticAnchor? { anchorLock.withLock { $0 } }
+
+    /// Called when a recording starts: the anchor has to belong to the recording, not to
+    /// whenever the live dashboard happened to get its first fix.
+    func resetAnchor() {
+        anchorLock.withLock { $0 = nil }
+    }
 
     init(sink: SampleSink) {
         self.sink = sink
@@ -84,6 +102,7 @@ final class LocationSource: NSObject, SensorSource, CLLocationManagerDelegate, @
                                      didUpdateLocations locations: [CLLocation]) {
         for location in locations {
             let time = HostClock.hostSeconds(for: location.timestamp, offset: wallToHostOffset)
+            captureAnchorIfNeeded(from: location, at: time)
             sink.ingest(.location, time: time, values: [
                 location.coordinate.latitude,
                 location.coordinate.longitude,
@@ -96,6 +115,22 @@ final class LocationSource: NSObject, SensorSource, CLLocationManagerDelegate, @
                 location.horizontalAccuracy,
                 location.verticalAccuracy
             ])
+        }
+    }
+
+    private func captureAnchorIfNeeded(from location: CLLocation, at hostTime: Double) {
+        let accuracy = location.horizontalAccuracy
+        guard accuracy > 0, accuracy <= Self.maxAnchorAccuracy else { return }
+        anchorLock.withLock { anchor in
+            guard anchor == nil else { return }
+            anchor = GeodeticAnchor(
+                latitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude,
+                altitude: location.altitude,
+                ellipsoidalAltitude: location.ellipsoidalAltitude,
+                horizontalAccuracy: accuracy,
+                verticalAccuracy: location.verticalAccuracy,
+                hostTime: hostTime)
         }
     }
 

@@ -33,6 +33,9 @@ public enum SensorID: String, CaseIterable, Sendable, Codable, Hashable {
 
     // Accessories.
     case headphoneOrientation
+
+    // Camera. One sample per written video frame — see ``SensorCatalog`` for the layout.
+    case cameraPose
 }
 
 public enum SensorCategory: String, CaseIterable, Sendable, Codable, Hashable {
@@ -42,6 +45,7 @@ public enum SensorCategory: String, CaseIterable, Sendable, Codable, Hashable {
     case audio
     case activity
     case device
+    case camera
 }
 
 /// Everything the app needs to know about a stream without touching the sensor itself:
@@ -159,6 +163,42 @@ public enum SensorCatalog {
                          channels: ["roll", "pitch", "yaw", "ax", "ay", "az"],
                          channelUnits: ["°", "°", "°", "g", "g", "g"],
                          defaultEnabled: false, isEventDriven: false)
+        case .cameraPose:
+            // One sample per written video frame, stamped with that frame's presentation
+            // time. `px…qw` are the camera's pose in the capture engine's world frame and
+            // stay `NaN` when the engine cannot supply one (the classic AVCapture path).
+            // `fx…cy` are in pixels of the *stored* image and are written per frame because
+            // autofocus changes the focal length mid-recording.
+            return .init(id: id, category: .camera, unit: "",
+                         channels: ["px", "py", "pz", "qx", "qy", "qz", "qw",
+                                    "fx", "fy", "cx", "cy",
+                                    "trackingState", "trackingReason"],
+                         channelUnits: ["m", "m", "m", "", "", "", "",
+                                        "px", "px", "px", "px",
+                                        "", ""],
+                         defaultEnabled: false, isEventDriven: true)
         }
     }
+}
+
+/// Values of the ``SensorID/cameraPose`` `trackingState` channel.
+public enum CameraTrackingState: Double, Sendable, Hashable, CaseIterable {
+    case normal = 0
+    case limited = 1
+    case notAvailable = 2
+}
+
+/// Values of the ``SensorID/cameraPose`` `trackingReason` channel. Only meaningful while
+/// `trackingState` is ``CameraTrackingState/limited``.
+public enum CameraTrackingReason: Double, Sendable, Hashable, CaseIterable {
+    case none = 0
+    case initializing = 1
+    case excessiveMotion = 2
+    case insufficientFeatures = 3
+    case relocalizing = 4
+}
+
+public extension SensorID {
+    /// Streams the user cannot arm or disarm directly — they follow from the capture engine.
+    static let engineControlled: Set<SensorID> = [.cameraPose]
 }

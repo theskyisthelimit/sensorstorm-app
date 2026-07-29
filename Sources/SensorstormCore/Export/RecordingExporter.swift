@@ -12,6 +12,14 @@ public struct RecordingExporter: Sendable {
         case csvBundle
         /// The recording folder as it is on disk (binary streams), zipped.
         case rawBundle
+        /// Camera poses per video frame plus the video and the GPS track, for Blender and
+        /// other 3D tools. See ``SceneBundleExporter``.
+        case sceneBundle
+        /// Sensor Logger's file and column layout, so that ecosystem's parsers and notebooks
+        /// read the recording unmodified. See ``InteropExporter``.
+        case sensorLoggerBundle
+        /// A Gyroflow `.gcsv` IMU log for stabilising the video after the fact.
+        case gyroflowLog
     }
 
     private let store: RecordingStore
@@ -44,6 +52,13 @@ public struct RecordingExporter: Sendable {
             try writeCSVBundle(metadata, into: payload, progress: progress)
         case .rawBundle:
             try copyRawBundle(metadata, into: payload, progress: progress)
+        case .sceneBundle:
+            try SceneBundleExporter(store: store)
+                .write(metadata, into: payload, progress: progress)
+        case .sensorLoggerBundle:
+            try writeSensorLoggerBundle(metadata, into: payload, progress: progress)
+        case .gyroflowLog:
+            try writeGyroflowLog(metadata, into: payload)
         }
 
         let zipURL = destinationDirectory.appendingPathComponent("\(folderName).zip")
@@ -142,6 +157,84 @@ public struct RecordingExporter: Sendable {
         try Data(out.utf8).write(to: url, options: .atomic)
     }
 
+    // MARK: - Interop bundles
+
+    private func writeSensorLoggerBundle(_ metadata: RecordingMetadata, into folder: URL,
+                                         progress: (@Sendable (Double) -> Void)?) throws {
+        let streams = metadata.streams.filter { $0.sampleCount > 0 }
+        let steps = Double(streams.count + 2)
+        var completed = 0.0
+
+        for stream in streams {
+            if let reader = store.reader(for: stream.sensor, recording: metadata.id) {
+                let csv = InteropExporter.sensorLoggerCSV(reader: reader, stream: stream,
+                                                          metadata: metadata)
+                let name = InteropExporter.sensorLoggerFileName(for: stream.sensor)
+                try Data(csv.utf8).write(to: folder.appendingPathComponent(name), options: .atomic)
+            }
+            completed += 1
+            progress?(completed / steps)
+        }
+
+        try Data(InteropExporter.sensorLoggerMetadataCSV(metadata).utf8)
+            .write(to: folder.appendingPathComponent("metadata.csv"), options: .atomic)
+        try writeAnnotationsCSV(metadata, to: folder.appendingPathComponent("Annotation.csv"))
+        completed += 1
+        progress?(completed / steps)
+
+        try copyMedia(metadata, into: folder)
+        progress?(1)
+    }
+
+    private func writeGyroflowLog(_ metadata: RecordingMetadata, into folder: URL) throws {
+        guard let gyroscope = store.reader(for: .gyroscope, recording: metadata.id),
+              gyroscope.sampleCount > 0 else {
+            throw ExportError.noGyroscopeData
+        }
+        let log = InteropExporter.gcsv(
+            gyroscope: gyroscope,
+            accelerometer: store.reader(for: .accelerometer, recording: metadata.id),
+            metadata: metadata)
+
+        let name = "\(Self.sanitize(metadata.name)).gcsv"
+        try Data(log.utf8).write(to: folder.appendingPathComponent(name), options: .atomic)
+
+        if let video = metadata.video {
+            // Gyroflow needs to know where the log starts relative to the movie; the number
+            // is in the metadata, but nobody reads JSON while wiring up a stabiliser.
+            let offset = video.offset(from: metadata.startHostTime)
+            let note = """
+            Gyroflow: load \(video.fileName) and this .gcsv together.
+
+            The log's t = 0 is the start of the recording, and the first video frame sits
+            \(Self.fixed(offset)) s after it. If Gyroflow's automatic sync does not land,
+            that is the offset to enter by hand.
+
+            Video stabilisation was off during capture on purpose, so the image and the IMU
+            still describe the same motion — which is what makes this log usable at all.
+
+            """
+            try Data(note.utf8).write(to: folder.appendingPathComponent("README.txt"),
+                                      options: .atomic)
+        }
+        try copyMedia(metadata, into: folder)
+    }
+
+    /// Copies the movie and any standalone audio file next to whatever was just written.
+    private func copyMedia(_ metadata: RecordingMetadata, into folder: URL) throws {
+        if let videoURL = store.videoURL(for: metadata), let video = metadata.video {
+            try FileManager.default.copyItem(
+                at: videoURL, to: folder.appendingPathComponent(video.fileName))
+        }
+        if let audio = metadata.audio {
+            let source = store.directory(for: metadata.id).appendingPathComponent(audio.fileName)
+            if FileManager.default.fileExists(atPath: source.path) {
+                try FileManager.default.copyItem(
+                    at: source, to: folder.appendingPathComponent(audio.fileName))
+            }
+        }
+    }
+
     // MARK: - Raw bundle
 
     private func copyRawBundle(_ metadata: RecordingMetadata, into folder: URL,
@@ -199,6 +292,17 @@ public struct RecordingExporter: Sendable {
             """
         }
         return text
+    }
+
+    public enum ExportError: Error, LocalizedError {
+        case noGyroscopeData
+
+        public var errorDescription: String? {
+            switch self {
+            case .noGyroscopeData:
+                String(localized: "Diese Aufnahme enthält keine Drehratendaten.")
+            }
+        }
     }
 
     static func fixed(_ value: Double) -> String {

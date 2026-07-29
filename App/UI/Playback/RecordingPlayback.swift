@@ -39,6 +39,16 @@ struct SensorChartData: Identifiable, Sendable {
     var id: SensorID { sensor }
 }
 
+/// Everything one stream contributes to a chart build, snapshotted on the main actor so the
+/// background build never has to reach back into the observable object.
+private struct ChartInput: Sendable {
+    let sensor: SensorID
+    let reader: StreamReader
+    /// Column indices to plot, and their names in the same order.
+    let channels: [Int]
+    let names: [String]
+}
+
 /// Drives the playback screen: one playhead that the video, the charts and the numeric
 /// readouts all follow.
 ///
@@ -65,6 +75,8 @@ final class RecordingPlayback {
     private var timeObserver: PlayerTimeObserver?
     private var tickTask: Task<Void, Never>?
     private var lastTickHostTime: Double = 0
+    private var chartTask: Task<Void, Never>?
+    private var chartGeneration = 0
 
     var duration: TimeInterval { max(metadata.duration, 0.001) }
 
@@ -96,53 +108,48 @@ final class RecordingPlayback {
         }
 
         rebuildCharts()
+        // Wait for the first build before dropping the spinner, otherwise the screen shows
+        // an empty chart list for a moment.
+        if let chartTask { await chartTask.value }
         isLoading = false
     }
 
     // MARK: - Charts
 
+    /// Starts a chart build for the current visible range and swaps the result in when it lands.
+    ///
+    /// Decimation touches every sample in the window — a half-hour of 400 Hz across a dozen
+    /// streams is tens of millions of reads — so doing it here would freeze the UI for seconds
+    /// per zoom step. `StreamReader` is a `Sendable` view onto mmap'd pages, so the work goes to
+    /// a detached task and only the finished, `Sendable` series come back to the main actor.
     private func rebuildCharts() {
+        chartTask?.cancel()
+        chartGeneration &+= 1
+        let generation = chartGeneration
+
         let start = metadata.startHostTime
         let hostRange = (start + visibleRange.lowerBound)...(start + visibleRange.upperBound)
-
-        charts = metadata.streams
+        let inputs: [ChartInput] = metadata.streams
             .filter { $0.sampleCount > 0 }
-            .compactMap { stream -> SensorChartData? in
+            .compactMap { stream in
                 guard let reader = readers[stream.sensor] else { return nil }
                 let channels = chartChannels(for: stream.sensor, available: stream.channels.count)
-
-                var series: [[SeriesPoint]] = []
-                var low = Double.greatestFiniteMagnitude
-                var high = -Double.greatestFiniteMagnitude
-                var hasFiniteValue = false
-
-                for channel in channels {
-                    let points = reader.series(channel: channel, maxPoints: 500, in: hostRange)
-                        .map { SeriesPoint(time: $0.time - start, value: $0.value,
-                                           low: $0.low, high: $0.high) }
-                    for point in points where point.value.isFinite {
-                        hasFiniteValue = true
-                        low = Swift.min(low, point.low.isFinite ? point.low : point.value)
-                        high = Swift.max(high, point.high.isFinite ? point.high : point.value)
-                    }
-                    series.append(points)
-                }
-
-                // A stream can be recorded and still hold nothing plottable — an unknown
-                // battery level is written as NaN. An empty chart is just confusing.
-                guard hasFiniteValue, series.contains(where: { !$0.isEmpty }) else { return nil }
-                if low > high { low = 0; high = 1 }
-                if low == high { low -= 0.5; high += 0.5 }
-                // A little headroom so peaks don't sit on the frame.
-                let padding = (high - low) * 0.08
-
-                return SensorChartData(
-                    sensor: stream.sensor,
-                    channels: channels.map { stream.channels[$0] },
-                    series: series,
-                    yDomain: (low - padding)...(high + padding)
-                )
+                return ChartInput(sensor: stream.sensor, reader: reader, channels: channels,
+                                  names: channels.map { stream.channels[$0] })
             }
+
+        chartTask = Task.detached(priority: .userInitiated) { [weak self] in
+            guard let built = buildCharts(inputs, start: start, in: hostRange) else { return }
+            await self?.apply(charts: built, generation: generation)
+        }
+    }
+
+    /// Cancellation is cooperative and the hop back to the main actor is a queue, so a build
+    /// that was superseded mid-flight can still arrive after the one that replaced it. The
+    /// generation, not the arrival order, decides which result is the current one.
+    private func apply(charts built: [SensorChartData], generation: Int) {
+        guard generation == chartGeneration else { return }
+        charts = built
     }
 
     /// GPS has ten columns; plotting all of them on one axis is unreadable. Sensors with a
@@ -264,4 +271,55 @@ final class RecordingPlayback {
         visibleRange = 0...duration
         rebuildCharts()
     }
+}
+
+// MARK: - Off-actor chart building
+
+/// Decimates every stream for one visible window. Lives outside the class so it stays free of
+/// the main actor; it only ever sees the immutable snapshot handed to it.
+///
+/// Returns `nil` when the task was cancelled, i.e. a newer window is already being built.
+private func buildCharts(_ inputs: [ChartInput], start: Double,
+                         in hostRange: ClosedRange<Double>) -> [SensorChartData]? {
+    var result: [SensorChartData] = []
+    result.reserveCapacity(inputs.count)
+
+    for input in inputs {
+        // A superseded zoom step should stop reading, not just have its result discarded.
+        // One stream is the finest granularity worth checking at.
+        if Task.isCancelled { return nil }
+
+        var series: [[SeriesPoint]] = []
+        var low = Double.greatestFiniteMagnitude
+        var high = -Double.greatestFiniteMagnitude
+        var hasFiniteValue = false
+
+        for channel in input.channels {
+            let points = input.reader.series(channel: channel, maxPoints: 500, in: hostRange)
+                .map { SeriesPoint(time: $0.time - start, value: $0.value,
+                                   low: $0.low, high: $0.high) }
+            for point in points where point.value.isFinite {
+                hasFiniteValue = true
+                low = Swift.min(low, point.low.isFinite ? point.low : point.value)
+                high = Swift.max(high, point.high.isFinite ? point.high : point.value)
+            }
+            series.append(points)
+        }
+
+        // A stream can be recorded and still hold nothing plottable — an unknown
+        // battery level is written as NaN. An empty chart is just confusing.
+        guard hasFiniteValue, series.contains(where: { !$0.isEmpty }) else { continue }
+        if low > high { low = 0; high = 1 }
+        if low == high { low -= 0.5; high += 0.5 }
+        // A little headroom so peaks don't sit on the frame.
+        let padding = (high - low) * 0.08
+
+        result.append(SensorChartData(
+            sensor: input.sensor,
+            channels: input.names,
+            series: series,
+            yDomain: (low - padding)...(high + padding)
+        ))
+    }
+    return result
 }

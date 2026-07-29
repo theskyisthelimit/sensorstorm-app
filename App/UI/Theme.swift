@@ -37,6 +37,7 @@ extension SensorCategory {
         case .audio: "Audio"
         case .activity: "Aktivität"
         case .device: "Gerät"
+        case .camera: "Kamera"
         }
     }
 
@@ -48,6 +49,7 @@ extension SensorCategory {
         case .audio: "waveform"
         case .activity: "figure.walk"
         case .device: "iphone.gen3"
+        case .camera: "camera.metering.matrix"
         }
     }
 }
@@ -72,6 +74,7 @@ extension SensorID {
         case .brightness: "Helligkeit"
         case .network: "Netzwerk"
         case .headphoneOrientation: "AirPods-Orientierung"
+        case .cameraPose: "Kamerapose"
         }
     }
 
@@ -91,6 +94,7 @@ extension SensorID {
         case .brightness: "sun.max.fill"
         case .network: "antenna.radiowaves.left.and.right"
         case .headphoneOrientation: "airpods.pro"
+        case .cameraPose: "camera.metering.matrix"
         }
     }
 
@@ -105,6 +109,7 @@ extension SensorID {
         case .orientation: [0, 1, 2]     // roll, pitch, yaw
         case .network: [0]
         case .battery: [0]
+        case .cameraPose: [0, 1, 2]      // position; intrinsics belong in the detail view
         default: Array(0..<descriptor.channelCount)
         }
     }

@@ -1,6 +1,7 @@
 import AVFoundation
 import Foundation
 import SensorstormCore
+import simd
 import os
 
 /// Camera and microphone capture, written with `AVAssetWriter` rather than
@@ -44,6 +45,11 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
         var width = 0
         var height = 0
         var frameRate: Double = 30
+        /// Rotation the connection applies to the stored pixels, in degrees.
+        var rotationAngle: Double = 0
+        var isMirrored = false
+        /// Whether the connection actually delivers per-frame intrinsics.
+        var deliversIntrinsics = false
     }
 
     private let state = OSAllocatedUnfairLock(initialState: State())
@@ -144,6 +150,10 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
         guard session.canAddOutput(videoOutput) else { throw VideoRecorderError.cannotAddOutput }
         session.addOutput(videoOutput)
 
+        var appliedRotation: Double = 0
+        var mirrored = false
+        var deliversIntrinsics = false
+
         if let connection = videoOutput.connection(with: .video) {
             if connection.isVideoStabilizationSupported {
                 connection.preferredVideoStabilizationMode = .off
@@ -154,11 +164,21 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
                 connection.automaticallyAdjustsVideoMirroring = false
                 connection.isVideoMirrored = false
             }
+            // Per-frame intrinsics. Only available while stabilisation is off, which it is —
+            // and without them a frame cannot be turned into a camera frustum at all.
+            if connection.isCameraIntrinsicMatrixDeliverySupported {
+                connection.isCameraIntrinsicMatrixDeliveryEnabled = true
+                deliversIntrinsics = connection.isCameraIntrinsicMatrixDeliveryEnabled
+            }
             let coordinator = AVCaptureDevice.RotationCoordinator(device: device, previewLayer: nil)
             let angle = coordinator.videoRotationAngleForHorizonLevelCapture
             if connection.isVideoRotationAngleSupported(angle) {
                 connection.videoRotationAngle = angle
             }
+            // Read back rather than assume: an unsupported angle leaves the previous one in
+            // place, and the exporter has to rotate the intrinsics by exactly this much.
+            appliedRotation = connection.videoRotationAngle
+            mirrored = connection.isVideoMirrored
         }
 
         if includeAudio,
@@ -178,10 +198,17 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
                 / Double(device.activeVideoMinFrameDuration.value)
             : 30
 
+        // `withLock` takes a `@Sendable` closure, which cannot capture the mutable locals.
+        let rotation = appliedRotation
+        let isMirrored = mirrored
+        let hasIntrinsics = deliversIntrinsics
         state.withLock {
             $0.width = Int(dimensions.width)
             $0.height = Int(dimensions.height)
             $0.frameRate = frameRate
+            $0.rotationAngle = rotation
+            $0.isMirrored = isMirrored
+            $0.deliversIntrinsics = hasIntrinsics
         }
     }
 
@@ -267,7 +294,53 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
                          height: current.height,
                          nominalFrameRate: current.frameRate,
                          hasAudio: audioInput != nil,
-                         isFrontCamera: current.isFrontCamera)
+                         isFrontCamera: current.isFrontCamera,
+                         appliedRotationAngle: current.rotationAngle,
+                         isMirrored: current.isMirrored)
+    }
+
+    /// Writes one `cameraPose` sample per stored frame.
+    ///
+    /// The classic path has no camera pose, so the position and quaternion channels stay
+    /// `NaN` — but the timestamp and the intrinsics are real, and those are what turn a frame
+    /// into a frustum. The dimensions come from the delivered buffer rather than from
+    /// `activeFormat`, because the connection's rotation is applied to the buffers and would
+    /// otherwise leave the recorded width and height transposed.
+    private func recordFrameGeometry(of sampleBuffer: CMSampleBuffer, at time: Double) {
+        if let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
+            let width = CVPixelBufferGetWidth(imageBuffer)
+            let height = CVPixelBufferGetHeight(imageBuffer)
+            state.withLock {
+                $0.width = width
+                $0.height = height
+            }
+        }
+
+        guard state.withLock({ $0.deliversIntrinsics }),
+              let intrinsics = Self.intrinsicMatrix(from: sampleBuffer) else { return }
+
+        let nan = Double.nan
+        sink.ingest(.cameraPose, time: time, values: [
+            nan, nan, nan,                    // position — the classic path has none
+            nan, nan, nan, nan,               // orientation — likewise
+            Double(intrinsics.columns.0.x),   // fx
+            Double(intrinsics.columns.1.y),   // fy
+            Double(intrinsics.columns.2.x),   // cx
+            Double(intrinsics.columns.2.y),   // cy
+            CameraTrackingState.notAvailable.rawValue,
+            CameraTrackingReason.none.rawValue
+        ])
+    }
+
+    /// `kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix` carries a column-major
+    /// `matrix_float3x3` wrapped in a `CFData`.
+    private static func intrinsicMatrix(from sampleBuffer: CMSampleBuffer) -> matrix_float3x3? {
+        guard let attachment = CMGetAttachment(
+            sampleBuffer,
+            key: kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix,
+            attachmentModeOut: nil) as? Data,
+              attachment.count >= MemoryLayout<matrix_float3x3>.size else { return nil }
+        return attachment.withUnsafeBytes { $0.loadUnaligned(as: matrix_float3x3.self) }
     }
 
     /// Converts a capture timestamp onto the host clock. In practice the capture session
@@ -318,7 +391,9 @@ extension VideoRecorder: AVCaptureVideoDataOutputSampleBufferDelegate,
         if output === videoOutput {
             guard let videoInput, videoInput.isReadyForMoreMediaData else { return }
             videoInput.append(sampleBuffer)
-            lastVideoHostTime = hostTime(for: presentationTime)
+            let time = hostTime(for: presentationTime)
+            lastVideoHostTime = time
+            recordFrameGeometry(of: sampleBuffer, at: time)
         } else if output === audioOutput {
             guard let audioInput, audioInput.isReadyForMoreMediaData else { return }
             audioInput.append(sampleBuffer)

@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import SensorstormCore
+import SwiftUI
 
 /// The list of recordings on disk, plus the operations the library screen offers.
 @MainActor
@@ -8,6 +9,9 @@ import SensorstormCore
 final class RecordingLibrary {
     private(set) var recordings: [RecordingMetadata] = []
     private(set) var totalBytes: Int64 = 0
+    /// Folders a crash mid-recording left without metadata — invisible in `recordings`.
+    private(set) var orphans: [RecordingStore.OrphanedRecording] = []
+    private(set) var orphanBytes: Int64 = 0
     private(set) var isExporting = false
     private(set) var exportProgress: Double = 0
     var errorMessage: String?
@@ -22,6 +26,8 @@ final class RecordingLibrary {
     func refresh() {
         recordings = store.allRecordings()
         totalBytes = recordings.reduce(0) { $0 + store.byteSize(of: $1.id) }
+        orphans = store.orphanedRecordings()
+        orphanBytes = orphans.reduce(0) { $0 + $1.byteSize }
     }
 
     func byteSize(of recording: RecordingMetadata) -> Int64 {
@@ -41,6 +47,20 @@ final class RecordingLibrary {
         for index in offsets {
             guard recordings.indices.contains(index) else { continue }
             try? store.delete(recordings[index].id)
+        }
+        refresh()
+    }
+
+    /// Reclaims every orphaned folder. Nothing there can be opened or repaired — the
+    /// metadata that would say what the samples are was never written — so the only
+    /// thing to give back is the space.
+    func deleteOrphans() {
+        for orphan in orphans {
+            do {
+                try store.delete(orphan.id)
+            } catch {
+                errorMessage = error.localizedDescription
+            }
         }
         refresh()
     }
@@ -85,6 +105,24 @@ final class RecordingLibrary {
         } catch {
             errorMessage = error.localizedDescription
             return nil
+        }
+    }
+}
+
+extension View {
+    /// Surfaces ``RecordingLibrary/errorMessage``.
+    ///
+    /// The model has always recorded why a delete, rename or export failed; until this
+    /// existed nothing displayed it, so a failed export looked exactly like a successful one
+    /// that produced no share sheet.
+    func libraryErrorAlert(_ library: RecordingLibrary) -> some View {
+        alert("Fehler", isPresented: Binding(
+            get: { library.errorMessage != nil },
+            set: { if !$0 { library.errorMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) { library.errorMessage = nil }
+        } message: {
+            Text(library.errorMessage ?? "")
         }
     }
 }

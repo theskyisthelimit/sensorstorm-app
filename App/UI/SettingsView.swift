@@ -48,6 +48,10 @@ struct SettingsView: View {
                     }
                 }
 
+                if hub.settings.isVideoEnabled {
+                    captureEngineSection
+                }
+
                 ForEach(SensorCategory.allCases, id: \.self) { category in
                     sensorSection(category)
                 }
@@ -64,10 +68,43 @@ struct SettingsView: View {
         }
     }
 
+    /// The one setting that decides whether a recording can be placed in a 3D scene, so it
+    /// says what it buys rather than naming a framework.
+    @ViewBuilder
+    private var captureEngineSection: some View {
+        @Bindable var hub = hub
+
+        Section {
+            Picker("Kamerapose", selection: $hub.settings.captureEngine) {
+                Text("Aus").tag(CaptureEngine.classic)
+                Text("ARKit").tag(CaptureEngine.arkit)
+            }
+            .pickerStyle(.segmented)
+            .disabled(!hub.isARKitAvailable)
+        } header: {
+            Text("3D")
+        } footer: {
+            if !hub.isARKitAvailable {
+                Text("Dieses Gerät unterstützt kein ARKit-Tracking.")
+            } else if hub.settings.captureEngine == .arkit {
+                if hub.canAlignARKitToNorth {
+                    Text("Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — genug, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.")
+                } else {
+                    Text("Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Ohne Standortfreigabe fehlt die Nordausrichtung, und die Szene ist um einen unbekannten Winkel verdreht.")
+                }
+            } else {
+                Text("Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten — die Bilder lassen sich damit nicht im Raum platzieren.")
+            }
+        }
+    }
+
     @ViewBuilder
     private func sensorSection(_ category: SensorCategory) -> some View {
         @Bindable var hub = hub
+        // Engine-controlled streams follow from the camera setting above; showing them as
+        // toggles would promise a choice that does not exist.
         let descriptors = SensorCatalog.descriptors(in: category)
+            .filter { !SensorID.engineControlled.contains($0.id) }
 
         if !descriptors.isEmpty {
             Section(category.title) {

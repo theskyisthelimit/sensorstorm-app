@@ -94,6 +94,41 @@ public struct RecordingStore: Sendable {
         try FileManager.default.removeItem(at: url)
     }
 
+    // MARK: - Orphans
+
+    /// A recording folder that a crash left behind: streams and video are on disk, but
+    /// `metadata.json` was never written, so `allRecordings()` cannot see it. The bytes are
+    /// real and unrecoverable — surfacing them is the only way the user can reclaim the space.
+    public struct OrphanedRecording: Sendable, Hashable, Identifiable {
+        public let id: UUID
+        public let byteSize: Int64
+
+        public init(id: UUID, byteSize: Int64) {
+            self.id = id
+            self.byteSize = byteSize
+        }
+    }
+
+    /// Every folder named like a recording that carries no readable metadata, largest first.
+    /// `delete(_:)` takes an orphan's `id` unchanged.
+    public func orphanedRecordings() -> [OrphanedRecording] {
+        let contents = (try? FileManager.default.contentsOfDirectory(
+            at: root, includingPropertiesForKeys: [.isDirectoryKey],
+            options: [.skipsHiddenFiles])) ?? []
+
+        return contents
+            .filter { (try? $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true }
+            .compactMap { UUID(uuidString: $0.lastPathComponent) }
+            .filter { (try? loadMetadata(id: $0)) == nil }
+            .map { OrphanedRecording(id: $0, byteSize: byteSize(of: $0)) }
+            .sorted { $0.byteSize > $1.byteSize }
+    }
+
+    /// Disk space held by folders no recording list will ever show.
+    public var orphanedByteSize: Int64 {
+        orphanedRecordings().reduce(0) { $0 + $1.byteSize }
+    }
+
     // MARK: - Annotations
 
     public func annotations(for id: UUID) -> [Annotation] {

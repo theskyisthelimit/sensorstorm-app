@@ -46,6 +46,7 @@ final class SensorHub {
     let sink = SampleSink()
     let store: RecordingStore
     let videoRecorder: VideoRecorder
+    let poseRecorder: ARPoseRecorder
 
     private let motionSource: MotionSource
     private let locationSource: LocationSource
@@ -66,6 +67,9 @@ final class SensorHub {
         let wallToHostOffset: Double
         let settings: RecordingSettings
         var writesAudioFile: Bool
+        /// Frozen at start: the engine that owns the camera for this run must not change
+        /// underneath `stopRecording()` if the setting is toggled mid-recording.
+        let engine: CaptureEngine
     }
 
     init(store: RecordingStore) {
@@ -74,6 +78,7 @@ final class SensorHub {
 
         let sink = self.sink
         self.videoRecorder = VideoRecorder(sink: sink)
+        self.poseRecorder = ARPoseRecorder(sink: sink)
         self.motionSource = MotionSource(sink: sink)
         self.locationSource = LocationSource(sink: sink)
         self.audioSource = AudioSource(sink: sink)
@@ -101,7 +106,21 @@ final class SensorHub {
             .union(deviceStateSource.availableSensors)
 
         syntheticSensors = syntheticSource.map { $0.availableSensors.subtracting(real) } ?? []
-        availableSensors = real.union(syntheticSensors)
+        var all = real.union(syntheticSensors)
+        // Written by the camera path rather than by a sensor source, so it is available
+        // exactly when there is a camera to write it.
+        if isCameraAvailable { all.insert(.cameraPose) }
+        availableSensors = all
+    }
+
+    /// The streams a recording should write: what the user armed, minus the ones the user
+    /// does not control, plus whatever the active capture engine contributes itself.
+    private func streamsToWrite(for settings: RecordingSettings) -> Set<SensorID> {
+        var wanted = settings.enabledSensors.subtracting(SensorID.engineControlled)
+        if settings.isVideoEnabled, isCameraAvailable || usesARKit(for: settings) {
+            wanted.insert(.cameraPose)
+        }
+        return wanted.intersection(availableSensors)
     }
 
     func isAvailable(_ sensor: SensorID) -> Bool {
@@ -114,6 +133,20 @@ final class SensorHub {
         #else
         VideoRecorder.hasCamera
         #endif
+    }
+
+    var isARKitAvailable: Bool {
+        #if targetEnvironment(simulator)
+        false
+        #else
+        ARPoseRecorder.isSupported
+        #endif
+    }
+
+    /// ARKit without a compass reading produces a world rotated by an unknown amount instead
+    /// of one rotated by a few degrees — worth saying out loud before a recording, not after.
+    var canAlignARKitToNorth: Bool {
+        isARKitAvailable && ARPoseRecorder.canAlignToHeading && locationSource.isAuthorized
     }
 
     var locationAuthorization: CLAuthorizationStatus { locationSource.authorizationStatus }
@@ -174,13 +207,34 @@ final class SensorHub {
         syntheticSource?.start(sensors: wanted.intersection(syntheticSensors),
                                rateHz: settings.motionRateHz, wallToHostOffset: offset)
 
-        if settings.isVideoEnabled, isCameraAvailable {
+        if usesARKit(for: settings) {
+            poseRecorder.start(quality: settings.videoQuality)
+            // ARKit owns the camera and delivers no audio, so metering has to come from the
+            // microphone tap rather than from a capture session's audio output.
+            if wanted.contains(.loudness) || settings.recordsAudio {
+                startAudioMetering()
+            }
+        } else if settings.isVideoEnabled, isCameraAvailable {
             await configureCamera(for: settings)
-        } else if wanted.contains(.loudness) {
-            startAudioMetering()
+        } else {
+            // No camera in play — either it was never wanted or this device has none. Either
+            // way the microphone is the only thing left that can meter, and skipping it here
+            // used to leave the loudness tile permanently blank with no explanation.
+            if settings.isVideoEnabled {
+                errorMessage = String(localized: "Keine Kamera verfügbar. Es werden nur Sensordaten aufgezeichnet.")
+            }
+            if wanted.contains(.loudness) || settings.recordsAudio {
+                startAudioMetering()
+            }
         }
 
         sink.clearLive(except: wanted)
+    }
+
+    /// Whether this run should use ARKit, taking availability into account rather than just
+    /// the setting.
+    func usesARKit(for settings: RecordingSettings) -> Bool {
+        settings.usesARKit && isARKitAvailable
     }
 
     private func configureCamera(for settings: RecordingSettings) async {
@@ -211,6 +265,7 @@ final class SensorHub {
         syntheticSource?.stop()
         _ = audioSource.stop()
         videoRecorder.teardown()
+        poseRecorder.stop()
     }
 
     // MARK: - Recording
@@ -226,6 +281,14 @@ final class SensorHub {
             await startMonitoring()
         }
 
+        // 4K video plus 400 Hz across a dozen streams fills a device faster than anyone
+        // expects. Refusing up front beats a truncated recording discovered afterwards.
+        if let free = Self.freeDiskBytes, free < Self.minimumFreeBytes {
+            errorMessage = String(localized: "Zu wenig freier Speicher für eine Aufnahme.")
+            phase = .idle
+            return
+        }
+
         let id = UUID()
         let recordingSettings = settings
 
@@ -233,27 +296,43 @@ final class SensorHub {
             let directory = try store.prepareDirectory(for: id)
             let offset = HostClock.wallToHostOffset
 
+            locationSource.resetAnchor()
+
             var writers: [SensorID: StreamWriter] = [:]
-            for sensor in recordingSettings.enabledSensors.sorted(by: { $0.rawValue < $1.rawValue })
-            where availableSensors.contains(sensor) {
+            for sensor in streamsToWrite(for: recordingSettings).sorted(by: { $0.rawValue < $1.rawValue }) {
                 let descriptor = sensor.descriptor
                 writers[sensor] = try StreamWriter(sensor: sensor,
                                                    channelCount: descriptor.channelCount,
                                                    directory: directory)
             }
 
+            let engine: CaptureEngine = usesARKit(for: recordingSettings) ? .arkit : .classic
+            let videoURL = directory.appendingPathComponent(RecordingStore.videoFileName)
+
+            // Only the classic path's movie carries its own audio track. ARKit delivers no
+            // audio at all, and a sensor-only recording obviously has no movie — in both of
+            // those cases "Ton aufnehmen" has to mean a separate file, which it silently did
+            // not before.
             var writesAudioFile = false
-            if recordingSettings.isVideoEnabled, isCameraAvailable {
+            switch engine {
+            case .arkit:
+                try poseRecorder.startWriting(to: videoURL)
+            case .classic where recordingSettings.isVideoEnabled && isCameraAvailable:
                 if !videoRecorder.isConfigured {
                     await configureCamera(for: recordingSettings)
                 }
-                try videoRecorder.startWriting(
-                    to: directory.appendingPathComponent(RecordingStore.videoFileName))
-            } else if recordingSettings.recordsAudio, recordingSettings.isEnabled(.loudness) {
-                // Metering is already running; restart it so the same tap also writes a file.
-                _ = audioSource.stop()
-                try audioSource.start(fileURL: directory.appendingPathComponent("audio.m4a"))
-                writesAudioFile = true
+                try videoRecorder.startWriting(to: videoURL)
+            case .classic:
+                break
+            }
+
+            if engine == .arkit || !(recordingSettings.isVideoEnabled && isCameraAvailable) {
+                if recordingSettings.recordsAudio {
+                    // Metering is already running; restart it so the same tap also writes a file.
+                    _ = audioSource.stop()
+                    try audioSource.start(fileURL: directory.appendingPathComponent("audio.m4a"))
+                    writesAudioFile = true
+                }
             }
 
             // Arm the writers last: from this instant on, every sample is part of the file.
@@ -265,7 +344,8 @@ final class SensorHub {
                                               startedAt: Date(),
                                               wallToHostOffset: offset,
                                               settings: recordingSettings,
-                                              writesAudioFile: writesAudioFile)
+                                              writesAudioFile: writesAudioFile,
+                                              engine: engine)
 
             locationSource.setBackgroundUpdates(true)
             UIApplication.shared.isIdleTimerDisabled = recordingSettings.keepsScreenAwake
@@ -284,11 +364,13 @@ final class SensorHub {
         guard phase == .recording, let active = activeRecording else { return nil }
         phase = .finishing
 
-        let videoInfo: VideoInfo?
-        if active.settings.isVideoEnabled, isCameraAvailable {
-            videoInfo = await videoRecorder.finishWriting()
-        } else {
-            videoInfo = nil
+        let videoInfo: VideoInfo? = switch active.engine {
+        case .arkit:
+            await poseRecorder.finishWriting()
+        case .classic where active.settings.isVideoEnabled && isCameraAvailable:
+            await videoRecorder.finishWriting()
+        case .classic:
+            nil
         }
 
         var audioInfo: AudioInfo?
@@ -312,7 +394,10 @@ final class SensorHub {
             streams: streams.filter { $0.sampleCount > 0 },
             video: videoInfo,
             audio: audioInfo,
-            requestedRateHz: active.settings.motionRateHz
+            requestedRateHz: active.settings.motionRateHz,
+            captureEngine: active.engine,
+            attitudeReferenceFrame: motionSource.activeReferenceFrame,
+            geodeticAnchor: locationSource.geodeticAnchor
         )
 
         locationSource.setBackgroundUpdates(false)
@@ -382,6 +467,17 @@ final class SensorHub {
     static func defaultName(for date: Date) -> String {
         date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits)
             .hour(.twoDigits(amPM: .omitted)).minute(.twoDigits))
+    }
+
+    /// Enough headroom for a couple of minutes of 4K plus the streams around it. A hard
+    /// floor rather than an estimate: predicting the size of a recording whose length nobody
+    /// knows yet would be guesswork dressed up as a check.
+    static let minimumFreeBytes: Int64 = 500 * 1024 * 1024
+
+    static var freeDiskBytes: Int64? {
+        let url = URL(fileURLWithPath: NSHomeDirectory())
+        return try? url.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+            .volumeAvailableCapacityForImportantUsage
     }
 
     static func deviceInfo() -> DeviceInfo {

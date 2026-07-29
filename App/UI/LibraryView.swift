@@ -26,6 +26,7 @@ struct LibraryView: View {
             }
         }
         .onAppear { library.refresh() }
+        .libraryErrorAlert(library)
     }
 
     private var list: some View {
