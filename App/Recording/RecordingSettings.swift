@@ -14,6 +14,17 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// earlier build still decodes; ``captureEngine`` resolves the default.
     var preferredCaptureEngine: CaptureEngine?
 
+    /// Streams hidden from the live tiles and the playback charts.
+    ///
+    /// Deliberately independent of ``enabledSensors``: a measurement not taken cannot be
+    /// taken again afterwards, whereas a view can always be changed back. Tidying the screen
+    /// must therefore never cost data.
+    ///
+    /// Stores what is *hidden* rather than what is shown, so a sensor added in a later
+    /// version appears by default instead of silently staying invisible.
+    var hiddenSensors: Set<SensorID>?
+    var collapsedCategories: Set<SensorCategory>?
+
     static let availableRates: [Double] = [10, 25, 50, 100, 200, 400]
 
     static let `default` = RecordingSettings(
@@ -34,6 +45,54 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// ARKit owns the camera outright, so the front camera and the classic quality presets
     /// do not apply — and it only makes sense with a camera running at all.
     var usesARKit: Bool { captureEngine == .arkit && isVideoEnabled }
+
+    // MARK: - Display
+
+    func isVisible(_ sensor: SensorID) -> Bool {
+        !(hiddenSensors ?? []).contains(sensor)
+    }
+
+    mutating func setVisible(_ visible: Bool, for sensor: SensorID) {
+        var hidden = hiddenSensors ?? []
+        if visible { hidden.remove(sensor) } else { hidden.insert(sensor) }
+        hiddenSensors = hidden.isEmpty ? nil : hidden
+    }
+
+    func isCollapsed(_ category: SensorCategory) -> Bool {
+        (collapsedCategories ?? []).contains(category)
+    }
+
+    mutating func setCollapsed(_ collapsed: Bool, for category: SensorCategory) {
+        var categories = collapsedCategories ?? []
+        if collapsed { categories.insert(category) } else { categories.remove(category) }
+        collapsedCategories = categories.isEmpty ? nil : categories
+    }
+
+    /// Only counts streams that are actually being recorded — a hidden sensor that is also
+    /// switched off is not something the user is missing from the screen.
+    func hiddenCount(among available: Set<SensorID>) -> Int {
+        (hiddenSensors ?? []).count { enabledSensors.contains($0) && available.contains($0) }
+    }
+
+    mutating func showAllSensors() {
+        hiddenSensors = nil
+        collapsedCategories = nil
+    }
+
+    /// Whether the difference to `other` changes what the hardware does, rather than only
+    /// what the screen draws.
+    ///
+    /// Without this, hiding a tile would tear down and restart every sensor source — resetting
+    /// all live values and interrupting a 400 Hz stream to change a view.
+    func affectsCapture(comparedTo other: RecordingSettings) -> Bool {
+        var mine = self
+        var theirs = other
+        mine.hiddenSensors = nil
+        mine.collapsedCategories = nil
+        theirs.hiddenSensors = nil
+        theirs.collapsedCategories = nil
+        return mine != theirs
+    }
 
     func isEnabled(_ sensor: SensorID) -> Bool {
         enabledSensors.contains(sensor)

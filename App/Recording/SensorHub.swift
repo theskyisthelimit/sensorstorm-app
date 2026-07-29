@@ -37,7 +37,8 @@ final class SensorHub {
         didSet {
             guard settings != oldValue else { return }
             SettingsStore.save(settings)
-            if isMonitoring, phase == .idle {
+            // Show/hide and collapse are display state and must not disturb the hardware.
+            if isMonitoring, phase == .idle, settings.affectsCapture(comparedTo: oldValue) {
                 restartMonitoring()
             }
         }

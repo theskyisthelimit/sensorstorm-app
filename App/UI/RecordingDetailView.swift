@@ -3,6 +3,7 @@ import SwiftUI
 
 struct RecordingDetailView: View {
     @Environment(RecordingLibrary.self) private var library
+    @Environment(SensorHub.self) private var hub
     @Environment(\.dismiss) private var dismiss
 
     @State private var playback: RecordingPlayback
@@ -36,7 +37,9 @@ struct RecordingDetailView: View {
                 if playback.isLoading {
                     ProgressView().padding(40)
                 } else {
-                    ForEach(playback.charts) { data in
+                    // The same display filter as the live view. Hiding a stream here never
+                    // touches the recording — the chart is gone, the data is not.
+                    ForEach(playback.charts.filter { hub.settings.isVisible($0.sensor) }) { data in
                         SensorChartCard(
                             data: data,
                             playhead: playback.playhead,
@@ -45,7 +48,16 @@ struct RecordingDetailView: View {
                             annotations: annotationTimes,
                             onScrub: { playback.pause(); playback.seek(to: $0) }
                         )
+                        .contextMenu {
+                            Button {
+                                hub.settings.setVisible(false, for: data.sensor)
+                            } label: {
+                                Label("Ausblenden", systemImage: "eye.slash")
+                            }
+                            Text("Die Daten bleiben in der Aufnahme")
+                        }
                     }
+                    hiddenChartsFooter
                 }
 
                 infoCard
@@ -85,6 +97,27 @@ struct RecordingDetailView: View {
             }
         }
         .libraryErrorAlert(library)
+    }
+
+    @ViewBuilder
+    private var hiddenChartsFooter: some View {
+        @Bindable var hub = hub
+        let hidden = playback.charts.count { !hub.settings.isVisible($0.sensor) }
+
+        if hidden > 0 {
+            Button {
+                for chart in playback.charts {
+                    hub.settings.setVisible(true, for: chart.sensor)
+                }
+            } label: {
+                Label("\(hidden) Diagramm(e) ausgeblendet · einblenden", systemImage: "eye")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+            }
+            .buttonStyle(.plain)
+        }
     }
 
     private var videoAspectRatio: CGFloat {

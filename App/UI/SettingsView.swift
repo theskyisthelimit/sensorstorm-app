@@ -115,11 +115,16 @@ struct SettingsView: View {
                     )) {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(descriptor.id.title)
+                            // One line. Spelled out, GPS alone lists ten channel names and
+                            // pushed its row to three lines, which is most of why this
+                            // screen felt like a wall. The full list lives in docs/UNITS.md.
                             Text(available
                                  ? descriptor.channels.joined(separator: ", ")
                                  : String(localized: "nicht verfügbar"))
                                 .font(.caption2)
                                 .foregroundStyle(.tertiary)
+                                .lineLimit(1)
+                                .truncationMode(.tail)
                         }
                     }
                     .disabled(!available)

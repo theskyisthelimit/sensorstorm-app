@@ -204,26 +204,58 @@ struct RecordView: View {
     private var liveSection: some View {
         VStack(alignment: .leading, spacing: 20) {
             ForEach(SensorCategory.allCases, id: \.self) { category in
-                let sensors = visibleSensors(in: category)
-                if !sensors.isEmpty {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Label(category.title, systemImage: category.symbol)
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(.secondary)
+                let recorded = recordedSensors(in: category)
+                if !recorded.isEmpty {
+                    categoryGroup(category, recorded: recorded)
+                }
+            }
+            hiddenFooter
+        }
+    }
 
-                        // A category with a single sensor gets the full width; in a
-                        // two-column grid it would sit in the left half with the right half
-                        // conspicuously empty.
-                        if sensors.count == 1 {
-                            LiveSensorTile(sensor: sensors[0], sample: hub.live[sensors[0]])
-                        } else {
-                            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12),
-                                                GridItem(.flexible(), spacing: 12)],
-                                      spacing: 12) {
-                                ForEach(sensors, id: \.self) { sensor in
-                                    LiveSensorTile(sensor: sensor, sample: hub.live[sensor])
-                                }
-                            }
+    @ViewBuilder
+    private func categoryGroup(_ category: SensorCategory,
+                               recorded: [SensorID]) -> some View {
+        @Bindable var hub = hub
+        let shown = recorded.filter { hub.settings.isVisible($0) }
+        let collapsed = hub.settings.isCollapsed(category)
+
+        VStack(alignment: .leading, spacing: 10) {
+            Button {
+                withAnimation(.snappy(duration: 0.2)) {
+                    hub.settings.setCollapsed(!collapsed, for: category)
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    Label(category.title, systemImage: category.symbol)
+                        .font(.subheadline.weight(.semibold))
+                    Image(systemName: "chevron.down")
+                        .font(.caption2.weight(.semibold))
+                        .rotationEffect(.degrees(collapsed ? -90 : 0))
+                    if collapsed || shown.count < recorded.count {
+                        Text("\(shown.count)/\(recorded.count)")
+                            .font(.caption2.monospacedDigit())
+                            .foregroundStyle(.tertiary)
+                    }
+                    Spacer(minLength: 0)
+                }
+                .foregroundStyle(.secondary)
+                .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint(collapsed ? Text("Aufklappen") : Text("Zuklappen"))
+
+            if !collapsed, !shown.isEmpty {
+                // A category with a single sensor gets the full width; in a two-column grid
+                // it would sit in the left half with the right half conspicuously empty.
+                if shown.count == 1 {
+                    tile(shown[0])
+                } else {
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 12),
+                                        GridItem(.flexible(), spacing: 12)],
+                              spacing: 12) {
+                        ForEach(shown, id: \.self) { sensor in
+                            tile(sensor)
                         }
                     }
                 }
@@ -231,7 +263,48 @@ struct RecordView: View {
         }
     }
 
-    private func visibleSensors(in category: SensorCategory) -> [SensorID] {
+    private func tile(_ sensor: SensorID) -> some View {
+        @Bindable var hub = hub
+        return LiveSensorTile(sensor: sensor, sample: hub.live[sensor])
+            .contextMenu {
+                Button {
+                    withAnimation(.snappy(duration: 0.2)) {
+                        hub.settings.setVisible(false, for: sensor)
+                    }
+                } label: {
+                    Label("Ausblenden", systemImage: "eye.slash")
+                }
+                // Said out loud, because hiding a tile deliberately does *not* stop the
+                // recording, and that is the whole point of separating the two.
+                Text("Wird weiterhin aufgezeichnet")
+            }
+    }
+
+    @ViewBuilder
+    private var hiddenFooter: some View {
+        @Bindable var hub = hub
+        let hidden = hub.settings.hiddenCount(among: hub.availableSensors)
+        let collapsed = hub.settings.collapsedCategories?.count ?? 0
+
+        if hidden > 0 || collapsed > 0 {
+            Button {
+                withAnimation(.snappy(duration: 0.2)) { hub.settings.showAllSensors() }
+            } label: {
+                Label(hidden > 0
+                      ? "\(hidden) ausgeblendet · alle einblenden"
+                      : "Alle Gruppen aufklappen",
+                      systemImage: "eye")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+            }
+            .buttonStyle(.plain)
+        }
+    }
+
+    /// Sensors this category is actually recording — the pool the display filter selects from.
+    private func recordedSensors(in category: SensorCategory) -> [SensorID] {
         SensorCatalog.descriptors(in: category)
             .map(\.id)
             .filter { hub.settings.isEnabled($0) && hub.isAvailable($0) }
