@@ -16,16 +16,18 @@ struct RecordView: View {
                     if hub.settings.isVideoEnabled && hub.isCameraAvailable {
                         cameraPreview
                     }
-                    statusHeader
-                    recordControls
                     if hub.phase == .recording {
                         annotationRow
                     }
                     liveSection
                 }
                 .padding(.horizontal, 16)
-                .padding(.bottom, 32)
+                .padding(.bottom, 16)
             }
+            // Timecode and the record button are pinned rather than scrolled. With the
+            // camera on, the preview pushed them off the bottom and the app's primary
+            // control ended up behind the tab bar, reachable only by scrolling for it.
+            .safeAreaInset(edge: .bottom, spacing: 0) { transportPanel }
             .navigationTitle("Sensorstorm")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -62,7 +64,10 @@ struct RecordView: View {
                                   isMirrored: hub.settings.videoMode.isFront)
             }
         }
-            .aspectRatio(3.0 / 4.0, contentMode: .fit)
+            .aspectRatio(previewAspectRatio, contentMode: .fit)
+            // Capped, or the preview eats the screen and pushes the sensors out of sight.
+            .frame(maxHeight: 300)
+            .frame(maxWidth: .infinity)
             .clipShape(.rect(cornerRadius: 16))
             .overlay(alignment: .topLeading) {
                 Label(videoLabel, systemImage: "video.fill")
@@ -74,11 +79,26 @@ struct RecordView: View {
             }
     }
 
+    /// The shape of the frame that actually gets written, not a convenient box to crop it
+    /// into. The classic path rotates its video horizon-level, so held upright it stores a
+    /// portrait movie; ARKit stores sensor-native landscape so its intrinsics stay valid.
+    /// Showing the wrong one would promise a framing the file does not contain.
+    private var previewAspectRatio: CGFloat {
+        if hub.usesARKit(for: hub.settings) {
+            return 4.0 / 3.0
+        }
+        let size = hub.settings.videoQuality.pixelSize
+        return CGFloat(size.height) / CGFloat(size.width)
+    }
+
     private var videoLabel: String {
         let quality = switch hub.settings.videoQuality {
         case .hd720: "720p"
         case .hd1080: "1080p"
         case .uhd4k: "4K"
+        }
+        if hub.usesARKit(for: hub.settings) {
+            return "ARKit · \(quality)"
         }
         let camera = hub.settings.videoMode.isFront
             ? String(localized: "Front")
@@ -86,30 +106,34 @@ struct RecordView: View {
         return "\(camera) · \(quality)"
     }
 
-    // MARK: - Status
+    // MARK: - Transport
 
-    private var statusHeader: some View {
-        VStack(spacing: 6) {
-            Text(Format.timecode(hub.elapsed))
-                .font(.system(size: 52, weight: .semibold, design: .rounded))
-                .monospacedDigit()
-                .foregroundStyle(hub.phase == .recording ? Theme.recording : .primary)
-                .contentTransition(.numericText())
-                .animation(.default, value: hub.elapsed)
+    /// Timecode and record button, side by side so the whole thing stays one row high and
+    /// leaves the screen to the camera and the sensors.
+    private var transportPanel: some View {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(Format.timecode(hub.elapsed))
+                    .font(.system(size: 34, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(hub.phase == .recording ? Theme.recording : .primary)
+                    .contentTransition(.numericText())
+                    .animation(.default, value: hub.elapsed)
 
-            if hub.phase == .recording {
-                Text("\(Format.sampleCount(hub.writtenSampleCount)) Messwerte")
-                    .font(.footnote.monospacedDigit())
-                    .foregroundStyle(.secondary)
-            } else {
-                Text("Bereit")
-                    .font(.footnote)
+                Text(hub.phase == .recording
+                     ? "\(Format.sampleCount(hub.writtenSampleCount)) Messwerte"
+                     : String(localized: "Bereit"))
+                    .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
+
+            Spacer(minLength: 0)
+
+            recordButton
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
-        .card()
+        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
+        .background(.bar)
     }
 
     private var activeSensorSummary: String {
@@ -119,36 +143,29 @@ struct RecordView: View {
 
     // MARK: - Controls
 
-    private var recordControls: some View {
-        HStack(spacing: 20) {
-            Spacer()
-            Button {
-                Task { await toggleRecording() }
-            } label: {
-                ZStack {
-                    Circle()
-                        .strokeBorder(.white.opacity(0.85), lineWidth: 4)
-                        .frame(width: 84, height: 84)
-                    RoundedRectangle(cornerRadius: hub.phase == .recording ? 8 : 34)
-                        .fill(Theme.recording)
-                        .frame(width: hub.phase == .recording ? 34 : 68,
-                               height: hub.phase == .recording ? 34 : 68)
+    private var recordButton: some View {
+        Button {
+            Task { await toggleRecording() }
+        } label: {
+            ZStack {
+                Circle()
+                    .strokeBorder(.white.opacity(0.85), lineWidth: 3)
+                    .frame(width: 62, height: 62)
+                RoundedRectangle(cornerRadius: hub.phase == .recording ? 6 : 25)
+                    .fill(Theme.recording)
+                    .frame(width: hub.phase == .recording ? 26 : 50,
+                           height: hub.phase == .recording ? 26 : 50)
+                if hub.phase == .starting || hub.phase == .finishing {
+                    ProgressView().tint(.white)
                 }
-                .animation(.spring(duration: 0.25), value: hub.phase)
             }
-            .buttonStyle(.plain)
-            .disabled(hub.phase == .starting || hub.phase == .finishing)
-            .accessibilityLabel(hub.phase == .recording
-                                ? Text("Aufnahme stoppen")
-                                : Text("Aufnahme starten"))
-            Spacer()
+            .animation(.spring(duration: 0.25), value: hub.phase)
         }
-        .overlay(alignment: .trailing) {
-            if hub.phase == .starting || hub.phase == .finishing {
-                ProgressView().tint(.secondary)
-            }
-        }
-        .padding(.vertical, 4)
+        .buttonStyle(.plain)
+        .disabled(hub.phase == .starting || hub.phase == .finishing)
+        .accessibilityLabel(hub.phase == .recording
+                            ? Text("Aufnahme stoppen")
+                            : Text("Aufnahme starten"))
     }
 
     private func toggleRecording() async {
