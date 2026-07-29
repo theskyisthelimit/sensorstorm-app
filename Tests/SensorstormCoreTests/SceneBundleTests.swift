@@ -214,6 +214,86 @@ struct SceneBundleTests {
         #expect(frames[0].intrinsics.isUsable == false)
     }
 
+    // MARK: - Frame matching
+
+    /// The first real recording exposed this: the movie is armed before the pose writer (an
+    /// audio engine starts up in between) and keeps receiving frames while the file is
+    /// finalised. On that recording the movie held 281 frames and the pose stream 283 rows,
+    /// overlapping by only 266 — so row N was frame N+15, and a naive mapping slid the whole
+    /// camera animation a quarter second against the footage.
+    @Test("Poses are matched to video frames by time, not by row number")
+    func framesAreMatchedByTime() throws {
+        let fixture = try Fixture(engine: .arkit)
+        defer { fixture.cleanUp() }
+
+        // Pretend the movie opened four frames after the first pose and closed three frames
+        // before the last — the same shape as the real recording, in both directions.
+        var metadata = fixture.metadata
+        let rate = Fixture.frameRate
+        let video = try #require(metadata.video)
+        metadata.video = VideoInfo(
+            fileName: video.fileName,
+            startHostTime: Fixture.frameTime(4),
+            duration: Double(Fixture.frameCount - 1 - 4 - 3) / rate,
+            width: video.width, height: video.height,
+            nominalFrameRate: rate,
+            hasAudio: false, isFrontCamera: false,
+            appliedRotationAngle: 0, isMirrored: false)
+
+        let exporter = SceneBundleExporter(store: fixture.store)
+        let (frames, timing) = exporter.frameSamples(for: metadata)
+
+        #expect(timing == .perFrame)
+        // 300 poses, minus 4 before the movie opened and 3 after it closed.
+        #expect(frames.count == Fixture.frameCount - 7)
+
+        // The first surviving pose is the movie's frame 0, not the file's row 0.
+        #expect(frames.first?.videoFrameIndex == 0)
+        #expect(frames.last?.videoFrameIndex == Fixture.frameCount - 1 - 4 - 3)
+
+        // Indices are contiguous and strictly increasing — a gap would desynchronise
+        // everything after it.
+        for (offset, frame) in frames.enumerated() {
+            #expect(frame.videoFrameIndex == offset)
+        }
+
+        // And the pose that ends up at movie frame 0 is genuinely the one recorded then.
+        #expect(abs((frames.first?.hostTime ?? 0) - Fixture.frameTime(4)) < 1e-9)
+    }
+
+    @Test("The frame index reaches frames.csv rather than the row counter")
+    func csvCarriesTheVideoFrameIndex() throws {
+        let fixture = try Fixture(engine: .arkit)
+        defer { fixture.cleanUp() }
+
+        var metadata = fixture.metadata
+        let video = try #require(metadata.video)
+        metadata.video = VideoInfo(
+            fileName: video.fileName,
+            startHostTime: Fixture.frameTime(10),
+            duration: video.duration,
+            width: video.width, height: video.height,
+            nominalFrameRate: Fixture.frameRate,
+            hasAudio: false, isFrontCamera: false,
+            appliedRotationAngle: 0, isMirrored: false)
+
+        let output = FileManager.default.temporaryDirectory
+            .appendingPathComponent("scene-idx-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: output, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: output) }
+
+        try SceneBundleExporter(store: fixture.store).write(metadata, into: output)
+
+        let csv = try String(contentsOf: output.appendingPathComponent("frames.csv"),
+                             encoding: .utf8)
+        let rows = csv.split(separator: "\n").dropFirst()
+        // Ten poses fell before the movie opened, so the file starts at frame 0 and holds
+        // ten rows fewer than the pose stream.
+        #expect(rows.count == Fixture.frameCount - 10)
+        #expect(rows.first?.split(separator: ",").first == "0")
+        #expect(rows.dropFirst().first?.split(separator: ",").first == "1")
+    }
+
     // MARK: - Resampling
 
     @Test("Frames outside the GPS track get no position instead of a clamped one")

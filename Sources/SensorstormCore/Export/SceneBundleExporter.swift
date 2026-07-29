@@ -107,6 +107,7 @@ public struct SceneBundleExporter: Sendable {
         // Writing a guessed orientation here would look like data and behave like noise.
         let poses = zip(frames, gpsAtFrames).map { frame, gps in
             CameraPose(hostTime: frame.hostTime,
+                       videoFrameIndex: frame.videoFrameIndex,
                        position: gps ?? ENU(east: .nan, north: .nan, up: .nan),
                        orientation: simd_quatd(vector: SIMD4(.nan, .nan, .nan, .nan)),
                        intrinsics: frame.intrinsics,
@@ -127,6 +128,7 @@ public struct SceneBundleExporter: Sendable {
                             gpsAtFrames: [ENU?]) -> ([CameraPose], GroundAlignment?) {
         var poses = frames.map { frame in
             CameraPose(hostTime: frame.hostTime,
+                       videoFrameIndex: frame.videoFrameIndex,
                        position: ARWorldFrame.position(fromARKit: frame.position),
                        orientation: ARWorldFrame.orientation(fromARKit: frame.orientation),
                        intrinsics: frame.intrinsics,
@@ -154,6 +156,7 @@ public struct SceneBundleExporter: Sendable {
         let alignment = TrajectoryAlignment.horizontal(source: source, target: target)
         poses = poses.map {
             CameraPose(hostTime: $0.hostTime,
+                       videoFrameIndex: $0.videoFrameIndex,
                        position: alignment.apply(to: $0.position),
                        orientation: alignment.apply(to: $0.orientation),
                        intrinsics: $0.intrinsics,
@@ -178,6 +181,8 @@ public struct SceneBundleExporter: Sendable {
 
     struct FrameSample {
         var hostTime: Double
+        /// Which frame of the movie this pose belongs to, counted from the movie's first.
+        var videoFrameIndex: Int
         var position: SIMD3<Double>
         var orientation: simd_quatd
         var intrinsics: CameraIntrinsics
@@ -197,10 +202,22 @@ public struct SceneBundleExporter: Sendable {
 
         if let reader = store.reader(for: .cameraPose, recording: metadata.id),
            reader.sampleCount > 0, reader.channelCount >= 13 {
+            // The movie and the pose stream are armed a few frames apart — the camera starts
+            // before the writers and keeps delivering while the file is being finalised — so
+            // the row number is not the frame number. Matching by time is the only way this
+            // holds; matching by position slides the whole animation against the footage.
+            let rate = video.nominalFrameRate > 0 ? video.nominalFrameRate : 30
+            let lastFrame = Int((video.duration * rate).rounded())
+
             var samples: [FrameSample] = []
             samples.reserveCapacity(reader.sampleCount)
 
             reader.forEachSample { hostTime, v in
+                let frameIndex = Int(((hostTime - video.startHostTime) * rate).rounded())
+                // A pose from before the movie opened or after it closed has no frame to
+                // belong to. Dropping it keeps the file's own promise of one row per frame.
+                guard frameIndex >= 0, frameIndex <= lastFrame else { return }
+
                 var intrinsics = CameraIntrinsics(fx: v[7], fy: v[8], cx: v[9], cy: v[10],
                                                   imageWidth: video.width,
                                                   imageHeight: video.height)
@@ -212,6 +229,7 @@ public struct SceneBundleExporter: Sendable {
                 }
                 samples.append(FrameSample(
                     hostTime: hostTime,
+                    videoFrameIndex: frameIndex,
                     position: SIMD3(v[0], v[1], v[2]),
                     orientation: simd_quatd(ix: v[3], iy: v[4], iz: v[5], r: v[6]),
                     intrinsics: intrinsics,
@@ -228,6 +246,7 @@ public struct SceneBundleExporter: Sendable {
         let nan = Double.nan
         let samples = (0..<max(count, 0)).map { index in
             FrameSample(hostTime: video.startHostTime + Double(index) / video.nominalFrameRate,
+                        videoFrameIndex: index,
                         position: SIMD3(nan, nan, nan),
                         orientation: simd_quatd(vector: SIMD4(nan, nan, nan, nan)),
                         intrinsics: CameraIntrinsics(fx: nan, fy: nan, cx: nan, cy: nan,
@@ -294,9 +313,12 @@ public struct SceneBundleExporter: Sendable {
         let handle = try FileHandle(forWritingTo: url)
         defer { try? handle.close() }
 
-        for (index, pose) in scene.poses.enumerated() {
+        for (written, pose) in scene.poses.enumerated() {
             let elapsed = pose.hostTime - metadata.startHostTime
-            var row = "\(index),\(num(pose.hostTime)),\(num(elapsed)),\(num(epochAtStart + elapsed))"
+            // `frame_index` is the frame of the movie, not the row of this file. The two
+            // differ whenever the camera and the pose writer were armed a few frames apart,
+            // which is every real recording.
+            var row = "\(pose.videoFrameIndex),\(num(pose.hostTime)),\(num(elapsed)),\(num(epochAtStart + elapsed))"
 
             row += ",\(num(pose.position.east)),\(num(pose.position.north)),\(num(pose.position.up))"
 
@@ -324,7 +346,7 @@ public struct SceneBundleExporter: Sendable {
             out += row
             out += "\n"
 
-            if index % 2048 == 0, !out.isEmpty {
+            if written % 2048 == 0, !out.isEmpty {
                 try handle.write(contentsOf: Data(out.utf8))
                 out.removeAll(keepingCapacity: true)
             }

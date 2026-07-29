@@ -45,12 +45,38 @@ UNCERTAIN_YAW_DEGREES = 10.0
 
 class Frame(NamedTuple):
     index: int
+    """Index of the video frame this pose belongs to, counted from the movie's first frame."""
     location: tuple[float, float, float]
     quaternion: tuple[float, float, float, float]  # w, x, y, z
     lens: float
     shift_x: float
     shift_y: float
     tracking_state: int
+
+
+class VideoTiming(NamedTuple):
+    """What is needed to say which video frame a pose belongs to.
+
+    Poses and video frames are two streams that start and stop a few frames apart — the
+    camera is armed before the pose writer and keeps delivering while the movie is being
+    finalised. Matching them by row number therefore slides the whole animation against the
+    background footage, so they are matched by time instead.
+    """
+
+    start_offset: float
+    """Seconds from the recording start to the movie's first frame. Usually negative."""
+    frame_rate: float
+
+    @classmethod
+    def from_manifest(cls, manifest: dict[str, Any]) -> "VideoTiming | None":
+        video = manifest.get("video") or {}
+        rate = float(video.get("nominalFrameRate") or 0)
+        if rate <= 0:
+            return None
+        return cls(float(video.get("startOffsetSeconds") or 0), rate)
+
+    def frame_index(self, seconds_elapsed: float) -> int:
+        return round((seconds_elapsed - self.start_offset) * self.frame_rate)
 
 
 def _float(row: dict[str, str], key: str) -> float | None:
@@ -66,12 +92,24 @@ def _float(row: dict[str, str], key: str) -> float | None:
     return value if math.isfinite(value) else None
 
 
-def _read_frames(csv_path: str, crs: str, scale: float) -> Iterator[Frame]:
+def _read_frames(csv_path: str, crs: str, scale: float,
+                 timing: VideoTiming | None = None,
+                 frame_count: int | None = None) -> Iterator[Frame]:
     with open(csv_path, newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
             index = _float(row, "frame_index")
             if index is None:
                 continue
+
+            if timing is not None:
+                elapsed = _float(row, "seconds_elapsed")
+                if elapsed is None:
+                    continue
+                index = timing.frame_index(elapsed)
+                # A pose recorded before the movie opened or after it closed has no frame to
+                # belong to. Keyframing it anyway would stretch the animation past the footage.
+                if index < 0 or (frame_count is not None and index >= frame_count):
+                    continue
 
             location = _location(row, crs)
             if location is None:
@@ -212,8 +250,12 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
             self.report({"ERROR"}, f"Could not read scene.json: {error}")
             return {"CANCELLED"}
 
+        timing = VideoTiming.from_manifest(manifest)
+        movie = self._load_movie(folder, manifest)
+        frame_count = movie.frame_duration if movie else None
+
         try:
-            frames = list(_read_frames(csv_path, self.crs, self.scale))
+            frames = list(_read_frames(csv_path, self.crs, self.scale, timing, frame_count))
         except (OSError, csv.Error) as error:
             self.report({"ERROR"}, f"Could not read frames.csv: {error}")
             return {"CANCELLED"}
@@ -233,16 +275,18 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
 
         anchor = self._make_anchor(context, manifest)
         camera = self._make_camera(context, manifest, anchor, frames)
-        self._apply_scene_settings(context, manifest, frames)
+        self._apply_scene_settings(context, manifest, frames, frame_count)
 
-        if self.import_video:
-            self._attach_video(camera, folder, manifest)
+        if self.import_video and movie is not None:
+            self._attach_video(camera, movie, manifest)
 
         self._warn_about_quality(manifest)
+        unmatched = manifest.get("frames", {}).get("count", len(frames)) - len(frames)
         self.report(
             {"INFO"},
             f"Imported {len(frames)} frames"
-            + (f", skipped {skipped} unreliable" if skipped else ""),
+            + (f", skipped {skipped} unreliable" if skipped else "")
+            + (f", {unmatched} outside the movie" if unmatched > 0 else ""),
         )
         return {"FINISHED"}
 
@@ -322,11 +366,14 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
         return camera
 
     def _apply_scene_settings(
-        self, context: bpy.types.Context, manifest: dict[str, Any], frames: list[Frame]
+        self, context: bpy.types.Context, manifest: dict[str, Any],
+        frames: list[Frame], frame_count: int | None
     ) -> None:
         scene = context.scene
-        scene.frame_start = frames[0].index + 1
-        scene.frame_end = frames[-1].index + 1
+        # The movie always starts at Blender frame 1; the first pose may be several frames
+        # in, and the range has to cover the footage rather than only the posed part.
+        scene.frame_start = 1
+        scene.frame_end = frame_count if frame_count else frames[-1].index + 1
 
         video = manifest.get("video") or {}
         rate = float(video.get("nominalFrameRate") or 0)
@@ -341,20 +388,26 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
             scene.render.resolution_x = width
             scene.render.resolution_y = height
 
-    def _attach_video(
-        self, camera: bpy.types.Object, folder: str, manifest: dict[str, Any]
-    ) -> None:
-        video = manifest.get("video") or {}
-        file_name = video.get("fileName")
+    def _load_movie(self, folder: str, manifest: dict[str, Any]) -> Any:
+        """Loads the movie early, because its frame count is what bounds the pose matching."""
+        file_name = (manifest.get("video") or {}).get("fileName")
         if not file_name:
-            return
+            return None
 
         path = os.path.join(folder, file_name)
         if not os.path.exists(path):
             self.report({"WARNING"}, f"{file_name} is not in the bundle; no background set")
-            return
+            return None
+        try:
+            return bpy.data.movieclips.load(path)
+        except RuntimeError as error:
+            self.report({"WARNING"}, f"Could not open {file_name}: {error}")
+            return None
 
-        movie = bpy.data.movieclips.load(path)
+    def _attach_video(
+        self, camera: bpy.types.Object, movie: Any, manifest: dict[str, Any]
+    ) -> None:
+        video = manifest.get("video") or {}
         data = camera.data
         data.show_background_images = True
         background = data.background_images.new()

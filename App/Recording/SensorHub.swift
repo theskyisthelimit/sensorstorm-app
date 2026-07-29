@@ -313,7 +313,22 @@ final class SensorHub {
             // audio at all, and a sensor-only recording obviously has no movie — in both of
             // those cases "Ton aufnehmen" has to mean a separate file, which it silently did
             // not before.
+            //
+            // Audio goes first on purpose. Starting an `AVAudioEngine` takes a few hundred
+            // milliseconds, and doing it *between* arming the movie and arming the writers
+            // meant the movie collected a quarter second of frames that no camera pose
+            // covered. The exporter still matches poses to frames by time, but there is no
+            // reason to hand it a gap to clean up.
             var writesAudioFile = false
+            let carriesAudioInMovie = engine == .classic
+                && recordingSettings.isVideoEnabled && isCameraAvailable
+            if recordingSettings.recordsAudio, !carriesAudioInMovie {
+                // Metering is already running; restart it so the same tap also writes a file.
+                _ = audioSource.stop()
+                try audioSource.start(fileURL: directory.appendingPathComponent("audio.m4a"))
+                writesAudioFile = true
+            }
+
             switch engine {
             case .arkit:
                 try poseRecorder.startWriting(to: videoURL)
@@ -324,15 +339,6 @@ final class SensorHub {
                 try videoRecorder.startWriting(to: videoURL)
             case .classic:
                 break
-            }
-
-            if engine == .arkit || !(recordingSettings.isVideoEnabled && isCameraAvailable) {
-                if recordingSettings.recordsAudio {
-                    // Metering is already running; restart it so the same tap also writes a file.
-                    _ = audioSource.stop()
-                    try audioSource.start(fileURL: directory.appendingPathComponent("audio.m4a"))
-                    writesAudioFile = true
-                }
             }
 
             // Arm the writers last: from this instant on, every sample is part of the file.

@@ -75,17 +75,23 @@ public struct CameraIntrinsics: Sendable, Hashable {
 /// viewing direction, **+Y** is up in the image, **+X** is right.
 public struct CameraPose: Sendable, Hashable {
     public var hostTime: Double
+    /// Which frame of the movie this pose belongs to, counted from the movie's first frame.
+    /// Derived from the timestamps rather than from the sample's position in the stream,
+    /// because the two are armed a few frames apart.
+    public var videoFrameIndex: Int
     public var position: ENU
     public var orientation: simd_quatd
     public var intrinsics: CameraIntrinsics
     public var trackingState: CameraTrackingState
     public var trackingReason: CameraTrackingReason
 
-    public init(hostTime: Double, position: ENU, orientation: simd_quatd,
+    public init(hostTime: Double, videoFrameIndex: Int = 0, position: ENU,
+                orientation: simd_quatd,
                 intrinsics: CameraIntrinsics,
                 trackingState: CameraTrackingState = .normal,
                 trackingReason: CameraTrackingReason = .none) {
         self.hostTime = hostTime
+        self.videoFrameIndex = videoFrameIndex
         self.position = position
         self.orientation = orientation
         self.intrinsics = intrinsics
