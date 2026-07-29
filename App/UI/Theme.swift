@@ -4,6 +4,10 @@ import SwiftUI
 enum Theme {
     static let accent = Color(red: 0.29, green: 0.78, blue: 0.94)
     static let recording = Color(red: 0.98, green: 0.28, blue: 0.32)
+    /// Behind everything. Set once on the root; screens must not re-apply it with
+    /// `ignoresSafeArea`, or their scroll views lose the insets that keep content clear of
+    /// the status bar and the floating tab bar.
+    static let background = Color.black
     static let cardBackground = Color(white: 0.11)
     static let cardBorder = Color(white: 0.22)
 

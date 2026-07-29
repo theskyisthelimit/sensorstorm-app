@@ -48,9 +48,7 @@ struct SettingsView: View {
                     }
                 }
 
-                if hub.settings.isVideoEnabled {
-                    captureEngineSection
-                }
+                captureEngineSection
 
                 ForEach(SensorCategory.allCases, id: \.self) { category in
                     sensorSection(category)
@@ -64,7 +62,6 @@ struct SettingsView: View {
             }
             .navigationTitle("Einstellungen")
             .scrollContentBackground(.hidden)
-            .background(Color.black.ignoresSafeArea())
         }
     }
 
@@ -80,12 +77,14 @@ struct SettingsView: View {
                 Text("ARKit").tag(CaptureEngine.arkit)
             }
             .pickerStyle(.segmented)
-            .disabled(!hub.isARKitAvailable)
+            .disabled(!hub.isARKitAvailable || !hub.settings.isVideoEnabled)
         } header: {
             Text("3D")
         } footer: {
             if !hub.isARKitAvailable {
                 Text("Dieses Gerät unterstützt kein ARKit-Tracking.")
+            } else if !hub.settings.isVideoEnabled {
+                Text("Schalte oben die Kamera ein — ohne Bild gibt es keine Kamerapose.")
             } else if hub.settings.captureEngine == .arkit {
                 if hub.canAlignARKitToNorth {
                     Text("Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — genug, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.")

@@ -26,7 +26,6 @@ struct RecordView: View {
                 .padding(.horizontal, 16)
                 .padding(.bottom, 32)
             }
-            .background(Color.black.ignoresSafeArea())
             .navigationTitle("Sensorstorm")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -212,11 +211,18 @@ struct RecordView: View {
                             .font(.subheadline.weight(.semibold))
                             .foregroundStyle(.secondary)
 
-                        LazyVGrid(columns: [GridItem(.flexible(), spacing: 12),
-                                            GridItem(.flexible(), spacing: 12)],
-                                  spacing: 12) {
-                            ForEach(sensors, id: \.self) { sensor in
-                                LiveSensorTile(sensor: sensor, sample: hub.live[sensor])
+                        // A category with a single sensor gets the full width; in a
+                        // two-column grid it would sit in the left half with the right half
+                        // conspicuously empty.
+                        if sensors.count == 1 {
+                            LiveSensorTile(sensor: sensors[0], sample: hub.live[sensors[0]])
+                        } else {
+                            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12),
+                                                GridItem(.flexible(), spacing: 12)],
+                                      spacing: 12) {
+                                ForEach(sensors, id: \.self) { sensor in
+                                    LiveSensorTile(sensor: sensor, sample: hub.live[sensor])
+                                }
                             }
                         }
                     }
@@ -265,25 +271,31 @@ struct LiveSensorTile: View {
             }
 
             if let sample {
-                VStack(alignment: .leading, spacing: 3) {
+                // A `Grid` rather than stacked `HStack`s with a fixed label width: it lines
+                // the two columns up across rows *and* sizes the label column to the longest
+                // name in this tile. The fixed 34 pt it replaces fitted "x" and "yaw" but
+                // hyphenated "relativeAltitude" across four lines.
+                Grid(alignment: .leading, horizontalSpacing: 6, verticalSpacing: 3) {
                     ForEach(sensor.highlightChannels, id: \.self) { channel in
                         if sample.values.indices.contains(channel) {
-                            HStack(spacing: 6) {
+                            GridRow {
                                 Text(sensor.descriptor.channels[channel])
                                     .font(.caption2)
                                     .foregroundStyle(.tertiary)
-                                    .frame(width: 34, alignment: .leading)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.7)
                                 Text(Format.channelValue(sensor: sensor, channel: channel,
                                                          value: sample.values[channel]))
                                     .font(.caption.monospacedDigit())
                                     .foregroundStyle(Theme.color(forChannel: channel))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.7)
-                                Spacer(minLength: 0)
+                                    .gridColumnAlignment(.leading)
                             }
                         }
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 Text(Format.rate(sample.rateHz))
                     .font(.caption2.monospacedDigit())
                     .foregroundStyle(.tertiary)

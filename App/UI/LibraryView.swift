@@ -13,7 +13,6 @@ struct LibraryView: View {
                     list
                 }
             }
-            .background(Color.black.ignoresSafeArea())
             .navigationTitle("Aufnahmen")
             .toolbar {
                 if !library.recordings.isEmpty {

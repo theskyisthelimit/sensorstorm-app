@@ -53,7 +53,6 @@ struct RecordingDetailView: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 32)
         }
-        .background(Color.black.ignoresSafeArea())
         .navigationTitle(recording.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
@@ -286,7 +285,7 @@ struct RecordingDetailView: View {
                     Task { shareItem = await library.export(recording, format: .sensorLoggerBundle)
                         .map(ShareItem.init) }
                 } label: {
-                    Label("Sensor-Logger-Format", systemImage: "arrow.triangle.branch")
+                    Label("Sensor Logger", systemImage: "arrow.triangle.branch")
                 }
                 if recording.stream(.gyroscope) != nil, recording.video != nil {
                     Button {
