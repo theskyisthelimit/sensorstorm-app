@@ -44,11 +44,10 @@ def main() -> int:
         print("IMPORT FAILED: no camera in the scene")
         return 1
 
-    # A ground plane at the anchor's height, so a render shows whether the horizon sits
-    # where the recording says it does. Not part of the import — this is scaffolding.
-    bpy.ops.mesh.primitive_plane_add(size=200, location=(0, 0, 0))
-    ground = bpy.context.active_object
-    ground.name = "Ground (scaffolding)"
+    # Only when there is no real terrain: a plane to show where the horizon should be.
+    if bpy.data.objects.get("Terrain (swissALTI3D)") is None:
+        bpy.ops.mesh.primitive_plane_add(size=200, location=(0, 0, 0))
+        bpy.context.active_object.name = "Ground (scaffolding)"
 
     _report(camera)
 
@@ -84,10 +83,21 @@ def _report(camera: bpy.types.Object) -> None:
         print(f"  frame {frame:>4}  pos ({location.x:7.2f},{location.y:7.2f},{location.z:7.2f}) m"
               f"   looking {bearing:5.1f}deg   lens {camera.data.lens:.1f} mm")
 
-    parent = camera.parent
-    if parent:
-        print(f"anchor        {parent.get('latitude', 0):.6f}, {parent.get('longitude', 0):.6f}"
-              f"   crs {parent.get('sensorstorm_crs', '?')}")
+    # The camera hangs off a track empty that hangs off the anchor, so walk up to whichever
+    # ancestor carries the georeference.
+    node = camera.parent
+    while node is not None and "sensorstorm_crs" not in node:
+        node = node.parent
+    if node is not None:
+        print(f"anchor        {node.get('latitude', 0):.6f}, {node.get('longitude', 0):.6f}"
+              f"   crs {node.get('sensorstorm_crs', '?')}")
+
+    terrain = bpy.data.objects.get("Terrain (swissALTI3D)")
+    if terrain:
+        print(f"terrain       {len(terrain.data.polygons)} faces, "
+              f"{terrain.get('source', '?')}, {terrain.get('height_reference', '?')}")
+        projection = next((m for m in terrain.modifiers if m.type == "UV_PROJECT"), None)
+        print(f"projection    {'on ' + projection.projectors[0].object.name if projection else 'none'}")
 
 
 if __name__ == "__main__":

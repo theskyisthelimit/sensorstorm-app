@@ -48,6 +48,30 @@ statt es zu raten.
 [docs/UNITS.md](docs/UNITS.md).** Fünf Koordinatensysteme sind beteiligt, drei sehen gleich
 aus, und zweimal drehen ist der häufigste Fehler in dieser Kette.
 
+### Vom Bündel zur texturierten Szene
+
+```bash
+# Terrain für den Aufnahmeort holen (swisstopo swissALTI3D, offene Daten)
+python3 Tools/blender/fetch_swissalti3d.py <bündel> --radius 300
+
+# Szene bauen: Kamera, Terrain, Videoprojektion
+blender --background --python Tools/blender/build_scene.py -- <bündel> szene.blend ENU
+```
+
+Oder interaktiv über `File ▸ Import ▸ Sensorstorm Scene`. Die Projektion ist ein
+`UV Project`-Modifier auf dem Terrain, Projektor ist die animierte Kamera — das Bild wird
+also aus genau der Pose geworfen, aus der es aufgenommen wurde, und wandert beim Abspielen
+mit. Das Material ist bewusst Emission: die Aufnahme trägt das Licht schon, das damals auf
+die Strasse fiel.
+
+Zwei Dinge, die dabei nicht funktionieren können und es auch nicht sollen. Kameraprojektion
+kennt keine Verdeckung — was hinter einem Haus liegt, bekommt die Pixel des Hauses; auf
+einem groben Terrain ohne Gebäude verschmiert eine Strassenaufnahme entsprechend. Und die
+**Höhe über Grund ist nicht gemessen**: ARKit misst relativ zum Sessionstart, der Anker kommt
+aus der GPS-Höhe, deren Vertikalgenauigkeit zweistellig in Metern liegt. Der Importer setzt
+den Track deshalb auf das Terrain und addiert eine angegebene Augenhöhe (Standard 1.5 m) —
+eine eingestandene Annahme statt einer unbrauchbaren Messung.
+
 ## Aufbau
 
 ```

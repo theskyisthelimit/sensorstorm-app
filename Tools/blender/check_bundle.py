@@ -48,11 +48,17 @@ def _load_importer(root: str) -> types.ModuleType:
     bpy_extras = types.ModuleType("bpy_extras")
     bpy_extras.io_utils = io_utils
 
+    # Blender's vector maths, only imported at module level here — the parsing this script
+    # exercises never touches it.
+    mathutils = types.ModuleType("mathutils")
+    mathutils.Vector = tuple
+
     sys.modules.update({
         "bpy": bpy,
         "bpy.props": props,
         "bpy_extras": bpy_extras,
         "bpy_extras.io_utils": io_utils,
+        "mathutils": mathutils,
     })
 
     path = os.path.join(root, "sensorstorm_import.py")

@@ -20,6 +20,7 @@ import os
 from typing import Any, Iterator, NamedTuple
 
 import bpy
+import mathutils
 from bpy.props import BoolProperty, EnumProperty, FloatProperty
 from bpy_extras.io_utils import ImportHelper
 
@@ -235,6 +236,31 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
         default=False,
     )
 
+    import_terrain: BoolProperty(
+        name="Import terrain",
+        description="Build the swissALTI3D heightfield next to the bundle, if "
+        "Tools/blender/fetch_swissalti3d.py has been run for it",
+        default=True,
+    )
+
+    project_video: BoolProperty(
+        name="Project video onto terrain",
+        description="Throw the footage onto the terrain from the camera's own pose, so the "
+        "images lie on the ground instead of floating in front of it",
+        default=True,
+    )
+
+    eye_height: FloatProperty(
+        name="Height above ground",
+        description="Lift the whole track so its first frame sits this far above the "
+        "terrain. GPS altitude is far too coarse to place a camera vertically — the terrain "
+        "is not — so the height is stated rather than measured. 0 disables the correction",
+        default=1.5,
+        min=0.0,
+        soft_max=3.0,
+        unit="LENGTH",
+    )
+
     def execute(self, context: bpy.types.Context) -> set[str]:
         folder = os.path.dirname(self.filepath)
         csv_path = os.path.join(folder, "frames.csv")
@@ -277,8 +303,17 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
         camera = self._make_camera(context, manifest, anchor, frames)
         self._apply_scene_settings(context, manifest, frames, frame_count)
 
+        terrain = None
+        if self.import_terrain:
+            terrain = self._make_terrain(context, folder, manifest, anchor)
+            if terrain is not None and self.eye_height > 0:
+                self._seat_on_terrain(context, camera, terrain, frames)
+
         if self.import_video and movie is not None:
             self._attach_video(camera, movie, manifest)
+
+        if self.project_video and terrain is not None:
+            self._project_onto(terrain, camera, folder, manifest, frame_count)
 
         self._warn_about_quality(manifest)
         unmatched = manifest.get("frames", {}).get("count", len(frames)) - len(frames)
@@ -333,9 +368,18 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
         data.sensor_fit = "HORIZONTAL"
         data.sensor_width = BLENDER_SENSOR_WIDTH
 
+        # The camera's location is keyframed, so any later correction has to live on a parent
+        # rather than on the camera itself. This empty is that handle — it also makes the
+        # applied height correction visible in the outliner instead of baked into the curves.
+        track = bpy.data.objects.new(f"{name} track", None)
+        track.empty_display_type = "SPHERE"
+        track.empty_display_size = 0.2
+        track.parent = anchor
+        context.collection.objects.link(track)
+
         camera = bpy.data.objects.new(f"{name} camera", data)
         camera.rotation_mode = "QUATERNION"
-        camera.parent = anchor
+        camera.parent = track
         context.collection.objects.link(camera)
         context.scene.camera = camera
 
@@ -364,6 +408,201 @@ class SENSORSTORM_OT_import_scene(bpy.types.Operator, ImportHelper):
             data.keyframe_insert("shift_y", frame=blender_frame)
 
         return camera
+
+    # -- Terrain
+
+    def _make_terrain(self, context: bpy.types.Context, folder: str,
+                      manifest: dict[str, Any], anchor: bpy.types.Object) -> Any:
+        """The swissALTI3D heightfield as a mesh, in the scene's own metres.
+
+        Vertical alignment is the part worth getting right. swissALTI3D is LN02 orthometric;
+        the ENU column is ellipsoidal. Both are measured from the same anchor, though, and the
+        geoid separation is constant over a few hundred metres — so subtracting the anchor's
+        own LN02 height puts the terrain in either system without ever naming the separation.
+        """
+        grid_path = os.path.join(folder, "terrain.npz")
+        meta_path = os.path.join(folder, "terrain.json")
+        if not (os.path.exists(grid_path) and os.path.exists(meta_path)):
+            return None
+
+        try:
+            import numpy as np
+        except ImportError:  # pragma: no cover - Blender always ships numpy
+            self.report({"WARNING"}, "numpy is unavailable; skipping terrain")
+            return None
+
+        with open(meta_path, encoding="utf-8") as handle:
+            info = json.load(handle)
+        heights = np.load(grid_path)["heights"]
+
+        spacing = float(info["spacing"]) * self.scale
+        east0 = (info["originEast"] - info["anchorEast"]) * self.scale
+        north0 = (info["originNorth"] - info["anchorNorth"]) * self.scale
+        base = float(info["anchorHeight"])
+
+        rows, columns = heights.shape
+        vertices = []
+        index_of = np.full(heights.shape, -1, dtype=np.int64)
+        for row in range(rows):
+            for column in range(columns):
+                height = heights[row, column]
+                if not math.isfinite(height):
+                    continue
+                index_of[row, column] = len(vertices)
+                vertices.append((east0 + column * spacing,
+                                 north0 + row * spacing,
+                                 (height - base) * self.scale))
+
+        faces = []
+        for row in range(rows - 1):
+            for column in range(columns - 1):
+                corners = (index_of[row, column], index_of[row, column + 1],
+                           index_of[row + 1, column + 1], index_of[row + 1, column])
+                # swissALTI3D has holes over water; a quad with a missing corner is one.
+                if min(corners) >= 0:
+                    faces.append(tuple(int(c) for c in corners))
+
+        if not faces:
+            self.report({"WARNING"}, "The terrain grid held no usable cells")
+            return None
+
+        mesh = bpy.data.meshes.new("swissALTI3D")
+        mesh.from_pydata(vertices, [], faces)
+        mesh.update()
+
+        terrain = bpy.data.objects.new("Terrain (swissALTI3D)", mesh)
+        terrain.parent = anchor
+        context.collection.objects.link(terrain)
+
+        terrain["source"] = info.get("source", "")
+        terrain["crs"] = info.get("crs", "")
+        terrain["height_reference"] = info.get("heightReference", "")
+        return terrain
+
+    def _seat_on_terrain(self, context: bpy.types.Context, camera: bpy.types.Object,
+                         terrain: bpy.types.Object, frames: list[Frame]) -> None:
+        """Lifts the rig so the first frame sits `eye_height` above the ground.
+
+        Worth being blunt about why this is needed. ARKit measures height relative to wherever
+        the session began, and the bundle turns that into an absolute height using the GPS
+        anchor — whose vertical accuracy is tens of metres. The terrain, meanwhile, is good to
+        centimetres. So the vertical placement that comes out of the data is the least
+        trustworthy number in the scene, and it lands the camera exactly on the ground: both
+        it and the terrain are measured from the same anchor, so the error cancels into zero
+        height rather than into a plausible one.
+
+        Snapping to the terrain and adding a stated eye height replaces an unmeasured number
+        with an admitted assumption. The horizontal track and the orientation are untouched.
+        """
+        scene = context.scene
+        scene.frame_set(frames[0].index + 1)
+        origin = camera.matrix_world.translation.copy()
+
+        depsgraph = context.evaluated_depsgraph_get()
+        hit, location, *_ = scene.ray_cast(
+            depsgraph, origin + mathutils.Vector((0, 0, 500)), mathutils.Vector((0, 0, -1)))
+        if not hit:
+            self.report({"WARNING"}, "The track does not start over the terrain; "
+                                     "height left as recorded")
+            return
+
+        lift = (location.z + self.eye_height * self.scale) - origin.z
+        camera.parent.location.z += lift
+        camera.parent["height_correction"] = lift
+        camera.parent["height_correction_note"] = (
+            "GPS altitude cannot place a camera vertically; this offset seats the track on "
+            "the terrain at a stated eye height instead")
+
+        self.report({"INFO"},
+                    f"Raised the track {lift:+.2f} m so it starts "
+                    f"{self.eye_height:.2f} m above the terrain")
+
+    # -- Camera projection
+
+    def _project_onto(self, target: bpy.types.Object, camera: bpy.types.Object,
+                      folder: str, manifest: dict[str, Any],
+                      frame_count: int | None) -> None:
+        """Projects the footage onto `target` from the camera, per frame.
+
+        A UV Project modifier rather than a baked texture: the camera moves, so the correct
+        projection is a different one every frame, and freezing it would only be right for
+        the frame it was frozen on. Baking is the separate step for a permanent texture.
+
+        The projection is a shadowless one — geometry does not occlude it, so anything behind
+        a building gets the building's pixels too. That is inherent to camera projection and
+        the reason a coarse terrain smears where the real scene had walls.
+        """
+        video = manifest.get("video") or {}
+        file_name = video.get("fileName")
+        if not file_name:
+            return
+        path = os.path.join(folder, file_name)
+        if not os.path.exists(path):
+            return
+
+        width = int(video.get("width") or 1920)
+        height = int(video.get("height") or 1080)
+
+        uv_layer = "SensorstormProjection"
+        if uv_layer not in target.data.uv_layers:
+            target.data.uv_layers.new(name=uv_layer)
+
+        modifier = target.modifiers.new("Sensorstorm projection", "UV_PROJECT")
+        modifier.uv_layer = uv_layer
+        modifier.projector_count = 1
+        modifier.projectors[0].object = camera
+        modifier.aspect_x = width
+        modifier.aspect_y = height
+
+        image = bpy.data.images.load(path)
+        image.source = "MOVIE"
+
+        material = bpy.data.materials.new("Sensorstorm projection")
+        material.use_nodes = True
+        tree = material.node_tree
+        tree.nodes.clear()
+
+        texture = tree.nodes.new("ShaderNodeTexImage")
+        texture.image = image
+        texture.extension = "CLIP"  # otherwise the frame tiles across the whole terrain
+        texture.image_user.frame_duration = frame_count or 1
+        texture.image_user.frame_start = 1
+        texture.image_user.use_auto_refresh = True
+        texture.location = (-400, 200)
+
+        uv_node = tree.nodes.new("ShaderNodeUVMap")
+        uv_node.uv_map = uv_layer
+        uv_node.location = (-620, 200)
+
+        # Emission, not Principled: the footage already carries the light that fell on the
+        # street. Running it through a lit shader would darken it by whatever the scene's
+        # lighting happens to be, which has nothing to do with the moment it was recorded —
+        # and it means the projection is visible without adding any lights at all.
+        emission = tree.nodes.new("ShaderNodeEmission")
+        emission.location = (-120, 200)
+
+        # Away from the projected footprint the texture is transparent, and a terrain that
+        # glowed black everywhere else would hide its own shape.
+        backdrop = tree.nodes.new("ShaderNodeBsdfDiffuse")
+        backdrop.inputs["Color"].default_value = (0.35, 0.35, 0.35, 1)
+        backdrop.location = (-120, 0)
+
+        mix = tree.nodes.new("ShaderNodeMixShader")
+        mix.location = (120, 120)
+
+        output = tree.nodes.new("ShaderNodeOutputMaterial")
+        output.location = (340, 120)
+
+        links = tree.links
+        links.new(uv_node.outputs["UV"], texture.inputs["Vector"])
+        links.new(texture.outputs["Color"], emission.inputs["Color"])
+        # `CLIP` makes alpha 0 outside the frame, so alpha is exactly the projection mask.
+        links.new(texture.outputs["Alpha"], mix.inputs["Fac"])
+        links.new(backdrop.outputs["BSDF"], mix.inputs[1])
+        links.new(emission.outputs["Emission"], mix.inputs[2])
+        links.new(mix.outputs["Shader"], output.inputs["Surface"])
+
+        target.data.materials.append(material)
 
     def _apply_scene_settings(
         self, context: bpy.types.Context, manifest: dict[str, Any],
