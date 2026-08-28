@@ -507,6 +507,38 @@ struct PendingMediaStrip: View {
     }
 }
 
+/// The cover photo of a case at list size, or a coloured placeholder when a case was
+/// documented without one.
+struct FindingThumbnail: View {
+    let url: URL?
+    let severity: Int
+    var size: CGFloat = 56
+
+    @State private var image: UIImage?
+
+    var body: some View {
+        Group {
+            if let image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Theme.severity(severity).opacity(0.25)
+                    .overlay {
+                        Image(systemName: url == nil ? "mappin" : "camera.fill")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+            }
+        }
+        .frame(width: size, height: size)
+        .clipShape(.rect(cornerRadius: 10))
+        .task(id: url) {
+            image = await ThumbnailCache.shared.thumbnail(for: url, maxPixel: size * 3)
+        }
+    }
+}
+
 /// The photo at reading size: the whole frame, not a square crop of it.
 struct FindingPhotoView: View {
     let url: URL?
