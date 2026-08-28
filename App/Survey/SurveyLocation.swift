@@ -67,7 +67,7 @@ final class SurveyLocationProvider {
     /// How many screens currently want the live position.
     private var holders = 0
     private let manager = CLLocationManager()
-    private let forwarder = Forwarder()
+    private let forwarder = SurveyLocationForwarder()
 
     init() {
         authorization = manager.authorizationStatus
@@ -142,33 +142,37 @@ final class SurveyLocationProvider {
         guard let fix, fix.isUsable else { return String(localized: "kein Fix") }
         return String(format: "±%.0f m", fix.horizontalAccuracy)
     }
+}
 
-    /// Delegate callbacks arrive off the main actor, so they land here first and are
-    /// forwarded as plain values.
-    private final class Forwarder: NSObject, CLLocationManagerDelegate, @unchecked Sendable {
-        var onFix: (@Sendable (LiveFix) -> Void)?
-        var onHeading: (@Sendable (Double?) -> Void)?
-        var onAuthorization: (@Sendable (CLAuthorizationStatus) -> Void)?
+/// Delegate callbacks arrive off the main actor, so they land here first and are forwarded
+/// as plain values.
+///
+/// At file scope rather than nested inside the provider: this object is talked to from
+/// CoreLocation's thread, and the enclosing type is main-actor isolated.
+private final class SurveyLocationForwarder: NSObject, CLLocationManagerDelegate, @unchecked Sendable {
+    var onFix: (@Sendable (LiveFix) -> Void)?
+    var onHeading: (@Sendable (Double?) -> Void)?
+    var onAuthorization: (@Sendable (CLAuthorizationStatus) -> Void)?
 
-        func locationManager(_ manager: CLLocationManager,
-                             didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else { return }
-            onFix?(LiveFix(location))
-        }
+    nonisolated func locationManager(_ manager: CLLocationManager,
+                                     didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        onFix?(LiveFix(location))
+    }
 
-        func locationManager(_ manager: CLLocationManager, didUpdateHeading heading: CLHeading) {
-            // A negative accuracy means the reading is unusable — usually an uncalibrated
-            // magnetometer. Reporting it as a direction would be worse than reporting none.
-            let usable = heading.headingAccuracy >= 0 && heading.trueHeading >= 0
-            onHeading?(usable ? heading.trueHeading : nil)
-        }
+    nonisolated func locationManager(_ manager: CLLocationManager,
+                                     didUpdateHeading heading: CLHeading) {
+        // A negative accuracy means the reading is unusable — usually an uncalibrated
+        // magnetometer. Reporting it as a direction would be worse than reporting none.
+        let usable = heading.headingAccuracy >= 0 && heading.trueHeading >= 0
+        onHeading?(usable ? heading.trueHeading : nil)
+    }
 
-        func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-            onAuthorization?(manager.authorizationStatus)
-        }
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        onAuthorization?(manager.authorizationStatus)
+    }
 
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            RecordingLog.warn("survey location error: \(error.localizedDescription)")
-        }
+    nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        RecordingLog.warn("survey location error: \(error.localizedDescription)")
     }
 }

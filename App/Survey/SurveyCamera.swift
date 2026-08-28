@@ -85,6 +85,15 @@ final class SurveyCamera: NSObject, @unchecked Sendable {
     }
 
     private func configureSession() throws {
+        let device = try buildSession()
+        // Only now: the session preset is applied on commit, so before that `activeFormat`
+        // is still the old one — and handing the photo output a resolution the active
+        // format does not support is not a fallback, it is an exception.
+        applyPhotoDimensions(from: device)
+        configureFocus(of: device)
+    }
+
+    private func buildSession() throws -> AVCaptureDevice {
         session.beginConfiguration()
         defer { session.commitConfiguration() }
 
@@ -106,11 +115,6 @@ final class SurveyCamera: NSObject, @unchecked Sendable {
         guard session.canAddOutput(photoOutput) else { throw SurveyCameraError.cannotConfigure }
         session.addOutput(photoOutput)
         photoOutput.maxPhotoQualityPrioritization = .quality
-        if let dimensions = device.activeFormat.supportedMaxPhotoDimensions.max(by: {
-            Int($0.width) * Int($0.height) < Int($1.width) * Int($1.height)
-        }) {
-            photoOutput.maxPhotoDimensions = dimensions
-        }
         applyPortraitRotation(to: photoOutput.connection(with: .video))
 
         // Sound belongs to the clip: half of what a walker records is what they say about
@@ -130,10 +134,18 @@ final class SurveyCamera: NSObject, @unchecked Sendable {
             supportsClips = true
         }
 
-        configureFocus(of: device)
-
         let clips = supportsClips
         state.withLock { $0.supportsClips = clips }
+        return device
+    }
+
+    /// Full resolution for the still, whatever the active format offers.
+    private func applyPhotoDimensions(from device: AVCaptureDevice) {
+        let supported = device.activeFormat.supportedMaxPhotoDimensions
+        guard let largest = supported.max(by: {
+            Int($0.width) * Int($0.height) < Int($1.width) * Int($1.height)
+        }) else { return }
+        photoOutput.maxPhotoDimensions = largest
     }
 
     /// Ground photos are taken a metre from the subject with the phone pointing down —

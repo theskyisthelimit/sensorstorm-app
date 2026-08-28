@@ -108,11 +108,6 @@ struct AreaEditorView: View {
         }
     }
 
-    private struct IndexedPoint: Identifiable {
-        let id: Int
-        let coordinate: Coordinate2D
-    }
-
     private var indexedPoints: [IndexedPoint] {
         points.enumerated().map { IndexedPoint(id: $0.offset, coordinate: $0.element) }
     }
@@ -245,4 +240,11 @@ struct AreaEditorView: View {
         guard let fix = model.location.fix, fix.isUsable else { return }
         points.append(fix.coordinate)
     }
+}
+
+/// A polygon corner with a stable identity for the map's `ForEach` — its position in the
+/// ring, which is also what the numbered marker shows.
+private struct IndexedPoint: Identifiable {
+    let id: Int
+    let coordinate: Coordinate2D
 }
