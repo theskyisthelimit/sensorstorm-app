@@ -3,6 +3,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(SensorHub.self) private var hub
+    @State private var isExportingArchive = false
 
     var body: some View {
         @Bindable var hub = hub
@@ -55,6 +56,18 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Button {
+                        isExportingArchive = true
+                    } label: {
+                        Label("Alles exportieren", systemImage: "shippingbox")
+                    }
+                } header: {
+                    Text("Daten")
+                } footer: {
+                    Text("Begehungen und Aufnahmen als ein Zip mit \(ArchiveExporter.manifestFileName): eine Datei, die das ganze Archiv maschinenlesbar beschreibt.")
+                }
+
+                Section {
                     LabeledContent("Version", value: Self.appVersion)
                 } footer: {
                     Text("Alle Streams teilen eine gemeinsame Uhr. Ein Export enthält pro Sensor eine CSV-Datei, das Video und die Metadaten.")
@@ -62,6 +75,9 @@ struct SettingsView: View {
             }
             .navigationTitle("Einstellungen")
             .scrollContentBackground(.hidden)
+            .sheet(isPresented: $isExportingArchive) {
+                ArchiveExportView()
+            }
         }
     }
 

@@ -84,21 +84,41 @@ public struct SurveyExporter: Sendable {
         try fileManager.createDirectory(at: payload, withIntermediateDirectories: true)
         defer { try? fileManager.removeItem(at: staging) }
 
+        try writePayload(survey, into: payload)
+        try ZipPackager.zip(directory: payload, to: destination)
+    }
+
+    /// The bundle's contents, written into an existing folder instead of a zip.
+    ///
+    /// Split out so a whole-archive export can drop one walk into `surveys/<name>/` and
+    /// zip once at the end, rather than nesting a zip inside a zip — a zip a receiving
+    /// script would have to unpack twice.
+    ///
+    /// - Parameter includingMedia: `false` writes the four formats and `survey.json` but
+    ///   leaves the photos and clips out. The exports still name the files, so a reader
+    ///   sees which media exist even when they were not carried along.
+    public func writePayload(_ survey: Survey, into folder: URL,
+                             includingMedia: Bool = true) throws {
+        let fileManager = FileManager.default
+        try fileManager.createDirectory(at: folder, withIntermediateDirectories: true)
+
         let prefix = "\(Self.bundleMediaFolder)/"
         try Data(Self.geoJSON(survey, mediaPrefix: prefix).utf8)
-            .write(to: payload.appendingPathComponent("findings.geojson"), options: .atomic)
+            .write(to: folder.appendingPathComponent("findings.geojson"), options: .atomic)
         try Data(Self.csv(survey, mediaPrefix: prefix).utf8)
-            .write(to: payload.appendingPathComponent("findings.csv"), options: .atomic)
+            .write(to: folder.appendingPathComponent("findings.csv"), options: .atomic)
         try Data(Self.gpx(survey).utf8)
-            .write(to: payload.appendingPathComponent("findings.gpx"), options: .atomic)
+            .write(to: folder.appendingPathComponent("findings.gpx"), options: .atomic)
         try Data(Self.kml(survey, mediaPrefix: prefix).utf8)
-            .write(to: payload.appendingPathComponent("findings.kml"), options: .atomic)
+            .write(to: folder.appendingPathComponent("findings.kml"), options: .atomic)
         try SurveyStore.encoder.encode(survey)
-            .write(to: payload.appendingPathComponent(SurveyStore.surveyFileName), options: .atomic)
+            .write(to: folder.appendingPathComponent(SurveyStore.surveyFileName), options: .atomic)
         try Data(Self.readme(survey).utf8)
-            .write(to: payload.appendingPathComponent("README.txt"), options: .atomic)
+            .write(to: folder.appendingPathComponent("README.txt"), options: .atomic)
 
-        let media = payload.appendingPathComponent(Self.bundleMediaFolder, isDirectory: true)
+        guard includingMedia else { return }
+
+        let media = folder.appendingPathComponent(Self.bundleMediaFolder, isDirectory: true)
         try fileManager.createDirectory(at: media, withIntermediateDirectories: true)
         for finding in survey.findings {
             for item in finding.media {
@@ -110,8 +130,6 @@ public struct SurveyExporter: Sendable {
                 try fileManager.copyItem(at: source, to: target)
             }
         }
-
-        try ZipPackager.zip(directory: payload, to: destination)
     }
 
     // MARK: - GeoJSON

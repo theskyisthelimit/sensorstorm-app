@@ -47,19 +47,7 @@ public struct RecordingExporter: Sendable {
         try fileManager.createDirectory(at: payload, withIntermediateDirectories: true)
         defer { try? fileManager.removeItem(at: staging) }
 
-        switch format {
-        case .csvBundle:
-            try writeCSVBundle(metadata, into: payload, progress: progress)
-        case .rawBundle:
-            try copyRawBundle(metadata, into: payload, progress: progress)
-        case .sceneBundle:
-            try SceneBundleExporter(store: store)
-                .write(metadata, into: payload, progress: progress)
-        case .sensorLoggerBundle:
-            try writeSensorLoggerBundle(metadata, into: payload, progress: progress)
-        case .gyroflowLog:
-            try writeGyroflowLog(metadata, into: payload)
-        }
+        try write(metadata, format: format, into: payload, progress: progress)
 
         let zipURL = destinationDirectory.appendingPathComponent("\(folderName).zip")
         if fileManager.fileExists(atPath: zipURL.path) {
@@ -68,6 +56,28 @@ public struct RecordingExporter: Sendable {
         try ZipPackager.zip(directory: payload, to: zipURL)
         progress?(1)
         return zipURL
+    }
+
+    /// The export's contents, written into an existing folder instead of a zip.
+    ///
+    /// Split out for the whole-archive export, which collects many recordings and walks
+    /// into one staging tree and zips that once.
+    public func write(_ metadata: RecordingMetadata, format: Format, into folder: URL,
+                      progress: (@Sendable (Double) -> Void)? = nil) throws {
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        switch format {
+        case .csvBundle:
+            try writeCSVBundle(metadata, into: folder, progress: progress)
+        case .rawBundle:
+            try copyRawBundle(metadata, into: folder, progress: progress)
+        case .sceneBundle:
+            try SceneBundleExporter(store: store)
+                .write(metadata, into: folder, progress: progress)
+        case .sensorLoggerBundle:
+            try writeSensorLoggerBundle(metadata, into: folder, progress: progress)
+        case .gyroflowLog:
+            try writeGyroflowLog(metadata, into: folder)
+        }
     }
 
     // MARK: - CSV bundle

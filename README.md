@@ -159,6 +159,40 @@ deren ID und seine Host-Zeit; damit liegt das Foto einer Stelle auf derselben Uh
 Sensordaten, die beim Darüberfahren entstanden. Nötig ist das nicht — eine Begehung braucht
 keine Messung.
 
+## Gesamtexport: alles als ein Zip, maschinenlesbar
+
+Die Exporte pro Begehung und pro Aufnahme beantworten „gib mir das hier für QGIS". Der
+Gesamtexport unter *Einstellungen → Alles exportieren* beantwortet eine andere Frage: alles,
+was auf dem Gerät ist, in einer Datei, für ein Skript auf der Gegenseite.
+
+```
+Sensorstorm-Export-<datum-zeit>/
+  manifest.json                     das Inhaltsverzeichnis, siehe unten
+  README.txt
+  surveys/<name>-<id8>/             pro Begehung: survey.json, findings.geojson/.csv/.gpx/.kml, media/
+  recordings/<name>-<id8>/          pro Aufnahme: metadata.json, <sensor>.csv, video.mov
+```
+
+`manifest.json` ist der Einstiegspunkt und macht das Archiv selbstbeschreibend:
+
+| Feld | was drinsteht |
+|---|---|
+| `schema`, `schemaVersion` | `sensorstorm.archive`, aktuell `1` |
+| `conventions` | CRS (EPSG:4326 und EPSG:2056), Einheiten, Zeitformat, Bewertungsskala, was `hostTime` bedeutet |
+| `files` | jede Datei im Archiv mit Grösse und SHA-256 — ausser `manifest.json` selbst |
+| `surveys[]` | Begehung mit Pfaden zu ihren vier Formaten und jedem Fall: Position, Quelle, Genauigkeit, Streuung, GPS-Fix und Versatz, LV95, Bereich als Ring, Medien mit Pfad |
+| `recordings[]` | Aufnahme mit Gerät, Zeitbasis und je Stream Kanäle, Einheit, Anzahl Samples und Pfad zur CSV |
+
+Kein Zip im Zip: alles liegt in einem Baum, damit einmal Entpacken reicht. Ordnernamen
+enthalten keine Leerzeichen und hängen die ersten acht Zeichen der UUID an, damit zwei
+gleichnamige Begehungen sich nicht gegenseitig überschreiben. Die Prüfsummen sind da, damit
+sich nach Mail, AirDrop oder Stick nachweisen lässt, dass ein Video vollständig angekommen
+ist — ein abgeschnittenes bleibt sonst ein gültiger Zip-Eintrag mit zu wenig Bytes.
+
+Fotos und Clips lassen sich weglassen; die Aufnahmen bleiben dann im Manifest benannt, nur
+ohne Pfad. Messaufnahmen sind standardmässig nicht dabei: eine Begehung ist Kilobytes, eine
+4K-Aufnahme Gigabytes.
+
 ## Aufbau
 
 ```
