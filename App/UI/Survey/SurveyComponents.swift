@@ -110,7 +110,9 @@ struct AccuracyBadge: View {
                 .font(.caption2)
             Text(text)
                 .font(.caption.monospacedDigit().weight(.semibold))
-            if !compact {
+            // Without a fix the wording is already the whole badge — repeating it as the
+            // quality word would read „kein Fix kein Fix".
+            if !compact, quality != .none {
                 Text(quality.label)
                     .font(.caption2)
                     .foregroundStyle(.secondary)

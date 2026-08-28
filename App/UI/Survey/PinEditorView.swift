@@ -54,7 +54,7 @@ struct PinEditorView: View {
                 }
                 panel
             }
-            .navigationTitle("Nadel setzen")
+            .navigationTitle("Nadel")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

@@ -133,7 +133,7 @@ struct SurveyDetailView: View {
                 if let fix = model.location.fix, fix.isUsable {
                     HStack(spacing: 8) {
                         AccuracyBadge(metres: fix.horizontalAccuracy)
-                        Text("\(model.location.fixCount(inLast: 10)) Fixes in 10 s")
+                        Text("\(Format.fixes(model.location.fixCount(inLast: 10))) in 10 s")
                             .font(.caption2.monospacedDigit())
                             .foregroundStyle(.tertiary)
                     }

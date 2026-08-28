@@ -2,6 +2,20 @@ import Foundation
 import SensorstormCore
 
 enum Format {
+    /// „1 Fix", „7 Fixes" — a readout that says „1 Fixes" reads like a placeholder that
+    /// was never finished.
+    static func fixes(_ count: Int) -> String {
+        count == 1 ? String(localized: "1 Fix") : String(localized: "\(count) Fixes")
+    }
+
+    static func photos(_ count: Int) -> String {
+        count == 1 ? String(localized: "1 Foto") : String(localized: "\(count) Fotos")
+    }
+
+    static func clips(_ count: Int) -> String {
+        count == 1 ? String(localized: "1 Clip") : String(localized: "\(count) Clips")
+    }
+
     /// Sensor values span eleven orders of magnitude — 0.0004 g of noise and 8.54 degrees
     /// of longitude want different precision, and neither wants scientific notation on a
     /// dashboard. Decimals are picked from the magnitude.

@@ -11,6 +11,7 @@ import SwiftUI
 struct FindingDetailView: View {
     @Environment(SurveyModel.self) private var model
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
 
     let surveyID: UUID
     let findingID: UUID
@@ -44,6 +45,12 @@ struct FindingDetailView: View {
         .toolbar { toolbarContent }
         .task { load() }
         .onDisappear { applyEdits() }
+        // Leaving the screen is not the only way this view ends: the phone goes into a
+        // pocket, iOS suspends the app, and a rating typed in front of the damage would be
+        // gone. Write on the way out of `.active`, not only on the way off the screen.
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { applyEdits() }
+        }
         .sheet(isPresented: $isEditingArea) {
             if let finding {
                 AreaEditorView(center: finding.location.coordinate, area: $area)
@@ -274,7 +281,7 @@ struct FindingDetailView: View {
                 infoRow("Fixes", "\(samples)")
             }
             if let offset = finding.manualOffsetMetres {
-                infoRow("Versatz zur Nadel", String(format: "%.1f m", offset))
+                infoRow("Versatz zum GPS-Fix", String(format: "%.1f m", offset))
             }
             if let altitude = location.altitude {
                 infoRow("Höhe", String(format: "%.1f m ü. M.", altitude))
@@ -282,7 +289,7 @@ struct FindingDetailView: View {
             if let heading = location.heading {
                 infoRow("Blickrichtung", String(format: "%.0f°", heading))
             }
-            infoRow("Aufnahmen", "\(finding.photos.count) Fotos, \(finding.videos.count) Clips")
+            infoRow("Aufnahmen", "\(Format.photos(finding.photos.count)), \(Format.clips(finding.videos.count))")
             if finding.recordingID != nil {
                 infoRow("Aufnahmezeit", String(format: "%.3f s", finding.hostTime))
             }

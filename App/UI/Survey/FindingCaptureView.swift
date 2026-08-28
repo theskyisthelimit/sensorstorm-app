@@ -60,7 +60,7 @@ struct FindingCaptureView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 16)
             }
-            .navigationTitle(isAddingToExistingCase ? "Aufnahmen hinzufügen" : "Fall erfassen")
+            .navigationTitle(isAddingToExistingCase ? "Ergänzen" : "Fall erfassen")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -150,7 +150,7 @@ struct FindingCaptureView: View {
                     .padding(.vertical, 6)
                     .background(.ultraThinMaterial, in: .capsule)
                     .padding(10)
-                    .accessibilityLabel(Text("\(draft.photoCount) Fotos, \(draft.videoCount) Clips"))
+                    .accessibilityLabel(Text("\(Format.photos(draft.photoCount)), \(Format.clips(draft.videoCount))"))
             }
         }
     }
@@ -312,7 +312,7 @@ struct FindingCaptureView: View {
             VStack(alignment: .leading, spacing: 4) {
                 ProgressView(value: elapsed, total: Self.measureSeconds)
                     .tint(Theme.accent)
-                Text("\(model.location.fixCount(inLast: max(elapsed, 1))) Fixes gesammelt — ruhig stehen bleiben")
+                Text("\(Format.fixes(model.location.fixCount(inLast: max(elapsed, 1)))) gesammelt — ruhig stehen bleiben")
                     .font(.caption2.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
@@ -326,7 +326,7 @@ struct FindingCaptureView: View {
                 ? "Einzelner GPS-Fix, festgehalten bei der ersten Aufnahme."
                 : "Einzelner GPS-Fix, folgt dem Gerät bis zur ersten Aufnahme."
         case .averaged:
-            "Gemittelt aus \(draft.positionSampleCount ?? 0) Fixes, gemessene Streuung ±\(spreadText) m."
+            "Gemittelt aus \(Format.fixes(draft.positionSampleCount ?? 0)), gemessene Streuung ±\(spreadText) m."
         case .manual:
             draft.measuredLocation == nil
                 ? "Nadel von Hand gesetzt."
