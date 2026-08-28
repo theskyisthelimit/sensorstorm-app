@@ -28,6 +28,7 @@ struct SurveyTests {
     private func makeFinding(severity: Int = 7,
                              label: String = "Schlagloch",
                              area: FindingArea? = nil,
+                             media: [CaseMedia] = [],
                              offset: TimeInterval = 0) -> GroundFinding {
         GroundFinding(capturedAt: Date(timeIntervalSince1970: 1_700_000_000 + offset),
                       hostTime: 1_000 + offset,
@@ -35,7 +36,17 @@ struct SurveyTests {
                       severity: severity,
                       label: label,
                       note: "Rand ausgebrochen, 8 cm tief",
+                      media: media,
                       area: area)
+    }
+
+    /// A point `metres` to the east of the anchor — the only way to write an expected
+    /// distance down without doing the trigonometry twice.
+    private func point(eastOf origin: Coordinate2D, metres: Double) -> Coordinate2D {
+        let moved = Geodesy.geodetic(fromENU: ENU(east: metres, north: 0, up: 0),
+                                     anchor: Geodetic(latitude: origin.latitude,
+                                                      longitude: origin.longitude, height: 0))
+        return Coordinate2D(latitude: moved.latitude, longitude: moved.longitude)
     }
 
     /// A square with the given edge length, built in the local metric frame so the expected
@@ -185,33 +196,90 @@ struct SurveyTests {
         #expect(abs((finding.area?.squareMetres ?? 0) - 36) < 0.5)
     }
 
-    @Test("Medien landen im Ordner der Begehung und gehen mit dem Befund")
+    @Test("Mehrere Fotos und Clips gehören zu einem Fall und gehen mit ihm")
     func storeMedia() throws {
         let store = try makeStore()
         defer { try? FileManager.default.removeItem(at: store.root) }
 
         var survey = Survey(name: "Medien")
         var finding = makeFinding()
-        let photo = Data(repeating: 0xAB, count: 128)
-        finding.photoFileName = try store.writePhoto(photo, for: finding.id, in: survey.id)
+
+        let overview = try store.writePhoto(Data(repeating: 0xAB, count: 128), in: survey.id)
+        let closeUp = try store.writePhoto(Data(repeating: 0xCD, count: 96), in: survey.id)
 
         let clipSource = FileManager.default.temporaryDirectory
             .appendingPathComponent("clip-\(UUID().uuidString).mov")
         try Data(repeating: 0x01, count: 64).write(to: clipSource)
-        finding.videoFileName = try store.importVideo(from: clipSource, for: finding.id,
-                                                      in: survey.id)
+        let clip = try store.importVideo(from: clipSource, duration: 12, in: survey.id)
+
+        finding.add(overview)
+        finding.add(closeUp)
+        finding.add(clip)
         survey.upsert(finding)
         try store.save(survey)
 
-        #expect(store.photoURL(for: finding, in: survey.id) != nil)
-        #expect(store.videoURL(for: finding, in: survey.id) != nil)
+        #expect(finding.photos.count == 2)
+        #expect(finding.videos.count == 1)
+        #expect(finding.coverPhoto == overview)
+        #expect(finding.media.count == 3)
+        // Jede Datei hat ihren eigenen Namen — zwei Fotos dürfen sich nicht überschreiben.
+        #expect(Set(finding.media.map(\.fileName)).count == 3)
+        #expect(store.url(for: overview, in: survey.id) != nil)
+        #expect(store.url(for: clip, in: survey.id) != nil)
+        #expect(clip.duration == 12)
         // Verschoben, nicht kopiert: die temporäre Datei ist weg.
         #expect(!FileManager.default.fileExists(atPath: clipSource.path))
-        #expect(store.byteSize(of: survey.id) > 128)
+
+        let loaded = try store.load(id: survey.id)
+        #expect(loaded.finding(finding.id)?.media.count == 3)
 
         store.deleteMedia(of: finding, in: survey.id)
-        #expect(store.photoURL(for: finding, in: survey.id) == nil)
-        #expect(store.videoURL(for: finding, in: survey.id) == nil)
+        #expect(store.url(for: overview, in: survey.id) == nil)
+        #expect(store.url(for: closeUp, in: survey.id) == nil)
+        #expect(store.url(for: clip, in: survey.id) == nil)
+    }
+
+    @Test("Eine gesetzte Nadel behält den gemessenen Fix und den Versatz dazu")
+    func manualPinKeepsMeasurement() {
+        var finding = makeFinding()
+        let measured = finding.location
+        let moved = point(eastOf: Self.anchor, metres: 12)
+
+        finding.placePin(at: moved)
+
+        #expect(finding.positionSource == .manual)
+        #expect(finding.measuredLocation?.coordinate == measured.coordinate)
+        #expect(abs((finding.manualOffsetMetres ?? 0) - 12) < 0.05)
+        // Eine Nadel hat keine Fehlerangabe — eine zu behaupten wäre eine erfundene Messung.
+        #expect(finding.uncertaintyRadius == nil)
+        #expect(finding.location.horizontalAccuracy <= 0)
+        // Trotzdem gültig: die Position ist bekannt, nur nicht gemessen.
+        #expect(finding.location.coordinate.isValid)
+
+        finding.resetPositionToMeasured()
+        #expect(finding.positionSource == .gps)
+        #expect(finding.measuredLocation == nil)
+        #expect(finding.location.coordinate == measured.coordinate)
+        #expect(finding.uncertaintyRadius == 4)
+    }
+
+    @Test("Der Unsicherheitsradius kommt bei gemittelten Positionen aus der Streuung")
+    func uncertaintyRadiusPerSource() {
+        var single = makeFinding()
+        #expect(single.uncertaintyRadius == 4)
+
+        single.positionSource = .averaged
+        single.positionSpread = 1.4
+        single.positionSampleCount = 11
+        // Die gemessene Streuung schlägt die behauptete Genauigkeit.
+        #expect(single.uncertaintyRadius == 1.4)
+    }
+
+    @Test("Abstände werden metrisch gerechnet, nicht in Grad")
+    func coordinateDistance() {
+        let east = point(eastOf: Self.anchor, metres: 25)
+        #expect(abs(Self.anchor.distance(to: east) - 25) < 0.05)
+        #expect(Self.anchor.distance(to: Self.anchor) == 0)
     }
 
     @Test("Ein Ordner ohne lesbares survey.json taucht nicht in der Liste auf")
@@ -244,7 +312,7 @@ struct SurveyTests {
         #expect(features.count == 3)
 
         let point = try #require(features.first { feature in
-            (feature["properties"] as? [String: Any])?["kind"] as? String == "finding"
+            (feature["properties"] as? [String: Any])?["kind"] as? String == "case"
         })
         let geometry = try #require(point["geometry"] as? [String: Any])
         let coordinates = try #require(geometry["coordinates"] as? [Double])
@@ -254,6 +322,9 @@ struct SurveyTests {
         let properties = try #require(point["properties"] as? [String: Any])
         #expect(properties["severity"] as? Int != nil)
         #expect(properties["lv95East"] as? Double != nil)
+        // Ohne die Genauigkeit ist die Koordinate nicht überprüfbar.
+        #expect(properties["horizontalAccuracy"] as? Double == 4)
+        #expect(properties["positionSource"] as? String == "gps")
 
         let area = try #require(features.first { feature in
             (feature["properties"] as? [String: Any])?["kind"] as? String == "area"
@@ -275,6 +346,8 @@ struct SurveyTests {
         let lines = SurveyExporter.csv(survey).split(separator: "\n", omittingEmptySubsequences: true)
         #expect(lines.count == 2)
         #expect(lines[0].hasPrefix("id,time,latitude,longitude"))
+        #expect(lines[0].contains("positionSource,positionSpread,positionSampleCount"))
+        #expect(lines[0].contains("manualOffset"))
         // Das Komma in der Notiz darf die Spalten nicht verschieben.
         #expect(lines[1].contains("\"Riss, quer zur Fahrbahn\""))
         #expect(lines[1].contains("Schlagloch"))
@@ -304,8 +377,7 @@ struct SurveyTests {
 
         var survey = Survey(name: "Bahnhofstrasse")
         var finding = makeFinding()
-        finding.photoFileName = try store.writePhoto(Data(repeating: 0xCD, count: 256),
-                                                     for: finding.id, in: survey.id)
+        finding.add(try store.writePhoto(Data(repeating: 0xCD, count: 256), in: survey.id))
         survey.upsert(finding)
         try store.save(survey)
 
@@ -329,10 +401,46 @@ struct SurveyTests {
     func bundleMediaPrefix() {
         var survey = Survey(name: "Export")
         var finding = makeFinding()
-        finding.photoFileName = "\(finding.id.uuidString).jpg"
+        let photo = CaseMedia(kind: .photo, fileName: "abc.jpg")
+        let clip = CaseMedia(kind: .video, fileName: "def.mov")
+        finding.add(photo)
+        finding.add(clip)
         survey.upsert(finding)
 
         let text = SurveyExporter.geoJSON(survey, mediaPrefix: "media/")
-        #expect(text.contains("media/\(finding.id.uuidString).jpg"))
+        #expect(text.contains("media/abc.jpg"))
+        #expect(text.contains("media/def.mov"))
+
+        let csv = SurveyExporter.csv(survey, mediaPrefix: "media/")
+        #expect(csv.contains("media/abc.jpg"))
+        #expect(csv.contains("media/def.mov"))
+    }
+
+    @Test("Der Export trägt Quelle, Streuung und Versatz der Position")
+    func positionQualityInExport() throws {
+        var survey = Survey(name: "Export")
+        var finding = makeFinding()
+        finding.positionSource = .averaged
+        finding.positionSampleCount = 14
+        finding.positionSpread = 1.8
+        finding.placePin(at: point(eastOf: Self.anchor, metres: 9))
+        survey.upsert(finding)
+
+        let text = SurveyExporter.geoJSON(survey)
+        let object = try #require(try JSONSerialization.jsonObject(
+            with: Data(text.utf8)) as? [String: Any])
+        let features = try #require(object["features"] as? [[String: Any]])
+        let properties = try #require(features.first?["properties"] as? [String: Any])
+
+        #expect(properties["positionSource"] as? String == "manual")
+        #expect(properties["gpsLatitude"] as? Double == Self.anchor.latitude)
+        let offset = try #require(properties["manualOffsetMetres"] as? Double)
+        #expect(abs(offset - 9) < 0.05)
+        // Eine Nadel hat keine Genauigkeitsangabe, und es wird auch keine erfunden.
+        #expect(properties["horizontalAccuracy"] == nil)
+
+        let csv = SurveyExporter.csv(survey)
+        #expect(csv.contains("manual"))
+        #expect(SurveyExporter.positionDescription(of: finding).contains("Nadel"))
     }
 }

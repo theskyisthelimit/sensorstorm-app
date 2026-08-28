@@ -19,6 +19,15 @@ public struct Coordinate2D: Codable, Sendable, Hashable {
     var geodetic: Geodetic {
         Geodetic(latitude: latitude, longitude: longitude, height: 0)
     }
+
+    /// Ground distance in metres, through the local metric frame rather than through a
+    /// degree difference — one degree of longitude is 78 km in Bern and 111 km at the
+    /// equator, and a documented damage is metres wide.
+    public func distance(to other: Coordinate2D) -> Double {
+        guard isValid, other.isValid else { return 0 }
+        let local = Geodesy.enu(of: other.geodetic, from: geodetic)
+        return (local.east * local.east + local.north * local.north).squareRoot()
+    }
 }
 
 /// Where a finding was recorded, kept with the fix's own accuracy figures.
@@ -181,8 +190,63 @@ public struct FindingArea: Codable, Sendable, Hashable {
     }
 }
 
-/// One documented spot: a photo of the ground, where it is, how bad it is, and — when the
-/// spot is bigger than a point — how far it extends.
+/// How the position of a case was arrived at.
+///
+/// Recorded because the three are not equally good and the difference has to survive the
+/// trip to whoever reads the file: a single fix is whatever the phone had at that second,
+/// an averaged one is quieter, and a hand-placed pin is as good as the person's eye on the
+/// aerial image — often the best of the three on a street, and the only one that cannot be
+/// checked against an accuracy figure.
+public enum PositionSource: String, Codable, Sendable, Hashable, CaseIterable {
+    /// One GPS fix, taken when the shutter went.
+    case gps
+    /// The mean of several fixes taken over a few seconds.
+    case averaged
+    /// Placed by hand on the map. ``GroundFinding/measuredLocation`` keeps what GPS said.
+    case manual
+}
+
+/// One photo or one clip belonging to a case.
+///
+/// A case is not one picture. A pothole gets an overview, a close-up, a shot with a ruler
+/// next to it and thirty seconds of video walking around it — and all of that is one case
+/// on the map, not four.
+public struct CaseMedia: Codable, Sendable, Hashable, Identifiable {
+    public enum Kind: String, Codable, Sendable, Hashable, CaseIterable {
+        case photo
+        case video
+    }
+
+    public var id: UUID
+    public var kind: Kind
+    /// File name inside the survey folder.
+    public var fileName: String
+    public var capturedAt: Date
+    /// Clip length in seconds; `nil` for photos.
+    public var duration: TimeInterval?
+    public var note: String
+
+    public init(id: UUID = UUID(), kind: Kind, fileName: String,
+                capturedAt: Date = Date(), duration: TimeInterval? = nil,
+                note: String = "") {
+        self.id = id
+        self.kind = kind
+        self.fileName = fileName
+        self.capturedAt = capturedAt
+        self.duration = duration
+        self.note = note
+    }
+
+    public static func fileName(for id: UUID, kind: Kind) -> String {
+        switch kind {
+        case .photo: "\(id.uuidString).jpg"
+        case .video: "\(id.uuidString).mov"
+        }
+    }
+}
+
+/// One documented damage: where it is, how well that is known, how bad it is, how far it
+/// reaches, and every photo and clip taken of it.
 ///
 /// The severity is deliberately a plain 1…10 integer rather than a category. Walking a
 /// street, the judgement that matters is comparative ("this one is worse than the one at
@@ -194,41 +258,56 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
 
     public var id: UUID
     public var capturedAt: Date
-    /// Host-clock time of the capture. A finding dropped while a Sensorstorm recording runs
+    /// Host-clock time of the capture. A case recorded while a Sensorstorm recording runs
     /// lines up with that recording's streams through this, with no clock conversion.
     public var hostTime: Double
+    /// The position that counts — the one drawn on the map and written to every export.
     public var location: FindingLocation
+    public var positionSource: PositionSource
+    /// What GPS said, kept when the pin was moved by hand. Keeping both is the difference
+    /// between a corrected position and a lost measurement.
+    public var measuredLocation: FindingLocation?
+    /// How many fixes an averaged position was built from.
+    public var positionSampleCount: Int?
+    /// How far those fixes were spread, in metres — the honest error bar on an averaged
+    /// position, which is usually smaller than the accuracy any single fix claimed.
+    public var positionSpread: Double?
     public var severity: Int
     /// Short label — "Schlagloch", "Riss", "Setzung". Free text on purpose: a fixed list
     /// is always missing the thing standing in front of you.
     public var label: String
     public var note: String
-    public var photoFileName: String?
-    public var videoFileName: String?
+    public var media: [CaseMedia]
     public var area: FindingArea?
-    /// The recording this finding was captured during, when there was one.
+    /// The recording this case was documented during, when there was one.
     public var recordingID: UUID?
 
     public init(id: UUID = UUID(),
                 capturedAt: Date = Date(),
                 hostTime: Double = 0,
                 location: FindingLocation,
+                positionSource: PositionSource = .gps,
+                measuredLocation: FindingLocation? = nil,
+                positionSampleCount: Int? = nil,
+                positionSpread: Double? = nil,
                 severity: Int = 5,
                 label: String = "",
                 note: String = "",
-                photoFileName: String? = nil,
-                videoFileName: String? = nil,
+                media: [CaseMedia] = [],
                 area: FindingArea? = nil,
                 recordingID: UUID? = nil) {
         self.id = id
         self.capturedAt = capturedAt
         self.hostTime = hostTime
         self.location = location
+        self.positionSource = positionSource
+        self.measuredLocation = measuredLocation
+        self.positionSampleCount = positionSampleCount
+        self.positionSpread = positionSpread
         self.severity = Self.clamp(severity)
         self.label = label
         self.note = note
-        self.photoFileName = photoFileName
-        self.videoFileName = videoFileName
+        self.media = media
         self.area = area
         self.recordingID = recordingID
     }
@@ -245,18 +324,92 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
         capturedAt = try container.decode(Date.self, forKey: .capturedAt)
         hostTime = try container.decodeIfPresent(Double.self, forKey: .hostTime) ?? 0
         location = try container.decode(FindingLocation.self, forKey: .location)
+        positionSource = try container.decodeIfPresent(PositionSource.self,
+                                                       forKey: .positionSource) ?? .gps
+        measuredLocation = try container.decodeIfPresent(FindingLocation.self,
+                                                         forKey: .measuredLocation)
+        positionSampleCount = try container.decodeIfPresent(Int.self, forKey: .positionSampleCount)
+        positionSpread = try container.decodeIfPresent(Double.self, forKey: .positionSpread)
         severity = Self.clamp(try container.decode(Int.self, forKey: .severity))
         label = try container.decodeIfPresent(String.self, forKey: .label) ?? ""
         note = try container.decodeIfPresent(String.self, forKey: .note) ?? ""
-        photoFileName = try container.decodeIfPresent(String.self, forKey: .photoFileName)
-        videoFileName = try container.decodeIfPresent(String.self, forKey: .videoFileName)
+        media = try container.decodeIfPresent([CaseMedia].self, forKey: .media) ?? []
         area = try container.decodeIfPresent(FindingArea.self, forKey: .area)
         recordingID = try container.decodeIfPresent(UUID.self, forKey: .recordingID)
     }
 
-    public var hasMedia: Bool { photoFileName != nil || videoFileName != nil }
+    // MARK: - Media
 
-    /// Every coordinate this finding puts on a map: the point plus, if there is one, the
+    public var photos: [CaseMedia] { media.filter { $0.kind == .photo } }
+    public var videos: [CaseMedia] { media.filter { $0.kind == .video } }
+    public var coverPhoto: CaseMedia? { photos.first }
+    public var hasMedia: Bool { !media.isEmpty }
+
+    public mutating func add(_ item: CaseMedia) {
+        media.append(item)
+    }
+
+    @discardableResult
+    public mutating func removeMedia(_ id: UUID) -> CaseMedia? {
+        guard let index = media.firstIndex(where: { $0.id == id }) else { return nil }
+        return media.remove(at: index)
+    }
+
+    // MARK: - Position quality
+
+    /// How far the pin was moved from the fix, in metres. `nil` when nothing was moved.
+    public var manualOffsetMetres: Double? {
+        guard let measuredLocation, measuredLocation.coordinate.isValid else { return nil }
+        let offset = measuredLocation.coordinate.distance(to: location.coordinate)
+        return offset.isFinite ? offset : nil
+    }
+
+    /// The radius to draw around the pin: the claimed accuracy of the fix, or the measured
+    /// spread of an averaged one. `nil` for a hand-placed pin — a pin has no error bar, and
+    /// drawing one would invent a number.
+    public var uncertaintyRadius: Double? {
+        switch positionSource {
+        case .manual:
+            return nil
+        case .averaged:
+            if let spread = positionSpread, spread > 0 { return spread }
+            return location.horizontalAccuracy > 0 ? location.horizontalAccuracy : nil
+        case .gps:
+            return location.horizontalAccuracy > 0 ? location.horizontalAccuracy : nil
+        }
+    }
+
+    /// Moves the pin by hand, keeping what was measured before as ``measuredLocation``.
+    ///
+    /// A corrected position that threw the measurement away would be worth less than either
+    /// of the two on its own: nobody could tell afterwards whether the pin is where the
+    /// receiver said or where somebody decided.
+    public mutating func placePin(at coordinate: Coordinate2D) {
+        guard coordinate.isValid else { return }
+        if positionSource != .manual { measuredLocation = location }
+        location = FindingLocation(latitude: coordinate.latitude,
+                                   longitude: coordinate.longitude,
+                                   altitude: location.altitude,
+                                   ellipsoidalAltitude: location.ellipsoidalAltitude,
+                                   // A pin has no error bar. Carrying the fix's over would
+                                   // claim a measurement that was not made.
+                                   horizontalAccuracy: -1,
+                                   verticalAccuracy: -1,
+                                   heading: location.heading)
+        positionSource = .manual
+        positionSampleCount = nil
+        positionSpread = nil
+    }
+
+    /// Throws the correction away and goes back to what was measured.
+    public mutating func resetPositionToMeasured() {
+        guard let measured = measuredLocation else { return }
+        location = measured
+        measuredLocation = nil
+        positionSource = .gps
+    }
+
+    /// Every coordinate this case puts on a map: the point plus, if there is one, the
     /// corners of its area.
     public var mapCoordinates: [Coordinate2D] {
         var all = [location.coordinate]

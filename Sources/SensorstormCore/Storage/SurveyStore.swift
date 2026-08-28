@@ -79,14 +79,6 @@ public struct SurveyStore: Sendable {
 
     // MARK: - Media
 
-    public static func photoFileName(for findingID: UUID) -> String {
-        "\(findingID.uuidString).jpg"
-    }
-
-    public static func videoFileName(for findingID: UUID) -> String {
-        "\(findingID.uuidString).mov"
-    }
-
     /// The URL of a file inside a survey folder, or `nil` if it is not there. Returning
     /// `nil` for a missing file rather than a URL that does not resolve keeps every caller
     /// from having to check twice.
@@ -96,45 +88,46 @@ public struct SurveyStore: Sendable {
         return FileManager.default.fileExists(atPath: url.path) ? url : nil
     }
 
-    public func photoURL(for finding: GroundFinding, in surveyID: UUID) -> URL? {
-        mediaURL(finding.photoFileName, in: surveyID)
+    public func url(for media: CaseMedia, in surveyID: UUID) -> URL? {
+        mediaURL(media.fileName, in: surveyID)
     }
 
-    public func videoURL(for finding: GroundFinding, in surveyID: UUID) -> URL? {
-        mediaURL(finding.videoFileName, in: surveyID)
-    }
-
-    /// Writes the still and returns the file name to store in the finding.
-    @discardableResult
-    public func writePhoto(_ data: Data, for findingID: UUID, in surveyID: UUID) throws -> String {
+    /// Writes a still into the survey folder and returns the entry to hang on the case.
+    public func writePhoto(_ data: Data, id: UUID = UUID(), capturedAt: Date = Date(),
+                           in surveyID: UUID) throws -> CaseMedia {
         try prepareDirectory(for: surveyID)
-        let fileName = Self.photoFileName(for: findingID)
+        let fileName = CaseMedia.fileName(for: id, kind: .photo)
         try data.write(to: directory(for: surveyID).appendingPathComponent(fileName),
                        options: .atomic)
-        return fileName
+        return CaseMedia(id: id, kind: .photo, fileName: fileName, capturedAt: capturedAt)
     }
 
     /// Moves a freshly recorded clip out of the temporary directory into the survey folder.
     /// A move rather than a copy: a 4K clip is not worth writing twice, and the temporary
     /// copy would be deleted moments later anyway.
-    @discardableResult
-    public func importVideo(from url: URL, for findingID: UUID, in surveyID: UUID) throws -> String {
+    public func importVideo(from url: URL, id: UUID = UUID(), capturedAt: Date = Date(),
+                            duration: TimeInterval? = nil, in surveyID: UUID) throws -> CaseMedia {
         try prepareDirectory(for: surveyID)
-        let fileName = Self.videoFileName(for: findingID)
+        let fileName = CaseMedia.fileName(for: id, kind: .video)
         let destination = directory(for: surveyID).appendingPathComponent(fileName)
         if FileManager.default.fileExists(atPath: destination.path) {
             try FileManager.default.removeItem(at: destination)
         }
         try FileManager.default.moveItem(at: url, to: destination)
-        return fileName
+        return CaseMedia(id: id, kind: .video, fileName: fileName,
+                         capturedAt: capturedAt, duration: duration)
     }
 
-    /// Removes a finding's photo and clip. Called when the finding goes, because otherwise
+    public func delete(_ media: CaseMedia, in surveyID: UUID) {
+        guard let url = url(for: media, in: surveyID) else { return }
+        try? FileManager.default.removeItem(at: url)
+    }
+
+    /// Removes every photo and clip of a case. Called when the case goes, because otherwise
     /// the bytes stay behind with nothing left to point at them.
     public func deleteMedia(of finding: GroundFinding, in surveyID: UUID) {
-        for url in [photoURL(for: finding, in: surveyID), videoURL(for: finding, in: surveyID)] {
-            guard let url else { continue }
-            try? FileManager.default.removeItem(at: url)
+        for item in finding.media {
+            delete(item, in: surveyID)
         }
     }
 

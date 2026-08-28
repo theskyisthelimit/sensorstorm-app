@@ -2,10 +2,12 @@ import AVKit
 import SensorstormCore
 import SwiftUI
 
-/// One finding, in full: the photo, the clip, where it is, how bad it is, how far it reaches.
+/// One case, in full: every photo and clip, where it is, how well that is known, how bad it
+/// is, how far it reaches.
 ///
-/// Edits are kept locally and written back when the screen closes as well as on demand —
-/// nobody walking a street should lose a note because they swiped back.
+/// Text edits are kept locally and written back when the screen closes as well as on
+/// demand — nobody walking a street should lose a note because they swiped back. Position
+/// changes are written immediately: they are single deliberate acts, not typing.
 struct FindingDetailView: View {
     @Environment(SurveyModel.self) private var model
     @Environment(\.dismiss) private var dismiss
@@ -19,8 +21,10 @@ struct FindingDetailView: View {
     @State private var area: FindingArea?
     @State private var hasLoaded = false
     @State private var isEditingArea = false
+    @State private var isPlacingPin = false
+    @State private var isAddingMedia = false
     @State private var showsDeleteConfirmation = false
-    @State private var player: AVPlayer?
+    @State private var viewerItem: CaseMedia?
     @State private var shareItem: ShareItem?
 
     private var finding: GroundFinding? {
@@ -32,26 +36,37 @@ struct FindingDetailView: View {
             if let finding {
                 content(finding)
             } else {
-                ContentUnavailableView("Befund nicht gefunden", systemImage: "questionmark.circle")
+                ContentUnavailableView("Fall nicht gefunden", systemImage: "questionmark.circle")
             }
         }
-        .navigationTitle(label.isEmpty ? String(localized: "Befund") : label)
+        .navigationTitle(label.isEmpty ? String(localized: "Fall") : label)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
         .task { load() }
-        .onDisappear {
-            player?.pause()
-            applyEdits()
-        }
+        .onDisappear { applyEdits() }
         .sheet(isPresented: $isEditingArea) {
             if let finding {
                 AreaEditorView(center: finding.location.coordinate, area: $area)
             }
         }
+        .sheet(isPresented: $isPlacingPin) {
+            if let finding {
+                PinEditorView(measured: finding.measuredLocation ?? finding.location,
+                              initial: finding.location.coordinate,
+                              onApply: { placePin(at: $0) },
+                              onReset: finding.measuredLocation != nil ? { resetPosition() } : nil)
+            }
+        }
+        .sheet(isPresented: $isAddingMedia) {
+            FindingCaptureView(surveyID: surveyID, existingCaseID: findingID)
+        }
+        .sheet(item: $viewerItem) { item in
+            MediaViewerView(url: model.url(for: item, in: surveyID), media: item)
+        }
         .sheet(item: $shareItem) { item in
             ShareSheet(items: [item.url])
         }
-        .confirmationDialog("Befund löschen?", isPresented: $showsDeleteConfirmation,
+        .confirmationDialog("Fall löschen?", isPresented: $showsDeleteConfirmation,
                             titleVisibility: .visible) {
             Button("Löschen", role: .destructive) {
                 if let finding { model.deleteFinding(finding, from: surveyID) }
@@ -59,7 +74,7 @@ struct FindingDetailView: View {
             }
             Button("Abbrechen", role: .cancel) {}
         } message: {
-            Text("Foto und Clip dieses Befunds werden mitgelöscht.")
+            Text("Alle Fotos und Clips dieses Falls werden mitgelöscht.")
         }
         .surveyErrorAlert(model)
     }
@@ -67,17 +82,13 @@ struct FindingDetailView: View {
     private func content(_ finding: GroundFinding) -> some View {
         ScrollView {
             VStack(spacing: 14) {
-                photo(finding)
-
-                if let player {
-                    VideoPlayer(player: player)
-                        .frame(height: 240)
-                        .clipShape(.rect(cornerRadius: 16))
-                }
+                mediaSection(finding)
 
                 SurveyMapView(findings: [previewFinding(finding)], selection: finding.id)
-                    .frame(height: 240)
+                    .frame(height: 260)
                     .clipShape(.rect(cornerRadius: 16))
+
+                positionCard(finding)
 
                 SeverityPicker(severity: $severity)
                     .padding(14)
@@ -90,7 +101,7 @@ struct FindingDetailView: View {
                 Button(role: .destructive) {
                     showsDeleteConfirmation = true
                 } label: {
-                    Label("Befund löschen", systemImage: "trash")
+                    Label("Fall löschen", systemImage: "trash")
                         .font(.subheadline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
@@ -103,18 +114,90 @@ struct FindingDetailView: View {
         }
     }
 
+    // MARK: - Media
+
     @ViewBuilder
-    private func photo(_ finding: GroundFinding) -> some View {
-        if let url = model.photoURL(for: finding, in: surveyID) {
-            FindingPhotoView(url: url, severity: finding.severity)
-        } else {
-            Label("Ohne Foto erfasst", systemImage: "camera.badge.ellipsis")
+    private func mediaSection(_ finding: GroundFinding) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            if let cover = finding.coverPhoto {
+                FindingPhotoView(url: model.url(for: cover, in: surveyID),
+                                 severity: finding.severity)
+                    .onTapGesture { viewerItem = cover }
+            }
+
+            if !finding.media.isEmpty {
+                CaseMediaStrip(media: finding.media,
+                               urlFor: { model.url(for: $0, in: surveyID) },
+                               onSelect: { viewerItem = $0 },
+                               onDelete: { model.deleteMedia($0, from: findingID, in: surveyID) })
+            }
+
+            Button {
+                isAddingMedia = true
+            } label: {
+                Label(finding.media.isEmpty ? "Aufnahmen machen" : "Weitere Aufnahmen",
+                      systemImage: "camera.fill")
+                    .font(.subheadline.weight(.medium))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(Theme.accent)
+        }
+        .padding(.vertical, finding.coverPhoto == nil ? 8 : 0)
+    }
+
+    // MARK: - Position
+
+    private func positionCard(_ finding: GroundFinding) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("Position")
+                    .font(.subheadline.weight(.semibold))
+                Spacer(minLength: 0)
+                AccuracyBadge(metres: finding.uncertaintyRadius, source: finding.positionSource)
+            }
+
+            Text(SurveyExporter.positionDescription(of: finding))
                 .font(.caption)
                 .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 20)
-                .card()
+
+            if let measured = finding.measuredLocation, measured.coordinate.isValid {
+                Text("GPS hatte \(Format.coordinate(measured.latitude)), \(Format.coordinate(measured.longitude)) gemeldet — beides ist gespeichert.")
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
+
+            HStack(spacing: 12) {
+                Button {
+                    isPlacingPin = true
+                } label: {
+                    Label(finding.positionSource == .manual ? "Nadel verschieben" : "Nadel setzen",
+                          systemImage: "mappin.and.ellipse")
+                        .font(.caption.weight(.medium))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(Theme.accent)
+
+                if finding.measuredLocation != nil {
+                    Button {
+                        resetPosition()
+                    } label: {
+                        Label("Zurück auf GPS", systemImage: "location.fill")
+                            .font(.caption.weight(.medium))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(Theme.accent)
+                }
+            }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(14)
+        .card()
     }
 
     private var describeCard: some View {
@@ -182,8 +265,16 @@ struct FindingDetailView: View {
             infoRow("Zeit", finding.capturedAt.formatted(date: .abbreviated, time: .standard))
             infoRow("WGS84", "\(Format.coordinate(location.latitude)), \(Format.coordinate(location.longitude))")
             infoRow("LV95", String(format: "%.1f / %.1f", lv95.east, lv95.north))
-            if location.horizontalAccuracy > 0 {
-                infoRow("Genauigkeit", String(format: "±%.1f m", location.horizontalAccuracy))
+            infoRow("Quelle", positionSourceName(finding.positionSource))
+            if let radius = finding.uncertaintyRadius {
+                infoRow(finding.positionSource == .averaged ? "Streuung" : "Genauigkeit",
+                        String(format: "±%.1f m", radius))
+            }
+            if let samples = finding.positionSampleCount {
+                infoRow("Fixes", "\(samples)")
+            }
+            if let offset = finding.manualOffsetMetres {
+                infoRow("Versatz zur Nadel", String(format: "%.1f m", offset))
             }
             if let altitude = location.altitude {
                 infoRow("Höhe", String(format: "%.1f m ü. M.", altitude))
@@ -191,6 +282,7 @@ struct FindingDetailView: View {
             if let heading = location.heading {
                 infoRow("Blickrichtung", String(format: "%.0f°", heading))
             }
+            infoRow("Aufnahmen", "\(finding.photos.count) Fotos, \(finding.videos.count) Clips")
             if finding.recordingID != nil {
                 infoRow("Aufnahmezeit", String(format: "%.3f s", finding.hostTime))
             }
@@ -198,6 +290,14 @@ struct FindingDetailView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
         .card()
+    }
+
+    private func positionSourceName(_ source: PositionSource) -> String {
+        switch source {
+        case .gps: String(localized: "einzelner GPS-Fix")
+        case .averaged: String(localized: "gemittelt")
+        case .manual: String(localized: "Nadel von Hand")
+        }
     }
 
     private func infoRow(_ title: LocalizedStringKey, _ value: String) -> some View {
@@ -208,6 +308,7 @@ struct FindingDetailView: View {
             Spacer()
             Text(value)
                 .font(.caption.monospacedDigit())
+                .multilineTextAlignment(.trailing)
         }
     }
 
@@ -220,18 +321,16 @@ struct FindingDetailView: View {
                 } label: {
                     Label("Sichern", systemImage: "checkmark")
                 }
-                if let finding, let url = model.photoURL(for: finding, in: surveyID) {
-                    Button {
-                        shareItem = ShareItem(url: url)
-                    } label: {
-                        Label("Foto teilen", systemImage: "square.and.arrow.up")
-                    }
-                }
-                if let finding, let url = model.videoURL(for: finding, in: surveyID) {
-                    Button {
-                        shareItem = ShareItem(url: url)
-                    } label: {
-                        Label("Clip teilen", systemImage: "video")
+                if let finding {
+                    ForEach(finding.media) { item in
+                        if let url = model.url(for: item, in: surveyID) {
+                            Button {
+                                shareItem = ShareItem(url: url)
+                            } label: {
+                                Label(item.kind == .photo ? "Foto teilen" : "Clip teilen",
+                                      systemImage: item.kind == .photo ? "photo" : "video")
+                            }
+                        }
                     }
                 }
             } label: {
@@ -242,7 +341,7 @@ struct FindingDetailView: View {
 
     // MARK: - State
 
-    /// The map wants the *edited* area, not the stored one, so a freshly drawn polygon shows
+    /// The map wants the *edited* case, not the stored one, so a freshly drawn polygon shows
     /// up before it has been written back.
     private func previewFinding(_ finding: GroundFinding) -> GroundFinding {
         var preview = finding
@@ -258,9 +357,6 @@ struct FindingDetailView: View {
         label = finding.label
         note = finding.note
         area = finding.area
-        if let url = model.videoURL(for: finding, in: surveyID) {
-            player = AVPlayer(url: url)
-        }
     }
 
     private func applyEdits() {
@@ -277,5 +373,61 @@ struct FindingDetailView: View {
         current.note = trimmedNote
         current.area = area
         model.update(current, in: surveyID)
+    }
+
+    private func placePin(at coordinate: Coordinate2D) {
+        guard var current = finding else { return }
+        current.placePin(at: coordinate)
+        model.update(current, in: surveyID)
+    }
+
+    private func resetPosition() {
+        guard var current = finding else { return }
+        current.resetPositionToMeasured()
+        model.update(current, in: surveyID)
+    }
+}
+
+/// One photo or clip, full screen.
+struct MediaViewerView: View {
+    let url: URL?
+    let media: CaseMedia
+
+    @Environment(\.dismiss) private var dismiss
+    @State private var image: UIImage?
+    @State private var player: AVPlayer?
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.black.ignoresSafeArea()
+                if media.kind == .video, let player {
+                    VideoPlayer(player: player)
+                } else if let image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    ProgressView()
+                }
+            }
+            .navigationTitle(media.capturedAt.formatted(date: .omitted, time: .standard))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Fertig") { dismiss() }
+                }
+            }
+        }
+        .task {
+            guard let url else { return }
+            if media.kind == .video {
+                player = AVPlayer(url: url)
+            } else {
+                // Full width of a modern screen, not the full eight megapixels.
+                image = await ThumbnailCache.shared.thumbnail(for: url, maxPixel: 2400)
+            }
+        }
+        .onDisappear { player?.pause() }
     }
 }

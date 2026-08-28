@@ -49,6 +49,36 @@ struct LiveFix: Sendable, Hashable {
     }
 }
 
+/// A position built from several fixes.
+///
+/// One GPS fix is a guess with a claimed error bar. Ten fixes taken while standing still
+/// are ten guesses around the same truth: their mean is closer to it, and — more usefully —
+/// how far they lie apart is a *measured* error bar rather than a claimed one. On a street
+/// the claimed accuracy is routinely optimistic next to what the scatter actually shows.
+struct AveragedFix: Sendable, Hashable {
+    var coordinate: Coordinate2D
+    var altitude: Double?
+    var ellipsoidalAltitude: Double?
+    var sampleCount: Int
+    /// Mean of the accuracies the device claimed for the fixes that went in.
+    var claimedAccuracy: Double
+    /// Root-mean-square distance of the fixes from their mean, in metres.
+    var spread: Double
+    var duration: TimeInterval
+
+    func findingLocation(heading: Double?) -> FindingLocation {
+        FindingLocation(latitude: coordinate.latitude,
+                        longitude: coordinate.longitude,
+                        altitude: altitude,
+                        ellipsoidalAltitude: ellipsoidalAltitude,
+                        // The spread is what was measured here; the claimed accuracy is
+                        // kept only when there is nothing better to report.
+                        horizontalAccuracy: spread > 0 ? spread : claimedAccuracy,
+                        verticalAccuracy: -1,
+                        heading: heading)
+    }
+}
+
 /// The live position for the survey screens.
 ///
 /// Separate from ``LocationSource``, which exists to write GPS samples into a recording.
@@ -66,6 +96,11 @@ final class SurveyLocationProvider {
 
     /// How many screens currently want the live position.
     private var holders = 0
+    /// The last minute of fixes, so a position can be averaged over the seconds just gone
+    /// without asking the user to stand still *again*.
+    private var recent: [LiveFix] = []
+    private static let bufferSeconds: TimeInterval = 60
+    private static let bufferLimit = 300
     private let manager = CLLocationManager()
     private let forwarder = SurveyLocationForwarder()
 
@@ -78,7 +113,7 @@ final class SurveyLocationProvider {
         manager.headingFilter = kCLHeadingFilterNone
 
         forwarder.onFix = { [weak self] fix in
-            Task { @MainActor in self?.fix = fix }
+            Task { @MainActor in self?.record(fix) }
         }
         forwarder.onHeading = { [weak self] heading in
             Task { @MainActor in self?.heading = heading }
@@ -135,6 +170,71 @@ final class SurveyLocationProvider {
         isRunning = false
         manager.stopUpdatingLocation()
         manager.stopUpdatingHeading()
+    }
+
+    private func record(_ fix: LiveFix) {
+        self.fix = fix
+        guard fix.isUsable else { return }
+        recent.append(fix)
+
+        let cutoff = Date().addingTimeInterval(-Self.bufferSeconds)
+        recent.removeAll { $0.timestamp < cutoff }
+        if recent.count > Self.bufferLimit {
+            recent.removeFirst(recent.count - Self.bufferLimit)
+        }
+    }
+
+    /// How many usable fixes arrived in the last `seconds`.
+    func fixCount(inLast seconds: TimeInterval) -> Int {
+        let cutoff = Date().addingTimeInterval(-seconds)
+        return recent.count { $0.timestamp >= cutoff }
+    }
+
+    /// The mean of the fixes from the last `seconds`, or `nil` when there are too few to
+    /// average — two points do not have a scatter worth reporting.
+    ///
+    /// The mean is weighted by 1/accuracy²: the first fixes after the phone wakes up are
+    /// the worst ones, and letting them pull the result as hard as a good fix would throw
+    /// away the reason for averaging in the first place.
+    func averagedFix(seconds: TimeInterval = 10) -> AveragedFix? {
+        let cutoff = Date().addingTimeInterval(-seconds)
+        let samples = recent.filter { $0.timestamp >= cutoff && $0.isUsable }
+        guard samples.count >= 3 else { return nil }
+
+        var weightSum = 0.0
+        var latitude = 0.0
+        var longitude = 0.0
+        var accuracySum = 0.0
+        for sample in samples {
+            let weight = 1 / max(sample.horizontalAccuracy, 1) / max(sample.horizontalAccuracy, 1)
+            weightSum += weight
+            latitude += sample.latitude * weight
+            longitude += sample.longitude * weight
+            accuracySum += sample.horizontalAccuracy
+        }
+        guard weightSum > 0 else { return nil }
+
+        let mean = Coordinate2D(latitude: latitude / weightSum, longitude: longitude / weightSum)
+        let squared = samples.reduce(0.0) { total, sample in
+            let distance = mean.distance(to: sample.coordinate)
+            return total + distance * distance
+        }
+        let spread = (squared / Double(samples.count)).squareRoot()
+
+        let altitudes = samples.map(\.altitude).filter(\.isFinite)
+        let ellipsoidal = samples.map(\.ellipsoidalAltitude).filter(\.isFinite)
+        let span = (samples.last?.timestamp.timeIntervalSince(
+            samples.first?.timestamp ?? Date())) ?? 0
+
+        return AveragedFix(
+            coordinate: mean,
+            altitude: altitudes.isEmpty ? nil : altitudes.reduce(0, +) / Double(altitudes.count),
+            ellipsoidalAltitude: ellipsoidal.isEmpty
+                ? nil : ellipsoidal.reduce(0, +) / Double(ellipsoidal.count),
+            sampleCount: samples.count,
+            claimedAccuracy: accuracySum / Double(samples.count),
+            spread: spread,
+            duration: max(span, 0))
     }
 
     /// How good the current fix is, as something to put on screen next to a coordinate.

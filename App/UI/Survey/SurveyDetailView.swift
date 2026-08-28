@@ -56,7 +56,7 @@ struct SurveyDetailView: View {
             }
             Button("Abbrechen", role: .cancel) {}
         } message: {
-            Text("Alle Befunde, Fotos und Clips dieser Begehung werden entfernt.")
+            Text("Alle Fälle, Fotos und Clips dieser Begehung werden entfernt.")
         }
         .overlay {
             if model.isExporting { exportOverlay }
@@ -76,7 +76,7 @@ struct SurveyDetailView: View {
                     .clipShape(.rect(cornerRadius: 16))
                     .overlay(alignment: .bottomLeading) {
                         if survey.findings.isEmpty {
-                            Text("Noch keine Befunde")
+                            Text("Noch keine Fälle")
                                 .font(.caption)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
@@ -100,7 +100,7 @@ struct SurveyDetailView: View {
     private func summaryCard(_ survey: Survey) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             infoRow("Start", survey.startedAt.formatted(date: .abbreviated, time: .standard))
-            infoRow("Befunde", "\(survey.findings.count)")
+            infoRow("Fälle", "\(survey.findings.count)")
             if let worst = survey.worstSeverity, let average = survey.averageSeverity {
                 infoRow("Schlimmster", "\(worst)/10")
                 infoRow("Durchschnitt", String(format: "%.1f/10", average))
@@ -108,10 +108,13 @@ struct SurveyDetailView: View {
             if survey.markedSquareMetres > 0 {
                 infoRow("Markierte Fläche", "\(Int(survey.markedSquareMetres.rounded())) m²")
             }
+            if !survey.findings.isEmpty {
+                infoRow("Positionen", positionSummary(survey))
+            }
             infoRow("Grösse", Format.bytes(model.byteSize(of: survey)))
             if let recordingID = survey.recordingID {
                 Divider().overlay(Theme.cardBorder)
-                Text("Zur Aufnahme \(String(recordingID.uuidString.prefix(8))) erfasst — die Befunde liegen auf derselben Uhr wie deren Sensordaten.")
+                Text("Zur Aufnahme \(String(recordingID.uuidString.prefix(8))) erfasst — die Fälle liegen auf derselben Uhr wie deren Sensordaten.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -121,18 +124,21 @@ struct SurveyDetailView: View {
         .card()
     }
 
-    /// Where the phone thinks it is right now — the number that decides whether the next
-    /// finding is worth recording at all.
+    /// Where the phone thinks it is right now, and how well. The accuracy is the number
+    /// that decides whether the next case is worth recording from here or whether it wants
+    /// ten seconds of averaging and a pin.
     private var positionCard: some View {
         HStack(spacing: 10) {
-            Image(systemName: "location.fill")
-                .foregroundStyle(fixColor)
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 3) {
                 if let fix = model.location.fix, fix.isUsable {
+                    HStack(spacing: 8) {
+                        AccuracyBadge(metres: fix.horizontalAccuracy)
+                        Text("\(model.location.fixCount(inLast: 10)) Fixes in 10 s")
+                            .font(.caption2.monospacedDigit())
+                            .foregroundStyle(.tertiary)
+                    }
                     Text("\(Format.coordinate(fix.latitude)), \(Format.coordinate(fix.longitude))")
                         .font(.caption.monospacedDigit())
-                    Text("GPS \(model.location.accuracyDescription)")
-                        .font(.caption2)
                         .foregroundStyle(.secondary)
                 } else if model.location.isAuthorized {
                     Text("Position wird gesucht …")
@@ -143,7 +149,7 @@ struct SurveyDetailView: View {
                 } else {
                     Text("Kein Zugriff auf den Standort")
                         .font(.caption)
-                    Text("Ohne Position kann ein Befund nicht wiedergefunden werden.")
+                    Text("Ohne Position kann ein Fall nicht wiedergefunden werden.")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -154,14 +160,9 @@ struct SurveyDetailView: View {
         .card()
     }
 
-    private var fixColor: Color {
-        guard let fix = model.location.fix, fix.isUsable else { return .secondary }
-        return fix.horizontalAccuracy <= 10 ? Theme.accent : .orange
-    }
-
     private func findingList(_ survey: Survey) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Befunde")
+            Text("Fälle")
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(.secondary)
 
@@ -170,7 +171,7 @@ struct SurveyDetailView: View {
                     FindingDetailView(surveyID: surveyID, findingID: finding.id)
                 } label: {
                     FindingRow(finding: finding,
-                               thumbnail: model.photoURL(for: finding, in: surveyID))
+                               thumbnail: model.coverURL(for: finding, in: surveyID))
                         .padding(.horizontal, 12)
                         .card()
                 }
@@ -184,6 +185,19 @@ struct SurveyDetailView: View {
                 }
             }
         }
+    }
+
+    /// How the cases in this walk got their coordinates — a walk documented entirely from
+    /// single fixes reads differently from one where every pin was set by hand.
+    private func positionSummary(_ survey: Survey) -> String {
+        let manual = survey.findings.count { $0.positionSource == .manual }
+        let averaged = survey.findings.count { $0.positionSource == .averaged }
+        let single = survey.findings.count - manual - averaged
+        var parts: [String] = []
+        if single > 0 { parts.append(String(localized: "\(single)× GPS")) }
+        if averaged > 0 { parts.append(String(localized: "\(averaged)× gemittelt")) }
+        if manual > 0 { parts.append(String(localized: "\(manual)× Nadel")) }
+        return parts.joined(separator: ", ")
     }
 
     private func infoRow(_ label: LocalizedStringKey, _ value: String) -> some View {
@@ -203,7 +217,7 @@ struct SurveyDetailView: View {
         Button {
             isCapturing = true
         } label: {
-            Label("Befund erfassen", systemImage: "camera.fill")
+            Label("Fall erfassen", systemImage: "camera.fill")
                 .font(.headline)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)

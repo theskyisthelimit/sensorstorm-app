@@ -101,10 +101,9 @@ public struct SurveyExporter: Sendable {
         let media = payload.appendingPathComponent(Self.bundleMediaFolder, isDirectory: true)
         try fileManager.createDirectory(at: media, withIntermediateDirectories: true)
         for finding in survey.findings {
-            for source in [store.photoURL(for: finding, in: survey.id),
-                           store.videoURL(for: finding, in: survey.id)] {
-                guard let source else { continue }
-                let target = media.appendingPathComponent(source.lastPathComponent)
+            for item in finding.media {
+                guard let source = store.url(for: item, in: survey.id) else { continue }
+                let target = media.appendingPathComponent(item.fileName)
                 if fileManager.fileExists(atPath: target.path) {
                     try fileManager.removeItem(at: target)
                 }
@@ -157,18 +156,43 @@ public struct SurveyExporter: Sendable {
         if let altitude = finding.location.altitude { coordinates.append(altitude) }
 
         var properties: [String: Any] = [
-            "kind": "finding",
+            "kind": "case",
             "id": finding.id.uuidString,
             "time": TrackExporter.iso8601(finding.capturedAt),
-            "severity": finding.severity
+            "severity": finding.severity,
+            "positionSource": finding.positionSource.rawValue
         ]
         if !finding.label.isEmpty { properties["label"] = finding.label }
         if !finding.note.isEmpty { properties["note"] = finding.note }
-        if let photo = finding.photoFileName { properties["photo"] = mediaPrefix + photo }
-        if let video = finding.videoFileName { properties["video"] = mediaPrefix + video }
+
+        let photos = finding.photos.map { mediaPrefix + $0.fileName }
+        let videos = finding.videos.map { mediaPrefix + $0.fileName }
+        if !photos.isEmpty { properties["photos"] = photos }
+        if !videos.isEmpty { properties["videos"] = videos }
+        properties["mediaCount"] = finding.media.count
+
+        // Everything that says how well the position is known. A coordinate without this
+        // is a number nobody can check.
         if finding.location.horizontalAccuracy > 0 {
-            properties["horizontalAccuracy"] = finding.location.horizontalAccuracy
+            properties["horizontalAccuracy"] = rounded(finding.location.horizontalAccuracy, decimals: 2)
         }
+        if let spread = finding.positionSpread {
+            properties["positionSpread"] = rounded(spread, decimals: 2)
+        }
+        if let samples = finding.positionSampleCount {
+            properties["positionSampleCount"] = samples
+        }
+        if let measured = finding.measuredLocation, measured.coordinate.isValid {
+            properties["gpsLatitude"] = measured.latitude
+            properties["gpsLongitude"] = measured.longitude
+            if measured.horizontalAccuracy > 0 {
+                properties["gpsHorizontalAccuracy"] = rounded(measured.horizontalAccuracy, decimals: 2)
+            }
+        }
+        if let offset = finding.manualOffsetMetres {
+            properties["manualOffsetMetres"] = rounded(offset, decimals: 2)
+        }
+
         if let heading = finding.location.heading { properties["heading"] = heading }
         if let recordingID = finding.recordingID { properties["recording"] = recordingID.uuidString }
         if let area = finding.area, area.isValid {
@@ -189,7 +213,7 @@ public struct SurveyExporter: Sendable {
 
         var properties: [String: Any] = [
             "kind": "area",
-            "finding": finding.id.uuidString,
+            "case": finding.id.uuidString,
             "severity": finding.severity,
             "shape": area.kind.rawValue,
             "squareMetres": rounded(area.squareMetres)
@@ -213,8 +237,9 @@ public struct SurveyExporter: Sendable {
 
     public static func csv(_ survey: Survey, mediaPrefix: String = "") -> String {
         var out = "id,time,latitude,longitude,altitude,ellipsoidalAltitude,horizontalAccuracy,"
-        out += "heading,severity,label,note,photo,video,areaKind,areaRadius,areaSquareMetres,"
-        out += "lv95East,lv95North,recording\n"
+        out += "positionSource,positionSpread,positionSampleCount,gpsLatitude,gpsLongitude,"
+        out += "manualOffset,heading,severity,label,note,photos,videos,areaKind,areaRadius,"
+        out += "areaSquareMetres,lv95East,lv95North,recording\n"
 
         for finding in survey.findingsByTime {
             let location = finding.location
@@ -227,12 +252,20 @@ public struct SurveyExporter: Sendable {
                 RecordingExporter.number(location.altitude ?? .nan),
                 RecordingExporter.number(location.ellipsoidalAltitude ?? .nan),
                 RecordingExporter.number(location.horizontalAccuracy),
+                finding.positionSource.rawValue,
+                RecordingExporter.fixed(finding.positionSpread ?? .nan),
+                finding.positionSampleCount.map { "\($0)" } ?? "",
+                RecordingExporter.number(finding.measuredLocation?.latitude ?? .nan),
+                RecordingExporter.number(finding.measuredLocation?.longitude ?? .nan),
+                RecordingExporter.fixed(finding.manualOffsetMetres ?? .nan),
                 RecordingExporter.number(location.heading ?? .nan),
                 "\(finding.severity)",
                 RecordingExporter.csvEscape(finding.label),
                 RecordingExporter.csvEscape(finding.note),
-                RecordingExporter.csvEscape(finding.photoFileName.map { mediaPrefix + $0 } ?? ""),
-                RecordingExporter.csvEscape(finding.videoFileName.map { mediaPrefix + $0 } ?? "")
+                RecordingExporter.csvEscape(finding.photos
+                    .map { mediaPrefix + $0.fileName }.joined(separator: ";")),
+                RecordingExporter.csvEscape(finding.videos
+                    .map { mediaPrefix + $0.fileName }.joined(separator: ";"))
             ]
             if let area = finding.area, area.isValid {
                 row.append(area.kind.rawValue)
@@ -364,12 +397,32 @@ public struct SurveyExporter: Sendable {
         if let area = finding.area, area.isValid {
             parts.append("Bereich \(Int(area.squareMetres.rounded())) m²")
         }
-        if finding.location.horizontalAccuracy > 0 {
-            parts.append(String(format: "GPS ±%.0f m", finding.location.horizontalAccuracy))
+        parts.append(positionDescription(of: finding))
+        for item in finding.media {
+            parts.append(mediaPrefix + item.fileName)
         }
-        if let photo = finding.photoFileName { parts.append(mediaPrefix + photo) }
-        if let video = finding.videoFileName { parts.append(mediaPrefix + video) }
         return parts.joined(separator: " · ")
+    }
+
+    /// The position and what is known about its error, in one line.
+    ///
+    /// Public because the app puts the same sentence on screen: what the office reads in the
+    /// KML and what the person in the street reads on the phone should not be two different
+    /// descriptions of the same position.
+    public static func positionDescription(of finding: GroundFinding) -> String {
+        switch finding.positionSource {
+        case .gps:
+            return finding.location.horizontalAccuracy > 0
+                ? String(format: "GPS ±%.0f m", finding.location.horizontalAccuracy)
+                : "GPS ohne Genauigkeitsangabe"
+        case .averaged:
+            let samples = finding.positionSampleCount ?? 0
+            let spread = finding.positionSpread ?? finding.location.horizontalAccuracy
+            return String(format: "GPS gemittelt aus %d Fixes, Streuung ±%.1f m", samples, spread)
+        case .manual:
+            guard let offset = finding.manualOffsetMetres else { return "Nadel von Hand gesetzt" }
+            return String(format: "Nadel von Hand gesetzt, %.0f m vom GPS-Fix", offset)
+        }
     }
 
     /// KML colours are `aabbggrr`, not `aarrggbb`. Severity runs green → amber → red, the
@@ -401,16 +454,26 @@ public struct SurveyExporter: Sendable {
         \(survey.findings.count) Befund(e), markierte Fläche insgesamt \(Int(area.rounded())) m².
 
         findings.geojson  Punkte und Bereiche, WGS84. Öffnet in QGIS, Leaflet, Mapbox.
-        findings.csv      eine Zeile pro Befund, WGS84 und LV95 nebeneinander.
+        findings.csv      eine Zeile pro Fall, WGS84 und LV95 nebeneinander.
         findings.gpx      Wegpunkte, um dieselbe Stelle wiederzufinden. Ohne Bereiche —
                           GPX kennt keine Flächen.
         findings.kml      Punkte und Bereiche, nach Bewertung eingefärbt (Google Earth).
         survey.json       das Original, so wie die App es speichert.
-        \(bundleMediaFolder)/            Foto und Clip je Befund, benannt nach der Befund-ID.
+        \(bundleMediaFolder)/            alle Fotos und Clips, benannt nach ihrer Medien-ID.
 
         Die Bewertung ist eine Zahl von 1 bis 10: 1 unauffällig, 10 so schlimm wie es geht.
-        Die Genauigkeit des Fixes steht bei jedem Befund dabei — eine Koordinate ohne sie
-        ist nicht wiederauffindbar.
+
+        Zur Position steht bei jedem Fall, woher sie kommt:
+          positionSource=gps       ein einzelner Fix, horizontalAccuracy ist der Radius,
+                                   den das Gerät für sich beansprucht
+          positionSource=averaged  Mittel aus positionSampleCount Fixes; positionSpread ist
+                                   die gemessene Streuung und die ehrlichere Fehlerangabe
+          positionSource=manual    von Hand auf der Karte gesetzt. gpsLatitude/gpsLongitude
+                                   halten fest, was GPS gesagt hatte, manualOffset wie weit
+                                   die Nadel davon entfernt liegt.
+
+        Eine Koordinate ohne diese Angaben ist nicht überprüfbar — deshalb stehen sie in
+        jedem Format, das Felder dafür hat.
         """
     }
 }

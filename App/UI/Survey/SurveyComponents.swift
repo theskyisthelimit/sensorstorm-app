@@ -25,6 +25,117 @@ extension Theme {
     }
 }
 
+/// Which basemap the survey maps draw on.
+///
+/// Satellite is not decoration here: placing a pin on the exact crack in a road is a
+/// question of "which of those two joints is it", and the standard map has neither joint
+/// on it.
+enum SurveyMapStyle: String, CaseIterable, Hashable {
+    case standard
+    case satellite
+
+    var title: LocalizedStringKey {
+        switch self {
+        case .standard: "Karte"
+        case .satellite: "Satellit"
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .standard: "map"
+        case .satellite: "globe.europe.africa.fill"
+        }
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func surveyMapStyle(_ style: SurveyMapStyle) -> some View {
+        switch style {
+        case .standard: mapStyle(.standard(elevation: .flat))
+        case .satellite: mapStyle(.hybrid(elevation: .flat))
+        }
+    }
+}
+
+/// How good a position is, as a colour. The thresholds are what a street needs: a lane is
+/// 3 m wide, so ±5 m still says which lane, ±15 m only says which street, and beyond that
+/// the pin is a suggestion.
+enum PositionQuality {
+    case good
+    case usable
+    case poor
+    case none
+
+    init(accuracy: Double?) {
+        guard let accuracy, accuracy > 0 else { self = .none; return }
+        switch accuracy {
+        case ..<5: self = .good
+        case ..<15: self = .usable
+        default: self = .poor
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .good: Color(red: 0.40, green: 0.85, blue: 0.51)
+        case .usable: Color(red: 0.96, green: 0.74, blue: 0.32)
+        case .poor: Color(red: 0.95, green: 0.36, blue: 0.36)
+        case .none: .secondary
+        }
+    }
+
+    var label: LocalizedStringKey {
+        switch self {
+        case .good: "gut"
+        case .usable: "brauchbar"
+        case .poor: "grob"
+        case .none: "kein Fix"
+        }
+    }
+}
+
+/// The accuracy of a position, written the way it has to be read: a number, a unit, and
+/// where it came from.
+struct AccuracyBadge: View {
+    let metres: Double?
+    var source: PositionSource = .gps
+    var compact = false
+
+    var body: some View {
+        let quality = PositionQuality(accuracy: metres)
+        HStack(spacing: 5) {
+            Image(systemName: symbol)
+                .font(.caption2)
+            Text(text)
+                .font(.caption.monospacedDigit().weight(.semibold))
+            if !compact {
+                Text(quality.label)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .foregroundStyle(source == .manual ? Theme.accent : quality.color)
+    }
+
+    private var symbol: String {
+        switch source {
+        case .gps: "location.fill"
+        case .averaged: "scope"
+        case .manual: "mappin.circle.fill"
+        }
+    }
+
+    private var text: String {
+        if source == .manual { return String(localized: "Nadel") }
+        guard let metres, metres > 0 else { return String(localized: "kein Fix") }
+        return metres < 10
+            ? String(format: "±%.1f m", metres)
+            : String(format: "±%.0f m", metres)
+    }
+}
+
 enum SeverityWording {
     /// A number sorts and averages; a word tells the person holding the phone whether they
     /// picked the one they meant.
@@ -92,28 +203,38 @@ struct SeverityBadge: View {
     }
 }
 
-/// A map pin whose colour is the judgement.
+/// A map pin whose colour is the judgement, with a mark when the position was set by hand.
 struct FindingPin: View {
     let severity: Int
     var isSelected = false
+    var isManual = false
 
     var body: some View {
+        let size: CGFloat = isSelected ? 34 : 26
         ZStack {
             Circle()
                 .fill(Theme.severity(severity))
-                .frame(width: isSelected ? 34 : 26, height: isSelected ? 34 : 26)
+                .frame(width: size, height: size)
             Circle()
                 .strokeBorder(.white.opacity(isSelected ? 1 : 0.75), lineWidth: isSelected ? 3 : 2)
-                .frame(width: isSelected ? 34 : 26, height: isSelected ? 34 : 26)
+                .frame(width: size, height: size)
             Text("\(severity)")
                 .font(.caption2.monospacedDigit().weight(.bold))
                 .foregroundStyle(.black)
+        }
+        .overlay(alignment: .topTrailing) {
+            if isManual {
+                Image(systemName: "mappin.circle.fill")
+                    .font(.system(size: 12))
+                    .foregroundStyle(.white, Theme.accent)
+                    .offset(x: 4, y: -4)
+            }
         }
         .shadow(radius: 3)
     }
 }
 
-/// Findings and their marked areas on one map.
+/// Cases, their marked areas and their position uncertainty on one map.
 ///
 /// `.automatic` framing rather than a computed region: MapKit already knows how to fit the
 /// content it is given, and a hand-rolled region is one more thing to get wrong when a
@@ -122,9 +243,11 @@ struct SurveyMapView: View {
     let findings: [GroundFinding]
     var selection: UUID?
     var showsUserLocation = true
+    var showsUncertainty = true
     var onSelect: ((GroundFinding) -> Void)?
 
     @State private var position: MapCameraPosition = .automatic
+    @State private var style: SurveyMapStyle = .standard
 
     var body: some View {
         Map(position: $position) {
@@ -133,9 +256,24 @@ struct SurveyMapView: View {
                     areaContent(area, severity: finding.severity)
                 }
             }
+            if showsUncertainty {
+                ForEach(findings) { finding in
+                    if let radius = finding.uncertaintyRadius, radius > 0 {
+                        // What the position is worth, drawn to scale. A pin sitting in a
+                        // 30 m circle is a different claim from one sitting in a 3 m circle,
+                        // and on a map they otherwise look identical.
+                        MapCircle(center: finding.location.coordinate.clCoordinate,
+                                  radius: radius)
+                            .foregroundStyle(Color.white.opacity(0.08))
+                            .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                    }
+                }
+            }
             ForEach(findings) { finding in
                 Annotation(finding.label, coordinate: finding.location.coordinate.clCoordinate) {
-                    FindingPin(severity: finding.severity, isSelected: finding.id == selection)
+                    FindingPin(severity: finding.severity,
+                               isSelected: finding.id == selection,
+                               isManual: finding.positionSource == .manual)
                         .onTapGesture { onSelect?(finding) }
                 }
             }
@@ -143,9 +281,14 @@ struct SurveyMapView: View {
                 UserAnnotation()
             }
         }
+        .surveyMapStyle(style)
         .mapControls {
             MapUserLocationButton()
             MapCompass()
+        }
+        .overlay(alignment: .topLeading) {
+            MapStylePicker(style: $style)
+                .padding(10)
         }
     }
 
@@ -166,7 +309,34 @@ struct SurveyMapView: View {
     }
 }
 
-/// One finding as a row: what it is, how bad, how well located.
+/// Two buttons, not a menu: switching the basemap is something you do while looking for a
+/// spot, not something you go into a menu for.
+struct MapStylePicker: View {
+    @Binding var style: SurveyMapStyle
+
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(SurveyMapStyle.allCases, id: \.self) { candidate in
+                Button {
+                    style = candidate
+                } label: {
+                    Label(candidate.title, systemImage: candidate.symbol)
+                        .labelStyle(.iconOnly)
+                        .font(.footnote.weight(.semibold))
+                        .frame(width: 34, height: 30)
+                        .foregroundStyle(style == candidate ? Color.black : .primary)
+                        .background(style == candidate ? Theme.accent : .clear)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text(candidate.title))
+            }
+        }
+        .background(.ultraThinMaterial, in: .rect(cornerRadius: 8))
+        .clipShape(.rect(cornerRadius: 8))
+    }
+}
+
+/// One case as a row: what it is, how bad, how well located, how much of it is documented.
 struct FindingRow: View {
     let finding: GroundFinding
     var thumbnail: URL?
@@ -177,27 +347,31 @@ struct FindingRow: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
-                    Text(finding.label.isEmpty ? String(localized: "Befund") : finding.label)
+                    Text(finding.label.isEmpty ? String(localized: "Fall") : finding.label)
                         .font(.subheadline.weight(.semibold))
                         .lineLimit(1)
                     Spacer(minLength: 0)
                     SeverityBadge(severity: finding.severity)
                 }
 
-                Text(finding.capturedAt.formatted(date: .omitted, time: .standard))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                HStack(spacing: 8) {
+                    Text(finding.capturedAt.formatted(date: .omitted, time: .standard))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    AccuracyBadge(metres: finding.uncertaintyRadius,
+                                  source: finding.positionSource,
+                                  compact: true)
+                }
 
                 HStack(spacing: 10) {
-                    if finding.location.horizontalAccuracy > 0 {
-                        Label(String(format: "±%.0f m", finding.location.horizontalAccuracy),
-                              systemImage: "location.fill")
+                    if !finding.photos.isEmpty {
+                        Label("\(finding.photos.count)", systemImage: "photo")
+                    }
+                    if !finding.videos.isEmpty {
+                        Label("\(finding.videos.count)", systemImage: "video")
                     }
                     if let area = finding.area, area.isValid {
                         Label("\(Int(area.squareMetres.rounded())) m²", systemImage: "square.dashed")
-                    }
-                    if finding.videoFileName != nil {
-                        Image(systemName: "video.fill")
                     }
                 }
                 .font(.caption2.monospacedDigit())
@@ -208,33 +382,127 @@ struct FindingRow: View {
     }
 }
 
-/// The photo, or a coloured placeholder when a finding was recorded without one.
-struct FindingThumbnail: View {
+/// The photos and clips of a case, as a scrollable strip.
+struct CaseMediaStrip: View {
+    let media: [CaseMedia]
+    let urlFor: (CaseMedia) -> URL?
+    var onSelect: ((CaseMedia) -> Void)?
+    var onDelete: ((CaseMedia) -> Void)?
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(media) { item in
+                    Button {
+                        onSelect?(item)
+                    } label: {
+                        MediaTile(url: urlFor(item), kind: item.kind, duration: item.duration)
+                    }
+                    .buttonStyle(.plain)
+                    .contextMenu {
+                        if let onDelete {
+                            Button(role: .destructive) {
+                                onDelete(item)
+                            } label: {
+                                Label("Entfernen", systemImage: "trash")
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(.vertical, 2)
+        }
+    }
+}
+
+/// One tile in a media strip: the photo, or a clip's icon and length.
+struct MediaTile: View {
     let url: URL?
-    let severity: Int
-    var size: CGFloat = 56
+    let kind: CaseMedia.Kind
+    var duration: TimeInterval?
+    var size: CGFloat = 84
 
     @State private var image: UIImage?
 
     var body: some View {
-        Group {
+        ZStack {
             if let image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
             } else {
-                Theme.severity(severity).opacity(0.25)
+                Theme.cardBackground
                     .overlay {
-                        Image(systemName: url == nil ? "mappin" : "camera.fill")
-                            .font(.caption)
+                        Image(systemName: kind == .video ? "video.fill" : "photo")
                             .foregroundStyle(.secondary)
                     }
             }
         }
         .frame(width: size, height: size)
         .clipShape(.rect(cornerRadius: 10))
+        .overlay(alignment: .bottomLeading) {
+            if kind == .video {
+                Text(duration.map { Format.duration($0) } ?? String(localized: "Clip"))
+                    .font(.caption2.monospacedDigit())
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 2)
+                    .background(.ultraThinMaterial, in: .capsule)
+                    .padding(5)
+            }
+        }
         .task(id: url) {
+            guard kind == .photo else { return }
             image = await ThumbnailCache.shared.thumbnail(for: url, maxPixel: size * 3)
+        }
+    }
+}
+
+/// The strip on the capture screen: media that exist only in memory so far.
+struct PendingMediaStrip: View {
+    let media: [PendingMedia]
+    var onDelete: (PendingMedia) -> Void
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(media) { item in
+                    ZStack(alignment: .topTrailing) {
+                        Group {
+                            if let thumbnail = item.thumbnail {
+                                Image(uiImage: thumbnail)
+                                    .resizable()
+                                    .scaledToFill()
+                            } else {
+                                Theme.cardBackground
+                                    .overlay {
+                                        VStack(spacing: 4) {
+                                            Image(systemName: "video.fill")
+                                            if let duration = item.duration {
+                                                Text(Format.duration(duration))
+                                                    .font(.caption2.monospacedDigit())
+                                            }
+                                        }
+                                        .foregroundStyle(.secondary)
+                                    }
+                            }
+                        }
+                        .frame(width: 84, height: 84)
+                        .clipShape(.rect(cornerRadius: 10))
+
+                        Button {
+                            onDelete(item)
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.white, .black.opacity(0.6))
+                        }
+                        .buttonStyle(.plain)
+                        .padding(4)
+                        .accessibilityLabel(Text("Aufnahme entfernen"))
+                    }
+                }
+            }
+            .padding(.vertical, 2)
         }
     }
 }
@@ -296,8 +564,21 @@ final class ThumbnailCache {
         return image
     }
 
+    /// The same for a photo that has just been taken and is not on disk yet.
+    func thumbnail(from data: Data, maxPixel: CGFloat) async -> UIImage? {
+        let reduced = await Task.detached(priority: .userInitiated) {
+            Self.reduce(CGImageSourceCreateWithData(data as CFData, nil), maxPixel: maxPixel)
+        }.value
+        guard let reduced else { return nil }
+        return UIImage(data: reduced)
+    }
+
     nonisolated private static func thumbnailData(at url: URL, maxPixel: CGFloat) -> Data? {
-        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
+        reduce(CGImageSourceCreateWithURL(url as CFURL, nil), maxPixel: maxPixel)
+    }
+
+    nonisolated private static func reduce(_ source: CGImageSource?, maxPixel: CGFloat) -> Data? {
+        guard let source else { return nil }
         let options: [CFString: Any] = [
             kCGImageSourceCreateThumbnailFromImageAlways: true,
             kCGImageSourceCreateThumbnailWithTransform: true,

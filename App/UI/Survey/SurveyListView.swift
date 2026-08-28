@@ -17,7 +17,7 @@ struct SurveyListView: View {
                     list
                 }
             }
-            .navigationTitle("Befunde")
+            .navigationTitle("Fälle")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -55,7 +55,7 @@ struct SurveyListView: View {
                 }
                 .onDelete { model.delete(atOffsets: $0) }
             } footer: {
-                Text("Eine Begehung ist ein Weg: an jeder Stelle ein Foto, auf Wunsch ein Clip, die GPS-Position, eine Bewertung von 1 bis 10 und der markierte Bereich.")
+                Text("Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
             }
         }
         .listStyle(.insetGrouped)
@@ -66,7 +66,7 @@ struct SurveyListView: View {
         ContentUnavailableView {
             Label("Keine Begehungen", systemImage: "mappin.and.ellipse")
         } description: {
-            Text("Eine Begehung sammelt Befunde entlang eines Wegs: Foto, Clip, GPS, Bewertung 1–10 und ein markierter Bereich.")
+            Text("Eine Begehung sammelt Fälle entlang eines Wegs. Pro Fall: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
         } actions: {
             Button("Begehung starten") { startSurvey() }
                 .buttonStyle(.borderedProminent)
