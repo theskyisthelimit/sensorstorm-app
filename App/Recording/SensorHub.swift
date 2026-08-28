@@ -152,6 +152,13 @@ final class SensorHub {
 
     var locationAuthorization: CLAuthorizationStatus { locationSource.authorizationStatus }
 
+    /// The recording currently being written, if any. The survey add-on stamps it onto every
+    /// finding, which is what lets a photo of a pothole be lined up with the accelerometer
+    /// trace of driving over it.
+    var activeRecordingID: UUID? {
+        phase == .recording ? activeRecording?.id : nil
+    }
+
     // MARK: - Permissions
 
     /// Asks for everything the current settings need, in one go, before the first recording.

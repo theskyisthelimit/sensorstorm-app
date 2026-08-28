@@ -72,6 +72,62 @@ aus der GPS-Höhe, deren Vertikalgenauigkeit zweistellig in Metern liegt. Der Im
 den Track deshalb auf das Terrain und addiert eine angegebene Augenhöhe (Standard 1.5 m) —
 eine eingestandene Annahme statt einer unbrauchbaren Messung.
 
+## Befunde: eine Strasse ablaufen und dokumentieren
+
+Der zweite Grund, mit dem Telefon durch eine Strasse zu laufen, ist nicht Messen, sondern
+Festhalten: an jeder auffälligen Stelle ein Foto vom Boden, ein kurzer Clip, die GPS-Position,
+eine Bewertung von **1 bis 10**, wie schlimm es ist, und — wenn die Stelle grösser ist als ein
+Punkt — der markierte **Bereich**. Das ist der Tab „Befunde“.
+
+Eine **Begehung** ist ein Weg, ein **Befund** eine Stelle darauf. Beides liegt in
+`Documents/Surveys/<uuid>/` neben den Aufnahmen, im gleichen Schnitt: ein Ordner, eine
+JSON-Datei, die Medien daneben.
+
+```
+Documents/Surveys/<uuid>/
+  survey.json            die Begehung und jeder Befund darin
+  <befund-uuid>.jpg      das Foto
+  <befund-uuid>.mov      der Clip, falls einer aufgenommen wurde
+```
+
+Drei Entscheidungen, die den Rest erklären:
+
+**Die Position wird beim Auslösen eingefroren.** Der Fix, der zählt, ist der von der Stelle, an
+der das Bild entstand — nicht der von dort, wo man beim Tippen der Notiz steht. Die Genauigkeit
+des Fixes steht bei jedem Befund dabei: eine Koordinate ohne sie ist nicht wiederauffindbar,
+und ±4 m und ±40 m sehen auf einer Karte gleich aus.
+
+**Der Bereich ist Kreis oder Polygon.** Vor der Stelle stehend ist ein Radius ein Regler und
+drei Sekunden Arbeit; wenn die Form zählt, tippt man die Ecken auf der Karte an oder läuft den
+Rand ab und setzt an jeder Ecke einen Punkt an der eigenen Position. Die Fläche wird im lokalen
+metrischen System gerechnet (`Geodesy.enu`), nicht in Grad — die Schuhbandformel direkt auf
+Längen- und Breitengraden läge in der Schweiz um ein Drittel daneben.
+
+**Die Kamera ist bewusst nicht die des Messpfads.** `VideoRecorder` existiert, um ein Videobild
+auf dieselbe Uhr wie einen Beschleunigungswert zu legen, und zahlt dafür mit `AVAssetWriter`
+und ohne Fotos. Ein Befund will das Gegenteil: ein Foto in voller Qualität und einen kurzen
+Clip mit Ton. Läuft gerade eine Messung mit Video, gehört die Kamera ihr — die App sagt das,
+statt ein schwarzes Rechteck zu zeigen, und der Befund lässt sich trotzdem ohne Foto erfassen.
+
+Wird eine Begehung während einer laufenden Aufnahme gestartet, merkt sich jeder Befund deren
+ID und seine Host-Zeit. Damit liegt das Foto einer Stelle auf derselben Uhr wie die
+Sensordaten, die beim Darüberfahren entstanden.
+
+### Weiterverwenden
+
+| Format | wofür |
+|---|---|
+| GeoJSON | QGIS, Leaflet, Mapbox — Punkte *und* Bereiche als Polygone |
+| CSV | Tabelle oder Datenbank, WGS84 und LV95 nebeneinander |
+| GPX | Wegpunkte, um dieselbe Stelle wiederzufinden |
+| KML | Google Earth, nach Bewertung eingefärbt |
+| Bündel | alle vier plus jedes Foto und jeden Clip, gezippt |
+
+Ein Kreis wird überall dort zum Ring, wo ein Polygon erwartet wird — GeoJSON und KML sehen nur
+Polygone, damit auf der anderen Seite niemand zwei Fälle unterscheiden muss. GPX bekommt keine
+Bereiche: das Format kennt keine Flächen, und ein geschlossener Track wäre ein Weg, den nie
+jemand gegangen ist.
+
 ## Aufbau
 
 ```
@@ -80,9 +136,12 @@ Sources/SensorstormCore/   reine Logik, ohne UIKit: Speicherformat, Zeitbasis, E
   Storage/                 .ssbin-Format, Writer, Reader, Ablage auf der Platte
   Geo/                     WGS84/ECEF/ENU, LV95, ARKit→Blender, Yaw-Fit gegen GPS
   Export/                  CSV, Rohdaten, 3D-Szene, Sensor Logger, Gyroflow, GPX/KML
+  Model/                   Aufnahme-Metadaten, Sensoren, Befunde und Begehungen
 App/
   Recording/               Sensorquellen, Sink, Videoaufnahme, ARKit-Pose, Koordination
+  Survey/                  Befunde: Kamera für Foto und Clip, Ortung, Modell
   UI/                      SwiftUI: Aufnehmen, Bibliothek, Wiedergabe mit Diagrammen
+  UI/Survey/               Karte, Erfassung, Bereichseditor
 Tools/
   blender/                 Blender-Add-on plus Vertragsprüfung gegen den Swift-Exporter
   *.py, *.sh               Signieren, Hochladen, Store-Metadaten (siehe RELEASE.md)

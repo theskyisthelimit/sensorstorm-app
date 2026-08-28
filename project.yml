@@ -71,12 +71,15 @@ targets:
           Sensorstorm zeichnet Beschleunigung, Drehrate, Orientierung, Magnetfeld und
           Schritte auf.
         NSLocationWhenInUseUsageDescription: >-
-          Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf und richtet die
-          Orientierungsdaten an Nordrichtung aus.
+          Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die
+          Orientierungsdaten an Nordrichtung aus und hält fest, wo ein Befund aufgenommen
+          wurde.
         NSLocationAlwaysAndWhenInUseUsageDescription: >-
           Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm
           während einer Messung gesperrt wird.
         NSMicrophoneUsageDescription: >-
-          Sensorstorm misst die Lautstärke und nimmt auf Wunsch den Ton zur Messung auf.
+          Sensorstorm misst die Lautstärke, nimmt auf Wunsch den Ton zur Messung auf und
+          zeichnet den Ton der kurzen Clips zu einem Befund auf.
         NSCameraUsageDescription: >-
-          Sensorstorm nimmt Video synchron zu den Sensordaten auf.
+          Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden
+          für einen Befund.

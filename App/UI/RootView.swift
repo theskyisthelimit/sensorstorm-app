@@ -8,6 +8,7 @@ struct RootView: View {
     enum Screen: Hashable {
         case record
         case library
+        case survey
         case settings
     }
 
@@ -18,6 +19,9 @@ struct RootView: View {
             }
             Tab("Aufnahmen", systemImage: "square.stack.3d.down.right", value: Screen.library) {
                 LibraryView()
+            }
+            Tab("Befunde", systemImage: "mappin.and.ellipse", value: Screen.survey) {
+                SurveyListView()
             }
             Tab("Einstellungen", systemImage: "slider.horizontal.3", value: Screen.settings) {
                 SettingsView()
