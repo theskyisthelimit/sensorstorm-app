@@ -98,8 +98,11 @@ public struct PhotoSetExporter: Sendable {
                 if poses[index].hostTime > boundary, !current.isEmpty {
                     windows.append(current)
                     current = []
-                    boundary += step
                 }
+                // A `while`, not an `if`: a gap in the poses can span several boundaries,
+                // and advancing only one per closed window would let everything after the
+                // gap pile into a single oversized window.
+                while poses[index].hostTime > boundary { boundary += step }
                 current.append(index)
             }
         }
@@ -258,7 +261,15 @@ public struct PhotoSetExporter: Sendable {
         let written = try await provider.write(requests)
         progress?(0.9)
 
-        let selection = Selection(frames: selected, candidateCount: candidateIndices.count,
+        // Only the frames that actually became a file. A row in `cameras.csv` naming an
+        // image that is not in `images/` makes a trajectory import fail on the whole set,
+        // and the provider can legitimately come back with fewer — a frame it could not
+        // decode is not a frame.
+        let delivered = Set(written.map(\.fileName))
+        let deliveredFrames = selected.filter { delivered.contains($0.name) }
+        guard !deliveredFrames.isEmpty else { throw PhotoSetError.noFrames }
+
+        let selection = Selection(frames: deliveredFrames, candidateCount: candidateIndices.count,
                                   windowCount: windows.count,
                                   strategy: usesBaseline ? "baseline" : "time",
                                   rejectedTooClose: tooClose,
