@@ -147,8 +147,14 @@ final class LiveStreamer: @unchecked Sendable {
         mqtt.publish(text)
 
         guard let url = job.url else {
-            // MQTT only: `isSending` gates the HTTP write, so it has to be released here.
-            lock.withLock { isSending = false }
+            // MQTT only. `isSending` gates the HTTP write and would otherwise stay set, and
+            // the status has to come from the transport that actually ran — leaving it at
+            // `.sending` would show "sending…" for the rest of the recording.
+            let outcome = mqtt.status
+            lock.withLock {
+                isSending = false
+                _status = outcome
+            }
             return
         }
         let body = Data(text.utf8)
