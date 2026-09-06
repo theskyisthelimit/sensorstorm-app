@@ -86,9 +86,21 @@ darauf nicht prüft, bekommt Messpunkte im Golf von Guinea.
 | | cadence | Schritte/s | |
 | | pace | **s/m** | Sekunden pro Meter, nicht m/s. Der Kehrwert der Geschwindigkeit. |
 | | floorsAscended, floorsDescended | — | Kumulative Stockwerke. |
+| `activity` | stationary, walking, running, automotive, cycling, unknown | — | 0 oder 1. **Mehrere gleichzeitig möglich** — Core Motion meldet nicht genau eine Klasse, deshalb eine Spalte je Klasse statt einer aufgezählten. |
+| | confidence | 0–2 | 0 niedrig, 1 mittel, 2 hoch. |
+| `heartRate` | bpm | Schläge/min | Von der Apple Watch. |
+| `wristMotion` | ax, ay, az | g | Von der Apple Watch. |
+| | gx, gy, gz | rad/s | |
+| | roll, pitch, yaw | **rad** | Bogenmass, nicht Grad — anders als `orientation` auf dem Telefon. |
 
 Der Schrittzähler liefert `Date`-Zeitstempel statt Host-Clock-Werte und ist der einzige Strom,
 der über den Wanduhr-Offset umgerechnet wird.
+
+Die beiden Watch-Ströme ebenfalls, und dort wiegt es schwerer: zwei Geräte haben zwei
+`mach_absolute_time`-Ursprünge und keinen gemeinsamen Oszillator. Die Ausrichtung liegt in
+der Grössenordnung, in der die beiden Systemuhren übereinstimmen — Zehnermillisekunden —
+statt der Submillisekunde der Ströme auf dem Gerät. Genug für einen Puls entlang einer
+Strecke, nicht genug für eine Korrelation gegen eine IMU bei 400 Hz.
 
 ## Gerät
 
@@ -99,6 +111,24 @@ der über den Wanduhr-Offset umgerechnet wird.
 | `brightness` | level | % | 0–100. |
 | `network` | type | — | 0 keins, 1 WLAN, 2 Mobilfunk, 3 Kabel, 4 anderes. |
 | | expensive, constrained | — | 0 oder 1. |
+| `bluetooth` | deviceCount | — | Verschiedene Geräte, die in der letzten Sekunde geworben haben. |
+| | strongestRssi, meanRssi | dBm | Negativ. Leeres Feld, wenn nichts zu hören war — eine leere Sekunde ist ein Messwert, aber keine Signalstärke. |
+
+### bluetooth_advertisements.csv
+
+Die Zusammenfassung oben ist ein Strom mit fester Spaltenzahl; ein Werbepaket ist das
+nicht. Auf Wunsch schreibt die App deshalb zusätzlich jedes empfangene Paket in eine
+eigene Datei neben den Binärströmen.
+
+| Spalte | Einheit | Anmerkung |
+|--------|---------|-----------|
+| `time` | s | Host-Uhr, dieselbe wie in jedem Strom. |
+| `seconds_elapsed` | s | Ab Aufnahmebeginn — derselbe Ursprung wie überall sonst. |
+| `address` | — | **Keine Geräteadresse.** iOS gibt eine BLE-Hardwareadresse nie heraus; das hier ist eine Kennung je App und Gerät, und zwei Aufnahmen sind sich darüber nicht einig. |
+| `rssi` | dBm | Negativ. |
+| `name` | — | Der beworbene lokale Name, oft leer. |
+| `manufacturer_hex` | — | Rohes Herstellerdatenfeld, klein geschrieben, ohne Trenner. `bytes.fromhex()` liest das direkt. Hier stehen bei RuuviTag oder BTHome Temperatur, Feuchte und Druck drin. |
+| `services` | — | Beworbene Dienste-UUIDs, durch Leerzeichen getrennt. |
 
 ## Kamera
 
