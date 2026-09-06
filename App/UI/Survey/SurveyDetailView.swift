@@ -272,7 +272,10 @@ struct SurveyDetailView: View {
             guard let survey else { return }
             Task { shareItem = await model.export(survey, format: format).map(ShareItem.init) }
         }
-        Group {
+        // Explicit, because the local `let` above makes this a two-statement body and the
+        // implicit return only applies to a single expression. Without it the `Group` is a
+        // discarded expression and `some View` has nothing to infer from.
+        return Group {
             if let feature = format.proFeature {
                 ProButton(feature, title, symbol, action: run)
             } else {
