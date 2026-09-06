@@ -691,6 +691,16 @@
         }
       }
     },
+    "Belagsausbruch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surface break-up"
+          }
+        }
+      }
+    },
     "Beliebig viele Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag.": {
       "localizations": {
         "en": {
@@ -1721,6 +1731,16 @@
         }
       }
     },
+    "Längsriss": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longitudinal crack"
+          }
+        }
+      }
+    },
     "Löschen": {
       "localizations": {
         "en": {
@@ -2171,6 +2191,16 @@
         }
       }
     },
+    "Rechte Fahrspur, Tiefe rund 6 cm.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right-hand lane, roughly 6 cm deep."
+          }
+        }
+      }
+    },
     "Rohdaten (.ssbin)": {
       "localizations": {
         "en": {
@@ -2241,6 +2271,16 @@
         }
       }
     },
+    "Schlagloch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pothole"
+          }
+        }
+      }
+    },
     "Schliessen": {
       "localizations": {
         "en": {
@@ -2287,6 +2327,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sensorstorm Pro"
+          }
+        }
+      }
+    },
+    "Setzung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settlement"
           }
         }
       }
@@ -2347,6 +2397,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Record audio"
+          }
+        }
+      }
+    },
+    "Um den Schacht, flach.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Around the manhole, shallow."
           }
         }
       }
@@ -2447,6 +2507,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Full"
+          }
+        }
+      }
+    },
+    "Vor der Einmündung, Kante scharf.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before the junction, sharp edge."
           }
         }
       }
@@ -2611,6 +2681,16 @@
         }
       }
     },
+    "Zustandserfassung Abschnitt West": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Condition survey, west section"
+          }
+        }
+      }
+    },
     "einzelner GPS-Fix": {
       "localizations": {
         "en": {
@@ -2657,6 +2737,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "waiting …"
+          }
+        }
+      }
+    },
+    "Über etwa 12 m, noch ohne Ausbruch.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over roughly 12 m, no break-up yet."
           }
         }
       }

@@ -95,6 +95,9 @@ struct SettingsView: View {
             .sheet(isPresented: $isExportingArchive) {
                 ArchiveExportView()
             }
+            .onAppear {
+                if ScreenshotFixture.screen == .export { isExportingArchive = true }
+            }
         }
     }
 

@@ -77,31 +77,87 @@ python3 Tools/asc_metadata.py
 python3 Tools/asc_metadata.py --attach-build 3
 ```
 
+## Screenshots
+
+```bash
+python3 Tools/asc_capture_screenshots.py --langs de --devices iphone_67   # ein Durchgang
+python3 Tools/asc_capture_screenshots.py                                  # alle Sprachen × Geräte
+python3 Tools/asc_capture_screenshots.py --upload                         # schiessen und hochladen
+```
+
+Die Sprachen kommen aus `Resources/Localizable.xcstrings`, nicht aus dem Skript.
+Eine Sprache dort ergänzen genügt. Die Inhalte stellt `App/ScreenshotFixtures.swift`,
+gesteuert über `SS_FIXTURE` / `SS_TAB` / `SS_SCREEN` — dieselbe Begehung und dieselbe
+Aufnahme aus festen UUIDs, damit acht Geräte in zwei Sprachen dieselben Zahlen zeigen.
+
+## Website
+
+`sensorstorm.ch` liefert die zwei URLs, ohne die Apple die Einreichung ablehnt.
+
+```bash
+python3 web/build.py && python3 web/check.py
+```
+
+Cloudflare Pages: Build-Befehl `python3 build.py`, Wurzel `web`, Ausgabe `dist`.
+`dist/` ist nicht eingecheckt — dieselbe Abmachung wie beim `.xcodeproj`.
+
+**Vor dem Livegang** die `OWNER`-Angaben in `web/build.py` ausfüllen; der Build warnt,
+solange dort TODO steht. Danach:
+
+```bash
+python3 Tools/asc_metadata.py \
+  --support-url https://sensorstorm.ch/support.html \
+  --privacy-url https://sensorstorm.ch/datenschutz.html \
+  --marketing-url https://sensorstorm.ch/
+```
+
+## Monetarisierung
+
+Ein einmaliger, nicht verbrauchbarer Kauf: **`ch.sensorstorm.app.pro`**. Kein Abo,
+kein Server, kein Konto — StoreKit 2 prüft den Anspruch gegen den Apple-Account.
+
+Lokal testen geht ohne ASC: das Schema lädt `Resources/Sensorstorm.storekit`
+(in `project.yml` an die Run-Action gebunden, nicht an Archive). Im Simulator kaufen,
+App löschen und neu installieren, „Wiederherstellen" drücken, und in den
+StoreKit-Transaktionen zurückerstatten — **jede vorhandene Begehung muss danach
+weiterhin lesbar und als CSV exportierbar sein.** Das ist die Zusage, auf der die
+ganze Sperrlogik steht; `swift test --filter ProAccessTests` hält sie fest.
+
 ## Bewusst nicht automatisiert
 
 * **Einreichen zur Prüfung** — bleibt eine bewusste menschliche Handlung.
 * **Preise und Verfügbarkeit** — einmalig in der Weboberfläche.
+* **Der In-App-Kauf selbst** — Anlegen und Bepreisen in ASC, siehe unten.
 
 ## Offen für 1.0.0
 
-Stand: Build 1 ist hochgeladen, Listing-Text (de-DE, en-US, en-GB), Kategorien und
-Content-Rights sind gesetzt. Es fehlen:
+**Zuerst, weil es am längsten dauert und alles andere wertlos macht:**
 
-Braucht eine Entscheidung oder eine URL:
+1. **Agreements, Tax, and Banking** in ASC. Ohne angenommenen
+   Paid-Applications-Vertrag und vollständige Steuer- und Bankangaben ist der IAP
+   auch nach der Freigabe unverkäuflich. Apple braucht dafür Tage bis Wochen.
+2. **Apple Small Business Program** anmelden — 15 % statt 30 % Provision unter
+   1 Mio. USD Jahresumsatz. Einmalig, wirkt ab dem Folgemonat.
 
-* **Support-URL** und **Datenschutz-URL** für alle drei Locales.
-  `Tools/asc_metadata.py --support-url https://… --privacy-url https://…`
-* **App-Review-Kontakt** (Name, Telefon, E-Mail) — ASC-Weboberfläche.
-* **Preis und Verfügbarkeit** — ASC-Weboberfläche, einmalig.
+Danach in der ASC-Weboberfläche:
 
-Braucht noch Arbeit:
+* **IAP anlegen**: `ch.sensorstorm.app.pro`, nicht verbrauchbar, Anzeigename und
+  Beschreibung pro Locale, Review-Screenshot, **Familienfreigabe an**. Der IAP wird
+  *zusammen mit* der Version eingereicht, nicht davor.
+* **Preis und Verfügbarkeit.** Vorschlag CHF 34, Basisland Schweiz. Der Preis steht
+  nur in ASC — eine Korrektur kostet keinen Build, weil die App
+  `product.displayPrice` anzeigt.
+* **App-Review-Kontakt** (Name, Telefon, E-Mail).
+* **Altersfreigabe.**
 
-* **Screenshots.** `Tools/asc_capture_screenshots.py` ist noch die Homeshift-Fassung.
-  Sie braucht die Launch-Hooks (`SS_FIXTURE` / `SS_SCREEN`) in der App plus eine
-  `App/ScreenshotFixtures.swift`, die eine Beispielaufnahme einspielt — sonst zeigen
-  die Bilder eine leere Bibliothek. Vorlage: `~/.claude/skills/ios-ship/assets/`.
-* **Build anhängen**, sobald die Verarbeitung durch ist:
-  `Tools/asc_metadata.py --attach-build 1`
+Aus dem Repo:
+
+* `python3 web/build.py` → Cloudflare Pages, dann die drei URLs setzen (siehe oben).
+* `python3 Tools/asc_capture_screenshots.py --upload`
+* `python3 Tools/asc_metadata.py` (Listing, elf Locales)
+* `python3 Tools/asc_metadata.py --attach-build <n>`, sobald die Verarbeitung durch ist
+* `python3 Tools/asc_metadata.py --report-only` — listet auf, was noch blockiert.
+  Ziel: „nothing missing — ready to submit".
 
 Auf echter Hardware verifizieren — der Simulator hat davon nichts:
 
@@ -109,3 +165,8 @@ Auf echter Hardware verifizieren — der Simulator hat davon nichts:
 * Barometer, Schrittzähler, echte IMU bei 200 und 400 Hz
 * AirPods-Kopfbewegung
 * GPS im Hintergrund bei gesperrtem Bildschirm
+* Der Kauf gegen die echte Sandbox, nicht nur gegen die `.storekit`-Datei
+* Die englische Oberfläche samt der fünf Systemdialoge für Kamera, Mikrofon, Ort
+  und Bewegung — die kommen aus `Resources/InfoPlist.xcstrings`, nicht aus dem
+  String-Katalog, und sind die Stelle, an der eine Lokalisierung am sichtbarsten
+  danebengeht

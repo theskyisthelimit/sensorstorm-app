@@ -45,7 +45,14 @@ struct SurveyListView: View {
                 SurveyDetailView(surveyID: id)
             }
         }
-        .onAppear { model.refresh() }
+        .onAppear {
+            model.refresh()
+            // `SS_SCREEN=survey` shoots the walk itself — the map with its cases — rather
+            // than the list, which is the shot that shows what the app is for.
+            if ScreenshotFixture.screen == .survey {
+                openedSurveyID = model.surveys.first?.id
+            }
+        }
         .surveyErrorAlert(model)
     }
 

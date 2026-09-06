@@ -2,14 +2,15 @@
 """Capture App Store screenshots across languages x screens x device sizes,
 and optionally upload them straight to App Store Connect.
 
-Same shape as the `aarestation-app` tool of the same name, driving Homeshift's
-own launch hooks (`HS_FIXTURE` / `HS_TAB` / `HS_SCREEN`, see
+Drives the app's own launch hooks (`SS_FIXTURE` / `SS_TAB` / `SS_SCREEN`, see
 `App/ScreenshotFixtures.swift`) plus simulator language launch args. One build is
 installed on every target simulator — `TARGETED_DEVICE_FAMILY "1,2"` makes a
 single .app run on iPhone and iPad.
 
-`HS_FIXTURE=1` replaces the contents with the sample move on every launch, so
-every language and every device shows the same boxes, counts and progress.
+`SS_FIXTURE=1` rebuilds the sample walk and the sample recording from fixed UUIDs
+on every launch, so every language and every device shows the same severities, the
+same accuracy circles and the same curves. A set where the numbers drift between
+devices looks like several different apps.
 
 Languages are NOT hardcoded: they are read from the String Catalog
 (`Resources/Localizable.xcstrings`) every run. Add a language there and it is
@@ -19,7 +20,7 @@ Usage:
   Tools/asc_capture_screenshots.py                        # every language x device x screen
   Tools/asc_capture_screenshots.py --langs de             # just German
   Tools/asc_capture_screenshots.py --devices iphone_61    # just one device
-  Tools/asc_capture_screenshots.py --screens overview,boxes
+  Tools/asc_capture_screenshots.py --screens record,survey
   Tools/asc_capture_screenshots.py --skip-build           # reuse the last build
   Tools/asc_capture_screenshots.py --settle 2            # give slower machines an extra beat
   Tools/asc_capture_screenshots.py --upload               # capture and upload in one pass
@@ -36,8 +37,8 @@ is already in `screenshots/`.
 Output: screenshots/<lang>/<device_key>/<NN>-<screen_key>.png
 
 --- Extending ---
-New screen:      add a case to `ScreenshotFixture.Screen` (or a tab), then an
-                 entry in SCREENS below.
+New screen:      add a case to `ScreenshotFixture.Screen` (or a tab), have the
+                 owning view honour it in `onAppear`, then add an entry to SCREENS.
 New device:      add an entry to DEVICES. The simulator must already exist
                  (`xcrun simctl create "<name>" "<device type>" "<runtime>"`).
 New language:    add the translations to the String Catalog — nothing to touch
@@ -56,28 +57,28 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BUNDLE_ID = "ch.homeshift.app"
-APP_ID = "6790398450"  # ch.homeshift.app on App Store Connect
+BUNDLE_ID = "ch.sensorstorm.app"
+APP_ID = "6795648479"  # ch.sensorstorm.app on App Store Connect
 BUILD_SIMULATOR = "iPhone 17 Pro"  # any sim works for building; the app installs everywhere
-DERIVED_DATA = ROOT / ".derived-data/homeshift"
-APP_PATH = DERIVED_DATA / "Build/Products/Debug-iphonesimulator/Homeshift.app"
+DERIVED_DATA = ROOT / ".derived-data/sensorstorm"
+APP_PATH = DERIVED_DATA / "Build/Products/Debug-iphonesimulator/Sensorstorm.app"
 OUT_DIR = ROOT / "screenshots"
 SOURCE_CATALOG = ROOT / "Resources/Localizable.xcstrings"
 
 # key: (order, kind, value)
-#   kind "tab"    -> HS_TAB=<value>    (a RootTab case)
-#   kind "screen" -> HS_SCREEN=<value> (a ScreenshotFixture.Screen raw value)
+#   kind "tab"    -> SS_TAB=<value>    (a RootView.Screen case)
+#   kind "screen" -> SS_SCREEN=<value> (a ScreenshotFixture.Screen raw value)
+#
+# Order is the order they appear on the product page, and the first three are what
+# anyone actually sees. So: the live measurement, then the walk with its cases, then
+# playback — the shared clock, the survey half, and the thing no other sensor logger
+# does. The rest is for people who scroll.
 SCREENS: dict[str, tuple[int, str, str]] = {
-    "overview": (1, "tab", "overview"),
-    "boxes":    (2, "tab", "boxes"),
-    "items":    (3, "tab", "items"),
-    "tasks":    (4, "tab", "tasks"),
-    "storage":  (5, "screen", "storage"),
-    "damages":  (6, "screen", "damages"),
-    "export":   (7, "screen", "export"),
-    "tour":     (8, "screen", "tour"),
-    "help":     (9, "screen", "help"),
-    "settings": (10, "tab", "settings"),
+    "record":   (1, "tab", "record"),
+    "survey":   (2, "screen", "survey"),
+    "library":  (3, "tab", "library"),
+    "export":   (4, "screen", "export"),
+    "settings": (5, "tab", "settings"),
 }
 
 # key: (simulator name, screenshotDisplayType)
@@ -92,8 +93,11 @@ DEVICES: dict[str, tuple[str, str]] = {
 }
 
 # Only where the generic "<lang>_<LANG>" guess picks the wrong region for the
-# simulator's AppleLocale. Homeshift is a Swiss product, so the German, French
-# and Italian shots use the Swiss regional formats.
+# simulator's AppleLocale. Sensorstorm is a Swiss product — LV95, swisstopo — so the
+# German shots use Swiss regional formats: the apostrophe thousands separator and the
+# 24-hour clock are what a Swiss user sees, and de_DE would show neither.
+# `fr` and `it` are listed ahead of the app being translated into them; they cost
+# nothing until `discover_languages()` finds those languages in the String Catalog.
 APPLE_LOCALE_OVERRIDES: dict[str, str] = {
     "de": "de_CH", "fr": "fr_CH", "it": "it_CH", "en": "en_GB",
 }
@@ -189,8 +193,9 @@ def fix_status_bar(udid: str) -> None:
 
 def grant_permissions(udid: str) -> None:
     """Pre-grant camera and photos so no OS permission sheet can appear over a
-    shot. Homeshift asks for both the moment a capture or scan screen opens."""
-    for service in ("camera", "photos"):
+    shot. Sensorstorm asks for camera and microphone the moment a capture screen
+    opens, and for location as soon as a map or a case appears."""
+    for service in ("camera", "photos", "microphone", "location-always", "motion"):
         subprocess.run(
             ["xcrun", "simctl", "privacy", udid, "grant", service, BUNDLE_ID],
             capture_output=True, text=True,
@@ -202,8 +207,8 @@ def build(destination_name: str) -> pathlib.Path:
     sh(["xcodegen", "generate"], cwd=ROOT)
     sh([
         "xcodebuild", "-quiet",
-        "-project", "Homeshift.xcodeproj",
-        "-scheme", "Homeshift",
+        "-project", "Sensorstorm.xcodeproj",
+        "-scheme", "Sensorstorm",
         "-destination", f"platform=iOS Simulator,name={destination_name}",
         "-derivedDataPath", str(DERIVED_DATA),
         "CODE_SIGNING_ALLOWED=NO",
@@ -254,14 +259,14 @@ def capture_one(udid: str, screen_key: str, lang_key: str, out_path: pathlib.Pat
     marker.unlink(missing_ok=True)
 
     env = os.environ.copy()
-    env["SIMCTL_CHILD_HS_FIXTURE"] = "1"
+    env["SIMCTL_CHILD_SS_FIXTURE"] = "1"
     # Note the SIMCTL_CHILD_ prefix: `simctl launch <udid> <bundle> KEY=VALUE`
     # passes KEY=VALUE as argv, not as an environment variable, and the app would
     # quietly show its default screen instead.
     if kind == "tab":
-        env["SIMCTL_CHILD_HS_TAB"] = value
+        env["SIMCTL_CHILD_SS_TAB"] = value
     else:
-        env["SIMCTL_CHILD_HS_SCREEN"] = value
+        env["SIMCTL_CHILD_SS_SCREEN"] = value
 
     sh([
         "xcrun", "simctl", "launch", udid, BUNDLE_ID,

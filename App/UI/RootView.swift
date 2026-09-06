@@ -3,7 +3,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(SensorHub.self) private var hub
     @Environment(ProEntitlement.self) private var pro
-    @State private var selection: Screen = .record
+    @State private var selection: Screen = ScreenshotFixture.initialTab ?? .record
 
     /// Not called `Tab` — that name belongs to SwiftUI's tab builder below.
     enum Screen: Hashable {
@@ -49,5 +49,7 @@ struct RootView: View {
         // Lives as long as the app: reads the entitlement, then keeps listening for
         // purchases that arrive from outside — redeemed codes, Family Sharing, Ask to Buy.
         .task { await pro.start() }
+        // Tells the capture script the screen is up. No-op outside a screenshot run.
+        .onAppear { ScreenshotFixture.markReady() }
     }
 }
