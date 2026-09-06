@@ -154,16 +154,26 @@ final class RecordingPlayback {
 
     /// GPS has ten columns; plotting all of them on one axis is unreadable. Sensors with a
     /// natural subset get one, everything else is plotted in full.
+    ///
+    /// `cameraPose` is the one to keep an eye on: thirteen columns, and armed automatically
+    /// whenever video is on, so it lands in every video recording whether or not anybody
+    /// asked for it. Position is the part a curve can say something about — the intrinsics
+    /// and the tracking state belong in the Details card, not on a shared axis.
     private func chartChannels(for sensor: SensorID, available: Int) -> [Int] {
         let preferred: [Int]
         switch sensor {
-        case .location: preferred = [2, 4]          // altitude, speed
-        case .pedometer: preferred = [0, 1]         // steps, distance
-        case .magneticField: preferred = [0, 1, 2]  // drop accuracy
+        case .location: preferred = [2, 4]                // altitude, speed
+        case .pedometer: preferred = [0, 1]               // steps, distance
+        case .magneticField: preferred = [0, 1, 2]        // drop accuracy
         case .compass: preferred = [0]
         case .battery: preferred = [0]
         case .network: preferred = [0]
-        case .orientation: preferred = [0, 1, 2]    // roll, pitch, yaw
+        case .orientation: preferred = [0, 1, 2]          // roll, pitch, yaw
+        case .cameraPose: preferred = [0, 1, 2]           // position only
+        case .wristMotion: preferred = [0, 1, 2]          // acceleration
+        case .headphoneOrientation: preferred = [0, 1, 2] // roll, pitch, yaw
+        case .activity: preferred = [0, 1, 2, 3]          // still, walking, running, driving
+        case .bluetooth: preferred = [0, 1]               // device count, strongest RSSI
         default: preferred = Array(0..<available)
         }
         return preferred.filter { $0 < available }

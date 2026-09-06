@@ -25,6 +25,7 @@ struct RecordingDetailView: View {
                 if let player = playback.player {
                     PlayerLayerView(player: player)
                         .aspectRatio(videoAspectRatio, contentMode: .fit)
+                        .frame(maxWidth: .infinity)
                         .clipShape(.rect(cornerRadius: 16))
                 }
 
@@ -239,35 +240,34 @@ struct RecordingDetailView: View {
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(.secondary)
 
-            infoRow("Start", recording.startedAt.formatted(date: .abbreviated, time: .standard))
-            infoRow("Dauer", Format.duration(recording.duration))
-            infoRow("Gerät", recording.device.model)
-            infoRow("System", "\(recording.device.systemName) \(recording.device.systemVersion)")
-            infoRow("Abtastrate", Format.rate(recording.requestedRateHz))
-            infoRow("Messwerte", Format.sampleCount(recording.totalSampleCount))
-            infoRow("Grösse", Format.bytes(library.byteSize(of: recording)))
+            // A real grid rather than a stack of independent rows. Each row used to split
+            // wherever its own `Spacer` happened to fall, so no two rows lined up, and a
+            // long label — the app ships ten languages — set the width for the whole card.
+            Grid(alignment: .leadingFirstTextBaseline, horizontalSpacing: 12, verticalSpacing: 6) {
+                infoRow("Start", recording.startedAt.formatted(date: .abbreviated, time: .standard))
+                infoRow("Dauer", Format.duration(recording.duration))
+                infoRow("Gerät", recording.device.model)
+                infoRow("System", "\(recording.device.systemName) \(recording.device.systemVersion)")
+                infoRow("Abtastrate", Format.rate(recording.requestedRateHz))
+                infoRow("Messwerte", Format.sampleCount(recording.totalSampleCount))
+                infoRow("Grösse", Format.bytes(library.byteSize(of: recording)))
 
-            if let video = recording.video {
-                Divider().overlay(Theme.cardBorder)
-                infoRow("Video", "\(video.width)×\(video.height) · \(Int(video.nominalFrameRate)) fps")
-                infoRow("Versatz", String(format: "%+.3f s",
-                                          video.offset(from: recording.startHostTime)))
-            }
-            if let audio = recording.audio {
-                Divider().overlay(Theme.cardBorder)
-                infoRow("Audio", "\(Int(audio.sampleRate)) Hz · \(audio.channelCount) Kanäle")
-            }
+                if let video = recording.video {
+                    infoDivider
+                    infoRow("Video", "\(video.width)×\(video.height) · \(Int(video.nominalFrameRate)) fps")
+                    infoRow("Versatz", String(format: "%+.3f s",
+                                              video.offset(from: recording.startHostTime)))
+                }
+                if let audio = recording.audio {
+                    infoDivider
+                    infoRow("Audio", "\(Int(audio.sampleRate)) Hz · \(audio.channelCount) Kanäle")
+                }
 
-            Divider().overlay(Theme.cardBorder)
+                infoDivider
 
-            ForEach(recording.streams) { stream in
-                HStack {
-                    Text(stream.sensor.title)
-                        .font(.caption)
-                    Spacer()
-                    Text("\(Format.sampleCount(stream.sampleCount)) · \(Format.rate(stream.effectiveRateHz))")
-                        .font(.caption.monospacedDigit())
-                        .foregroundStyle(.secondary)
+                ForEach(recording.streams) { stream in
+                    infoRow(stream.sensor.title,
+                            "\(Format.sampleCount(stream.sampleCount)) · \(Format.rate(stream.effectiveRateHz))")
                 }
             }
         }
@@ -276,14 +276,28 @@ struct RecordingDetailView: View {
         .card()
     }
 
+    /// A view placed straight into a `Grid` rather than into a `GridRow` spans the full
+    /// width; `gridCellUnsizedAxes` keeps it from having a say in how wide that is.
+    private var infoDivider: some View {
+        Divider()
+            .overlay(Theme.cardBorder)
+            .gridCellUnsizedAxes(.horizontal)
+    }
+
+    /// Label left, value right. The value keeps the higher priority: a truncated measurement
+    /// is worthless, whereas a wrapped label is still perfectly readable.
     private func infoRow(_ label: LocalizedStringKey, _ value: String) -> some View {
-        HStack {
+        GridRow {
             Text(label)
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            Spacer()
+                .lineLimit(2)
             Text(value)
                 .font(.caption.monospacedDigit())
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .layoutPriority(1)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 

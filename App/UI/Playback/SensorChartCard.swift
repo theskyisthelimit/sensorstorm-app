@@ -1,4 +1,5 @@
 import Charts
+import Foundation
 import SensorstormCore
 import SwiftUI
 
@@ -30,6 +31,8 @@ struct SensorChartCard: View {
                 .foregroundStyle(Theme.accent)
             Text(data.sensor.title)
                 .font(.subheadline.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
             Spacer()
             Text(data.sensor.descriptor.unit)
                 .font(.caption.monospacedDigit())
@@ -110,8 +113,21 @@ struct SensorChartCard: View {
         onScrub(min(max(time, visibleRange.lowerBound), visibleRange.upperBound))
     }
 
+    /// One cell per channel, wrapped into as many rows as the width needs.
+    ///
+    /// This was an `HStack` with a `Spacer` between every column. Because those spacers are
+    /// stack children in their own right, the 14 pt spacing applied on *both* sides of each
+    /// one: thirteen channels — `cameraPose`, which is armed automatically whenever video is
+    /// on — needed 350 pt of gaps before a single dot was drawn, on a phone that offers 342.
+    /// The card grew wider than the screen, dragged the whole detail view with it, and the
+    /// scroll view then clipped the title, the video and the table. A grid takes the width
+    /// it is offered and wraps; it cannot do that.
     private var legend: some View {
-        HStack(alignment: .top, spacing: 14) {
+        LazyVGrid(
+            columns: [GridItem(.adaptive(minimum: 74), spacing: 12, alignment: .leading)],
+            alignment: .leading,
+            spacing: 8
+        ) {
             ForEach(Array(data.channels.enumerated()), id: \.offset) { index, channel in
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 5) {
@@ -121,15 +137,16 @@ struct SensorChartCard: View {
                         Text(channel)
                             .font(.caption2)
                             .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
                     }
                     Text(valueText(for: index))
                         .font(.caption.monospacedDigit())
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                 }
-                if index < data.channels.count - 1 { Spacer(minLength: 0) }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            Spacer(minLength: 0)
         }
     }
 
@@ -148,4 +165,65 @@ struct SensorChartCard: View {
         return Format.channelValue(sensor: data.sensor, channel: channel,
                                    value: currentValues[channel])
     }
+}
+
+// MARK: - Previews
+
+/// The widest streams at the narrowest width the app supports.
+///
+/// This exists because of a real regression: the legend used to grow with the channel
+/// count until the card was wider than the phone, and the detail view's scroll view then
+/// clipped the title, the video and the table on both edges. It shipped because nothing
+/// ever rendered a thirteen-channel chart anywhere but on a device.
+///
+/// `cameraPose` is the worst case (13 channels) and the most common one — it is armed
+/// automatically whenever video is on. If any of these previews scrolls sideways or loses
+/// characters off an edge, the layout is broken again.
+@MainActor
+private func previewData(_ sensor: SensorID) -> SensorChartData {
+    let channels = sensor.descriptor.channels
+    let series = channels.enumerated().map { index, _ in
+        (0..<60).map { step -> SeriesPoint in
+            let time = Double(step) / 10
+            let value = sin(time * 1.7 + Double(index)) * Double(index + 1)
+            return SeriesPoint(time: time, value: value, low: value, high: value)
+        }
+    }
+    return SensorChartData(sensor: sensor, channels: channels, series: series,
+                           yDomain: -14...14)
+}
+
+@MainActor
+private func previewCard(_ sensor: SensorID) -> some View {
+    SensorChartCard(
+        data: previewData(sensor),
+        playhead: 2.5,
+        visibleRange: 0...6,
+        currentValues: (0..<sensor.descriptor.channelCount).map { Double($0) * 1512.34 },
+        annotations: [1.5, 4.25],
+        onScrub: { _ in }
+    )
+}
+
+#Preview("Breiteste Ströme · 320 pt") {
+    ScrollView {
+        VStack(spacing: 14) {
+            previewCard(.cameraPose)   // 13 channels
+            previewCard(.location)     // 10
+            previewCard(.wristMotion)  // 9
+        }
+        .padding(.horizontal, 16)
+    }
+    .frame(width: 320)
+    .background(Theme.background)
+}
+
+#Preview("cameraPose · grosse Schrift") {
+    ScrollView {
+        previewCard(.cameraPose)
+            .padding(.horizontal, 16)
+    }
+    .frame(width: 402)
+    .dynamicTypeSize(.accessibility1)
+    .background(Theme.background)
 }
