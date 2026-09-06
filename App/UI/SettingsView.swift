@@ -87,6 +87,14 @@ struct SettingsView: View {
                 proSection
 
                 Section {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Sensorstorm")
+                            .font(.headline)
+                        Text("Dein iPhone als Messgerät.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 2)
                     LabeledContent("Version", value: Self.appVersion)
                 } footer: {
                     Text("Alle Streams teilen eine gemeinsame Uhr. Ein Export enthält pro Sensor eine CSV-Datei, das Video und die Metadaten.")

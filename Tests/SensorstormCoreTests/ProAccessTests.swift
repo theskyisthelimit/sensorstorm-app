@@ -105,10 +105,10 @@ struct ProAccessTests {
 
     /// The gating is only as good as the mapping behind it. A format that maps to no
     /// feature is free by definition, so this pins down which ones do that.
-    @Test("Nur CSV hat kein Pro-Merkmal hinterlegt")
+    @Test("Nur CSV und der GPS-Track haben kein Pro-Merkmal hinterlegt")
     func onlyCSVHasNoFeature() {
         let withoutFeature = RecordingExporter.Format.allCases.filter { $0.proFeature == nil }
-        #expect(withoutFeature == [.csvBundle])
+        #expect(withoutFeature == [.csvBundle, .gpxTrack, .kmlTrack])
 
         let surveysWithoutFeature = SurveyExporter.Format.allCases.filter { $0.proFeature == nil }
         #expect(surveysWithoutFeature == [.csv])
