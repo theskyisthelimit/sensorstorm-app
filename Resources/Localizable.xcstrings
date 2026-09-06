@@ -3869,6 +3869,122 @@
         }
       }
     },
+    "Benutzername": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Username"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom d'utilisateur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome utente"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuario"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebruikersnaam"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuário"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザー名"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용자 이름"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者名稱"
+          }
+        }
+      }
+    },
+    "Benutzername oder Passwort stimmen nicht.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Username or password is wrong."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom d'utilisateur ou mot de passe incorrect."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome utente o password non corretti."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuario o contraseña incorrectos."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebruikersnaam of wachtwoord klopt niet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuário ou senha incorretos."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザー名またはパスワードが違います。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용자 이름 또는 비밀번호가 올바르지 않습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者名稱或密碼不正確。"
+          }
+        }
+      }
+    },
     "Beobachtung": {
       "localizations": {
         "en": {
@@ -5667,6 +5783,412 @@
         }
       }
     },
+    "Der Broker hat die Verbindung abgelehnt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker refused the connection."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker a refusé la connexion."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker ha rifiutato la connessione."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker rechazó la conexión."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker heeft de verbinding geweigerd."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker recusou a conexão."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーが接続を拒否しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커가 연결을 거부했습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 拒絕了連線。"
+          }
+        }
+      }
+    },
+    "Der Broker hat nicht geantwortet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker did not answer."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker n'a pas répondu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker non ha risposto."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker no respondió."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker antwoordde niet."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker não respondeu."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーから応答がありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커가 응답하지 않았습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 沒有回應。"
+          }
+        }
+      }
+    },
+    "Der Broker hat unerwartet geantwortet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker gave an unexpected answer."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker a répondu de façon inattendue."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker ha risposto in modo inatteso."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker respondió de forma inesperada."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker gaf een onverwacht antwoord."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker respondeu de forma inesperada."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーから予期しない応答がありました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커가 예상치 못한 응답을 보냈습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 的回應不符預期。"
+          }
+        }
+      }
+    },
+    "Der Broker ist nicht verfügbar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker is unavailable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker n'est pas disponible."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker non è disponibile."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker no está disponible."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker is niet beschikbaar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker não está disponível."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーを利用できません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커를 사용할 수 없습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 目前無法使用。"
+          }
+        }
+      }
+    },
+    "Der Broker lehnt diese Client-Kennung ab.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker refuses this client ID."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker refuse cet identifiant client."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker rifiuta questo ID client."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker rechaza este ID de cliente."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker weigert deze client-ID."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker recusa este ID de cliente."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーがこのクライアント ID を拒否しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커가 이 클라이언트 ID를 거부했습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 不接受此用戶端識別碼。"
+          }
+        }
+      }
+    },
+    "Der Broker lehnt diese Protokollversion ab.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker refuses this protocol version."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker refuse cette version du protocole."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker rifiuta questa versione del protocollo."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker rechaza esta versión del protocolo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker weigert deze protocolversie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker recusa esta versão do protocolo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーがこのプロトコルバージョンを拒否しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커가 이 프로토콜 버전을 거부했습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 不接受此通訊協定版本。"
+          }
+        }
+      }
+    },
+    "Der Broker verweigert die Berechtigung.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The broker denies permission."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le broker refuse l'autorisation."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il broker nega l'autorizzazione."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El broker deniega el permiso."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De broker weigert toestemming."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O broker nega a permissão."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブローカーが権限を拒否しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브로커가 권한을 거부했습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Broker 拒絕授權。"
+          }
+        }
+      }
+    },
     "Der Kauf liess sich nicht überprüfen und wurde nicht freigeschaltet.": {
       "localizations": {
         "en": {
@@ -6359,6 +6881,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "相機姿態屬於 Pro：逐影格記錄位置、視線方向與焦距，這是匯出 3D 場景到 Blender 的前提。點一下 ARKit 即可啟用。"
+          }
+        }
+      }
+    },
+    "Die Nachricht ist zu gross für das MQTT-Protokoll.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The message is too large for the MQTT protocol."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le message est trop volumineux pour le protocole MQTT."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il messaggio è troppo grande per il protocollo MQTT."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El mensaje es demasiado grande para el protocolo MQTT."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het bericht is te groot voor het MQTT-protocol."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mensagem é grande demais para o protocolo MQTT."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このメッセージは MQTT プロトコルには大きすぎます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 메시지는 MQTT 프로토콜에 비해 너무 큽니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "訊息對 MQTT 通訊協定而言過大。"
           }
         }
       }
@@ -7287,6 +7867,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "買一次，永久使用"
+          }
+        }
+      }
+    },
+    "Einmal pro Aufnahme wird gemessen, wie weit die Uhr des Geräts von der Netzzeit abweicht. Der Wert wird **nur notiert**, nie angewendet: die Aufnahme bleibt auf der Uhr des Geräts, und genau das lässt Videobild und Messwert ohne Kalibrierung aufeinanderliegen. Notiert lassen sich zwei Geräte hinterher auf eine Zeitachse bringen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once per recording, how far the device clock sits from network time is measured. The value is **only noted**, never applied: the recording stays on the device's own clock, and that is exactly what lets a video frame and a reading line up without calibration. Noted, two devices can be put on one timeline afterwards."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois par enregistrement, l'écart entre l'horloge de l'appareil et l'heure réseau est mesuré. La valeur est **seulement notée**, jamais appliquée : l'enregistrement reste sur l'horloge de l'appareil, et c'est précisément ce qui fait coïncider une image et une mesure sans calibrage. Notée, elle permet de placer deux appareils sur une même échelle de temps."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una volta per registrazione viene misurato di quanto l'orologio del dispositivo si discosta dall'ora di rete. Il valore viene **solo annotato**, mai applicato: la registrazione resta sull'orologio del dispositivo, ed è proprio questo a far coincidere fotogramma e misura senza calibrazione. Annotato, permette di mettere due dispositivi sulla stessa linea temporale."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una vez por grabación se mide cuánto se aparta el reloj del dispositivo de la hora de red. El valor **solo se anota**, nunca se aplica: la grabación permanece en el reloj del dispositivo, y eso es justo lo que hace coincidir un fotograma con una medición sin calibrar. Anotado, permite poner dos dispositivos en una misma línea de tiempo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eén keer per opname wordt gemeten hoever de klok van het apparaat van de netwerktijd afwijkt. De waarde wordt **alleen genoteerd**, nooit toegepast: de opname blijft op de klok van het apparaat, en juist dat laat een videobeeld en een meting zonder kalibratie samenvallen. Genoteerd kun je twee apparaten achteraf op één tijdlijn zetten."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma vez por gravação é medido o quanto o relógio do aparelho se afasta da hora de rede. O valor é **apenas anotado**, nunca aplicado: a gravação permanece no relógio do aparelho, e é exatamente isso que faz um quadro de vídeo e uma medição coincidirem sem calibração. Anotado, permite colocar dois aparelhos na mesma linha do tempo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記録ごとに一度、端末の時計がネットワーク時刻からどれだけずれているかを測定します。値は**記録するだけ**で、適用はしません。記録は端末の時計のままで、それこそが映像フレームと測定値を較正なしで一致させています。記録しておけば、あとから2台を同じ時間軸に載せられます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기록마다 한 번, 기기 시계가 네트워크 시간과 얼마나 차이 나는지 측정합니다. 값은 **기록만 될 뿐** 적용되지 않습니다. 기록은 기기 자체 시계를 유지하며, 바로 그것이 영상 프레임과 측정값을 보정 없이 일치시킵니다. 기록해 두면 나중에 두 기기를 하나의 시간축에 올릴 수 있습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次記錄會量測一次裝置時鐘與網路時間的偏差。這個值**只會被記下**，不會套用：記錄仍走裝置自己的時鐘，而這正是影片畫格與量測值不必校正就能對齊的原因。記下來之後，兩台裝置就能放到同一條時間軸上。"
           }
         }
       }
@@ -13033,6 +13671,64 @@
         }
       }
     },
+    "Passwort": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mot de passe"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contraseña"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wachtwoord"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senha"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "パスワード"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "비밀번호"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密碼"
+          }
+        }
+      }
+    },
     "Polygon": {
       "localizations": {
         "en": {
@@ -13455,6 +14151,64 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "Port": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porta"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puerto"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poort"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ポート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "포트"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連接埠"
           }
         }
       }
@@ -16301,6 +17055,64 @@
         }
       }
     },
+    "Verbunden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connesso."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbonden."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결되었습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已連線。"
+          }
+        }
+      }
+    },
     "Version": {
       "localizations": {
         "en": {
@@ -17403,6 +18215,64 @@
         }
       }
     },
+    "Zeit gegen einen Zeitserver messen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure the clock against a time server"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurer l'horloge par rapport à un serveur de temps"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura l'orologio rispetto a un server di tempo"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medir el reloj contra un servidor de hora"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klok meten tegen een tijdserver"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medir o relógio contra um servidor de tempo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時刻サーバーと時計を照合"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시간 서버와 시계 비교 측정"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與時間伺服器比對時鐘"
+          }
+        }
+      }
+    },
     "Zu diesem Apple-Account wurde kein Kauf von Sensorstorm Pro gefunden.": {
       "localizations": {
         "en": {
@@ -17921,6 +18791,64 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "西段狀況調查"
+          }
+        }
+      }
+    },
+    "Zusätzlich an einen MQTT-Broker": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also to an MQTT broker"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aussi vers un broker MQTT"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anche a un broker MQTT"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "También a un broker MQTT"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ook naar een MQTT-broker"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Também para um broker MQTT"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MQTT ブローカーにも送信"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MQTT 브로커에도 전송"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同時傳送至 MQTT Broker"
           }
         }
       }

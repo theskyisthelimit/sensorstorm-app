@@ -34,6 +34,10 @@ final class LiveStreamer: @unchecked Sendable {
     private var isSending = false
 
     private var endpoint: URL?
+    private var isMQTTRunning = false
+
+    /// Whether anything is listening at all. Read only while the lock is held.
+    private var isRunning: Bool { endpoint != nil || isMQTTRunning }
     private var sessionId = UUID().uuidString
     /// `epochSeconds = hostTime + hostToEpoch`, fixed at the start of a recording.
     private var hostToEpoch: Double = 0
@@ -42,6 +46,9 @@ final class LiveStreamer: @unchecked Sendable {
     private let deviceId: String
     private let queue = DispatchQueue(label: "ch.sensorstorm.streaming")
     private let session: URLSession
+    /// The same payload, on the protocol most home-automation setups already speak. Both
+    /// transports can run at once; neither knows about the other.
+    let mqtt = MQTTTransport()
 
     /// Latest outcome, for the settings screen. Read from the main actor.
     private var _status: Status = .idle
@@ -60,9 +67,12 @@ final class LiveStreamer: @unchecked Sendable {
 
     // MARK: - Lifecycle
 
-    func start(url: URL, batchSeconds: Double, hostToEpoch: Double) {
+    func start(url: URL?, mqtt configuration: MQTTTransport.Configuration?,
+               batchSeconds: Double, hostToEpoch: Double) {
         stop()
+        if let configuration { mqtt.start(configuration) }
         lock.withLock {
+            isMQTTRunning = configuration != nil
             endpoint = url
             sessionId = UUID().uuidString
             messageId = 0
@@ -84,13 +94,17 @@ final class LiveStreamer: @unchecked Sendable {
         timer = nil
         // One last flush so the tail of a recording is not silently swallowed.
         flush()
-        lock.withLock { endpoint = nil }
+        lock.withLock {
+            endpoint = nil
+            isMQTTRunning = false
+        }
+        mqtt.stop()
     }
 
     /// Called from the sample hot path, on whichever queue the sensor fired on.
     func ingest(_ sensor: SensorID, time: Double, values: [Double]) {
         lock.withLock {
-            guard endpoint != nil else { return }
+            guard isRunning else { return }
             if buffer.count >= Self.bufferLimit {
                 let drop = buffer.count / 4
                 buffer.removeFirst(drop)
@@ -105,7 +119,8 @@ final class LiveStreamer: @unchecked Sendable {
     /// Everything one POST needs, lifted out from under the lock in one go.
     private struct Job {
         let batch: [(sensor: SensorID, time: Double, values: [Double])]
-        let url: URL
+        /// `nil` when only MQTT is configured — the payload is built and published either way.
+        let url: URL?
         let messageId: Int
         let sessionId: String
         let hostToEpoch: Double
@@ -115,7 +130,7 @@ final class LiveStreamer: @unchecked Sendable {
         let job: Job? = lock.withLock {
             // Still waiting on the previous POST: keep buffering rather than opening a
             // second connection. Backpressure beats a thundering herd against a Raspberry Pi.
-            guard let endpoint, !isSending, !buffer.isEmpty else { return nil }
+            guard isRunning, !isSending, !buffer.isEmpty else { return nil }
             messageId += 1
             let job = Job(batch: buffer, url: endpoint, messageId: messageId,
                           sessionId: sessionId, hostToEpoch: hostToEpoch)
@@ -126,10 +141,18 @@ final class LiveStreamer: @unchecked Sendable {
         }
         guard let job else { return }
 
-        let body = Data(Self.payload(job.batch, messageId: job.messageId,
-                                     sessionId: job.sessionId, deviceId: deviceId,
-                                     hostToEpoch: job.hostToEpoch).utf8)
-        var request = URLRequest(url: job.url)
+        let text = Self.payload(job.batch, messageId: job.messageId,
+                                sessionId: job.sessionId, deviceId: deviceId,
+                                hostToEpoch: job.hostToEpoch)
+        mqtt.publish(text)
+
+        guard let url = job.url else {
+            // MQTT only: `isSending` gates the HTTP write, so it has to be released here.
+            lock.withLock { isSending = false }
+            return
+        }
+        let body = Data(text.utf8)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body

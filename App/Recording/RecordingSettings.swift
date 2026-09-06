@@ -19,6 +19,18 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var streamingURL: String?
     var isStreamingEnabled: Bool?
     var streamingBatchSeconds: Double?
+    /// MQTT, alongside the HTTP push rather than instead of it — a dashboard on one and
+    /// Home Assistant on the other is a normal setup. All optional so a settings blob
+    /// written before these existed still decodes.
+    var isMQTTEnabled: Bool?
+    var mqttHost: String?
+    var mqttPort: Int?
+    var mqttUsesTLS: Bool?
+    var mqttTopic: String?
+    var mqttUsername: String?
+    var mqttPassword: String?
+    /// Measure the device clock against a network time server once per recording.
+    var measuresNetworkTimeFlag: Bool?
 
     /// Streams hidden from the live tiles and the playback charts.
     ///
@@ -54,6 +66,32 @@ struct RecordingSettings: Codable, Sendable, Equatable {
               scheme == "http" || scheme == "https",
               url.host != nil else { return nil }
         return url
+    }
+
+    /// Off by default: it is a network request, and the app's promise is that nothing
+    /// leaves the device unasked. What it sends is an empty timestamp — no identifier, no
+    /// measurement — but it is still a packet, so it is a choice.
+    var measuresNetworkTime: Bool {
+        get { measuresNetworkTimeFlag ?? false }
+        set { measuresNetworkTimeFlag = newValue }
+    }
+
+    /// The broker to publish to, or `nil` when MQTT is off or the host is empty. Nothing
+    /// opens a socket unless this is non-nil.
+    var mqttConfiguration: MQTTTransport.Configuration? {
+        guard isMQTTEnabled == true,
+              let host = mqttHost?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !host.isEmpty else { return nil }
+        let topic = (mqttTopic?.trimmingCharacters(in: .whitespacesAndNewlines))
+            .flatMap { $0.isEmpty ? nil : $0 } ?? "sensorstorm"
+        let tls = mqttUsesTLS ?? true
+        return MQTTTransport.Configuration(
+            host: host,
+            port: UInt16(mqttPort ?? (tls ? 8883 : 1883)),
+            usesTLS: tls,
+            topic: topic,
+            username: mqttUsername.flatMap { $0.isEmpty ? nil : $0 },
+            password: mqttPassword.flatMap { $0.isEmpty ? nil : $0 })
     }
 
     /// 200 ms matches what the ecosystem's receivers expect; five per second is enough to

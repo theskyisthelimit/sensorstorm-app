@@ -165,6 +165,60 @@ struct SettingsView: View {
                     streamStatusRow(streamTest)
                 }
             }
+
+            Toggle(isOn: pro.gated(
+                Binding(get: { hub.settings.isMQTTEnabled ?? false },
+                        set: { hub.settings.isMQTTEnabled = $0 }),
+                feature: { (isOn: Bool) -> ProFeature? in isOn ? .liveStreaming : nil })) {
+                Label("Zusätzlich an einen MQTT-Broker",
+                      systemImage: pro.access.allows(.liveStreaming)
+                          ? "dot.radiowaves.up.forward" : "lock.fill")
+            }
+
+            if hub.settings.isMQTTEnabled == true {
+                TextField("broker.example.com",
+                          text: Binding(get: { hub.settings.mqttHost ?? "" },
+                                        set: { hub.settings.mqttHost = $0 }))
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .keyboardType(.URL)
+                    .font(.callout.monospaced())
+
+                Toggle("TLS", isOn: Binding(get: { hub.settings.mqttUsesTLS ?? true },
+                                            set: { hub.settings.mqttUsesTLS = $0 }))
+
+                LabeledContent("Port") {
+                    TextField(verbatim: (hub.settings.mqttUsesTLS ?? true) ? "8883" : "1883",
+                              text: Binding(
+                                get: { hub.settings.mqttPort.map(String.init) ?? "" },
+                                set: { hub.settings.mqttPort = Int($0) }))
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.trailing)
+                        .font(.callout.monospacedDigit())
+                }
+
+                TextField(verbatim: "sensorstorm",
+                          text: Binding(get: { hub.settings.mqttTopic ?? "" },
+                                        set: { hub.settings.mqttTopic = $0 }))
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .font(.callout.monospaced())
+
+                TextField("Benutzername",
+                          text: Binding(get: { hub.settings.mqttUsername ?? "" },
+                                        set: { hub.settings.mqttUsername = $0 }))
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+
+                SecureField("Passwort",
+                            text: Binding(get: { hub.settings.mqttPassword ?? "" },
+                                          set: { hub.settings.mqttPassword = $0 }))
+            }
+
+            Toggle(isOn: Binding(get: { hub.settings.measuresNetworkTime },
+                                 set: { hub.settings.measuresNetworkTime = $0 })) {
+                Label("Zeit gegen einen Zeitserver messen", systemImage: "clock.badge.checkmark")
+            }
         } header: {
             Text("Live-Übertragung")
         } footer: {
@@ -172,6 +226,14 @@ struct SettingsView: View {
                 Text("Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.")
             } else {
                 Text("Für ein eigenes Dashboard, Node-RED oder Home Assistant. Ohne eingetragene Adresse baut die App keine Verbindung auf.")
+            }
+        }
+
+        if hub.settings.measuresNetworkTime {
+            Section {
+                EmptyView()
+            } footer: {
+                Text("Einmal pro Aufnahme wird gemessen, wie weit die Uhr des Geräts von der Netzzeit abweicht. Der Wert wird **nur notiert**, nie angewendet: die Aufnahme bleibt auf der Uhr des Geräts, und genau das lässt Videobild und Messwert ohne Kalibrierung aufeinanderliegen. Notiert lassen sich zwei Geräte hinterher auf eine Zeitachse bringen.")
             }
         }
     }

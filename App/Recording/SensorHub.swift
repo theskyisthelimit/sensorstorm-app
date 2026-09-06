@@ -24,6 +24,9 @@ final class SensorHub {
     }
 
     private(set) var phase: Phase = .idle
+    /// Result of the network-time measurement for the running recording, if one was asked
+    /// for and finished in time. Stored, never applied.
+    private var timeReference: TimeReference?
     private(set) var live: [SensorID: LiveSample] = [:]
     private(set) var availableSensors: Set<SensorID> = []
     private(set) var elapsed: TimeInterval = 0
@@ -335,6 +338,7 @@ final class SensorHub {
 
             locationSource.resetAnchor()
             motionSource.resetBarometerReference()
+            timeReference = nil
 
             var writers: [SensorID: StreamWriter] = [:]
             for sensor in streamsToWrite(for: recordingSettings).sorted(by: { $0.rawValue < $1.rawValue }) {
@@ -385,13 +389,25 @@ final class SensorHub {
 
             // Streaming rides along with the recording rather than running on its own: a
             // feed without a file behind it is a feed nobody can check afterwards.
-            if let endpoint = recordingSettings.streamingEndpoint {
+            let endpoint = recordingSettings.streamingEndpoint
+            let broker = recordingSettings.mqttConfiguration
+            if endpoint != nil || broker != nil {
                 let streamer = self.streamer
-                streamer.start(url: endpoint,
+                streamer.start(url: endpoint, mqtt: broker,
                                batchSeconds: recordingSettings.streamingBatch,
                                hostToEpoch: Date().timeIntervalSince1970 - startHostTime)
                 sink.setTap { sensor, time, values in
                     streamer.ingest(sensor, time: time, values: values)
+                }
+            }
+
+            // Measured in the background and written into the metadata when the recording
+            // ends. It never touches a sample — see NTPPacket — so there is nothing to wait
+            // for, and a slow or blocked server must not delay the record button.
+            if recordingSettings.measuresNetworkTime {
+                Task { [weak self] in
+                    let reference = await NetworkTime.measure()
+                    await MainActor.run { self?.timeReference = reference }
                 }
             }
 
@@ -457,7 +473,8 @@ final class SensorHub {
             captureEngine: active.engine,
             attitudeReferenceFrame: motionSource.activeReferenceFrame,
             geodeticAnchor: locationSource.geodeticAnchor,
-            barometerReference: motionSource.barometerReference
+            barometerReference: motionSource.barometerReference,
+            timeReference: timeReference
         )
 
         locationSource.setBackgroundUpdates(false)

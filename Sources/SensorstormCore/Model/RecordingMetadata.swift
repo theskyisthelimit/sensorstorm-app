@@ -34,6 +34,11 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     /// Zero point of the barometer's `relativeAltitude` column. `nil` for recordings written
     /// before the field existed, and for recordings without a barometer.
     public var barometerReference: BarometerReference?
+    /// What the device clock was measured to be off by against a network time server, if
+    /// the measurement was taken. **Never applied to a sample** — see ``NTPPacket``. It is
+    /// here so two devices that each recorded their own offset can be put on one timeline
+    /// afterwards.
+    public var timeReference: TimeReference?
 
     public init(
         id: UUID = UUID(),
@@ -50,7 +55,8 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         captureEngine: CaptureEngine? = nil,
         attitudeReferenceFrame: AttitudeReferenceFrame? = nil,
         geodeticAnchor: GeodeticAnchor? = nil,
-        barometerReference: BarometerReference? = nil
+        barometerReference: BarometerReference? = nil,
+        timeReference: TimeReference? = nil
     ) {
         self.id = id
         self.name = name
@@ -67,6 +73,7 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.attitudeReferenceFrame = attitudeReferenceFrame
         self.geodeticAnchor = geodeticAnchor
         self.barometerReference = barometerReference
+        self.timeReference = timeReference
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {
