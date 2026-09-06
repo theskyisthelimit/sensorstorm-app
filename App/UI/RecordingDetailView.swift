@@ -347,7 +347,7 @@ struct RecordingDetailView: View {
                         .map(ShareItem.init) }
                 }
                 if recording.video != nil {
-                    ProButton(.sceneExport, "Als 3D-Szene exportieren", "move.3d") {
+                    ProButton(.sceneExport, "Kamerafahrt für Blender", "move.3d") {
                         Task { shareItem = await library.export(recording, format: .sceneBundle)
                             .map(ShareItem.init) }
                     }

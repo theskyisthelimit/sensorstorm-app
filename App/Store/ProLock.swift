@@ -13,7 +13,8 @@ extension ProFeature {
         case .video4K: "Video in 4K"
         case .arkitPose: "Kamerapose für 3D"
         case .rawExport: "Rohdaten-Export"
-        case .sceneExport: "3D-Szene für Blender"
+        case .sceneExport: "Kamerafahrt für Blender"
+        case .photoExport: "Bilder für Fotogrammetrie"
         case .interopExport: "Sensor Logger und Gyroflow"
         case .tableExport: "Eine Tabelle, JSON, SQLite"
         case .liveStreaming: "Live an einen Server senden"
@@ -36,7 +37,9 @@ extension ProFeature {
         case .rawExport:
             "Die Aufnahme als .ssbin, verlustfrei und in voller Auflösung, statt gerundet in CSV."
         case .sceneExport:
-            "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera."
+            "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt."
+        case .photoExport:
+            "Scharfe, räumlich verteilte Einzelbilder mit Brennweite, Position und Blickrichtung im EXIF, dazu eine Kameratabelle und ein COLMAP-Modell. Der Rohstoff für RealityScan, Metashape oder Meshroom — das Modell rechnet dort, nicht hier."
         case .interopExport:
             "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow."
         case .tableExport:

@@ -1433,64 +1433,6 @@
         }
       }
     },
-    "3D-Szene für Blender": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3D scene for Blender"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scène 3D pour Blender"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scena 3D per Blender"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escena 3D para Blender"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3D-scène voor Blender"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cena 3D para o Blender"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blender 用 3D シーン"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blender용 3D 장면"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "供 Blender 使用的 3D 場景"
-          }
-        }
-      }
-    },
     "400 Hz Abtastrate": {
       "localizations": {
         "en": {
@@ -2415,64 +2357,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "全部匯出"
-          }
-        }
-      }
-    },
-    "Als 3D-Szene exportieren": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Export as 3D scene"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exporter en scène 3D"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esporta come scena 3D"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exportar como escena 3D"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exporteren als 3D-scène"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exportar como cena 3D"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3D シーンとして書き出す"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "3D 장면으로 내보내기"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "匯出為 3D 場景"
           }
         }
       }
@@ -4739,6 +4623,64 @@
         }
       }
     },
+    "Bilder für Fotogrammetrie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Images for photogrammetry"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Images pour photogrammétrie"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Immagini per fotogrammetria"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imágenes para fotogrametría"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beelden voor fotogrammetrie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagens para fotogrametria"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォトグラメトリ用の画像"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "포토그래메트리용 이미지"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "攝影測量用影像"
+          }
+        }
+      }
+    },
     "Bildschirm aktiv lassen": {
       "localizations": {
         "en": {
@@ -6363,6 +6305,64 @@
         }
       }
     },
+    "Diese Aufnahme enthält keine auswertbaren Videobilder.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This recording contains no usable video frames."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet enregistrement ne contient aucune image vidéo exploitable."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa registrazione non contiene fotogrammi video utilizzabili."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta grabación no contiene fotogramas de vídeo utilizables."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze opname bevat geen bruikbare videobeelden."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta gravação não contém quadros de vídeo utilizáveis."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この記録には利用できる映像フレームがありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 기록에는 사용할 수 있는 영상 프레임이 없습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此記錄不含可用的影片畫格。"
+          }
+        }
+      }
+    },
     "Diese Aufnahme enthält keine verwertbaren GPS-Fixe.": {
       "localizations": {
         "en": {
@@ -6653,60 +6653,60 @@
         }
       }
     },
-    "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera.": {
+    "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "A bundle with frames.csv, scene.json, the video and the GPS track — the Blender add-on turns it into an animated camera."
+            "value": "A bundle with frames.csv, scene.json, the video and the GPS track — the Blender add-on turns it into an animated camera that follows the real recording."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un ensemble avec frames.csv, scene.json, la vidéo et la trace GPS — le module Blender en fait une caméra animée."
+            "value": "Un ensemble avec frames.csv, scene.json, la vidéo et la trace GPS — le module Blender en fait une caméra animée qui suit l'enregistrement réel."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un pacchetto con frames.csv, scene.json, il video e la traccia GPS — l'add-on per Blender ne ricava una telecamera animata."
+            "value": "Un pacchetto con frames.csv, scene.json, il video e la traccia GPS: il componente per Blender ne ricava una camera animata che segue la registrazione reale."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un paquete con frames.csv, scene.json, el vídeo y la traza GPS: el complemento de Blender lo convierte en una cámara animada."
+            "value": "Un paquete con frames.csv, scene.json, el vídeo y la traza GPS: el complemento de Blender lo convierte en una cámara animada que sigue la grabación real."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Een bundel met frames.csv, scene.json, de video en het GPS-spoor — de Blender-add-on maakt daar een geanimeerde camera van."
+            "value": "Een bundel met frames.csv, scene.json, de video en de GPS-track — de Blender-add-on maakt er een geanimeerde camera van die de echte opname volgt."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Um pacote com frames.csv, scene.json, o vídeo e o traço de GPS — o add-on do Blender transforma isso em uma câmera animada."
+            "value": "Um pacote com frames.csv, scene.json, o vídeo e a trilha GPS — o add-on do Blender transforma isso em uma câmera animada que segue a gravação real."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "frames.csv、scene.json、動画、GPS トラックを含むバンドル。Blender アドオンがそれをアニメーションカメラに変換します。"
+            "value": "frames.csv、scene.json、動画、GPSトラックをまとめたバンドル。Blender アドオンが実際の記録に沿った動くカメラに変換します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "frames.csv, scene.json, 동영상, GPS 트랙이 담긴 번들. Blender 애드온이 이를 애니메이션 카메라로 바꿉니다."
+            "value": "frames.csv, scene.json, 영상, GPS 경로를 담은 번들. Blender 애드온이 실제 기록을 따라가는 애니메이션 카메라로 만들어 줍니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "含 frames.csv、scene.json、影片與 GPS 軌跡的封裝 — Blender 附加元件會將其轉為動態攝影機。"
+            "value": "包含 frames.csv、scene.json、影片與 GPS 軌跡的組合包；Blender 外掛會把它變成跟隨實際記錄的動態攝影機。"
           }
         }
       }
@@ -9259,6 +9259,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "相機"
+          }
+        }
+      }
+    },
+    "Kamerafahrt für Blender": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera move for Blender"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mouvement de caméra pour Blender"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento di camera per Blender"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimiento de cámara para Blender"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camerabeweging voor Blender"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Movimento de câmera para Blender"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blender 用カメラワーク"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blender용 카메라 무브"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "給 Blender 的運鏡"
           }
         }
       }
@@ -14151,6 +14209,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "請在上方開啟相機 — 沒有畫面就沒有相機姿態。"
+          }
+        }
+      }
+    },
+    "Scharfe, räumlich verteilte Einzelbilder mit Brennweite, Position und Blickrichtung im EXIF, dazu eine Kameratabelle und ein COLMAP-Modell. Der Rohstoff für RealityScan, Metashape oder Meshroom — das Modell rechnet dort, nicht hier.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sharp, well-spaced stills carrying focal length, position and viewing direction in their EXIF, plus a camera table and a COLMAP model. The raw material for RealityScan, Metashape or Meshroom — the model is computed there, not here."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des images nettes et bien réparties, avec focale, position et direction de visée dans l'EXIF, plus une table de caméras et un modèle COLMAP. La matière première pour RealityScan, Metashape ou Meshroom — le modèle se calcule là-bas, pas ici."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Immagini nitide e ben distribuite, con lunghezza focale, posizione e direzione di ripresa nell’EXIF, più una tabella delle camere e un modello COLMAP. La materia prima per RealityScan, Metashape o Meshroom: il modello si calcola lì, non qui."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imágenes nítidas y bien espaciadas, con distancia focal, posición y dirección de vista en el EXIF, más una tabla de cámaras y un modelo COLMAP. La materia prima para RealityScan, Metashape o Meshroom: el modelo se calcula allí, no aquí."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scherpe, goed verdeelde stilstaande beelden met brandpuntsafstand, positie en kijkrichting in de EXIF, plus een cameratabel en een COLMAP-model. De grondstof voor RealityScan, Metashape of Meshroom — het model wordt daar berekend, niet hier."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagens nítidas e bem distribuídas, com distância focal, posição e direção de visada no EXIF, mais uma tabela de câmeras e um modelo COLMAP. A matéria-prima para RealityScan, Metashape ou Meshroom — o modelo é calculado lá, não aqui."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "焦点距離・位置・視線方向を EXIF に持つ、鮮明で適度に間隔をあけた静止画。さらにカメラ表と COLMAP モデル。RealityScan、Metashape、Meshroom のための素材です。モデル化はそちらで行います。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "초점 거리, 위치, 시선 방향을 EXIF에 담은 선명하고 적절히 떨어진 스틸 이미지, 그리고 카메라 표와 COLMAP 모델. RealityScan, Metashape, Meshroom을 위한 재료이며 모델은 그쪽에서 계산됩니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清晰且分佈得當的靜態影像，EXIF 內含焦距、位置與視線方向，另附相機表與 COLMAP 模型。這是 RealityScan、Metashape 或 Meshroom 的素材，模型在那裡運算，不在這裡。"
           }
         }
       }

@@ -15,8 +15,10 @@ public enum ProFeature: String, Sendable, Hashable, CaseIterable, Identifiable {
     case arkitPose
     /// Exporting a recording as its raw `.ssbin` folder.
     case rawExport
-    /// Exporting a recording as a 3D scene bundle for Blender.
+    /// Exporting a recording as an animated camera for Blender.
     case sceneExport
+    /// Exporting a recording as posed still images for photogrammetry software.
+    case photoExport
     /// The Sensor Logger and Gyroflow interop exports.
     case interopExport
     /// Every sensor in one table: combined CSV, JSON, SQLite.
