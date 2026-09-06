@@ -340,15 +340,6 @@ final class SensorHub {
             motionSource.resetBarometerReference()
             timeReference = nil
 
-            // Only while something is actually being recorded, and only when asked for:
-            // the scan runs whenever the record screen is open, but writing down which
-            // devices were in the room is a separate decision.
-            if recordingSettings.logsBluetoothAdvertisements,
-               recordingSettings.isEnabled(.bluetooth) {
-                bluetoothSource.beginLogging(
-                    try? AdvertisementLog(directory: directory, startHostTime: HostClock.now))
-            }
-
             var writers: [SensorID: StreamWriter] = [:]
             for sensor in streamsToWrite(for: recordingSettings).sorted(by: { $0.rawValue < $1.rawValue }) {
                 let descriptor = sensor.descriptor
@@ -395,6 +386,21 @@ final class SensorHub {
             // Arm the writers last: from this instant on, every sample is part of the file.
             let startHostTime = HostClock.now
             sink.beginRecording(writers: writers)
+
+            // Only while something is actually being recorded, and only when asked for: the
+            // scan runs whenever the record screen is open, but writing down which devices
+            // were in the room is a separate decision.
+            //
+            // Created here rather than with the writers so it shares the recording's
+            // `startHostTime`. Taking its own would put its `seconds_elapsed` column on a
+            // different origin than every other stream — by however long creating the
+            // writers took, which is exactly the kind of quiet offset this app exists to
+            // not have.
+            if recordingSettings.logsBluetoothAdvertisements,
+               recordingSettings.isEnabled(.bluetooth) {
+                bluetoothSource.beginLogging(
+                    try? AdvertisementLog(directory: directory, startHostTime: startHostTime))
+            }
 
             // Streaming rides along with the recording rather than running on its own: a
             // feed without a file behind it is a feed nobody can check afterwards.
