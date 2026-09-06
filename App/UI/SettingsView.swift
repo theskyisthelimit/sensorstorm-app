@@ -187,8 +187,9 @@ struct SettingsView: View {
                 Toggle("TLS", isOn: Binding(get: { hub.settings.mqttUsesTLS ?? true },
                                             set: { hub.settings.mqttUsesTLS = $0 }))
 
+                let portPlaceholder: String = (hub.settings.mqttUsesTLS ?? true) ? "8883" : "1883"
                 LabeledContent("Port") {
-                    TextField(verbatim: (hub.settings.mqttUsesTLS ?? true) ? "8883" : "1883",
+                    TextField(portPlaceholder,
                               text: Binding(
                                 get: { hub.settings.mqttPort.map(String.init) ?? "" },
                                 set: { hub.settings.mqttPort = Int($0) }))
@@ -197,7 +198,7 @@ struct SettingsView: View {
                         .font(.callout.monospacedDigit())
                 }
 
-                TextField(verbatim: "sensorstorm",
+                TextField(Self.defaultTopic,
                           text: Binding(get: { hub.settings.mqttTopic ?? "" },
                                         set: { hub.settings.mqttTopic = $0 }))
                     .textInputAutocapitalization(.never)
@@ -353,6 +354,10 @@ struct SettingsView: View {
             }
         }
     }
+
+    /// The broker topic Sensor Logger's own documentation uses, so an existing
+    /// subscription works without being retyped. A value, not prose — not translated.
+    static let defaultTopic = "sensorstorm"
 
     static var appVersion: String {
         let bundle = Bundle.main
