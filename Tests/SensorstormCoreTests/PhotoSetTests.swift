@@ -127,6 +127,35 @@ struct PhotoSetTests {
         }
     }
 
+    /// A `.limited` frame still carries a pose, but not one ARKit stands behind. Handing
+    /// that to a solver as a prior is worse than handing it nothing — a solver believes
+    /// priors, and a wrong one costs more than a missing one.
+    @Test("Schlecht getrackte Bilder kommen gar nicht erst in die Auswahl")
+    func limitedTrackingIsNotAdmissible() {
+        func pose(_ index: Int, state: CameraTrackingState) -> CameraPose {
+            CameraPose(hostTime: Double(index) * 0.1,
+                       videoFrameIndex: index,
+                       position: ENU(east: Double(index), north: 0, up: 0),
+                       orientation: simd_quatd(angle: 0, axis: SIMD3<Double>(0, 0, 1)),
+                       intrinsics: CameraIntrinsics(fx: 1500, fy: 1500, cx: 960, cy: 720,
+                                                    imageWidth: 1920, imageHeight: 1440),
+                       trackingState: state, trackingReason: .none)
+        }
+        let poses = (0..<20).map { pose($0, state: $0 % 2 == 0 ? .normal : .limited) }
+        let options = PhotoSetOptions(targetCount: 20, subject: .terrain)
+
+        let selected = PhotoSetExporter.windows(poses, options: options, usesBaseline: true)
+            .flatMap { $0 }
+        #expect(!selected.isEmpty)
+        #expect(selected.allSatisfy { poses[$0].trackingState == .normal })
+
+        // Without observed poses the tracking state says nothing — every frame is a
+        // candidate again, and the sharpness decides.
+        let byTime = PhotoSetExporter.windows(poses, options: options, usesBaseline: false)
+            .flatMap { $0 }
+        #expect(byTime.count == poses.count)
+    }
+
     // MARK: - EXIF
 
     /// The one that catches the classic ~50 m float: EXIF `GPSAltitude` is defined above sea

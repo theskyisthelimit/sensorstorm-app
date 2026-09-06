@@ -61,7 +61,16 @@ public struct PhotoSetExporter: Sendable {
     /// noise — it would look like a moving camera standing still.
     static func windows(_ poses: [CameraPose], options: PhotoSetOptions,
                         usesBaseline: Bool) -> [[Int]] {
-        let admissible = poses.indices.filter { poses[$0].intrinsics.isUsable }
+        // On the ARKit path a frame is only admissible while tracking was actually good.
+        // A `.limited` frame still carries a pose, but one ARKit itself does not stand
+        // behind — handing that to a solver as a prior is worse than handing it nothing,
+        // because the solver believes priors.
+        let admissible = poses.indices.filter { index in
+            let pose = poses[index]
+            guard pose.intrinsics.isUsable else { return false }
+            guard usesBaseline else { return true }
+            return pose.trackingState == .normal && pose.position.east.isFinite
+        }
         guard !admissible.isEmpty else { return [] }
 
         var windows: [[Int]] = []
