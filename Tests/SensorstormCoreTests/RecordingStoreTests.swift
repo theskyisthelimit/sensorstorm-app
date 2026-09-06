@@ -226,21 +226,6 @@ struct RecordingStoreTests {
         // The classic float artefact must not leak into the CSV.
         #expect(RecordingExporter.number(0.1 + 0.2) == "0.3")
     }
-}
-
-@Suite("Sensor catalog")
-struct SensorCatalogTests {
-
-    @Test("Every sensor has a descriptor with matching channel units")
-    func descriptorsAreComplete() {
-        for id in SensorID.allCases {
-            let descriptor = id.descriptor
-            #expect(descriptor.id == id)
-            #expect(descriptor.channels.isEmpty == false)
-            #expect(descriptor.channels.count == descriptor.channelUnits.count,
-                    "\(id.rawValue) has \(descriptor.channels.count) channels but \(descriptor.channelUnits.count) units")
-        }
-    }
 
     // MARK: - Der GPS-Track als eigene Datei
 
@@ -303,6 +288,21 @@ struct SensorCatalogTests {
         #expect(throws: RecordingExporter.ExportError.self) {
             _ = try RecordingExporter(store: store)
                 .export(metadata, format: .gpxTrack, into: destination)
+        }
+    }
+}
+
+@Suite("Sensor catalog")
+struct SensorCatalogTests {
+
+    @Test("Every sensor has a descriptor with matching channel units")
+    func descriptorsAreComplete() {
+        for id in SensorID.allCases {
+            let descriptor = id.descriptor
+            #expect(descriptor.id == id)
+            #expect(descriptor.channels.isEmpty == false)
+            #expect(descriptor.channels.count == descriptor.channelUnits.count,
+                    "\(id.rawValue) has \(descriptor.channels.count) channels but \(descriptor.channelUnits.count) units")
         }
     }
 
