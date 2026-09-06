@@ -79,6 +79,8 @@ extension SensorID {
         case .network: "Netzwerk"
         case .headphoneOrientation: "AirPods-Orientierung"
         case .cameraPose: "Kamerapose"
+        case .activity: "Aktivität"
+        case .bluetooth: "Bluetooth"
         }
     }
 
@@ -99,6 +101,8 @@ extension SensorID {
         case .network: "antenna.radiowaves.left.and.right"
         case .headphoneOrientation: "airpods.pro"
         case .cameraPose: "camera.metering.matrix"
+        case .activity: "figure.run"
+        case .bluetooth: "dot.radiowaves.forward"
         }
     }
 

@@ -53,6 +53,8 @@ final class SensorHub {
     private let locationSource: LocationSource
     private let audioSource: AudioSource
     private let deviceStateSource: DeviceStateSource
+    private let activitySource: ActivitySource
+    private let bluetoothSource: BluetoothSource
     private let syntheticSource: SyntheticSource?
 
     private var displayTimer: Timer?
@@ -84,6 +86,8 @@ final class SensorHub {
         self.locationSource = LocationSource(sink: sink)
         self.audioSource = AudioSource(sink: sink)
         self.deviceStateSource = DeviceStateSource(sink: sink)
+        self.activitySource = ActivitySource(sink: sink)
+        self.bluetoothSource = BluetoothSource(sink: sink)
 
         #if targetEnvironment(simulator)
         self.syntheticSource = SyntheticSource(sink: sink)
@@ -105,6 +109,8 @@ final class SensorHub {
             .union(locationSource.availableSensors)
             .union(audioSource.availableSensors)
             .union(deviceStateSource.availableSensors)
+            .union(activitySource.availableSensors)
+            .union(bluetoothSource.availableSensors)
 
         syntheticSensors = syntheticSource.map { $0.availableSensors.subtracting(real) } ?? []
         var all = real.union(syntheticSensors)
@@ -212,6 +218,8 @@ final class SensorHub {
         motionSource.start(sensors: wanted, rateHz: settings.motionRateHz, wallToHostOffset: offset)
         locationSource.start(sensors: wanted, rateHz: settings.motionRateHz, wallToHostOffset: offset)
         deviceStateSource.start(sensors: wanted)
+        activitySource.start(sensors: wanted)
+        bluetoothSource.start(sensors: wanted)
         syntheticSource?.start(sensors: wanted.intersection(syntheticSensors),
                                rateHz: settings.motionRateHz, wallToHostOffset: offset)
 
@@ -270,6 +278,8 @@ final class SensorHub {
         motionSource.stop()
         locationSource.stop()
         deviceStateSource.stop()
+        activitySource.stop()
+        bluetoothSource.stop()
         syntheticSource?.stop()
         _ = audioSource.stop()
         videoRecorder.teardown()

@@ -25,11 +25,13 @@ public enum SensorID: String, CaseIterable, Sendable, Codable, Hashable {
 
     // Activity.
     case pedometer
+    case activity
 
     // Device state.
     case battery
     case brightness
     case network
+    case bluetooth
 
     // Accessories.
     case headphoneOrientation
@@ -158,6 +160,19 @@ public enum SensorCatalog {
                          channels: ["type", "expensive", "constrained"],
                          channelUnits: ["", "", ""],
                          defaultEnabled: true, isEventDriven: true)
+        case .activity:
+            // One column per class rather than one enumerated value: Core Motion reports
+            // more than one at a time, and a single column would have to discard one.
+            return .init(id: id, category: .activity, unit: "",
+                         channels: ["stationary", "walking", "running", "automotive",
+                                    "cycling", "unknown", "confidence"],
+                         channelUnits: ["", "", "", "", "", "", "0–2"],
+                         defaultEnabled: false, isEventDriven: true)
+        case .bluetooth:
+            return .init(id: id, category: .device, unit: "dBm",
+                         channels: ["deviceCount", "strongestRssi", "meanRssi"],
+                         channelUnits: ["", "dBm", "dBm"],
+                         defaultEnabled: false, isEventDriven: false)
         case .headphoneOrientation:
             return .init(id: id, category: .motion, unit: "°",
                          channels: ["roll", "pitch", "yaw", "ax", "ay", "az"],

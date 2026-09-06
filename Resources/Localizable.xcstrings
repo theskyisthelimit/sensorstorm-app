@@ -851,6 +851,16 @@
         }
       }
     },
+    "Bluetooth": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth"
+          }
+        }
+      }
+    },
     "Bündel mit Fotos": {
       "localizations": {
         "en": {

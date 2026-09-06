@@ -86,6 +86,11 @@ targets:
         NSCameraUsageDescription: >-
           Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden
           für einen Befund.
+        # Only when the Bluetooth stream is armed: the central is constructed on start, not
+        # on launch, so nobody is asked for a sensor they never switched on.
+        NSBluetoothAlwaysUsageDescription: >-
+          Sensorstorm zählt, wie viele Bluetooth-Geräte in der Umgebung senden, und
+          zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut.
 
 # Explicit so the StoreKit configuration below travels with the repo. Without it the
 # in-app purchase can only be exercised against App Store Connect, which means a signed
