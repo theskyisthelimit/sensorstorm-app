@@ -91,6 +91,15 @@ targets:
         NSBluetoothAlwaysUsageDescription: >-
           Sensorstorm zählt, wie viele Bluetooth-Geräte in der Umgebung senden, und
           zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut.
+        NSLocalNetworkUsageDescription: >-
+          Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen
+          einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe.
+        # The endpoint is whatever the user typed, and a self-hosted receiver on the LAN is
+        # the normal case: a Raspberry Pi, a Node-RED box, Home Assistant. Those speak plain
+        # HTTP and cannot present a certificate any CA would sign. The exception is scoped
+        # to local hostnames — everything on the public internet still has to be HTTPS.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
 
 # Explicit so the StoreKit configuration below travels with the repo. Without it the
 # in-app purchase can only be exercised against App Store Connect, which means a signed

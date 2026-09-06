@@ -5,6 +5,8 @@ struct SettingsView: View {
     @Environment(SensorHub.self) private var hub
     @Environment(ProEntitlement.self) private var pro
     @State private var isExportingArchive = false
+    @State private var streamTest: LiveStreamer.Status?
+    @State private var isTestingStream = false
 
     var body: some View {
         @Bindable var hub = hub
@@ -72,6 +74,8 @@ struct SettingsView: View {
                     sensorSection(category)
                 }
 
+                streamingSection
+
                 Section {
                     ProButton(.archiveExport, "Alles exportieren", "shippingbox") {
                         isExportingArchive = true
@@ -98,6 +102,99 @@ struct SettingsView: View {
             .onAppear {
                 if ScreenshotFixture.screen == .export { isExportingArchive = true }
             }
+        }
+    }
+
+    /// Where to push samples while recording, how often, and whether the endpoint answers.
+    ///
+    /// The test button matters more than it looks: the alternative is walking a street for
+    /// twenty minutes and finding out afterwards that the URL had a typo in it.
+    @ViewBuilder
+    private var streamingSection: some View {
+        @Bindable var hub = hub
+
+        Section {
+            Toggle(isOn: pro.gated(
+                Binding(get: { hub.settings.isStreamingEnabled ?? false },
+                        set: { hub.settings.isStreamingEnabled = $0 }),
+                feature: { (isOn: Bool) -> ProFeature? in isOn ? .liveStreaming : nil })) {
+                Label("Live an einen Server senden",
+                      systemImage: pro.access.allows(.liveStreaming)
+                          ? "antenna.radiowaves.left.and.right" : "lock.fill")
+            }
+
+            if hub.settings.isStreamingEnabled == true {
+                TextField("https://192.168.1.20:8080/sensoren",
+                          text: Binding(get: { hub.settings.streamingURL ?? "" },
+                                        set: { hub.settings.streamingURL = $0 }))
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .keyboardType(.URL)
+                    .font(.callout.monospaced())
+
+                Picker("Takt", selection: Binding(
+                    get: { hub.settings.streamingBatch },
+                    set: { hub.settings.streamingBatchSeconds = $0 })) {
+                    ForEach([0.1, 0.2, 0.5, 1.0, 2.0], id: \.self) { period in
+                        // Units, not prose — nothing here to translate.
+                        Text(verbatim: period < 1 ? "\(Int(period * 1000)) ms" : "\(Int(period)) s")
+                            .tag(period)
+                    }
+                }
+
+                Button {
+                    testStream()
+                } label: {
+                    HStack {
+                        Label("Verbindung testen", systemImage: "paperplane")
+                        if isTestingStream {
+                            Spacer()
+                            ProgressView()
+                        }
+                    }
+                }
+                .disabled(hub.settings.streamingEndpoint == nil || isTestingStream)
+
+                if let streamTest {
+                    streamStatusRow(streamTest)
+                }
+            }
+        } header: {
+            Text("Live-Übertragung")
+        } footer: {
+            if hub.settings.isStreamingEnabled == true {
+                Text("Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.")
+            } else {
+                Text("Für ein eigenes Dashboard, Node-RED oder Home Assistant. Ohne eingetragene Adresse baut die App keine Verbindung auf.")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func streamStatusRow(_ status: LiveStreamer.Status) -> some View {
+        switch status {
+        case .idle:
+            EmptyView()
+        case .sending:
+            Label("Wird gesendet …", systemImage: "arrow.up.circle")
+                .foregroundStyle(.secondary)
+        case .delivered(let code, let samples):
+            Label("\(samples) Messwerte gesendet, Antwort \(code)", systemImage: "checkmark.circle")
+                .foregroundStyle(Theme.accent)
+        case .failed(let message):
+            // Already a sentence from URLSession or the server; not a key to look up.
+            Label(message, systemImage: "exclamationmark.triangle")
+                .foregroundStyle(Theme.recording)
+        }
+    }
+
+    private func testStream() {
+        guard let url = hub.settings.streamingEndpoint else { return }
+        isTestingStream = true
+        streamTest = .sending
+        Task {
+            streamTest = await hub.streamer.test(url: url)
+            isTestingStream = false
         }
     }
 

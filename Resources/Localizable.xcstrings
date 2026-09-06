@@ -231,6 +231,16 @@
         }
       }
     },
+    "%lld Messwerte gesendet, Antwort %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld readings sent, response %lld"
+          }
+        }
+      }
+    },
     "%lld m²": {
       "localizations": {
         "en": {
@@ -991,6 +1001,16 @@
         }
       }
     },
+    "Der Server antwortete mit %lld.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The server responded with %lld."
+          }
+        }
+      }
+    },
     "Details": {
       "localizations": {
         "en": {
@@ -1411,6 +1431,16 @@
         }
       }
     },
+    "Für ein eigenes Dashboard, Node-RED oder Home Assistant. Ohne eingetragene Adresse baut die App keine Verbindung auf.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For your own dashboard, Node-RED or Home Assistant. With no address entered, the app opens no connection at all."
+          }
+        }
+      }
+    },
     "GPS": {
       "localizations": {
         "en": {
@@ -1787,6 +1817,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clear"
+          }
+        }
+      }
+    },
+    "Live an einen Server senden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stream live to a server"
+          }
+        }
+      }
+    },
+    "Live-Übertragung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live streaming"
           }
         }
       }
@@ -2441,6 +2491,16 @@
         }
       }
     },
+    "Takt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interval"
+          }
+        }
+      }
+    },
     "Text": {
       "localizations": {
         "en": {
@@ -2511,6 +2571,16 @@
         }
       }
     },
+    "Unerwartete Antwort vom Server.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unexpected response from the server."
+          }
+        }
+      }
+    },
     "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten — Dateien, AirDrop, Mail.": {
       "localizations": {
         "en": {
@@ -2527,6 +2597,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Under open sky this takes a few seconds."
+          }
+        }
+      }
+    },
+    "Verbindung testen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Test the connection"
           }
         }
       }
@@ -2621,6 +2701,16 @@
         }
       }
     },
+    "Wird gesendet …": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sending …"
+          }
+        }
+      }
+    },
     "Wird mit dem aktuellen Zeitstempel gespeichert.": {
       "localizations": {
         "en": {
@@ -2637,6 +2727,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Still being recorded"
+          }
+        }
+      }
+    },
+    "Während der Aufnahme jede Messung als JSON an eine URL deiner Wahl — für ein eigenes Dashboard, Node-RED oder Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every reading as JSON to a URL of your choosing while recording — for your own dashboard, Node-RED or Home Assistant. The format matches Sensor Logger's, so an existing endpoint works unchanged."
+          }
+        }
+      }
+    },
+    "Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While a recording runs, every reading goes to this address as JSON — the same format Sensor Logger sends, so an existing endpoint works unchanged. The recording on the device is independent of it: if the connection drops, nothing is missing from the file."
           }
         }
       }

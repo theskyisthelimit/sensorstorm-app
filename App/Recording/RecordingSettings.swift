@@ -14,6 +14,12 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// earlier build still decodes; ``captureEngine`` resolves the default.
     var preferredCaptureEngine: CaptureEngine?
 
+    /// Where to push samples while recording, and how often. All optional so a settings
+    /// blob written by an earlier build still decodes.
+    var streamingURL: String?
+    var isStreamingEnabled: Bool?
+    var streamingBatchSeconds: Double?
+
     /// Streams hidden from the live tiles and the playback charts.
     ///
     /// Deliberately independent of ``enabledSensors``: a measurement not taken cannot be
@@ -36,6 +42,25 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         keepsScreenAwake: true,
         preferredCaptureEngine: .classic
     )
+
+    /// The endpoint to push to, or `nil` when streaming is off or the text is not a URL.
+    /// Nothing opens a socket unless this is non-nil.
+    var streamingEndpoint: URL? {
+        guard isStreamingEnabled == true,
+              let text = streamingURL?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !text.isEmpty,
+              let url = URL(string: text),
+              let scheme = url.scheme?.lowercased(),
+              scheme == "http" || scheme == "https",
+              url.host != nil else { return nil }
+        return url
+    }
+
+    /// 200 ms matches what the ecosystem's receivers expect; five per second is enough to
+    /// drive a live dashboard without turning every sample into its own request.
+    var streamingBatch: Double {
+        min(max(streamingBatchSeconds ?? 0.2, 0.05), 10)
+    }
 
     var captureEngine: CaptureEngine {
         get { preferredCaptureEngine ?? .classic }

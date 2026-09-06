@@ -35,6 +35,23 @@
         }
       }
     },
+    "NSLocalNetworkUsageDescription": {
+      "comment": "Privacy - Local Network Usage Description",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensorstorm sends readings to the address you enter in Settings. If that server is on the same network, this permission is what allows it."
+          }
+        }
+      }
+    },
     "NSLocationAlwaysAndWhenInUseUsageDescription": {
       "comment": "Privacy - Location Always and When In Use Usage Description",
       "localizations": {

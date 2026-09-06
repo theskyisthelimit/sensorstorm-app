@@ -118,7 +118,11 @@ public struct JSONExporter: Sendable {
 
     /// A JSON string literal. Everything a parser could choke on is escaped, including the
     /// control characters below 0x20 that JSON forbids raw.
-    static func string(_ value: String) -> String {
+    ///
+    /// Public because the live streamer writes the same wire format by hand and must escape
+    /// identically — two JSON writers in one product that disagree about a quote is a bug
+    /// waiting for the first device name with an apostrophe in it.
+    public static func string(_ value: String) -> String {
         var out = "\""
         for scalar in value.unicodeScalars {
             switch scalar {
@@ -140,7 +144,7 @@ public struct JSONExporter: Sendable {
 
     /// JSON has no NaN and no infinity. `null` is the only honest way to write a value the
     /// sensor could not produce — writing 0 would be a reading that never happened.
-    static func number(_ value: Double) -> String {
+    public static func number(_ value: Double) -> String {
         guard value.isFinite else { return "null" }
         return String(format: "%.12g", value)
     }

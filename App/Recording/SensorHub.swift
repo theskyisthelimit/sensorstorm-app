@@ -55,6 +55,7 @@ final class SensorHub {
     private let deviceStateSource: DeviceStateSource
     private let activitySource: ActivitySource
     private let bluetoothSource: BluetoothSource
+    let streamer: LiveStreamer
     private let syntheticSource: SyntheticSource?
 
     private var displayTimer: Timer?
@@ -88,6 +89,11 @@ final class SensorHub {
         self.deviceStateSource = DeviceStateSource(sink: sink)
         self.activitySource = ActivitySource(sink: sink)
         self.bluetoothSource = BluetoothSource(sink: sink)
+        // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
+        // is scoped to this vendor and resets when the last of their apps is uninstalled —
+        // which is exactly as much identity as a live feed needs.
+        self.streamer = LiveStreamer(
+            deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "unknown")
 
         #if targetEnvironment(simulator)
         self.syntheticSource = SyntheticSource(sink: sink)
@@ -363,6 +369,18 @@ final class SensorHub {
             let startHostTime = HostClock.now
             sink.beginRecording(writers: writers)
 
+            // Streaming rides along with the recording rather than running on its own: a
+            // feed without a file behind it is a feed nobody can check afterwards.
+            if let endpoint = recordingSettings.streamingEndpoint {
+                let streamer = self.streamer
+                streamer.start(url: endpoint,
+                               batchSeconds: recordingSettings.streamingBatch,
+                               hostToEpoch: Date().timeIntervalSince1970 - startHostTime)
+                sink.setTap { sensor, time, values in
+                    streamer.ingest(sensor, time: time, values: values)
+                }
+            }
+
             activeRecording = ActiveRecording(id: id, directory: directory,
                                               startHostTime: startHostTime,
                                               startedAt: Date(),
@@ -387,6 +405,9 @@ final class SensorHub {
     func stopRecording() async -> RecordingMetadata? {
         guard phase == .recording, let active = activeRecording else { return nil }
         phase = .finishing
+
+        sink.setTap(nil)
+        streamer.stop()
 
         let videoInfo: VideoInfo? = switch active.engine {
         case .arkit:

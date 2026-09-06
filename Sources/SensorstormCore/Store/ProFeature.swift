@@ -21,6 +21,8 @@ public enum ProFeature: String, Sendable, Hashable, CaseIterable, Identifiable {
     case interopExport
     /// Every sensor in one table: combined CSV, JSON, SQLite.
     case tableExport
+    /// Pushing samples to a server while the recording runs.
+    case liveStreaming
     /// Starting a walk beyond ``ProAccess/freeSurveyAllowance``.
     case additionalSurveys
     /// Exporting a walk as GeoJSON, GPX, KML or a media bundle.

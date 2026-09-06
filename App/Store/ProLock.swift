@@ -16,6 +16,7 @@ extension ProFeature {
         case .sceneExport: "3D-Szene für Blender"
         case .interopExport: "Sensor Logger und Gyroflow"
         case .tableExport: "Eine Tabelle, JSON, SQLite"
+        case .liveStreaming: "Live an einen Server senden"
         case .additionalSurveys: "Mehrere Begehungen"
         case .surveyGeoExport: "GeoJSON, GPX und KML"
         case .archiveExport: "Gesamtexport"
@@ -40,6 +41,8 @@ extension ProFeature {
             "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow."
         case .tableExport:
             "Alle Sensoren nebeneinander in einer Tabelle, auf ein gemeinsames Zeitraster gelegt — dazu die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor."
+        case .liveStreaming:
+            "Während der Aufnahme jede Messung als JSON an eine URL deiner Wahl — für ein eigenes Dashboard, Node-RED oder Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert."
         case .additionalSurveys:
             "Beliebig viele Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag."
         case .surveyGeoExport:

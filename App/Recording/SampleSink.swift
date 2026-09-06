@@ -27,6 +27,7 @@ final class SampleSink: @unchecked Sendable {
     func ingest(_ sensor: SensorID, time: Double, values: [Double]) {
         lock.lock()
         let writer = writers[sensor]
+        let tap = self.tap
         var estimator = rateEstimates[sensor] ?? RateEstimator()
         let rate = estimator.record(time: time)
         rateEstimates[sensor] = estimator
@@ -36,6 +37,18 @@ final class SampleSink: @unchecked Sendable {
         // Outside the lock: the writer has its own, and file I/O must not block ingest of
         // a different sensor.
         writer?.append(time: time, values: values)
+        // Same reasoning, and one more: the tap opens sockets. Holding this lock across a
+        // network stack would let a slow endpoint stall every sensor in the app.
+        tap?(sensor, time, values)
+    }
+
+    /// An observer of every ingested sample, for live streaming. Set when a recording that
+    /// streams begins, cleared when it ends.
+    private var tap: (@Sendable (SensorID, Double, [Double]) -> Void)?
+
+    func setTap(_ tap: (@Sendable (SensorID, Double, [Double]) -> Void)?) {
+        lock.lock(); defer { lock.unlock() }
+        self.tap = tap
     }
 
     // MARK: - Live view
