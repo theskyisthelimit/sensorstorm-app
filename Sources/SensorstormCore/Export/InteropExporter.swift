@@ -96,6 +96,8 @@ public enum InteropExporter {
         case .headphoneOrientation: "HeadphoneOrientation"
         case .cameraPose: "CameraPose"
         case .activity: "Activity"
+        case .heartRate: "HeartRate"
+        case .wristMotion: "WristMotion"
         case .bluetooth: "Bluetooth"
         }
         return "\(name).csv"

@@ -36,6 +36,11 @@ public enum SensorID: String, CaseIterable, Sendable, Codable, Hashable {
     // Accessories.
     case headphoneOrientation
 
+    // Apple Watch. Stamped on wall-clock time rather than the shared host clock — two
+    // devices have two `mach_absolute_time` origins. See `WatchLink`.
+    case heartRate
+    case wristMotion
+
     // Camera. One sample per written video frame — see ``SensorCatalog`` for the layout.
     case cameraPose
 }
@@ -160,6 +165,17 @@ public enum SensorCatalog {
                          channels: ["type", "expensive", "constrained"],
                          channelUnits: ["", "", ""],
                          defaultEnabled: true, isEventDriven: true)
+        case .heartRate:
+            return .init(id: id, category: .activity, unit: "bpm",
+                         channels: ["bpm"], channelUnits: ["bpm"],
+                         defaultEnabled: false, isEventDriven: true)
+        case .wristMotion:
+            return .init(id: id, category: .motion, unit: "",
+                         channels: ["ax", "ay", "az", "gx", "gy", "gz",
+                                    "roll", "pitch", "yaw"],
+                         channelUnits: ["g", "g", "g", "rad/s", "rad/s", "rad/s",
+                                        "rad", "rad", "rad"],
+                         defaultEnabled: false, isEventDriven: false)
         case .activity:
             // One column per class rather than one enumerated value: Core Motion reports
             // more than one at a time, and a single column would have to discard one.

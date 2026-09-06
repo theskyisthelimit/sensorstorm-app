@@ -35,6 +35,10 @@ targets:
           - Sensorstorm.storekit
     dependencies:
       - package: SensorstormCore
+      # Embedded so the watch app installs with the phone app — and so CI builds it. A
+      # companion target nothing depends on is a target nobody notices breaking.
+      - target: SensorstormWatch
+        embed: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: ch.sensorstorm.app
@@ -102,6 +106,46 @@ targets:
         # to local hostnames — everything on the public internet still has to be HTTPS.
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true
+
+  # The watch half: heart rate and wrist motion, sent over to the phone.
+  #
+  # Deliberately without the SensorstormCore dependency. The watch needs two sensor names
+  # and a wire format, not a storage engine, a geodesy library and eight exporters — and
+  # keeping the package off watchOS keeps its platform list honest.
+  SensorstormWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: Watch
+        excludes:
+          - Info.plist
+          - Sensorstorm.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.sensorstorm.app.watchkitapp
+        PRODUCT_NAME: Sensorstorm
+        # 4 = Apple Watch. The phone app is "1,2"; this one runs nowhere else.
+        TARGETED_DEVICE_FAMILY: "4"
+        GENERATE_INFOPLIST_FILE: "NO"
+        CODE_SIGN_ENTITLEMENTS: Watch/Sensorstorm.entitlements
+    info:
+      path: Watch/Info.plist
+      properties:
+        CFBundleDisplayName: Sensorstorm
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        # Single-target watch app, the shape Xcode has produced since watchOS 7.
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: ch.sensorstorm.app
+        WKRunsIndependentlyOfCompanionApp: false
+        CFBundleLocalizations: [de, en, fr, it, es, nl, pt-BR, ja, ko, zh-Hant]
+        NSHealthShareUsageDescription: >-
+          Sensorstorm liest während einer Aufnahme deine Herzfrequenz, um sie zusammen mit
+          den übrigen Sensordaten aufzuzeichnen. Es wird nichts in „Health" geschrieben.
+        NSMotionUsageDescription: >-
+          Sensorstorm zeichnet die Bewegung deines Handgelenks auf und überträgt sie an das
+          iPhone.
 
 # Explicit so the StoreKit configuration below travels with the repo. Without it the
 # in-app purchase can only be exercised against App Store Connect, which means a signed

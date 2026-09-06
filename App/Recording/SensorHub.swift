@@ -55,6 +55,7 @@ final class SensorHub {
     private let deviceStateSource: DeviceStateSource
     private let activitySource: ActivitySource
     private let bluetoothSource: BluetoothSource
+    private let watchLink: WatchLink
     let streamer: LiveStreamer
     private let syntheticSource: SyntheticSource?
 
@@ -89,6 +90,7 @@ final class SensorHub {
         self.deviceStateSource = DeviceStateSource(sink: sink)
         self.activitySource = ActivitySource(sink: sink)
         self.bluetoothSource = BluetoothSource(sink: sink)
+        self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
         // which is exactly as much identity as a live feed needs.
@@ -101,6 +103,7 @@ final class SensorHub {
         self.syntheticSource = nil
         #endif
 
+        watchLink.activate()
         refreshAvailability()
     }
 
@@ -117,6 +120,7 @@ final class SensorHub {
             .union(deviceStateSource.availableSensors)
             .union(activitySource.availableSensors)
             .union(bluetoothSource.availableSensors)
+            .union(watchLink.availableSensors)
 
         syntheticSensors = syntheticSource.map { $0.availableSensors.subtracting(real) } ?? []
         var all = real.union(syntheticSensors)
@@ -226,6 +230,7 @@ final class SensorHub {
         deviceStateSource.start(sensors: wanted)
         activitySource.start(sensors: wanted)
         bluetoothSource.start(sensors: wanted)
+        watchLink.start(sensors: wanted, wallToHostOffset: offset)
         syntheticSource?.start(sensors: wanted.intersection(syntheticSensors),
                                rateHz: settings.motionRateHz, wallToHostOffset: offset)
 
@@ -286,6 +291,7 @@ final class SensorHub {
         deviceStateSource.stop()
         activitySource.stop()
         bluetoothSource.stop()
+        watchLink.stop()
         syntheticSource?.stop()
         _ = audioSource.stop()
         videoRecorder.teardown()

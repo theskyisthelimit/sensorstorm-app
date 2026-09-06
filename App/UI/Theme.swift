@@ -81,6 +81,8 @@ extension SensorID {
         case .cameraPose: "Kamerapose"
         case .activity: "Aktivität"
         case .bluetooth: "Bluetooth"
+        case .heartRate: "Herzfrequenz"
+        case .wristMotion: "Handgelenk"
         }
     }
 
@@ -102,6 +104,8 @@ extension SensorID {
         case .headphoneOrientation: "airpods.pro"
         case .cameraPose: "camera.metering.matrix"
         case .activity: "figure.run"
+        case .heartRate: "heart.fill"
+        case .wristMotion: "applewatch"
         case .bluetooth: "dot.radiowaves.forward"
         }
     }
