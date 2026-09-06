@@ -31,6 +31,8 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var mqttPassword: String?
     /// Measure the device clock against a network time server once per recording.
     var measuresNetworkTimeFlag: Bool?
+    /// Write every Bluetooth advertisement, not only the per-second summary.
+    var logsBluetoothAdvertisementsFlag: Bool?
 
     /// Streams hidden from the live tiles and the playback charts.
     ///
@@ -74,6 +76,14 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var measuresNetworkTime: Bool {
         get { measuresNetworkTimeFlag ?? false }
         set { measuresNetworkTimeFlag = newValue }
+    }
+
+    /// Off by default, and its own switch rather than part of arming the Bluetooth stream.
+    /// „How much Bluetooth is around" and „which devices were in the room" are two
+    /// different things to ask for, and only the second one writes identifiers to disk.
+    var logsBluetoothAdvertisements: Bool {
+        get { logsBluetoothAdvertisementsFlag ?? false }
+        set { logsBluetoothAdvertisementsFlag = newValue }
     }
 
     /// The broker to publish to, or `nil` when MQTT is off or the host is empty. Nothing

@@ -5087,6 +5087,64 @@
         }
       }
     },
+    "Bluetooth-Rohdaten mitschreiben": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log raw Bluetooth advertisements"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer les trames Bluetooth brutes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra i pacchetti Bluetooth grezzi"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar las tramas Bluetooth en bruto"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruwe Bluetooth-advertenties vastleggen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar pacotes Bluetooth brutos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth の生データを記録"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth 원시 데이터 기록"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄 Bluetooth 原始封包"
+          }
+        }
+      }
+    },
     "Bündel mit Fotos": {
       "localizations": {
         "en": {
@@ -15775,6 +15833,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "關閉"
+          }
+        }
+      }
+    },
+    "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren — Temperatur, Feuchte, Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writes every Bluetooth advertisement received during a recording alongside it: identifier, signal strength, name and the raw manufacturer data as hex. That makes RuuviTag or BTHome sensors decodable afterwards — temperature, humidity and pressure sit right in there. The identifier is not a device address: iOS never hands those out, and two recordings will not agree on it."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Écrit, à côté de chaque enregistrement, chaque trame Bluetooth reçue : identifiant, puissance du signal, nom et données constructeur brutes en hexadécimal. Les capteurs RuuviTag ou BTHome deviennent ainsi décodables après coup — température, humidité et pression s'y trouvent. L'identifiant n'est pas une adresse matérielle : iOS ne la communique jamais, et deux enregistrements ne s'accordent pas dessus."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scrive accanto a ogni registrazione ogni pacchetto Bluetooth ricevuto: identificativo, intensità del segnale, nome e i dati grezzi del produttore in esadecimale. Così i sensori RuuviTag o BTHome sono decodificabili in seguito: temperatura, umidità e pressione stanno proprio lì. L'identificativo non è un indirizzo hardware: iOS non lo fornisce mai, e due registrazioni non concordano su di esso."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe junto a cada grabación todas las tramas Bluetooth recibidas: identificador, intensidad de señal, nombre y los datos de fabricante en bruto en hexadecimal. Así los sensores RuuviTag o BTHome se pueden decodificar después: temperatura, humedad y presión están justo ahí. El identificador no es una dirección de hardware: iOS nunca la entrega, y dos grabaciones no coinciden en él."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrijft bij elke opname ook elke ontvangen Bluetooth-advertentie weg: identificatie, signaalsterkte, naam en de ruwe fabrikantdata als hex. Daarmee zijn RuuviTag- of BTHome-sensoren achteraf te decoderen — temperatuur, vochtigheid en druk zitten daar precies in. De identificatie is geen hardware-adres: iOS geeft dat nooit vrij, en twee opnamen zijn het er niet over eens."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grava junto a cada gravação todos os pacotes Bluetooth recebidos: identificador, intensidade do sinal, nome e os dados brutos do fabricante em hexadecimal. Assim sensores RuuviTag ou BTHome podem ser decodificados depois — temperatura, umidade e pressão estão ali. O identificador não é um endereço de hardware: o iOS nunca o fornece, e duas gravações não concordam sobre ele."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記録ごとに、受信したすべての Bluetooth パケットも書き出します。識別子、信号強度、名前、そして生の製造者データを16進で。これにより RuuviTag や BTHome のセンサーを後から復号できます。温度・湿度・気圧はまさにそこに入っています。識別子は機器のアドレスではありません。iOS はそれを渡さず、2つの記録の間で一致もしません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기록마다 수신한 모든 Bluetooth 패킷도 함께 저장합니다. 식별자, 신호 세기, 이름, 그리고 원시 제조사 데이터를 16진수로 기록합니다. 이를 통해 RuuviTag나 BTHome 센서를 나중에 해독할 수 있습니다. 온도, 습도, 기압이 바로 그 안에 들어 있습니다. 식별자는 기기 주소가 아닙니다. iOS는 그것을 절대 알려주지 않으며, 두 기록이 서로 일치하지도 않습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次記錄時，會一併寫下收到的每個 Bluetooth 封包：識別碼、訊號強度、名稱，以及以十六進位表示的原始製造商資料。這讓 RuuviTag 或 BTHome 感測器可以事後解碼——溫度、濕度、氣壓就在其中。這個識別碼不是裝置位址：iOS 從不提供裝置位址，兩次記錄之間也不會一致。"
           }
         }
       }

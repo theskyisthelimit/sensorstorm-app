@@ -340,6 +340,15 @@ final class SensorHub {
             motionSource.resetBarometerReference()
             timeReference = nil
 
+            // Only while something is actually being recorded, and only when asked for:
+            // the scan runs whenever the record screen is open, but writing down which
+            // devices were in the room is a separate decision.
+            if recordingSettings.logsBluetoothAdvertisements,
+               recordingSettings.isEnabled(.bluetooth) {
+                bluetoothSource.beginLogging(
+                    try? AdvertisementLog(directory: directory, startHostTime: HostClock.now))
+            }
+
             var writers: [SensorID: StreamWriter] = [:]
             for sensor in streamsToWrite(for: recordingSettings).sorted(by: { $0.rawValue < $1.rawValue }) {
                 let descriptor = sensor.descriptor
@@ -455,6 +464,8 @@ final class SensorHub {
                 startAudioMetering()  // back to plain metering for the live view
             }
         }
+
+        bluetoothSource.endLogging()
 
         let streams = sink.endRecording()
         let duration = HostClock.now - active.startHostTime

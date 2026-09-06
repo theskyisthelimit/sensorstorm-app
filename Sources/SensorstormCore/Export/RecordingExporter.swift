@@ -175,6 +175,18 @@ public struct RecordingExporter: Sendable {
             : TrackExporter.gpx(track, metadata: metadata)
     }
 
+    /// The Bluetooth advertisement log, when the recording has one.
+    ///
+    /// Copied rather than regenerated: it is written during the recording and is the only
+    /// part of a recording that is text on disk to begin with.
+    private func copyAdvertisementLog(_ metadata: RecordingMetadata, into folder: URL) throws {
+        let source = store.directory(for: metadata.id)
+            .appendingPathComponent(AdvertisementLog.fileName)
+        guard FileManager.default.fileExists(atPath: source.path) else { return }
+        try FileManager.default.copyItem(
+            at: source, to: folder.appendingPathComponent(AdvertisementLog.fileName))
+    }
+
     /// README and media, for the formats that are a single file rather than a folder full
     /// of them. A `.sqlite` next to a `video.mov` with nothing saying how they relate is
     /// two files, not an export.
@@ -216,6 +228,7 @@ public struct RecordingExporter: Sendable {
         try text.data(using: .utf8)?
             .write(to: folder.appendingPathComponent("README.txt"), options: .atomic)
         try copyMedia(metadata, into: folder)
+        try copyAdvertisementLog(metadata, into: folder)
     }
 
     // MARK: - CSV bundle
@@ -257,6 +270,7 @@ public struct RecordingExporter: Sendable {
                     at: source, to: folder.appendingPathComponent(audio.fileName))
             }
         }
+        try copyAdvertisementLog(metadata, into: folder)
         progress?(1)
     }
 

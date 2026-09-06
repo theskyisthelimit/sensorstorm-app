@@ -144,11 +144,20 @@ Danach in der ASC-Weboberfläche:
 * **IAP anlegen**: `ch.sensorstorm.app.pro`, nicht verbrauchbar, Anzeigename und
   Beschreibung pro Locale, Review-Screenshot, **Familienfreigabe an**. Der IAP wird
   *zusammen mit* der Version eingereicht, nicht davor.
-* **Preis und Verfügbarkeit.** Vorschlag CHF 34, Basisland Schweiz. Der Preis steht
-  nur in ASC — eine Korrektur kostet keinen Build, weil die App
-  `product.displayPrice` anzeigt.
+* **Preis und Verfügbarkeit.** **CHF 19**, Basisland Schweiz. Der Preis steht nur in
+  ASC — eine Korrektur kostet keinen Build, weil die App `product.displayPrice`
+  anzeigt. `Resources/Sensorstorm.storekit` führt denselben Betrag, damit der Kauf im
+  Simulator gegen das getestet wird, was später verlangt wird.
 * **App-Review-Kontakt** (Name, Telefon, E-Mail).
 * **Altersfreigabe.**
+
+**Die Watch-App wird mit eingereicht.** Sie ist ein eigenes Ziel mit eigenem Bundle
+(`ch.sensorstorm.app.watchkitapp`), also braucht sie ein eigenes Provisioning-Profil und
+eine eigene App-ID mit HealthKit — sonst schlägt die Signierung in
+`Tools/publish_ios.sh` mit einem Profilfehler fehl, der nicht sagt, welches Ziel gemeint
+ist. In ASC erscheint sie nicht als eigene App, aber der Fragebogen zur Altersfreigabe
+und die Datenschutzangaben decken sie mit ab: gelesen wird nur die Herzfrequenz, und
+geschrieben wird in „Health" nichts.
 
 Aus dem Repo:
 

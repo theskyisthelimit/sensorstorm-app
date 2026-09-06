@@ -219,6 +219,13 @@ struct SettingsView: View {
                                  set: { hub.settings.measuresNetworkTime = $0 })) {
                 Label("Zeit gegen einen Zeitserver messen", systemImage: "clock.badge.checkmark")
             }
+
+            if hub.settings.isEnabled(.bluetooth) {
+                Toggle(isOn: Binding(get: { hub.settings.logsBluetoothAdvertisements },
+                                     set: { hub.settings.logsBluetoothAdvertisements = $0 })) {
+                    Label("Bluetooth-Rohdaten mitschreiben", systemImage: "dot.radiowaves.forward")
+                }
+            }
         } header: {
             Text("Live-Übertragung")
         } footer: {
@@ -226,6 +233,14 @@ struct SettingsView: View {
                 Text("Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.")
             } else {
                 Text("Für ein eigenes Dashboard, Node-RED oder Home Assistant. Ohne eingetragene Adresse baut die App keine Verbindung auf.")
+            }
+        }
+
+        if hub.settings.logsBluetoothAdvertisements, hub.settings.isEnabled(.bluetooth) {
+            Section {
+                EmptyView()
+            } footer: {
+                Text("Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren — Temperatur, Feuchte, Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.")
             }
         }
 
