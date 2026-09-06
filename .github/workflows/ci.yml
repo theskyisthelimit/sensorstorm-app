@@ -17,6 +17,15 @@ jobs:
       - name: Test the core package
         run: swift test
 
+      # The column order in frames.csv and the key names in scene.json are a contract
+      # between Swift and Python that neither compiler can see. The Blender importer's own
+      # parsing is the only thing that can check it, and until now it only ran when
+      # somebody remembered to run it by hand.
+      - name: Check the Blender bundle contract
+        run: |
+          SS_BUNDLE_OUT="${RUNNER_TEMP}/ss-bundle" swift test --filter bundleContents
+          python3 Tools/blender/check_bundle.py "${RUNNER_TEMP}/ss-bundle"
+
       - name: Generate the Xcode project
         run: xcodegen generate
 

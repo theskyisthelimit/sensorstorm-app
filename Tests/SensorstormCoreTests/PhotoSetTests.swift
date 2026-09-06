@@ -42,7 +42,7 @@ struct PhotoSetTests {
     // MARK: - Auswahl
 
     @Test("Das Bündel enthält Bilder, die Tabelle und das COLMAP-Modell")
-    func bundleContents() async throws {
+    func photoSetContents() async throws {
         let fixture = try SceneBundleTests.Fixture(engine: .arkit)
         defer { fixture.cleanUp() }
         let folder = try makeFolder()
