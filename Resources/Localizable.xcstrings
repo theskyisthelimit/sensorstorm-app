@@ -1,5 +1,2676 @@
 {
-  "sourceLanguage" : "de",
-  "strings" : {},
-  "version" : "1.0"
+  "sourceLanguage": "de",
+  "strings": {
+    "%@ Diagramm(e) ausgeblendet · einblenden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ chart(s) hidden · show"
+          }
+        }
+      }
+    },
+    "%@ gesammelt — ruhig stehen bleiben": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ collected — stand still"
+          }
+        }
+      }
+    },
+    "%@ in 10 s": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ in 10 s"
+          }
+        }
+      }
+    },
+    "%@/10": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@/10"
+          }
+        }
+      }
+    },
+    "%@× GPS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@× GPS"
+          }
+        }
+      }
+    },
+    "%@× Nadel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@× pin"
+          }
+        }
+      }
+    },
+    "%@× gemittelt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@× averaged"
+          }
+        }
+      }
+    },
+    "%lld Clips": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Clip"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Clips"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld clip"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld clips"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld Fixes": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Fix"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Fixes"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld fix"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld fixes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld Fotos": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Foto"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Fotos"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld photo"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld photos"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld Markierungen": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Markierung"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Markierungen"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld annotation"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld annotations"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld m²": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld m²"
+          }
+        }
+      }
+    },
+    "1 m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 m"
+          }
+        }
+      }
+    },
+    "100 m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100 m"
+          }
+        }
+      }
+    },
+    "3D": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3D"
+          }
+        }
+      }
+    },
+    "3D-Szene für Blender": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3D scene for Blender"
+          }
+        }
+      }
+    },
+    "400 Hz Abtastrate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "400 Hz sample rate"
+          }
+        }
+      }
+    },
+    "4K": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4K"
+          }
+        }
+      }
+    },
+    "ARKit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ARKit"
+          }
+        }
+      }
+    },
+    "Abbrechen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Abtastrate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sample rate"
+          }
+        }
+      }
+    },
+    "AirPods-Orientierung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPods orientation"
+          }
+        }
+      }
+    },
+    "Aktivität": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity"
+          }
+        }
+      }
+    },
+    "Alle Fotos und Clips dieses Falls werden mitgelöscht.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every photo and clip belonging to this case will be deleted with it."
+          }
+        }
+      }
+    },
+    "Alle Fälle, Fotos und Clips dieser Begehung werden entfernt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every case, photo and clip in this survey will be removed."
+          }
+        }
+      }
+    },
+    "Alle Sensordaten und das Video werden entfernt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All sensor data and the video will be removed."
+          }
+        }
+      }
+    },
+    "Alle Streams teilen eine gemeinsame Uhr. Ein Export enthält pro Sensor eine CSV-Datei, das Video und die Metadaten.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every stream shares one clock. An export contains one CSV per sensor, the video and the metadata."
+          }
+        }
+      }
+    },
+    "Alles": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        }
+      }
+    },
+    "Alles auf dem Gerät als ein Zip mit manifest.json: jede Datei mit SHA-256, jeder Fall mit Position und Bewertung.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything on the device as one zip with manifest.json: every file with its SHA-256, every case with its position and severity."
+          }
+        }
+      }
+    },
+    "Alles exportieren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export everything"
+          }
+        }
+      }
+    },
+    "Als 3D-Szene exportieren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export as 3D scene"
+          }
+        }
+      }
+    },
+    "Als CSV exportieren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export as CSV"
+          }
+        }
+      }
+    },
+    "Anderes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        }
+      }
+    },
+    "Archiv erstellen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create archive"
+          }
+        }
+      }
+    },
+    "Archiv wird geschrieben … %lld %": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing archive … %lld %"
+          }
+        }
+      }
+    },
+    "Audio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audio"
+          }
+        }
+      }
+    },
+    "Auf diesem Gerät ist keine Kamera verfügbar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No camera is available on this device."
+          }
+        }
+      }
+    },
+    "Aufklappen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expand"
+          }
+        }
+      }
+    },
+    "Aufnahme": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recording"
+          }
+        }
+      }
+    },
+    "Aufnahme entfernen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discard recording"
+          }
+        }
+      }
+    },
+    "Aufnahme gesichert": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recording saved"
+          }
+        }
+      }
+    },
+    "Aufnahme löschen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete recording?"
+          }
+        }
+      }
+    },
+    "Aufnahme starten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start recording"
+          }
+        }
+      }
+    },
+    "Aufnahme stoppen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop recording"
+          }
+        }
+      }
+    },
+    "Aufnahmen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recordings"
+          }
+        }
+      }
+    },
+    "Aufnehmen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record"
+          }
+        }
+      }
+    },
+    "Aus": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        }
+      }
+    },
+    "Ausblenden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide"
+          }
+        }
+      }
+    },
+    "Ausserdem in Pro": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also in Pro"
+          }
+        }
+      }
+    },
+    "Barometer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barometer"
+          }
+        }
+      }
+    },
+    "Batterie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Battery"
+          }
+        }
+      }
+    },
+    "Begehung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey"
+          }
+        }
+      }
+    },
+    "Begehung %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey %@"
+          }
+        }
+      }
+    },
+    "Begehung löschen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete survey?"
+          }
+        }
+      }
+    },
+    "Begehung starten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a survey"
+          }
+        }
+      }
+    },
+    "Begehungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surveys"
+          }
+        }
+      }
+    },
+    "Begehungen und Aufnahmen als ein Zip mit %@: eine Datei, die das ganze Archiv maschinenlesbar beschreibt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surveys and recordings as one zip with %@: a single file that describes the whole archive in machine-readable form."
+          }
+        }
+      }
+    },
+    "Beliebig viele Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any number of surveys side by side — per street, per job, per day."
+          }
+        }
+      }
+    },
+    "Bereich": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Area"
+          }
+        }
+      }
+    },
+    "Bereich entfernen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove area"
+          }
+        }
+      }
+    },
+    "Bereit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready"
+          }
+        }
+      }
+    },
+    "Beschleunigung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceleration"
+          }
+        }
+      }
+    },
+    "Beschleunigung (roh)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceleration (raw)"
+          }
+        }
+      }
+    },
+    "Bewegung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motion"
+          }
+        }
+      }
+    },
+    "Bewegungssensoren bei 400 Hz statt 200 Hz — die Auflösung, in der Vibrationen und Stösse noch als Form erkennbar sind.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motion sensors at 400 Hz instead of 200 Hz — the resolution at which vibrations and shocks still have a recognisable shape."
+          }
+        }
+      }
+    },
+    "Bewertung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Severity"
+          }
+        }
+      }
+    },
+    "Bewertung %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Severity %@"
+          }
+        }
+      }
+    },
+    "Bildschirm aktiv lassen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep screen awake"
+          }
+        }
+      }
+    },
+    "Bündel mit Fotos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bundle with photos"
+          }
+        }
+      }
+    },
+    "CSV": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CSV"
+          }
+        }
+      }
+    },
+    "CSV je Sensor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One CSV per sensor"
+          }
+        }
+      }
+    },
+    "CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format — der Aufbau steht im README des Archivs.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every spreadsheet and every script reads CSV directly. Raw data is smaller and lossless but needs a reader for the .ssbin format — its layout is documented in the archive's README."
+          }
+        }
+      }
+    },
+    "Clip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clip"
+          }
+        }
+      }
+    },
+    "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thank you. The purchase is tied to your Apple Account and applies on every device signed in with it."
+          }
+        }
+      }
+    },
+    "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensor Logger's file layout, so that ecosystem's notebooks read the recording unmodified, plus a .gcsv log for stabilising in Gyroflow."
+          }
+        }
+      }
+    },
+    "Das Foto konnte nicht gesichert werden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The photo could not be saved."
+          }
+        }
+      }
+    },
+    "Daten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        }
+      }
+    },
+    "Datenschutz": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
+          }
+        }
+      }
+    },
+    "Der App Store ist gerade nicht erreichbar. Versuche es später noch einmal.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The App Store cannot be reached right now. Please try again later."
+          }
+        }
+      }
+    },
+    "Der Kauf liess sich nicht überprüfen und wurde nicht freigeschaltet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase could not be verified and was not unlocked."
+          }
+        }
+      }
+    },
+    "Der Kauf wartet auf Freigabe. Sobald sie erteilt ist, schaltet sich Pro von selbst frei.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase is waiting for approval. Pro unlocks itself as soon as it is granted."
+          }
+        }
+      }
+    },
+    "Details": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details"
+          }
+        }
+      }
+    },
+    "Die Aufnahme als .ssbin, verlustfrei und in voller Auflösung, statt gerundet in CSV.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The recording as .ssbin, lossless and at full resolution, rather than rounded into CSV."
+          }
+        }
+      }
+    },
+    "Die Begehung als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The survey as GeoJSON for QGIS, as KML for Google Earth, as GPX to find the spot again, or as a bundle with every photo and clip."
+          }
+        }
+      }
+    },
+    "Die Bildstabilisierung bleibt aus, damit das Bild exakt zu den Bewegungsdaten passt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video stabilisation stays off so the image lines up exactly with the motion data."
+          }
+        }
+      }
+    },
+    "Die Daten bleiben in der Aufnahme": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The data stays in the recording"
+          }
+        }
+      }
+    },
+    "Die Kamera ist noch nicht bereit.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The camera is not ready yet."
+          }
+        }
+      }
+    },
+    "Die Kamera konnte nicht konfiguriert werden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The camera could not be configured."
+          }
+        }
+      }
+    },
+    "Die Kamerapose gehört zu Pro: zu jedem Bild Position, Blickrichtung und Brennweite — die Voraussetzung für den Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The camera pose is part of Pro: position, viewing direction and focal length for every frame — what the 3D scene export to Blender is built on. Tap ARKit to unlock it."
+          }
+        }
+      }
+    },
+    "Diese Aufnahme enthält keine Drehratendaten.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This recording contains no rotation rate data."
+          }
+        }
+      }
+    },
+    "Diese Begehung bleibt vollständig nutzbar: weitere Fälle erfassen, bearbeiten und als CSV exportieren. Für mehrere Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This survey stays fully usable: capture more cases, edit them, export them as CSV. Running several surveys side by side — per street, per job, per day — needs Pro."
+          }
+        }
+      }
+    },
+    "Dieses Gerät unterstützt kein ARKit-Tracking.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device does not support ARKit tracking."
+          }
+        }
+      }
+    },
+    "Drehrate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotation rate"
+          }
+        }
+      }
+    },
+    "Drehrate (roh)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotation rate (raw)"
+          }
+        }
+      }
+    },
+    "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A bundle with frames.csv, scene.json, the video and the GPS track — the Blender add-on turns it into an animated camera."
+          }
+        }
+      }
+    },
+    "Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A survey is a route; a case is a damaged spot on it: any number of photos and clips, the position together with its uncertainty, a severity from 1 to 10, and the marked area."
+          }
+        }
+      }
+    },
+    "Eine Begehung sammelt Fälle entlang eines Wegs. Pro Fall: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A survey collects cases along a route. Per case: any number of photos and clips, the position with its uncertainty, a severity from 1 to 10, and the marked area."
+          }
+        }
+      }
+    },
+    "Einmal kaufen, dauerhaft behalten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buy once, keep it"
+          }
+        }
+      }
+    },
+    "Einmalig, kein Abo: 400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender, Sensor Logger, Gyroflow, mehrere Begehungen, GeoJSON/GPX/KML und der Gesamtexport. Der CSV-Export bleibt auch ohne Pro offen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One-time purchase, no subscription: 400 Hz, 4K, camera pose for 3D, raw data, Blender, Sensor Logger, Gyroflow, multiple surveys, GeoJSON/GPX/KML and the full export. CSV export stays open without Pro too."
+          }
+        }
+      }
+    },
+    "Einstellungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Entfernen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "Entladen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discharging"
+          }
+        }
+      }
+    },
+    "Erfordert Pro": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requires Pro"
+          }
+        }
+      }
+    },
+    "Es wurden keine Daten aufgezeichnet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No data was recorded."
+          }
+        }
+      }
+    },
+    "Export fehlgeschlagen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export failed"
+          }
+        }
+      }
+    },
+    "Export läuft …": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exporting …"
+          }
+        }
+      }
+    },
+    "Exportieren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    },
+    "Fall": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Case"
+          }
+        }
+      }
+    },
+    "Fall erfassen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture case"
+          }
+        }
+      }
+    },
+    "Fall löschen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete case"
+          }
+        }
+      }
+    },
+    "Fall löschen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete case?"
+          }
+        }
+      }
+    },
+    "Fehler": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error"
+          }
+        }
+      }
+    },
+    "Fertig": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "Form": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shape"
+          }
+        }
+      }
+    },
+    "Format": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format"
+          }
+        }
+      }
+    },
+    "Fotos und Clips": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photos and clips"
+          }
+        }
+      }
+    },
+    "Freigeschaltet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlocked"
+          }
+        }
+      }
+    },
+    "Front": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Front"
+          }
+        }
+      }
+    },
+    "Frontkamera": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Front camera"
+          }
+        }
+      }
+    },
+    "Fälle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cases"
+          }
+        }
+      }
+    },
+    "Für dieses Gerät ist keine Videoaufnahme möglich.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This device cannot record video."
+          }
+        }
+      }
+    },
+    "GPS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS"
+          }
+        }
+      }
+    },
+    "GPS hatte %@, %@ gemeldet — beides ist gespeichert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS reported %@, %@ — both are stored."
+          }
+        }
+      }
+    },
+    "GPX-Wegpunkte": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPX waypoints"
+          }
+        }
+      }
+    },
+    "Gemittelt aus %@, gemessene Streuung ±%@ m.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Averaged from %@, measured spread ±%@ m."
+          }
+        }
+      }
+    },
+    "GeoJSON": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GeoJSON"
+          }
+        }
+      }
+    },
+    "GeoJSON, GPX und KML": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GeoJSON, GPX and KML"
+          }
+        }
+      }
+    },
+    "Gerät": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device"
+          }
+        }
+      }
+    },
+    "Gesamtexport": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full export"
+          }
+        }
+      }
+    },
+    "Gilt für alle Bewegungssensoren. GPS, Barometer und Schrittzähler liefern in ihrem eigenen Takt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applies to every motion sensor. GPS, barometer and pedometer report at their own cadence."
+          }
+        }
+      }
+    },
+    "Gravitation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gravity"
+          }
+        }
+      }
+    },
+    "Gyroflow-Log": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gyroflow log"
+          }
+        }
+      }
+    },
+    "Helligkeit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brightness"
+          }
+        }
+      }
+    },
+    "Im Archiv liegt %@: jede Datei mit Grösse und SHA-256, jeder Fall mit Position, Genauigkeit, Bewertung und den Pfaden seiner Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The archive contains %@: every file with its size and SHA-256, every case with its position, accuracy, severity and the paths to its media. A script reads that one file and needs to know nothing else about the folders."
+          }
+        }
+      }
+    },
+    "Inhalt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contents"
+          }
+        }
+      }
+    },
+    "KML (Google Earth)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KML (Google Earth)"
+          }
+        }
+      }
+    },
+    "Kabel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wired"
+          }
+        }
+      }
+    },
+    "Kamera": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera"
+          }
+        }
+      }
+    },
+    "Kamerapose": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera pose"
+          }
+        }
+      }
+    },
+    "Kamerapose für 3D": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera pose for 3D"
+          }
+        }
+      }
+    },
+    "Karte": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map"
+          }
+        }
+      }
+    },
+    "Karte unter das Fadenkreuz schieben. Der GPS-Fix und sein Genauigkeitskreis bleiben sichtbar und werden mitgespeichert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move the map under the crosshair. The GPS fix and its accuracy circle stay visible and are stored alongside."
+          }
+        }
+      }
+    },
+    "Kein Abo, keine Verlängerung, kein Konto.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No subscription, no renewal, no account."
+          }
+        }
+      }
+    },
+    "Kein Bereich markiert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No area marked."
+          }
+        }
+      }
+    },
+    "Kein Mikrofon verfügbar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No microphone available."
+          }
+        }
+      }
+    },
+    "Kein Zugriff auf den Standort": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No access to location"
+          }
+        }
+      }
+    },
+    "Kein Zugriff auf den Standort. Ohne ihn bleibt nur die Nadel von Hand.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No access to location. Without it only the hand-placed pin remains."
+          }
+        }
+      }
+    },
+    "Kein Zugriff auf die Kamera.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No access to the camera."
+          }
+        }
+      }
+    },
+    "Keine Aufnahmen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recordings"
+          }
+        }
+      }
+    },
+    "Keine Begehungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No surveys"
+          }
+        }
+      }
+    },
+    "Keine Kamera verfügbar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No camera available."
+          }
+        }
+      }
+    },
+    "Keine Kamera verfügbar. Es werden nur Sensordaten aufgezeichnet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No camera available. Only sensor data will be recorded."
+          }
+        }
+      }
+    },
+    "Kompass": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compass"
+          }
+        }
+      }
+    },
+    "Kreis": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Circle"
+          }
+        }
+      }
+    },
+    "Kreis mit %lld m Radius": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Circle with a %lld m radius"
+          }
+        }
+      }
+    },
+    "Kreis · %lld m Radius · %@ m²": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Circle · %lld m radius · %@ m²"
+          }
+        }
+      }
+    },
+    "Käufe wiederherstellen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore purchases"
+          }
+        }
+      }
+    },
+    "Lautstärke": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loudness"
+          }
+        }
+      }
+    },
+    "Leeren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
+          }
+        }
+      }
+    },
+    "Lädt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charging"
+          }
+        }
+      }
+    },
+    "Löschen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "Magnetfeld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magnetic field"
+          }
+        }
+      }
+    },
+    "Magnetfeld (roh)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magnetic field (raw)"
+          }
+        }
+      }
+    },
+    "Markierung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annotation"
+          }
+        }
+      }
+    },
+    "Markierung setzen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add annotation"
+          }
+        }
+      }
+    },
+    "Mehrere Begehungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple surveys"
+          }
+        }
+      }
+    },
+    "Meine Position": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My location"
+          }
+        }
+      }
+    },
+    "Messaufnahmen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measurement recordings"
+          }
+        }
+      }
+    },
+    "Messen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure"
+          }
+        }
+      }
+    },
+    "Mindestens 3 Punkte antippen oder ablaufen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap or walk at least 3 points"
+          }
+        }
+      }
+    },
+    "Mobil": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cellular"
+          }
+        }
+      }
+    },
+    "Nadel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pin"
+          }
+        }
+      }
+    },
+    "Nadel von Hand": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pin placed by hand"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "Netzwerk": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Network"
+          }
+        }
+      }
+    },
+    "Neue Begehung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New survey"
+          }
+        }
+      }
+    },
+    "Nichts ausgewählt, was es zu exportieren gäbe.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing selected that could be exported."
+          }
+        }
+      }
+    },
+    "Noch keine Fälle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No cases yet"
+          }
+        }
+      }
+    },
+    "Notiz": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note"
+          }
+        }
+      }
+    },
+    "Nutzungsbedingungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms of use"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten — die Bilder lassen sich damit nicht im Raum platzieren.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without a camera pose the export carries only timestamps and focal lengths — not enough to place the images in space."
+          }
+        }
+      }
+    },
+    "Ohne Position kann ein Fall nicht wiedergefunden werden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without a position a case cannot be found again."
+          }
+        }
+      }
+    },
+    "Ohne Position lässt sich der Fall nicht sichern.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without a position the case cannot be saved."
+          }
+        }
+      }
+    },
+    "Ohne Pro bleibt der CSV-Export jeder Aufnahme und jeder Begehung offen. Deine Messungen gehören dir, gekauft oder nicht.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without Pro the CSV export of every recording and every survey stays open. Your measurements are yours, bought or not."
+          }
+        }
+      }
+    },
+    "Optional: markiere, wie weit der Schaden reicht — als Kreis um dich herum oder als Polygon entlang des Rands.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional: mark how far the damage reaches — as a circle around you or as a polygon along its edge."
+          }
+        }
+      }
+    },
+    "Orientierung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orientation"
+          }
+        }
+      }
+    },
+    "Polygon": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Polygon"
+          }
+        }
+      }
+    },
+    "Polygon mit %lld Punkten": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon mit %lld Punkt"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon mit %lld Punkten"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon with %lld point"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon with %lld points"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Polygon · %lld Punkte · %@ m²": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon · %lld Punkt · %@ m²"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon · %lld Punkte · %@ m²"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon · %lld point · %@ m²"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Polygon · %lld points · %@ m²"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Position": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Position"
+          }
+        }
+      }
+    },
+    "Position wird gesucht …": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finding your position …"
+          }
+        }
+      }
+    },
+    "Position wird gesucht … Ohne Fix oder gesetzte Nadel lässt sich der Fall nicht sichern.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finding your position … Without a fix or a placed pin the case cannot be saved."
+          }
+        }
+      }
+    },
+    "Pro freischalten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock Pro"
+          }
+        }
+      }
+    },
+    "Pro freischalten — %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock Pro — %@"
+          }
+        }
+      }
+    },
+    "Pro schaltet frei": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro unlocks"
+          }
+        }
+      }
+    },
+    "Qualität": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quality"
+          }
+        }
+      }
+    },
+    "Radius": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Radius"
+          }
+        }
+      }
+    },
+    "Radius wählen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose radius"
+          }
+        }
+      }
+    },
+    "Rohdaten (.ssbin)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raw data (.ssbin)"
+          }
+        }
+      }
+    },
+    "Rohdaten exportieren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export raw data"
+          }
+        }
+      }
+    },
+    "Rohdaten-Export": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raw data export"
+          }
+        }
+      }
+    },
+    "Rück": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
+      }
+    },
+    "Rückkamera": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back camera"
+          }
+        }
+      }
+    },
+    "Satellit": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satellite"
+          }
+        }
+      }
+    },
+    "Schalte oben die Kamera ein — ohne Bild gibt es keine Kamerapose.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn the camera on above — without an image there is no camera pose."
+          }
+        }
+      }
+    },
+    "Schliessen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "Schrittzähler": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pedometer"
+          }
+        }
+      }
+    },
+    "Sensor Logger": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensor Logger"
+          }
+        }
+      }
+    },
+    "Sensor Logger und Gyroflow": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensor Logger and Gyroflow"
+          }
+        }
+      }
+    },
+    "Sensorstorm Pro": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensorstorm Pro"
+          }
+        }
+      }
+    },
+    "Sichern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "Starte auf dem Tab „Aufnehmen“ deine erste Messung.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start your first measurement on the Record tab."
+          }
+        }
+      }
+    },
+    "Stopp": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "Text": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text"
+          }
+        }
+      }
+    },
+    "Tippe auf die Karte, um den Mittelpunkt zu versetzen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the map to move the centre."
+          }
+        }
+      }
+    },
+    "Ton aufnehmen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record audio"
+          }
+        }
+      }
+    },
+    "Umbenennen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename"
+          }
+        }
+      }
+    },
+    "Umgebung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Environment"
+          }
+        }
+      }
+    },
+    "Unbekannt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown"
+          }
+        }
+      }
+    },
+    "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten — Dateien, AirDrop, Mail.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roughly %@. The archive is then offered for sharing — Files, AirDrop, Mail."
+          }
+        }
+      }
+    },
+    "Unter freiem Himmel dauert das ein paar Sekunden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Under open sky this takes a few seconds."
+          }
+        }
+      }
+    },
+    "Version": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        }
+      }
+    },
+    "Video & Audio": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video & audio"
+          }
+        }
+      }
+    },
+    "Video in 3840 × 2160, auf derselben Uhr wie jeder Messwert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video at 3840 × 2160, on the same clock as every measurement."
+          }
+        }
+      }
+    },
+    "Video in 4K": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video in 4K"
+          }
+        }
+      }
+    },
+    "Voll": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full"
+          }
+        }
+      }
+    },
+    "WLAN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wi-Fi"
+          }
+        }
+      }
+    },
+    "Was ist es?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What is it?"
+          }
+        }
+      }
+    },
+    "Was ist es? z. B. Schlagloch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What is it? e.g. pothole"
+          }
+        }
+      }
+    },
+    "Wird mit dem aktuellen Zeitstempel gespeichert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved with the current timestamp."
+          }
+        }
+      }
+    },
+    "Wird weiterhin aufgezeichnet": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Still being recorded"
+          }
+        }
+      }
+    },
+    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — die Voraussetzung dafür, Bilder in einer 3D-Szene an ihrem Ort zu platzieren.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records position, viewing direction and focal length for every frame — what it takes to place images at their real spot in a 3D scene."
+          }
+        }
+      }
+    },
+    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — genug, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records position, viewing direction and focal length for every frame — enough to lay the images onto a 3D map in Blender. The video is stored unrotated so the intrinsics still fit."
+          }
+        }
+      }
+    },
+    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Ohne Standortfreigabe fehlt die Nordausrichtung, und die Szene ist um einen unbekannten Winkel verdreht.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Records position, viewing direction and focal length for every frame. Without location access there is no north reference, and the scene is rotated by an unknown angle."
+          }
+        }
+      }
+    },
+    "Zu diesem Apple-Account wurde kein Kauf von Sensorstorm Pro gefunden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No purchase of Sensorstorm Pro was found for this Apple Account."
+          }
+        }
+      }
+    },
+    "Zu wenig freier Speicher für eine Aufnahme.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough free storage for a recording."
+          }
+        }
+      }
+    },
+    "Zu wenige Fixes für eine Mittelung — unter freiem Himmel nochmals versuchen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too few fixes to average — try again under open sky."
+          }
+        }
+      }
+    },
+    "Zuklappen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collapse"
+          }
+        }
+      }
+    },
+    "Zum Fix": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To the fix"
+          }
+        }
+      }
+    },
+    "Zur Aufnahme %@ erfasst — die Fälle liegen auf derselben Uhr wie deren Sensordaten.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Captured during recording %@ — the cases sit on the same clock as its sensor data."
+          }
+        }
+      }
+    },
+    "Zurück": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
+      }
+    },
+    "Zurück auf GPS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back to GPS"
+          }
+        }
+      }
+    },
+    "einzelner GPS-Fix": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "single GPS fix"
+          }
+        }
+      }
+    },
+    "kein Fix": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no fix"
+          }
+        }
+      }
+    },
+    "nicht verfügbar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not available"
+          }
+        }
+      }
+    },
+    "unauffällig": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unremarkable"
+          }
+        }
+      }
+    },
+    "wartet …": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "waiting …"
+          }
+        }
+      }
+    },
+    "Übernehmen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
 }

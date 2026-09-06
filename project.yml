@@ -30,6 +30,9 @@ targets:
       - path: Resources
         excludes:
           - Info.plist
+          # Test data for the simulator, wired into the Run action below. Shipping it
+          # inside the app would be dead weight in every download.
+          - Sensorstorm.storekit
     dependencies:
       - package: SensorstormCore
     settings:
@@ -83,3 +86,26 @@ targets:
         NSCameraUsageDescription: >-
           Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden
           für einen Befund.
+
+# Explicit so the StoreKit configuration below travels with the repo. Without it the
+# in-app purchase can only be exercised against App Store Connect, which means a signed
+# build on real hardware for every change to the paywall.
+#
+# The configuration is bound to the Run action only: `archive` and `test` never see it, so
+# a build headed for TestFlight talks to the real App Store.
+schemes:
+  Sensorstorm:
+    build:
+      targets:
+        Sensorstorm: all
+    run:
+      config: Debug
+      storeKitConfiguration: Resources/Sensorstorm.storekit
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

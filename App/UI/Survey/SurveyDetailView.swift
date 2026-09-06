@@ -262,14 +262,22 @@ struct SurveyDetailView: View {
         }
     }
 
+    /// CSV has no `proFeature`, so it renders as a plain button and stays available — the
+    /// walk you recorded is yours whether or not Pro is bought. The other four are the
+    /// professional formats and carry a padlock until it is.
     private func exportButton(_ format: SurveyExporter.Format,
                               _ title: LocalizedStringKey,
                               _ symbol: String) -> some View {
-        Button {
+        let run: () -> Void = {
             guard let survey else { return }
             Task { shareItem = await model.export(survey, format: format).map(ShareItem.init) }
-        } label: {
-            Label(title, systemImage: symbol)
+        }
+        Group {
+            if let feature = format.proFeature {
+                ProButton(feature, title, symbol, action: run)
+            } else {
+                Button(action: run) { Label(title, systemImage: symbol) }
+            }
         }
         .disabled(survey?.findings.isEmpty ?? true)
     }

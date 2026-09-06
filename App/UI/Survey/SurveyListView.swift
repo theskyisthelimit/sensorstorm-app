@@ -5,8 +5,15 @@ import SwiftUI
 struct SurveyListView: View {
     @Environment(SurveyModel.self) private var model
     @Environment(SensorHub.self) private var hub
+    @Environment(ProEntitlement.self) private var pro
 
     @State private var openedSurveyID: UUID?
+
+    /// The first walk is free. A field tool cannot be judged from a settings screen, and
+    /// the walk someone actually records is both the honest trial and the reason to buy.
+    private var canStartSurvey: Bool {
+        pro.access.allowsStartingSurvey(existingCount: model.surveys.count)
+    }
 
     var body: some View {
         NavigationStack {
@@ -23,7 +30,7 @@ struct SurveyListView: View {
                     Button {
                         startSurvey()
                     } label: {
-                        Label("Neue Begehung", systemImage: "plus")
+                        Label("Neue Begehung", systemImage: canStartSurvey ? "plus" : "lock.fill")
                     }
                 }
                 if !model.surveys.isEmpty {
@@ -55,7 +62,11 @@ struct SurveyListView: View {
                 }
                 .onDelete { model.delete(atOffsets: $0) }
             } footer: {
-                Text("Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
+                if canStartSurvey {
+                    Text("Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
+                } else {
+                    Text("Diese Begehung bleibt vollständig nutzbar: weitere Fälle erfassen, bearbeiten und als CSV exportieren. Für mehrere Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.")
+                }
             }
         }
         .listStyle(.insetGrouped)
@@ -77,6 +88,10 @@ struct SurveyListView: View {
     /// A walk started while a recording runs remembers which one, so the findings and the
     /// sensor streams can be put back together afterwards.
     private func startSurvey() {
+        guard canStartSurvey else {
+            pro.requestUnlock(.additionalSurveys)
+            return
+        }
         guard let survey = model.createSurvey(recordingID: hub.activeRecordingID) else { return }
         openedSurveyID = survey.id
     }

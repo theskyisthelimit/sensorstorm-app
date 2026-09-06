@@ -4,16 +4,21 @@ import SensorstormCore
 enum Format {
     /// „1 Fix", „7 Fixes" — a readout that says „1 Fixes" reads like a placeholder that
     /// was never finished.
+    ///
+    /// The plural rule lives in the String Catalog rather than in a ternary here. A ternary
+    /// knows exactly two forms, which happens to be right for German and English and wrong
+    /// for the first language with a dual or a paucal — and it would be wrong silently,
+    /// because nothing in the code says „two forms" out loud.
     static func fixes(_ count: Int) -> String {
-        count == 1 ? String(localized: "1 Fix") : String(localized: "\(count) Fixes")
+        String(localized: "\(count) Fixes")
     }
 
     static func photos(_ count: Int) -> String {
-        count == 1 ? String(localized: "1 Foto") : String(localized: "\(count) Fotos")
+        String(localized: "\(count) Fotos")
     }
 
     static func clips(_ count: Int) -> String {
-        count == 1 ? String(localized: "1 Clip") : String(localized: "\(count) Clips")
+        String(localized: "\(count) Clips")
     }
 
     /// Sensor values span eleven orders of magnitude — 0.0004 g of noise and 8.54 degrees

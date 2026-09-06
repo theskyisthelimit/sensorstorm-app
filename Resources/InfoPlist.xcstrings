@@ -1,0 +1,91 @@
+{
+  "sourceLanguage" : "de",
+  "strings" : {
+    "NSCameraUsageDescription" : {
+      "comment" : "Privacy - Camera Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden für einen Befund."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm records video in sync with the sensor data and photographs the ground for a case."
+          }
+        }
+      }
+    },
+    "NSLocationAlwaysAndWhenInUseUsageDescription" : {
+      "comment" : "Privacy - Location Always and When In Use Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm während einer Messung gesperrt wird."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm keeps recording your position even when the screen locks during a measurement."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Privacy - Location When In Use Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die Orientierungsdaten an Nordrichtung aus und hält fest, wo ein Befund aufgenommen wurde."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm records position, altitude, speed and course, references the orientation data to true north, and records where a case was captured."
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription" : {
+      "comment" : "Privacy - Microphone Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm misst die Lautstärke, nimmt auf Wunsch den Ton zur Messung auf und zeichnet den Ton der kurzen Clips zu einem Befund auf."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm measures loudness, optionally records audio alongside a measurement, and records the audio of the short clips belonging to a case."
+          }
+        }
+      }
+    },
+    "NSMotionUsageDescription" : {
+      "comment" : "Privacy - Motion Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zeichnet Beschleunigung, Drehrate, Orientierung, Magnetfeld und Schritte auf."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm records acceleration, rotation rate, orientation, magnetic field and steps."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

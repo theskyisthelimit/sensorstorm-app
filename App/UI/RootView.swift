@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootView: View {
     @Environment(SensorHub.self) private var hub
+    @Environment(ProEntitlement.self) private var pro
     @State private var selection: Screen = .record
 
     /// Not called `Tab` — that name belongs to SwiftUI's tab builder below.
@@ -13,6 +14,8 @@ struct RootView: View {
     }
 
     var body: some View {
+        @Bindable var pro = pro
+
         TabView(selection: $selection) {
             Tab("Aufnehmen", systemImage: "dot.radiowaves.left.and.right", value: Screen.record) {
                 RecordView()
@@ -38,5 +41,13 @@ struct RootView: View {
             guard hub.phase == .idle else { return }
             if newValue != .record { hub.stopMonitoring() }
         }
+        // One sheet for nine locks across five screens. Which feature was reached for is
+        // carried by the item itself, so the paywall can lead with it.
+        .sheet(item: $pro.paywall) { request in
+            PaywallView(feature: request.feature)
+        }
+        // Lives as long as the app: reads the entitlement, then keeps listening for
+        // purchases that arrive from outside — redeemed codes, Family Sharing, Ask to Buy.
+        .task { await pro.start() }
     }
 }

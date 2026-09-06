@@ -299,33 +299,25 @@ struct RecordingDetailView: View {
                 } label: {
                     Label("Als CSV exportieren", systemImage: "tablecells")
                 }
-                Button {
+                ProButton(.rawExport, "Rohdaten exportieren", "shippingbox") {
                     Task { shareItem = await library.export(recording, format: .rawBundle)
                         .map(ShareItem.init) }
-                } label: {
-                    Label("Rohdaten exportieren", systemImage: "shippingbox")
                 }
                 if recording.video != nil {
-                    Button {
+                    ProButton(.sceneExport, "Als 3D-Szene exportieren", "move.3d") {
                         Task { shareItem = await library.export(recording, format: .sceneBundle)
                             .map(ShareItem.init) }
-                    } label: {
-                        Label("Als 3D-Szene exportieren", systemImage: "move.3d")
                     }
                 }
                 Divider()
-                Button {
+                ProButton(.interopExport, "Sensor Logger", "arrow.triangle.branch") {
                     Task { shareItem = await library.export(recording, format: .sensorLoggerBundle)
                         .map(ShareItem.init) }
-                } label: {
-                    Label("Sensor Logger", systemImage: "arrow.triangle.branch")
                 }
                 if recording.stream(.gyroscope) != nil, recording.video != nil {
-                    Button {
+                    ProButton(.interopExport, "Gyroflow-Log", "camera.aperture") {
                         Task { shareItem = await library.export(recording, format: .gyroflowLog)
                             .map(ShareItem.init) }
-                    } label: {
-                        Label("Gyroflow-Log", systemImage: "camera.aperture")
                     }
                 }
                 Divider()
