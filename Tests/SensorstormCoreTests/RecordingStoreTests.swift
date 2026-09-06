@@ -248,7 +248,12 @@ struct SensorCatalogTests {
         #expect(SensorID.userAcceleration.rawValue == "userAcceleration")
         #expect(SensorID.headphoneOrientation.rawValue == "headphoneOrientation")
         #expect(SensorID.cameraPose.rawValue == "cameraPose")
-        #expect(SensorID.allCases.count == 18)
+        #expect(SensorID.activity.rawValue == "activity")
+        #expect(SensorID.bluetooth.rawValue == "bluetooth")
+        // A tripwire, not a fact: this line exists so that adding or removing a stream is a
+        // deliberate act. A raw value is an on-disk file name, and renaming one silently
+        // orphans every recording that already used it.
+        #expect(SensorID.allCases.count == 20)
     }
 
     @Test("The camera pose stream carries a full pinhole camera per frame")
