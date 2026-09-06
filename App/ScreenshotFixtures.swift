@@ -90,6 +90,26 @@ enum ScreenshotFixture {
     private static let anchor = Coordinate2D(latitude: 46.9480, longitude: 7.4474)
     private static let day = Date(timeIntervalSince1970: 1_780_000_000)
 
+    /// Fixed rather than read from the running simulator.
+    ///
+    /// The recording detail screen prints both of these, and `UIDevice.current` would
+    /// report a different iOS version on the iPhone runtime than on the iPad one — the
+    /// same drift between shots that the fixed UUIDs and the fixed date exist to prevent.
+    /// It is also the reason this compiles at all: `UIDevice` is `@MainActor`, and seeding
+    /// runs from `App.init` before any view exists.
+    private static let fixtureDevice = DeviceInfo(
+        model: "iPhone", systemName: "iOS", systemVersion: "18.0",
+        appVersion: bundleVersion)
+
+    /// The same string `SettingsView.appVersion` builds, read straight from the bundle so
+    /// it needs no actor — the info dictionary is not isolated to anything.
+    private static var bundleVersion: String {
+        let info = Bundle.main.infoDictionary
+        let version = info?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+        let build = info?["CFBundleVersion"] as? String ?? "0"
+        return "\(version) (\(build))"
+    }
+
     static func seed(recordings: RecordingStore, surveys: SurveyStore) {
         guard isActive else { return }
         try? surveys.delete(surveyID)
@@ -238,9 +258,7 @@ enum ScreenshotFixture {
             startedAt: day,
             startHostTime: 0,
             duration: duration,
-            device: DeviceInfo(model: "iPhone", systemName: "iOS",
-                               systemVersion: UIDevice.current.systemVersion,
-                               appVersion: SettingsView.appVersion),
+            device: fixtureDevice,
             streams: streams,
             requestedRateHz: rate)
         try? store.save(metadata)
