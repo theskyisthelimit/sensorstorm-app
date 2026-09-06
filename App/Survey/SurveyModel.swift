@@ -222,7 +222,7 @@ final class SurveyModel {
     func addFinding(_ draft: FindingDraft, to surveyID: UUID) -> GroundFinding? {
         guard var survey = survey(surveyID) else { return nil }
         guard let location = draft.location, location.coordinate.isValid else {
-            errorMessage = String(localized: "Ohne Position lässt sich der Fall nicht sichern.")
+            errorMessage = String(localized: "Ohne Position lässt sich die Beobachtung nicht sichern.")
             return nil
         }
 
@@ -347,7 +347,7 @@ final class SurveyModel {
     static func defaultName(for date: Date) -> String {
         let stamp = date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits)
             .hour(.twoDigits(amPM: .omitted)).minute(.twoDigits))
-        return String(localized: "Begehung \(stamp)")
+        return String(localized: "Route \(stamp)")
     }
 }
 

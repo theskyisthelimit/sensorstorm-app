@@ -1897,118 +1897,118 @@
         }
       }
     },
-    "Alle Fotos und Clips dieses Falls werden mitgelöscht.": {
+    "Alle Beobachtungen, Fotos und Clips dieser Route werden entfernt.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every photo and clip belonging to this case will be deleted with it."
+            "value": "Every observation, photo and clip in this route will be removed."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Toutes les photos et vidéos de ce cas seront supprimées avec lui."
+            "state": "needs_review",
+            "value": "Tous les observations, photos et vidéos de ce parcours seront supprimés."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Tutte le foto e i video di questo caso verranno eliminati con esso."
+            "state": "needs_review",
+            "value": "Tutti le osservazioni, le foto e i video di questo percorso verranno rimossi."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Todas las fotos y vídeos de este caso se eliminarán con él."
+            "state": "needs_review",
+            "value": "Se eliminarán todos las observaciones, fotos y vídeos de este recorrido."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Alle foto's en clips van dit geval worden mee verwijderd."
+            "state": "needs_review",
+            "value": "Alle waarnemingen, foto's en clips van deze route worden verwijderd."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Todas as fotos e clipes deste caso serão excluídos junto com ele."
+            "state": "needs_review",
+            "value": "Todos as observações, fotos e clipes deste percurso serão removidos."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "この事案の写真と動画もすべて削除されます。"
+            "state": "needs_review",
+            "value": "このルートのすべての観測点、写真、動画が削除されます。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "이 사례의 사진과 동영상도 함께 삭제됩니다."
+            "state": "needs_review",
+            "value": "이 경로의 모든 관측, 사진, 동영상이 삭제됩니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "此案件的所有照片與影片也會一併刪除。"
+            "state": "needs_review",
+            "value": "此路線的所有觀測點、照片與影片都會被移除。"
           }
         }
       }
     },
-    "Alle Fälle, Fotos und Clips dieser Begehung werden entfernt.": {
+    "Alle Fotos und Clips dieser Beobachtung werden mitgelöscht.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every case, photo and clip in this survey will be removed."
+            "value": "Every photo and clip belonging to this observation will be deleted with it."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Tous les cas, photos et vidéos de ce parcours seront supprimés."
+            "state": "needs_review",
+            "value": "Toutes les photos et vidéos de cette observation seront supprimées avec lui."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Tutti i casi, le foto e i video di questo percorso verranno rimossi."
+            "state": "needs_review",
+            "value": "Tutte le foto e i video di questa osservazione verranno eliminati con esso."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Se eliminarán todos los casos, fotos y vídeos de este recorrido."
+            "state": "needs_review",
+            "value": "Todas las fotos y vídeos de esta observación se eliminarán con él."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Alle gevallen, foto's en clips van deze ronde worden verwijderd."
+            "state": "needs_review",
+            "value": "Alle foto's en clips van deze waarneming worden mee verwijderd."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Todos os casos, fotos e clipes deste percurso serão removidos."
+            "state": "needs_review",
+            "value": "Todas as fotos e clipes desta observação serão excluídos junto com ele."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "この巡回のすべての事案、写真、動画が削除されます。"
+            "state": "needs_review",
+            "value": "この観測点の写真と動画もすべて削除されます。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "이 순회의 모든 사례, 사진, 동영상이 삭제됩니다."
+            "state": "needs_review",
+            "value": "이 관측의 사진과 동영상도 함께 삭제됩니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "此巡查路線的所有案件、照片與影片都會被移除。"
+            "state": "needs_review",
+            "value": "此觀測點的所有照片與影片也會一併刪除。"
           }
         }
       }
@@ -2303,60 +2303,60 @@
         }
       }
     },
-    "Alles auf dem Gerät als ein Zip mit manifest.json: jede Datei mit SHA-256, jeder Fall mit Position und Bewertung.": {
+    "Alles auf dem Gerät als ein Zip mit manifest.json: jede Datei mit SHA-256, jede Beobachtung mit Position und Bewertung.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Everything on the device as one zip with manifest.json: every file with its SHA-256, every case with its position and severity."
+            "value": "Everything on the device as one zip with manifest.json: every file with its SHA-256, every observation with its position and severity."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Tout ce qui est sur l'appareil dans un ZIP avec manifest.json : chaque fichier avec son SHA-256, chaque cas avec sa position et sa gravité."
+            "state": "needs_review",
+            "value": "Tout ce qui est sur l'appareil dans un ZIP avec manifest.json : chaque fichier avec son SHA-256, chaque observation avec sa position et sa gravité."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Tutto ciò che è sul dispositivo in un unico ZIP con manifest.json: ogni file con il suo SHA-256, ogni caso con posizione e gravità."
+            "state": "needs_review",
+            "value": "Tutto ciò che è sul dispositivo in un unico ZIP con manifest.json: ogni file con il suo SHA-256, ogni osservazione con posizione e gravità."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Todo lo que hay en el dispositivo en un ZIP con manifest.json: cada archivo con su SHA-256, cada caso con su posición y su gravedad."
+            "state": "needs_review",
+            "value": "Todo lo que hay en el dispositivo en un ZIP con manifest.json: cada archivo con su SHA-256, cada observación con su posición y su gravedad."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Alles op het apparaat als één ZIP met manifest.json: elk bestand met zijn SHA-256, elk geval met positie en ernst."
+            "state": "needs_review",
+            "value": "Alles op het apparaat als één ZIP met manifest.json: elk bestand met zijn SHA-256, elke waarneming met positie en ernst."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Tudo o que está no aparelho em um ZIP com manifest.json: cada arquivo com seu SHA-256, cada caso com posição e gravidade."
+            "state": "needs_review",
+            "value": "Tudo o que está no aparelho em um ZIP com manifest.json: cada arquivo com seu SHA-256, cada observação com posição e gravidade."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "端末上のすべてを manifest.json 付きの ZIP で。各ファイルに SHA-256、各事案に位置と深刻度。"
+            "state": "needs_review",
+            "value": "端末上のすべてを manifest.json 付きの ZIP で。各ファイルに SHA-256、各観測点に位置と深刻度。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "기기에 있는 모든 것을 manifest.json이 담긴 ZIP 하나로. 파일마다 SHA-256, 사례마다 위치와 심각도."
+            "state": "needs_review",
+            "value": "기기에 있는 모든 것을 manifest.json이 담긴 ZIP 하나로. 파일마다 SHA-256, 관측마다 위치와 심각도."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "裝置上的一切打包成含 manifest.json 的單一 ZIP：每個檔案附 SHA-256，每個案件附位置與嚴重度。"
+            "state": "needs_review",
+            "value": "裝置上的一切打包成含 manifest.json 的單一 ZIP：每個檔案附 SHA-256，每個觀測點附位置與嚴重度。"
           }
         }
       }
@@ -3753,354 +3753,6 @@
         }
       }
     },
-    "Begehung": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Survey"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Parcours"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Percorso"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Recorrido"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ronde"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Percurso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡回"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "순회"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡查路線"
-          }
-        }
-      }
-    },
-    "Begehung %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Survey %@"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Parcours %@"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Percorso %@"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Recorrido %@"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ronde %@"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Percurso %@"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡回 %@"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "순회 %@"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡查路線 %@"
-          }
-        }
-      }
-    },
-    "Begehung löschen?": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delete survey?"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Supprimer le parcours ?"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Eliminare il percorso?"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "¿Eliminar el recorrido?"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ronde verwijderen?"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Excluir o percurso?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡回を削除しますか？"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "순회를 삭제할까요?"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "要刪除這條巡查路線嗎？"
-          }
-        }
-      }
-    },
-    "Begehung starten": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start a survey"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Démarrer un parcours"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Avvia un percorso"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Iniciar un recorrido"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Ronde starten"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Iniciar um percurso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡回を開始"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "순회 시작"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "開始巡查"
-          }
-        }
-      }
-    },
-    "Begehungen": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Surveys"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Parcours"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Percorsi"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Recorridos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Rondes"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Percursos"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡回"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "순회"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡查路線"
-          }
-        }
-      }
-    },
-    "Begehungen und Aufnahmen als ein Zip mit %@: eine Datei, die das ganze Archiv maschinenlesbar beschreibt.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Surveys and recordings as one zip with %@: a single file that describes the whole archive in machine-readable form."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parcours et enregistrements dans un ZIP avec %@ : un fichier qui décrit toute l'archive de façon lisible par une machine."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Percorsi e registrazioni in un unico ZIP con %@: un file che descrive l'intero archivio in modo leggibile da una macchina."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recorridos y grabaciones en un ZIP con %@: un archivo que describe todo el conjunto de forma legible por una máquina."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rondes en opnamen als één ZIP met %@: één bestand dat het hele archief machineleesbaar beschrijft."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Percursos e gravações em um ZIP com %@: um arquivo que descreve todo o conjunto de forma legível por máquina."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "巡回と記録を %@ 付きの1つの ZIP に。アーカイブ全体を機械可読に記述する1ファイルです。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "순회와 기록을 %@이(가) 담긴 ZIP 하나로. 아카이브 전체를 기계가 읽을 수 있게 설명하는 파일 하나입니다."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "巡查路線與記錄打包成含 %@ 的單一 ZIP：一個檔案即以機器可讀的方式描述整個封存。"
-          }
-        }
-      }
-    },
     "Belagsausbruch": {
       "localizations": {
         "en": {
@@ -4159,12 +3811,12 @@
         }
       }
     },
-    "Beliebig viele Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag.": {
+    "Beliebig viele Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Any number of surveys side by side — per street, per job, per day."
+            "value": "Any number of routes side by side — per street, per job, per day."
           }
         },
         "fr": {
@@ -4187,8 +3839,8 @@
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Zoveel rondes naast elkaar als je wilt — per straat, per opdracht, per dag."
+            "state": "needs_review",
+            "value": "Zoveel routes naast elkaar als je wilt — per straat, per opdracht, per dag."
           }
         },
         "pt-BR": {
@@ -4199,20 +3851,368 @@
         },
         "ja": {
           "stringUnit": {
+            "state": "needs_review",
+            "value": "ルートはいくつでも並行して — 道路ごと、案件ごと、日ごとに。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "경로는 얼마든지 동시에 — 도로별, 건별, 날짜별로."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "同時進行任意多條路線 — 依道路、依觀測點、依日期。"
+          }
+        }
+      }
+    },
+    "Beobachtung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
             "state": "translated",
-            "value": "巡回はいくつでも並行して — 道路ごと、案件ごと、日ごとに。"
+            "value": "Observation"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osservazione"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observación"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waarneming"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observação"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測点"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "순회는 얼마든지 동시에 — 도로별, 건별, 날짜별로."
+            "value": "관측"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "同時進行任意多條巡查路線 — 依道路、依案件、依日期。"
+            "value": "觀測點"
+          }
+        }
+      }
+    },
+    "Beobachtung erfassen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture observation"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisir une observation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registra osservazione"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar observación"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waarneming vastleggen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar observação"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測点を記録"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "관측 기록"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄觀測點"
+          }
+        }
+      }
+    },
+    "Beobachtung löschen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete observation"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer l'observation"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina osservazione"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar observación"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waarneming verwijderen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir observação"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測点を削除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "관측 삭제"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除觀測點"
+          }
+        }
+      }
+    },
+    "Beobachtung löschen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete observation?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer l'observation ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare l'osservazione?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar la observación?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waarneming verwijderen?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir observação?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測点を削除しますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "관측을 삭제할까요?"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要刪除此觀測點嗎？"
+          }
+        }
+      }
+    },
+    "Beobachtung nicht gefunden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observation not found"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observation introuvable"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osservazione non trovata"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observación no encontrada"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waarneming niet gevonden"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測点が見つかりません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "관측을 찾을 수 없습니다"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observação não encontrada"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到觀測點"
+          }
+        }
+      }
+    },
+    "Beobachtungen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observations"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observations"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osservazioni"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observaciones"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waarnemingen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Observações"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "観測点"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "관측"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "觀測點"
           }
         }
       }
@@ -5783,64 +5783,6 @@
         }
       }
     },
-    "Die Begehung als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The survey as GeoJSON for QGIS, as KML for Google Earth, as GPX to find the spot again, or as a bundle with every photo and clip."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le parcours en GeoJSON pour QGIS, en KML pour Google Earth, en GPX pour retrouver l'endroit, ou en ensemble avec chaque photo et chaque clip."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il percorso in GeoJSON per QGIS, in KML per Google Earth, in GPX per ritrovare il punto, o come pacchetto con ogni foto e ogni clip."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El recorrido en GeoJSON para QGIS, en KML para Google Earth, en GPX para volver a encontrar el punto, o como paquete con cada foto y cada clip."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De ronde als GeoJSON voor QGIS, als KML voor Google Earth, als GPX om de plek terug te vinden, of als bundel met elke foto en elke clip."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O percurso em GeoJSON para o QGIS, em KML para o Google Earth, em GPX para reencontrar o ponto, ou como pacote com cada foto e cada clipe."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "巡回を QGIS 用の GeoJSON、Google Earth 用の KML、現地を再訪するための GPX、または写真と動画をすべて含むバンドルとして。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "순회를 QGIS용 GeoJSON, Google Earth용 KML, 현장을 다시 찾기 위한 GPX, 또는 모든 사진과 클립이 담긴 번들로."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "將巡查路線輸出為 QGIS 用的 GeoJSON、Google Earth 用的 KML、用來回到現場的 GPX，或含所有照片與影片的封裝。"
-          }
-        }
-      }
-    },
     "Die Bildstabilisierung bleibt aus, damit das Bild exakt zu den Bewegungsdaten passt.": {
       "localizations": {
         "en": {
@@ -6189,6 +6131,122 @@
         }
       }
     },
+    "Die Route als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The route as GeoJSON for QGIS, as KML for Google Earth, as GPX to find the spot again, or as a bundle with every photo and clip."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le parcours en GeoJSON pour QGIS, en KML pour Google Earth, en GPX pour retrouver l'endroit, ou en ensemble avec chaque photo et chaque clip."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il percorso in GeoJSON per QGIS, in KML per Google Earth, in GPX per ritrovare il punto, o come pacchetto con ogni foto e ogni clip."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El recorrido en GeoJSON para QGIS, en KML para Google Earth, en GPX para volver a encontrar el punto, o como paquete con cada foto y cada clip."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "De route als GeoJSON voor QGIS, als KML voor Google Earth, als GPX om de plek terug te vinden, of als bundel met elke foto en elke clip."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O percurso em GeoJSON para o QGIS, em KML para o Google Earth, em GPX para reencontrar o ponto, ou como pacote com cada foto e cada clipe."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ルートを QGIS 用の GeoJSON、Google Earth 用の KML、現地を再訪するための GPX、または写真と動画をすべて含むバンドルとして。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "경로를 QGIS용 GeoJSON, Google Earth용 KML, 현장을 다시 찾기 위한 GPX, 또는 모든 사진과 클립이 담긴 번들로."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "將路線輸出為 QGIS 用的 GeoJSON、Google Earth 用的 KML、用來回到現場的 GPX，或含所有照片與影片的封裝。"
+          }
+        }
+      }
+    },
+    "Die laufende Aufnahme benutzt die Kamera. Beobachtung ohne Foto erfassen oder die Aufnahme stoppen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The running recording is using the camera. Capture the observation without a photo, or stop the recording."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'enregistrement en cours utilise la caméra. Saisissez l'observation sans photo ou arrêtez l'enregistrement."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La registrazione in corso sta usando la fotocamera. Registra l’osservazione senza foto oppure interrompi la registrazione."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La grabación en curso está usando la cámara. Registra la observación sin foto o detén la grabación."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De lopende opname gebruikt de camera. Leg de waarneming zonder foto vast of stop de opname."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記録中のためカメラを使用しています。写真なしで観測点を記録するか、記録を停止してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "진행 중인 기록이 카메라를 사용하고 있습니다. 사진 없이 관측을 기록하거나 기록을 중지하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A gravação em andamento está usando a câmera. Registre a observação sem foto ou pare a gravação."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "進行中的記錄正在使用相機。請在不拍照的情況下記錄觀測點，或先停止記錄。"
+          }
+        }
+      }
+    },
     "Diese Aufnahme enthält keine Drehratendaten.": {
       "localizations": {
         "en": {
@@ -6247,60 +6305,118 @@
         }
       }
     },
-    "Diese Begehung bleibt vollständig nutzbar: weitere Fälle erfassen, bearbeiten und als CSV exportieren. Für mehrere Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.": {
+    "Diese Aufnahme enthält keine verwertbaren GPS-Fixe.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "This survey stays fully usable: capture more cases, edit them, export them as CSV. Running several surveys side by side — per street, per job, per day — needs Pro."
+            "value": "This recording contains no usable GPS fixes."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ce parcours reste entièrement utilisable : ajouter des cas, les modifier, les exporter en CSV. Mener plusieurs parcours en parallèle — par rue, par mandat, par jour — demande Pro."
+            "value": "Cet enregistrement ne contient aucun point GPS exploitable."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Questo percorso resta pienamente utilizzabile: aggiungere casi, modificarli, esportarli in CSV. Per più percorsi in parallelo — per strada, per incarico, per giorno — serve Pro."
+            "value": "Questa registrazione non contiene fix GPS utilizzabili."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Este recorrido sigue siendo plenamente utilizable: añadir casos, editarlos y exportarlos en CSV. Para llevar varios recorridos en paralelo (por calle, por encargo, por día) hace falta Pro."
+            "value": "Esta grabación no contiene posiciones GPS utilizables."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deze ronde blijft volledig bruikbaar: meer gevallen vastleggen, bewerken en als CSV exporteren. Voor meerdere rondes naast elkaar — per straat, per opdracht, per dag — is Pro nodig."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Este percurso continua totalmente utilizável: registrar mais casos, editá-los e exportá-los em CSV. Para vários percursos em paralelo — por rua, por serviço, por dia — é preciso o Pro."
+            "value": "Deze opname bevat geen bruikbare GPS-fixes."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "この巡回はこれまでどおり使えます。事案の追加、編集、CSV 書き出しはそのままです。複数の巡回を並行して — 道路ごと、案件ごと、日ごとに — 進めるには Pro が必要です。"
+            "value": "この記録には利用できるGPS測位がありません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 순회는 그대로 사용할 수 있습니다. 사례를 더 기록하고, 편집하고, CSV로 내보낼 수 있습니다. 여러 순회를 동시에 — 도로별, 건별, 날짜별로 — 진행하려면 Pro가 필요합니다."
+            "value": "이 기록에는 사용할 수 있는 GPS 측위가 없습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta gravação não contém fixos de GPS utilizáveis."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "這條巡查路線仍可完整使用：繼續新增案件、編輯，並匯出成 CSV。若要同時進行多條巡查路線 — 依道路、依案件、依日期 — 則需要 Pro。"
+            "value": "此記錄不含可用的 GPS 定位。"
+          }
+        }
+      }
+    },
+    "Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This route stays fully usable: capture more observations, edit them, export them as CSV. Running several routes side by side — per street, per job, per day — needs Pro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ce parcours reste entièrement utilisable : ajouter des observations, les modifier, les exporter en CSV. Mener plusieurs parcours en parallèle — par rue, par mandat, par jour — demande Pro."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Questo percorso resta pienamente utilizzabile: aggiungere osservazioni, modificarli, esportarli in CSV. Per più percorsi in parallelo — per strada, per incarico, per giorno — serve Pro."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este recorrido sigue siendo plenamente utilizable: añadir observaciones, editarlos y exportarlos en CSV. Para llevar varios recorridos en paralelo (por calle, por encargo, por día) hace falta Pro."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze route blijft volledig bruikbaar: meer waarnemingen vastleggen, bewerken en als CSV exporteren. Voor meerdere routes naast elkaar — per straat, per opdracht, per dag — is Pro nodig."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este percurso continua totalmente utilizável: registrar mais observações, editá-los e exportá-los em CSV. Para vários percursos em paralelo — por rua, por serviço, por dia — é preciso o Pro."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "このルートはこれまでどおり使えます。観測点の追加、編集、CSV 書き出しはそのままです。複数のルートを並行して — 道路ごと、案件ごと、日ごとに — 進めるには Pro が必要です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "이 경로는 그대로 사용할 수 있습니다. 관측를 더 기록하고, 편집하고, CSV로 내보낼 수 있습니다. 여러 경로를 동시에 — 도로별, 건별, 날짜별로 — 진행하려면 Pro가 필요합니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "這條路線仍可完整使用：繼續新增觀測點、編輯，並匯出成 CSV。若要同時進行多條路線 — 依道路、依觀測點、依日期 — 則需要 Pro。"
           }
         }
       }
@@ -6537,118 +6653,118 @@
         }
       }
     },
-    "Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
+    "Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "A survey is a route; a case is a damaged spot on it: any number of photos and clips, the position together with its uncertainty, a severity from 1 to 10, and the marked area."
+            "value": "A route is a path; an observation is a spot on it: any number of photos and clips, the position together with its uncertainty, a severity from 1 to 10, and the marked area."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Un parcours est un chemin, un cas une dégradation sur ce chemin : autant de photos et de clips que voulu, la position avec son incertitude, une gravité de 1 à 10 et la zone marquée."
+            "state": "needs_review",
+            "value": "Un parcours est un chemin, une observation une dégradation sur ce chemin : autant de photos et de clips que voulu, la position avec son incertitude, une gravité de 1 à 10 et la zone marquée."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Un percorso è un tragitto, un caso un punto danneggiato lungo di esso: quante foto e clip vuoi, la posizione con la sua incertezza, una gravità da 1 a 10 e l'area marcata."
+            "state": "needs_review",
+            "value": "Un percorso è un tragitto, un'osservazione un punto danneggiato lungo di esso: quante foto e clip vuoi, la posizione con la sua incertezza, una gravità da 1 a 10 e l'area marcata."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Un recorrido es un camino; un caso, un punto dañado en él: cuantas fotos y clips quieras, la posición con su incertidumbre, una gravedad de 1 a 10 y la zona marcada."
+            "state": "needs_review",
+            "value": "Un recorrido es un camino; una observación, un punto dañado en él: cuantas fotos y clips quieras, la posición con su incertidumbre, una gravedad de 1 a 10 y la zona marcada."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Een ronde is een route, een geval een beschadigde plek daarop: zoveel foto's en clips als je wilt, de positie met haar onzekerheid, een ernst van 1 tot 10 en het gemarkeerde gebied."
+            "state": "needs_review",
+            "value": "Een route is een route, een waarneming een beschadigde plek daarop: zoveel foto's en clips als je wilt, de positie met haar onzekerheid, een ernst van 1 tot 10 en het gemarkeerde gebied."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Um percurso é um caminho; um caso, um ponto danificado nele: quantas fotos e clipes você quiser, a posição com sua incerteza, uma gravidade de 1 a 10 e a área marcada."
+            "state": "needs_review",
+            "value": "Um percurso é um caminho; uma observação, um ponto danificado nele: quantas fotos e clipes você quiser, a posição com sua incerteza, uma gravidade de 1 a 10 e a área marcada."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "巡回は経路、事案はその上の損傷箇所です。写真とクリップは何件でも、位置は不確かさとともに、1〜10 の深刻度、そして指定した範囲。"
+            "state": "needs_review",
+            "value": "ルートは経路、観測点はその上の損傷箇所です。写真とクリップは何件でも、位置は不確かさとともに、1〜10 の深刻度、そして指定した範囲。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "순회는 경로이고, 사례는 그 위의 손상 지점입니다. 사진과 클립은 원하는 만큼, 위치는 불확실성과 함께, 1에서 10까지의 심각도, 그리고 표시한 범위."
+            "state": "needs_review",
+            "value": "경로는 경로이고, 관측는 그 위의 손상 지점입니다. 사진과 클립은 원하는 만큼, 위치는 불확실성과 함께, 1에서 10까지의 심각도, 그리고 표시한 범위."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "巡查路線是一條路徑，案件是路徑上的損壞點：照片與影片不限數量、附不確定範圍的位置、1 到 10 的嚴重度，以及標記的範圍。"
+            "state": "needs_review",
+            "value": "路線是一條路徑，觀測點是路徑上的損壞點：照片與影片不限數量、附不確定範圍的位置、1 到 10 的嚴重度，以及標記的範圍。"
           }
         }
       }
     },
-    "Eine Begehung sammelt Fälle entlang eines Wegs. Pro Fall: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
+    "Eine Route sammelt Beobachtungen entlang eines Wegs. Pro Beobachtung: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "A survey collects cases along a route. Per case: any number of photos and clips, the position with its uncertainty, a severity from 1 to 10, and the marked area."
+            "value": "A route collects observations along a path. Per observation: any number of photos and clips, the position with its uncertainty, a severity from 1 to 10, and the marked area."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Un parcours rassemble des cas le long d'un chemin. Par cas : autant de photos et de clips que voulu, la position avec son incertitude, une gravité de 1 à 10 et la zone marquée."
+            "state": "needs_review",
+            "value": "Un parcours rassemble des observations le long d'un chemin. Par observation : autant de photos et de clips que voulu, la position avec son incertitude, une gravité de 1 à 10 et la zone marquée."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Un percorso raccoglie casi lungo un tragitto. Per caso: quante foto e clip vuoi, la posizione con la sua incertezza, una gravità da 1 a 10 e l'area marcata."
+            "state": "needs_review",
+            "value": "Un percorso raccoglie osservazioni lungo un tragitto. Per osservazione: quante foto e clip vuoi, la posizione con la sua incertezza, una gravità da 1 a 10 e l'area marcata."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Un recorrido reúne casos a lo largo de un camino. Por caso: cuantas fotos y clips quieras, la posición con su incertidumbre, una gravedad de 1 a 10 y la zona marcada."
+            "state": "needs_review",
+            "value": "Un recorrido reúne observaciones a lo largo de un camino. Por observación: cuantas fotos y clips quieras, la posición con su incertidumbre, una gravedad de 1 a 10 y la zona marcada."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Een ronde verzamelt gevallen langs een route. Per geval: zoveel foto's en clips als je wilt, de positie met haar onzekerheid, een ernst van 1 tot 10 en het gemarkeerde gebied."
+            "state": "needs_review",
+            "value": "Een route verzamelt waarnemingen langs een route. Per waarneming: zoveel foto's en clips als je wilt, de positie met haar onzekerheid, een ernst van 1 tot 10 en het gemarkeerde gebied."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Um percurso reúne casos ao longo de um caminho. Por caso: quantas fotos e clipes você quiser, a posição com sua incerteza, uma gravidade de 1 a 10 e a área marcada."
+            "state": "needs_review",
+            "value": "Um percurso reúne observações ao longo de um caminho. Por observação: quantas fotos e clipes você quiser, a posição com sua incerteza, uma gravidade de 1 a 10 e a área marcada."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "巡回は経路に沿って事案を集めます。事案ごとに、写真とクリップは何件でも、位置は不確かさとともに、1〜10 の深刻度、そして指定した範囲。"
+            "state": "needs_review",
+            "value": "ルートは経路に沿って観測点を集めます。観測点ごとに、写真とクリップは何件でも、位置は不確かさとともに、1〜10 の深刻度、そして指定した範囲。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "순회는 경로를 따라 사례를 모읍니다. 사례마다 사진과 클립은 원하는 만큼, 위치는 불확실성과 함께, 1에서 10까지의 심각도, 그리고 표시한 범위."
+            "state": "needs_review",
+            "value": "경로는 경로를 따라 관측를 모읍니다. 관측마다 사진과 클립은 원하는 만큼, 위치는 불확실성과 함께, 1에서 10까지의 심각도, 그리고 표시한 범위."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "巡查路線沿著一條路徑蒐集案件。每個案件：照片與影片不限數量、附不確定範圍的位置、1 到 10 的嚴重度，以及標記的範圍。"
+            "state": "needs_review",
+            "value": "路線沿著一條路徑蒐集觀測點。每個觀測點：照片與影片不限數量、附不確定範圍的位置、1 到 10 的嚴重度，以及標記的範圍。"
           }
         }
       }
@@ -6769,12 +6885,12 @@
         }
       }
     },
-    "Einmalig, kein Abo: 400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender, Sensor Logger, Gyroflow, mehrere Begehungen, GeoJSON/GPX/KML und der Gesamtexport. Der CSV-Export bleibt auch ohne Pro offen.": {
+    "Einmalig, kein Abo: 400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender, Sensor Logger, Gyroflow, mehrere Routen, GeoJSON/GPX/KML und der Gesamtexport. Der CSV-Export bleibt auch ohne Pro offen.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "One-time purchase, no subscription: 400 Hz, 4K, camera pose for 3D, raw data, Blender, Sensor Logger, Gyroflow, multiple surveys, GeoJSON/GPX/KML and the full export. CSV export stays open without Pro too."
+            "value": "One-time purchase, no subscription: 400 Hz, 4K, camera pose for 3D, raw data, Blender, Sensor Logger, Gyroflow, multiple routes, GeoJSON/GPX/KML and the full export. CSV export stays open without Pro too."
           }
         },
         "fr": {
@@ -6797,8 +6913,8 @@
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Eenmalig, geen abonnement: 400 Hz, 4K, camerapose voor 3D, ruwe data, Blender, Sensor Logger, Gyroflow, meerdere rondes, GeoJSON/GPX/KML en de volledige export. De CSV-export blijft ook zonder Pro open."
+            "state": "needs_review",
+            "value": "Eenmalig, geen abonnement: 400 Hz, 4K, camerapose voor 3D, ruwe data, Blender, Sensor Logger, Gyroflow, meerdere routes, GeoJSON/GPX/KML en de volledige export. De CSV-export blijft ook zonder Pro open."
           }
         },
         "pt-BR": {
@@ -6809,20 +6925,20 @@
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "買い切り、サブスクリプションではありません。400 Hz、4K、3D 用カメラポーズ、生データ、Blender、Sensor Logger、Gyroflow、複数の巡回、GeoJSON/GPX/KML、一括書き出し。CSV 書き出しは Pro なしでも使えます。"
+            "state": "needs_review",
+            "value": "買い切り、サブスクリプションではありません。400 Hz、4K、3D 用カメラポーズ、生データ、Blender、Sensor Logger、Gyroflow、複数のルート、GeoJSON/GPX/KML、一括書き出し。CSV 書き出しは Pro なしでも使えます。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "일회성 구매, 구독 아님: 400 Hz, 4K, 3D용 카메라 포즈, 원시 데이터, Blender, Sensor Logger, Gyroflow, 여러 순회, GeoJSON/GPX/KML, 전체 내보내기. CSV 내보내기는 Pro 없이도 열려 있습니다."
+            "state": "needs_review",
+            "value": "일회성 구매, 구독 아님: 400 Hz, 4K, 3D용 카메라 포즈, 원시 데이터, Blender, Sensor Logger, Gyroflow, 여러 경로, GeoJSON/GPX/KML, 전체 내보내기. CSV 내보내기는 Pro 없이도 열려 있습니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "一次買斷，並非訂閱：400 Hz、4K、3D 用相機姿態、原始資料、Blender、Sensor Logger、Gyroflow、多條巡查路線、GeoJSON/GPX/KML 與整體匯出。即使沒有 Pro，CSV 匯出仍然開放。"
+            "state": "needs_review",
+            "value": "一次買斷，並非訂閱：400 Hz、4K、3D 用相機姿態、原始資料、Blender、Sensor Logger、Gyroflow、多條路線、GeoJSON/GPX/KML 與整體匯出。即使沒有 Pro，CSV 匯出仍然開放。"
           }
         }
       }
@@ -7059,6 +7175,64 @@
         }
       }
     },
+    "Ergänzen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add to it"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compléter"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aanvullen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "追加"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "추가"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Complementar"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "補充"
+          }
+        }
+      }
+    },
     "Es wurden keine Daten aufgezeichnet.": {
       "localizations": {
         "en": {
@@ -7287,238 +7461,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "匯出"
-          }
-        }
-      }
-    },
-    "Fall": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Case"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Cas"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Caso"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Caso"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Geval"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Caso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "事案"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "사례"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "案件"
-          }
-        }
-      }
-    },
-    "Fall erfassen": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Capture case"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Saisir un cas"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Registra un caso"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Registrar un caso"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Geval vastleggen"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Registrar um caso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "事案を記録"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "사례 기록"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "記錄案件"
-          }
-        }
-      }
-    },
-    "Fall löschen": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delete case"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Supprimer le cas"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Elimina il caso"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Eliminar el caso"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Geval verwijderen"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Excluir o caso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "事案を削除"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "사례 삭제"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "刪除案件"
-          }
-        }
-      }
-    },
-    "Fall löschen?": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delete case?"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Supprimer le cas ?"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Eliminare il caso?"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "¿Eliminar el caso?"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Geval verwijderen?"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Excluir o caso?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "事案を削除しますか？"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "사례를 삭제할까요?"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "要刪除這個案件嗎？"
           }
         }
       }
@@ -7987,64 +7929,6 @@
         }
       }
     },
-    "Fälle": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cases"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Cas"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Casi"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Casos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Gevallen"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Casos"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "事案"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "사례"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "案件"
-          }
-        }
-      }
-    },
     "Für dieses Gerät ist keine Videoaufnahme möglich.": {
       "localizations": {
         "en": {
@@ -8273,6 +8157,122 @@
           "stringUnit": {
             "state": "translated",
             "value": "GPS 回報的是 %@、%@ — 兩者都已保存。"
+          }
+        }
+      }
+    },
+    "GPS-Track als GPX": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS track as GPX"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trace GPS en GPX"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traccia GPS come GPX"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traza GPS como GPX"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS-track als GPX"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPSトラックをGPXで"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS 경로를 GPX로"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trilha GPS como GPX"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS 軌跡匯出為 GPX"
+          }
+        }
+      }
+    },
+    "GPS-Track als KML": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS track as KML"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trace GPS en KML"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traccia GPS come KML"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traza GPS como KML"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS-track als KML"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPSトラックをKMLで"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS 경로를 KML로"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trilha GPS como KML"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS 軌跡匯出為 KML"
           }
         }
       }
@@ -8857,60 +8857,118 @@
         }
       }
     },
-    "Im Archiv liegt %@: jede Datei mit Grösse und SHA-256, jeder Fall mit Position, Genauigkeit, Bewertung und den Pfaden seiner Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen.": {
+    "Höhe hier nullen": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The archive contains %@: every file with its size and SHA-256, every case with its position, accuracy, severity and the paths to its media. A script reads that one file and needs to know nothing else about the folders."
+            "value": "Zero the altitude here"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L'archive contient %@ : chaque fichier avec sa taille et son SHA-256, chaque cas avec sa position, sa précision, sa gravité et les chemins de ses prises de vue. Un script lit ce seul fichier et n'a rien d'autre à savoir sur les dossiers."
+            "value": "Mettre l'altitude à zéro ici"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "L'archivio contiene %@: ogni file con dimensione e SHA-256, ogni caso con posizione, precisione, gravità e i percorsi delle sue riprese. Uno script legge questo unico file e non deve sapere altro sulle cartelle."
+            "value": "Azzera qui l'altitudine"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El archivo contiene %@: cada fichero con su tamaño y su SHA-256, cada caso con su posición, precisión, gravedad y las rutas de sus tomas. Un script lee ese único fichero y no necesita saber nada más sobre las carpetas."
+            "value": "Poner la altitud a cero aquí"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "In het archief zit %@: elk bestand met grootte en SHA-256, elk geval met positie, nauwkeurigheid, ernst en de paden van zijn opnamen. Eén script leest dat ene bestand en hoeft verder niets over de mappen te weten."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O arquivo contém %@: cada arquivo com tamanho e SHA-256, cada caso com posição, precisão, gravidade e os caminhos de suas mídias. Um script lê esse único arquivo e não precisa saber mais nada sobre as pastas."
+            "value": "Hoogte hier op nul zetten"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アーカイブには %@ が入っています。各ファイルにサイズと SHA-256、各事案に位置・精度・深刻度と関連メディアのパス。スクリプトはこの1ファイルを読むだけで済み、フォルダ構成を知る必要はありません。"
+            "value": "ここで高度をゼロに"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "아카이브에는 %@이(가) 들어 있습니다. 파일마다 크기와 SHA-256, 사례마다 위치·정확도·심각도와 관련 미디어의 경로. 스크립트는 이 파일 하나만 읽으면 되고 폴더 구조는 몰라도 됩니다."
+            "value": "여기서 고도 영점 조정"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zerar a altitude aqui"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "封存檔中含有 %@：每個檔案附大小與 SHA-256，每個案件附位置、精度、嚴重度以及所屬媒體的路徑。腳本只要讀這一個檔案，不需要知道資料夾的結構。"
+            "value": "在此將高度歸零"
+          }
+        }
+      }
+    },
+    "Im Archiv liegt %@: jede Datei mit Grösse und SHA-256, jede Beobachtung mit Position, Genauigkeit, Bewertung und den Pfaden ihrer Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The archive contains %@: every file with its size and SHA-256, every observation with its position, accuracy, severity and the paths to its media. A script reads that one file and needs to know nothing else about the folders."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "L'archive contient %@ : chaque fichier avec sa taille et son SHA-256, chaque observation avec sa position, sa précision, sa gravité et les chemins de ses prises de vue. Un script lit ce seul fichier et n'a rien d'autre à savoir sur les dossiers."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "L'archivio contiene %@: ogni file con dimensione e SHA-256, ogni osservazione con posizione, precisione, gravità e i percorsi delle sue riprese. Uno script legge questo unico file e non deve sapere altro sulle cartelle."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "El archivo contiene %@: cada fichero con su tamaño y su SHA-256, cada observación con su posición, precisión, gravedad y las rutas de sus tomas. Un script lee ese único fichero y no necesita saber nada más sobre las carpetas."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "In het archief zit %@: elk bestand met grootte en SHA-256, elke waarneming met positie, nauwkeurigheid, ernst en de paden van zijn opnamen. Eén script leest dat ene bestand en hoeft verder niets over de mappen te weten."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O arquivo contém %@: cada arquivo com tamanho e SHA-256, cada observação com posição, precisão, gravidade e os caminhos de suas mídias. Um script lê esse único arquivo e não precisa saber mais nada sobre as pastas."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "アーカイブには %@ が入っています。各ファイルにサイズと SHA-256、各観測点に位置・精度・深刻度と関連メディアのパス。スクリプトはこの1ファイルを読むだけで済み、フォルダ構成を知る必要はありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "아카이브에는 %@이(가) 들어 있습니다. 파일마다 크기와 SHA-256, 관측마다 위치·정확도·심각도와 관련 미디어의 경로. 스크립트는 이 파일 하나만 읽으면 되고 폴더 구조는 몰라도 됩니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "封存檔中含有 %@：每個檔案附大小與 SHA-256，每個觀測點附位置、精度、嚴重度以及所屬媒體的路徑。腳本只要讀這一個檔案，不需要知道資料夾的結構。"
           }
         }
       }
@@ -9785,64 +9843,6 @@
         }
       }
     },
-    "Keine Begehungen": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No surveys"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Aucun parcours"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nessun percorso"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Sin recorridos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Geen rondes"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nenhum percurso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "巡回はありません"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "순회 없음"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "沒有巡查路線"
-          }
-        }
-      }
-    },
     "Keine Kamera verfügbar.": {
       "localizations": {
         "en": {
@@ -9955,6 +9955,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有可用的相機，將只記錄感測器資料。"
+          }
+        }
+      }
+    },
+    "Keine Routen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No routes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun parcours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun percorso"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin recorridos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen routes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nenhum percurso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルートがありません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로 없음"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尚無路線"
           }
         }
       }
@@ -10887,60 +10945,60 @@
         }
       }
     },
-    "Mehrere Begehungen": {
+    "Mehrere Routen": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Multiple surveys"
+            "value": "Multiple routes"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Plusieurs parcours"
           }
         },
         "it": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Più percorsi"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Varios recorridos"
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Meerdere rondes"
+            "state": "translated",
+            "value": "Meerdere routes"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Vários percursos"
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "複数の巡回"
+            "state": "translated",
+            "value": "複数のルート"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "여러 순회"
+            "state": "translated",
+            "value": "여러 경로"
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "多條巡查路線"
+            "state": "translated",
+            "value": "多條路線"
           }
         }
       }
@@ -11467,60 +11525,118 @@
         }
       }
     },
-    "Neue Begehung": {
+    "Neue Route": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "New survey"
+            "value": "New route"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Nouveau parcours"
           }
         },
         "it": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Nuovo percorso"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Nuevo recorrido"
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Nieuwe ronde"
+            "state": "translated",
+            "value": "Nieuwe route"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "Novo percurso"
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "新しい巡回"
+            "state": "translated",
+            "value": "新しいルート"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "새 순회"
+            "state": "translated",
+            "value": "새 경로"
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "新增巡查路線"
+            "state": "translated",
+            "value": "新增路線"
+          }
+        }
+      }
+    },
+    "Nicht aufzeichnen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop recording this"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ne pas enregistrer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non registrare"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No registrar"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niet opnemen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記録しない"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기록 안 함"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não registrar"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不要記錄"
           }
         }
       }
@@ -11583,60 +11699,60 @@
         }
       }
     },
-    "Noch keine Fälle": {
+    "Noch keine Beobachtungen": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No cases yet"
+            "value": "No observations yet"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Pas encore de cas"
+            "state": "translated",
+            "value": "Aucune observation"
           }
         },
         "it": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ancora nessun caso"
+            "state": "translated",
+            "value": "Nessuna osservazione"
           }
         },
         "es": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Aún no hay casos"
+            "state": "translated",
+            "value": "Aún sin observaciones"
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Nog geen gevallen"
+            "state": "translated",
+            "value": "Nog geen waarnemingen"
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Ainda sem casos"
+            "state": "translated",
+            "value": "Nenhuma observação ainda"
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "事案はまだありません"
+            "state": "translated",
+            "value": "観測点がまだありません"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "아직 사례 없음"
+            "state": "translated",
+            "value": "아직 관측이 없습니다"
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "尚無案件"
+            "state": "translated",
+            "value": "尚無觀測點"
           }
         }
       }
@@ -11873,128 +11989,128 @@
         }
       }
     },
-    "Ohne Position kann ein Fall nicht wiedergefunden werden.": {
+    "Ohne Position kann eine Beobachtung nicht wiedergefunden werden.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Without a position a case cannot be found again."
+            "value": "Without a position an observation cannot be found again."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Sans position, un cas ne peut pas être retrouvé."
+            "state": "needs_review",
+            "value": "Sans position, une observation ne peut pas être retrouvé."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Senza posizione un caso non può essere ritrovato."
+            "state": "needs_review",
+            "value": "Senza posizione un'osservazione non può essere ritrovato."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Sin posición, un caso no se puede volver a encontrar."
+            "state": "needs_review",
+            "value": "Sin posición, una observación no se puede volver a encontrar."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Zonder positie is een geval niet terug te vinden."
+            "state": "needs_review",
+            "value": "Zonder positie is een waarneming niet terug te vinden."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Sem posição não é possível reencontrar um caso."
+            "state": "needs_review",
+            "value": "Sem posição não é possível reencontrar uma observação."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "位置がなければ事案を再び見つけることはできません。"
+            "state": "needs_review",
+            "value": "位置がなければ観測点を再び見つけることはできません。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "위치가 없으면 사례를 다시 찾을 수 없습니다."
+            "state": "needs_review",
+            "value": "위치가 없으면 관측를 다시 찾을 수 없습니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "沒有位置就無法再次找到案件。"
+            "state": "needs_review",
+            "value": "沒有位置就無法再次找到觀測點。"
           }
         }
       }
     },
-    "Ohne Position lässt sich der Fall nicht sichern.": {
+    "Ohne Position lässt sich die Beobachtung nicht sichern.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Without a position the case cannot be saved."
+            "value": "Without a position the observation cannot be saved."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Sans position, le cas ne peut pas être enregistré."
+            "state": "needs_review",
+            "value": "Sans position, l'observation ne peut pas être enregistré."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Senza posizione il caso non può essere salvato."
+            "state": "needs_review",
+            "value": "Senza posizione l'osservazione non può essere salvato."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Sin posición, el caso no se puede guardar."
+            "state": "needs_review",
+            "value": "Sin posición, la observación no se puede guardar."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Zonder positie kan het geval niet worden bewaard."
+            "state": "needs_review",
+            "value": "Zonder positie kan de waarneming niet worden bewaard."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Sem posição o caso não pode ser salvo."
+            "state": "needs_review",
+            "value": "Sem posição a observação não pode ser salvo."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "位置がなければ事案を保存できません。"
+            "state": "needs_review",
+            "value": "位置がなければ観測点を保存できません。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "위치가 없으면 사례를 저장할 수 없습니다."
+            "state": "needs_review",
+            "value": "위치가 없으면 관측를 저장할 수 없습니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "沒有位置就無法儲存案件。"
+            "state": "needs_review",
+            "value": "沒有位置就無法儲存觀測點。"
           }
         }
       }
     },
-    "Ohne Pro bleibt der CSV-Export jeder Aufnahme und jeder Begehung offen. Deine Messungen gehören dir, gekauft oder nicht.": {
+    "Ohne Pro bleibt der CSV-Export jeder Aufnahme und jeder Route offen. Deine Messungen gehören dir, gekauft oder nicht.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Without Pro the CSV export of every recording and every survey stays open. Your measurements are yours, bought or not."
+            "value": "Without Pro the CSV export of every recording and every route stays open. Your measurements are yours, bought or not."
           }
         },
         "fr": {
@@ -12017,8 +12133,8 @@
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Zonder Pro blijft de CSV-export van elke opname en elke ronde open. Je metingen zijn van jou, gekocht of niet."
+            "state": "needs_review",
+            "value": "Zonder Pro blijft de CSV-export van elke opname en elke route open. Je metingen zijn van jou, gekocht of niet."
           }
         },
         "pt-BR": {
@@ -12029,20 +12145,20 @@
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Pro がなくても、記録と巡回の CSV 書き出しは常に使えます。あなたの測定値はあなたのものです。購入の有無にかかわらず。"
+            "state": "needs_review",
+            "value": "Pro がなくても、記録とルートの CSV 書き出しは常に使えます。あなたの測定値はあなたのものです。購入の有無にかかわらず。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Pro가 없어도 모든 기록과 모든 순회의 CSV 내보내기는 계속 열려 있습니다. 측정값은 구매 여부와 상관없이 당신의 것입니다."
+            "state": "needs_review",
+            "value": "Pro가 없어도 모든 기록과 모든 경로의 CSV 내보내기는 계속 열려 있습니다. 측정값은 구매 여부와 상관없이 당신의 것입니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "即使沒有 Pro，每筆記錄與每條巡查路線的 CSV 匯出都仍然開放。你的量測資料屬於你，買不買都一樣。"
+            "state": "needs_review",
+            "value": "即使沒有 Pro，每筆記錄與每條路線的 CSV 匯出都仍然開放。你的量測資料屬於你，買不買都一樣。"
           }
         }
       }
@@ -12705,60 +12821,60 @@
         }
       }
     },
-    "Position wird gesucht … Ohne Fix oder gesetzte Nadel lässt sich der Fall nicht sichern.": {
+    "Position wird gesucht … Ohne Fix oder gesetzte Nadel lässt sich die Beobachtung nicht sichern.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Finding your position … Without a fix or a placed pin the case cannot be saved."
+            "value": "Finding your position … Without a fix or a placed pin the observation cannot be saved."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Recherche de la position … Sans point GPS ni épingle posée, le cas ne peut pas être enregistré."
+            "state": "needs_review",
+            "value": "Recherche de la position … Sans point GPS ni épingle posée, l'observation ne peut pas être enregistré."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Ricerca della posizione … Senza fix o spillo posato il caso non può essere salvato."
+            "state": "needs_review",
+            "value": "Ricerca della posizione … Senza fix o spillo posato l'osservazione non può essere salvato."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Buscando la posición … Sin fix ni chincheta puesta, el caso no se puede guardar."
+            "state": "needs_review",
+            "value": "Buscando la posición … Sin fix ni chincheta puesta, la observación no se puede guardar."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Positie wordt gezocht … Zonder fix of geplaatste speld kan het geval niet worden bewaard."
+            "state": "needs_review",
+            "value": "Positie wordt gezocht … Zonder fix of geplaatste speld kan de waarneming niet worden bewaard."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Procurando a posição … Sem fix nem alfinete colocado, o caso não pode ser salvo."
+            "state": "needs_review",
+            "value": "Procurando a posição … Sem fix nem alfinete colocado, a observação não pode ser salvo."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "位置を取得中 … フィックスもピンもない状態では事案を保存できません。"
+            "state": "needs_review",
+            "value": "位置を取得中 … フィックスもピンもない状態では観測点を保存できません。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "위치를 찾는 중 … 픽스도 핀도 없으면 사례를 저장할 수 없습니다."
+            "state": "needs_review",
+            "value": "위치를 찾는 중 … 픽스도 핀도 없으면 관측를 저장할 수 없습니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "正在取得位置 … 沒有定位點也沒有放置圖釘時，無法儲存案件。"
+            "state": "needs_review",
+            "value": "正在取得位置 … 沒有定位點也沒有放置圖釘時，無法儲存觀測點。"
           }
         }
       }
@@ -13343,6 +13459,412 @@
         }
       }
     },
+    "Route": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorso"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorrido"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percurso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "路線"
+          }
+        }
+      }
+    },
+    "Route %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcours %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorso %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorrido %@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percurso %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルート %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로 %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "路線 %@"
+          }
+        }
+      }
+    },
+    "Route löschen?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete route?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le parcours ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare il percorso?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar el recorrido?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route verwijderen?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir percurso?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルートを削除しますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로를 삭제할까요?"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要刪除此路線嗎？"
+          }
+        }
+      }
+    },
+    "Route nicht gefunden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route not found"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcours introuvable"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorso non trovato"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorrido no encontrado"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route niet gevonden"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルートが見つかりません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로를 찾을 수 없습니다"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percurso não encontrado"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到路線"
+          }
+        }
+      }
+    },
+    "Route starten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a route"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer un parcours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvia un percorso"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar un recorrido"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route starten"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar um percurso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルートを開始"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로 시작"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始路線"
+          }
+        }
+      }
+    },
+    "Routen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcours"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorsi"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorridos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routes"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percursos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "경로"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "路線"
+          }
+        }
+      }
+    },
+    "Routen und Aufnahmen als ein Zip mit %@: eine Datei, die das ganze Archiv maschinenlesbar beschreibt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routes and recordings as one zip with %@: a single file that describes the whole archive in machine-readable form."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcours et enregistrements dans un ZIP avec %@ : un fichier qui décrit toute l'archive de façon lisible par une machine."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percorsi e registrazioni in un unico ZIP con %@: un file che descrive l'intero archivio in modo leggibile da una macchina."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recorridos y grabaciones en un ZIP con %@: un archivo que describe todo el conjunto de forma legible por una máquina."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Routes en opnamen als één ZIP met %@: één bestand dat het hele archief machineleesbaar beschrijft."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Percursos e gravações em um ZIP com %@: um arquivo que descreve todo o conjunto de forma legível por máquina."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ルートと記録を %@ 付きの1つの ZIP に。アーカイブ全体を機械可読に記述する1ファイルです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "경로와 기록을 %@이(가) 담긴 ZIP 하나로. 아카이브 전체를 기계가 읽을 수 있게 설명하는 파일 하나입니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "路線與記錄打包成含 %@ 的單一 ZIP：一個檔案即以機器可讀的方式描述整個封存。"
+          }
+        }
+      }
+    },
     "Rück": {
       "localizations": {
         "en": {
@@ -13861,6 +14383,122 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sensor Logger 與 Gyroflow"
+          }
+        }
+      }
+    },
+    "Sensoren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensors"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capteurs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensori"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensores"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensoren"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "センサー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "센서"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensores"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "感測器"
+          }
+        }
+      }
+    },
+    "Sensoren auswählen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose sensors"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir les capteurs"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli i sensori"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir sensores"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensoren kiezen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "センサーを選択"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "센서 선택"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escolher sensores"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇感測器"
           }
         }
       }
@@ -15663,6 +16301,64 @@
         }
       }
     },
+    "Während einer Aufnahme lässt sich das nicht ändern.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This cannot be changed while a recording is running."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de modifier pendant un enregistrement."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non modificabile durante una registrazione."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede cambiar durante una grabación."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dit kan niet worden gewijzigd tijdens een opname."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記録中は変更できません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기록 중에는 변경할 수 없습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não é possível alterar durante uma gravação."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "記錄進行中無法變更。"
+          }
+        }
+      }
+    },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — die Voraussetzung dafür, Bilder in einer 3D-Szene an ihrem Ort zu platzieren.": {
       "localizations": {
         "en": {
@@ -16127,60 +16823,60 @@
         }
       }
     },
-    "Zur Aufnahme %@ erfasst — die Fälle liegen auf derselben Uhr wie deren Sensordaten.": {
+    "Zur Aufnahme %@ erfasst — die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Captured during recording %@ — the cases sit on the same clock as its sensor data."
+            "value": "Captured during recording %@ — the observations sit on the same clock as its sensor data."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Saisi pendant l'enregistrement %@ — les cas sont sur la même horloge que ses données de capteurs."
+            "state": "needs_review",
+            "value": "Saisi pendant l'enregistrement %@ — les observations sont sur la même horloge que ses données de capteurs."
           }
         },
         "it": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Rilevato durante la registrazione %@ — i casi sono sullo stesso orologio dei suoi dati dei sensori."
+            "state": "needs_review",
+            "value": "Rilevato durante la registrazione %@ — le osservazioni sono sullo stesso orologio dei suoi dati dei sensori."
           }
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Registrado durante la grabación %@: los casos están en el mismo reloj que sus datos de sensores."
+            "state": "needs_review",
+            "value": "Registrado durante la grabación %@: las observaciones están en el mismo reloj que sus datos de sensores."
           }
         },
         "nl": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Vastgelegd tijdens opname %@ — de gevallen liggen op dezelfde klok als haar sensordata."
+            "state": "needs_review",
+            "value": "Vastgelegd tijdens opname %@ — de waarnemingen liggen op dezelfde klok als haar sensordata."
           }
         },
         "pt-BR": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Registrado durante a gravação %@ — os casos estão no mesmo relógio dos dados de sensores dela."
+            "state": "needs_review",
+            "value": "Registrado durante a gravação %@ — as observações estão no mesmo relógio dos dados de sensores dela."
           }
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "記録 %@ の最中に取得 — 事案はその記録のセンサーデータと同じ時計の上にあります。"
+            "state": "needs_review",
+            "value": "記録 %@ の最中に取得 — 観測点はその記録のセンサーデータと同じ時計の上にあります。"
           }
         },
         "ko": {
           "stringUnit": {
-            "state": "translated",
-            "value": "기록 %@ 중에 수집됨 — 사례는 해당 기록의 센서 데이터와 같은 시계 위에 있습니다."
+            "state": "needs_review",
+            "value": "기록 %@ 중에 수집됨 — 관측는 해당 기록의 센서 데이터와 같은 시계 위에 있습니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
-            "state": "translated",
-            "value": "於記錄 %@ 期間採集 — 案件與該記錄的感測器資料位於同一個時鐘上。"
+            "state": "needs_review",
+            "value": "於記錄 %@ 期間採集 — 觀測點與該記錄的感測器資料位於同一個時鐘上。"
           }
         }
       }

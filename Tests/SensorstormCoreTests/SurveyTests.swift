@@ -443,4 +443,27 @@ struct SurveyTests {
         #expect(csv.contains("manual"))
         #expect(SurveyExporter.positionDescription(of: finding).contains("Nadel"))
     }
+
+    // MARK: - Was die Umbenennung nicht anfassen darf
+
+    /// „Begehung" heisst in der Oberfläche seit der Umbenennung „Route", und „Fall"
+    /// „Beobachtung". Auf der Platte hat sich **nichts** geändert, und das ist Absicht.
+    ///
+    /// `Survey` und `GroundFinding` haben synthetisierte `CodingKeys`, es gibt kein
+    /// `schemaVersion` und keinen Migrationshaken, und `SurveyStore.allSurveys()`
+    /// verschluckt Lesefehler still. Ein geänderter Ordner- oder Dateiname liesse damit
+    /// jede vorhandene Aufzeichnung auf jedem Gerät kommentarlos verschwinden — der
+    /// Nutzer bekäme eine leere Liste und keine Fehlermeldung.
+    ///
+    /// Diese drei Namen sieht ohnehin niemand: die Exportdatei heisst nach der Route,
+    /// nicht nach dem Begriff. Wer sie ändern will, muss vorher eine Migration schreiben.
+    @Test("Die Namen auf der Platte bleiben, wie sie sind")
+    func onDiskNamesAreFrozen() throws {
+        #expect(SurveyStore.surveyFileName == "survey.json")
+        #expect(ArchiveExporter.surveysFolder == "surveys")
+
+        // The container directory, the one `makeDefault()` builds under Documents.
+        let store = try SurveyStore.makeDefault()
+        #expect(store.root.lastPathComponent == "Surveys")
+    }
 }

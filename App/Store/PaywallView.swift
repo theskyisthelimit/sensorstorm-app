@@ -125,7 +125,7 @@ struct PaywallView: View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Image(systemName: "lock.open")
                 .foregroundStyle(.secondary)
-            Text("Ohne Pro bleibt der CSV-Export jeder Aufnahme und jeder Begehung offen. Deine Messungen gehören dir, gekauft oder nicht.")
+            Text("Ohne Pro bleibt der CSV-Export jeder Aufnahme und jeder Route offen. Deine Messungen gehören dir, gekauft oder nicht.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)

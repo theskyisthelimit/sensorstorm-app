@@ -23,10 +23,10 @@ struct SurveyDetailView: View {
             if let survey {
                 content(survey)
             } else {
-                ContentUnavailableView("Begehung nicht gefunden", systemImage: "questionmark.folder")
+                ContentUnavailableView("Route nicht gefunden", systemImage: "questionmark.folder")
             }
         }
-        .navigationTitle(survey?.name ?? String(localized: "Begehung"))
+        .navigationTitle(survey?.name ?? String(localized: "Route"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
         .safeAreaInset(edge: .bottom, spacing: 0) { capturePanel }
@@ -48,7 +48,7 @@ struct SurveyDetailView: View {
             }
             Button("Abbrechen", role: .cancel) {}
         }
-        .confirmationDialog("Begehung löschen?", isPresented: $showsDeleteConfirmation,
+        .confirmationDialog("Route löschen?", isPresented: $showsDeleteConfirmation,
                             titleVisibility: .visible) {
             Button("Löschen", role: .destructive) {
                 if let survey { model.delete(survey) }
@@ -56,7 +56,7 @@ struct SurveyDetailView: View {
             }
             Button("Abbrechen", role: .cancel) {}
         } message: {
-            Text("Alle Fälle, Fotos und Clips dieser Begehung werden entfernt.")
+            Text("Alle Beobachtungen, Fotos und Clips dieser Route werden entfernt.")
         }
         .overlay {
             if model.isExporting { exportOverlay }
@@ -76,7 +76,7 @@ struct SurveyDetailView: View {
                     .clipShape(.rect(cornerRadius: 16))
                     .overlay(alignment: .bottomLeading) {
                         if survey.findings.isEmpty {
-                            Text("Noch keine Fälle")
+                            Text("Noch keine Beobachtungen")
                                 .font(.caption)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
@@ -100,7 +100,7 @@ struct SurveyDetailView: View {
     private func summaryCard(_ survey: Survey) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             infoRow("Start", survey.startedAt.formatted(date: .abbreviated, time: .standard))
-            infoRow("Fälle", "\(survey.findings.count)")
+            infoRow("Beobachtungen", "\(survey.findings.count)")
             if let worst = survey.worstSeverity, let average = survey.averageSeverity {
                 infoRow("Schlimmster", "\(worst)/10")
                 infoRow("Durchschnitt", String(format: "%.1f/10", average))
@@ -114,7 +114,7 @@ struct SurveyDetailView: View {
             infoRow("Grösse", Format.bytes(model.byteSize(of: survey)))
             if let recordingID = survey.recordingID {
                 Divider().overlay(Theme.cardBorder)
-                Text("Zur Aufnahme \(String(recordingID.uuidString.prefix(8))) erfasst — die Fälle liegen auf derselben Uhr wie deren Sensordaten.")
+                Text("Zur Aufnahme \(String(recordingID.uuidString.prefix(8))) erfasst — die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -149,7 +149,7 @@ struct SurveyDetailView: View {
                 } else {
                     Text("Kein Zugriff auf den Standort")
                         .font(.caption)
-                    Text("Ohne Position kann ein Fall nicht wiedergefunden werden.")
+                    Text("Ohne Position kann eine Beobachtung nicht wiedergefunden werden.")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -162,7 +162,7 @@ struct SurveyDetailView: View {
 
     private func findingList(_ survey: Survey) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Fälle")
+            Text("Beobachtungen")
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(.secondary)
 
@@ -217,7 +217,7 @@ struct SurveyDetailView: View {
         Button {
             isCapturing = true
         } label: {
-            Label("Fall erfassen", systemImage: "camera.fill")
+            Label("Beobachtung erfassen", systemImage: "camera.fill")
                 .font(.headline)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 14)

@@ -349,7 +349,7 @@ struct FindingRow: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
-                    Text(finding.label.isEmpty ? String(localized: "Fall") : finding.label)
+                    Text(finding.label.isEmpty ? String(localized: "Beobachtung") : finding.label)
                         .font(.subheadline.weight(.semibold))
                         .lineLimit(1)
                     Spacer(minLength: 0)

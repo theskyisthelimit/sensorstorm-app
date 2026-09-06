@@ -72,61 +72,61 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden für einen Befund."
+            "value": "Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden für eine Beobachtung."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm records video in sync with the sensor data and photographs the ground for a case."
+            "value": "Sensorstorm records video in sync with the sensor data and photographs the ground for an observation."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm enregistre la vidéo en synchronisation avec les données des capteurs et photographie la chaussée pour un cas."
+            "value": "Sensorstorm enregistre la vidéo en synchronisation avec les données des capteurs et photographie le sol pour une observation."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm registra video in sincronia con i dati dei sensori e fotografa il manto stradale per un caso."
+            "value": "Sensorstorm registra video in sincronia con i dati dei sensori e fotografa il terreno per un'osservazione."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm graba vídeo sincronizado con los datos de los sensores y fotografía el firme para un caso."
+            "value": "Sensorstorm graba vídeo sincronizado con los datos de los sensores y fotografía el suelo para una observación."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm neemt video op synchroon met de sensordata en fotografeert het wegdek voor een geval."
+            "value": "Sensorstorm neemt video op synchroon met de sensordata en fotografeert de ondergrond voor een waarneming."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Sensorstorm grava vídeo em sincronia com os dados dos sensores e fotografa o pavimento para um caso."
+            "value": "O Sensorstorm grava vídeo em sincronia com os dados dos sensores e fotografa o solo para uma observação."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm はセンサーデータと同期して動画を記録し、事案のために路面を撮影します。"
+            "value": "Sensorstorm はセンサーデータと同期して動画を記録し、観測点のために地面を撮影します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm은 센서 데이터와 동기화하여 동영상을 기록하고, 사례를 위해 노면을 촬영합니다."
+            "value": "Sensorstorm은 센서 데이터와 동기화하여 영상을 기록하고, 관측을 위해 지면을 촬영합니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm 會與感測器資料同步錄影，並為案件拍攝路面照片。"
+            "value": "Sensorstorm 會與感測器資料同步錄影，並為觀測點拍攝地面。"
           }
         }
       }
@@ -267,61 +267,61 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die Orientierungsdaten an Nordrichtung aus und hält fest, wo ein Befund aufgenommen wurde."
+            "value": "Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die Orientierungsdaten an Nord aus und hält fest, wo eine Beobachtung erfasst wurde."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm records position, altitude, speed and course, references the orientation data to true north, and records where a case was captured."
+            "value": "Sensorstorm records position, altitude, speed and course, references the orientation data to true north, and records where an observation was captured."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm enregistre la position, l'altitude, la vitesse et le cap, oriente les données d'attitude par rapport au nord et retient où un cas a été saisi."
+            "value": "Sensorstorm enregistre la position, l'altitude, la vitesse et le cap, référence les données d'orientation au nord géographique et note où une observation a été saisie."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm registra posizione, quota, velocità e rotta, allinea i dati di orientamento al nord e annota dove è stato rilevato un caso."
+            "value": "Sensorstorm registra posizione, quota, velocità e rotta, riferisce i dati di orientamento al nord geografico e annota dove è stata registrata un'osservazione."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm registra posición, altitud, velocidad y rumbo, referencia los datos de orientación al norte y anota dónde se registró un caso."
+            "value": "Sensorstorm registra posición, altitud, velocidad y rumbo, referencia los datos de orientación al norte geográfico y anota dónde se registró una observación."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm registreert positie, hoogte, snelheid en koers, richt de oriëntatiedata op het noorden en legt vast waar een geval is vastgelegd."
+            "value": "Sensorstorm registreert positie, hoogte, snelheid en koers, richt de oriëntatiegegevens op het ware noorden en legt vast waar een waarneming is gedaan."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Sensorstorm registra posição, altitude, velocidade e rumo, referencia os dados de orientação ao norte e anota onde um caso foi registrado."
+            "value": "O Sensorstorm registra posição, altitude, velocidade e rumo, referencia os dados de orientação ao norte verdadeiro e anota onde uma observação foi registrada."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm は位置・高度・速度・進行方向を記録し、姿勢データを北に合わせ、事案を記録した場所を残します。"
+            "value": "Sensorstorm は位置、高度、速度、進路を記録し、方位データを真北に基準づけ、観測点を記録した場所を保存します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm은 위치, 고도, 속도, 방위를 기록하고 자세 데이터를 북쪽에 맞추며 사례를 기록한 장소를 남깁니다."
+            "value": "Sensorstorm은 위치, 고도, 속도, 진행 방향을 기록하고 방위 데이터를 진북에 맞추며, 관측을 기록한 위치를 저장합니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm 會記錄位置、高度、速度與航向，將姿態資料對齊正北，並記下案件是在哪裡採集的。"
+            "value": "Sensorstorm 會記錄位置、高度、速度與航向，將方位資料對準真北，並記下觀測點的採集位置。"
           }
         }
       }
@@ -332,61 +332,61 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm misst die Lautstärke, nimmt auf Wunsch den Ton zur Messung auf und zeichnet den Ton der kurzen Clips zu einem Befund auf."
+            "value": "Sensorstorm misst die Lautstärke, nimmt auf Wunsch Ton zur Messung auf und zeichnet den Ton der kurzen Clips zu einer Beobachtung auf."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm measures loudness, optionally records audio alongside a measurement, and records the audio of the short clips belonging to a case."
+            "value": "Sensorstorm measures loudness, optionally records audio alongside a measurement, and records the audio of the short clips belonging to an observation."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm mesure le niveau sonore, enregistre au besoin le son de la mesure et enregistre le son des courts clips liés à un cas."
+            "value": "Sensorstorm mesure le niveau sonore, enregistre au besoin le son avec une mesure, et enregistre le son des courts clips associés à une observation."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm misura il livello sonoro, se richiesto registra l'audio della misurazione e registra l'audio dei brevi clip di un caso."
+            "value": "Sensorstorm misura il livello sonoro, se richiesto registra l'audio insieme a una misurazione e registra l'audio dei brevi clip di un'osservazione."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm mide el nivel sonoro, graba si lo deseas el audio de la medición y graba el audio de los clips breves de un caso."
+            "value": "Sensorstorm mide el nivel sonoro, si lo deseas graba audio junto a una medición y graba el audio de los clips breves de una observación."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm meet het geluidsniveau, neemt desgewenst het geluid bij de meting op en neemt het geluid van de korte clips bij een geval op."
+            "value": "Sensorstorm meet het geluidsniveau, neemt desgewenst audio op bij een meting en neemt het geluid op van de korte clips bij een waarneming."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Sensorstorm mede o nível sonoro, grava o áudio da medição se você quiser e grava o áudio dos clipes curtos de um caso."
+            "value": "O Sensorstorm mede o nível sonoro, opcionalmente grava áudio junto a uma medição e grava o áudio dos clipes curtos de uma observação."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm は音量を測定し、必要に応じて測定時の音声を録音し、事案に付ける短いクリップの音声を録音します。"
+            "value": "Sensorstorm は音量を測定し、必要に応じて計測とともに音声を記録し、観測点に属する短いクリップの音声を記録します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm은 음량을 측정하고, 원하는 경우 측정 중 소리를 녹음하며, 사례에 딸린 짧은 클립의 소리를 녹음합니다."
+            "value": "Sensorstorm은 음량을 측정하고, 필요에 따라 측정과 함께 오디오를 기록하며, 관측에 속한 짧은 클립의 소리를 기록합니다."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sensorstorm 會量測音量，必要時錄下量測期間的聲音，並錄下案件所附短片的聲音。"
+            "value": "Sensorstorm 會量測音量，並可在量測時一併錄音，也會錄下觀測點所屬短片的聲音。"
           }
         }
       }

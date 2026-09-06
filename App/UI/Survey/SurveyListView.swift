@@ -24,13 +24,13 @@ struct SurveyListView: View {
                     list
                 }
             }
-            .navigationTitle("Fälle")
+            .navigationTitle("Beobachtungen")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         startSurvey()
                     } label: {
-                        Label("Neue Begehung", systemImage: canStartSurvey ? "plus" : "lock.fill")
+                        Label("Neue Route", systemImage: canStartSurvey ? "plus" : "lock.fill")
                     }
                 }
                 if !model.surveys.isEmpty {
@@ -70,9 +70,9 @@ struct SurveyListView: View {
                 .onDelete { model.delete(atOffsets: $0) }
             } footer: {
                 if canStartSurvey {
-                    Text("Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
+                    Text("Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
                 } else {
-                    Text("Diese Begehung bleibt vollständig nutzbar: weitere Fälle erfassen, bearbeiten und als CSV exportieren. Für mehrere Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.")
+                    Text("Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.")
                 }
             }
         }
@@ -82,11 +82,11 @@ struct SurveyListView: View {
 
     private var emptyState: some View {
         ContentUnavailableView {
-            Label("Keine Begehungen", systemImage: "mappin.and.ellipse")
+            Label("Keine Routen", systemImage: "mappin.and.ellipse")
         } description: {
-            Text("Eine Begehung sammelt Fälle entlang eines Wegs. Pro Fall: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
+            Text("Eine Route sammelt Beobachtungen entlang eines Wegs. Pro Beobachtung: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
         } actions: {
-            Button("Begehung starten") { startSurvey() }
+            Button("Route starten") { startSurvey() }
                 .buttonStyle(.borderedProminent)
                 .tint(Theme.accent)
         }

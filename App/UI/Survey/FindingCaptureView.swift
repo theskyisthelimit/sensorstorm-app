@@ -60,7 +60,7 @@ struct FindingCaptureView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 16)
             }
-            .navigationTitle(isAddingToExistingCase ? "Ergänzen" : "Fall erfassen")
+            .navigationTitle(isAddingToExistingCase ? "Ergänzen" : "Beobachtung erfassen")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -244,7 +244,7 @@ struct FindingCaptureView: View {
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             } else if model.location.isAuthorized {
-                Text("Position wird gesucht … Ohne Fix oder gesetzte Nadel lässt sich der Fall nicht sichern.")
+                Text("Position wird gesucht … Ohne Fix oder gesetzte Nadel lässt sich die Beobachtung nicht sichern.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             } else {
@@ -448,7 +448,7 @@ struct FindingCaptureView: View {
 
     private var cameraUnavailableReason: LocalizedStringKey {
         if recordingHoldsCamera {
-            "Die laufende Aufnahme benutzt die Kamera. Fall ohne Foto erfassen oder die Aufnahme stoppen."
+            "Die laufende Aufnahme benutzt die Kamera. Beobachtung ohne Foto erfassen oder die Aufnahme stoppen."
         } else if !SurveyCamera.isAvailable {
             "Auf diesem Gerät ist keine Kamera verfügbar."
         } else if VideoRecorder.cameraAuthorizationStatus != .authorized {

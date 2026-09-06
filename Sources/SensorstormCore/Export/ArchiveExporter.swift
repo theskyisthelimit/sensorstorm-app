@@ -108,7 +108,7 @@ public struct ArchiveExporter: Sendable {
         var surveyEntries: [ArchiveManifest.SurveyEntry] = []
         let surveyExporter = SurveyExporter(store: surveyStore)
         for survey in surveys {
-            let folderName = Self.folderName(survey.name.isEmpty ? "Begehung" : survey.name,
+            let folderName = Self.folderName(survey.name.isEmpty ? "Route" : survey.name,
                                              id: survey.id)
             let relative = "\(Self.surveysFolder)/\(folderName)"
             try surveyExporter.writePayload(survey,
@@ -369,18 +369,20 @@ public struct ArchiveExporter: Sendable {
         Sensorstorm — Gesamtexport
 
         \(Self.manifestFileName) beschreibt dieses Archiv vollständig und maschinenlesbar:
-        jede Datei mit Grösse und SHA-256, jede Begehung mit ihren Fällen, jede Aufnahme
+        jede Datei mit Grösse und SHA-256, jede Route mit ihren Beobachtungen, jede Aufnahme
         mit ihren Streams. Ein Skript liest \(Self.manifestFileName) und braucht sonst
         nichts über die Ordnerstruktur zu wissen. Die Liste "files" enthält jede Datei
         ausser \(Self.manifestFileName) selbst — sie wird geschrieben, nachdem alles
         andere feststeht.
 
-        Enthalten: \(surveys) Begehungen, \(recordings) Aufnahmen.
+        Enthalten: \(surveys) Routen, \(recordings) Aufnahmen.
 
         \(Self.surveysFolder)/<name>-<id>/
-          survey.json        die Begehung und jeder Fall darin, wie auf dem Gerät
+          survey.json        die Route und jede Beobachtung darin, wie auf dem Gerät.
+                     Der Dateiname bleibt "survey", weil ihn Skripte lesen, die
+                     es vor der Umbenennung schon gab
           findings.geojson   Punkte und Bereiche, EPSG:4326
-          findings.csv       eine Zeile pro Fall, WGS84 und LV95 nebeneinander
+          findings.csv       eine Zeile pro Beobachtung, WGS84 und LV95 nebeneinander
           findings.gpx       Wegpunkte
           findings.kml       Google Earth, nach Bewertung eingefärbt
           media/             jedes Foto und jeder Clip

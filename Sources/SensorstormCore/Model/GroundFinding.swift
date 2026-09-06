@@ -423,6 +423,19 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
 /// Findings live inside the survey rather than in their own files. A walk produces tens of
 /// them, not thousands, and keeping them in one document means the whole walk is written
 /// atomically and can never be half-loaded.
+/// A walked path with its observations.
+///
+/// **The words in the interface and the words in this file differ, deliberately.** What the
+/// app calls a *Route* is a `Survey` here, and what it calls a *Beobachtung* is a
+/// `GroundFinding`. The interface was renamed to widen the app past road inspection; the
+/// types were not, because `Survey`/`GroundFinding` are what the JSON keys, the on-disk
+/// folder `Documents/Surveys/` and the file `survey.json` are named after — and those have
+/// no migration path (see `SurveyTests.onDiskNamesAreFrozen`).
+///
+/// | Interface | Here |
+/// |---|---|
+/// | Route | ``Survey`` |
+/// | Beobachtung | ``GroundFinding`` |
 public struct Survey: Codable, Sendable, Hashable, Identifiable {
     public var id: UUID
     public var name: String

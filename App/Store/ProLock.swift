@@ -17,7 +17,7 @@ extension ProFeature {
         case .interopExport: "Sensor Logger und Gyroflow"
         case .tableExport: "Eine Tabelle, JSON, SQLite"
         case .liveStreaming: "Live an einen Server senden"
-        case .additionalSurveys: "Mehrere Begehungen"
+        case .additionalSurveys: "Mehrere Routen"
         case .surveyGeoExport: "GeoJSON, GPX und KML"
         case .archiveExport: "Gesamtexport"
         }
@@ -44,11 +44,11 @@ extension ProFeature {
         case .liveStreaming:
             "Während der Aufnahme jede Messung als JSON an eine URL deiner Wahl — für ein eigenes Dashboard, Node-RED oder Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert."
         case .additionalSurveys:
-            "Beliebig viele Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag."
+            "Beliebig viele Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag."
         case .surveyGeoExport:
-            "Die Begehung als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip."
+            "Die Route als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip."
         case .archiveExport:
-            "Alles auf dem Gerät als ein Zip mit manifest.json: jede Datei mit SHA-256, jeder Fall mit Position und Bewertung."
+            "Alles auf dem Gerät als ein Zip mit manifest.json: jede Datei mit SHA-256, jede Beobachtung mit Position und Bewertung."
         }
     }
 }

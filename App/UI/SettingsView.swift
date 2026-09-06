@@ -81,7 +81,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Daten")
                 } footer: {
-                    Text("Begehungen und Aufnahmen als ein Zip mit \(ArchiveExporter.manifestFileName): eine Datei, die das ganze Archiv maschinenlesbar beschreibt.")
+                    Text("Routen und Aufnahmen als ein Zip mit \(ArchiveExporter.manifestFileName): eine Datei, die das ganze Archiv maschinenlesbar beschreibt.")
                 }
 
                 proSection
@@ -227,7 +227,7 @@ struct SettingsView: View {
             if pro.isPro {
                 Text("Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist.")
             } else {
-                Text("Einmalig, kein Abo: 400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender, Sensor Logger, Gyroflow, mehrere Begehungen, GeoJSON/GPX/KML und der Gesamtexport. Der CSV-Export bleibt auch ohne Pro offen.")
+                Text("Einmalig, kein Abo: 400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender, Sensor Logger, Gyroflow, mehrere Routen, GeoJSON/GPX/KML und der Gesamtexport. Der CSV-Export bleibt auch ohne Pro offen.")
             }
         }
     }

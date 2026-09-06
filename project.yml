@@ -81,17 +81,17 @@ targets:
           Schritte auf.
         NSLocationWhenInUseUsageDescription: >-
           Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die
-          Orientierungsdaten an Nordrichtung aus und hält fest, wo ein Befund aufgenommen
+          Orientierungsdaten an Nord aus und hält fest, wo eine Beobachtung erfasst
           wurde.
         NSLocationAlwaysAndWhenInUseUsageDescription: >-
           Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm
           während einer Messung gesperrt wird.
         NSMicrophoneUsageDescription: >-
-          Sensorstorm misst die Lautstärke, nimmt auf Wunsch den Ton zur Messung auf und
-          zeichnet den Ton der kurzen Clips zu einem Befund auf.
+          Sensorstorm misst die Lautstärke, nimmt auf Wunsch Ton zur Messung auf und
+          zeichnet den Ton der kurzen Clips zu einer Beobachtung auf.
         NSCameraUsageDescription: >-
           Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden
-          für einen Befund.
+          für eine Beobachtung.
         # Only when the Bluetooth stream is armed: the central is constructed on start, not
         # on launch, so nobody is asked for a sensor they never switched on.
         NSBluetoothAlwaysUsageDescription: >-

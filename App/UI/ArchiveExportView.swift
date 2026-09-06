@@ -73,7 +73,7 @@ struct ArchiveExportView: View {
     private var contentSection: some View {
         Section {
             Toggle(isOn: $includesSurveys) {
-                LabeledContent("Begehungen") {
+                LabeledContent("Routen") {
                     Text("\(surveyCount)").monospacedDigit()
                 }
             }
@@ -87,7 +87,7 @@ struct ArchiveExportView: View {
         } header: {
             Text("Inhalt")
         } footer: {
-            Text("Im Archiv liegt \(ArchiveExporter.manifestFileName): jede Datei mit Grösse und SHA-256, jeder Fall mit Position, Genauigkeit, Bewertung und den Pfaden seiner Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen.")
+            Text("Im Archiv liegt \(ArchiveExporter.manifestFileName): jede Datei mit Grösse und SHA-256, jede Beobachtung mit Position, Genauigkeit, Bewertung und den Pfaden ihrer Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen.")
         }
     }
 

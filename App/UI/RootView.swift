@@ -23,7 +23,7 @@ struct RootView: View {
             Tab("Aufnahmen", systemImage: "square.stack.3d.down.right", value: Screen.library) {
                 LibraryView()
             }
-            Tab("Fälle", systemImage: "mappin.and.ellipse", value: Screen.survey) {
+            Tab("Beobachtungen", systemImage: "mappin.and.ellipse", value: Screen.survey) {
                 SurveyListView()
             }
             Tab("Einstellungen", systemImage: "slider.horizontal.3", value: Screen.settings) {

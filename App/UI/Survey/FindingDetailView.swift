@@ -37,10 +37,10 @@ struct FindingDetailView: View {
             if let finding {
                 content(finding)
             } else {
-                ContentUnavailableView("Fall nicht gefunden", systemImage: "questionmark.circle")
+                ContentUnavailableView("Beobachtung nicht gefunden", systemImage: "questionmark.circle")
             }
         }
-        .navigationTitle(label.isEmpty ? String(localized: "Fall") : label)
+        .navigationTitle(label.isEmpty ? String(localized: "Beobachtung") : label)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { toolbarContent }
         .task { load() }
@@ -73,7 +73,7 @@ struct FindingDetailView: View {
         .sheet(item: $shareItem) { item in
             ShareSheet(items: [item.url])
         }
-        .confirmationDialog("Fall löschen?", isPresented: $showsDeleteConfirmation,
+        .confirmationDialog("Beobachtung löschen?", isPresented: $showsDeleteConfirmation,
                             titleVisibility: .visible) {
             Button("Löschen", role: .destructive) {
                 if let finding { model.deleteFinding(finding, from: surveyID) }
@@ -81,7 +81,7 @@ struct FindingDetailView: View {
             }
             Button("Abbrechen", role: .cancel) {}
         } message: {
-            Text("Alle Fotos und Clips dieses Falls werden mitgelöscht.")
+            Text("Alle Fotos und Clips dieser Beobachtung werden mitgelöscht.")
         }
         .surveyErrorAlert(model)
     }
@@ -108,7 +108,7 @@ struct FindingDetailView: View {
                 Button(role: .destructive) {
                     showsDeleteConfirmation = true
                 } label: {
-                    Label("Fall löschen", systemImage: "trash")
+                    Label("Beobachtung löschen", systemImage: "trash")
                         .font(.subheadline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)

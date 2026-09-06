@@ -48,7 +48,7 @@ public struct SurveyExporter: Sendable {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: destinationDirectory, withIntermediateDirectories: true)
 
-        let baseName = RecordingExporter.sanitize(survey.name.isEmpty ? "Begehung" : survey.name)
+        let baseName = RecordingExporter.sanitize(survey.name.isEmpty ? "Route" : survey.name)
         let destination = destinationDirectory
             .appendingPathComponent("\(baseName).\(format.fileExtension)")
         if fileManager.fileExists(atPath: destination.path) {
@@ -73,7 +73,7 @@ public struct SurveyExporter: Sendable {
     private func writeBundle(_ survey: Survey, to destination: URL,
                              in destinationDirectory: URL) throws {
         let fileManager = FileManager.default
-        let baseName = RecordingExporter.sanitize(survey.name.isEmpty ? "Begehung" : survey.name)
+        let baseName = RecordingExporter.sanitize(survey.name.isEmpty ? "Route" : survey.name)
         let staging = destinationDirectory
             .appendingPathComponent("staging-\(survey.id.uuidString)", isDirectory: true)
         let payload = staging.appendingPathComponent(baseName, isDirectory: true)
@@ -467,21 +467,23 @@ public struct SurveyExporter: Sendable {
         let area = survey.markedSquareMetres
         return """
         \(survey.name)
-        Begehung vom \(TrackExporter.iso8601(survey.startedAt))
+        Route vom \(TrackExporter.iso8601(survey.startedAt))
 
-        \(survey.findings.count) Befund(e), markierte Fläche insgesamt \(Int(area.rounded())) m².
+        \(survey.findings.count) Beobachtung(en), markierte Fläche insgesamt \(Int(area.rounded())) m².
 
         findings.geojson  Punkte und Bereiche, WGS84. Öffnet in QGIS, Leaflet, Mapbox.
-        findings.csv      eine Zeile pro Fall, WGS84 und LV95 nebeneinander.
+        findings.csv      eine Zeile pro Beobachtung, WGS84 und LV95 nebeneinander.
         findings.gpx      Wegpunkte, um dieselbe Stelle wiederzufinden. Ohne Bereiche —
                           GPX kennt keine Flächen.
         findings.kml      Punkte und Bereiche, nach Bewertung eingefärbt (Google Earth).
-        survey.json       das Original, so wie die App es speichert.
+        survey.json       das Original, so wie die App es speichert. Der Dateiname
+                          bleibt "survey" — er ist ein Vertrag mit Skripten, die es
+                          vor der Umbenennung schon gab.
         \(bundleMediaFolder)/            alle Fotos und Clips, benannt nach ihrer Medien-ID.
 
         Die Bewertung ist eine Zahl von 1 bis 10: 1 unauffällig, 10 so schlimm wie es geht.
 
-        Zur Position steht bei jedem Fall, woher sie kommt:
+        Zu jeder Beobachtung steht, woher ihre Position kommt:
           positionSource=gps       ein einzelner Fix, horizontalAccuracy ist der Radius,
                                    den das Gerät für sich beansprucht
           positionSource=averaged  Mittel aus positionSampleCount Fixes; positionSpread ist
