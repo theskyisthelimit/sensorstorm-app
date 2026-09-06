@@ -18,11 +18,14 @@ einzelnen Sample-Buffers und kann den des ersten Bildes in die Metadaten schreib
 
 Die Bildstabilisierung bleibt aus — sie entkoppelt das Bild von der IMU.
 
-## Kamerapose: Bilder in einer 3D-Szene platzieren
+## Kamerapose: Bilder an ihren Ort binden
 
-Eine gemeinsame Uhr sagt, *wann* ein Bild aufgenommen wurde. Um es in Blender auf eine
-3D-Karte zu legen, braucht es zusätzlich, *wo* die Kamera war, *wohin* sie schaute und mit
-welcher *Brennweite*. Dafür gibt es einen zweiten Aufnahmemodus.
+Eine gemeinsame Uhr sagt, *wann* ein Bild aufgenommen wurde. Um damit weiterzuarbeiten,
+braucht es zusätzlich, *wo* die Kamera war, *wohin* sie schaute und mit welcher
+*Brennweite*. Dafür gibt es einen zweiten Aufnahmemodus.
+
+**Diese App baut kein 3D-Modell, und aus einem Video kann das auch sonst niemand.** Was
+eine Aufnahme beitragen kann, ist der Teil, den Fotogrammetrie-Software sonst raten muss.
 
 | | klassisch | ARKit |
 |---|---|---|
@@ -33,10 +36,27 @@ welcher *Brennweite*. Dafür gibt es einen zweiten Aufnahmemodus.
 | Video | horizontlagerichtig gedreht | **unrotiert**, damit die Intrinsics passen |
 
 Der ARKit-Modus schreibt zu jedem gespeicherten Bild eine Probe in den Strom `cameraPose`.
-Der Export als **3D-Szene** liefert daraus ein Bündel mit `frames.csv` (eine Zeile pro Bild:
-Position in Metern, Orientierung, Brennweite, WGS84 und LV95), `scene.json`, dem Video und dem
-GPS-Track als GPX/KML. [Tools/blender/sensorstorm_import.py](Tools/blender/sensorstorm_import.py)
-liest das als Blender-Add-on ein und erzeugt eine animierte Kamera.
+Daraus gibt es zwei Exporte, und beide heissen inzwischen nach dem, was sie wirklich tun:
+
+**Kamerafahrt für Blender** — ein Bündel mit `frames.csv` (eine Zeile pro Bild: Position in
+Metern, Orientierung, Brennweite, WGS84 und LV95), `scene.json`, dem Video und dem GPS-Track
+als GPX/KML. [Tools/blender/sensorstorm_import.py](Tools/blender/sensorstorm_import.py) liest
+das als Blender-Add-on ein und erzeugt eine animierte Kamera, die der echten Aufnahme folgt.
+
+**Bilder für Fotogrammetrie** — Einzelbilder aus dem Film, ausgewählt statt alle: ein Bild,
+sobald sich die Kamera seit dem letzten weit genug bewegt oder gedreht hat, und innerhalb
+jedes Abschnitts das schärfste. Wer stehen bleibt, bekommt ein Bild, nicht hundert gleiche.
+
+Jedes Bild trägt Brennweite, Ort, Zeit und — im ARKit-Modus — die Blickrichtung im EXIF.
+Daneben liegen `cameras.csv` und ein COLMAP-Modell. Damit importieren RealityScan,
+Metashape, Meshroom und COLMAP die Bilder samt Startwerten; das Modell rechnen sie, nicht
+diese App.
+
+Zwei Details, die dabei gerne schiefgehen und deshalb festgenagelt sind: `GPSAltitude` ist
+**orthometrisch**, weil EXIF die Höhe über Meer meint — die ellipsoidische wäre in der
+Schweiz rund 50 m daneben. Und `FocalLengthIn35mmFilm` ist `fx · 36 / längere Bildkante`,
+dieselbe Umrechnung wie Blenders `lens`; `FocalLength` in Millimetern steht bewusst nicht
+drin, weil die physische Sensorgrösse unbekannt ist und nicht geraten wird.
 
 Die Anfangs-Nordausrichtung von ARKit stammt aus dem Magnetometer und kann einige Grad
 danebenliegen, driftet danach aber nicht. Der Exporter korrigiert das mit einer einzigen
@@ -200,7 +220,8 @@ Sources/SensorstormCore/   reine Logik, ohne UIKit: Speicherformat, Zeitbasis, E
   Time/HostClock           die gemeinsame Uhr
   Storage/                 .ssbin-Format, Writer, Reader, Ablage auf der Platte
   Geo/                     WGS84/ECEF/ENU, LV95, ARKit→Blender, Yaw-Fit gegen GPS
-  Export/                  CSV, Rohdaten, 3D-Szene, Sensor Logger, Gyroflow, GPX/KML
+  Export/                  CSV, Rohdaten, Kamerafahrt, Fotogrammetrie, Sensor Logger,
+                           Gyroflow, GPX/KML, JSON, SQLite
   Model/                   Aufnahme-Metadaten, Sensoren, Fälle und Begehungen
 App/
   Recording/               Sensorquellen, Sink, Videoaufnahme, ARKit-Pose, Koordination
