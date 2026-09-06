@@ -1839,6 +1839,122 @@
         }
       }
     },
+    "Alle 1,5 m ein Bild. Für einen abgelaufenen Weg oder eine Strasse.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An image every 1.5 m. For a path you walked or a street."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une image tous les 1,5 m. Pour un chemin parcouru ou une rue."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un’immagine ogni 1,5 m. Per un percorso camminato o una strada."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una imagen cada 1,5 m. Para un camino recorrido o una calle."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke 1,5 m een beeld. Voor een gelopen pad of een straat."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma imagem a cada 1,5 m. Para um caminho percorrido ou uma rua."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1.5 m ごとに 1 枚。歩いた道や街路に。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1.5 m마다 한 장. 걸어간 길이나 도로에 적합합니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 1.5 公尺一張。適合走過的路徑或街道。"
+          }
+        }
+      }
+    },
+    "Alle 35 cm ein Bild. Für eine Wand, einen Raum, eine Maschine.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An image every 35 cm. For a wall, a room, a machine."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une image tous les 35 cm. Pour un mur, une pièce, une machine."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un’immagine ogni 35 cm. Per una parete, una stanza, una macchina."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una imagen cada 35 cm. Para una pared, una sala, una máquina."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elke 35 cm een beeld. Voor een muur, een ruimte, een machine."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma imagem a cada 35 cm. Para uma parede, um ambiente, uma máquina."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "35 cm ごとに 1 枚。壁、室内、機械などに。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "35 cm마다 한 장. 벽, 실내, 기계에 적합합니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每 35 公分一張。適合牆面、室內或機具。"
+          }
+        }
+      }
+    },
     "Alle Beobachtungen, Fotos und Clips dieser Route werden entfernt.": {
       "localizations": {
         "en": {
@@ -4623,6 +4739,64 @@
         }
       }
     },
+    "Bilder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Images"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Images"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Immagini"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imágenes"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beelden"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imagens"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "画像数"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이미지 수"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "影像數"
+          }
+        }
+      }
+    },
     "Bilder für Fotogrammetrie": {
       "localizations": {
         "en": {
@@ -5783,6 +5957,64 @@
         }
       }
     },
+    "Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnet RealityScan, Metashape oder Meshroom — nicht diese App.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The images carry focal length, place and time in their EXIF, with a camera table and a COLMAP model alongside. The 3D model is computed by RealityScan, Metashape or Meshroom — not by this app."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les images portent focale, lieu et heure dans l'EXIF, accompagnées d'une table de caméras et d'un modèle COLMAP. Le modèle 3D est calculé par RealityScan, Metashape ou Meshroom — pas par cette app."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le immagini portano lunghezza focale, luogo e ora nell’EXIF, accanto a una tabella delle camere e a un modello COLMAP. Il modello 3D lo calcola RealityScan, Metashape o Meshroom — non questa app."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las imágenes llevan distancia focal, lugar y hora en el EXIF, junto a una tabla de cámaras y un modelo COLMAP. El modelo 3D lo calcula RealityScan, Metashape o Meshroom, no esta app."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De beelden dragen brandpuntsafstand, plaats en tijd in de EXIF, met een cameratabel en een COLMAP-model ernaast. Het 3D-model wordt berekend door RealityScan, Metashape of Meshroom — niet door deze app."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As imagens levam distância focal, local e hora no EXIF, ao lado de uma tabela de câmeras e um modelo COLMAP. O modelo 3D é calculado pelo RealityScan, Metashape ou Meshroom — não por este app."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "画像には焦点距離・場所・時刻が EXIF に入り、カメラ表と COLMAP モデルが添えられます。3D モデルを計算するのは RealityScan、Metashape、Meshroom であって、このアプリではありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이미지에는 초점 거리, 장소, 시간이 EXIF에 담기고 카메라 표와 COLMAP 모델이 함께 제공됩니다. 3D 모델은 RealityScan, Metashape, Meshroom이 계산하며 이 앱이 하지 않습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "影像的 EXIF 內含焦距、地點與時間，旁邊還有相機表與 COLMAP 模型。3D 模型由 RealityScan、Metashape 或 Meshroom 運算，而不是這個 App。"
+          }
+        }
+      }
+    },
     "Die Bildstabilisierung bleibt aus, damit das Bild exakt zu den Bewegungsdaten passt.": {
       "localizations": {
         "en": {
@@ -6243,6 +6475,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "進行中的記錄正在使用相機。請在不拍照的情況下記錄觀測點，或先停止記錄。"
+          }
+        }
+      }
+    },
+    "Diese Aufnahme enthält kein Video.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This recording contains no video."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet enregistrement ne contient pas de vidéo."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa registrazione non contiene video."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta grabación no contiene vídeo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze opname bevat geen video."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta gravação não contém vídeo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この記録には動画がありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 기록에는 영상이 없습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此記錄不含影片。"
           }
         }
       }
@@ -6711,6 +7001,64 @@
         }
       }
     },
+    "Ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus — hundertmal dasselbe Bild nützt keiner Rekonstruktion.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A target, not a promise. Where the camera stood still, fewer images come out — a hundred copies of the same picture help no reconstruction."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un objectif, pas une promesse. Là où la caméra est restée immobile, il y a moins d'images — cent fois la même photo n'aide aucune reconstruction."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un valore indicativo, non una garanzia. Dove la camera è rimasta ferma escono meno immagini: cento volte la stessa foto non serve a nessuna ricostruzione."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una orientación, no una promesa. Donde la cámara se quedó quieta salen menos imágenes: cien veces la misma foto no ayuda a ninguna reconstrucción."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Een richtwaarde, geen belofte. Waar de camera stilstond komen er minder beelden uit — honderd keer dezelfde foto helpt geen reconstructie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma referência, não uma promessa. Onde a câmera ficou parada saem menos imagens — cem vezes a mesma foto não ajuda nenhuma reconstrução."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目安であって約束ではありません。カメラが止まっていた場所では枚数が減ります。同じ写真が百枚あっても復元の役には立ちません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표치일 뿐 보장은 아닙니다. 카메라가 멈춰 있던 곳에서는 이미지가 적게 나옵니다. 같은 사진 백 장은 복원에 도움이 되지 않습니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這是目標值而非保證。相機停住的地方會少一些影像——同一張照片重複一百次對重建毫無幫助。"
+          }
+        }
+      }
+    },
     "Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.": {
       "localizations": {
         "en": {
@@ -7117,6 +7465,64 @@
         }
       }
     },
+    "Entfernung": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distanza"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distancia"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afstand"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distância"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "距離"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "거리"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "距離"
+          }
+        }
+      }
+    },
     "Entladen": {
       "localizations": {
         "en": {
@@ -7519,6 +7925,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "匯出"
+          }
+        }
+      }
+    },
+    "Fassade oder Raum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Façade or room"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Façade ou pièce"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Facciata o stanza"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fachada o sala"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gevel of ruimte"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fachada ou ambiente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建物の壁や室内"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "외벽 또는 실내"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "立面或室內"
           }
         }
       }
@@ -8389,6 +8853,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "GPX 航點"
+          }
+        }
+      }
+    },
+    "Gelände oder Strasse": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain or street"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain ou rue"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terreno o strada"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terreno o calle"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrein of straat"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terreno ou rua"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "地形や道路"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지형 또는 도로"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "地形或街道"
           }
         }
       }
@@ -10129,6 +10651,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "尚無路線"
+          }
+        }
+      }
+    },
+    "Kleine Schritte: alle 10 cm ein Bild. Für etwas, das man umrundet.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Small steps: an image every 10 cm. For something you walk around."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Petits pas : une image tous les 10 cm. Pour un objet que l'on contourne."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passi piccoli: un’immagine ogni 10 cm. Per qualcosa attorno a cui si gira."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasos pequeños: una imagen cada 10 cm. Para algo que se rodea."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kleine stappen: elke 10 cm een beeld. Voor iets waar je omheen loopt."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passos curtos: uma imagem a cada 10 cm. Para algo que se contorna."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小刻みに、10 cm ごとに 1 枚。周囲を回って撮る対象向け。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작은 보폭으로 10 cm마다 한 장. 둘러가며 찍는 대상에 적합합니다."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小步移動：每 10 公分一張。適合繞著拍的物件。"
           }
         }
       }
@@ -12043,6 +12623,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "好"
+          }
+        }
+      }
+    },
+    "Objekt, unter 2 m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Object, under 2 m"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objet, moins de 2 m"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oggetto, sotto i 2 m"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objeto, menos de 2 m"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Object, minder dan 2 m"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objeto, menos de 2 m"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "対象物、2 m 未満"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "물체, 2 m 이내"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "物件，2 公尺以內"
           }
         }
       }
@@ -16181,6 +16819,64 @@
           "stringUnit": {
             "state": "translated",
             "value": "這是什麼？例如：坑洞"
+          }
+        }
+      }
+    },
+    "Wie weit weg ist das Objekt?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How far away is the subject?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À quelle distance est le sujet ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quanto è distante il soggetto?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿A qué distancia está el objeto?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoe ver weg is het onderwerp?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A que distância está o objeto?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "対象までの距離は？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "대상까지의 거리는?"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拍攝對象有多遠？"
           }
         }
       }

@@ -60,21 +60,21 @@ MESSEN: EINE UHR FÜR ALLES
 
 Ein Tippen startet alles auf einmal: Beschleunigung, Drehrate, Orientierung, Magnetfeld, GPS, Barometer, Lautstärke, Schritte, Gerätezustand. Auf Wunsch dazu Video in 720p, 1080p oder 4K.
 
-Alle Ströme liegen auf derselben Zeitbasis wie die Videobilder. Ein Bild und der Beschleunigungswert dazu gehören exakt zusammen — ohne Nachkalibrieren, ohne Drift. Genau dafür gibt es diese App.
+Alle Ströme liegen auf derselben Zeitbasis wie die Videobilder. Ein Bild und der Beschleunigungswert dazu gehören exakt zusammen — ohne Nachkalibrieren, ohne Drift. Dafür gibt es diese App.
 
 Die Bildstabilisierung bleibt bewusst aus: sie würde das Bild von den Bewegungsdaten entkoppeln und jede Auswertung, die beides verbindet, still verfälschen.
 
 FÄLLE: SCHÄDEN DOKUMENTIEREN
 
-Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf. Zu einem Fall gehören beliebig viele Fotos und Clips, eine Bewertung von 1 bis 10 und der markierte Bereich — als Kreis oder als Polygon.
+Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf. Dazu beliebig viele Fotos und Clips, eine Bewertung von 1 bis 10 und der markierte Bereich — Kreis oder Polygon.
 
-Bei jedem Fall steht, woher seine Koordinate stammt: ein einzelner GPS-Fix, ein Mittel aus zehn Sekunden Stillstehen, oder eine von Hand gesetzte Nadel. Der Unsicherheitskreis wird massstäblich auf der Karte gezeichnet. Eine Nadel in einem 30-Meter-Kreis ist eine andere Aussage als eine in einem 3-Meter-Kreis — ohne den Kreis sehen beide gleich aus.
+Bei jedem Fall steht, woher seine Koordinate stammt: ein einzelner GPS-Fix, ein Mittel aus zehn Sekunden Stillstehen, oder eine von Hand gesetzte Nadel. Der Unsicherheitskreis wird massstäblich gezeichnet: eine Nadel in einem 30-Meter-Kreis ist eine andere Aussage als eine in einem 3-Meter-Kreis.
 
 Wird von Hand korrigiert, bleiben beide Positionen erhalten: was das GPS sagte, und wo jemand entschied.
 
 WIEDERGEBEN STATT NUR SAMMELN
 
-Jede Aufnahme lässt sich abspielen. Video und Kurven laufen synchron, der Abspielkopf steht in jedem Diagramm an derselben Stelle, daneben stehen die Zahlenwerte an genau diesem Zeitpunkt.
+Jede Aufnahme lässt sich abspielen: Video und Kurven laufen synchron, der Abspielkopf steht in jedem Diagramm an derselben Stelle, daneben die Zahlenwerte zu genau diesem Zeitpunkt.
 
 AUFGEZEICHNET WERDEN
 
@@ -88,33 +88,39 @@ AUFGEZEICHNET WERDEN
 • GPS: Position, Höhe, Geschwindigkeit, Kurs, je mit Genauigkeit
 • Lautstärke in dBFS, Mittelwert und Spitze
 • Video mit Ton, Vorder- oder Rückkamera
-• Schrittzähler, Batterie, Helligkeit, Netzwerk
+• Schrittzähler, Aktivität, Batterie, Helligkeit, Netzwerk
+• Bluetooth: Geräte in Reichweite und Signalstärke
 • AirPods-Kopfbewegung
+• Apple Watch: Herzfrequenz und Handgelenkbewegung
 • Markierungen mit Zeitstempel und Text
 
 Abtastrate wählbar von 10 bis 400 Hz.
 
-EXPORT, DER SICH WEITERVERWENDEN LÄSST
+LIVE AN DEINEN SERVER
 
-Aufnahmen als CSV je Sensor, als Rohdaten, im Sensor-Logger-Layout oder als Gyroflow-Log. Begehungen als GeoJSON für QGIS, als CSV mit WGS84 und LV95 nebeneinander, als GPX zum Wiederfinden, als KML für Google Earth. Und alles zusammen als ein Zip mit einem manifest.json, das jede Datei mit SHA-256 und jeden Fall mit Position und Bewertung beschreibt.
+Auf Wunsch geht jede Messung während der Aufnahme als JSON an eine Adresse deiner Wahl — eigenes Dashboard, Node-RED, Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert unverändert. Die Aufzeichnung läuft davon unabhängig: bricht die Verbindung ab, fehlt nichts in der Datei.
+
+EXPORT ZUM WEITERVERWENDEN
+
+Aufnahmen als CSV je Sensor, als kombinierte Tabelle auf gemeinsamem Zeitraster, als JSON, als SQLite, als Rohdaten, im Sensor-Logger-Layout oder als Gyroflow-Log. Begehungen als GeoJSON für QGIS, als CSV mit WGS84 und LV95 nebeneinander, als GPX zum Wiederfinden, als KML für Google Earth. Alles zusammen als Zip mit manifest.json, das jede Datei mit SHA-256 und jeden Fall mit Position und Bewertung beschreibt.
 
 3D: BILDER AN IHREN ORT LEGEN
 
-Im ARKit-Modus wird zu jedem Bild Position, Blickrichtung und Brennweite aufgezeichnet. Der Export als 3D-Szene liefert frames.csv, scene.json, Video und GPS-Track — ein Blender-Add-on macht daraus eine animierte Kamera.
+Im ARKit-Modus werden zu jedem Bild Position, Blickrichtung und Brennweite aufgezeichnet. Der 3D-Szenen-Export liefert frames.csv, scene.json, Video und GPS-Track — ein Blender-Add-on macht daraus eine animierte Kamera.
 
 GRATIS UND PRO
 
 Gratis: alle Sensoren aufzeichnen, Wiedergabe mit Diagrammen, eine Begehung, CSV-Export.
 
-Sensorstorm Pro schaltet einmalig frei, kein Abo: 400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender-Szene, Sensor Logger, Gyroflow, beliebig viele Begehungen, GeoJSON/GPX/KML und den Gesamtexport.
+Sensorstorm Pro schaltet den Rest mit einem einzigen Kauf frei — kein Abo, keine Verlängerung: 400 Hz, 4K, Kamerapose für 3D, Live-Übertragung, kombinierte Tabelle, JSON, SQLite, Rohdaten, Blender-Szene, Sensor Logger, Gyroflow, unbegrenzt Begehungen, GeoJSON/GPX/KML und Gesamtexport.
 
 Der CSV-Export bleibt auch ohne Pro offen. Deine Messungen gehören dir, gekauft oder nicht.
 
 KEINE WOLKE
 
-Alles bleibt auf dem Gerät. Kein Konto, kein Tracking, keine Analyse im Hintergrund. Aufnahmen verlassen das iPhone nur, wenn du sie exportierst. Auch der Kauf braucht kein Konto bei uns — er hängt an deinem Apple-Account.
+Alles bleibt auf dem Gerät. Kein Konto, kein Tracking, keine Analyse im Hintergrund. Aufnahmen verlassen das iPhone nur, wenn du sie exportierst. Auch der Kauf braucht kein Konto bei uns — er hängt an deiner Apple-ID.
 
-Sensorstorm gibt es auf Deutsch und Englisch."""
+Sensorstorm gibt es in zehn Sprachen."""
 
 _EN_DESCRIPTION = """Sensorstorm records your iPhone's sensors at the same time — and documents damage on the road. Two tools, one shared clock.
 
@@ -150,15 +156,21 @@ WHAT GETS RECORDED
 • GPS: position, altitude, speed, course, each with its accuracy
 • Loudness in dBFS, average and peak
 • Video with audio, front or back camera
-• Pedometer, battery, brightness, network
+• Pedometer, activity, battery, brightness, network
+• Bluetooth surroundings: devices in range and signal strength
 • AirPods head motion
+• Apple Watch: heart rate and wrist motion
 • Annotations with timestamp and text
 
 Sample rate selectable from 10 to 400 Hz.
 
+LIVE TO YOUR OWN SERVER
+
+If you want it, every reading goes to an address of your choosing as JSON while the recording runs — for your own dashboard, Node-RED or Home Assistant. The format matches Sensor Logger's, so an existing endpoint works unchanged. The recording on the device is independent of it: if the connection drops, nothing is missing from the file.
+
 AN EXPORT YOU CAN ACTUALLY USE
 
-Recordings as one CSV per sensor, as raw data, in Sensor Logger's layout, or as a Gyroflow log. Surveys as GeoJSON for QGIS, as CSV with WGS84 and Swiss LV95 side by side, as GPX to find the spot again, as KML for Google Earth. And all of it together as one zip with a manifest.json that names every file with its SHA-256 and every case with its position and severity.
+Recordings as one CSV per sensor, as one combined table on a shared time grid, as JSON, as a SQLite database, as raw data, in Sensor Logger's layout, or as a Gyroflow log. Surveys as GeoJSON for QGIS, as CSV with WGS84 and Swiss LV95 side by side, as GPX to find the spot again, as KML for Google Earth. And all of it together as one zip with a manifest.json that names every file with its SHA-256 and every case with its position and severity.
 
 3D: PUTTING IMAGES WHERE THEY WERE TAKEN
 
@@ -168,7 +180,7 @@ FREE AND PRO
 
 Free: record every sensor, play it back with charts, one survey, CSV export.
 
-Sensorstorm Pro unlocks the rest with a single purchase, no subscription: 400 Hz, 4K, camera pose for 3D, raw data, Blender scene, Sensor Logger, Gyroflow, any number of surveys, GeoJSON/GPX/KML and the full archive export.
+Sensorstorm Pro unlocks the rest with a single purchase — no subscription, no renewal: 400 Hz, 4K, camera pose for 3D, live streaming, the combined table, JSON, SQLite, raw data, Blender scene, Sensor Logger, Gyroflow, any number of surveys, GeoJSON/GPX/KML and the full archive export.
 
 CSV export stays open without Pro. Your measurements are yours, bought or not.
 

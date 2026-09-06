@@ -85,6 +85,34 @@ final class RecordingLibrary {
         refresh()
     }
 
+    /// The photogrammetry export. Separate from ``export(_:format:)`` because it needs the
+    /// pixel side — an image provider that only the app target can build — and because it
+    /// is the one export with options worth asking about.
+    func exportPhotoSet(_ recording: RecordingMetadata,
+                        options: PhotoSetOptions) async -> URL? {
+        guard let videoURL = store.videoURL(for: recording) else {
+            errorMessage = String(localized: "Diese Aufnahme enthält kein Video.")
+            return nil
+        }
+        isExporting = true
+        exportProgress = 0
+        defer { isExporting = false }
+
+        let store = self.store
+        let destination = FileManager.default.temporaryDirectory
+            .appendingPathComponent("exports", isDirectory: true)
+        try? FileManager.default.createDirectory(at: destination, withIntermediateDirectories: true)
+
+        let provider = VideoFrameImageProvider(videoURL: videoURL, metadata: recording)
+        do {
+            return try await PhotoSetExporter(store: store)
+                .export(recording, options: options, provider: provider, into: destination)
+        } catch {
+            errorMessage = error.localizedDescription
+            return nil
+        }
+    }
+
     /// Exports off the main actor and returns the zip for the share sheet.
     func export(_ recording: RecordingMetadata,
                 format: RecordingExporter.Format) async -> URL? {

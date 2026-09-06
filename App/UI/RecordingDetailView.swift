@@ -11,6 +11,7 @@ struct RecordingDetailView: View {
     @State private var isRenaming = false
     @State private var draftName = ""
     @State private var showsDeleteConfirmation = false
+    @State private var isChoosingPhotoOptions = false
 
     let recording: RecordingMetadata
 
@@ -65,6 +66,12 @@ struct RecordingDetailView: View {
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 32)
+        }
+        .sheet(isPresented: $isChoosingPhotoOptions) {
+            PhotoSetExportView(recording: recording) { options in
+                Task { shareItem = await library.exportPhotoSet(recording, options: options)
+                    .map(ShareItem.init) }
+            }
         }
         .navigationTitle(recording.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -347,6 +354,9 @@ struct RecordingDetailView: View {
                         .map(ShareItem.init) }
                 }
                 if recording.video != nil {
+                    ProButton(.photoExport, "Bilder für Fotogrammetrie", "photo.stack") {
+                        isChoosingPhotoOptions = true
+                    }
                     ProButton(.sceneExport, "Kamerafahrt für Blender", "move.3d") {
                         Task { shareItem = await library.export(recording, format: .sceneBundle)
                             .map(ShareItem.init) }

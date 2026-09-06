@@ -1,42 +1,36 @@
 {
-  "identifier" : "9F3C1B27",
-  "nonRenewingSubscriptions" : [
-
-  ],
-  "products" : [
+  "identifier": "9F3C1B27",
+  "nonRenewingSubscriptions": [],
+  "products": [
     {
-      "displayPrice" : "34.00",
-      "familyShareable" : true,
-      "internalID" : "1B7E5A40",
-      "localizations" : [
+      "displayPrice": "19.00",
+      "familyShareable": true,
+      "internalID": "1B7E5A40",
+      "localizations": [
         {
-          "description" : "400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender-Szene, Sensor Logger, Gyroflow, mehrere Begehungen, GeoJSON, GPX, KML und der Gesamtexport. Einmalig, kein Abo.",
-          "displayName" : "Sensorstorm Pro",
-          "locale" : "de_DE"
+          "description": "400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender-Szene, Sensor Logger, Gyroflow, mehrere Begehungen, GeoJSON, GPX, KML und der Gesamtexport. Einmalig, kein Abo.",
+          "displayName": "Sensorstorm Pro",
+          "locale": "de_DE"
         },
         {
-          "description" : "400 Hz, 4K, camera pose for 3D, raw data, Blender scene, Sensor Logger, Gyroflow, multiple walks, GeoJSON, GPX, KML and the full archive export. One-time purchase, no subscription.",
-          "displayName" : "Sensorstorm Pro",
-          "locale" : "en_US"
+          "description": "400 Hz, 4K, camera pose for 3D, raw data, Blender scene, Sensor Logger, Gyroflow, multiple walks, GeoJSON, GPX, KML and the full archive export. One-time purchase, no subscription.",
+          "displayName": "Sensorstorm Pro",
+          "locale": "en_US"
         }
       ],
-      "productID" : "ch.sensorstorm.app.pro",
-      "referenceName" : "Sensorstorm Pro",
-      "type" : "NonConsumable"
+      "productID": "ch.sensorstorm.app.pro",
+      "referenceName": "Sensorstorm Pro",
+      "type": "NonConsumable"
     }
   ],
-  "settings" : {
-    "_askToBuyEnabled" : false,
-    "_billingIssuesEnabled" : false,
-    "_storeKitErrors" : [
-
-    ]
+  "settings": {
+    "_askToBuyEnabled": false,
+    "_billingIssuesEnabled": false,
+    "_storeKitErrors": []
   },
-  "subscriptionGroups" : [
-
-  ],
-  "version" : {
-    "major" : 4,
-    "minor" : 0
+  "subscriptionGroups": [],
+  "version": {
+    "major": 4,
+    "minor": 0
   }
 }

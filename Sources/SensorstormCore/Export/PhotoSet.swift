@@ -98,14 +98,32 @@ public struct WrittenImage: Sendable, Hashable {
     }
 }
 
+/// One image to be written: which frame, what to stamp into it, where it goes.
+public struct PhotoWriteRequest: Sendable {
+    public var ref: PhotoFrameRef
+    public var exif: ExifAttributes
+    public var url: URL
+
+    public init(ref: PhotoFrameRef, exif: ExifAttributes, url: URL) {
+        self.ref = ref
+        self.exif = exif
+        self.url = url
+    }
+}
+
 public protocol PhotogrammetryImageProvider: Sendable {
     /// A sharpness score per ref, in the same order. Higher is sharper. `NaN` means the
     /// frame could not be decoded — which is treated as "not selectable", never as "worst",
     /// because a decode failure is not a blurry picture.
     func sharpness(of refs: [PhotoFrameRef]) async throws -> [Double]
 
-    /// Encodes one frame to `url`, stamping `exif` into it.
-    func write(_ ref: PhotoFrameRef, exif: ExifAttributes, to url: URL) async throws -> WrittenImage
+    /// Writes every requested image.
+    ///
+    /// Deliberately a batch rather than one call per image: a video is read sequentially,
+    /// and asking for one frame at a time would make the implementation seek — which on
+    /// HEVC means decoding from the preceding keyframe every single time, turning a linear
+    /// read into a quadratic one. The requests arrive in ascending time order.
+    func write(_ requests: [PhotoWriteRequest]) async throws -> [WrittenImage]
 }
 
 // MARK: - EXIF
@@ -129,6 +147,9 @@ public struct ExifAttributes: Sendable, Hashable {
     public var software: String
     /// UTC, `yyyy:MM:dd HH:mm:ss`, with ``subSecondsOriginal`` carrying the fraction.
     public var dateTimeOriginal: String
+    /// Milliseconds of ``dateTimeOriginal``. Carried here rather than written into the JPEG:
+    /// Apple's ImageIO constant for the sub-second tag is spelled inconsistently across SDK
+    /// versions, and the same instant is in `cameras.csv` to the millisecond anyway.
     public var subSecondsOriginal: String
     public var focalLengthIn35mmFilm: Int?
     public var latitude: Double?

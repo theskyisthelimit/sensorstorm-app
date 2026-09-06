@@ -248,15 +248,15 @@ public struct PhotoSetExporter: Sendable {
         let images = folder.appendingPathComponent("images", isDirectory: true)
         try FileManager.default.createDirectory(at: images, withIntermediateDirectories: true)
 
-        var written: [WrittenImage] = []
-        for frame in selected {
-            let exif = self.exif(for: frame, scene: scene, metadata: metadata)
-            let ref = PhotoFrameRef(hostTime: frame.pose.hostTime,
-                                    videoFrameIndex: frame.pose.videoFrameIndex)
-            written.append(try await provider.write(
-                ref, exif: exif, to: images.appendingPathComponent(frame.name)))
-            progress?(0.5 + 0.4 * Double(written.count) / Double(selected.count))
+        let requests = selected.map { frame in
+            PhotoWriteRequest(
+                ref: PhotoFrameRef(hostTime: frame.pose.hostTime,
+                                   videoFrameIndex: frame.pose.videoFrameIndex),
+                exif: self.exif(for: frame, scene: scene, metadata: metadata),
+                url: images.appendingPathComponent(frame.name))
         }
+        let written = try await provider.write(requests)
+        progress?(0.9)
 
         let selection = Selection(frames: selected, candidateCount: candidateIndices.count,
                                   windowCount: windows.count,

@@ -22,12 +22,13 @@ struct PhotoSetTests {
             refs.map { score($0.videoFrameIndex) }
         }
 
-        func write(_ ref: PhotoFrameRef, exif: ExifAttributes,
-                   to url: URL) async throws -> WrittenImage {
-            exifByName[url.lastPathComponent] = exif
-            try Data("jpeg".utf8).write(to: url, options: .atomic)
-            return WrittenImage(fileName: url.lastPathComponent,
-                                pixelWidth: 1920, pixelHeight: 1440)
+        func write(_ requests: [PhotoWriteRequest]) async throws -> [WrittenImage] {
+            try requests.map { request in
+                exifByName[request.url.lastPathComponent] = request.exif
+                try Data("jpeg".utf8).write(to: request.url, options: .atomic)
+                return WrittenImage(fileName: request.url.lastPathComponent,
+                                    pixelWidth: 1920, pixelHeight: 1440)
+            }
         }
     }
 
