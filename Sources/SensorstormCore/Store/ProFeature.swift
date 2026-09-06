@@ -58,7 +58,12 @@ public struct ProAccess: Sendable, Hashable {
     /// business calling itself one. What Pro sells is the professional formats — the ones
     /// that drop straight into QGIS, Blender or Gyroflow — never access to your own data.
     /// Refunding Pro therefore re-locks the formats but never strands a recording.
-    public static let freeRecordingFormats: Set<RecordingExporter.Format> = [.csvBundle]
+    /// GPX and KML join CSV for a second reason on top of that one: a recorded track is
+    /// the thing this app is most often bought to produce, and the comparable apps make you
+    /// convert one with an outside tool. Giving it away is worth more than selling it.
+    public static let freeRecordingFormats: Set<RecordingExporter.Format> = [
+        .csvBundle, .gpxTrack, .kmlTrack
+    ]
     public static let freeSurveyFormats: Set<SurveyExporter.Format> = [.csv]
 
     // MARK: - State
@@ -113,7 +118,7 @@ public struct ProAccess: Sendable, Hashable {
 extension RecordingExporter.Format {
     public var proFeature: ProFeature? {
         switch self {
-        case .csvBundle: nil
+        case .csvBundle, .gpxTrack, .kmlTrack: nil
         case .rawBundle: .rawExport
         case .sceneBundle: .sceneExport
         case .sensorLoggerBundle, .gyroflowLog: .interopExport

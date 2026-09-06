@@ -8,6 +8,7 @@ struct RecordView: View {
     @State private var annotationText = ""
     @State private var isAddingAnnotation = false
     @State private var showsSavedBanner = false
+    @State private var isArmingSensors = false
 
     var body: some View {
         NavigationStack {
@@ -32,9 +33,17 @@ struct RecordView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Text(activeSensorSummary)
-                        .font(.caption.monospacedDigit())
-                        .foregroundStyle(.secondary)
+                    // The count was already here, saying how many streams are armed. It is
+                    // the obvious place to change that, instead of sending people to the
+                    // settings tab and back.
+                    Button {
+                        isArmingSensors = true
+                    } label: {
+                        Text(activeSensorSummary)
+                            .font(.caption.monospacedDigit())
+                            .foregroundStyle(.secondary)
+                    }
+                    .accessibilityLabel("Sensoren auswählen")
                 }
             }
         }
@@ -50,6 +59,7 @@ struct RecordView: View {
             Text(hub.errorMessage ?? "")
         }
         .overlay(alignment: .top) { savedBanner }
+        .sheet(isPresented: $isArmingSensors) { SensorArmingSheet() }
     }
 
     // MARK: - Camera
@@ -294,6 +304,28 @@ struct RecordView: View {
                 // Said out loud, because hiding a tile deliberately does *not* stop the
                 // recording, and that is the whole point of separating the two.
                 Text("Wird weiterhin aufgezeichnet")
+
+                if sensor == .barometer {
+                    Divider()
+                    Button {
+                        hub.zeroBarometer()
+                    } label: {
+                        Label("Höhe hier nullen", systemImage: "arrow.counterclockwise")
+                    }
+                }
+
+                Divider()
+
+                Button(role: .destructive) {
+                    withAnimation(.snappy(duration: 0.2)) {
+                        hub.settings.setEnabled(false, for: sensor)
+                    }
+                } label: {
+                    Label("Nicht aufzeichnen", systemImage: "minus.circle")
+                }
+                // The streams are frozen when the recording starts, so this would be a
+                // promise the recording cannot keep.
+                .disabled(hub.phase != .idle)
             }
     }
 

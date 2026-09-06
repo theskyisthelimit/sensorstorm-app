@@ -69,7 +69,7 @@ darauf nicht prüft, bekommt Messpunkte im Golf von Guinea.
 | Sensor | Kanäle | Einheit | Anmerkung |
 |--------|--------|---------|-----------|
 | `barometer` | pressure | **kPa** | Nicht hPa/mbar — Apple liefert kPa. 101.325 kPa ist Normaldruck. |
-| | relativeAltitude | m | Relativ zum Start der Aufzeichnung, nicht absolut. Kurzfristig deutlich genauer als GPS-Höhe. |
+| | relativeAltitude | m | Null beim Start der Aufzeichnung oder beim letzten von Hand gesetzten Bezugspunkt, nicht absolut. Was abgezogen wurde, steht als `barometerReference` in den Metadaten — damit lässt sich der absolute Druck zurückrechnen. Kurzfristig deutlich genauer als GPS-Höhe. |
 
 ## Audio
 

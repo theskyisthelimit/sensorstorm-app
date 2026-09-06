@@ -70,9 +70,7 @@ struct SettingsView: View {
 
                 captureEngineSection
 
-                ForEach(SensorCategory.allCases, id: \.self) { category in
-                    sensorSection(category)
-                }
+                SensorArmingSections()
 
                 streamingSection
 
@@ -267,42 +265,6 @@ struct SettingsView: View {
                 }
             } else {
                 Text("Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten — die Bilder lassen sich damit nicht im Raum platzieren.")
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func sensorSection(_ category: SensorCategory) -> some View {
-        @Bindable var hub = hub
-        // Engine-controlled streams follow from the camera setting above; showing them as
-        // toggles would promise a choice that does not exist.
-        let descriptors = SensorCatalog.descriptors(in: category)
-            .filter { !SensorID.engineControlled.contains($0.id) }
-
-        if !descriptors.isEmpty {
-            Section(category.title) {
-                ForEach(descriptors) { descriptor in
-                    let available = hub.isAvailable(descriptor.id)
-                    Toggle(isOn: Binding(
-                        get: { hub.settings.isEnabled(descriptor.id) },
-                        set: { hub.settings.setEnabled($0, for: descriptor.id) }
-                    )) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(descriptor.id.title)
-                            // One line. Spelled out, GPS alone lists ten channel names and
-                            // pushed its row to three lines, which is most of why this
-                            // screen felt like a wall. The full list lives in docs/UNITS.md.
-                            Text(available
-                                 ? descriptor.channels.joined(separator: ", ")
-                                 : String(localized: "nicht verfügbar"))
-                                .font(.caption2)
-                                .foregroundStyle(.tertiary)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                        }
-                    }
-                    .disabled(!available)
-                }
             }
         }
     }

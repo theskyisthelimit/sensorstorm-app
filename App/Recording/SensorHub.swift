@@ -168,6 +168,13 @@ final class SensorHub {
 
     var locationAuthorization: CLAuthorizationStatus { locationSource.authorizationStatus }
 
+    /// Makes the here-and-now the barometer's zero. The stream keeps running; only the
+    /// `relativeAltitude` column shifts, and what was subtracted is written into the
+    /// recording's metadata so an absolute pressure stays recoverable.
+    func zeroBarometer() {
+        motionSource.resetBarometerReference()
+    }
+
     /// The recording currently being written, if any. The survey add-on stamps it onto every
     /// finding, which is what lets a photo of a pothole be lined up with the accelerometer
     /// trace of driving over it.
@@ -327,6 +334,7 @@ final class SensorHub {
             let offset = HostClock.wallToHostOffset
 
             locationSource.resetAnchor()
+            motionSource.resetBarometerReference()
 
             var writers: [SensorID: StreamWriter] = [:]
             for sensor in streamsToWrite(for: recordingSettings).sorted(by: { $0.rawValue < $1.rawValue }) {
@@ -448,7 +456,8 @@ final class SensorHub {
             requestedRateHz: active.settings.motionRateHz,
             captureEngine: active.engine,
             attitudeReferenceFrame: motionSource.activeReferenceFrame,
-            geodeticAnchor: locationSource.geodeticAnchor
+            geodeticAnchor: locationSource.geodeticAnchor,
+            barometerReference: motionSource.barometerReference
         )
 
         locationSource.setBackgroundUpdates(false)

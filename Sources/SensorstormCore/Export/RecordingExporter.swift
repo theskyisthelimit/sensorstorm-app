@@ -26,6 +26,28 @@ public struct RecordingExporter: Sendable {
         case json
         /// A SQLite database, one table per sensor. See ``SQLiteExporter``.
         case sqlite
+        /// The GPS track alone, as a `.gpx` file. See ``TrackExporter``.
+        case gpxTrack
+        /// The GPS track alone, as a `.kml` file. See ``TrackExporter``.
+        case kmlTrack
+
+        /// Formats that are one file, not a folder full of them — they are handed over as
+        /// that file rather than wrapped in a zip. A `.gpx` inside a `.zip` cannot be
+        /// dropped onto a map; the whole point of the format is that it is portable.
+        var isSingleFile: Bool {
+            switch self {
+            case .gpxTrack, .kmlTrack: true
+            default: false
+            }
+        }
+
+        /// File extension for the single-file formats.
+        var fileExtension: String {
+            switch self {
+            case .kmlTrack: "kml"
+            default: "gpx"
+            }
+        }
     }
 
     private let store: RecordingStore
@@ -43,6 +65,21 @@ public struct RecordingExporter: Sendable {
                        progress: (@Sendable (Double) -> Void)? = nil) throws -> URL {
         let fileManager = FileManager.default
         let folderName = Self.sanitize(metadata.name)
+
+        if format.isSingleFile {
+            let url = destinationDirectory
+                .appendingPathComponent("\(folderName).\(format.fileExtension)")
+            if fileManager.fileExists(atPath: url.path) {
+                try fileManager.removeItem(at: url)
+            }
+            guard let text = trackText(metadata, format: format) else {
+                throw ExportError.noLocationData
+            }
+            try Data(text.utf8).write(to: url, options: .atomic)
+            progress?(1)
+            return url
+        }
+
         let staging = destinationDirectory
             .appendingPathComponent("staging-\(metadata.id.uuidString)", isDirectory: true)
         let payload = staging.appendingPathComponent(folderName, isDirectory: true)
@@ -102,7 +139,40 @@ public struct RecordingExporter: Sendable {
                 metadata, to: folder.appendingPathComponent(SQLiteExporter.fileName),
                 progress: progress)
             try writeSidecars(metadata, format: format, into: folder)
+        case .gpxTrack, .kmlTrack:
+            // Silently skipped rather than thrown here, unlike the single-file export: this
+            // path also serves the whole-archive export, and one recording made indoors
+            // must not abort an archive of forty.
+            if let text = trackText(metadata, format: format) {
+                let name = Self.sanitize(metadata.name)
+                try Data(text.utf8).write(
+                    to: folder.appendingPathComponent("\(name).\(format.fileExtension)"),
+                    options: .atomic)
+            }
+            progress?(1)
         }
+    }
+
+    // MARK: - GPS track
+
+    /// The recorded GPS track on its own.
+    ///
+    /// ``TrackExporter`` has written both formats since the scene bundle needed them, but
+    /// the only route to one ran through that export — which is Pro, and which refuses to
+    /// appear at all unless the recording has a video. A walk is a track whether or not a
+    /// camera was running, so this is the same writer with a door of its own.
+    /// `nil` when the recording has no usable fix at all — the callers differ on whether
+    /// that is an error, so the decision is theirs.
+    private func trackText(_ metadata: RecordingMetadata, format: Format) -> String? {
+        guard let reader = store.reader(for: .location, recording: metadata.id) else {
+            return nil
+        }
+        let track = TrackExporter.track(from: reader)
+        guard !track.isEmpty else { return nil }
+
+        return format == .kmlTrack
+            ? TrackExporter.kml(track, metadata: metadata)
+            : TrackExporter.gpx(track, metadata: metadata)
     }
 
     /// README and media, for the formats that are a single file rather than a folder full
@@ -374,11 +444,14 @@ public struct RecordingExporter: Sendable {
 
     public enum ExportError: Error, LocalizedError {
         case noGyroscopeData
+        case noLocationData
 
         public var errorDescription: String? {
             switch self {
             case .noGyroscopeData:
                 String(localized: "Diese Aufnahme enthält keine Drehratendaten.")
+            case .noLocationData:
+                String(localized: "Diese Aufnahme enthält keine verwertbaren GPS-Fixe.")
             }
         }
     }

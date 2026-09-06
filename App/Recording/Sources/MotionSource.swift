@@ -28,6 +28,11 @@ final class MotionSource: SensorSource, @unchecked Sendable {
     private var wallToHostOffset: Double = 0
     private var active: Set<SensorID> = []
 
+    /// The barometer's zero point. Guarded because it is read on the motion queue and reset
+    /// from the main actor.
+    private let referenceLock = NSLock()
+    private var reference: BarometerReference?
+
     /// `.xTrueNorthZVertical` yields a yaw referenced to true north, which is what makes
     /// the orientation stream comparable across recordings — but it needs location
     /// authorisation. Set before ``start(sensors:rateHz:wallToHostOffset:)``.
@@ -94,8 +99,18 @@ final class MotionSource: SensorSource, @unchecked Sendable {
         if wanted.contains(.barometer) {
             altimeter.startRelativeAltitudeUpdates(to: queue) { [weak self] data, _ in
                 guard let self, let data else { return }
-                sink.ingest(.barometer, time: data.timestamp,
-                            values: [data.pressure.doubleValue, data.relativeAltitude.doubleValue])
+                let pressure = data.pressure.doubleValue
+                let raw = data.relativeAltitude.doubleValue
+                // The first sample after a reset defines the zero. Doing it here rather
+                // than by restarting `CMAltimeter` means the stream keeps running: a restart
+                // would leave a hole in it every time somebody pressed the button.
+                let zero = self.referenceLock.withLock { () -> Double in
+                    if let existing = self.reference { return existing.rawAltitude }
+                    self.reference = BarometerReference(pressure: pressure, rawAltitude: raw,
+                                                        hostTime: data.timestamp)
+                    return raw
+                }
+                sink.ingest(.barometer, time: data.timestamp, values: [pressure, raw - zero])
             }
         }
 
@@ -126,6 +141,19 @@ final class MotionSource: SensorSource, @unchecked Sendable {
         }
     }
 
+    /// The zero point in force, once a sample has established one.
+    var barometerReference: BarometerReference? { referenceLock.withLock { reference } }
+
+    /// Makes the next barometer sample the new zero.
+    ///
+    /// Called when a recording starts — same reasoning as ``LocationSource/resetAnchor()``:
+    /// the reference belongs to the recording, not to whenever the live dashboard happened
+    /// to open. Also called from the "zero here" control, so a height can be measured
+    /// against a doorstep rather than against wherever the app was launched.
+    func resetBarometerReference() {
+        referenceLock.withLock { reference = nil }
+    }
+
     func stop() {
         manager.stopAccelerometerUpdates()
         manager.stopGyroUpdates()
@@ -137,6 +165,9 @@ final class MotionSource: SensorSource, @unchecked Sendable {
         queue.cancelAllOperations()
         active = []
         activeReferenceFrame = nil
+        // `CMAltimeter` zeroes itself on the next start, so a kept reference would be
+        // measured against an origin that no longer exists.
+        referenceLock.withLock { reference = nil }
     }
 
     // MARK: - Private

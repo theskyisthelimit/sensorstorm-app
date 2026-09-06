@@ -242,6 +242,70 @@ struct SensorCatalogTests {
         }
     }
 
+    // MARK: - Der GPS-Track als eigene Datei
+
+    /// A `.gpx` is only useful if it arrives as a `.gpx`. Every other export is a zip; these
+    /// two are handed over as the file itself, because a track inside an archive cannot be
+    /// dropped onto a map — which is the entire reason the format exists.
+    @Test("Der GPX-Export liefert die Datei selbst, nicht ein Zip")
+    func gpxTrackIsHandedOverAsAFile() throws {
+        let store = try makeStore()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        var metadata = makeMetadata(name: "Feldweg")
+        let directory = try store.prepareDirectory(for: metadata.id)
+        let writer = try StreamWriter(sensor: .location,
+                                      channelCount: SensorID.location.descriptor.channelCount,
+                                      directory: directory)
+        for step in 0..<5 {
+            let offset = Double(step) * 0.0001
+            writer.append(time: 1000 + Double(step), values: [
+                46.9481 + offset, 7.4474 + offset,  // latitude, longitude
+                540, 589,                            // orthometric, ellipsoidal
+                1.4, 0.5, 90, 5,                     // speed, speedAccuracy, course, courseAcc
+                4.0, 6.0                             // horizontal, vertical accuracy
+            ])
+        }
+        writer.close()
+        metadata.streams = [StreamInfo(sensor: .location,
+                                       channels: SensorID.location.descriptor.channels,
+                                       unit: "°", sampleCount: 5, effectiveRateHz: 1)]
+        try store.save(metadata)
+
+        let destination = store.root.appendingPathComponent("out", isDirectory: true)
+        try FileManager.default.createDirectory(at: destination, withIntermediateDirectories: true)
+        let url = try RecordingExporter(store: store)
+            .export(metadata, format: .gpxTrack, into: destination)
+
+        #expect(url.pathExtension == "gpx")
+        let text = try String(contentsOf: url, encoding: .utf8)
+        #expect(text.contains("<trkseg>"))
+        #expect(text.contains("46.9481"))
+        // The elevation has to be the orthometric height. Writing the ellipsoidal one is
+        // the classic way to float a Swiss track ~49 m into the air.
+        #expect(text.contains("<ele>540</ele>"))
+        #expect(!text.contains("589"))
+    }
+
+    /// A recording made indoors has no fix at all. Asking for its track explicitly is an
+    /// error worth showing; the same format inside a whole-archive export is not, and that
+    /// difference is deliberate.
+    @Test("Ohne GPS-Fix meldet der Track-Export einen Fehler")
+    func gpxTrackWithoutFixesFails() throws {
+        let store = try makeStore()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        let metadata = makeMetadata(name: "Keller")
+        try store.save(metadata)
+        let destination = store.root.appendingPathComponent("out", isDirectory: true)
+        try FileManager.default.createDirectory(at: destination, withIntermediateDirectories: true)
+
+        #expect(throws: RecordingExporter.ExportError.self) {
+            _ = try RecordingExporter(store: store)
+                .export(metadata, format: .gpxTrack, into: destination)
+        }
+    }
+
     @Test("Raw values are stable — they are the on-disk file names")
     func rawValuesAreStable() {
         #expect(SensorID.accelerometer.rawValue == "accelerometer")

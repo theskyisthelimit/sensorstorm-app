@@ -31,6 +31,9 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     /// First usable GPS fix, kept verbatim so a local metric frame can be rebuilt without
     /// re-reading the location stream. `nil` when the recording never got a fix.
     public var geodeticAnchor: GeodeticAnchor?
+    /// Zero point of the barometer's `relativeAltitude` column. `nil` for recordings written
+    /// before the field existed, and for recordings without a barometer.
+    public var barometerReference: BarometerReference?
 
     public init(
         id: UUID = UUID(),
@@ -46,7 +49,8 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         notes: String = "",
         captureEngine: CaptureEngine? = nil,
         attitudeReferenceFrame: AttitudeReferenceFrame? = nil,
-        geodeticAnchor: GeodeticAnchor? = nil
+        geodeticAnchor: GeodeticAnchor? = nil,
+        barometerReference: BarometerReference? = nil
     ) {
         self.id = id
         self.name = name
@@ -62,6 +66,7 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.captureEngine = captureEngine
         self.attitudeReferenceFrame = attitudeReferenceFrame
         self.geodeticAnchor = geodeticAnchor
+        self.barometerReference = barometerReference
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {
@@ -89,6 +94,29 @@ public enum AttitudeReferenceFrame: String, Codable, Sendable, Hashable, CaseIte
     /// `.xArbitraryCorrectedZVertical` — yaw is relative to wherever the device was pointing
     /// at start. Comparable within a recording, meaningless between two.
     case arbitraryCorrected
+}
+
+/// The zero point of the ``SensorID/barometer`` `relativeAltitude` channel.
+///
+/// `CMAltimeter` zeroes itself the moment updates are started, and that happens when the
+/// record screen opens — not when the recording starts. Between the two there can be
+/// minutes and several floors. The recorder therefore keeps its own zero and subtracts it,
+/// and stores what it subtracted here, so an absolute pressure can be recovered afterwards.
+/// Without that the column is only comparable inside one recording.
+public struct BarometerReference: Codable, Sendable, Hashable {
+    /// Air pressure in kPa at the moment the zero point was taken.
+    public var pressure: Double
+    /// `CMAltimeter`'s own relative altitude at that moment, in metres — the value that is
+    /// subtracted from every sample.
+    public var rawAltitude: Double
+    /// Host time of the zero point, so it lines up with the rest of the streams.
+    public var hostTime: Double
+
+    public init(pressure: Double, rawAltitude: Double, hostTime: Double) {
+        self.pressure = pressure
+        self.rawAltitude = rawAltitude
+        self.hostTime = hostTime
+    }
 }
 
 /// The geodetic origin a recording's local metric frame hangs off.

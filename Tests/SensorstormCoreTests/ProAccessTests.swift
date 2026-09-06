@@ -16,7 +16,16 @@ struct ProAccessTests {
         #expect(ProAccess.free.allows(surveyFormat: .csv))
     }
 
-    @Test("Ohne Pro ist genau CSV frei, sonst nichts")
+    /// Not the same promise as the one above, and worth its own line: the GPS track is free
+    /// because it is the thing the app is most often reached for, and because the apps we
+    /// are measured against make you convert one with an outside tool.
+    @Test("Der GPS-Track bleibt ohne Pro exportierbar")
+    func trackStaysFree() {
+        #expect(ProAccess.free.allows(recordingFormat: .gpxTrack))
+        #expect(ProAccess.free.allows(recordingFormat: .kmlTrack))
+    }
+
+    @Test("Ohne Pro sind genau CSV und der GPS-Track frei, sonst nichts")
     func onlyCSVIsFree() {
         let freeRecording = RecordingExporter.Format.allCases
             .filter { ProAccess.free.allows(recordingFormat: $0) }

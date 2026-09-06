@@ -325,6 +325,23 @@ struct RecordingDetailView: View {
                     Task { shareItem = await library.export(recording, format: .sqlite)
                         .map(ShareItem.init) }
                 }
+                if recording.stream(.location) != nil {
+                    // Free, like CSV. A recorded track is what this app is most often
+                    // reached for, and the comparable apps make you convert one with an
+                    // outside tool — giving it away is worth more than selling it.
+                    Button {
+                        Task { shareItem = await library.export(recording, format: .gpxTrack)
+                            .map(ShareItem.init) }
+                    } label: {
+                        Label("GPS-Track als GPX", systemImage: "point.topleft.down.to.point.bottomright.curvepath")
+                    }
+                    Button {
+                        Task { shareItem = await library.export(recording, format: .kmlTrack)
+                            .map(ShareItem.init) }
+                    } label: {
+                        Label("GPS-Track als KML", systemImage: "globe.europe.africa")
+                    }
+                }
                 ProButton(.rawExport, "Rohdaten exportieren", "shippingbox") {
                     Task { shareItem = await library.export(recording, format: .rawBundle)
                         .map(ShareItem.init) }
