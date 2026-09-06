@@ -50,7 +50,9 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDisplayName: Sensorstorm
-        CFBundleLocalizations: [de, en]
+        # Every language the String Catalog actually carries. Declaring one that is
+        # not translated is the mistake this app already made once, for eight builds.
+        CFBundleLocalizations: [de, en, fr, it, es, nl, pt-BR, ja, ko, zh-Hant]
         ITSAppUsesNonExemptEncryption: false
         LSApplicationCategoryType: public.app-category.utilities
         UILaunchScreen:
