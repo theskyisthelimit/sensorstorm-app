@@ -15,6 +15,7 @@ extension ProFeature {
         case .rawExport: "Rohdaten-Export"
         case .sceneExport: "3D-Szene für Blender"
         case .interopExport: "Sensor Logger und Gyroflow"
+        case .tableExport: "Eine Tabelle, JSON, SQLite"
         case .additionalSurveys: "Mehrere Begehungen"
         case .surveyGeoExport: "GeoJSON, GPX und KML"
         case .archiveExport: "Gesamtexport"
@@ -37,6 +38,8 @@ extension ProFeature {
             "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera."
         case .interopExport:
             "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow."
+        case .tableExport:
+            "Alle Sensoren nebeneinander in einer Tabelle, auf ein gemeinsames Zeitraster gelegt — dazu die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor."
         case .additionalSurveys:
             "Beliebig viele Begehungen nebeneinander — pro Strasse, pro Auftrag, pro Tag."
         case .surveyGeoExport:

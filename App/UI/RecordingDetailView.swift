@@ -299,6 +299,18 @@ struct RecordingDetailView: View {
                 } label: {
                     Label("Als CSV exportieren", systemImage: "tablecells")
                 }
+                ProButton(.tableExport, "Alle Sensoren in einer Tabelle", "tablecells.badge.ellipsis") {
+                    Task { shareItem = await library.export(recording, format: .combinedCSV)
+                        .map(ShareItem.init) }
+                }
+                ProButton(.tableExport, "Als JSON exportieren", "curlybraces") {
+                    Task { shareItem = await library.export(recording, format: .json)
+                        .map(ShareItem.init) }
+                }
+                ProButton(.tableExport, "Als SQLite-Datenbank", "cylinder.split.1x2") {
+                    Task { shareItem = await library.export(recording, format: .sqlite)
+                        .map(ShareItem.init) }
+                }
                 ProButton(.rawExport, "Rohdaten exportieren", "shippingbox") {
                     Task { shareItem = await library.export(recording, format: .rawBundle)
                         .map(ShareItem.init) }

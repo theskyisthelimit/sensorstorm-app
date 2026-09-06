@@ -19,6 +19,8 @@ public enum ProFeature: String, Sendable, Hashable, CaseIterable, Identifiable {
     case sceneExport
     /// The Sensor Logger and Gyroflow interop exports.
     case interopExport
+    /// Every sensor in one table: combined CSV, JSON, SQLite.
+    case tableExport
     /// Starting a walk beyond ``ProAccess/freeSurveyAllowance``.
     case additionalSurveys
     /// Exporting a walk as GeoJSON, GPX, KML or a media bundle.
@@ -113,6 +115,7 @@ extension RecordingExporter.Format {
         case .rawBundle: .rawExport
         case .sceneBundle: .sceneExport
         case .sensorLoggerBundle, .gyroflowLog: .interopExport
+        case .combinedCSV, .json, .sqlite: .tableExport
         }
     }
 }

@@ -20,6 +20,12 @@ public struct RecordingExporter: Sendable {
         case sensorLoggerBundle
         /// A Gyroflow `.gcsv` IMU log for stabilising the video after the fact.
         case gyroflowLog
+        /// Every sensor in one table, resampled onto one grid. See ``CombinedCSVExporter``.
+        case combinedCSV
+        /// The whole recording as one JSON document. See ``JSONExporter``.
+        case json
+        /// A SQLite database, one table per sensor. See ``SQLiteExporter``.
+        case sqlite
     }
 
     private let store: RecordingStore
@@ -77,7 +83,69 @@ public struct RecordingExporter: Sendable {
             try writeSensorLoggerBundle(metadata, into: folder, progress: progress)
         case .gyroflowLog:
             try writeGyroflowLog(metadata, into: folder)
+        case .combinedCSV:
+            try CombinedCSVExporter(store: store).write(
+                metadata, to: folder.appendingPathComponent(CombinedCSVExporter.fileName),
+                progress: progress)
+            // The combined table carries no metadata of its own, unlike the JSON and the
+            // database, so the sidecar is the only place the device and the clock are named.
+            try RecordingStore.encoder.encode(metadata)
+                .write(to: folder.appendingPathComponent("metadata.json"), options: .atomic)
+            try writeSidecars(metadata, format: format, into: folder)
+        case .json:
+            try JSONExporter(store: store).write(
+                metadata, to: folder.appendingPathComponent(JSONExporter.fileName),
+                progress: progress)
+            try writeSidecars(metadata, format: format, into: folder)
+        case .sqlite:
+            try SQLiteExporter(store: store).write(
+                metadata, to: folder.appendingPathComponent(SQLiteExporter.fileName),
+                progress: progress)
+            try writeSidecars(metadata, format: format, into: folder)
         }
+    }
+
+    /// README and media, for the formats that are a single file rather than a folder full
+    /// of them. A `.sqlite` next to a `video.mov` with nothing saying how they relate is
+    /// two files, not an export.
+    private func writeSidecars(_ metadata: RecordingMetadata, format: Format,
+                               into folder: URL) throws {
+        var text = readme(for: metadata)
+        switch format {
+        case .combinedCSV:
+            text += """
+
+            combined.csv
+              One row per grid step, every sensor side by side. Values are held, never
+              interpolated: each cell is the last value actually measured at or before that
+              row's time, and the `*_age` column says how long ago that was. A cell before a
+              stream's first sample is empty rather than zero.
+
+            """
+        case .json:
+            text += """
+
+            recording.json
+              Every stream at its own timestamps — nothing resampled. `streams[].samples` is
+              an array of [time, value…] rows in the order they were measured. A value the
+              sensor could not produce is `null`, never 0.
+
+            """
+        case .sqlite:
+            text += """
+
+            recording.sqlite
+              One table per sensor, indexed on `time`, plus `metadata`, `streams` and
+              `annotations`. The `streams` table maps a sensor name to its table and columns,
+              so a script can discover the schema instead of being told it.
+
+            """
+        default:
+            break
+        }
+        try text.data(using: .utf8)?
+            .write(to: folder.appendingPathComponent("README.txt"), options: .atomic)
+        try copyMedia(metadata, into: folder)
     }
 
     // MARK: - CSV bundle

@@ -8,7 +8,11 @@ let package = Package(
         .library(name: "SensorstormCore", targets: ["SensorstormCore"])
     ],
     targets: [
-        .target(name: "SensorstormCore"),
+        // libsqlite3 ships with every Apple platform; `SQLiteExporter` writes the database
+        // export through its C API rather than pulling in a wrapper, so the package keeps
+        // its zero third-party dependencies.
+        .target(name: "SensorstormCore",
+                linkerSettings: [.linkedLibrary("sqlite3")]),
         .testTarget(name: "SensorstormCoreTests", dependencies: ["SensorstormCore"])
     ]
 )

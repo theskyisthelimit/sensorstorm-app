@@ -381,6 +381,26 @@
         }
       }
     },
+    "Alle Sensoren in einer Tabelle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All sensors in one table"
+          }
+        }
+      }
+    },
+    "Alle Sensoren nebeneinander in einer Tabelle, auf ein gemeinsames Zeitraster gelegt — dazu die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every sensor side by side in one table, laid onto a shared time grid — plus the whole recording as JSON, or as a SQLite database with one table per sensor."
+          }
+        }
+      }
+    },
     "Alle Streams teilen eine gemeinsame Uhr. Ein Export enthält pro Sensor eine CSV-Datei, das Video und die Metadaten.": {
       "localizations": {
         "en": {
@@ -437,6 +457,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Export as CSV"
+          }
+        }
+      }
+    },
+    "Als JSON exportieren": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export as JSON"
+          }
+        }
+      }
+    },
+    "Als SQLite-Datenbank": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As a SQLite database"
           }
         }
       }
@@ -991,6 +1031,16 @@
         }
       }
     },
+    "Die Datenbank %@ konnte nicht angelegt werden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The database %@ could not be created."
+          }
+        }
+      }
+    },
     "Die Kamera ist noch nicht bereit.": {
       "localizations": {
         "en": {
@@ -1097,6 +1147,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "A survey collects cases along a route. Per case: any number of photos and clips, the position with its uncertainty, a severity from 1 to 10, and the marked area."
+          }
+        }
+      }
+    },
+    "Eine Tabelle, JSON, SQLite": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One table, JSON, SQLite"
           }
         }
       }
