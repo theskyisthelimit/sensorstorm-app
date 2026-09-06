@@ -51,7 +51,7 @@ ACCENT = "#4ac7f0"   # Theme.accent from the app, so the two look like one produ
 
 PAIRS = [
     ("index.html", "en/index.html"),
-    ("faelle.html", "en/cases.html"),
+    ("beobachtungen.html", "en/observations.html"),
     ("datenschutz.html", "en/privacy.html"),
     ("support.html", "en/support.html"),
     ("impressum.html", "en/legal.html"),
@@ -59,10 +59,10 @@ PAIRS = [
 ALTERNATE = {de: en for de, en in PAIRS} | {en: de for de, en in PAIRS}
 
 NAV = {
-    "de": [("index.html", "Übersicht"), ("faelle.html", "Fälle"),
+    "de": [("index.html", "Übersicht"), ("beobachtungen.html", "Beobachtungen"),
            ("support.html", "Support"), ("datenschutz.html", "Datenschutz"),
            ("impressum.html", "Impressum")],
-    "en": [("en/index.html", "Overview"), ("en/cases.html", "Cases"),
+    "en": [("en/index.html", "Overview"), ("en/observations.html", "Observations"),
            ("en/support.html", "Support"), ("en/privacy.html", "Privacy"),
            ("en/legal.html", "Legal notice")],
 }
@@ -88,7 +88,7 @@ STRINGS = {
 
 
 def depth_prefix(path: str) -> str:
-    """`en/cases.html` has to reach `index.html` as `../index.html`."""
+    """`en/observations.html` has to reach `index.html` as `../index.html`."""
     return "../" * path.count("/")
 
 
@@ -268,13 +268,13 @@ PAGES: dict[str, dict] = {}
 PAGES["index.html"] = dict(lang="de",
     title="Sensorstorm — Sensoren messen, Strassenschäden erfassen",
     description="Video, GPS, Beschleunigung und Neigung gleichzeitig auf einer Uhr "
-                "aufzeichnen. Dazu Begehungen mit ausgewiesener Lagegenauigkeit. "
+                "aufzeichnen. Dazu Routen mit ausgewiesener Lagegenauigkeit. "
                 "iOS-App aus der Schweiz.",
     body=f"""
-<h1>Alle Sensoren auf einer Uhr.<br>Und die Strasse dazu.</h1>
+<h1>Dein iPhone als Messgerät.</h1>
 <p class="lede">Sensorstorm zeichnet die Sensoren deines iPhones gleichzeitig auf — Video,
-GPS, Beschleunigung und Neigung auf einer gemeinsamen Zeitbasis — und dokumentiert
-Schäden auf der Strasse mit einer Lagegenauigkeit, die es nicht versteckt.</p>
+GPS, Beschleunigung und Neigung auf einer gemeinsamen Zeitbasis — und dokumentiert, was du
+vor Ort vorfindest, mit einer Lagegenauigkeit, die es nicht versteckt.</p>
 <a class="cta" href="{APP_STORE_URL}">Im App Store laden</a>
 <p class="muted">Gratis. Sensorstorm Pro ist ein einmaliger In-App-Kauf, kein Abo.</p>
 
@@ -299,16 +299,38 @@ Auswertung, die beides verbindet, still verfälschen.</p>
 <li>Barometer: Luftdruck und relative Höhe</li>
 <li>GPS: Position, Höhe, Geschwindigkeit, Kurs — jeweils mit Genauigkeit</li>
 <li>Lautstärke in dBFS, Video mit Ton in 720p, 1080p oder 4K</li>
-<li>Schrittzähler, Batterie, Helligkeit, Netzwerk, AirPods-Kopfbewegung</li>
+<li>Schrittzähler, Aktivität, Batterie, Helligkeit, Netzwerk</li>
+<li>Bluetooth-Umgebung, AirPods-Kopfbewegung</li>
+<li>Apple Watch: Herzfrequenz und Handgelenkbewegung</li>
 </ul>
-<p>Abtastrate wählbar von 10 bis 400 Hz.</p>
+<p>Abtastrate wählbar von 10 bis 400 Hz. Auf Wunsch geht jede Messung während der
+Aufnahme zusätzlich als JSON an eine Adresse deiner Wahl — eigenes Dashboard, Node-RED,
+Home Assistant.</p>
 
-<h2>Fälle: Schäden festhalten</h2>
-<p>Eine <strong>Begehung</strong> ist ein Weg, ein <strong>Fall</strong> eine
-Schadenstelle darauf. Ein Schlagloch ist nicht ein Bild — es ist eine Übersicht, eine
+<h2>Fotogrammetrie: Bilder mit bekanntem Ort</h2>
+<p>Diese App baut kein 3D-Modell, und aus einem Video kann das auch sonst niemand. Was
+eine Aufnahme beitragen kann, ist der Teil, den Fotogrammetrie-Software sonst raten
+muss.</p>
+<p>Im ARKit-Modus wird zu jedem Bild Position, Blickrichtung und Brennweite
+aufgezeichnet. Der Export wählt daraus scharfe, räumlich verteilte Einzelbilder — eines,
+sobald sich die Kamera weit genug bewegt hat, und innerhalb jedes Abschnitts das
+schärfste. Brennweite, Ort und Blickrichtung stehen im EXIF, daneben liegen eine
+Kameratabelle und ein COLMAP-Modell. <strong>RealityScan</strong>,
+<strong>Metashape</strong> und <strong>Meshroom</strong> lesen das ein; das Modell
+rechnen sie, nicht diese App.</p>
+
+<h2>Der GPS-Track als GPX</h2>
+<p>Jede Aufnahme mit GPS lässt sich direkt als <code>.gpx</code> oder <code>.kml</code>
+teilen — ohne Pro und ohne Umweg über ein Fremdwerkzeug. Die Höhe darin ist orthometrisch,
+also die über Meer, nicht die ellipsoidische: in der Schweiz sind das rund 50 Meter
+Unterschied.</p>
+
+<h2>Beobachtungen: Schäden festhalten</h2>
+<p>Eine <strong>Route</strong> ist ein Weg, eine <strong>Beobachtung</strong> eine
+Stelle darauf. Ein Schlagloch ist nicht ein Bild — es ist eine Übersicht, eine
 Nahaufnahme, eines mit dem Zollstock daneben und dreissig Sekunden Video darum herum. All
 das ist <em>ein</em> Punkt auf der Karte, nicht vier.</p>
-<p><a href="faelle.html">Wie die Position zustande kommt und warum das zählt →</a></p>
+<p><a href="beobachtungen.html">Wie die Position zustande kommt und warum das zählt →</a></p>
 
 <h2>Export, der sich weiterverwenden lässt</h2>
 <div class="table-wrap">
@@ -336,13 +358,13 @@ werden.</p>
 <h2>Gratis und Pro</h2>
 <div class="card">
 <h3>Gratis</h3>
-<p>Alle Sensoren aufzeichnen, Wiedergabe mit synchronen Diagrammen, eine Begehung,
+<p>Alle Sensoren aufzeichnen, Wiedergabe mit synchronen Diagrammen, eine Route,
 CSV-Export.</p>
 </div>
 <div class="card">
 <h3>Sensorstorm Pro — einmalig, kein Abo</h3>
 <p>400 Hz, 4K, Kamerapose für 3D, Rohdaten, Blender-Szene, Sensor Logger, Gyroflow,
-beliebig viele Begehungen, GeoJSON/GPX/KML und der Gesamtexport.</p>
+beliebig viele Routen, GeoJSON/GPX/KML und der Gesamtexport.</p>
 </div>
 <p><strong>Der CSV-Export bleibt auch ohne Pro offen.</strong> Ein Messwerkzeug, das
 jemanden von den eigenen Messungen aussperren kann, ist keins. Verkauft werden die
@@ -388,15 +410,36 @@ invalidate any analysis that correlates the two.</p>
 <li>Barometer: pressure and relative altitude</li>
 <li>GPS: position, altitude, speed, course — each with its accuracy</li>
 <li>Loudness in dBFS, video with audio in 720p, 1080p or 4K</li>
-<li>Pedometer, battery, brightness, network, AirPods head motion</li>
+<li>Pedometer, activity, battery, brightness, network</li>
+<li>Bluetooth surroundings, AirPods head motion</li>
+<li>Apple Watch: heart rate and wrist motion</li>
 </ul>
-<p>Sample rate selectable from 10 to 400 Hz.</p>
+<p>Sample rate selectable from 10 to 400 Hz. If you want it, every reading also goes to
+an address of your choosing as JSON while the recording runs — your own dashboard,
+Node-RED, Home Assistant.</p>
 
-<h2>Cases: recording damage</h2>
-<p>A <strong>survey</strong> is a route; a <strong>case</strong> is a damaged spot on it. A
+<h2>Photogrammetry: images that know where they were taken</h2>
+<p>This app does not build a 3D model, and neither does anything else that starts from a
+video. What a recording can contribute is the part photogrammetry software otherwise has
+to guess.</p>
+<p>In ARKit mode the position, viewing direction and focal length are recorded for every
+frame. The export picks sharp, well-spaced stills from those — one as soon as the camera
+has moved far enough, and the sharpest within each stretch. Focal length, place and
+viewing direction go into the EXIF, with a camera table and a COLMAP model alongside.
+<strong>RealityScan</strong>, <strong>Metashape</strong> and <strong>Meshroom</strong>
+read that; they compute the model, this app does not.</p>
+
+<h2>The GPS track as GPX</h2>
+<p>Any recording with GPS shares directly as <code>.gpx</code> or <code>.kml</code> — no
+Pro, and no detour through a third-party converter. The elevation in it is orthometric,
+height above sea level rather than above the ellipsoid: in Switzerland that is a
+difference of about 50 metres.</p>
+
+<h2>Observations: recording damage</h2>
+<p>A <strong>route</strong> is a path; an <strong>observation</strong> is a spot on it. An
 pothole is not one image — it is an overview, a close-up, one with a ruler next to it and
 thirty seconds of video around it. All of that is <em>one</em> point on the map, not four.</p>
-<p><a href="cases.html">How the position is arrived at, and why that matters →</a></p>
+<p><a href="observations.html">How the position is arrived at, and why that matters →</a></p>
 
 <h2>An export you can actually use</h2>
 <div class="table-wrap">
@@ -423,12 +466,12 @@ are written into the scene file rather than guessed at.</p>
 <h2>Free and Pro</h2>
 <div class="card">
 <h3>Free</h3>
-<p>Record every sensor, play it back with synchronised charts, one survey, CSV export.</p>
+<p>Record every sensor, play it back with synchronised charts, one route, CSV export.</p>
 </div>
 <div class="card">
 <h3>Sensorstorm Pro — one-time, no subscription</h3>
 <p>400 Hz, 4K, camera pose for 3D, raw data, Blender scene, Sensor Logger, Gyroflow, any
-number of surveys, GeoJSON/GPX/KML and the full archive export.</p>
+number of routes, GeoJSON/GPX/KML and the full archive export.</p>
 </div>
 <p><strong>CSV export stays open without Pro.</strong> A measurement tool that can lock
 someone out of their own measurements is not one. What is sold is the professional formats,
@@ -441,22 +484,22 @@ us either — it is tied to your Apple Account.</p>
 <p><a href="privacy.html">The full privacy policy →</a></p>
 """)
 
-PAGES["faelle.html"] = dict(lang="de",
+PAGES["beobachtungen.html"] = dict(lang="de",
     title="Strassenschäden erfassen — Lagegenauigkeit | Sensorstorm",
     description="Schlaglöcher und Risse mit dem iPhone dokumentieren: Fotos, Clips, "
-                "Bewertung 1–10, Bereich — und bei jedem Fall, woher die Koordinate "
+                "Bewertung 1–10, Bereich — und bei jeder Beobachtung, woher die Koordinate "
                 "stammt.",
     body="""
 <h1>Strassenschäden erfassen, ohne die Genauigkeit zu verschweigen</h1>
-<p class="lede">Eine Begehung ist ein Weg, ein Fall eine Schadenstelle darauf. Zu einem Fall
-gehören beliebig viele Fotos und Clips, seine Position mitsamt der Abweichung, eine
+<p class="lede">Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf. Zu einer Beobachtung
+gehören beliebig viele Fotos und Clips, ihre Position mitsamt der Abweichung, eine
 Bewertung von 1 bis 10 und — wenn die Stelle grösser ist als ein Punkt — der markierte
 Bereich.</p>
 
 <h2>Wie genau ist die Position — und woher kommt sie</h2>
 <p>Die Frage, die eine Schadensmeldung brauchbar oder wertlos macht. GPS auf einer Strasse
 ist ein Kreis, kein Punkt: zwischen Häusern sind ±10 m ein guter Tag. Deshalb steht bei
-jedem Fall, woher seine Koordinate stammt.</p>
+jeder Beobachtung, woher ihre Koordinate stammt.</p>
 <div class="table-wrap">
 <table>
 <tr><th>Quelle</th><th>was sie bedeutet</th><th>Fehlerangabe</th></tr>
@@ -519,24 +562,24 @@ ein Weg, den nie jemand gegangen ist.</p>
 Ingenieurbüros bei der Zustandserfassung. Versicherungen und Gutachter bei der
 Beweissicherung. Und alle, denen eine Meldung ohne Fehlerangabe schon einmal um die Ohren
 geflogen ist.</p>
-<p class="muted">Die erste Begehung ist gratis — mit allen Fällen, Fotos, Clips und dem
-CSV-Export. Mehrere Begehungen nebeneinander und die Formate GeoJSON, GPX und KML gehören
+<p class="muted">Die erste Route ist gratis — mit allen Beobachtungen, Fotos, Clips und dem
+CSV-Export. Mehrere Routen nebeneinander und die Formate GeoJSON, GPX und KML gehören
 zu Sensorstorm Pro, einem einmaligen In-App-Kauf.</p>
 """)
 
-PAGES["en/cases.html"] = dict(lang="en",
+PAGES["en/observations.html"] = dict(lang="en",
     title="Road defect surveys with honest accuracy | Sensorstorm",
     description="Document potholes and cracks with an iPhone: photos, clips, severity "
-                "1–10, area — and for every case, where the coordinate came from.",
+                "1–10, area — and for every observation, where the coordinate came from.",
     body="""
 <h1>Road defect surveys that do not hide their accuracy</h1>
-<p class="lede">A survey is a route; a case is a damaged spot on it. A case carries any
+<p class="lede">A route is a path; an observation is a spot on it. An observation carries any
 number of photos and clips, its position together with its uncertainty, a severity from 1 to
 10, and — when the spot is bigger than a point — the marked area.</p>
 
 <h2>How accurate is the position, and where did it come from</h2>
 <p>The question that makes a defect report usable or worthless. GPS on a street is a circle,
-not a point: between buildings, ±10 m is a good day. So every case states where its
+not a point: between buildings, ±10 m is a good day. So every observation states where its
 coordinate came from.</p>
 <div class="table-wrap">
 <table>
@@ -595,8 +638,8 @@ format has no concept of a surface, and a closed track would be a path nobody ev
 <p>Road authorities and maintenance depots that have to record the condition of a street.
 Engineering firms doing condition surveys. Insurers and assessors preserving evidence. And
 anyone who has had a report thrown back at them for having no error figure.</p>
-<p class="muted">The first survey is free — with all its cases, photos, clips and CSV export.
-Running several surveys side by side, and the GeoJSON, GPX and KML formats, belong to
+<p class="muted">The first route is free — with all its observations, photos, clips and CSV export.
+Running several routes side by side, and the GeoJSON, GPX and KML formats, belong to
 Sensorstorm Pro, a one-time in-app purchase.</p>
 """)
 
@@ -617,7 +660,7 @@ kein Werbenetzwerk und keine Tracking-Technologie in der App. Die
 und kein Tracking aus.</p>
 
 <h2>Was auf dem Gerät bleibt</h2>
-<p>Aufnahmen, Begehungen, Fotos, Clips und Einstellungen liegen ausschliesslich im
+<p>Aufnahmen, Routen, Fotos, Clips und Einstellungen liegen ausschliesslich im
 Datenbereich der App auf deinem iPhone. Sie verlassen das Gerät nur, wenn du sie selbst
 exportierst und teilst — über die Dateien-App, AirDrop, Mail oder ein anderes Ziel deiner
 Wahl. Wohin sie dann gehen, bestimmst du; ab diesem Punkt gilt die Datenschutzerklärung des
@@ -630,17 +673,17 @@ Ziels.</p>
 <tr><td>Bewegung &amp; Fitness</td><td>Beschleunigung, Drehrate, Orientierung, Magnetfeld
     und Schritte aufzeichnen</td></tr>
 <tr><td>Standort</td><td>Position, Höhe, Geschwindigkeit und Kurs aufzeichnen, die
-    Orientierung an Nordrichtung ausrichten und festhalten, wo ein Fall aufgenommen wurde.
+    Orientierung an Nordrichtung ausrichten und festhalten, wo eine Beobachtung erfasst wurde.
     „Immer" nur, damit die Aufzeichnung weiterläuft, wenn der Bildschirm während einer
     Messung gesperrt wird.</td></tr>
 <tr><td>Kamera</td><td>Video synchron zu den Sensordaten aufnehmen und den Boden für einen
-    Fall fotografieren</td></tr>
+    Beobachtung fotografieren</td></tr>
 <tr><td>Mikrofon</td><td>Lautstärke messen und den Ton von Aufnahmen und Clips
     aufzeichnen</td></tr>
 </table>
 </div>
 <p>Jede Berechtigung lässt sich in den iOS-Einstellungen jederzeit widerrufen. Die App
-funktioniert dann eingeschränkt weiter — ohne Standort etwa bleibt für einen Fall nur die
+funktioniert dann eingeschränkt weiter — ohne Standort etwa bleibt für eine Beobachtung nur die
 von Hand gesetzte Nadel.</p>
 
 <h2>Wo doch etwas das Gerät verlässt</h2>
@@ -695,7 +738,7 @@ no ad network and no tracking technology in the app. The app's
 tracking.</p>
 
 <h2>What stays on the device</h2>
-<p>Recordings, surveys, photos, clips and settings live solely in the app's own storage on
+<p>Recordings, routes, photos, clips and settings live solely in the app's own storage on
 your iPhone. They leave the device only when you export and share them yourself — via the
 Files app, AirDrop, Mail or any other destination you choose. Where they go from there is
 your decision, and from that point the receiving service's policy applies.</p>
@@ -707,16 +750,16 @@ your decision, and from that point the receiving service's policy applies.</p>
 <tr><td>Motion &amp; Fitness</td><td>recording acceleration, rotation rate, orientation,
     magnetic field and steps</td></tr>
 <tr><td>Location</td><td>recording position, altitude, speed and course, referencing
-    orientation to true north, and recording where a case was captured. "Always" only so
+    orientation to true north, and recording where an observation was captured. "Always" only so
     recording continues when the screen locks during a measurement.</td></tr>
 <tr><td>Camera</td><td>recording video in sync with the sensor data, and photographing the
-    ground for a case</td></tr>
+    ground for an observation</td></tr>
 <tr><td>Microphone</td><td>measuring loudness and recording the audio of measurements and
     clips</td></tr>
 </table>
 </div>
 <p>Every permission can be revoked at any time in iOS Settings. The app keeps working with
-less — without location, for instance, a case can still be placed with the hand-set pin.</p>
+less — without location, for instance, an observation can still be placed with the hand-set pin.</p>
 
 <h2>Where something does leave the device</h2>
 <p>Two places where "nothing leaves the device" needs a footnote:</p>
@@ -784,12 +827,12 @@ Familienfreigabe geteilter Kauf erscheint ebenfalls dort.</p>
 <p>Nein. Ein einmaliger Kauf, der nicht abläuft und sich nicht verlängert.</p>
 
 <h3>Komme ich ohne Pro an meine Daten?</h3>
-<p>Ja, immer. Der CSV-Export jeder Aufnahme und jeder Begehung ist nicht gesperrt und wird es
+<p>Ja, immer. Der CSV-Export jeder Aufnahme und jeder Route ist nicht gesperrt und wird es
 nicht werden — auch nicht nach einer Rückerstattung. Pro schaltet die Profi-Formate frei,
 nicht den Zugang zu deinen eigenen Messungen.</p>
 
-<h3>Wie bekomme ich eine Begehung nach QGIS?</h3>
-<p>In der Begehung oben rechts auf <em>⋯ → GeoJSON</em>, dann teilen (Dateien, AirDrop,
+<h3>Wie bekomme ich eine Route nach QGIS?</h3>
+<p>In der Route oben rechts auf <em>⋯ → GeoJSON</em>, dann teilen (Dateien, AirDrop,
 Mail). Die Datei enthält Punkte und Bereiche als Polygone, mit Quelle, Genauigkeit,
 Streuung, gemessenem Fix, Versatz und den Koordinaten in WGS84 und LV95.</p>
 
@@ -844,12 +887,12 @@ Family Sharing shows up there too.</p>
 <p>No. A single purchase that does not expire and does not renew.</p>
 
 <h3>Can I get at my data without Pro?</h3>
-<p>Yes, always. CSV export of every recording and every survey is not gated and will not be —
+<p>Yes, always. CSV export of every recording and every route is not gated and will not be —
 not even after a refund. Pro unlocks the professional formats, not access to your own
 measurements.</p>
 
-<h3>How do I get a survey into QGIS?</h3>
-<p>Inside the survey, top right, <em>⋯ → GeoJSON</em>, then share it (Files, AirDrop, Mail).
+<h3>How do I get a route into QGIS?</h3>
+<p>Inside the route, top right, <em>⋯ → GeoJSON</em>, then share it (Files, AirDrop, Mail).
 The file carries points and areas as polygons, with source, accuracy, spread, the measured
 fix, the offset, and coordinates in both WGS84 and Swiss LV95.</p>
 
@@ -959,6 +1002,12 @@ def build(out: pathlib.Path) -> list[str]:
         shutil.copyfile(icon, out / "og-image.png")
     else:
         print(f"WARNING: {icon} missing, og:image will 404", file=sys.stderr)
+
+    # Both old slugs were indexed and linked from every page's nav. A rename without a
+    # redirect throws away the ranking the rest of this file exists to build.
+    (out / "_redirects").write_text(
+        "/faelle.html    /beobachtungen.html      301\n"
+        "/en/cases.html  /en/observations.html    301\n", encoding="utf-8")
 
     (out / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n", encoding="utf-8")
