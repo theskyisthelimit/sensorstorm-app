@@ -1,0 +1,19 @@
+{
+  "name": "Sensorstorm: Sensor Logger",
+  "subtitle": "Inspectie en sensoren",
+  "promotionalText": "Alle sensoren op één klok, en wegschade met een eerlijke positienauwkeurigheid. Exporteer naar CSV, GeoJSON, GPX, KML en Blender.",
+  "keywords": "scheur,kadaster,wegdek,schade,areaal,GeoJSON,QGIS,versnelling,GPS,IMU,CSV",
+  "description": "Sensorstorm legt de sensoren van je iPhone tegelijk vast — en documenteert schade aan het wegdek. Twee gereedschappen, één klok.\n\nÉÉN KLOK VOOR ALLES\n\nEén tik start alles tegelijk: versnelling, draaisnelheid, oriëntatie, magnetisch veld, GPS, barometer, geluidsniveau, stappen, apparaatstatus. Desgewenst met video in 720p, 1080p of 4K.\n\nAlle stromen delen de tijdbasis van de videobeelden. Een beeld en de bijbehorende versnellingswaarde vallen exact samen — zonder herkalibratie, zonder drift.\n\nINSPECTIES: SCHADE VASTLEGGEN\n\nEen route is een route, een waarneming een beschadigde plek daarop: onbeperkt foto's en clips, een ernst van 1 tot 10, en het gemarkeerde gebied als cirkel of polygoon.\n\nElk waarneming vermeldt waar zijn coördinaat vandaan komt: één GPS-fix, een gemiddelde over tien seconden stilstaan, of een met de hand geplaatste speld. De onzekerheidscirkel wordt op schaal op de kaart getekend.\n\nHERBRUIKBARE EXPORT\n\nOpnamen als CSV per sensor, als ruwe data, in de indeling van Sensor Logger of als Gyroflow-log. Routes als GeoJSON voor QGIS, als CSV met WGS84 en LV95 naast elkaar, als GPX, als KML. En alles samen in één ZIP, beschreven door een manifest.json.\n\nGEANIMEERDE CAMERA\n\nIn ARKit-modus worden positie, kijkrichting en brandpuntsafstand per beeld vastgelegd. De export levert frames.csv, scene.json, de video en het GPS-spoor — een Blender-add-on maakt daar een geanimeerde camera van die de echte opname volgt.\n\nGRATIS EN PRO\n\nGratis: alle sensoren opnemen, afspelen met grafieken, één route, CSV-export.\n\nSensorstorm Pro ontgrendelt de rest met één aankoop, geen abonnement: 400 Hz, 4K, camerapose voor 3D, ruwe data, camerabeweging voor Blender, Sensor Logger, Gyroflow, onbeperkt routes, GeoJSON/GPX/KML en de volledige export.\n\nDe CSV-export blijft ook zonder Pro open. Je metingen zijn van jou, gekocht of niet.\n\nGEEN CLOUD\n\nAlles blijft op het apparaat. Geen account, geen tracking, geen analyse op de achtergrond.\n\nFOTOGRAMMETRIE EN GPX\n\nIn ARKit-modus kiest de export scherpe, goed verdeelde beelden en schrijft brandpuntsafstand, positie en kijkrichting in de EXIF — voor RealityScan, Metashape of Meshroom. De GPS-track exporteer je direct als GPX of KML, zonder extern gereedschap.\n\nDe app is beschikbaar in het Nederlands en in negen andere talen.",
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "Eerste versie."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "Pro-formaten, 400 Hz en 4K. Eenmalig."
+      }
+    }
+  }
+}

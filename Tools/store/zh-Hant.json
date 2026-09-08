@@ -1,0 +1,19 @@
+{
+  "name": "Sensorstorm: Sensor Logger",
+  "subtitle": "感測器記錄與路面巡查",
+  "promotionalText": "所有感測器共用一個時鐘同步記錄，路面損壞則如實標示定位精度。可匯出 CSV、GeoJSON、GPX、KML 與 Blender。",
+  "keywords": "加速度,測量,裂縫,道路,鋪面,地圖,GeoJSON,QGIS,GPS,IMU,CSV,氣壓",
+  "description": "Sensorstorm 同時記錄 iPhone 的各項感測器，並記錄路面損壞。兩種工具，共用一個時鐘。\n\n一個時鐘涵蓋一切\n\n輕觸一次即同時啟動：加速度、角速度、姿態、磁場、GPS、氣壓、音量、步數、裝置狀態。需要的話還可同時錄製 720p、1080p 或 4K 影片。\n\n所有資料流都落在與影格相同的時間基準上。某一影格與對應的加速度值精確吻合，不需重新校正，也沒有漂移。\n\n路線：記錄損壞\n\n「路線」是一條路徑，「觀測點」是路徑上的損壞點。每個觀測點可附任意多張照片與影片、1 到 10 的嚴重度，以及用圓形或多邊形標出的範圍。\n\n每個觀測點都會說明座標的來源：單次 GPS 定位、靜止十秒的加權平均，或手動放置的圖釘。不確定範圍的圓會按實際比例畫在地圖上。\n\n可再利用的匯出\n\n記錄可匯出為每個感測器一份的 CSV、原始資料、Sensor Logger 格式或 Gyroflow 記錄檔。路線可匯出為 QGIS 用的 GeoJSON、WGS84 與 LV95 並列的 CSV、GPX、KML。全部也可打包成單一 ZIP，並附上 manifest.json。\n\n動態攝影機\n\n在 ARKit 模式下，每一影格的位置、視線方向與焦距都會被記錄。匯出會產生 frames.csv、scene.json、影片與 GPS 軌跡，Blender 附加元件可將其轉為跟隨實際記錄的動態攝影機。\n\n免費與 Pro\n\n免費：記錄所有感測器、含圖表的重播、一條路線、CSV 匯出。\n\nSensorstorm Pro 為一次買斷，並非訂閱制：400 Hz、4K、3D 用攝影機姿態、原始資料、給 Blender 的運鏡、Sensor Logger、Gyroflow、不限數量的路線、GeoJSON/GPX/KML 與整體匯出。\n\n即使沒有 Pro，CSV 匯出仍然開放。你的量測資料屬於你，買不買都一樣。\n\n沒有雲端\n\n一切都留在裝置上。沒有帳號、沒有追蹤、沒有背景分析。\n\n攝影測量與 GPX\n\nARKit 模式會挑選清晰且分佈得當的影像，並把焦距、位置與視線方向寫入 EXIF，供 RealityScan、Metashape 或 Meshroom 使用。GPS 軌跡可直接匯出為 GPX 或 KML。\n\n應用程式支援包含繁體中文在內的 10 種語言。",
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "首個版本。"
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "專業格式、400 Hz、4K。一次買斷。"
+      }
+    }
+  }
+}

@@ -1,47 +1,296 @@
 {
   "$comment": "Feste Begriffe. `terms`: deutsche Quelle mit verbindlicher Übersetzung, wo sie schon feststeht (aus dem Katalog), und einer Erklärung für die Maschine. `doNotTranslate`: bleibt in jeder Sprache wörtlich (Fehler). `keepIfPossible`: soll bleiben, darf aber landesüblich heissen (Warnung). `identicalAllowed`: darf in der Zielsprache gleich lauten wie die Quelle, ohne dass verify das als Untersetzung meldet. `localNames`: je weichem Begriff die landesübliche Kurzform; steht sie im Zieltext, schweigt verify.",
   "terms": [
-    { "de": "Aufnahme", "en": "Recording", "fr": "Enregistrement", "it": "Registrazione", "es": "Grabación", "note": "Eine Messaufnahme: alle Sensorströme plus Video über eine Zeitspanne. Nie 'Aufzeichnung' als zweites Wort, nie 'capture', 'session', 'take'." },
-    { "de": "Aufnahmen", "en": "Recordings", "fr": "Enregistrements", "it": "Registrazioni", "es": "Grabaciones", "note": "Plural von Aufnahme; Titel der Liste." },
-    { "de": "Route", "en": "Route", "fr": "Parcours", "it": "Percorso", "es": "Recorrido", "note": "Ein Weg, entlang dessen Beobachtungen gesammelt werden. Ein Datensatz, nicht die gefahrene Linie." },
-    { "de": "Routen", "en": "Routes", "fr": "Parcours", "it": "Percorsi", "es": "Recorridos", "note": "Plural von Route." },
-    { "de": "Beobachtung", "en": "Observation", "fr": "Observation", "it": "Osservazione", "es": "Observación", "note": "Eine erfasste Stelle auf einer Route: Fotos, Clips, Position, Bewertung, Bereich. Nie 'Fund', 'Eintrag', 'finding', 'report'." },
-    { "de": "Beobachtungen", "en": "Observations", "fr": "Observations", "it": "Osservazioni", "es": "Observaciones", "note": "Plural von Beobachtung." },
-    { "de": "Bewertung", "en": "Severity", "fr": "Gravité", "it": "Gravità", "es": "Gravedad", "note": "Der Schweregrad einer Beobachtung, 1 bis 10. Nicht 'rating', 'review', 'score'." },
-    { "de": "Bereich", "en": "Area", "fr": "Zone", "it": "Area", "es": "Zona", "note": "Die markierte Fläche einer Beobachtung, Kreis oder Polygon. Nicht 'Abschnitt', nicht 'range'." },
-    { "de": "Markierung", "en": "Annotation", "fr": "Repère", "it": "Marcatore", "es": "Marca", "note": "Ein Zeitstempel, den man während einer Aufnahme von Hand setzt." },
-    { "de": "Nadel", "en": "Pin", "fr": "Épingle", "it": "Spillo", "es": "Chincheta", "note": "Die von Hand gesetzte Position, wenn kein GPS-Fix da ist." },
-    { "de": "Fix", "en": "fix", "fr": "point", "it": "fix", "es": "fix", "note": "Ein einzelner GPS-Fix. Die Kurzform der Navigation, nicht 'Reparatur'." },
-    { "de": "Kamerapose", "en": "Camera pose", "fr": "Pose de caméra", "it": "Posa della fotocamera", "es": "Pose de cámara", "note": "Position, Blickrichtung und Brennweite je Bild; Fachbegriff der Fotogrammetrie." },
-    { "de": "Abtastrate", "en": "Sample rate", "fr": "Fréquence d’échantillonnage", "it": "Frequenza di campionamento", "es": "Frecuencia de muestreo", "note": "Hz der Bewegungssensoren." },
-    { "de": "Takt", "en": "Interval", "fr": "Cadence", "it": "Cadenza", "es": "Cadencia", "note": "Der Sendeabstand der Live-Übertragung, nicht die Abtastrate." },
-    { "de": "Drehrate", "en": "Rotation rate", "fr": "Vitesse de rotation", "it": "Velocità di rotazione", "es": "Velocidad de giro", "note": "Gyroskop. Nicht 'Winkelgeschwindigkeit' als zweites Wort." },
-    { "de": "Beschleunigung", "en": "Acceleration", "fr": "Accélération", "it": "Accelerazione", "es": "Aceleración", "note": "Beschleunigungssensor." },
-    { "de": "Magnetfeld", "en": "Magnetic field", "fr": "Champ magnétique", "it": "Campo magnetico", "es": "Campo magnético", "note": "Magnetometer." },
-    { "de": "Schrittzähler", "en": "Pedometer", "fr": "Podomètre", "it": "Contapassi", "es": "Podómetro", "note": "CMPedometer." },
-    { "de": "Rohdaten", "en": "Raw data", "fr": "Données brutes", "it": "Dati grezzi", "es": "Datos brutos", "note": "Das verlustfreie .ssbin-Format, im Gegensatz zu gerundetem CSV." },
-    { "de": "Gesamtexport", "en": "Full export", "fr": "Export global", "it": "Esportazione completa", "es": "Exportación completa", "note": "Alles auf dem Gerät als ein Zip mit manifest.json." },
-    { "de": "Live-Übertragung", "en": "Live streaming", "fr": "Diffusion en direct", "it": "Trasmissione in diretta", "es": "Transmisión en directo", "note": "Messwerte während der Aufnahme an einen Server senden." },
-    { "de": "Messen", "en": "Measure", "fr": "Mesurer", "it": "Misura", "es": "Medir", "note": "Tab-Titel." },
-    { "de": "Aufnehmen", "en": "Record", "fr": "Enregistrer", "it": "Registra", "es": "Grabar", "note": "Tab-Titel; Infinitiv, keine Anleitung." }
+    {
+      "de": "Aufnahme",
+      "en": "Recording",
+      "fr": "Enregistrement",
+      "it": "Registrazione",
+      "es": "Grabación",
+      "note": "Eine Messaufnahme: alle Sensorströme plus Video über eine Zeitspanne. Nie 'Aufzeichnung' als zweites Wort, nie 'capture', 'session', 'take'."
+    },
+    {
+      "de": "Aufnahmen",
+      "en": "Recordings",
+      "fr": "Enregistrements",
+      "it": "Registrazioni",
+      "es": "Grabaciones",
+      "note": "Plural von Aufnahme; Titel der Liste."
+    },
+    {
+      "de": "Route",
+      "en": "Route",
+      "fr": "Parcours",
+      "it": "Percorso",
+      "es": "Recorrido",
+      "note": "Ein Weg, entlang dessen Beobachtungen gesammelt werden. Ein Datensatz, nicht die gefahrene Linie."
+    },
+    {
+      "de": "Routen",
+      "en": "Routes",
+      "fr": "Parcours",
+      "it": "Percorsi",
+      "es": "Recorridos",
+      "note": "Plural von Route."
+    },
+    {
+      "de": "Beobachtung",
+      "en": "Observation",
+      "fr": "Observation",
+      "it": "Osservazione",
+      "es": "Observación",
+      "note": "Eine erfasste Stelle auf einer Route: Fotos, Clips, Position, Bewertung, Bereich. Nie 'Fund', 'Eintrag', 'finding', 'report'."
+    },
+    {
+      "de": "Beobachtungen",
+      "en": "Observations",
+      "fr": "Observations",
+      "it": "Osservazioni",
+      "es": "Observaciones",
+      "note": "Plural von Beobachtung."
+    },
+    {
+      "de": "Bewertung",
+      "en": "Severity",
+      "fr": "Gravité",
+      "it": "Gravità",
+      "es": "Gravedad",
+      "note": "Der Schweregrad einer Beobachtung, 1 bis 10. Nicht 'rating', 'review', 'score'."
+    },
+    {
+      "de": "Bereich",
+      "en": "Area",
+      "fr": "Zone",
+      "it": "Area",
+      "es": "Zona",
+      "note": "Die markierte Fläche einer Beobachtung, Kreis oder Polygon. Nicht 'Abschnitt', nicht 'range'."
+    },
+    {
+      "de": "Markierung",
+      "en": "Annotation",
+      "fr": "Repère",
+      "it": "Marcatore",
+      "es": "Marca",
+      "note": "Ein Zeitstempel, den man während einer Aufnahme von Hand setzt."
+    },
+    {
+      "de": "Nadel",
+      "en": "Pin",
+      "fr": "Épingle",
+      "it": "Spillo",
+      "es": "Chincheta",
+      "note": "Die von Hand gesetzte Position, wenn kein GPS-Fix da ist."
+    },
+    {
+      "de": "Fix",
+      "en": "fix",
+      "fr": "point",
+      "it": "fix",
+      "es": "fix",
+      "note": "Ein einzelner GPS-Fix. Die Kurzform der Navigation, nicht 'Reparatur'."
+    },
+    {
+      "de": "Kamerapose",
+      "en": "Camera pose",
+      "fr": "Pose de caméra",
+      "it": "Posa della fotocamera",
+      "es": "Pose de cámara",
+      "note": "Position, Blickrichtung und Brennweite je Bild; Fachbegriff der Fotogrammetrie."
+    },
+    {
+      "de": "Abtastrate",
+      "en": "Sample rate",
+      "fr": "Fréquence d’échantillonnage",
+      "it": "Frequenza di campionamento",
+      "es": "Frecuencia de muestreo",
+      "note": "Hz der Bewegungssensoren."
+    },
+    {
+      "de": "Takt",
+      "en": "Interval",
+      "fr": "Cadence",
+      "it": "Cadenza",
+      "es": "Cadencia",
+      "note": "Der Sendeabstand der Live-Übertragung, nicht die Abtastrate."
+    },
+    {
+      "de": "Drehrate",
+      "en": "Rotation rate",
+      "fr": "Vitesse de rotation",
+      "it": "Velocità di rotazione",
+      "es": "Velocidad de giro",
+      "note": "Gyroskop. Nicht 'Winkelgeschwindigkeit' als zweites Wort."
+    },
+    {
+      "de": "Beschleunigung",
+      "en": "Acceleration",
+      "fr": "Accélération",
+      "it": "Accelerazione",
+      "es": "Aceleración",
+      "note": "Beschleunigungssensor."
+    },
+    {
+      "de": "Magnetfeld",
+      "en": "Magnetic field",
+      "fr": "Champ magnétique",
+      "it": "Campo magnetico",
+      "es": "Campo magnético",
+      "note": "Magnetometer."
+    },
+    {
+      "de": "Schrittzähler",
+      "en": "Pedometer",
+      "fr": "Podomètre",
+      "it": "Contapassi",
+      "es": "Podómetro",
+      "note": "CMPedometer."
+    },
+    {
+      "de": "Rohdaten",
+      "en": "Raw data",
+      "fr": "Données brutes",
+      "it": "Dati grezzi",
+      "es": "Datos brutos",
+      "note": "Das verlustfreie .ssbin-Format, im Gegensatz zu gerundetem CSV."
+    },
+    {
+      "de": "Gesamtexport",
+      "en": "Full export",
+      "fr": "Export global",
+      "it": "Esportazione completa",
+      "es": "Exportación completa",
+      "note": "Alles auf dem Gerät als ein Zip mit manifest.json."
+    },
+    {
+      "de": "Live-Übertragung",
+      "en": "Live streaming",
+      "fr": "Diffusion en direct",
+      "it": "Trasmissione in diretta",
+      "es": "Transmisión en directo",
+      "note": "Messwerte während der Aufnahme an einen Server senden."
+    },
+    {
+      "de": "Messen",
+      "en": "Measure",
+      "fr": "Mesurer",
+      "it": "Misura",
+      "es": "Medir",
+      "note": "Tab-Titel."
+    },
+    {
+      "de": "Aufnehmen",
+      "en": "Record",
+      "fr": "Enregistrer",
+      "it": "Registra",
+      "es": "Grabar",
+      "note": "Tab-Titel; Infinitiv, keine Anleitung."
+    }
   ],
   "doNotTranslate": [
-    "Sensorstorm", "Sensorstorm Pro", "App Store", "TestFlight", "Apple Watch",
-    "iPhone", "iPad", "iOS", "ARKit", "AirPods", "AirDrop", "Siri",
-    "Blender", "Gyroflow", "Sensor Logger", "RealityScan", "Metashape", "Meshroom",
-    "COLMAP", "QGIS", "Google Earth", "Node-RED", "Home Assistant", "MQTT",
-    "RuuviTag", "BTHome", "Bluetooth", "GeoJSON", "GPX", "KML", "CSV", "JSON",
-    "SQLite", "EXIF", "GPS", "IMU", "SHA-256", "Hz", "LiDAR"
+    "Sensorstorm",
+    "Sensorstorm Pro",
+    "App Store",
+    "TestFlight",
+    "Apple Watch",
+    "iPhone",
+    "iPad",
+    "iOS",
+    "ARKit",
+    "AirPods",
+    "AirDrop",
+    "Siri",
+    "Blender",
+    "Gyroflow",
+    "Sensor Logger",
+    "RealityScan",
+    "Metashape",
+    "Meshroom",
+    "COLMAP",
+    "QGIS",
+    "Google Earth",
+    "Node-RED",
+    "Home Assistant",
+    "MQTT",
+    "RuuviTag",
+    "BTHome",
+    "Bluetooth",
+    "GeoJSON",
+    "GPX",
+    "KML",
+    "CSV",
+    "JSON",
+    "SQLite",
+    "EXIF",
+    "GPS",
+    "IMU",
+    "SHA-256",
+    "Hz",
+    "LiDAR"
   ],
-  "keepIfPossible": ["Apple", "Google", "URL", "Wi-Fi", "3D", "4K", "Pro"],
+  "keepIfPossible": [
+    "Apple",
+    "Google",
+    "URL",
+    "Wi-Fi",
+    "3D",
+    "4K",
+    "Pro"
+  ],
   "localNames": {
-    "3D": { "ja": "3D", "ko": "3D", "zh-Hans": "3D", "zh-Hant": "3D", "ar": "ثلاثي الأبعاد" },
-    "Wi-Fi": { "de": "WLAN", "nl": "wifi", "fr": "Wi-Fi", "ru": "Wi-Fi" }
+    "3D": {
+      "ja": "3D",
+      "ko": "3D",
+      "zh-Hans": "3D",
+      "zh-Hant": "3D",
+      "ar": "ثلاثي الأبعاد"
+    },
+    "Wi-Fi": {
+      "de": "WLAN",
+      "nl": "wifi",
+      "es": "wifi",
+      "pt-BR": "wifi",
+      "pt-PT": "wifi",
+      "it": "wifi",
+      "fr": "Wi-Fi",
+      "ru": "Wi-Fi",
+      "tr": "kablosuz ağ",
+      "pl": "Wi-Fi"
+    }
   },
   "identicalAllowed": [
-    "OK", "GPS", "CSV", "JSON", "GPX", "KML", "GeoJSON", "SQLite", "MQTT", "ARKit",
-    "3D", "4K", "Pro", "Audio", "Text", "Port", "Name", "Version", "Barometer",
-    "Sensor Logger", "Gyroflow", "Blender", "Sensorstorm Pro", "Clip", "Radius",
-    "%@", "%lld", "%1$@", "…", "·", "×", "m²", "1 m", "100 m"
+    "OK",
+    "GPS",
+    "CSV",
+    "JSON",
+    "GPX",
+    "KML",
+    "GeoJSON",
+    "SQLite",
+    "MQTT",
+    "ARKit",
+    "3D",
+    "4K",
+    "Pro",
+    "Audio",
+    "Text",
+    "Port",
+    "Name",
+    "Version",
+    "Barometer",
+    "Sensor Logger",
+    "Gyroflow",
+    "Blender",
+    "Sensorstorm Pro",
+    "Clip",
+    "Radius",
+    "%@",
+    "%lld",
+    "%1$@",
+    "…",
+    "·",
+    "×",
+    "m²",
+    "1 m",
+    "100 m"
   ]
 }

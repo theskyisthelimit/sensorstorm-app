@@ -1,461 +1,461 @@
 {
-  "sourceLanguage": "de",
-  "strings": {
-    "NSBluetoothAlwaysUsageDescription": {
-      "comment": "Privacy - Bluetooth Always Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm zählt, wie viele Bluetooth-Geräte in der Umgebung senden, und zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut."
+  "sourceLanguage" : "de",
+  "strings" : {
+    "NSBluetoothAlwaysUsageDescription" : {
+      "comment" : "Privacy - Bluetooth Always Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zählt, wie viele Bluetooth-Geräte in der Umgebung senden, und zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm counts how many Bluetooth devices are advertising nearby and records their signal strength. It never connects to any of them."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm counts how many Bluetooth devices are advertising nearby and records their signal strength. It never connects to any of them."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm compte combien d'appareils Bluetooth émettent aux alentours et enregistre la puissance du signal. Aucune connexion n'est établie avec eux."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm cuenta cuántos dispositivos Bluetooth están emitiendo cerca y registra la intensidad de la señal. No se establece ninguna conexión con ellos."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm conta quanti dispositivi Bluetooth stanno trasmettendo nelle vicinanze e registra l'intensità del segnale. Non viene stabilita alcuna connessione con essi."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm compte combien d'appareils Bluetooth émettent aux alentours et enregistre la puissance du signal. Aucune connexion n'est établie avec eux."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm cuenta cuántos dispositivos Bluetooth están emitiendo cerca y registra la intensidad de la señal. No se establece ninguna conexión con ellos."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm conta quanti dispositivi Bluetooth stanno trasmettendo nelle vicinanze e registra l'intensità del segnale. Non viene stabilita alcuna connessione con essi."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm telt hoeveel bluetooth-apparaten in de buurt uitzenden en registreert de signaalsterkte. Er wordt geen verbinding met ze gemaakt."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm は周囲で発信している Bluetooth 機器の数を数え、信号強度を記録します。それらの機器に接続することはありません。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm conta quantos dispositivos Bluetooth estão transmitindo por perto e registra a intensidade do sinal. Nenhuma conexão é estabelecida com eles."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 주변에서 신호를 보내는 Bluetooth 기기의 수를 세고 신호 세기를 기록합니다. 해당 기기에 연결하지는 않습니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm は周囲で発信している Bluetooth 機器の数を数え、信号強度を記録します。それらの機器に接続することはありません。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm telt hoeveel bluetooth-apparaten in de buurt uitzenden en registreert de signaalsterkte. Er wordt geen verbinding met ze gemaakt."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 주변에서 신호를 보내는 Bluetooth 기기의 수를 세고 신호 세기를 기록합니다. 해당 기기에 연결하지는 않습니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm conta quantos dispositivos Bluetooth estão transmitindo por perto e registra a intensidade do sinal. Nenhuma conexão é estabelecida com eles."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm 會統計周圍有多少藍牙裝置正在發送訊號，並記錄訊號強度，不會與這些裝置建立連線。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm 會統計周圍有多少藍牙裝置正在發送訊號，並記錄訊號強度，不會與這些裝置建立連線。"
           }
         }
       }
     },
-    "NSCameraUsageDescription": {
-      "comment": "Privacy - Camera Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden für eine Beobachtung."
+    "NSCameraUsageDescription" : {
+      "comment" : "Privacy - Camera Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden für eine Beobachtung."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm records video in sync with the sensor data and photographs the ground for an observation."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm records video in sync with the sensor data and photographs the ground for an observation."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm enregistre la vidéo en synchronisation avec les données des capteurs et photographie le sol pour une observation."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm graba vídeo sincronizado con los datos de los sensores y fotografía el suelo para una observación."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registra video in sincronia con i dati dei sensori e fotografa il terreno per un'osservazione."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm enregistre la vidéo en synchronisation avec les données des capteurs et photographie le sol pour une observation."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm graba vídeo sincronizado con los datos de los sensores y fotografía el suelo para una observación."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registra video in sincronia con i dati dei sensori e fotografa il terreno per un'osservazione."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm neemt video op synchroon met de sensordata en fotografeert de ondergrond voor een waarneming."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm はセンサーデータと同期して動画を記録し、観測点のために地面を撮影します。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm grava vídeo em sincronia com os dados dos sensores e fotografa o solo para uma observação."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 센서 데이터와 동기화하여 영상을 기록하고, 관측을 위해 지면을 촬영합니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm はセンサーデータと同期して動画を記録し、観測点のために地面を撮影します。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm neemt video op synchroon met de sensordata en fotografeert de ondergrond voor een waarneming."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 센서 데이터와 동기화하여 영상을 기록하고, 관측을 위해 지면을 촬영합니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm grava vídeo em sincronia com os dados dos sensores e fotografa o solo para uma observação."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm 會與感測器資料同步錄影，並為觀測點拍攝地面。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm 會與感測器資料同步錄影，並為觀測點拍攝地面。"
           }
         }
       }
     },
-    "NSLocalNetworkUsageDescription": {
-      "comment": "Privacy - Local Network Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe."
+    "NSLocalNetworkUsageDescription" : {
+      "comment" : "Privacy - Local Network Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm sends readings to the address you enter in Settings. If that server is on the same network, this permission is what allows it."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm sends readings to the address you enter in Settings. If that server is on the same network, this permission is what allows it."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm envoie les mesures à l'adresse que vous saisissez dans les réglages. Si ce serveur est sur le même réseau, cette autorisation est nécessaire."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm envía las mediciones a la dirección que introduzcas en los ajustes. Si ese servidor está en la misma red, hace falta este permiso."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm invia le misure all'indirizzo che inserisci nelle impostazioni. Se quel server si trova sulla stessa rete, serve questa autorizzazione."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm envoie les mesures à l'adresse que vous saisissez dans les réglages. Si ce serveur est sur le même réseau, cette autorisation est nécessaire."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm envía las mediciones a la dirección que introduzcas en los ajustes. Si ese servidor está en la misma red, hace falta este permiso."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm invia le misure all'indirizzo che inserisci nelle impostazioni. Se quel server si trova sulla stessa rete, serve questa autorizzazione."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm stuurt de metingen naar het adres dat je in de instellingen invult. Staat die server in hetzelfde netwerk, dan is deze toestemming nodig."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm は設定で入力したアドレスへ測定値を送信します。そのサーバーが同じネットワーク上にある場合、この許可が必要です。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm envia as medições para o endereço que você informa nos ajustes. Se esse servidor estiver na mesma rede, é preciso esta permissão."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 설정에 입력한 주소로 측정값을 보냅니다. 그 서버가 같은 네트워크에 있다면 이 권한이 필요합니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm は設定で入力したアドレスへ測定値を送信します。そのサーバーが同じネットワーク上にある場合、この許可が必要です。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm stuurt de metingen naar het adres dat je in de instellingen invult. Staat die server in hetzelfde netwerk, dan is deze toestemming nodig."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 설정에 입력한 주소로 측정값을 보냅니다. 그 서버가 같은 네트워크에 있다면 이 권한이 필요합니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm envia as medições para o endereço que você informa nos ajustes. Se esse servidor estiver na mesma rede, é preciso esta permissão."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm 會將量測值送到你在設定中填入的位址。若該伺服器位於同一個網路，就需要這項權限。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm 會將量測值送到你在設定中填入的位址。若該伺服器位於同一個網路，就需要這項權限。"
           }
         }
       }
     },
-    "NSLocationAlwaysAndWhenInUseUsageDescription": {
-      "comment": "Privacy - Location Always and When In Use Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm während einer Messung gesperrt wird."
+    "NSLocationAlwaysAndWhenInUseUsageDescription" : {
+      "comment" : "Privacy - Location Always and When In Use Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm während einer Messung gesperrt wird."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm keeps recording your position even when the screen locks during a measurement."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm keeps recording your position even when the screen locks during a measurement."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm continue d'enregistrer la position même lorsque l'écran se verrouille pendant une mesure."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm sigue registrando la posición aunque la pantalla se bloquee durante una medición."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm continua a registrare la posizione anche quando lo schermo si blocca durante una misurazione."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm continue d'enregistrer la position même lorsque l'écran se verrouille pendant une mesure."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm sigue registrando la posición aunque la pantalla se bloquee durante una medición."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm continua a registrare la posizione anche quando lo schermo si blocca durante una misurazione."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm blijft de positie registreren, ook als het scherm tijdens een meting op slot gaat."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm は測定中に画面がロックされても位置の記録を続けます。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm continua registrando a posição mesmo quando a tela é bloqueada durante uma medição."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 측정 중 화면이 잠겨도 위치 기록을 계속합니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm は測定中に画面がロックされても位置の記録を続けます。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm blijft de positie registreren, ook als het scherm tijdens een meting op slot gaat."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 측정 중 화면이 잠겨도 위치 기록을 계속합니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm continua registrando a posição mesmo quando a tela é bloqueada durante uma medição."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "即使量測期間螢幕鎖定，Sensorstorm 仍會繼續記錄位置。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即使量測期間螢幕鎖定，Sensorstorm 仍會繼續記錄位置。"
           }
         }
       }
     },
-    "NSLocationWhenInUseUsageDescription": {
-      "comment": "Privacy - Location When In Use Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die Orientierungsdaten an Nord aus und hält fest, wo eine Beobachtung erfasst wurde."
+    "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Privacy - Location When In Use Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die Orientierungsdaten an Nord aus und hält fest, wo eine Beobachtung erfasst wurde."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm records position, altitude, speed and course, references the orientation data to true north, and records where an observation was captured."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm records position, altitude, speed and course, references the orientation data to true north, and records where an observation was captured."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm enregistre la position, l'altitude, la vitesse et le cap, référence les données d'orientation au nord géographique et note où une observation a été saisie."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registra posición, altitud, velocidad y rumbo, referencia los datos de orientación al norte geográfico y anota dónde se registró una observación."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registra posizione, quota, velocità e rotta, riferisce i dati di orientamento al nord geografico e annota dove è stata registrata un'osservazione."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm enregistre la position, l'altitude, la vitesse et le cap, référence les données d'orientation au nord géographique et note où une observation a été saisie."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registra posición, altitud, velocidad y rumbo, referencia los datos de orientación al norte geográfico y anota dónde se registró una observación."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registra posizione, quota, velocità e rotta, riferisce i dati di orientamento al nord geografico e annota dove è stata registrata un'osservazione."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registreert positie, hoogte, snelheid en koers, richt de oriëntatiegegevens op het ware noorden en legt vast waar een waarneming is gedaan."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm は位置、高度、速度、進路を記録し、方位データを真北に基準づけ、観測点を記録した場所を保存します。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm registra posição, altitude, velocidade e rumo, referencia os dados de orientação ao norte verdadeiro e anota onde uma observação foi registrada."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 위치, 고도, 속도, 진행 방향을 기록하고 방위 데이터를 진북에 맞추며, 관측을 기록한 위치를 저장합니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm は位置、高度、速度、進路を記録し、方位データを真北に基準づけ、観測点を記録した場所を保存します。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registreert positie, hoogte, snelheid en koers, richt de oriëntatiegegevens op het ware noorden en legt vast waar een waarneming is gedaan."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 위치, 고도, 속도, 진행 방향을 기록하고 방위 데이터를 진북에 맞추며, 관측을 기록한 위치를 저장합니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm registra posição, altitude, velocidade e rumo, referencia os dados de orientação ao norte verdadeiro e anota onde uma observação foi registrada."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm 會記錄位置、高度、速度與航向，將方位資料對準真北，並記下觀測點的採集位置。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm 會記錄位置、高度、速度與航向，將方位資料對準真北，並記下觀測點的採集位置。"
           }
         }
       }
     },
-    "NSMicrophoneUsageDescription": {
-      "comment": "Privacy - Microphone Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm misst die Lautstärke, nimmt auf Wunsch Ton zur Messung auf und zeichnet den Ton der kurzen Clips zu einer Beobachtung auf."
+    "NSMicrophoneUsageDescription" : {
+      "comment" : "Privacy - Microphone Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm misst die Lautstärke, nimmt auf Wunsch Ton zur Messung auf und zeichnet den Ton der kurzen Clips zu einer Beobachtung auf."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm measures loudness, optionally records audio alongside a measurement, and records the audio of the short clips belonging to an observation."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm measures loudness, optionally records audio alongside a measurement, and records the audio of the short clips belonging to an observation."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm mesure le niveau sonore, enregistre au besoin le son avec une mesure, et enregistre le son des courts clips associés à une observation."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm mide el nivel sonoro, si lo deseas graba audio junto a una medición y graba el audio de los clips breves de una observación."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm misura il livello sonoro, se richiesto registra l'audio insieme a una misurazione e registra l'audio dei brevi clip di un'osservazione."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm mesure le niveau sonore, enregistre au besoin le son avec une mesure, et enregistre le son des courts clips associés à une observation."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm mide el nivel sonoro, si lo deseas graba audio junto a una medición y graba el audio de los clips breves de una observación."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm misura il livello sonoro, se richiesto registra l'audio insieme a una misurazione e registra l'audio dei brevi clip di un'osservazione."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm meet het geluidsniveau, neemt desgewenst audio op bij een meting en neemt het geluid op van de korte clips bij een waarneming."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm は音量を測定し、必要に応じて計測とともに音声を記録し、観測点に属する短いクリップの音声を記録します。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm mede o nível sonoro, opcionalmente grava áudio junto a uma medição e grava o áudio dos clipes curtos de uma observação."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 음량을 측정하고, 필요에 따라 측정과 함께 오디오를 기록하며, 관측에 속한 짧은 클립의 소리를 기록합니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm は音量を測定し、必要に応じて計測とともに音声を記録し、観測点に属する短いクリップの音声を記録します。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm meet het geluidsniveau, neemt desgewenst audio op bij een meting en neemt het geluid op van de korte clips bij een waarneming."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 음량을 측정하고, 필요에 따라 측정과 함께 오디오를 기록하며, 관측에 속한 짧은 클립의 소리를 기록합니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm mede o nível sonoro, opcionalmente grava áudio junto a uma medição e grava o áudio dos clipes curtos de uma observação."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm 會量測音量，並可在量測時一併錄音，也會錄下觀測點所屬短片的聲音。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm 會量測音量，並可在量測時一併錄音，也會錄下觀測點所屬短片的聲音。"
           }
         }
       }
     },
-    "NSMotionUsageDescription": {
-      "comment": "Privacy - Motion Usage Description",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm zeichnet Beschleunigung, Drehrate, Orientierung, Magnetfeld und Schritte auf."
+    "NSMotionUsageDescription" : {
+      "comment" : "Privacy - Motion Usage Description",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm zeichnet Beschleunigung, Drehrate, Orientierung, Magnetfeld und Schritte auf."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm records acceleration, rotation rate, orientation, magnetic field and steps."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm records acceleration, rotation rate, orientation, magnetic field and steps."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm enregistre l'accélération, la vitesse de rotation, l'orientation, le champ magnétique et les pas."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registra aceleración, velocidad de giro, orientación, campo magnético y pasos."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registra accelerazione, velocità di rotazione, orientamento, campo magnetico e passi."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm enregistre l'accélération, la vitesse de rotation, l'orientation, le champ magnétique et les pas."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registra aceleración, velocidad de giro, orientación, campo magnético y pasos."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registra accelerazione, velocità di rotazione, orientamento, campo magnetico e passi."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm registreert versnelling, draaisnelheid, oriëntatie, magnetisch veld en stappen."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm は加速度、角速度、姿勢、地磁気、歩数を記録します。"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O Sensorstorm registra aceleração, velocidade de rotação, orientação, campo magnético e passos."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm은 가속도, 각속도, 자세, 지자기, 걸음 수를 기록합니다."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm は加速度、角速度、姿勢、地磁気、歩数を記録します。"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm registreert versnelling, draaisnelheid, oriëntatie, magnetisch veld en stappen."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm은 가속도, 각속도, 자세, 지자기, 걸음 수를 기록합니다."
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Sensorstorm registra aceleração, velocidade de rotação, orientação, campo magnético e passos."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensorstorm 會記錄加速度、角速度、姿態、磁場與步數。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm 會記錄加速度、角速度、姿態、磁場與步數。"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

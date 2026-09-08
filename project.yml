@@ -56,7 +56,17 @@ targets:
         CFBundleDisplayName: Sensorstorm
         # Every language the String Catalog actually carries. Declaring one that is
         # not translated is the mistake this app already made once, for eight builds.
-        CFBundleLocalizations: [de, en, fr, it, es, nl, pt-BR, ja, ko, zh-Hant]
+        CFBundleLocalizations:
+          - de
+          - en
+          - fr
+          - it
+          - es
+          - nl
+          - pt-BR
+          - ja
+          - ko
+          - zh-Hant
         ITSAppUsesNonExemptEncryption: false
         LSApplicationCategoryType: public.app-category.utilities
         UILaunchScreen:
@@ -143,7 +153,17 @@ targets:
         WKApplication: true
         WKCompanionAppBundleIdentifier: ch.sensorstorm.app
         WKRunsIndependentlyOfCompanionApp: false
-        CFBundleLocalizations: [de, en, fr, it, es, nl, pt-BR, ja, ko, zh-Hant]
+        CFBundleLocalizations:
+          - de
+          - en
+          - fr
+          - it
+          - es
+          - nl
+          - pt-BR
+          - ja
+          - ko
+          - zh-Hant
         NSHealthShareUsageDescription: >-
           Sensorstorm liest während einer Aufnahme deine Herzfrequenz, um sie zusammen mit
           den übrigen Sensordaten aufzuzeichnen. Es wird nichts in „Health" geschrieben.

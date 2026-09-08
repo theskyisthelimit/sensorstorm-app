@@ -23,3 +23,8 @@ Screenshots/
 # Xcode user state
 xcuserdata/
 *.xcuserstate
+
+# Lokalisierung: abgeleitet, nicht in der Geschichte.
+l10n/packs/
+l10n/reports/
+l10n/memory/

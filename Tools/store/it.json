@@ -1,0 +1,19 @@
+{
+  "name": "Sensorstorm: Sensor Logger",
+  "subtitle": "Rilievi e sensori iPhone",
+  "promotionalText": "Tutti i sensori su un solo orologio, e i dissesti stradali con una precisione di posizione onesta. Esporta in CSV, GeoJSON, GPX, KML e Blender.",
+  "keywords": "crepa,catasto,strada,buca,dissesto,GeoJSON,QGIS,accelerometro,GPS,IMU,CSV",
+  "description": "Sensorstorm registra simultaneamente i sensori del tuo iPhone — e documenta i dissesti stradali. Due strumenti, un solo orologio.\n\nUN OROLOGIO PER TUTTO\n\nUn tocco avvia tutto insieme: accelerazione, velocità di rotazione, orientamento, campo magnetico, GPS, barometro, livello sonoro, passi, stato del dispositivo. A richiesta anche video in 720p, 1080p o 4K.\n\nTutti i flussi condividono la base dei tempi dei fotogrammi video. Un fotogramma e il valore di accelerazione corrispondente combaciano esattamente — senza ricalibrare, senza deriva.\n\nRILIEVI: DOCUMENTARE I DANNI\n\nUn percorso è un tragitto, un'osservazione un punto danneggiato lungo di esso: foto e clip in numero libero, una gravità da 1 a 10 e l'area marcata come cerchio o poligono.\n\nOgni osservazione dichiara da dove viene la sua coordinata: un singolo fix GPS, una media su dieci secondi di immobilità, oppure uno spillo posato a mano. Il cerchio di incertezza è disegnato in scala sulla mappa.\n\nESPORTAZIONE RIUTILIZZABILE\n\nRegistrazioni in CSV per sensore, in dati grezzi, nel formato Sensor Logger o come log Gyroflow. Percorsi in GeoJSON per QGIS, in CSV con WGS84 e LV95 affiancati, in GPX, in KML. E il tutto in un unico ZIP descritto da un manifest.json.\n\nCAMERA ANIMATA\n\nIn modalità ARKit vengono registrate posizione, direzione di ripresa e lunghezza focale per ogni fotogramma. L'esportazione produce frames.csv, scene.json, il video e la traccia GPS — un add-on per Blender ne ricava una telecamera animata che segue la registrazione reale.\n\nGRATIS E PRO\n\nGratis: registrare tutti i sensori, la riproduzione con i grafici, un percorso, l'esportazione CSV.\n\nSensorstorm Pro sblocca il resto con un acquisto unico, senza abbonamento: 400 Hz, 4K, posa della fotocamera per il 3D, dati grezzi, camera animata per Blender, Sensor Logger, Gyroflow, percorsi illimitati, GeoJSON/GPX/KML e l'esportazione completa.\n\nL'esportazione CSV resta aperta anche senza Pro. Le tue misure sono tue, acquistate o no.\n\nNESSUNA NUVOLA\n\nTutto resta sul dispositivo. Nessun account, nessun tracciamento, nessuna analisi in background.\n\nFOTOGRAMMETRIA E GPX\n\nIn modalità ARKit l'export sceglie immagini nitide e ben distribuite e scrive lunghezza focale, posizione e direzione di ripresa nell'EXIF — per RealityScan, Metashape o Meshroom. La traccia GPS si esporta direttamente in GPX o KML, senza strumenti di terze parti.\n\nL'app è disponibile in italiano e in altre nove lingue.",
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "Prima versione."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "Formati pro, 400 Hz e 4K. Acquisto unico."
+      }
+    }
+  }
+}

@@ -68,49 +68,40 @@ STORE_BYTE_LIMITS = {"keywords": 100}
 
 # Sichtbare Bildschirme, damit die Maschine weiss, wo ein Text steht.
 SCREENS = {
-    "OnboardingView.swift": "Onboarding beim ersten Start",
-    "Paywall.swift": "Bezahlschranke (Paywall)",
-    "StoreView.swift": "Store / Freischalten (In-App-Käufe)",
-    "RootView.swift": "Hauptansichten: Übersicht, Kisten, Gegenstände, Aufgaben, Tab-Leiste, Einstellungen",
-    "PadShell.swift": "iPad-Seitenleiste",
-    "HelpView.swift": "Hilfe (Fliesstext, Schritt-für-Schritt)",
-    "AboutView.swift": "Über die App / Umfang",
-    "ActivityLogView.swift": "Verlauf (Änderungsprotokoll, Rückgängig)",
-    "MovesView.swift": "Umzüge (alle Umzüge, Cloud)",
-    "MoveCompletionPrompt.swift": "Nachfrage nach dem Umzugstag",
-    "StorageView.swift": "Stauraum",
-    "StorageDetailViews.swift": "Stauraum: Bereiche, Plätze, Kisten",
-    "StorageFormSheets.swift": "Stauraum: Formulare",
-    "DamageReportsView.swift": "Mängel / Schadensberichte",
-    "DamageReportExportView.swift": "Schadensbericht als PDF",
-    "BoxLabelExportView.swift": "QR-Etiketten drucken",
-    "WorkspaceExportView.swift": "Export (PDF, CSV, JSON)",
-    "FurnitureView.swift": "Möbel",
-    "RoomsView.swift": "Räume",
-    "ItemListView.swift": "Gegenstände",
-    "TaskTemplatePicker.swift": "Aufgabenvorlage auswählen",
-    "TaskCategoryStyle.swift": "Kategorien der Aufgaben",
-    "NeighborhoodView.swift": "Nachbarschaft (Karte)",
-    "ARBoxScannerView.swift": "AR-Scanner",
-    "BoxScanOpenView.swift": "QR-Scanner: Kiste öffnen",
-    "BulkStatusScannerView.swift": "QR-Scanner: Status setzen",
-    "StickerRollScannerView.swift": "Aufkleber-Rolle scannen",
-    "ItemTextScannerView.swift": "Text-Scanner für Gegenstände",
-    "ObjectScanSheet.swift": "Foto-Erkennung von Gegenständen",
-    "PackingSuggestionsView.swift": "Packvorschläge",
-    "BackupSettingsView.swift": "Sicherung und Speicherort",
-    "TabBarSettingsView.swift": "Tab-Leiste einrichten",
-    "MoveReminders.swift": "Mitteilungen / Erinnerungen",
-    "DebugMenuView.swift": "Entwickler-Menü",
-    "MoveWidget.swift": "Widget auf dem Home-Bildschirm",
-    "CloudSignIn.swift": "Anmeldung (Apple, Google)",
-    "CloudAccountView.swift": "Homeshift-Konto",
-    "ShareMoveView.swift": "Umzug teilen",
-    "RedeemInviteView.swift": "Einladung einlösen",
-    "CloudController.swift": "Cloud-Abgleich: Meldungen und Fehler",
-    "HomeshiftAppModel.swift": "App-Modell: Meldungen, Alerts, Fehler",
-    "WorkspaceSwitcher.swift": "Umzug wechseln",
+    "RootView.swift": "Hauptansichten und Tab-Leiste: Aufnehmen, Messaufnahmen, Routen, Einstellungen",
+    "RecordView.swift": "Aufnehmen: Sensoren scharf schalten, Start und Stopp, laufende Aufnahme",
+    "SensorArmingList.swift": "Sensoren auswählen",
+    "SettingsView.swift": "Einstellungen: Abtastrate, Video, Kamerapose, Live-Übertragung, Pro",
+    "LibraryView.swift": "Messaufnahmen (Liste aller Aufnahmen)",
+    "RecordingLibrary.swift": "Ablage der Aufnahmen: Anlegen, Umbenennen, Löschen",
+    "RecordingDetailView.swift": "Eine Aufnahme im Detail: Ströme, Video, Export",
+    "RecordingPlayback.swift": "Wiedergabe einer Aufnahme",
+    "SensorChartCard.swift": "Diagramm eines Sensorstroms",
+    "ArchiveExportView.swift": "Gesamtexport: alles auf dem Gerät als ein Zip",
+    "PhotoSetExportView.swift": "Bilder für Fotogrammetrie",
+    "SurveyListView.swift": "Routen (Liste)",
+    "SurveyDetailView.swift": "Eine Route im Detail: Beobachtungen, Karte, Export",
+    "FindingCaptureView.swift": "Beobachtung erfassen: Fotos, Position, Bewertung",
+    "FindingDetailView.swift": "Eine Beobachtung im Detail",
+    "AreaEditorView.swift": "Bereich markieren: Kreis oder Polygon",
+    "PinEditorView.swift": "Nadel von Hand setzen",
+    "SurveyComponents.swift": "Routen: gemeinsame Bausteine und Formulare",
+    "SurveyModel.swift": "Routen: Datenmodell, Meldungen und Fehler",
+    "SurveyCamera.swift": "Kamera in der Beobachtung",
+    "SurveyLocation.swift": "Standort in der Beobachtung: Fix, Mittelung, Abweichung",
+    "PaywallView.swift": "Bezahlschranke (Sensorstorm Pro)",
+    "ProEntitlement.swift": "Kauf und Wiederherstellung: Meldungen und Fehler",
+    "ProLock.swift": "Hinweise auf Pro an gesperrten Funktionen",
+    "LiveStreamer.swift": "Live-Übertragung an einen Server",
+    "MQTTTransport.swift": "MQTT-Broker: Verbindungsfehler",
+    "SensorHub.swift": "Sensoren: Namen der Ströme, Meldungen",
+    "VideoRecorder.swift": "Videoaufnahme: Fehler und Grenzen",
+    "AudioSource.swift": "Ton: Pegel und Lautstärke",
+    "Formatting.swift": "Zahlen, Einheiten und Zeitangaben",
+    "Theme.swift": "Beschriftungen der Oberfläche",
     "ScreenshotFixtures.swift": "Beispieldaten für Screenshots",
+    "WatchRootView.swift": "Apple Watch: Hauptansicht",
+    "WatchRecorder.swift": "Apple Watch: Aufnahme und Herzfrequenz",
 }
 
 # ---------------------------------------------------------------------------
@@ -322,11 +313,31 @@ class XCStringsAdapter:
         """
         text = path("project.yml").read_text(encoding="utf-8")
         found: dict[str, str] = {}
-        for line in text.splitlines():
+        lines = text.split("\n")
+        for index, line in enumerate(lines):
             stripped = line.strip()
-            if stripped.startswith("NS") and "UsageDescription" in stripped and ":" in stripped:
-                key, _, value = stripped.partition(":")
-                found[key.strip()] = value.strip().strip('"')
+            if not (stripped.startswith("NS") and "UsageDescription" in stripped and ":" in stripped):
+                continue
+            key, _, value = stripped.partition(":")
+            value = value.strip().strip('"')
+            if value in (">-", ">", "|-", "|"):
+                # Gefaltetes Blockskalar: der Text steht eingerückt darunter, und
+                # YAML zieht die Zeilen mit einem Leerzeichen zusammen. Ohne das
+                # stünde hier „>-“ als Quelltext, und keine Marken- oder
+                # Platzhaltersperre sähe je eine Berechtigungsfrage.
+                indent = len(line) - len(line.lstrip())
+                parts = []
+                for follow in lines[index + 1:]:
+                    if not follow.strip():
+                        break
+                    if len(follow) - len(follow.lstrip()) <= indent:
+                        break
+                    parts.append(follow.strip())
+                value = " ".join(parts)
+            # Beide Targets führen `NSMotionUsageDescription`, mit verschiedenem
+            # Text. Der Katalog gehört zur App, und deren Block steht zuerst:
+            # `setdefault`, sonst überschreibt die Uhr den Text des iPhones.
+            found.setdefault(key.strip(), value)
         return found
 
     @staticmethod
@@ -448,169 +459,6 @@ class XCStringsAdapter:
 
 
 # ---------------------------------------------------------------------------
-# Adapter: Vorlagen (Basis je Sprache, Überlagerung je Land)
-
-
-class TemplatesAdapter:
-    name = "templates"
-
-    def base_path(self, lang: str) -> Path:
-        return path(TEMPLATES, "base", f"{lang}.json")
-
-    def overlay_dirs(self) -> list[Path]:
-        root = path(TEMPLATES, "overlays")
-        return sorted(p for p in root.iterdir() if p.is_dir()) if root.is_dir() else []
-
-    def exists(self) -> bool:
-        return path(TEMPLATES, "base").is_dir()
-
-    @staticmethod
-    def _read(p: Path) -> dict:
-        with open(p, encoding="utf-8") as handle:
-            return json.load(handle)
-
-    def _rows_for(self, prefix: str, src_file: dict, ref_file: dict, current: dict | None, lang: str) -> list[Row]:
-        rows: list[Row] = []
-        src_tasks = {r["key"]: r for r in src_file.get("taskTemplates", [])}
-        cur_tasks = {r["key"]: r for r in (current or {}).get("taskTemplates", [])}
-        for row in ref_file.get("taskTemplates", []):
-            key = row["key"]
-            src = src_tasks.get(key, row)
-            cur = cur_tasks.get(key)
-            context = f"Aufgabenvorlage ({row['category']}, Tag {row['dayOffset']:+d} zum Umzug)"
-            rows.append(Row(self.name, f"{prefix}/task/{key}/title", src["title"], row["title"], context, "ui",
-                            max_chars=int(max(len(row["title"]), len(src["title"])) * UI_LENGTH_FACTOR) + UI_LENGTH_SLACK,
-                            current=cur["title"] if cur else None))
-            if row.get("note"):
-                rows.append(Row(self.name, f"{prefix}/task/{key}/note", src.get("note") or row["note"], row["note"],
-                                context + ", Hinweis mit Frist und Quelle", "help", current=(cur or {}).get("note")))
-        src_presets = {r["key"]: r for r in src_file.get("roomPresets", [])}
-        cur_presets = {r["key"]: r for r in (current or {}).get("roomPresets", [])}
-        for row in ref_file.get("roomPresets", []):
-            rows.append(Row(self.name, f"{prefix}/preset/{row['key']}", src_presets.get(row["key"], row)["name"], row["name"],
-                            "Raumname als Vorschlag beim ersten Start", "ui", max_chars=40,
-                            current=cur_presets.get(row["key"], {}).get("name")))
-        src_lists = {r["key"]: r for r in src_file.get("packingLists", [])}
-        cur_lists = {r["key"]: r for r in (current or {}).get("packingLists", [])}
-        for row in ref_file.get("packingLists", []):
-            src_items = src_lists.get(row["key"], row)["items"]
-            cur_items = cur_lists.get(row["key"], {}).get("items", [])
-            for i, item in enumerate(row["items"]):
-                rows.append(Row(self.name, f"{prefix}/packing/{row['key']}/{i}", src_items[i] if i < len(src_items) else item,
-                                item, f"Gegenstand auf der Packliste „{row['key']}“ (kurzes Substantiv)", "ui", max_chars=40,
-                                current=cur_items[i] if i < len(cur_items) else None))
-        return rows
-
-    def rows(self, lang: str, only_missing: bool = True) -> list[Row]:
-        src, ref = source_language(), reference_language()
-        if lang == src or not self.exists():
-            return []
-        rows: list[Row] = []
-        ref_base = self._read(self.base_path(ref))
-        src_base = self._read(self.base_path(src)) if self.base_path(src).exists() else ref_base
-        current = self._read(self.base_path(lang)) if self.base_path(lang).exists() else None
-        rows += self._rows_for("base", src_base, ref_base, current, lang)
-        for country_dir in self.overlay_dirs():
-            ref_overlay = country_dir / f"{ref}.json"
-            if not ref_overlay.exists():
-                continue
-            src_overlay = country_dir / f"{src}.json"
-            cur_overlay = country_dir / f"{lang}.json"
-            rows += self._rows_for(
-                f"overlay/{country_dir.name}",
-                self._read(src_overlay) if src_overlay.exists() else self._read(ref_overlay),
-                self._read(ref_overlay),
-                self._read(cur_overlay) if cur_overlay.exists() else None,
-                lang,
-            )
-        if only_missing:
-            rows = [r for r in rows if r.current is None]
-        return rows
-
-    def apply(self, lang: str, results: dict[str, str]) -> int:
-        """Baut base/<lang>.json und overlays/<LAND>/<lang>.json aus der englischen
-        Form mit den übersetzten Texten; was nicht in `results` steht, bleibt
-        bestehen (bei vorhandener Datei) oder fällt auf Englisch zurück."""
-        ref = reference_language()
-        written = 0
-
-        def build(prefix: str, ref_file: dict, existing: dict | None) -> dict:
-            out = json.loads(json.dumps(ref_file, ensure_ascii=False))
-            out["language"] = lang
-            cur_tasks = {r["key"]: r for r in (existing or {}).get("taskTemplates", [])}
-            for row in out.get("taskTemplates", []):
-                key = row["key"]
-                row["title"] = results.get(f"{prefix}/task/{key}/title") or cur_tasks.get(key, {}).get("title") or row["title"]
-                if row.get("note"):
-                    row["note"] = results.get(f"{prefix}/task/{key}/note") or cur_tasks.get(key, {}).get("note") or row["note"]
-            cur_presets = {r["key"]: r for r in (existing or {}).get("roomPresets", [])}
-            for row in out.get("roomPresets", []):
-                row["name"] = results.get(f"{prefix}/preset/{row['key']}") or cur_presets.get(row["key"], {}).get("name") or row["name"]
-            cur_lists = {r["key"]: r for r in (existing or {}).get("packingLists", [])}
-            for row in out.get("packingLists", []):
-                cur_items = cur_lists.get(row["key"], {}).get("items", [])
-                row["items"] = [
-                    results.get(f"{prefix}/packing/{row['key']}/{i}") or (cur_items[i] if i < len(cur_items) else None) or item
-                    for i, item in enumerate(row["items"])
-                ]
-            return out
-
-        if any(k.startswith("base/") for k in results) or not self.base_path(lang).exists():
-            ref_base = self._read(self.base_path(ref))
-            existing = self._read(self.base_path(lang)) if self.base_path(lang).exists() else None
-            self.base_path(lang).write_text(json.dumps(build("base", ref_base, existing), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-            written += 1
-        for country_dir in self.overlay_dirs():
-            ref_overlay = country_dir / f"{ref}.json"
-            target = country_dir / f"{lang}.json"
-            prefix = f"overlay/{country_dir.name}"
-            if not ref_overlay.exists():
-                continue
-            if not any(k.startswith(prefix + "/") for k in results) and target.exists():
-                continue
-            existing = self._read(target) if target.exists() else None
-            target.write_text(json.dumps(build(prefix, self._read(ref_overlay), existing), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-            written += 1
-        return written
-
-    def coverage(self, lang: str) -> dict:
-        if not self.exists():
-            return {"base": False, "overlays": 0, "overlayTotal": 0}
-        dirs = self.overlay_dirs()
-        return {
-            "base": self.base_path(lang).exists(),
-            "overlays": sum(1 for d in dirs if (d / f"{lang}.json").exists()),
-            "overlayTotal": len(dirs),
-        }
-
-    def verify(self) -> list[str]:
-        if not self.exists():
-            return []
-        sys.path.insert(0, str(path("Tools")))
-        try:
-            import templates as templates_tool  # noqa: WPS433
-        except ImportError:
-            return ["Tools/templates.py fehlt"]
-        templates_tool.ROOT = ROOT
-        templates_tool.TEMPLATES = path(TEMPLATES)
-        templates_tool.CLOUDKIT = path("CloudKit/templates")
-        problems: list[str] = []
-        base_files = templates_tool.bases()
-        for lang, data in base_files.items():
-            templates_tool.check_file(templates_tool.TEMPLATES / "base" / f"{lang}.json", data, problems, is_overlay=False)
-        templates_tool.same_shape(base_files, problems, "base")
-        for country, files in templates_tool.overlays().items():
-            for lang, data in files.items():
-                templates_tool.check_file(templates_tool.TEMPLATES / "overlays" / country / f"{lang}.json", data, problems, is_overlay=True)
-            templates_tool.same_shape(files, problems, f"overlays/{country}")
-        return problems
-
-
-# ---------------------------------------------------------------------------
-# Adapter: Store-Texte (Tools/store/<locale>.json), Website, project.yml
-
-
-# ---------------------------------------------------------------------------
 # Store: Tools/store/<locale>.json — Listing, „Neu in dieser Version“, IAP-Texte
 #
 # Eine Datei je ASC-Locale, und sie trägt alles, was Apple in dieser Sprache
@@ -659,13 +507,14 @@ LATIN_LIKE_SCRIPTS = {"Latn", "Cyrl", "Grek"}
 # Warnung, die immer steht, ist keine mehr.
 SCRIPT_DENSITY = {"Jpan": 0.45, "Hans": 0.4, "Hant": 0.4, "Kore": 0.6, "Thai": 0.7}
 # Pflicht in jeder Beschreibung, solange es ein Abo gibt (Guideline 3.1.2):
-# Nutzungsbedingungen und Datenschutz als Link, Titel und Laufzeit des Abos.
-REQUIRED_DESCRIPTION_URLS = ("https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",)
-# Der Datenschutzlink ist Pflicht, seine Sprache aber nicht die deutsche: die
-# Website hat je Sprache eine eigene Seite (`/es/privacy/`), und ein spanisches
-# Listing, das auf `/datenschutz` zeigt, schickt die Leserin auf Deutsch.
-PRIVACY_URL_PATTERN = re.compile(r"https://homeshift\.ch/(?:datenschutz|[a-z]{2}(?:-[A-Za-z]+)?/privacy/)")
-SUBSCRIPTION_TITLE = "Homeshift Cloud"
+BRAND = "Sensorstorm"
+# Sensorstorm Pro ist ein einmaliger Kauf, kein Auto-Renewable. Apple verlangt
+# den EULA-Link und die Laufzeitangabe nur beim Abo, also steht hier nichts
+# Pflichtiges; der Datenschutzlink hängt am appInfo, nicht an der Beschreibung.
+# Beides bleibt trotzdem geprüft, aber als Warnung.
+REQUIRED_DESCRIPTION_URLS: tuple[str, ...] = ()
+PRIVACY_URL_PATTERN = re.compile(r"https://sensorstorm\.ch/(?:datenschutz\.html|[a-z]{2}(?:-[A-Za-z]+)?/privacy\.html)")
+IAP_TITLE = "Sensorstorm Pro"
 PRICE_PATTERN = re.compile(
     r"(?i)(?<![A-Za-z])(CHF|EUR|USD|GBP|JPY|CAD|AUD|BRL|MXN|INR|KRW|CNY|RUB|PLN|TRY|Fr\.)\s?\d"
     r"|[€$£¥₹₩₽]\s?\d|\d\s?[€$£¥₹₩₽]|\d+[.,]\d{2}\s?(?:CHF|EUR|USD|Fr\.)"
@@ -724,7 +573,7 @@ def _words(text: str) -> set[str]:
 def _term_in_title(term: str, name: str, subtitle: str, script: str) -> bool:
     low = term.lower()
     if script in LATIN_LIKE_SCRIPTS:
-        return low in (_words(name) | _words(subtitle)) - {"homeshift"}
+        return low in (_words(name) | _words(subtitle)) - {BRAND.lower()}
     # CJK, Thai, Devanagari: keine Wortgrenzen — ein Teilstring zählt.
     return low in (name or "").lower() or low in (subtitle or "").lower()
 
@@ -962,12 +811,12 @@ class StoreAdapter:
                 err(f"{field_name} enthält Steuerzeichen")
 
         # Name und Untertitel: die Marke vorn, kein Wort doppelt.
-        if name and not name.startswith("Homeshift"):
-            err("Name beginnt nicht mit „Homeshift“ — die Marke steht vorn, der Suchbegriff dahinter")
-        if "homeshift" in subtitle.lower():
-            err("Untertitel wiederholt „Homeshift“ — verschenkte Zeichen, der Name ist ohnehin indexiert")
+        if name and not name.startswith(BRAND):
+            err(f"Name beginnt nicht mit „{BRAND}“ — die Marke steht vorn, der Suchbegriff dahinter")
+        if BRAND.lower() in subtitle.lower():
+            err(f"Untertitel wiederholt „{BRAND}“ — verschenkte Zeichen, der Name ist ohnehin indexiert")
         if script in LATIN_LIKE_SCRIPTS:
-            overlap = (_words(name) - {"homeshift"}) & _words(subtitle)
+            overlap = (_words(name) - {BRAND.lower()}) & _words(subtitle)
             if overlap:
                 err(f"Wort doppelt in Name und Untertitel: {', '.join(sorted(overlap))} (Apple indexiert beide zusammen)")
 
@@ -982,8 +831,8 @@ class StoreAdapter:
             duplicates = sorted({t for t in lowers if t and lowers.count(t) > 1})
             if duplicates:
                 err(f"keywords doppelt: {', '.join(duplicates)}")
-            if "homeshift" in lowers:
-                err("„Homeshift“ als Keyword — der Name ist ohnehin indexiert")
+            if BRAND.lower() in lowers:
+                err(f"„{BRAND}“ als Keyword — der Name ist ohnehin indexiert")
             in_title = [t for t in terms if t and _term_in_title(t, name, subtitle, script)]
             if in_title:
                 err(f"Keyword steht schon im Namen oder Untertitel: {', '.join(in_title)}")
@@ -1019,10 +868,10 @@ class StoreAdapter:
                 if url not in description:
                     err(f"description: Pflichtlink fehlt: {url}")
             if not PRIVACY_URL_PATTERN.search(description):
-                err("description: Datenschutz-Link fehlt (https://homeshift.ch/<sprache>/privacy/ "
-                    "oder https://homeshift.ch/datenschutz)")
-            if SUBSCRIPTION_TITLE not in description:
-                err(f"description: Abo-Titel „{SUBSCRIPTION_TITLE}“ fehlt (Pflicht bei Auto-Renewables)")
+                warn("description: kein Datenschutz-Link (https://sensorstorm.bognar.net/datenschutz.html "
+                     "oder https://sensorstorm.bognar.net/<sprache>/privacy.html); Pflicht ist nur das Feld am appInfo")
+            if IAP_TITLE not in description:
+                warn(f"description: nennt den Kauf „{IAP_TITLE}“ nicht beim Namen")
             src_description = src.get("description") or ""
             erwartet = 0.5 * SCRIPT_DENSITY.get(script, 1.0) * len(src_description)
             if locale != SOURCE_STORE_LOCALE and src_description and len(description) < erwartet:
@@ -1040,8 +889,11 @@ class StoreAdapter:
         src_iap = src.get("iap") or {}
         iap = data.get("iap") or {}
         if src_iap:
+            # Der Gruppenname gehört zum Abo. Sensorstorm Pro ist ein einmaliger
+            # Kauf, also verlangt die Quelle keine Gruppe, und dann fehlt sie hier
+            # auch nicht: geprüft wird nur, was die Quelle führt.
             group = iap.get("group") or ""
-            if not group:
+            if src_iap.get("group") and not group:
                 err("IAP: Name der Abo-Gruppe fehlt")
             elif len(group) > IAP_NAME_LIMIT:
                 err(f"IAP: Gruppenname hat {len(group)} Zeichen, erlaubt {IAP_NAME_LIMIT}")
@@ -1112,16 +964,17 @@ ASO_SEEDS = "l10n/aso/seeds.json"
 
 ASO_RULES = (
     "App Store copy rules (Apple indexes name, subtitle and the keyword field together, so a word counts once):\n"
-    "1. name: starts with \"Homeshift\", then a colon and a 1–3-word descriptor carrying the strongest search term; max 30 characters.\n"
-    "2. subtitle: max 30 characters; the benefit with the next strongest terms; no word repeated from the name, never \"Homeshift\".\n"
+    "1. name: starts with \"Sensorstorm\", then a colon and a 1–3-word descriptor carrying the strongest search term; max 30 characters.\n"
+    "2. subtitle: max 30 characters; the benefit with the next strongest terms; no word repeated from the name, never \"Sensorstorm\".\n"
     "3. promotionalText: max 170 characters; one concrete scene of use; no price, no superlatives, no \"best\", \"#1\" or \"the only\".\n"
-    "4. description: up to 4000 characters; keep the structure of the source (sections in capitals, bullets, the subscription block "
-    "with the title \"Homeshift Cloud\", the term lengths and both legal links verbatim); the first sentence says what the app is "
+    "4. description: up to 4000 characters; keep the structure of the source (sections in capitals, bullets, the purchase block "
+    "naming \"Sensorstorm Pro\" as a one-time purchase without subscription or renewal); the first sentence says what the app is "
     "(search engines index it); no prices or currencies, no other platforms (Android, Google Play, Windows), no competitor names, "
     "no superlatives or claims that cannot be verified, no mention of the languages the app ships in.\n"
     "5. Use the ranked search terms: the top ones in name and subtitle, in their natural inflected form; do not list terms — write.\n"
     "6. Register and quotation marks of the language; native, natural phrasing for this storefront; nothing that reads like a "
-    "machine translation; keep \"Homeshift\", \"Homeshift Cloud\", \"iPhone\", \"iPad\", \"QR\", \"PDF\", \"iCloud\" as they are.\n"
+    "machine translation; keep \"Sensorstorm\", \"Sensorstorm Pro\", \"iPhone\", \"iPad\", \"Apple Watch\", \"CSV\", \"GeoJSON\", "
+    "\"GPX\", \"KML\", \"Blender\", \"Sensor Logger\", \"Gyroflow\", \"COLMAP\", \"QGIS\", \"ARKit\", \"MQTT\" as they are.\n"
 )
 
 
@@ -1220,7 +1073,7 @@ def pack_keywords(ranked: list[tuple[str, float, str]], name: str, subtitle: str
     competitor_set = {c.lower() for c in competitors}
     for term, score, source in ranked:
         low = term.lower()
-        if low == "homeshift" or low in lowers:
+        if low == BRAND.lower() or low in lowers:
             skipped.append((term, "Marke oder doppelt"))
             continue
         if source == "machine" and score <= 0 and not admit_unvalued:
@@ -1434,127 +1287,6 @@ def store_copy_locales(locales: list[str], engine_name: str, max_rounds: int, fo
         report = store_copy_locale(locale, engine_name, max_rounds=max_rounds, force=force, allow_rename=allow_rename, log=log)
         failures += 1 if report.blocked else 0
     return failures
-
-
-class SiteAdapter:
-    """Die Website: site/src/content/<code>.json — ein Baum aus Texten, hier als
-    Zeilen mit Punktpfaden (`home.hero.title`, `support.faq.items.3.q`). Tokens
-    in geschweiften Klammern (`{price}`, `{operatorName}`) sind Platzhalter der
-    Website und müssen die Übersetzung unverändert überstehen."""
-    name = "site"
-
-    def exists(self) -> bool:
-        return self.file(source_language()).exists()
-
-    def file(self, lang: str) -> Path:
-        return path(SITE, f"{lang}.json")
-
-    def read(self, lang: str) -> dict | None:
-        if not self.file(lang).exists():
-            return None
-        with open(self.file(lang), encoding="utf-8") as handle:
-            return json.load(handle)
-
-    @staticmethod
-    def flatten(tree, prefix: str = "") -> dict[str, str]:
-        flat: dict[str, str] = {}
-        if isinstance(tree, dict):
-            for key, value in tree.items():
-                flat.update(SiteAdapter.flatten(value, f"{prefix}.{key}" if prefix else key))
-        elif isinstance(tree, list):
-            for index, value in enumerate(tree):
-                flat.update(SiteAdapter.flatten(value, f"{prefix}.{index}"))
-        elif isinstance(tree, str):
-            flat[prefix] = tree
-        return flat
-
-    @staticmethod
-    def rebuild(template, flat: dict[str, str], prefix: str = ""):
-        """Die Struktur der Quelle mit den Texten der Zielsprache; fehlende
-        Blätter bleiben weg (die Website fällt dann auf Englisch zurück)."""
-        if isinstance(template, dict):
-            out = {}
-            for key, value in template.items():
-                built = SiteAdapter.rebuild(value, flat, f"{prefix}.{key}" if prefix else key)
-                if built is not None and built != {} and built != []:
-                    out[key] = built
-            return out
-        if isinstance(template, list):
-            items = [SiteAdapter.rebuild(value, flat, f"{prefix}.{index}") for index, value in enumerate(template)]
-            return items if all(item is not None for item in items) else None
-        return flat.get(prefix)
-
-    @staticmethod
-    def _context(key: str, text: str) -> tuple[str, str, int | None]:
-        """(Kontext, Art, Zeichenbudget) je Schlüssel."""
-        head = key.split(".")[0]
-        places = {
-            "meta": "Website: Name und Kurzbeschreibung", "nav": "Website: Navigation (kurz)", "home": "Website: Startseite",
-            "features": "Website: Seite Funktionen", "pricing": "Website: Seite Preise", "support": "Website: Seite Support (FAQ)",
-            "help": "Website: Rahmen der Hilfe-Seiten", "guide": "Website: Ratgeber mit Umzugs-Checklisten",
-            "privacy": "Website: Datenschutzerklärung (Rechtstext, Deutsch verbindlich)", "imprint": "Website: Impressum",
-            "legal": "Website: Hinweis zu Übersetzungen der Rechtstexte", "fallback": "Website: Seite hinter einem QR-Code oder Einladungslink ohne App",
-            "notFound": "Website: 404", "footer": "Website: Fusszeile",
-        }
-        context = places.get(head, "Website homeshift.ch") + f" — Schlüssel {key}"
-        if key.endswith(".description"):
-            return context + "; Meta-Beschreibung für Suchmaschinen, höchstens 155 Zeichen, ein ganzer Satz", "ui", 155
-        if key.endswith(".title") and key.count(".") == 1:
-            return context + "; Seitentitel <title>, höchstens 60 Zeichen, Marke Homeshift bleibt", "ui", 60
-        if len(text) > HELP_THRESHOLD:
-            return context + "; Fliesstext", "help", None
-        return context, "ui", None
-
-    def rows(self, lang: str, only_missing: bool = True) -> list[Row]:
-        if not self.exists() or lang == source_language():
-            return []
-        src = self.flatten(self.read(source_language()) or {})
-        ref = self.flatten(self.read(reference_language()) or {}) if lang != reference_language() else {}
-        current = self.flatten(self.read(lang) or {})
-        rows: list[Row] = []
-        for key, text in src.items():
-            if only_missing and current.get(key):
-                continue
-            context, kind, budget = self._context(key, text)
-            if kind == "ui" and budget is None:
-                budget = int(max(len(text), len(ref.get(key, ""))) * UI_LENGTH_FACTOR) + UI_LENGTH_SLACK
-            rows.append(Row(self.name, key, text, ref.get(key, ""), context, kind, max_chars=budget, current=current.get(key)))
-        return rows
-
-    def apply(self, lang: str, results: dict[str, str]) -> int:
-        template = self.read(source_language()) or {}
-        flat = self.flatten(self.read(lang) or {})
-        flat.update(results)
-        built = self.rebuild(template, flat)
-        self.file(lang).parent.mkdir(parents=True, exist_ok=True)
-        self.file(lang).write_text(json.dumps(built, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        return 1
-
-    def coverage(self, lang: str) -> dict:
-        if not self.exists():
-            return {"present": None, "done": 0, "total": 0}
-        src = self.flatten(self.read(source_language()) or {})
-        if lang == source_language():
-            return {"present": True, "done": len(src), "total": len(src)}
-        current = self.flatten(self.read(lang) or {})
-        done = sum(1 for key in src if current.get(key))
-        return {"present": self.file(lang).exists(), "done": done, "total": len(src)}
-
-    def verify(self, lang: str) -> list[Problem]:
-        """Tokens müssen die Übersetzung überstehen — `{price}` in der Quelle
-        heisst `{price}` im Ziel, nicht `{Preis}`."""
-        problems: list[Problem] = []
-        if not self.exists() or lang == source_language():
-            return problems
-        src = self.flatten(self.read(source_language()) or {})
-        current = self.flatten(self.read(lang) or {})
-        for key, text in current.items():
-            if key not in src:
-                problems.append(("warn", f"site/{lang}: {key} gibt es in der Quelle nicht mehr"))
-                continue
-            if set(SITE_TOKEN.findall(text)) != set(SITE_TOKEN.findall(src[key])):
-                problems.append(("error", f"site/{lang}: {key}: Platzhalter {sorted(set(SITE_TOKEN.findall(text)))} statt {sorted(set(SITE_TOKEN.findall(src[key])))}"))
-        return problems
 
 
 class ProjectAdapter:
@@ -1954,14 +1686,18 @@ class ClaudeEngine:
 
     def translate(self, entry: dict, rows: list[Row], guidance: str) -> dict[str, str]:
         system = (
-            f"You are the localization engineer for Homeshift, an iOS app for moving house (boxes, rooms, items, storage, "
-            f"damage reports, tasks). Translate UI strings into {entry['englishName']} ({entry['code']}).\n"
+            f"You are the localization engineer for Sensorstorm, an iOS app that records every phone sensor on one clock "
+            f"(acceleration, rotation rate, orientation, magnetic field, GPS, barometer, audio level, pedometer, video, "
+            f"Apple Watch heart rate) and documents field observations along a route (photos, position with its accuracy, "
+            f"a severity from 1 to 10, a marked area), with export to CSV, JSON, SQLite, GeoJSON, GPX, KML, Blender and "
+            f"photogrammetry. Translate UI strings into {entry['englishName']} ({entry['code']}).\n"
             f"Rules: (1) Keep every placeholder exactly (%@, %lld, %1$@, %#@arg@, %%) — same count and types; you may reorder "
             f"with positional indices when grammar needs it. (2) Register: {entry['register']}. Quotation marks: "
             f"{entry['quotes'][0]}…{entry['quotes'][1]}. (3) UI strings must fit max_chars; prefer short, natural phrasing "
             f"native speakers expect in iOS apps in this language; never explain. (4) Help texts (kind=help) are prose: "
-            f"translate faithfully, keep paragraph breaks. (5) Brand and product names stay: Homeshift, Homeshift Cloud, "
-            f"iCloud, App Store, QR, PDF. (6) Use the glossary consistently. (7) Output only the JSON structure requested.\n\n"
+            f"translate faithfully, keep paragraph breaks. (5) Brand, format and product names stay: Sensorstorm, Sensorstorm Pro, "
+            f"App Store, Apple Watch, ARKit, Blender, Sensor Logger, Gyroflow, COLMAP, QGIS, MQTT, CSV, JSON, SQLite, GeoJSON, "
+            f"GPX, KML, EXIF, GPS, IMU, Hz. (6) Use the glossary consistently. (7) Output only the JSON structure requested.\n\n"
             f"{guidance}"
         )
         user = ("Translate each item. Return items with the same ids. For kind=plural, `text` is a JSON string of the "
@@ -2010,10 +1746,11 @@ class ClaudeEngine:
     def aso_candidates(self, entry: dict, locale: str, src: dict, ref: dict, aso: dict) -> list[str]:
         system = (
             "You are an App Store Optimization specialist for the storefront named below. Propose the search terms people in "
-            "this market type into the App Store when they look for an app to organise a house move: packing, boxes, labels, "
-            "inventory, checklist, moving day, storage. Single words in the target language (compounds where the language "
+            "this market type into the App Store when they look for an app that logs phone sensors and documents damage in "
+            "the field: data logger, accelerometer, gyroscope, GPS track, vibration, road survey, pothole, inspection, "
+            "photogrammetry, CSV export. Single words in the target language (compounds where the language "
             "compounds), lowercase unless a proper noun, no brand names, no plural of a term you already listed, nothing that "
-            "'Homeshift' already covers, no generic words (app, free, new). 25 to 40 terms, ordered by your estimate of search "
+            "'Sensorstorm' already covers, no generic words (app, free, new). 25 to 40 terms, ordered by your estimate of search "
             "volume in this storefront, strongest first. Output only the JSON requested."
         )
         existing = [str(item["term"] if isinstance(item, dict) else item) for item in aso.get("candidates", [])]
@@ -2029,8 +1766,9 @@ class ClaudeEngine:
     def store_copy(self, entry: dict, locale: str, src: dict, ref: dict, ranked: list, current: dict,
                    keep_title: bool, findings: list[str]) -> dict:
         system = (
-            "You write App Store listings for Homeshift, an iOS app for moving house (boxes, rooms, items, storage, damage "
-            "reports, tasks, QR labels, PDF/CSV export, sharing a move through Homeshift Cloud). You write for the storefront "
+            "You write App Store listings for Sensorstorm, an iOS app that records every phone sensor on one shared clock and "
+            "documents field observations along a route, with export to CSV, JSON, SQLite, GeoJSON, GPX, KML, Blender and "
+            "photogrammetry; Sensorstorm Pro unlocks the rest as a one-time purchase. You write for the storefront "
             "named below as a native copywriter would: the text must read as if it had been written in that language for that "
             "market, never like a translation. Facts come from the German source only — nothing is promised that the source does "
             "not promise.\n\n" + ASO_RULES
@@ -2068,11 +1806,11 @@ class ClaudeEngine:
     def store_compliance(self, entry: dict, locale: str, draft: dict) -> dict:
         system = (
             "You are the compliance check for App Store metadata against the App Store Review Guidelines (2.3 Accurate "
-            "Metadata, 3.1.2 Subscriptions, 5.1.1 Privacy). Fail the draft if it promises a feature that a moving-inventory app "
-            "with boxes, QR labels, tasks, storage, damage reports, PDF/CSV export and cloud sharing does not plausibly have; "
+            "Metadata, 3.1.1 In-App Purchase, 5.1.1 Privacy). Fail the draft if it promises a feature that a sensor-logging and "
+            "field-survey app with video, GPS, photogrammetry and CSV/JSON/GeoJSON export does not plausibly have; "
             "uses superlatives or unverifiable claims (best, #1, most popular, guaranteed, everyone); mentions prices or "
-            "currencies; names other platforms or competitors; misdescribes the subscription (title Homeshift Cloud, monthly "
-            "and yearly, auto-renewing, cancellation in the Apple Account settings, links to terms and privacy policy); "
+            "currencies; names other platforms or competitors; misdescribes the purchase (Sensorstorm Pro is a one-time "
+            "non-consumable purchase, never a subscription and never auto-renewing); "
             "contains keyword stuffing, placeholder text, a claim about the languages the app ships in, or text in another "
             "language than the storefront's. Otherwise pass. Findings are short, actionable sentences. Output only the JSON."
         )
@@ -2247,9 +1985,8 @@ def adapters() -> dict:
     return {
         "catalog": XCStringsAdapter(CATALOG, "catalog"),
         "infoplist": XCStringsAdapter(INFOPLIST, "infoplist", with_context=False),
-        "templates": TemplatesAdapter(),
+        "watch": XCStringsAdapter(WATCH, "watch"),
         "store": StoreAdapter(),
-        "site": SiteAdapter(),
     }
 
 
@@ -2282,7 +2019,7 @@ def verify_language(lang: str, surfaces: list[str] | None = None) -> tuple[list[
     gloss = glossary()
     hard: list[str] = []
     soft: list[str] = []
-    for name in ("catalog", "infoplist", "site"):
+    for name in ("catalog", "infoplist", "watch"):
         if surfaces and name not in surfaces:
             continue
         adapter = adapters()[name]
@@ -2293,7 +2030,7 @@ def verify_language(lang: str, surfaces: list[str] | None = None) -> tuple[list[
                 continue
             for level, problem in check_text(row, row.current, entry, gloss):
                 (hard if level == "error" else soft).append(f"{name} „{row.id[:60]}“: {problem}")
-    for name in ("store", "site"):
+    for name in ("store",):
         if surfaces and name not in surfaces:
             continue
         for level, problem in adapters()[name].verify(lang):
@@ -2327,31 +2064,31 @@ def translate_language(lang: str, engine_name: str, surfaces: list[str] | None, 
 def cmd_doctor(args) -> int:
     entries = languages()
     ad = adapters()
-    site, project = SiteAdapter(), ProjectAdapter()
-    header = f"{'Sprache':9} {'Status':9} {'Katalog':13} {'Info':6} {'Vorlagen':10} {'Store':7} {'Site':9} {'project.yml':11} {'Apple':11}"
+    project = ProjectAdapter()
+    header = f"{'Sprache':9} {'Status':9} {'Katalog':13} {'Info':6} {'Uhr':7} {'Store':7} {'project.yml':11} {'Apple':11}"
     print(header)
     print("-" * len(header))
     gaps = 0
+    empty = {"done": 0, "total": 0, "review": 0}
     for code, entry in entries.items():
-        cat = ad["catalog"].coverage(code) if ad["catalog"].exists() else {"done": 0, "total": 0, "review": 0}
-        info = ad["infoplist"].coverage(code) if ad["infoplist"].exists() else {"done": 0, "total": 0, "review": 0}
-        tpl = ad["templates"].coverage(code)
+        cat = ad["catalog"].coverage(code) if ad["catalog"].exists() else empty
+        info = ad["infoplist"].coverage(code) if ad["infoplist"].exists() else empty
+        watch = ad["watch"].coverage(code) if ad["watch"].exists() else empty
         store = ad["store"].coverage(code)
-        site_cov = site.coverage(code)
         proj = project.coverage(code)
         cat_text = f"{cat['done']}/{cat['total']}" + (f" ?{cat['review']}" if cat["review"] else "")
         info_text = f"{info['done']}/{info['total']}"
-        tpl_text = ("✓" if tpl["base"] else "–") + f" {tpl['overlays']}/{tpl['overlayTotal']}"
+        watch_text = f"{watch['done']}/{watch['total']}"
         store_text = f"{store['done']}/{store['total']}"
-        site_text = "n/a" if site_cov["present"] is None else f"{site_cov['done']}/{site_cov['total']}"
         proj_text = f"{proj['declared']}/{proj['blocks']}"
-        complete = (cat["done"] == cat["total"] and info["done"] == info["total"] and tpl["base"]
-                    and proj["declared"] == proj["blocks"] and (store["done"] == store["total"] or not ad["store"].exists())
-                    and (site_cov["present"] is None or site_cov["done"] == site_cov["total"]))
+        complete = (cat["done"] == cat["total"] and info["done"] == info["total"]
+                    and watch["done"] == watch["total"]
+                    and proj["declared"] == proj["blocks"]
+                    and (store["done"] == store["total"] or not ad["store"].exists()))
         if not complete and entry["status"] != "source":
             gaps += 1
         mark = "" if complete else "  ← unvollständig"
-        print(f"{code:9} {entry['status']:9} {cat_text:13} {info_text:6} {tpl_text:10} {store_text:7} {site_text:9} {proj_text:11} {entry['appleLocale']:11}{mark}")
+        print(f"{code:9} {entry['status']:9} {cat_text:13} {info_text:6} {watch_text:7} {store_text:7} {proj_text:11} {entry['appleLocale']:11}{mark}")
     print()
     print(f"{len(entries)} Sprachen in der Registry, {sum(len(e['ascLocales']) for e in entries.values())} Store-Locales; "
           f"{gaps} Sprache(n) unvollständig.")
@@ -2375,10 +2112,6 @@ def cmd_verify(args) -> int:
         if args.warnings:
             for problem in soft:
                 print(f"⚠ {code}: {problem}")
-    if not surfaces or "templates" in surfaces:
-        for problem in adapters()["templates"].verify():
-            print("✗ templates:", problem)
-            total += 1
     for problem in ProjectAdapter().verify():
         print("✗", problem)
         total += 1
@@ -2402,7 +2135,7 @@ def cmd_verify(args) -> int:
 # die Begriffe konsistent — genau das, was 2500 Einzelaufrufe nicht können.
 
 
-PACK_SCHEMA = "homeshift-l10n-pack/1"
+PACK_SCHEMA = "sensorstorm-l10n-pack/1"
 
 
 def pack_instructions(entry: dict, gloss: dict) -> list[str]:
@@ -2441,8 +2174,19 @@ def pack_instructions(entry: dict, gloss: dict) -> list[str]:
 
 
 def pack_units(rows: list[Row]) -> list[dict]:
+    """Ein Text, eine Einheit — auch wenn er auf zwei Oberflächen steht.
+
+    „Aufnahme starten" und „Stopp" stehen im Katalog des iPhones und in dem der
+    Uhr. Zweimal im Paket hiesse: zweimal übersetzt, und nichts garantiert, dass
+    beide Male dasselbe herauskommt. `import` verteilt eine Antwort ohnehin auf
+    jede Zeile mit dieser Kennung.
+    """
     units = []
+    seen: set[str] = set()
     for row in rows:
+        if row.id in seen:
+            continue
+        seen.add(row.id)
         unit = {
             "id": row.id,
             "surface": row.surface,
@@ -2482,7 +2226,7 @@ def write_packs(lang: str, rows: list[Row], chunk: int, out_dir: Path) -> list[P
     for index, part in enumerate(parts, start=1):
         payload = {
             "$schema": PACK_SCHEMA,
-            "task": f"Übersetze Homeshift ins {entry['name']} ({lang}).",
+            "task": f"Übersetze Sensorstorm ins {entry['name']} ({lang}).",
             "language": {
                 "code": lang,
                 "name": entry["name"],
@@ -2558,7 +2302,13 @@ def cmd_export(args) -> int:
 def cmd_import(args) -> int:
     entry = language(args.lang)
     gloss = glossary()
-    rows = {r.id: r for r in collect_rows(args.lang, None, only_missing=False)}
+    # Eine Kennung kann mehrere Zeilen haben (derselbe Text im Katalog des
+    # iPhones und in dem der Uhr). Geprüft wird gegen die erste, geschrieben
+    # wird in alle — sonst bliebe die Uhr still unübersetzt.
+    all_rows = collect_rows(args.lang, None, only_missing=False)
+    rows: dict[str, Row] = {}
+    for row in all_rows:
+        rows.setdefault(row.id, row)
     results: dict[str, str] = {}
     rejected = 0
     empty = 0
@@ -2594,7 +2344,7 @@ def cmd_import(args) -> int:
                 print(f"⚠ {key}: {warning}")
             results[key] = text
 
-    written = apply_results(args.lang, results, list(rows.values()))
+    written = apply_results(args.lang, results, all_rows)
     summary = f"übernommen {len(results)}, abgelehnt {rejected}"
     if empty:
         summary += f", leer gelassen {empty}"
@@ -2944,8 +2694,8 @@ def cmd_pseudo(args) -> int:
     print("Pseudo-Lokalisierung (doppelte Länge, Akzente) und Pseudo-RTL laufen als Startargumente im Simulator —")
     print("kein eigener Katalog, nichts zu übersetzen. In der Screenshot-Pipeline oder von Hand:")
     print()
-    print("  xcrun simctl launch <udid> ch.homeshift.app -AppleLanguages '(en)' -NSDoubleLocalizedStrings YES -NSShowNonLocalizedStrings YES")
-    print("  xcrun simctl launch <udid> ch.homeshift.app -AppleTextDirection YES -NSForceRightToLeftWritingDirection YES")
+    print("  xcrun simctl launch <udid> ch.sensorstorm.app -AppleLanguages '(en)' -NSDoubleLocalizedStrings YES -NSShowNonLocalizedStrings YES")
+    print("  xcrun simctl launch <udid> ch.sensorstorm.app -AppleTextDirection YES -NSForceRightToLeftWritingDirection YES")
     print()
     print("Tools/asc_capture_screenshots.py --langs en --devices iphone_61 nimmt dieselben Argumente über HS_LAUNCH_ARGS entgegen (Welle 2).")
     return 0
@@ -2961,20 +2711,20 @@ def main(argv: list[str] | None = None) -> int:
 
     verify = sub.add_parser("verify", help="deterministische Sperren prüfen")
     verify.add_argument("--lang")
-    verify.add_argument("--surface", action="append", choices=["catalog", "infoplist", "templates", "store", "site"])
+    verify.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
     verify.add_argument("--warnings", action="store_true", help="auch Warnungen zeigen")
     verify.set_defaults(func=cmd_verify)
 
     export = sub.add_parser("export", help="offene Texte als JSONL")
     export.add_argument("--lang", required=True)
-    export.add_argument("--surface", action="append", choices=["catalog", "infoplist", "templates", "store", "site"])
+    export.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
     export.add_argument("--all", action="store_true", help="auch schon übersetzte Texte")
     export.add_argument("--out")
     export.set_defaults(func=cmd_export)
 
     pack = sub.add_parser("pack", help="Übersetzungspaket schreiben: eine Datei, die sich selbst erklärt")
     pack.add_argument("--lang", required=True)
-    pack.add_argument("--surface", action="append", choices=["catalog", "infoplist", "templates", "store", "site"])
+    pack.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
     pack.add_argument("--all", action="store_true", help="auch schon Übersetztes, nicht nur Offenes")
     pack.add_argument("--chunk", type=int, default=0, help="in Teile à N Texte zerlegen (0 = eine Datei)")
     pack.add_argument("--out", help="Zielordner, sonst l10n/packs/<lang>")
@@ -2993,7 +2743,7 @@ def main(argv: list[str] | None = None) -> int:
             p.add_argument("--no-apply", action="store_true", help="nur Bericht, nichts schreiben")
         else:
             p.add_argument("--langs", help="Kommaliste, sonst alle")
-        p.add_argument("--surface", action="append", choices=["catalog", "infoplist", "templates", "store", "site"])
+        p.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
         p.add_argument("--engine", default="claude", choices=["claude", "mock"])
         p.add_argument("--max-rounds", type=int, default=3)
         p.set_defaults(func=func)

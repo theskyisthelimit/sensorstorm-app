@@ -71,7 +71,7 @@
         "one",
         "other"
       ],
-      "status": "verified",
+      "status": "machine",
       "avoid": [
         {
           "pattern": "\\b(tu|ton|ta|tes|toi)\\b|\\bt’(?=[aeiouéè])",
@@ -99,7 +99,7 @@
         "one",
         "other"
       ],
-      "status": "verified"
+      "status": "machine"
     },
     {
       "code": "es",
@@ -172,7 +172,7 @@
         "one",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "avoid": [
         {
           "pattern": "\\b(você|celular|ônibus|time|legal)\\b",
@@ -241,7 +241,7 @@
       "pluralCategories": [
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "notes": "Festland-China ist aus der Store-Verfügbarkeit genommen (ICP); bedient SG, MY, Diaspora."
     },
     {
@@ -285,7 +285,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "ru",
@@ -309,7 +309,7 @@
         "many",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "notes": "In Russland keine Käufe im App Store seit 2022; Cloud-Abo dort nicht kaufbar."
     },
     {
@@ -336,7 +336,7 @@
         "many",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "ca",
@@ -381,7 +381,7 @@
         "few",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "inflectsBrands": true
     },
     {
@@ -406,7 +406,7 @@
         "many",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "inflectsBrands": true
     },
     {
@@ -429,7 +429,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "nl",
@@ -473,7 +473,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "el",
@@ -495,7 +495,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "hu",
@@ -517,7 +517,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "id",
@@ -538,7 +538,7 @@
       "pluralCategories": [
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "ms",
@@ -581,7 +581,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "pl",
@@ -605,7 +605,7 @@
         "many",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "inflectsBrands": true
     },
     {
@@ -629,7 +629,7 @@
         "few",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "sk",
@@ -653,7 +653,7 @@
         "many",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "inflectsBrands": true
     },
     {
@@ -676,7 +676,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "th",
@@ -697,7 +697,7 @@
       "pluralCategories": [
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "tr",
@@ -719,7 +719,7 @@
         "one",
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     },
     {
       "code": "uk",
@@ -743,7 +743,7 @@
         "many",
         "other"
       ],
-      "status": "machine",
+      "status": "planned",
       "inflectsBrands": true
     },
     {
@@ -765,7 +765,7 @@
       "pluralCategories": [
         "other"
       ],
-      "status": "machine"
+      "status": "planned"
     }
   ]
 }
