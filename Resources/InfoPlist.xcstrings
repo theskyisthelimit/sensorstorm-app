@@ -4,6 +4,18 @@
     "NSBluetoothAlwaysUsageDescription" : {
       "comment" : "Privacy - Bluetooth Always Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يحصي Sensorstorm عدد أجهزة Bluetooth التي تبثّ في المحيط ويسجّل قوة الإشارة. ولا يُنشأ أي اتصال بها."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm tæller, hvor mange Bluetooth-enheder der sender i omgivelserne, og registrerer signalstyrken. Der oprettes ingen forbindelse til dem."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20,6 +32,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm cuenta cuántos dispositivos Bluetooth están emitiendo cerca y registra la intensidad de la señal. No se establece ninguna conexión con ellos."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm laskee, kuinka monta Bluetooth-laitetta ympäristössä lähettää, ja tallentaa signaalin voimakkuuden. Niihin ei muodosteta yhteyttä."
           }
         },
         "fr" : {
@@ -46,6 +64,12 @@
             "value" : "Sensorstorm은 주변에서 신호를 보내는 Bluetooth 기기의 수를 세고 신호 세기를 기록합니다. 해당 기기에 연결하지는 않습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm teller hvor mange Bluetooth-enheter som sender i omgivelsene, og registrerer signalstyrken. Det opprettes ingen tilkobling til dem."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -70,6 +94,12 @@
             "value" : "Sensorstorm считает, сколько устройств Bluetooth передают поблизости, и записывает силу сигнала. Соединение с ними не устанавливается."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm räknar hur många Bluetooth-enheter som sänder i omgivningen och registrerar signalstyrkan. Ingen anslutning upprättas till dem."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -87,6 +117,18 @@
     "NSCameraUsageDescription" : {
       "comment" : "Privacy - Camera Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يسجّل Sensorstorm الفيديو متزامنًا مع بيانات المستشعرات ويصوّر الأرضية لأجل ملاحظة."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm optager video synkront med sensordataene og fotograferer belægningen til en observation."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -103,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm graba vídeo sincronizado con los datos de los sensores y fotografía el suelo para una observación."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm tallentaa videon samanaikaisesti anturidatan kanssa ja valokuvaa päällysteen havaintoa varten."
           }
         },
         "fr" : {
@@ -129,6 +177,12 @@
             "value" : "Sensorstorm은 센서 데이터와 동기화하여 영상을 기록하고, 관측을 위해 지면을 촬영합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm tar opp video synkront med sensordataene og fotograferer dekket for en observasjon."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +207,12 @@
             "value" : "Sensorstorm снимает видео синхронно с данными датчиков и фотографирует покрытие для наблюдения."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm spelar in video synkront med sensordatan och fotograferar beläggningen för en observation."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -170,6 +230,18 @@
     "NSLocalNetworkUsageDescription" : {
       "comment" : "Privacy - Local Network Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يرسل Sensorstorm القيم المقاسة إلى العنوان الذي تُدخله في الإعدادات. وإذا كان الخادم على الشبكة نفسها فهذا يحتاج هذا الإذن."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm sender måleværdierne til den adresse, du indtaster i indstillingerne. Ligger serveren på samme net, kræver det denne tilladelse."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -186,6 +258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm envía las mediciones a la dirección que introduzcas en los ajustes. Si ese servidor está en la misma red, hace falta este permiso."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lähettää mittausarvot osoitteeseen, jonka annat asetuksissa. Jos palvelin on samassa verkossa, se vaatii tämän luvan."
           }
         },
         "fr" : {
@@ -212,6 +290,12 @@
             "value" : "Sensorstorm은 설정에 입력한 주소로 측정값을 보냅니다. 그 서버가 같은 네트워크에 있다면 이 권한이 필요합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm sender måleverdiene til adressen du oppgir i innstillingene. Ligger serveren på samme nett, krever det denne tillatelsen."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -236,6 +320,12 @@
             "value" : "Sensorstorm отправляет измерения на адрес, который вы указали в настройках. Если сервер в той же сети, для этого нужно это разрешение."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm skickar mätvärdena till adressen du anger i inställningarna. Ligger servern på samma nät krävs den här behörigheten."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -253,6 +343,18 @@
     "NSLocationAlwaysAndWhenInUseUsageDescription" : {
       "comment" : "Privacy - Location Always and When In Use Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يواصل Sensorstorm تسجيل الموقع أيضًا حين تُقفل الشاشة أثناء قياس."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm bliver ved med at registrere positionen, også når skærmen låses under en måling."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -269,6 +371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm sigue registrando la posición aunque la pantalla se bloquee durante una medición."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm jatkaa sijainnin tallentamista myös silloin, kun näyttö lukitaan mittauksen aikana."
           }
         },
         "fr" : {
@@ -295,6 +403,12 @@
             "value" : "Sensorstorm은 측정 중 화면이 잠겨도 위치 기록을 계속합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm fortsetter å registrere posisjonen også når skjermen låses under en måling."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -319,6 +433,12 @@
             "value" : "Sensorstorm продолжает записывать позицию и тогда, когда экран во время измерения блокируется."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm fortsätter registrera positionen även när skärmen låses under en mätning."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -336,6 +456,18 @@
     "NSLocationWhenInUseUsageDescription" : {
       "comment" : "Privacy - Location When In Use Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يسجّل Sensorstorm الموقع والارتفاع والسرعة والاتجاه، ويحاذي بيانات الاتجاه إلى الشمال، ويثبّت أين سُجِّلت ملاحظة."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm registrerer position, højde, hastighed og kurs, retter orienteringsdataene ind mod nord og noterer, hvor en observation blev registreret."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +484,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm registra posición, altitud, velocidad y rumbo, referencia los datos de orientación al norte geográfico y anota dónde se registró una observación."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm tallentaa sijainnin, korkeuden, nopeuden ja suunnan, kohdistaa asentodatan pohjoiseen ja pitää kirjaa siitä, missä havainto kirjattiin."
           }
         },
         "fr" : {
@@ -378,6 +516,12 @@
             "value" : "Sensorstorm은 위치, 고도, 속도, 진행 방향을 기록하고 방위 데이터를 진북에 맞추며, 관측을 기록한 위치를 저장합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm registrerer posisjon, høyde, hastighet og kurs, retter orienteringsdataene mot nord og holder styr på hvor en observasjon ble registrert."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -402,6 +546,12 @@
             "value" : "Sensorstorm записывает позицию, высоту, скорость и курс, выравнивает данные ориентации по северу и запоминает, где было записано наблюдение."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm registrerar position, höjd, hastighet och kurs, riktar in orienteringsdatan mot norr och håller reda på var en observation registrerades."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -419,6 +569,18 @@
     "NSMicrophoneUsageDescription" : {
       "comment" : "Privacy - Microphone Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يقيس Sensorstorm مستوى الصوت، ويسجّل الصوت مع القياس عند الطلب، ويسجّل صوت المقاطع القصيرة لملاحظة."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm måler lydstyrken, optager efter ønske lyd til målingen og optager lyden i de korte klip til en observation."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,6 +597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm mide el nivel sonoro, si lo deseas graba audio junto a una medición y graba el audio de los clips breves de una observación."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm mittaa äänenvoimakkuuden, tallentaa haluttaessa äänen mittaukseen ja tallentaa havainnon lyhyiden klippien äänen."
           }
         },
         "fr" : {
@@ -461,6 +629,12 @@
             "value" : "Sensorstorm은 음량을 측정하고, 필요에 따라 측정과 함께 오디오를 기록하며, 관측에 속한 짧은 클립의 소리를 기록합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm måler lydstyrken, tar ved behov opp lyd til målingen og tar opp lyden i de korte klippene til en observasjon."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -485,6 +659,12 @@
             "value" : "Sensorstorm измеряет громкость, по желанию записывает звук к измерению и записывает звук коротких клипов к наблюдению."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm mäter ljudstyrkan, spelar vid behov in ljud till mätningen och spelar in ljudet i de korta klippen till en observation."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -502,6 +682,18 @@
     "NSMotionUsageDescription" : {
       "comment" : "Privacy - Motion Usage Description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يسجّل Sensorstorm التسارع وسرعة الدوران والاتجاه والمجال المغناطيسي والخطوات."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm registrerer acceleration, rotationshastighed, orientering, magnetfelt og skridt."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -518,6 +710,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm registra aceleración, velocidad de giro, orientación, campo magnético y pasos."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm tallentaa kiihtyvyyden, kulmanopeuden, asennon, magneettikentän ja askeleet."
           }
         },
         "fr" : {
@@ -544,6 +742,12 @@
             "value" : "Sensorstorm은 가속도, 각속도, 자세, 지자기, 걸음 수를 기록합니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm registrerer akselerasjon, rotasjonshastighet, orientering, magnetfelt og skritt."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -566,6 +770,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm записывает ускорение, угловую скорость, ориентацию, магнитное поле и шаги."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm registrerar acceleration, rotationshastighet, orientering, magnetfält och steg."
           }
         },
         "zh-Hans" : {

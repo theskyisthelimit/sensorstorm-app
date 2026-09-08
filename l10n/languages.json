@@ -336,7 +336,7 @@
         "many",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "ca",
@@ -429,7 +429,7 @@
         "one",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "nl",
@@ -473,7 +473,7 @@
         "one",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "el",
@@ -581,7 +581,7 @@
         "one",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "pl",
@@ -676,7 +676,7 @@
         "one",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "th",

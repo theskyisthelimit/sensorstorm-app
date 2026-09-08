@@ -1565,8 +1565,12 @@ def _check_plain(row: Row, text: str, reference: str, entry: dict, gloss: dict, 
         # Die landesübliche Kurzform zählt als übernommen: „AR“ heisst auf
         # Portugiesisch, Spanisch, Französisch und Italienisch „RA“, und eine
         # Warnung je Sprache und Vorkommen verdeckt nur die echten.
+        # Eine Sprache kann für einen weichen Begriff mehr als eine Form haben.
+        # Arabisch beugt: „ثلاثي الأبعاد“ und „الأبعاد الثلاثية“ sind beide 3D,
+        # je nachdem, was davor steht. Darum darf `localNames` eine Liste sein.
         local = gloss.get("localNames", {}).get(brand, {}).get(entry["code"])
-        if not _brand_present(brand, text, entry) and not (local and local in text):
+        forms = [local] if isinstance(local, str) else list(local or [])
+        if not _brand_present(brand, text, entry) and not any(f in text for f in forms):
             problems.append(("warn", f"{prefix}„{brand}“ nicht übernommen"))
     for regel in entry.get("avoid", []):
         # Anrede und Regionalismen: die Registry sagt je Sprache, was nicht

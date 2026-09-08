@@ -16,7 +16,7 @@ settings:
     SWIFT_VERSION: "6.0"
     DEVELOPMENT_TEAM: "E3CQ6W7CY2"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "10"
+    CURRENT_PROJECT_VERSION: "11"
     SWIFT_EMIT_LOC_STRINGS: "YES"
     ENABLE_USER_SCRIPT_SANDBOXING: "YES"
     SWIFT_STRICT_CONCURRENCY: complete
@@ -70,6 +70,11 @@ targets:
           - pt-PT
           - zh-Hans
           - ru
+          - ar
+          - da
+          - sv
+          - nb
+          - fi
         ITSAppUsesNonExemptEncryption: false
         LSApplicationCategoryType: public.app-category.utilities
         UILaunchScreen:
@@ -170,6 +175,11 @@ targets:
           - pt-PT
           - zh-Hans
           - ru
+          - ar
+          - da
+          - sv
+          - nb
+          - fi
         NSHealthShareUsageDescription: >-
           Sensorstorm liest während einer Aufnahme deine Herzfrequenz, um sie zusammen mit
           den übrigen Sensordaten aufzuzeichnen. Es wird nichts in „Health" geschrieben.

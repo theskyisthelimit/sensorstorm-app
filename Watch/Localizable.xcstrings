@@ -3,6 +3,18 @@
   "strings" : {
     "%lld gesendet" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "تم إرسال %lld"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld sendt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13,6 +25,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld enviados"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld lähetetty"
           }
         },
         "fr" : {
@@ -39,6 +57,12 @@
             "value" : "%lld개 전송"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld sendt"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -63,6 +87,12 @@
             "value" : "Отправлено: %lld"
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld skickade"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -79,6 +109,18 @@
     },
     "Auf diesem Gerät gibt es keine Gesundheitsdaten." : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "لا توجد بيانات صحية على هذا الجهاز."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Der er ingen helbredsdata på denne enhed."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,6 +131,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En este dispositivo no hay datos de salud."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tässä laitteessa ei ole terveystietoja."
           }
         },
         "fr" : {
@@ -115,6 +163,12 @@
             "value" : "이 기기에는 건강 데이터가 없습니다."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Det finnes ingen helsedata på denne enheten."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +193,12 @@
             "value" : "На этом устройстве нет данных здоровья."
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Det finns inga hälsodata på den här enheten."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -155,6 +215,18 @@
     },
     "Aufnahme starten" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "بدء التسجيل"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start optagelse"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Iniciar la grabación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aloita tallennus"
           }
         },
         "fr" : {
@@ -191,6 +269,12 @@
             "value" : "기록 시작"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start opptak"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,6 +299,12 @@
             "value" : "Начать запись"
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Starta inspelning"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -231,6 +321,18 @@
     },
     "Nochmals versuchen" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "حاول مجددًا"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prøv igen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -241,6 +343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intentar de nuevo"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yritä uudelleen"
           }
         },
         "fr" : {
@@ -267,6 +375,12 @@
             "value" : "다시 시도"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prøv igjen"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -291,6 +405,12 @@
             "value" : "Попробовать снова"
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Försök igen"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -307,6 +427,18 @@
     },
     "Stopp" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "إيقاف"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -317,6 +449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Parar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seis"
           }
         },
         "fr" : {
@@ -343,6 +481,12 @@
             "value" : "정지"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stopp"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,6 +509,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Стоп"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stoppa"
           }
         },
         "zh-Hans" : {

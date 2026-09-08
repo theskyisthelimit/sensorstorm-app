@@ -1,0 +1,14 @@
+{
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "الإصدار الأول."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "كل الصيغ الاحترافية و400 Hz و4K. مرة واحدة."
+      }
+    }
+  }
+}

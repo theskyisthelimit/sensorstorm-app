@@ -1,0 +1,14 @@
+{
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "Ensimmäinen versio."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "Kaikki ammattimuodot, 400 Hz ja 4K. Kerran."
+      }
+    }
+  }
+}
