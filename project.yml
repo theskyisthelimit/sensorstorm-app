@@ -83,6 +83,7 @@ targets:
           - ro
           - hu
           - tr
+          - el
         ITSAppUsesNonExemptEncryption: false
         LSApplicationCategoryType: public.app-category.utilities
         UILaunchScreen:
@@ -196,6 +197,7 @@ targets:
           - ro
           - hu
           - tr
+          - el
         NSHealthShareUsageDescription: >-
           Sensorstorm liest während einer Aufnahme deine Herzfrequenz, um sie zusammen mit
           den übrigen Sensordaten aufzuzeichnen. Es wird nichts in „Health" geschrieben.

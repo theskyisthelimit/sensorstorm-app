@@ -28,6 +28,12 @@
             "value" : "Sensorstorm zählt, wie viele Bluetooth-Geräte in der Umgebung senden, und zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm μετράει πόσες συσκευές Bluetooth εκπέμπουν στο περιβάλλον και καταγράφει την ισχύ σήματος. Δεν δημιουργείται σύνδεση μαζί τους."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -187,6 +193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm nimmt Video synchron zu den Sensordaten auf und fotografiert den Boden für eine Beobachtung."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm καταγράφει βίντεο συγχρονισμένο με τα δεδομένα αισθητήρων και φωτογραφίζει το οδόστρωμα για μια παρατήρηση."
           }
         },
         "en" : {
@@ -350,6 +362,12 @@
             "value" : "Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm στέλνει τις μετρήσεις στη διεύθυνση που καταχωρείς στις ρυθμίσεις. Αν ο διακομιστής βρίσκεται στο ίδιο δίκτυο, χρειάζεται αυτή η άδεια."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -509,6 +527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm zeichnet die Position auch dann weiter auf, wenn der Bildschirm während einer Messung gesperrt wird."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm συνεχίζει να καταγράφει τη θέση και όταν η οθόνη κλειδώνει κατά τη διάρκεια μιας μέτρησης."
           }
         },
         "en" : {
@@ -672,6 +696,12 @@
             "value" : "Sensorstorm zeichnet Position, Höhe, Geschwindigkeit und Kurs auf, richtet die Orientierungsdaten an Nord aus und hält fest, wo eine Beobachtung erfasst wurde."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm καταγράφει θέση, υψόμετρο, ταχύτητα και πορεία, ευθυγραμμίζει τα δεδομένα προσανατολισμού προς τον βορρά και κρατά πού καταγράφηκε μια παρατήρηση."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -833,6 +863,12 @@
             "value" : "Sensorstorm misst die Lautstärke, nimmt auf Wunsch Ton zur Messung auf und zeichnet den Ton der kurzen Clips zu einer Beobachtung auf."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm μετράει την ένταση, καταγράφει κατ' επιλογή ήχο για τη μέτρηση και καταγράφει τον ήχο των σύντομων κλιπ μιας παρατήρησης."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -992,6 +1028,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm zeichnet Beschleunigung, Drehrate, Orientierung, Magnetfeld und Schritte auf."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm καταγράφει επιτάχυνση, γωνιακή ταχύτητα, προσανατολισμό, μαγνητικό πεδίο και βήματα."
           }
         },
         "en" : {

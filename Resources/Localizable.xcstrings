@@ -21,6 +21,12 @@
             "value" : "%@ diagram(mer) skjult · vis"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κρυμμένα διαγράμματα: %@ · εμφάνιση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -173,6 +179,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%@ indsamlet. Stå stille."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Συλλέχθηκαν %@. Μείνε ακίνητος."
           }
         },
         "en" : {
@@ -329,6 +341,12 @@
             "value" : "%@ på 10 s"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ σε 10 δλ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -478,6 +496,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@/10"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%@/10"
@@ -637,6 +661,12 @@
             "value" : "%@× GPS"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@× GPS"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -791,6 +821,12 @@
             "value" : "%@× nål"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@× πινέζα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -943,6 +979,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%@× i gennemsnit"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@× μέσος όρος"
           }
         },
         "en" : {
@@ -1184,6 +1226,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld Clips"
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld κλιπ"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld κλιπ"
                 }
               }
             }
@@ -1733,6 +1793,24 @@
             }
           }
         },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld στίγμα"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld στίγματα"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -2272,6 +2350,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld Fotos"
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld φωτογραφία"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld φωτογραφίες"
                 }
               }
             }
@@ -2821,6 +2917,24 @@
             }
           }
         },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld σήμανση"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld σημάνσεις"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -3275,6 +3389,12 @@
             "value" : "%lld måleværdier sendt, svar %lld"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Στάλθηκαν %lld μετρήσεις, απάντηση %lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3424,6 +3544,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld m²"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%lld m²"
@@ -3583,6 +3709,12 @@
             "value" : "1 m"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "1 m"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3732,6 +3864,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "100 m"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "100 m"
@@ -3891,6 +4029,12 @@
             "value" : "3D"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "3D"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4045,6 +4189,12 @@
             "value" : "400 Hz samplingsrate"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δειγματοληψία 400 Hz"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4194,6 +4344,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "4K"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "4K"
@@ -4353,6 +4509,12 @@
             "value" : "ARKit"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ARKit"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4505,6 +4667,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Annuller"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άκυρο"
           }
         },
         "en" : {
@@ -4661,6 +4829,12 @@
             "value" : "Samplingsrate"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ρυθμός δειγματοληψίας"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4813,6 +4987,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "AirPods-orientering"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Προσανατολισμός AirPods"
           }
         },
         "en" : {
@@ -4969,6 +5149,12 @@
             "value" : "Aktivitet"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δραστηριότητα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5121,6 +5307,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Et billede for hver 1,5 m. Til en gået sti eller en vej."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μία εικόνα κάθε 1,5 m. Για ένα μονοπάτι που περπάτησες ή έναν δρόμο."
           }
         },
         "en" : {
@@ -5277,6 +5469,12 @@
             "value" : "Et billede for hver 35 cm. Til en væg, et rum, en maskine."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μία εικόνα κάθε 35 cm. Για έναν τοίχο, έναν χώρο, μια μηχανή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5429,6 +5627,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alle observationer, fotos og klip på denne rute fjernes."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλες οι παρατηρήσεις, οι φωτογραφίες και τα κλιπ αυτής της διαδρομής θα αφαιρεθούν."
           }
         },
         "en" : {
@@ -5585,6 +5789,12 @@
             "value" : "Alle fotos og klip i denne observation slettes med."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Θα διαγραφούν μαζί και όλες οι φωτογραφίες και τα κλιπ αυτής της παρατήρησης."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5737,6 +5947,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alle sensordata og videoen fjernes."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλα τα δεδομένα αισθητήρων και το βίντεο θα αφαιρεθούν."
           }
         },
         "en" : {
@@ -5893,6 +6109,12 @@
             "value" : "Alle sensorer i én tabel"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλοι οι αισθητήρες σε έναν πίνακα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6045,6 +6267,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alle sensorer står side om side i én tabel på et fælles tidsgitter. Hele optagelsen kommer også som JSON eller som SQLite-database med én tabel per sensor."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλοι οι αισθητήρες δίπλα δίπλα σε έναν πίνακα, σε κοινό χρονικό πλέγμα. Ολόκληρη η εγγραφή βγαίνει και ως JSON ή ως βάση SQLite με έναν πίνακα ανά αισθητήρα."
           }
         },
         "en" : {
@@ -6201,6 +6429,12 @@
             "value" : "Alle strømme deler ét ur. En eksport indeholder én CSV-fil per sensor, videoen og metadataene."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλες οι ροές μοιράζονται το ίδιο ρολόι. Μια εξαγωγή περιέχει ένα αρχείο CSV ανά αισθητήρα, το βίντεο και τα μεταδεδομένα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6353,6 +6587,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλα"
           }
         },
         "en" : {
@@ -6509,6 +6749,12 @@
             "value" : "Alt på enheden som ét zip med manifest.json: hver fil med SHA-256, hver observation med position og alvorlighed."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όλα όσα βρίσκονται στη συσκευή ως ένα zip με manifest.json: κάθε αρχείο με SHA-256, κάθε παρατήρηση με θέση και σοβαρότητα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6661,6 +6907,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Eksportér alt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εξαγωγή όλων"
           }
         },
         "en" : {
@@ -6817,6 +7069,12 @@
             "value" : "Eksportér som CSV"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εξαγωγή ως CSV"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6969,6 +7227,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Eksportér som JSON"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εξαγωγή ως JSON"
           }
         },
         "en" : {
@@ -7125,6 +7389,12 @@
             "value" : "Som SQLite-database"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ως βάση SQLite"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7277,6 +7547,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Andet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άλλο"
           }
         },
         "en" : {
@@ -7433,6 +7709,12 @@
             "value" : "Opret arkiv"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δημιουργία αρχειοθήκης"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7585,6 +7867,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Arkivet skrives … %lld %"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Γράφεται η αρχειοθήκη … %lld %"
           }
         },
         "en" : {
@@ -7741,6 +8029,12 @@
             "value" : "Lyd"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ήχος"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7893,6 +8187,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Der er intet kamera på denne enhed."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σε αυτή τη συσκευή δεν υπάρχει κάμερα."
           }
         },
         "en" : {
@@ -8049,6 +8349,12 @@
             "value" : "Fold ud"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ανάπτυξη"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8201,6 +8507,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Optagelse"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εγγραφή"
           }
         },
         "en" : {
@@ -8357,6 +8669,12 @@
             "value" : "Fjern optagelse"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αφαίρεση εγγραφής"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8509,6 +8827,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Optagelse gemt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η εγγραφή αποθηκεύτηκε"
           }
         },
         "en" : {
@@ -8665,6 +8989,12 @@
             "value" : "Slet optagelsen?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαγραφή εγγραφής;"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8817,6 +9147,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Start optagelse"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Έναρξη εγγραφής"
           }
         },
         "en" : {
@@ -8973,6 +9309,12 @@
             "value" : "Stop optagelse"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διακοπή εγγραφής"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9125,6 +9467,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Optagelser"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εγγραφές"
           }
         },
         "en" : {
@@ -9281,6 +9629,12 @@
             "value" : "Optag"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εγγραφή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9433,6 +9787,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fra"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ανενεργό"
           }
         },
         "en" : {
@@ -9589,6 +9949,12 @@
             "value" : "Skjul"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Απόκρυψη"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9741,6 +10107,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Også i Pro"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επιπλέον στο Pro"
           }
         },
         "en" : {
@@ -9897,6 +10269,12 @@
             "value" : "Barometer"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Βαρόμετρο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10049,6 +10427,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Batteri"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μπαταρία"
           }
         },
         "en" : {
@@ -10205,6 +10589,12 @@
             "value" : "Belægningsafskalning"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αποφλοίωση οδοστρώματος"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10357,6 +10747,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Så mange ruter side om side, du vil: per vej, per opgave, per dag."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όσες διαδρομές θέλεις, δίπλα δίπλα: ανά δρόμο, ανά ανάθεση, ανά ημέρα."
           }
         },
         "en" : {
@@ -10513,6 +10909,12 @@
             "value" : "Brugernavn"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όνομα χρήστη"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10665,6 +11067,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Brugernavn eller adgangskode er forkert."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το όνομα χρήστη ή ο κωδικός δεν ταιριάζουν."
           }
         },
         "en" : {
@@ -10821,6 +11229,12 @@
             "value" : "Observation"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Παρατήρηση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10973,6 +11387,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Registrér observation"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγραφή παρατήρησης"
           }
         },
         "en" : {
@@ -11129,6 +11549,12 @@
             "value" : "Slet observation"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαγραφή παρατήρησης"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11281,6 +11707,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Slet observationen?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαγραφή παρατήρησης;"
           }
         },
         "en" : {
@@ -11437,6 +11869,12 @@
             "value" : "Observation ikke fundet"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η παρατήρηση δεν βρέθηκε"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11591,6 +12029,12 @@
             "value" : "Observationer"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Παρατηρήσεις"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11743,6 +12187,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Område"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Περιοχή"
           }
         },
         "en" : {
@@ -11900,6 +12350,12 @@
             "value" : "Redigér område"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επεξεργασία περιοχής"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -12052,6 +12508,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fjern område"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αφαίρεση περιοχής"
           }
         },
         "en" : {
@@ -12209,6 +12671,12 @@
             "value" : "Markér område"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σήμανση περιοχής"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -12361,6 +12829,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klar"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Έτοιμο"
           }
         },
         "en" : {
@@ -12517,6 +12991,12 @@
             "value" : "Acceleration"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επιτάχυνση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12669,6 +13149,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Acceleration (rå)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επιτάχυνση (ακατέργαστη)"
           }
         },
         "en" : {
@@ -12825,6 +13311,12 @@
             "value" : "Bevægelse"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κίνηση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12977,6 +13469,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alvorlighed"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σοβαρότητα"
           }
         },
         "en" : {
@@ -13133,6 +13631,12 @@
             "value" : "Alvorlighed %@"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σοβαρότητα %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13285,6 +13789,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Billeder"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εικόνες"
           }
         },
         "en" : {
@@ -13441,6 +13951,12 @@
             "value" : "Billeder til fotogrammetri"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εικόνες για φωτογραμμετρία"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13595,6 +14111,12 @@
             "value" : "Hold skærmen tændt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διατήρηση οθόνης αναμμένης"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13744,6 +14266,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bluetooth"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bluetooth"
@@ -13903,6 +14431,12 @@
             "value" : "Registrér rå Bluetooth-data"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγραφή ακατέργαστων δεδομένων Bluetooth"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14057,6 +14591,12 @@
             "value" : "Bundt med fotos"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πακέτο με φωτογραφίες"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14206,6 +14746,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CSV"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "CSV"
@@ -14365,6 +14911,12 @@
             "value" : "CSV per sensor"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CSV ανά αισθητήρα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14519,6 +15071,12 @@
             "value" : "Ethvert regneark og ethvert script læser CSV direkte. Rådata er mindre og tabsfri, men kræver en læser til .ssbin-formatet. Opbygningen står i arkivets README."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το CSV το διαβάζει απευθείας κάθε λογιστικό φύλλο και κάθε σενάριο. Τα ακατέργαστα δεδομένα είναι μικρότερα και χωρίς απώλειες, χρειάζονται όμως έναν αναγνώστη για τη μορφή .ssbin. Η δομή περιγράφεται στο README της αρχειοθήκης."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14671,6 +15229,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klip"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κλιπ"
           }
         },
         "en" : {
@@ -14828,6 +15392,12 @@
             "value" : "Del klip"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κοινοποίηση κλιπ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14980,6 +15550,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tak. Købet hænger på din Apple-konto og gælder på enhver enhed, du er logget ind med den på."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ευχαριστούμε. Η αγορά συνδέεται με τον λογαριασμό σου Apple και ισχύει σε κάθε συσκευή όπου είσαι συνδεδεμένος με αυτόν."
           }
         },
         "en" : {
@@ -15136,6 +15712,12 @@
             "value" : "Bundtet indeholder frames.csv, scene.json, videoen og GPS-sporet. Blender-tilføjelsen laver et animeret kamera af det, som følger den rigtige optagelse."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το πακέτο περιέχει frames.csv, scene.json, το βίντεο και το ίχνος GPS. Το πρόσθετο για το Blender φτιάχνει από αυτά μια κινούμενη κάμερα που ακολουθεί την πραγματική εγγραφή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -15288,6 +15870,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensor Loggers fillayout, så dens notebooks læser optagelsen uændret, og en .gcsv-log til stabilisering i Gyroflow."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η διάταξη αρχείων του Sensor Logger, ώστε τα notebook του να διαβάζουν την εγγραφή αμετάβλητη, και ένα αρχείο .gcsv για τη σταθεροποίηση στο Gyroflow."
           }
         },
         "en" : {
@@ -15444,6 +16032,12 @@
             "value" : "Fotoet kunne ikke gemmes."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η φωτογραφία δεν μπόρεσε να αποθηκευτεί."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15596,6 +16190,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Det er en rettesnor, ikke et løfte. Hvor kameraet har stået stille, kommer der færre billeder ud, for hundrede gange det samme billede gavner ingen rekonstruktion."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Είναι ενδεικτική τιμή, όχι υπόσχεση. Εκεί που η κάμερα έμεινε ακίνητη βγαίνουν λιγότερες εικόνες, γιατί εκατό φορές η ίδια εικόνα δεν ωφελεί καμία ανακατασκευή."
           }
         },
         "en" : {
@@ -15752,6 +16352,12 @@
             "value" : "Data"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεδομένα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15904,6 +16510,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Privatliv"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Απόρρητο"
           }
         },
         "en" : {
@@ -16060,6 +16672,12 @@
             "value" : "Din iPhone som måleinstrument."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το iPhone σου ως όργανο μέτρησης."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16212,6 +16830,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "App Store kan ikke nås lige nu. Prøv igen senere."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το App Store δεν είναι προσβάσιμο αυτή τη στιγμή. Δοκίμασε αργότερα."
           }
         },
         "en" : {
@@ -16368,6 +16992,12 @@
             "value" : "Brokeren afviste forbindelsen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής απέρριψε τη σύνδεση."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16520,6 +17150,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Brokeren svarede ikke."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής δεν απάντησε."
           }
         },
         "en" : {
@@ -16676,6 +17312,12 @@
             "value" : "Brokeren svarede uventet."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής απάντησε απροσδόκητα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16828,6 +17470,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Brokeren er ikke tilgængelig."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής δεν είναι διαθέσιμος."
           }
         },
         "en" : {
@@ -16984,6 +17632,12 @@
             "value" : "Brokeren afviser dette klient-id."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής απορρίπτει αυτό το αναγνωριστικό πελάτη."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17136,6 +17790,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Brokeren afviser denne protokolversion."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής απορρίπτει αυτή την έκδοση πρωτοκόλλου."
           }
         },
         "en" : {
@@ -17292,6 +17952,12 @@
             "value" : "Brokeren nægter tilladelsen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο μεσολαβητής αρνείται την άδεια."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17444,6 +18110,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Eksporten vælger skarpe, rumligt spredte enkeltbilleder og skriver brændvidde, position og synsretning i EXIF. Dertil kommer en kameratabel og en COLMAP-model. RealityScan, Metashape og Meshroom læser det og beregner modellen ud fra det."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η εξαγωγή επιλέγει ευκρινείς, χωρικά κατανεμημένες μεμονωμένες εικόνες και γράφει την εστιακή απόσταση, τη θέση και την κατεύθυνση βλέμματος στα EXIF. Μαζί τους έρχονται ένας πίνακας καμερών και ένα μοντέλο COLMAP. Τα RealityScan, Metashape και Meshroom τα διαβάζουν και υπολογίζουν από αυτά το μοντέλο."
           }
         },
         "en" : {
@@ -17600,6 +18272,12 @@
             "value" : "Købet kunne ikke bekræftes og blev ikke låst op."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η αγορά δεν μπόρεσε να επαληθευτεί και δεν ξεκλειδώθηκε τίποτα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17752,6 +18430,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Købet venter på godkendelse. Så snart den er givet, låser Pro op af sig selv."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η αγορά περιμένει έγκριση. Μόλις δοθεί, το Pro ξεκλειδώνει από μόνο του."
           }
         },
         "en" : {
@@ -17908,6 +18592,12 @@
             "value" : "Serveren svarede med %lld."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ο διακομιστής απάντησε με %lld."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18060,6 +18750,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Detaljer"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Λεπτομέρειες"
           }
         },
         "en" : {
@@ -18216,6 +18912,12 @@
             "value" : "Optagelsen som .ssbin, tabsfri og i fuld opløsning, i stedet for afrundet i CSV."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η εγγραφή ως .ssbin, χωρίς απώλειες και σε πλήρη ανάλυση, αντί για στρογγυλοποιημένη σε CSV."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18368,6 +19070,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bevægelsessensorerne kører med 400 Hz i stedet for 200 Hz. Ved den opløsning er vibrationer og stød stadig genkendelige som form."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Οι αισθητήρες κίνησης τρέχουν στα 400 Hz αντί για 200 Hz. Σε αυτή την ανάλυση οι δονήσεις και οι κραδασμοί παραμένουν αναγνωρίσιμοι ως μορφή."
           }
         },
         "en" : {
@@ -18524,6 +19232,12 @@
             "value" : "Billederne bærer brændvidde, sted og tid i EXIF. Ved siden af ligger en kameratabel og en COLMAP-model. 3D-modellen beregnes af RealityScan, Metashape eller Meshroom. Denne app beregner den ikke."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Οι εικόνες φέρουν εστιακή απόσταση, τόπο και ώρα στα EXIF. Δίπλα τους βρίσκονται ένας πίνακας καμερών και ένα μοντέλο COLMAP. Το μοντέλο 3D το υπολογίζουν τα RealityScan, Metashape ή Meshroom. Αυτή η εφαρμογή δεν το υπολογίζει."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -18676,6 +19390,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Billedstabiliseringen forbliver slået fra, så billedet passer nøjagtigt til bevægelsesdataene."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η σταθεροποίηση εικόνας μένει απενεργοποιημένη, ώστε η εικόνα να ταιριάζει ακριβώς με τα δεδομένα κίνησης."
           }
         },
         "en" : {
@@ -18832,6 +19552,12 @@
             "value" : "Dataene bliver i optagelsen"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Τα δεδομένα μένουν στην εγγραφή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18984,6 +19710,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Databasen %@ kunne ikke oprettes."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η βάση δεδομένων %@ δεν μπόρεσε να δημιουργηθεί."
           }
         },
         "en" : {
@@ -19140,6 +19872,12 @@
             "value" : "Kameraet er ikke klar endnu."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η κάμερα δεν είναι ακόμη έτοιμη."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19292,6 +20030,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kameraet kunne ikke konfigureres."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η κάμερα δεν μπόρεσε να ρυθμιστεί."
           }
         },
         "en" : {
@@ -19448,6 +20192,12 @@
             "value" : "Kameraposen hører til Pro. Den registrerer position, synsretning og brændvidde for hvert billede, og uden den er der ingen eksport som 3D-scene til Blender. Tryk på ARKit for at låse den op."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η πόζα κάμερας ανήκει στο Pro. Καταγράφει για κάθε εικόνα θέση, κατεύθυνση βλέμματος και εστιακή απόσταση, και χωρίς αυτήν δεν υπάρχει εξαγωγή ως σκηνή 3D στο Blender. Άγγιξε το ARKit για να την ξεκλειδώσεις."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -19600,6 +20350,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beskeden er for stor til MQTT-protokollen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το μήνυμα είναι πολύ μεγάλο για το πρωτόκολλο MQTT."
           }
         },
         "en" : {
@@ -19756,6 +20512,12 @@
             "value" : "Ruten som GeoJSON til QGIS, som KML til Google Earth, som GPX til at finde den igen, eller som bundt med hvert foto og klip."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η διαδρομή ως GeoJSON για το QGIS, ως KML για το Google Earth, ως GPX για να την ξαναβρείς, ή ως πακέτο με κάθε φωτογραφία και κλιπ."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19908,6 +20670,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Den igangværende optagelse bruger kameraet. Registrér observationen uden foto, eller stop optagelsen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η εγγραφή που τρέχει χρησιμοποιεί την κάμερα. Κατέγραψε την παρατήρηση χωρίς φωτογραφία ή σταμάτησε την εγγραφή."
           }
         },
         "en" : {
@@ -20064,6 +20832,12 @@
             "value" : "Denne optagelse indeholder ingen video."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτή η εγγραφή δεν περιέχει βίντεο."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20216,6 +20990,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Denne optagelse indeholder ingen gyroskopdata."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτή η εγγραφή δεν περιέχει δεδομένα γωνιακής ταχύτητας."
           }
         },
         "en" : {
@@ -20372,6 +21152,12 @@
             "value" : "Denne optagelse indeholder ingen brugbare videobilleder."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτή η εγγραφή δεν περιέχει αξιοποιήσιμα καρέ βίντεο."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20524,6 +21310,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Denne optagelse indeholder ingen brugbare GPS-fix."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτή η εγγραφή δεν περιέχει αξιοποιήσιμα στίγματα GPS."
           }
         },
         "en" : {
@@ -20680,6 +21472,12 @@
             "value" : "Denne rute kan fortsat bruges fuldt ud: registrér flere observationer, redigér dem og eksportér dem som CSV. Til flere ruter side om side, per vej, per opgave eller per dag, kræves Pro."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτή η διαδρομή παραμένει πλήρως χρησιμοποιήσιμη: κατέγραψε κι άλλες παρατηρήσεις, επεξεργάσου τες και εξήγαγέ τες ως CSV. Για πολλές διαδρομές δίπλα δίπλα, ανά δρόμο, ανά ανάθεση ή ανά ημέρα, χρειάζεται Pro."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -20832,6 +21630,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Denne enhed understøtter ikke ARKit-sporing."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτή η συσκευή δεν υποστηρίζει παρακολούθηση ARKit."
           }
         },
         "en" : {
@@ -20988,6 +21792,12 @@
             "value" : "Rotationshastighed"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Γωνιακή ταχύτητα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21140,6 +21950,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Rotationshastighed (rå)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Γωνιακή ταχύτητα (ακατέργαστη)"
           }
         },
         "en" : {
@@ -21296,6 +22112,12 @@
             "value" : "Du kan markere, hvor langt skaden rækker: som cirkel omkring dig eller som polygon langs kanten."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μπορείς να σημάνεις πόσο μακριά φτάνει η ζημιά: ως κύκλος γύρω σου ή ως πολύγωνο κατά μήκος του άκρου."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -21448,6 +22270,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "En rute er en vej, en observation et sted på den: så mange fotos og klip du vil, positionen med dens afvigelse, en alvorlighed fra 1 til 10 og det markerede område."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μια διαδρομή είναι ένας δρόμος, μια παρατήρηση ένα σημείο πάνω της: όσες φωτογραφίες και κλιπ θέλεις, η θέση με την απόκλισή της, μια σοβαρότητα από 1 έως 10 και η σημασμένη περιοχή."
           }
         },
         "en" : {
@@ -21604,6 +22432,12 @@
             "value" : "En rute samler observationer langs en vej. Per observation: så mange fotos og klip du vil, positionen med dens afvigelse, en alvorlighed fra 1 til 10 og det markerede område."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μια διαδρομή συγκεντρώνει παρατηρήσεις κατά μήκος ενός δρόμου. Ανά παρατήρηση: όσες φωτογραφίες και κλιπ θέλεις, η θέση με την απόκλισή της, μια σοβαρότητα από 1 έως 10 και η σημασμένη περιοχή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21756,6 +22590,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Én tabel, JSON, SQLite"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ένας πίνακας, JSON, SQLite"
           }
         },
         "en" : {
@@ -21912,6 +22752,12 @@
             "value" : "Køb én gang, behold for altid"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μία αγορά, μένει για πάντα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22064,6 +22910,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Én gang per optagelse måles det, hvor meget enhedens ur afviger fra netværkstiden. Værdien bliver **kun noteret**, aldrig anvendt: optagelsen bliver på enhedens ur, og netop det gør, at videobillede og måleværdi ligger oven på hinanden uden kalibrering. Noteret kan to enheder bagefter bringes på samme tidsakse."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μία φορά ανά εγγραφή μετριέται πόσο αποκλίνει το ρολόι της συσκευής από την ώρα δικτύου. Η τιμή **μόνο σημειώνεται**, ποτέ δεν εφαρμόζεται: η εγγραφή μένει στο ρολόι της συσκευής, και ακριβώς αυτό κάνει το καρέ βίντεο και τη μετρημένη τιμή να πέφτουν το ένα πάνω στο άλλο χωρίς βαθμονόμηση. Σημειωμένη, επιτρέπει να μπουν δύο συσκευές εκ των υστέρων στον ίδιο άξονα χρόνου."
           }
         },
         "en" : {
@@ -22220,6 +23072,12 @@
             "value" : "Engangskøb, intet abonnement: 400 Hz, 4K, kamerapose til 3D, rådata, Blender, Sensor Logger, Gyroflow, flere ruter, GeoJSON/GPX/KML og den samlede eksport. CSV-eksporten er også åben uden Pro."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μία αγορά, χωρίς συνδρομή: 400 Hz, 4K, πόζα κάμερας για 3D, ακατέργαστα δεδομένα, Blender, Sensor Logger, Gyroflow, πολλές διαδρομές, GeoJSON/GPX/KML και η συνολική εξαγωγή. Η εξαγωγή CSV μένει ανοιχτή και χωρίς Pro."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22372,6 +23230,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Indstillinger"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ρυθμίσεις"
           }
         },
         "en" : {
@@ -22528,6 +23392,12 @@
             "value" : "Fjern"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αφαίρεση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22680,6 +23550,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Afstand"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Απόσταση"
           }
         },
         "en" : {
@@ -22836,6 +23712,12 @@
             "value" : "Aflader"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εκφορτίζεται"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22988,6 +23870,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kræver Pro"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Απαιτεί Pro"
           }
         },
         "en" : {
@@ -23144,6 +24032,12 @@
             "value" : "Tilføj"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Προσθήκη"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23296,6 +24190,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Der blev ikke optaget data."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν καταγράφηκαν δεδομένα."
           }
         },
         "en" : {
@@ -23452,6 +24352,12 @@
             "value" : "Eksport mislykkedes"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η εξαγωγή απέτυχε"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23604,6 +24510,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Eksporterer …"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Γίνεται εξαγωγή …"
           }
         },
         "en" : {
@@ -23760,6 +24672,12 @@
             "value" : "Eksportér"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εξαγωγή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23912,6 +24830,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Facade eller rum"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πρόσοψη ή χώρος"
           }
         },
         "en" : {
@@ -24068,6 +24992,12 @@
             "value" : "Fejl"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σφάλμα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24220,6 +25150,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Færdig"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Τέλος"
           }
         },
         "en" : {
@@ -24376,6 +25312,12 @@
             "value" : "Form"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σχήμα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24528,6 +25470,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Format"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μορφή"
           }
         },
         "en" : {
@@ -24685,6 +25633,12 @@
             "value" : "Foto"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Φωτογραφία"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -24838,6 +25792,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Foto %lld"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Φωτογραφία %lld"
           }
         },
         "en" : {
@@ -24995,6 +25955,12 @@
             "value" : "Del foto"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κοινοποίηση φωτογραφίας"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -25147,6 +26113,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fotos og klip"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Φωτογραφίες και κλιπ"
           }
         },
         "en" : {
@@ -25304,6 +26276,12 @@
             "value" : "Tag fotos og klip"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Λήψη φωτογραφιών και κλιπ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -25456,6 +26434,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Låst op"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ξεκλειδωμένο"
           }
         },
         "en" : {
@@ -25612,6 +26596,12 @@
             "value" : "Front"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μπροστά"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25764,6 +26754,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Frontkamera"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μπροστινή κάμερα"
           }
         },
         "en" : {
@@ -25920,6 +26916,12 @@
             "value" : "Videooptagelse er ikke mulig på denne enhed."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σε αυτή τη συσκευή δεν είναι δυνατή η εγγραφή βίντεο."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26074,6 +27076,12 @@
             "value" : "Til et eget dashboard, Node-RED eller Home Assistant. Uden en indtastet adresse opretter appen ingen forbindelse."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Για δικό σου πίνακα, Node-RED ή Home Assistant. Χωρίς καταχωρημένη διεύθυνση η εφαρμογή δεν δημιουργεί σύνδεση."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26223,6 +27231,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GPS"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "GPS"
@@ -26382,6 +27396,12 @@
             "value" : "GPS meldte %@, %@. Begge er gemt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το GPS ανέφερε %@, %@. Και τα δύο είναι αποθηκευμένα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -26534,6 +27554,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "GPS-spor som GPX"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ίχνος GPS ως GPX"
           }
         },
         "en" : {
@@ -26690,6 +27716,12 @@
             "value" : "GPS-spor som KML"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ίχνος GPS ως KML"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26842,6 +27874,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "GPX-rutepunkter"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σημεία διαδρομής GPX"
           }
         },
         "en" : {
@@ -26998,6 +28036,12 @@
             "value" : "Terræn eller vej"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Έδαφος ή δρόμος"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27152,6 +28196,12 @@
             "value" : "Gennemsnit af %@, målt spredning ±%@ m."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μέσος όρος από %@, μετρημένη διασπορά ±%@ m."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27301,6 +28351,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GeoJSON"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "GeoJSON"
@@ -27460,6 +28516,12 @@
             "value" : "GeoJSON, GPX og KML"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GeoJSON, GPX και KML"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27612,6 +28674,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enhed"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Συσκευή"
           }
         },
         "en" : {
@@ -27768,6 +28836,12 @@
             "value" : "Samlet eksport"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Συνολική εξαγωγή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27920,6 +28994,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gælder for alle bevægelsessensorer. GPS, barometer og skridttæller leverer i deres eget tempo."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ισχύει για όλους τους αισθητήρες κίνησης. Το GPS, το βαρόμετρο και το βηματόμετρο δίνουν δεδομένα με τον δικό τους ρυθμό."
           }
         },
         "en" : {
@@ -28076,6 +29156,12 @@
             "value" : "Tyngdekraft"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Βαρύτητα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28228,6 +29314,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gyroflow-log"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αρχείο Gyroflow"
           }
         },
         "en" : {
@@ -28385,6 +29477,12 @@
             "value" : "Håndled"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καρπός"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -28537,6 +29635,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Lysstyrke"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Φωτεινότητα"
           }
         },
         "en" : {
@@ -28694,6 +29798,12 @@
             "value" : "Puls"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καρδιακοί παλμοί"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -28846,6 +29956,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nulstil højden her"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μηδενισμός υψομέτρου εδώ"
           }
         },
         "en" : {
@@ -29002,6 +30118,12 @@
             "value" : "I arkivet ligger %@: hver fil med størrelse og SHA-256, hver observation med position, nøjagtighed, alvorlighed og stierne til dens optagelser. Et script læser denne ene fil og behøver ellers ikke vide noget om mapperne."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Στην αρχειοθήκη βρίσκεται %@: κάθε αρχείο με μέγεθος και SHA-256, κάθε παρατήρηση με θέση, ακρίβεια, σοβαρότητα και τις διαδρομές των εγγραφών της. Ένα σενάριο διαβάζει αυτό το ένα αρχείο και δεν χρειάζεται να ξέρει τίποτε άλλο για τους φακέλους."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29156,6 +30278,12 @@
             "value" : "Indhold"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Περιεχόμενο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29305,6 +30433,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "KML (Google Earth)"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "KML (Google Earth)"
@@ -29464,6 +30598,12 @@
             "value" : "Kabel"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καλώδιο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29616,6 +30756,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kamera"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κάμερα"
           }
         },
         "en" : {
@@ -29772,6 +30918,12 @@
             "value" : "Kamerakørsel til Blender"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κίνηση κάμερας για το Blender"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29924,6 +31076,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kamerapose"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πόζα κάμερας"
           }
         },
         "en" : {
@@ -30080,6 +31238,12 @@
             "value" : "Kamerapose til 3D"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πόζα κάμερας για 3D"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30232,6 +31396,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kort"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χάρτης"
           }
         },
         "en" : {
@@ -30388,6 +31558,12 @@
             "value" : "Skub kortet ind under trådkorset. GPS-fixet og dets nøjagtighedscirkel bliver synlige og gemmes med."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σύρε τον χάρτη κάτω από το σταυρόνημα. Το στίγμα GPS και ο κύκλος ακρίβειάς του παραμένουν ορατά και αποθηκεύονται μαζί."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30540,6 +31716,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Intet abonnement, ingen fornyelse, ingen konto."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χωρίς συνδρομή, χωρίς ανανέωση, χωρίς λογαριασμό."
           }
         },
         "en" : {
@@ -30696,6 +31878,12 @@
             "value" : "Intet område markeret."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν έχει σημανθεί περιοχή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30848,6 +32036,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingen mikrofon tilgængelig."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν υπάρχει διαθέσιμο μικρόφωνο."
           }
         },
         "en" : {
@@ -31004,6 +32198,12 @@
             "value" : "Ingen adgang til lokaliteten"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καμία πρόσβαση στην τοποθεσία"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31156,6 +32356,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingen adgang til lokaliteten. Uden den er der kun nålen i hånden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καμία πρόσβαση στην τοποθεσία. Χωρίς αυτήν μένει μόνο η πινέζα με το χέρι."
           }
         },
         "en" : {
@@ -31312,6 +32518,12 @@
             "value" : "Ingen adgang til kameraet."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καμία πρόσβαση στην κάμερα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31464,6 +32676,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingen optagelser"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καμία εγγραφή"
           }
         },
         "en" : {
@@ -31620,6 +32838,12 @@
             "value" : "Intet kamera tilgængeligt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν υπάρχει διαθέσιμη κάμερα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31772,6 +32996,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Intet kamera tilgængeligt. Kun sensordata optages."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν υπάρχει διαθέσιμη κάμερα. Καταγράφονται μόνο δεδομένα αισθητήρων."
           }
         },
         "en" : {
@@ -31928,6 +33158,12 @@
             "value" : "Ingen ruter"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καμία διαδρομή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32080,6 +33316,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Små skridt: et billede for hver 10 cm. Til noget, man går rundt om."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μικρά βήματα: μία εικόνα κάθε 10 cm. Για κάτι που το γυρίζεις ολόγυρα."
           }
         },
         "en" : {
@@ -32236,6 +33478,12 @@
             "value" : "Kompas"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πυξίδα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32388,6 +33636,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Cirkel"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κύκλος"
           }
         },
         "en" : {
@@ -32544,6 +33798,12 @@
             "value" : "Cirkel med %lld m radius"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κύκλος με ακτίνα %lld m"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32696,6 +33956,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Cirkel · %lld m radius · %@ m²"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κύκλος · ακτίνα %lld m · %@ m²"
           }
         },
         "en" : {
@@ -32852,6 +34118,12 @@
             "value" : "Gendan køb"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επαναφορά αγορών"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33004,6 +34276,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Lydstyrke"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ένταση"
           }
         },
         "en" : {
@@ -33160,6 +34438,12 @@
             "value" : "Ryd"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άδειασμα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33312,6 +34596,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Send live til en server"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ζωντανή αποστολή σε διακομιστή"
           }
         },
         "en" : {
@@ -33468,6 +34758,12 @@
             "value" : "Livetransmission"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ζωντανή μετάδοση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33620,6 +34916,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Indlæser"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Φόρτωση"
           }
         },
         "en" : {
@@ -33776,6 +35078,12 @@
             "value" : "Længderevne"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαμήκης ρωγμή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33928,6 +35236,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Slet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαγραφή"
           }
         },
         "en" : {
@@ -34084,6 +35398,12 @@
             "value" : "Magnetfelt"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μαγνητικό πεδίο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34236,6 +35556,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Magnetfelt (rå)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μαγνητικό πεδίο (ακατέργαστο)"
           }
         },
         "en" : {
@@ -34392,6 +35718,12 @@
             "value" : "Markering"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σήμανση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34544,6 +35876,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sæt markering"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Τοποθέτηση σήμανσης"
           }
         },
         "en" : {
@@ -34700,6 +36038,12 @@
             "value" : "Flere ruter"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πολλές διαδρομές"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34852,6 +36196,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Min position"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η θέση μου"
           }
         },
         "en" : {
@@ -35008,6 +36358,12 @@
             "value" : "Måleoptagelser"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εγγραφές μετρήσεων"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35160,6 +36516,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Mål"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μέτρηση"
           }
         },
         "en" : {
@@ -35316,6 +36678,12 @@
             "value" : "Tryk på eller gå mindst 3 punkter"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άγγιξε ή περπάτησε τουλάχιστον 3 σημεία"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35470,6 +36838,12 @@
             "value" : "Mobil"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κινητό"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35622,6 +36996,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nål"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πινέζα"
           }
         },
         "en" : {
@@ -35779,6 +37159,12 @@
             "value" : "Sæt nål"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Τοποθέτηση πινέζας"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -35932,6 +37318,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Flyt nål"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μετακίνηση πινέζας"
           }
         },
         "en" : {
@@ -36088,6 +37480,12 @@
             "value" : "Nål i hånden"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πινέζα με το χέρι"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36240,6 +37638,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Navn"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όνομα"
           }
         },
         "en" : {
@@ -36396,6 +37800,12 @@
             "value" : "Netværk"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δίκτυο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36548,6 +37958,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ny rute"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Νέα διαδρομή"
           }
         },
         "en" : {
@@ -36704,6 +38120,12 @@
             "value" : "Optag ikke"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χωρίς καταγραφή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36856,6 +38278,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Der er ikke valgt noget at eksportere."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν έχει επιλεγεί τίποτα προς εξαγωγή."
           }
         },
         "en" : {
@@ -37012,6 +38440,12 @@
             "value" : "Ingen observationer endnu"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καμία παρατήρηση ακόμη"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37164,6 +38598,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Note"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σημείωση"
           }
         },
         "en" : {
@@ -37320,6 +38760,12 @@
             "value" : "Vilkår for brug"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Όροι χρήσης"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37469,6 +38915,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "OK"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "OK"
@@ -37628,6 +39080,12 @@
             "value" : "Objekt, under 2 m"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αντικείμενο, κάτω από 2 m"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37780,6 +39238,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Uden kamerapose indeholder eksporten kun tidsstempler og brændvidder. Billederne kan ikke placeres i rummet med dem."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χωρίς πόζα κάμερας η εξαγωγή περιέχει μόνο χρονοσφραγίδες και εστιακές αποστάσεις. Με αυτές οι εικόνες δεν τοποθετούνται στον χώρο."
           }
         },
         "en" : {
@@ -37936,6 +39400,12 @@
             "value" : "Uden position kan en observation ikke findes igen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χωρίς θέση μια παρατήρηση δεν ξαναβρίσκεται."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38088,6 +39558,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Uden position kan observationen ikke gemmes."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χωρίς θέση η παρατήρηση δεν αποθηκεύεται."
           }
         },
         "en" : {
@@ -38244,6 +39720,12 @@
             "value" : "Uden Pro er CSV-eksporten af hver optagelse og hver rute stadig åben. Dine målinger er dine, købt eller ej."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Χωρίς Pro η εξαγωγή CSV κάθε εγγραφής και κάθε διαδρομής μένει ανοιχτή. Οι μετρήσεις σου είναι δικές σου, αγορασμένες ή όχι."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38396,6 +39878,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Orientering"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Προσανατολισμός"
           }
         },
         "en" : {
@@ -38552,6 +40040,12 @@
             "value" : "Adgangskode"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κωδικός"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38704,6 +40198,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Polygon"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πολύγωνο"
           }
         },
         "en" : {
@@ -38945,6 +40445,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Polygon mit %lld Punkten"
+                }
+              }
+            }
+          }
+        },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Πολύγωνο με %lld σημείο"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Πολύγωνο με %lld σημεία"
                 }
               }
             }
@@ -39494,6 +41012,24 @@
             }
           }
         },
+        "el" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Πολύγωνο · %lld σημείο · %@ m²"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Πολύγωνο · %lld σημεία · %@ m²"
+                }
+              }
+            }
+          }
+        },
         "en" : {
           "variations" : {
             "plural" : {
@@ -39948,6 +41484,12 @@
             "value" : "Port"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Θύρα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40100,6 +41642,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Position"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Θέση"
           }
         },
         "en" : {
@@ -40256,6 +41804,12 @@
             "value" : "Søger position …"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αναζήτηση θέσης …"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40408,6 +41962,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Søger position … Uden fix eller sat nål kan observationen ikke gemmes."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αναζήτηση θέσης … Χωρίς στίγμα ή τοποθετημένη πινέζα η παρατήρηση δεν αποθηκεύεται."
           }
         },
         "en" : {
@@ -40564,6 +42124,12 @@
             "value" : "Lås Pro op"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ξεκλείδωμα Pro"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40716,6 +42282,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Lås Pro op for %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ξεκλείδωμα Pro για %@"
           }
         },
         "en" : {
@@ -40872,6 +42444,12 @@
             "value" : "Pro låser op"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Pro ξεκλειδώνει"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41024,6 +42602,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kvalitet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ποιότητα"
           }
         },
         "en" : {
@@ -41180,6 +42764,12 @@
             "value" : "Radius"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ακτίνα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41332,6 +42922,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vælg radius"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επιλογή ακτίνας"
           }
         },
         "en" : {
@@ -41488,6 +43084,12 @@
             "value" : "Højre vognbane, dybde omkring 6 cm."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεξιά λωρίδα, βάθος περίπου 6 cm."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41640,6 +43242,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Rådata (.ssbin)"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ακατέργαστα δεδομένα (.ssbin)"
           }
         },
         "en" : {
@@ -41796,6 +43404,12 @@
             "value" : "Eksportér rådata"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εξαγωγή ακατέργαστων δεδομένων"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41948,6 +43562,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Rådata-eksport"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εξαγωγή ακατέργαστων"
           }
         },
         "en" : {
@@ -42104,6 +43724,12 @@
             "value" : "Rute"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαδρομή"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42256,6 +43882,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Rute %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαδρομή %@"
           }
         },
         "en" : {
@@ -42412,6 +44044,12 @@
             "value" : "Slet ruten?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαγραφή διαδρομής;"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42564,6 +44202,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Rute ikke fundet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Η διαδρομή δεν βρέθηκε"
           }
         },
         "en" : {
@@ -42720,6 +44364,12 @@
             "value" : "Start rute"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Έναρξη διαδρομής"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42872,6 +44522,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ruter"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαδρομές"
           }
         },
         "en" : {
@@ -43028,6 +44684,12 @@
             "value" : "Ruter og optagelser som ét zip med %@: én fil, der beskriver hele arkivet maskinlæsbart."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Διαδρομές και εγγραφές ως ένα zip με %@: ένα αρχείο που περιγράφει ολόκληρη την αρχειοθήκη με τρόπο αναγνώσιμο από μηχανή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43180,6 +44842,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bag"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πίσω"
           }
         },
         "en" : {
@@ -43336,6 +45004,12 @@
             "value" : "Bagkamera"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πίσω κάμερα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43488,6 +45162,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Satellit"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δορυφόρος"
           }
         },
         "en" : {
@@ -43644,6 +45324,12 @@
             "value" : "Tænd kameraet foroven. Uden billede er der ingen kamerapose."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άναψε την κάμερα επάνω. Χωρίς εικόνα δεν υπάρχει πόζα κάμερας."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -43796,6 +45482,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Hul i vejen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Λακκούβα"
           }
         },
         "en" : {
@@ -43952,6 +45644,12 @@
             "value" : "Luk"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κλείσιμο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44104,6 +45802,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Skriver til hver optagelse desuden hver modtaget Bluetooth-pakke med: id, signalstyrke, navn og de rå producentdata som hex. Dermed kan RuuviTag- eller BTHome-sensorer afkodes bagefter, for temperatur, fugtighed og tryk står netop der. Id'et er ingen enhedsadresse: iOS udleverer den aldrig, og to optagelser er ikke enige om den."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Γράφει σε κάθε εγγραφή επιπλέον κάθε πακέτο Bluetooth που λαμβάνεται: αναγνωριστικό, ισχύ σήματος, όνομα και τα ακατέργαστα δεδομένα κατασκευαστή σε δεκαεξαδική μορφή. Έτσι οι αισθητήρες RuuviTag ή BTHome αποκωδικοποιούνται εκ των υστέρων, γιατί θερμοκρασία, υγρασία και πίεση βρίσκονται ακριβώς εκεί μέσα. Το αναγνωριστικό δεν είναι διεύθυνση συσκευής: το iOS δεν τη δίνει ποτέ, και δύο εγγραφές δεν συμφωνούν σε αυτό."
           }
         },
         "en" : {
@@ -44260,6 +45964,12 @@
             "value" : "Skridttæller"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Βηματόμετρο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44409,6 +46119,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensor Logger"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensor Logger"
@@ -44568,6 +46284,12 @@
             "value" : "Sensor Logger og Gyroflow"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensor Logger και Gyroflow"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44720,6 +46442,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorer"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αισθητήρες"
           }
         },
         "en" : {
@@ -44876,6 +46604,12 @@
             "value" : "Vælg sensorer"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επιλογή αισθητήρων"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45025,6 +46759,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm Pro"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm Pro"
@@ -45184,6 +46924,12 @@
             "value" : "Sætning"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καθίζηση"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45336,6 +47082,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gem"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αποθήκευση"
           }
         },
         "en" : {
@@ -45492,6 +47244,12 @@
             "value" : "Start din første måling på fanen »Optag«."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ξεκίνα την πρώτη σου μέτρηση στην καρτέλα «Εγγραφή»."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45644,6 +47402,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Stop"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Στοπ"
           }
         },
         "en" : {
@@ -45800,6 +47564,12 @@
             "value" : "Interval"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ρυθμός"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45952,6 +47722,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tekst"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κείμενο"
           }
         },
         "en" : {
@@ -46108,6 +47884,12 @@
             "value" : "Tryk på kortet for at flytte midtpunktet."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άγγιξε τον χάρτη για να μετακινήσεις το κέντρο."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46260,6 +48042,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Optag lyd"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εγγραφή ήχου"
           }
         },
         "en" : {
@@ -46416,6 +48204,12 @@
             "value" : "Rundt om brønden, fladt."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Γύρω από το φρεάτιο, ρηχό."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46568,6 +48362,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Omdøb"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μετονομασία"
           }
         },
         "en" : {
@@ -46724,6 +48524,12 @@
             "value" : "Omgivelser"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Περιβάλλον"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46876,6 +48682,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ukendt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Άγνωστο"
           }
         },
         "en" : {
@@ -47032,6 +48844,12 @@
             "value" : "Uventet svar fra serveren."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Απροσδόκητη απάντηση από τον διακομιστή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47184,6 +49002,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Cirka %@. Arkivet tilbydes derefter til deling: Filer, AirDrop, Mail."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Περίπου %@. Η αρχειοθήκη προσφέρεται μετά για κοινοποίηση: Αρχεία, AirDrop, Mail."
           }
         },
         "en" : {
@@ -47340,6 +49164,12 @@
             "value" : "Under åben himmel tager det et par sekunder."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κάτω από ανοιχτό ουρανό αυτό παίρνει λίγα δευτερόλεπτα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47492,6 +49322,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Test forbindelsen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δοκιμή σύνδεσης"
           }
         },
         "en" : {
@@ -47648,6 +49484,12 @@
             "value" : "Forbundet."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Συνδέθηκε."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47800,6 +49642,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Version"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Έκδοση"
           }
         },
         "en" : {
@@ -47956,6 +49804,12 @@
             "value" : "Video og lyd"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Βίντεο και ήχος"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48108,6 +49962,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Video i 3840 × 2160, på samme ur som hver måleværdi."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Βίντεο σε 3840 × 2160, στο ίδιο ρολόι με κάθε μετρημένη τιμή."
           }
         },
         "en" : {
@@ -48264,6 +50124,12 @@
             "value" : "Video i 4K"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Βίντεο σε 4K"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48416,6 +50282,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fuldt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πλήρης"
           }
         },
         "en" : {
@@ -48572,6 +50444,12 @@
             "value" : "Før udmundingen, kanten skarp."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πριν από τη συμβολή, ακμή κοφτερή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48721,6 +50599,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wi-Fi"
+          }
+        },
+        "el" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Wi-Fi"
@@ -48880,6 +50764,12 @@
             "value" : "Hvad er det?"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Τι είναι;"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49032,6 +50922,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Hvad er det? F.eks. hul i vejen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Τι είναι; Π.χ. λακκούβα"
           }
         },
         "en" : {
@@ -49189,6 +51085,12 @@
             "value" : "Flere fotos og klip"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κι άλλες φωτογραφίες και κλιπ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -49341,6 +51243,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Hvor langt væk er objektet?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πόσο μακριά είναι το αντικείμενο;"
           }
         },
         "en" : {
@@ -49497,6 +51405,12 @@
             "value" : "Sender …"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αποστολή …"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49649,6 +51563,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gemmes med det aktuelle tidsstempel."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αποθηκεύεται με την τρέχουσα χρονοσφραγίδα."
           }
         },
         "en" : {
@@ -49805,6 +51725,12 @@
             "value" : "Optages fortsat"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Συνεχίζει να καταγράφεται"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49957,6 +51883,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Under optagelsen går hver måling som JSON til en URL efter eget valg, for eksempel til et eget dashboard, til Node-RED eller til Home Assistant. Formatet svarer til Sensor Loggers, så et eksisterende endpoint virker uændret."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κατά την εγγραφή κάθε μέτρηση πηγαίνει ως JSON σε ένα URL της επιλογής σου, για παράδειγμα σε δικό σου πίνακα, στο Node-RED ή στο Home Assistant. Η μορφή αντιστοιχεί σε αυτήν του Sensor Logger, οπότε ένα υπάρχον σημείο λήψης δουλεύει αμετάβλητο."
           }
         },
         "en" : {
@@ -50113,6 +52045,12 @@
             "value" : "Under en optagelse går hver måling som JSON til denne adresse, i samme format som Sensor Logger sender. Et eksisterende endpoint virker uændret. Optagelsen på enheden kører uafhængigt videre: falder forbindelsen ud, mangler der intet i filen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κατά την εγγραφή κάθε μέτρηση πηγαίνει ως JSON σε αυτή τη διεύθυνση, στην ίδια μορφή που στέλνει το Sensor Logger. Ένα υπάρχον σημείο λήψης δουλεύει αμετάβλητο. Η εγγραφή στη συσκευή συνεχίζεται ανεξάρτητα: αν πέσει η σύνδεση, από το αρχείο δεν λείπει τίποτα."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -50265,6 +52203,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Det kan ikke ændres under en optagelse."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Αυτό δεν αλλάζει κατά τη διάρκεια μιας εγγραφής."
           }
         },
         "en" : {
@@ -50421,6 +52365,12 @@
             "value" : "Registrerer position, synsretning og brændvidde for hvert billede. Det er nok til at lægge billederne på et 3D-kort i Blender. Videoen gemmes uroteret, så brændvidderne passer til."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγράφει για κάθε εικόνα θέση, κατεύθυνση βλέμματος και εστιακή απόσταση. Αυτό αρκεί για να μπουν οι εικόνες σε χάρτη 3D στο Blender. Το βίντεο αποθηκεύεται χωρίς περιστροφή, ώστε να ταιριάζουν οι εστιακές αποστάσεις."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -50573,6 +52523,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Registrerer position, synsretning og brændvidde for hvert billede. Først dermed kan billeder placeres på deres sted i en 3D-scene."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγράφει για κάθε εικόνα θέση, κατεύθυνση βλέμματος και εστιακή απόσταση. Μόνο έτσι μπορούν οι εικόνες να τοποθετηθούν στη θέση τους σε μια σκηνή 3D."
           }
         },
         "en" : {
@@ -50729,6 +52685,12 @@
             "value" : "Registrerer position, synsretning og brændvidde for hvert billede. Uden lokalitetstilladelse mangler nordretningen, og scenen er drejet en ukendt vinkel."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγράφει για κάθε εικόνα θέση, κατεύθυνση βλέμματος και εστιακή απόσταση. Χωρίς άδεια τοποθεσίας λείπει η ευθυγράμμιση προς τον βορρά, και η σκηνή είναι στραμμένη κατά άγνωστη γωνία."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50881,6 +52843,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Mål tiden mod en tidsserver"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Μέτρηση της ώρας έναντι διακομιστή χρόνου"
           }
         },
         "en" : {
@@ -51037,6 +53005,12 @@
             "value" : "Der blev ikke fundet noget køb af Sensorstorm Pro på denne Apple-konto."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σε αυτόν τον λογαριασμό Apple δεν βρέθηκε αγορά Sensorstorm Pro."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51189,6 +53163,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "For lidt ledig plads til en optagelse."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Δεν υπάρχει αρκετός ελεύθερος χώρος για εγγραφή."
           }
         },
         "en" : {
@@ -51345,6 +53325,12 @@
             "value" : "For få fix til en midling. Prøv igen under åben himmel."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πολύ λίγα στίγματα για μέσο όρο. Δοκίμασε ξανά κάτω από ανοιχτό ουρανό."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -51497,6 +53483,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fold sammen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σύμπτυξη"
           }
         },
         "en" : {
@@ -51653,6 +53645,12 @@
             "value" : "Til fixet"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Στο στίγμα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51805,6 +53803,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Registreret til optagelsen %@. Observationerne ligger på samme ur som dens sensordata."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγράφηκε στην εγγραφή %@. Οι παρατηρήσεις βρίσκονται στο ίδιο ρολόι με τα δεδομένα αισθητήρων της."
           }
         },
         "en" : {
@@ -51961,6 +53965,12 @@
             "value" : "Tilbage"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πίσω"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52113,6 +54123,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tilbage til GPS"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Πίσω στο GPS"
           }
         },
         "en" : {
@@ -52269,6 +54285,12 @@
             "value" : "Tilstandsregistrering afsnit vest"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγραφή κατάστασης δυτικό τμήμα"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52421,6 +54443,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Desuden til en MQTT-broker"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Επιπλέον σε μεσολαβητή MQTT"
           }
         },
         "en" : {
@@ -52577,6 +54605,12 @@
             "value" : "enkelt GPS-fix"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "μεμονωμένο στίγμα GPS"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52729,6 +54763,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "intet fix"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "κανένα στίγμα"
           }
         },
         "en" : {
@@ -52885,6 +54925,12 @@
             "value" : "ikke tilgængelig"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "μη διαθέσιμο"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53037,6 +55083,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "uden anmærkning"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "χωρίς παρατηρήσεις"
           }
         },
         "en" : {
@@ -53193,6 +55245,12 @@
             "value" : "venter …"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "αναμονή …"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53347,6 +55405,12 @@
             "value" : "Over omkring 12 m, endnu uden afskalning."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σε μήκος περίπου 12 m, ακόμη χωρίς αποφλοίωση."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53499,6 +55563,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Anvend"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Εφαρμογή"
           }
         },
         "en" : {

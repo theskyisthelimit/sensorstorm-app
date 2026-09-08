@@ -1,0 +1,14 @@
+{
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "Πρώτη έκδοση."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "Όλες οι μορφές pro, 400 Hz και 4K. Μία φορά."
+      }
+    }
+  }
+}
