@@ -16,7 +16,7 @@ settings:
     SWIFT_VERSION: "6.0"
     DEVELOPMENT_TEAM: "E3CQ6W7CY2"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "9"
+    CURRENT_PROJECT_VERSION: "10"
     SWIFT_EMIT_LOC_STRINGS: "YES"
     ENABLE_USER_SCRIPT_SANDBOXING: "YES"
     SWIFT_STRICT_CONCURRENCY: complete
@@ -170,6 +170,12 @@ targets:
         NSMotionUsageDescription: >-
           Sensorstorm zeichnet die Bewegung deines Handgelenks auf und überträgt sie an das
           iPhone.
+        # Required whenever the HealthKit entitlement is present, even for an app that only
+        # reads: without it App Store Connect fails the upload with 90683 after altool has
+        # already reported success, and the build never appears in TestFlight.
+        NSHealthUpdateUsageDescription: >-
+          Sensorstorm schreibt nichts in „Health". Die Herzfrequenz wird nur gelesen und
+          zusammen mit den übrigen Sensordaten in der Aufnahme abgelegt.
 
 # Explicit so the StoreKit configuration below travels with the repo. Without it the
 # in-app purchase can only be exercised against App Store Connect, which means a signed

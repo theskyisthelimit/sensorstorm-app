@@ -30,7 +30,7 @@ final class ProEntitlement {
     /// The price, in the storefront's currency, as the App Store formats it. Never a
     /// hardcoded number: the price lives in App Store Connect, so changing it is a setting
     /// rather than a build, and every country shows its own.
-    var displayPrice: String? { product?.displayPrice }
+    var displayPrice: String? { product?.displayPrice ?? ScreenshotFixture.price }
 
     // MARK: - Lifecycle
 

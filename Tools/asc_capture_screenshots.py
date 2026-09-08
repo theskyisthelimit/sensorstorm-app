@@ -79,7 +79,16 @@ SCREENS: dict[str, tuple[int, str, str]] = {
     "library":  (3, "tab", "library"),
     "export":   (4, "screen", "export"),
     "settings": (5, "tab", "settings"),
+    "paywall":  (6, "screen", "paywall"),
 }
+
+# Captured on request, never part of the product page. The paywall is what App Review
+# wants to see for the in-app purchase (`Tools/asc_iap.py` asks for it), and a shot of
+# a price tag is the worst possible first impression on the store listing itself.
+# It lands in `screenshots-review/` so no upload glob can ever pick it up.
+REVIEW_ONLY = {"paywall"}
+PRODUCT_SCREENS = [key for key in SCREENS if key not in REVIEW_ONLY]
+REVIEW_DIR = ROOT / "screenshots-review"
 
 # key: (simulator name, screenshotDisplayType)
 # Apple's display-type names keep the old diagonal naming: the 6.9" iPhone still
@@ -295,7 +304,8 @@ def run_device(device_key: str, langs: list[str], screens: list[str], app_path: 
     for lang_key in langs:
         for screen_key in screens:
             order, _, _ = SCREENS[screen_key]
-            out_path = OUT_DIR / lang_key / device_key / f"{order:02d}-{screen_key}.png"
+            root = REVIEW_DIR if screen_key in REVIEW_ONLY else OUT_DIR
+            out_path = root / lang_key / device_key / f"{order:02d}-{screen_key}.png"
             capture_one(udid, screen_key, lang_key, out_path, settle, timeout, device_key)
             with _print_lock:
                 counter[0] += 1
@@ -490,7 +500,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--langs", default=",".join(available_langs), help="comma-separated language codes (default: every language in the String Catalog)")
     parser.add_argument("--devices", default=",".join(DEVICES), help="comma-separated device keys")
-    parser.add_argument("--screens", default=",".join(SCREENS), help="comma-separated screen keys")
+    parser.add_argument("--screens", default=",".join(PRODUCT_SCREENS),
+                        help=f"comma-separated screen keys (default: the product page; {sorted(REVIEW_ONLY)} only on request)")
     parser.add_argument("--settle", type=float, default=1.2, help="seconds to wait after the app reports readiness, before screenshotting")
     parser.add_argument("--timeout", type=float, default=60.0, help="seconds to wait for the app to report readiness after launch")
     parser.add_argument("--skip-build", action="store_true", help="reuse the existing build in .derived-data")

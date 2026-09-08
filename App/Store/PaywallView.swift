@@ -52,6 +52,7 @@ struct PaywallView: View {
             }
         }
         .task { await pro.loadProduct() }
+        .onAppear { if ScreenshotFixture.screen == .paywall { ScreenshotFixture.markReady() } }
         .onChange(of: pro.isPro) { _, isPro in
             // Nothing more to sell. Leaving the sheet open on a bought product would make
             // the user close a shop they already left.
@@ -154,7 +155,7 @@ struct PaywallView: View {
                         ProgressView().tint(.black)
                     } else if let price = pro.displayPrice {
                         // The App Store's own formatting, in the storefront's currency.
-                        Text("Pro freischalten — \(price)")
+                        Text("Pro freischalten für \(price)")
                     } else {
                         Text("Pro freischalten")
                     }
@@ -189,6 +190,6 @@ struct PaywallView: View {
 
     // Both links are required on a screen that sells something. The terms are Apple's
     // standard EULA, which is what applies unless an app ships its own.
-    static let privacyURL = URL(string: "https://sensorstorm.ch/datenschutz.html")!
+    static let privacyURL = URL(string: "https://sensorstorm.bognar.net/datenschutz.html")!
     static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
 }

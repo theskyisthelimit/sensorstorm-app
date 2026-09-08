@@ -35,6 +35,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Sensorstorm liest während einer Aufnahme deine Herzfrequenz, um sie zusammen mit den übrigen Sensordaten aufzuzeichnen. Es wird nichts in „Health" geschrieben.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Sensorstorm schreibt nichts in „Health". Die Herzfrequenz wird nur gelesen und zusammen mit den übrigen Sensordaten in der Aufnahme abgelegt.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Sensorstorm zeichnet die Bewegung deines Handgelenks auf und überträgt sie an das iPhone.</string>
 	<key>WKApplication</key>

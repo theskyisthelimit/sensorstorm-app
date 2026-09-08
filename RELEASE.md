@@ -92,7 +92,7 @@ Aufnahme aus festen UUIDs, damit acht Geräte in zwei Sprachen dieselben Zahlen 
 
 ## Website
 
-`sensorstorm.ch` liefert die zwei URLs, ohne die Apple die Einreichung ablehnt.
+`sensorstorm.bognar.net` liefert die zwei URLs, ohne die Apple die Einreichung ablehnt.
 
 ```bash
 python3 web/build.py && python3 web/check.py
@@ -106,9 +106,9 @@ solange dort TODO steht. Danach:
 
 ```bash
 python3 Tools/asc_metadata.py \
-  --support-url https://sensorstorm.ch/support.html \
-  --privacy-url https://sensorstorm.ch/datenschutz.html \
-  --marketing-url https://sensorstorm.ch/
+  --support-url https://sensorstorm.bognar.net/support.html \
+  --privacy-url https://sensorstorm.bognar.net/datenschutz.html \
+  --marketing-url https://sensorstorm.bognar.net/
 ```
 
 ## Monetarisierung

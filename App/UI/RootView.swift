@@ -50,6 +50,14 @@ struct RootView: View {
         // purchases that arrive from outside — redeemed codes, Family Sharing, Ask to Buy.
         .task { await pro.start() }
         // Tells the capture script the screen is up. No-op outside a screenshot run.
-        .onAppear { ScreenshotFixture.markReady() }
+        // The paywall is the exception: it is a sheet, so readiness belongs to the sheet —
+        // marking it here would shoot the settings screen a beat before the sheet slides up.
+        .onAppear {
+            if ScreenshotFixture.screen == .paywall {
+                pro.showPaywall()
+            } else {
+                ScreenshotFixture.markReady()
+            }
+        }
     }
 }

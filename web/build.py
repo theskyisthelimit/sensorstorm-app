@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the sensorstorm.ch site into `dist/`.
+"""Build the sensorstorm.bognar.net site into `dist/`.
 
 Same arrangement as the Xcode project: the generator is checked in, the output is
 not. Editing a generated `dist/index.html` by hand would be lost on the next run,
@@ -27,7 +27,7 @@ import sys
 # address is what App Store Review writes to. Grep for TODO before going live.
 
 OWNER = {
-    "legal_name": "TODO Name oder Firma",
+    "legal_name": "Peter Bognar",
     "street": "TODO Strasse und Nummer",
     "city": "TODO PLZ und Ort",
     "country_de": "Schweiz",
@@ -36,7 +36,7 @@ OWNER = {
     "uid": "",           # optional: CHE-xxx.xxx.xxx
 }
 
-DOMAIN = "https://sensorstorm.ch"
+DOMAIN = "https://sensorstorm.bognar.net"
 APP_ID = "6795648479"
 APP_STORE_URL = f"https://apps.apple.com/app/id{APP_ID}"
 GITHUB_URL = "https://github.com/theskyisthelimit/sensorstorm-app"

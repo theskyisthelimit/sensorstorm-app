@@ -14,7 +14,7 @@ import re
 import sys
 from html.parser import HTMLParser
 
-DOMAIN = "https://sensorstorm.ch"
+DOMAIN = "https://sensorstorm.bognar.net"
 # Google shows roughly 60 characters of a title and 155 of a description; below 50
 # a description is usually too thin to be used at all.
 TITLE_MAX = 65

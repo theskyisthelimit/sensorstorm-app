@@ -29,6 +29,7 @@ enum ScreenshotFixture {
     enum Screen: String {
         case survey        // one walk, its cases on the map
         case export        // the device-wide archive sheet
+        case paywall       // the purchase sheet — App Review wants to see where money changes hands
     }
 
     static var tab: RootView.Screen? {
@@ -53,10 +54,19 @@ enum ScreenshotFixture {
         if let tab { return tab }
         switch screen {
         case .survey: return .survey
-        case .export: return .settings
+        case .export, .paywall: return .settings
         case nil: return nil
         }
     }
+
+    /// The price to show while the fixture runs.
+    ///
+    /// A simulator launched by `simctl` has no StoreKit configuration — that is bound to the
+    /// scheme's run action, which only Xcode uses — so `Product.products(for:)` comes back
+    /// empty and the purchase button would read „Pro freischalten" with no amount. The App
+    /// Review screenshot of an in-app purchase has to show the purchase, price included.
+    /// Same number as `Resources/Sensorstorm.storekit` and as App Store Connect.
+    static var price: String? { isActive ? "CHF 19.00" : nil }
 
     // MARK: - Readiness
 

@@ -19,6 +19,8 @@ DerivedData/
 
 # Screenshot capture output
 Screenshots/
+# The paywall shot for App Review: derived from a simulator run, uploaded by Tools/asc_iap.py.
+screenshots-review/
 
 # Xcode user state
 xcuserdata/
