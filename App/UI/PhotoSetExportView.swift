@@ -36,7 +36,7 @@ struct PhotoSetExportView: View {
                         LabeledContent("Bilder", value: "\(Int(targetCount))")
                     }
                 } footer: {
-                    Text("Ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus — hundertmal dasselbe Bild nützt keiner Rekonstruktion.")
+                    Text("Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion.")
                 }
 
                 Section {
@@ -45,7 +45,7 @@ struct PhotoSetExportView: View {
                         dismiss()
                     }
                 } footer: {
-                    Text("Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnet RealityScan, Metashape oder Meshroom — nicht diese App.")
+                    Text("Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnen RealityScan, Metashape oder Meshroom. Diese App rechnet es nicht.")
                 }
             }
             .navigationTitle("Bilder für Fotogrammetrie")

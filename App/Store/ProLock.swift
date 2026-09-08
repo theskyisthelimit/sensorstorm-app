@@ -29,25 +29,25 @@ extension ProFeature {
     var explanation: LocalizedStringKey {
         switch self {
         case .highRate:
-            "Bewegungssensoren bei 400 Hz statt 200 Hz — die Auflösung, in der Vibrationen und Stösse noch als Form erkennbar sind."
+            "Die Bewegungssensoren laufen mit 400 Hz statt 200 Hz. In dieser Auflösung sind Vibrationen und Stösse noch als Form erkennbar."
         case .video4K:
             "Video in 3840 × 2160, auf derselben Uhr wie jeder Messwert."
         case .arkitPose:
-            "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — die Voraussetzung dafür, Bilder in einer 3D-Szene an ihrem Ort zu platzieren."
+            "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Erst damit lassen sich Bilder in einer 3D-Szene an ihrem Ort platzieren."
         case .rawExport:
             "Die Aufnahme als .ssbin, verlustfrei und in voller Auflösung, statt gerundet in CSV."
         case .sceneExport:
-            "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt."
+            "Das Bündel enthält frames.csv, scene.json, das Video und den GPS-Track. Das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt."
         case .photoExport:
-            "Scharfe, räumlich verteilte Einzelbilder mit Brennweite, Position und Blickrichtung im EXIF, dazu eine Kameratabelle und ein COLMAP-Modell. Der Rohstoff für RealityScan, Metashape oder Meshroom — das Modell rechnet dort, nicht hier."
+            "Der Export wählt scharfe, räumlich verteilte Einzelbilder und schreibt Brennweite, Position und Blickrichtung ins EXIF. Dazu kommen eine Kameratabelle und ein COLMAP-Modell. RealityScan, Metashape und Meshroom lesen das und rechnen daraus das Modell."
         case .interopExport:
             "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow."
         case .tableExport:
-            "Alle Sensoren nebeneinander in einer Tabelle, auf ein gemeinsames Zeitraster gelegt — dazu die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor."
+            "Alle Sensoren stehen nebeneinander in einer Tabelle, auf einem gemeinsamen Zeitraster. Dazu kommt die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor."
         case .liveStreaming:
-            "Während der Aufnahme jede Messung als JSON an eine URL deiner Wahl — für ein eigenes Dashboard, Node-RED oder Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert."
+            "Während der Aufnahme geht jede Messung als JSON an eine URL deiner Wahl, etwa an ein eigenes Dashboard, an Node-RED oder an Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert."
         case .additionalSurveys:
-            "Beliebig viele Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag."
+            "Beliebig viele Routen nebeneinander: pro Strasse, pro Auftrag, pro Tag."
         case .surveyGeoExport:
             "Die Route als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip."
         case .archiveExport:

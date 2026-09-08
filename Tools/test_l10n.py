@@ -278,13 +278,16 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(cov["done"], cov["total"])
         self.assertEqual(cov["review"], cov["total"], "maschinelle Texte stehen auf needs_review")
         data = catalog.load()
-        plural = data["strings"]["%lld Kisten · %lld Gegenstände"]["localizations"][lang]
+        plural = data["strings"]["Polygon · %lld Punkte · %@ m²"]["localizations"][lang]
         # Die Kategorien kommen aus der Registry, nicht aus dem Test: Japanisch
         # führt nur „other“, Polnisch fünf. Ein festes Paar prüfte nur, dass
         # gerade eine westeuropäische Sprache die erste geplante ist.
         categories = set(l10n.language(lang)["pluralCategories"])
-        self.assertEqual(set(plural["substitutions"]["arg1"]["variations"]["plural"]), categories)
-        self.assertIn("%#@arg1@", plural["stringUnit"]["value"])
+        # Sensorstorm führt seine Plurale als `variations` am Text selbst, nicht
+        # als `substitutions` mit `%#@arg@`. Das Werkzeug spiegelt die Form der
+        # Quelle, also wird hier die Form der Quelle geprüft.
+        self.assertEqual(set(plural["variations"]["plural"]), categories)
+        self.assertNotIn("stringUnit", plural)
         info = l10n.XCStringsAdapter(l10n.INFOPLIST, "infoplist", with_context=False).coverage(lang)
         self.assertEqual(info["done"], info["total"])
         watch = l10n.XCStringsAdapter(l10n.WATCH, "watch").coverage(lang)
@@ -351,7 +354,7 @@ class PipelineTests(unittest.TestCase):
         self.assertIsNone(l10n.XCStringsAdapter(l10n.CATALOG, "catalog").load()["strings"][target.id]["localizations"].get(lang))
 
     def test_context_index_finds_screens(self):
-        self.assertIn("Bezahlschranke", l10n.describe_context(l10n.context_index().get("Freischalten", [])))
+        self.assertIn("Bezahlschranke", l10n.describe_context(l10n.context_index().get("Pro freischalten", [])))
 
     def test_rename_term_moves_keys_translations_and_swift_literals(self):
         catalog = l10n.XCStringsAdapter(l10n.CATALOG, "catalog")
@@ -373,32 +376,36 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(l10n.term_leftovers("Zügelwagen"), [])
 
     def test_store_copy_is_idempotent_and_protects_what_carries(self):
-        # fr-FR hat ein Listing: ohne geänderte Quelle passiert nichts …
+        # Erster Lauf über ein bestehendes Listing: es gibt noch keinen
+        # gespeicherten Quellstand, also wird geschrieben.
         before = l10n.StoreAdapter().read("fr-FR")
-        report = l10n.store_copy_locale("fr-FR", "mock", log=lambda *a: None)
-        self.assertTrue(report.skipped)
-        self.assertEqual(l10n.StoreAdapter().read("fr-FR"), before)
-        # … und erzwungen bleiben Name, Untertitel und die heutigen Keywords stehen:
-        # unbewertete Maschinenvorschläge verdrängen nichts, was heute trägt.
-        report = l10n.store_copy_locale("fr-FR", "mock", force=True, log=lambda *a: None)
+        first = l10n.store_copy_locale("fr-FR", "mock", log=lambda *a: None)
+        self.assertFalse(first.skipped)
+        self.assertFalse(first.blocked)
         after = l10n.StoreAdapter().read("fr-FR")
-        self.assertFalse(report.blocked)
+        # Name, Untertitel und die heutigen Keywords bleiben stehen:
+        # unbewertete Maschinenvorschläge verdrängen nichts, was heute trägt.
         self.assertEqual(after["name"], before["name"])
         self.assertEqual(after["subtitle"], before["subtitle"])
         self.assertEqual(after["keywords"], before["keywords"])
-        self.assertEqual(after["iap"], before["iap"], "die IAP-Texte gehören der Übersetzung, nicht dem Listing")
+        self.assertEqual(after.get("iap"), before.get("iap"), "die IAP-Texte gehören der Übersetzung, nicht dem Listing")
+        # … und der zweite Lauf ohne geänderte Quelle tut nichts mehr.
+        second = l10n.store_copy_locale("fr-FR", "mock", log=lambda *a: None)
+        self.assertTrue(second.skipped)
+        self.assertEqual(l10n.StoreAdapter().read("fr-FR"), after)
+
         aso = l10n.read_aso("fr-FR")
         self.assertTrue(any(c["source"] == "machine" for c in aso["candidates"]), "Kandidaten werden gesammelt")
         self.assertEqual(aso["chosen"], before["keywords"])
         # Ein gemessener Wert entscheidet: der neue Begriff steht dann vor dem alten.
-        aso["popularity"] = {"inventaire": 10, "cartons": 90}
-        aso["candidates"].append({"term": "cartons", "source": "machine"})
+        aso["popularity"] = {"cadastre": 10, "orniere": 90}
+        aso["candidates"].append({"term": "orniere", "source": "machine"})
         l10n.write_aso("fr-FR", aso)
         order = [term for term, _, _ in l10n.rank_terms(aso, l10n.split_keywords(before["keywords"]))]
         # Unbewertete Bestandsbegriffe bleiben unantastbar (vor allem Gemessenen),
         # ein gemessener Bestand (10) weicht dem gemessenen Neuling (90).
-        self.assertLess(order.index("emballage"), order.index("cartons"))
-        self.assertLess(order.index("cartons"), order.index("inventaire"))
+        self.assertLess(order.index("fissure"), order.index("orniere"))
+        self.assertLess(order.index("orniere"), order.index("cadastre"))
 
     def test_source_locale_keeps_its_text_and_only_packs_keywords(self):
         before = l10n.StoreAdapter().read("de-DE")
@@ -445,19 +452,18 @@ class PipelineTests(unittest.TestCase):
         self.assertTrue(any("Preis" in e for e in errors_for(description=good["description"] + "\nOnly $4.99 a month")))
         self.assertTrue(any("Preis" in e for e in errors_for(promotionalText="Now CHF 5")))
         self.assertTrue(any("Plattform" in e for e in errors_for(description=good["description"] + "\nAlso on Android")))
-        self.assertTrue(any("Pflichtlink" in e for e in errors_for(description="Homeshift Cloud only")))
-        self.assertTrue(any("Komma" in e for e in errors_for(keywords="packing, list")))
-        self.assertTrue(any("doppelt" in e for e in errors_for(keywords="packing,list,Packing")))
-        self.assertTrue(any("Plural" in e for e in errors_for(keywords="box,boxes,label")))
-        self.assertTrue(any("Untertitel" in e for e in errors_for(keywords="inventory,label")))
-        self.assertTrue(any("Homeshift" in e for e in errors_for(name="Moving Planner")))
-        self.assertTrue(any("doppelt in Name" in e for e in errors_for(subtitle="Moving boxes and more")))
+        self.assertTrue(any("Komma" in e for e in errors_for(keywords="pothole, gpx")))
+        self.assertTrue(any("doppelt" in e for e in errors_for(keywords="pothole,gpx,Pothole")))
+        self.assertTrue(any("Plural" in e for e in errors_for(keywords="pothole,potholes,gpx")))
+        self.assertTrue(any("Untertitel" in e for e in errors_for(keywords="sensors,gpx")))
+        self.assertTrue(any("Sensorstorm" in e for e in errors_for(name="Road Survey Kit")))
+        self.assertTrue(any("doppelt in Name" in e for e in errors_for(subtitle="One sensor clock")))
         self.assertTrue(any("Neu in dieser Version" in e for e in errors_for(whatsNewVersion="0.9")))
         self.assertTrue(any("Zeichen" in e for e in errors_for(subtitle="x" * 31)))
         self.assertTrue(any("Bytes" in e for e in errors_for(keywords="ü" * 51)))
         iap = json.loads(json.dumps(good["iap"]))
-        del iap["products"]["ch.homeshift.planning"]
-        self.assertTrue(any("ch.homeshift.planning" in e for e in errors_for(iap=iap)))
+        del iap["products"]["ch.sensorstorm.app.pro"]
+        self.assertTrue(any("ch.sensorstorm.app.pro" in e for e in errors_for(iap=iap)))
 
     def test_brand_lock_accepts_a_declined_name_only_where_the_language_declines(self):
         # Polnisch beugt lateinische Eigennamen: „na iPhonie" ist der Lokativ
@@ -481,17 +487,26 @@ class PipelineTests(unittest.TestCase):
         # der Schlüssel ist die Kennung, der Text steht in `project.yml`. Nahm
         # `rows()` den Schlüsselnamen als Quelle, prüfte keine Marken- und keine
         # Platzhaltersperre je einen Systemdialog, und im chinesischen
-        # Kameradialog stand „二维码" statt „QR".
+        # Kameradialog stand die Marke übersetzt statt wörtlich.
+        #
+        # In project.yml stehen diese Texte als gefaltete Blockskalare (`>-`),
+        # also über mehrere Zeilen. Wer nur die Zeile mit dem Doppelpunkt liest,
+        # bekommt „>-" als Quelltext — und dann prüft ebenfalls keine Sperre je
+        # einen Systemdialog.
         adapter = l10n.adapters()["infoplist"]
         sources = adapter.project_sources()
-        self.assertIn("QR", sources["NSCameraUsageDescription"])
+        self.assertIn("Sensorstorm", sources["NSCameraUsageDescription"])
+        self.assertNotIn(">-", sources["NSCameraUsageDescription"])
+        # Beide Targets führen NSMotionUsageDescription. Der Katalog gehört zur
+        # App, also gewinnt deren Block, nicht der der Uhr.
+        self.assertIn("Beschleunigung", sources["NSMotionUsageDescription"])
         rows = {r.id: r for r in adapter.rows("zh-Hans", only_missing=False)}
         camera = rows["NSCameraUsageDescription"]
         self.assertNotEqual(camera.source, "NSCameraUsageDescription", "der Schlüssel ist kein Quelltext")
-        self.assertIn("QR", camera.source)
+        self.assertIn("Sensorstorm", camera.source)
         entry = l10n.language("zh-Hans")
         gloss = l10n.glossary()
-        levels = [lvl for lvl, _ in l10n.check_text(camera, "Homeshift 可以扫描二维码。", entry, gloss)]
+        levels = [lvl for lvl, _ in l10n.check_text(camera, "本应用会录制视频。", entry, gloss)]
         self.assertIn("error", levels, "eine weggeübersetzte harte Marke ist ein Verstoss")
 
     def test_project_adapter_adds_once(self):

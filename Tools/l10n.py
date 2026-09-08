@@ -228,6 +228,46 @@ def swift_literal(key: str) -> str:
     return key.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
 
 
+# Ein Katalog-Key schreibt `%@`, das Swift-Literal schreibt `\(ausdruck)`. Damit
+# der Vergleich beide Seiten sieht, wird jede der zwei Formen auf dieselbe Marke
+# gebracht. Ohne das meldete `reword` „nichts von Hand" und liess fünf Literale
+# mit dem alten Satz stehen — der nächste Build hätte den alten Key neu
+# angelegt und den neuen verwaist zurückgelassen (2026-09-08).
+_INTERPOLATION = "\x00"
+_PLACEHOLDER = re.compile(r"%(?:\d+\$)?(?:@|lld|ld|lu|d|u|s|(?:\.\d+)?f)")
+
+
+def normalize_interpolation(text: str) -> str:
+    """`\\(…)` in einem Swift-Literal auf die Platzhaltermarke bringen.
+
+    Geklammert gezählt, nicht mit einem regulären Ausdruck: die Ausdrücke sind
+    verschachtelt (`\\(Format.fixes(model.location.fixCount(inLast: 1)))`), und
+    ein nicht-gieriges `\\(.*?\\)` bricht mitten drin ab.
+    """
+    out: list[str] = []
+    index = 0
+    while index < len(text):
+        if text.startswith("\\(", index):
+            depth, cursor = 1, index + 2
+            while cursor < len(text) and depth:
+                if text[cursor] == "(":
+                    depth += 1
+                elif text[cursor] == ")":
+                    depth -= 1
+                cursor += 1
+            out.append(_INTERPOLATION)
+            index = cursor
+        else:
+            out.append(text[index])
+            index += 1
+    return "".join(out)
+
+
+def normalize_placeholders(text: str) -> str:
+    """`%@`, `%lld` und Freunde auf dieselbe Marke bringen."""
+    return _PLACEHOLDER.sub(_INTERPOLATION, text)
+
+
 def context_index() -> dict[str, list[str]]:
     """Katalog-Key → Swift-Dateien, in denen der Text als Literal steht. Ein
     Durchlauf über alle Dateien; 1460 Keys × 90 Dateien sind Sekunden."""
@@ -266,11 +306,32 @@ def describe_context(files: list[str]) -> str:
 # Adapter: String Catalog
 
 
+def _plural_units(loc: dict):
+    """Jede `stringUnit` unter den Plural-Varianten einer Lokalisierung.
+
+    Ein Plural hat oben keine `stringUnit`, sondern je Kategorie eine. Wer nur
+    oben schaut, hält jeden frisch übersetzten Plural für gelesen: `doctor`
+    zählte ihn nie unter `?N`, und `approve` fasste ihn nie an.
+    """
+    for substitution in (loc.get("substitutions") or {}).values():
+        for variation in ((substitution.get("variations") or {}).get("plural") or {}).values():
+            if "stringUnit" in variation:
+                yield variation["stringUnit"]
+    for variation in ((loc.get("variations") or {}).get("plural") or {}).values():
+        if "stringUnit" in variation:
+            yield variation["stringUnit"]
+
+
 def _state(loc: dict | None) -> str | None:
     if not loc:
         return None
     unit = loc.get("stringUnit")
-    return unit.get("state") if unit else "translated"
+    if unit:
+        return unit.get("state")
+    units = list(_plural_units(loc))
+    if not units:
+        return "translated"
+    return "needs_review" if any(u.get("state") == "needs_review" for u in units) else "translated"
 
 
 class XCStringsAdapter:
@@ -513,7 +574,7 @@ BRAND = "Sensorstorm"
 # Pflichtiges; der Datenschutzlink hängt am appInfo, nicht an der Beschreibung.
 # Beides bleibt trotzdem geprüft, aber als Warnung.
 REQUIRED_DESCRIPTION_URLS: tuple[str, ...] = ()
-PRIVACY_URL_PATTERN = re.compile(r"https://sensorstorm\.ch/(?:datenschutz\.html|[a-z]{2}(?:-[A-Za-z]+)?/privacy\.html)")
+PRIVACY_URL_PATTERN = re.compile(r"https://sensorstorm\.bognar\.net/(?:datenschutz\.html|[a-z]{2}(?:-[A-Za-z]+)?/privacy\.html)")
 IAP_TITLE = "Sensorstorm Pro"
 PRICE_PATTERN = re.compile(
     r"(?i)(?<![A-Za-z])(CHF|EUR|USD|GBP|JPY|CAD|AUD|BRL|MXN|INR|KRW|CNY|RUB|PLN|TRY|Fr\.)\s?\d"
@@ -2448,8 +2509,18 @@ def cmd_approve(args) -> int:
         count = 0
         for _key, item in adapter.keys(data):
             loc = item.get("localizations", {}).get(entry["code"])
-            if loc and "stringUnit" in loc and loc["stringUnit"].get("state") == "needs_review":
-                loc["stringUnit"]["state"] = "translated"
+            if not loc:
+                continue
+            if "stringUnit" in loc:
+                if loc["stringUnit"].get("state") == "needs_review":
+                    loc["stringUnit"]["state"] = "translated"
+                    count += 1
+                continue
+            # Ein Plural trägt seinen Zustand je Kategorie, nicht oben.
+            offen = [u for u in _plural_units(loc) if u.get("state") == "needs_review"]
+            for unit in offen:
+                unit["state"] = "translated"
+            if offen:
                 count += 1
         if count:
             adapter.save(data)
@@ -2653,11 +2724,16 @@ def reword(mapping: dict[str, str], dry_run: bool = False) -> tuple[list[tuple[s
             continue
         for swift in base.rglob("*.swift"):
             flach = re.sub(r"\\\n\s*", "", swift.read_text(encoding="utf-8"))
+            # Ein Literal schreibt `\(ausdruck)`, wo der Key `%@` schreibt.
+            # Beide Seiten kommen auf dieselbe Marke, sonst sieht die Suche
+            # genau die Texte nicht, die sie sehen müsste.
+            marke = normalize_interpolation(flach)
             for old, new_text in done:
+                alt, neu = normalize_placeholders(old), normalize_placeholders(new_text)
                 # Der neue Text darf den alten enthalten („Scan öffnet …“ →
                 # „Ein Scan öffnet …“); gesucht wird, was nach Abzug des neuen
                 # Literals übrig bleibt.
-                if old in flach.replace(new_text, ""):
+                if alt in marke.replace(neu, ""):
                     leftovers.append(f"{swift.relative_to(ROOT)}: „{old[:50]}…“")
     global _context_cache
     _context_cache = None

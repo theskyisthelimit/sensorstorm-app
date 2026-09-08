@@ -59,63 +59,8 @@
         }
       }
     },
-    "%@ gesammelt — ruhig stehen bleiben" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ collected — stand still"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ recogidos — quédate quieto"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ collectés — restez immobile"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ raccolti — resta fermo"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ 件取得 — その場で静止してください"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@개 수집 — 그대로 서 계세요"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ verzameld — blijf stilstaan"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ coletados — fique parado"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已收集 %@ 筆 — 請站著別動"
-          }
-        }
-      }
+    "%@ gesammelt. Bleib ruhig stehen." : {
+      "localizations" : {}
     },
     "%@ in 10 s" : {
       "localizations" : {
@@ -2187,63 +2132,8 @@
         }
       }
     },
-    "Alle Sensoren nebeneinander in einer Tabelle, auf ein gemeinsames Zeitraster gelegt — dazu die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every sensor side by side in one table, laid onto a shared time grid — plus the whole recording as JSON, or as a SQLite database with one table per sensor."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Todos los sensores en paralelo en una tabla, llevados a una rejilla temporal común — y la grabación completa como JSON o como base de datos SQLite con una tabla por sensor."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tous les capteurs côte à côte dans un tableau, ramenés sur une grille temporelle commune — et l'enregistrement complet en JSON ou en base SQLite avec une table par capteur."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tutti i sensori affiancati in una tabella, riportati su una griglia temporale comune — e l'intera registrazione come JSON o come database SQLite con una tabella per sensore."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "全センサーを共通の時間グリッド上に並べた1つの表。さらに記録全体を JSON、またはセンサーごとに1テーブルの SQLite データベースとして。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모든 센서를 공통 시간 격자 위에 나란히 놓은 하나의 표. 여기에 기록 전체를 JSON으로, 또는 센서마다 테이블 하나인 SQLite 데이터베이스로."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle sensoren naast elkaar in één tabel, op een gemeenschappelijk tijdraster gelegd — en de hele opname als JSON of als SQLite-database met één tabel per sensor."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Todos os sensores lado a lado em uma tabela, levados a uma grade de tempo comum — e a gravação inteira como JSON ou como banco SQLite com uma tabela por sensor."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "所有感測器並排於同一張表，對齊到共同的時間格點；另可將整段記錄輸出為 JSON，或每個感測器一張資料表的 SQLite 資料庫。"
-          }
-        }
-      }
+    "Alle Sensoren stehen nebeneinander in einer Tabelle, auf einem gemeinsamen Zeitraster. Dazu kommt die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor." : {
+      "localizations" : {}
     },
     "Alle Streams teilen eine gemeinsame Uhr. Ein Export enthält pro Sensor eine CSV-Datei, das Video und die Metadaten." : {
       "localizations" : {
@@ -3405,6 +3295,10 @@
         }
       }
     },
+    "Aufnahmen machen" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Aufnehmen" : {
       "localizations" : {
         "en" : {
@@ -3811,63 +3705,8 @@
         }
       }
     },
-    "Beliebig viele Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Any number of routes side by side — per street, per job, per day."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tantos recorridos en paralelo como quieras: por calle, por encargo, por día."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autant de parcours en parallèle que vous voulez — par rue, par mandat, par jour."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quanti percorsi vuoi, in parallelo — per strada, per incarico, per giorno."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ルートはいくつでも並行して — 道路ごと、案件ごと、日ごとに。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "경로는 얼마든지 동시에 — 도로별, 건별, 날짜별로."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zoveel routes naast elkaar als je wilt — per straat, per opdracht, per dag."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quantos percursos em paralelo você quiser — por rua, por serviço, por dia."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "同時進行任意多條路線 — 依道路、依觀測點、依日期。"
-          }
-        }
-      }
+    "Beliebig viele Routen nebeneinander: pro Strasse, pro Auftrag, pro Tag." : {
+      "localizations" : {}
     },
     "Benutzername" : {
       "localizations" : {
@@ -4391,6 +4230,10 @@
         }
       }
     },
+    "Bereich bearbeiten" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Bereich entfernen" : {
       "localizations" : {
         "en" : {
@@ -4448,6 +4291,10 @@
           }
         }
       }
+    },
+    "Bereich markieren" : {
+      "extractionState" : "manual",
+      "localizations" : {}
     },
     "Bereit" : {
       "localizations" : {
@@ -4677,64 +4524,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "運動"
-          }
-        }
-      }
-    },
-    "Bewegungssensoren bei 400 Hz statt 200 Hz — die Auflösung, in der Vibrationen und Stösse noch als Form erkennbar sind." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Motion sensors at 400 Hz instead of 200 Hz — the resolution at which vibrations and shocks still have a recognisable shape."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensores de movimiento a 400 Hz en lugar de 200 Hz: la resolución a la que vibraciones y golpes aún tienen una forma reconocible."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Capteurs de mouvement à 400 Hz au lieu de 200 Hz — la résolution à laquelle vibrations et chocs gardent encore une forme reconnaissable."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensori di movimento a 400 Hz anziché 200 Hz — la risoluzione alla quale vibrazioni e urti hanno ancora una forma riconoscibile."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "モーションセンサーを 200 Hz ではなく 400 Hz で。振動や衝撃がまだ形として見て取れる分解能です。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모션 센서를 200 Hz가 아닌 400 Hz로. 진동과 충격이 아직 형태로 보이는 해상도입니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bewegingssensoren op 400 Hz in plaats van 200 Hz — de resolutie waarbij trillingen en schokken nog een herkenbare vorm houden."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensores de movimento a 400 Hz em vez de 200 Hz — a resolução em que vibrações e impactos ainda têm uma forma reconhecível."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "運動感測器以 400 Hz 而非 200 Hz 取樣 — 在這個解析度下，振動與衝擊仍看得出形狀。"
           }
         }
       }
@@ -5319,63 +5108,8 @@
         }
       }
     },
-    "CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format — der Aufbau steht im README des Archivs." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every spreadsheet and every script reads CSV directly. Raw data is smaller and lossless but needs a reader for the .ssbin format — its layout is documented in the archive's README."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cualquier hoja de cálculo y cualquier script leen el CSV directamente. Los datos brutos son más pequeños y sin pérdidas, pero necesitan un lector del formato .ssbin: su estructura está descrita en el README del archivo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tout tableur et tout script lisent le CSV directement. Les données brutes sont plus compactes et sans perte, mais demandent un lecteur du format .ssbin — sa structure est décrite dans le README de l'archive."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ogni foglio di calcolo e ogni script legge il CSV direttamente. I dati grezzi sono più piccoli e senza perdita, ma richiedono un lettore del formato .ssbin — la struttura è descritta nel README dell'archivio."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSV はどの表計算ソフトもどのスクリプトもそのまま読めます。生データはより小さく可逆ですが .ssbin 形式のリーダーが必要です。構造はアーカイブの README に記載されています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSV는 어떤 스프레드시트도 어떤 스크립트도 그대로 읽습니다. 원시 데이터는 더 작고 무손실이지만 .ssbin 형식을 읽는 도구가 필요합니다. 구조는 아카이브의 README에 적혀 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elk spreadsheet en elk script leest CSV rechtstreeks. Ruwe data zijn kleiner en verliesvrij, maar hebben een lezer voor het .ssbin-formaat nodig — de opbouw staat in de README van het archief."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Qualquer planilha e qualquer script lê CSV direto. Os dados brutos são menores e sem perdas, mas exigem um leitor do formato .ssbin — a estrutura está descrita no README do arquivo."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "任何試算表與任何腳本都能直接讀 CSV。原始資料較小且無損，但需要能讀 .ssbin 格式的程式 — 其結構寫在封存檔的 README 裡。"
-          }
-        }
-      }
+    "CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format. Der Aufbau steht im README des Archivs." : {
+      "localizations" : {}
     },
     "Clip" : {
       "localizations" : {
@@ -5435,6 +5169,10 @@
         }
       }
     },
+    "Clip teilen" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
       "localizations" : {
         "en" : {
@@ -5492,6 +5230,9 @@
           }
         }
       }
+    },
+    "Das Bündel enthält frames.csv, scene.json, das Video und den GPS-Track. Das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt." : {
+      "localizations" : {}
     },
     "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow." : {
       "localizations" : {
@@ -5608,6 +5349,9 @@
           }
         }
       }
+    },
+    "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
+      "localizations" : {}
     },
     "Daten" : {
       "localizations" : {
@@ -6247,6 +5991,9 @@
         }
       }
     },
+    "Der Export wählt scharfe, räumlich verteilte Einzelbilder und schreibt Brennweite, Position und Blickrichtung ins EXIF. Dazu kommen eine Kameratabelle und ein COLMAP-Modell. RealityScan, Metashape und Meshroom lesen das und rechnen daraus das Modell." : {
+      "localizations" : {}
+    },
     "Der Kauf liess sich nicht überprüfen und wurde nicht freigeschaltet." : {
       "localizations" : {
         "en" : {
@@ -6537,63 +6284,11 @@
         }
       }
     },
-    "Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnet RealityScan, Metashape oder Meshroom — nicht diese App." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The images carry focal length, place and time in their EXIF, with a camera table and a COLMAP model alongside. The 3D model is computed by RealityScan, Metashape or Meshroom — not by this app."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Las imágenes llevan distancia focal, lugar y hora en el EXIF, junto a una tabla de cámaras y un modelo COLMAP. El modelo 3D lo calcula RealityScan, Metashape o Meshroom, no esta app."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les images portent focale, lieu et heure dans l'EXIF, accompagnées d'une table de caméras et d'un modèle COLMAP. Le modèle 3D est calculé par RealityScan, Metashape ou Meshroom — pas par cette app."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le immagini portano lunghezza focale, luogo e ora nell’EXIF, accanto a una tabella delle camere e a un modello COLMAP. Il modello 3D lo calcola RealityScan, Metashape o Meshroom — non questa app."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "画像には焦点距離・場所・時刻が EXIF に入り、カメラ表と COLMAP モデルが添えられます。3D モデルを計算するのは RealityScan、Metashape、Meshroom であって、このアプリではありません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이미지에는 초점 거리, 장소, 시간이 EXIF에 담기고 카메라 표와 COLMAP 모델이 함께 제공됩니다. 3D 모델은 RealityScan, Metashape, Meshroom이 계산하며 이 앱이 하지 않습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De beelden dragen brandpuntsafstand, plaats en tijd in de EXIF, met een cameratabel en een COLMAP-model ernaast. Het 3D-model wordt berekend door RealityScan, Metashape of Meshroom — niet door deze app."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "As imagens levam distância focal, local e hora no EXIF, ao lado de uma tabela de câmeras e um modelo COLMAP. O modelo 3D é calculado pelo RealityScan, Metashape ou Meshroom — não por este app."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "影像的 EXIF 內含焦距、地點與時間，旁邊還有相機表與 COLMAP 模型。3D 模型由 RealityScan、Metashape 或 Meshroom 運算，而不是這個 App。"
-          }
-        }
-      }
+    "Die Bewegungssensoren laufen mit 400 Hz statt 200 Hz. In dieser Auflösung sind Vibrationen und Stösse noch als Form erkennbar." : {
+      "localizations" : {}
+    },
+    "Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnen RealityScan, Metashape oder Meshroom. Diese App rechnet es nicht." : {
+      "localizations" : {}
     },
     "Die Bildstabilisierung bleibt aus, damit das Bild exakt zu den Bewegungsdaten passt." : {
       "localizations" : {
@@ -6885,63 +6580,8 @@
         }
       }
     },
-    "Die Kamerapose gehört zu Pro: zu jedem Bild Position, Blickrichtung und Brennweite — die Voraussetzung für den Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The camera pose is part of Pro: position, viewing direction and focal length for every frame — what the 3D scene export to Blender is built on. Tap ARKit to unlock it."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La pose de cámara forma parte de Pro: para cada fotograma, posición, dirección de mira y distancia focal, que es la base de la exportación como escena 3D a Blender. Toca ARKit para desbloquearla."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La pose de caméra fait partie de Pro : pour chaque image, la position, la direction de visée et la focale — la condition de l'export en scène 3D vers Blender. Touchez ARKit pour la débloquer."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La posa della fotocamera fa parte di Pro: per ogni fotogramma posizione, direzione di ripresa e lunghezza focale — il presupposto dell'esportazione come scena 3D verso Blender. Tocca ARKit per sbloccarla."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "カメラポーズは Pro の機能です。1フレームごとに位置・視線方向・焦点距離を記録し、Blender への 3D シーン書き出しの前提になります。ARKit をタップして有効にしてください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "카메라 포즈는 Pro 기능입니다. 프레임마다 위치, 시선 방향, 초점 거리를 기록하며 Blender로의 3D 장면 내보내기의 전제가 됩니다. ARKit을 탭해 활성화하세요."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De camerapose hoort bij Pro: per beeld positie, kijkrichting en brandpuntsafstand — de voorwaarde voor de export als 3D-scène naar Blender. Tik op ARKit om hem vrij te geven."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A pose da câmera faz parte do Pro: para cada quadro, posição, direção de visada e distância focal — a base da exportação como cena 3D para o Blender. Toque em ARKit para liberá-la."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "相機姿態屬於 Pro：逐影格記錄位置、視線方向與焦距，這是匯出 3D 場景到 Blender 的前提。點一下 ARKit 即可啟用。"
-          }
-        }
-      }
+    "Die Kamerapose gehört zu Pro. Sie zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf, und ohne sie gibt es keinen Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten." : {
+      "localizations" : {}
     },
     "Die Nachricht ist zu gross für das MQTT-Protokoll." : {
       "localizations" : {
@@ -7349,63 +6989,8 @@
         }
       }
     },
-    "Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This route stays fully usable: capture more observations, edit them, export them as CSV. Running several routes side by side — per street, per job, per day — needs Pro."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Este recorrido sigue siendo plenamente utilizable: añadir observaciones, editarlos y exportarlos en CSV. Para llevar varios recorridos en paralelo (por calle, por encargo, por día) hace falta Pro."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ce parcours reste entièrement utilisable : ajouter des observations, les modifier, les exporter en CSV. Mener plusieurs parcours en parallèle — par rue, par mandat, par jour — demande Pro."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Questo percorso resta pienamente utilizzabile: aggiungere osservazioni, modificarli, esportarli in CSV. Per più percorsi in parallelo — per strada, per incarico, per giorno — serve Pro."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "このルートはこれまでどおり使えます。観測点の追加、編集、CSV 書き出しはそのままです。複数のルートを並行して — 道路ごと、案件ごと、日ごとに — 進めるには Pro が必要です。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "이 경로는 그대로 사용할 수 있습니다. 관측를 더 기록하고, 편집하고, CSV로 내보낼 수 있습니다. 여러 경로를 동시에 — 도로별, 건별, 날짜별로 — 진행하려면 Pro가 필요합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deze route blijft volledig bruikbaar: meer waarnemingen vastleggen, bewerken en als CSV exporteren. Voor meerdere routes naast elkaar — per straat, per opdracht, per dag — is Pro nodig."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Este percurso continua totalmente utilizável: registrar mais observações, editá-los e exportá-los em CSV. Para vários percursos em paralelo — por rua, por serviço, por dia — é preciso o Pro."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "這條路線仍可完整使用：繼續新增觀測點、編輯，並匯出成 CSV。若要同時進行多條路線 — 依道路、依觀測點、依日期 — 則需要 Pro。"
-          }
-        }
-      }
+    "Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander, pro Strasse, pro Auftrag oder pro Tag, braucht es Pro." : {
+      "localizations" : {}
     },
     "Dieses Gerät unterstützt kein ARKit-Tracking." : {
       "localizations" : {
@@ -7581,121 +7166,8 @@
         }
       }
     },
-    "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A bundle with frames.csv, scene.json, the video and the GPS track — the Blender add-on turns it into an animated camera that follows the real recording."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un paquete con frames.csv, scene.json, el vídeo y la traza GPS: el complemento de Blender lo convierte en una cámara animada que sigue la grabación real."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un ensemble avec frames.csv, scene.json, la vidéo et la trace GPS — le module Blender en fait une caméra animée qui suit l'enregistrement réel."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un pacchetto con frames.csv, scene.json, il video e la traccia GPS: il componente per Blender ne ricava una camera animata che segue la registrazione reale."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "frames.csv、scene.json、動画、GPSトラックをまとめたバンドル。Blender アドオンが実際の記録に沿った動くカメラに変換します。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "frames.csv, scene.json, 영상, GPS 경로를 담은 번들. Blender 애드온이 실제 기록을 따라가는 애니메이션 카메라로 만들어 줍니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Een bundel met frames.csv, scene.json, de video en de GPS-track — de Blender-add-on maakt er een geanimeerde camera van die de echte opname volgt."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Um pacote com frames.csv, scene.json, o vídeo e a trilha GPS — o add-on do Blender transforma isso em uma câmera animada que segue a gravação real."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "包含 frames.csv、scene.json、影片與 GPS 軌跡的組合包；Blender 外掛會把它變成跟隨實際記錄的動態攝影機。"
-          }
-        }
-      }
-    },
-    "Ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus — hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A target, not a promise. Where the camera stood still, fewer images come out — a hundred copies of the same picture help no reconstruction."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una orientación, no una promesa. Donde la cámara se quedó quieta salen menos imágenes: cien veces la misma foto no ayuda a ninguna reconstrucción."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un objectif, pas une promesse. Là où la caméra est restée immobile, il y a moins d'images — cent fois la même photo n'aide aucune reconstruction."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un valore indicativo, non una garanzia. Dove la camera è rimasta ferma escono meno immagini: cento volte la stessa foto non serve a nessuna ricostruzione."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "目安であって約束ではありません。カメラが止まっていた場所では枚数が減ります。同じ写真が百枚あっても復元の役には立ちません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "목표치일 뿐 보장은 아닙니다. 카메라가 멈춰 있던 곳에서는 이미지가 적게 나옵니다. 같은 사진 백 장은 복원에 도움이 되지 않습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Een richtwaarde, geen belofte. Waar de camera stilstond komen er minder beelden uit — honderd keer dezelfde foto helpt geen reconstructie."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma referência, não uma promessa. Onde a câmera ficou parada saem menos imagens — cem vezes a mesma foto não ajuda nenhuma reconstrução."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "這是目標值而非保證。相機停住的地方會少一些影像——同一張照片重複一百次對重建毫無幫助。"
-          }
-        }
-      }
+    "Du kannst markieren, wie weit der Schaden reicht: als Kreis um dich herum oder als Polygon entlang des Rands." : {
+      "localizations" : {}
     },
     "Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich." : {
       "localizations" : {
@@ -8915,6 +8387,18 @@
         }
       }
     },
+    "Foto" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
+    "Foto %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
+    "Foto teilen" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Fotos und Clips" : {
       "localizations" : {
         "en" : {
@@ -9321,63 +8805,8 @@
         }
       }
     },
-    "GPS hatte %@, %@ gemeldet — beides ist gespeichert." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS reported %@, %@ — both are stored."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El GPS indicaba %@, %@: se conservan ambos."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le GPS indiquait %@, %@ — les deux sont conservés."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il GPS indicava %@, %@ — entrambi sono conservati."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS は %@, %@ を示していました — どちらも保存されています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS는 %@, %@을(를) 알렸습니다 — 둘 다 저장되어 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "De GPS meldde %@, %@ — beide zijn bewaard."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O GPS indicava %@, %@ — os dois ficam guardados."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GPS 回報的是 %@、%@ — 兩者都已保存。"
-          }
-        }
-      }
+    "GPS hatte %@, %@ gemeldet. Beides ist gespeichert." : {
+      "localizations" : {}
     },
     "GPS-Track als GPX" : {
       "localizations" : {
@@ -10075,6 +9504,10 @@
         }
       }
     },
+    "Handgelenk" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Helligkeit" : {
       "localizations" : {
         "en" : {
@@ -10132,6 +9565,10 @@
           }
         }
       }
+    },
+    "Herzfrequenz" : {
+      "extractionState" : "manual",
+      "localizations" : {}
     },
     "Höhe hier nullen" : {
       "localizations" : {
@@ -12743,6 +12180,14 @@
         }
       }
     },
+    "Nadel setzen" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
+    "Nadel verschieben" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Nadel von Hand" : {
       "localizations" : {
         "en" : {
@@ -13381,63 +12826,8 @@
         }
       }
     },
-    "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten — die Bilder lassen sich damit nicht im Raum platzieren." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Without a camera pose the export carries only timestamps and focal lengths — not enough to place the images in space."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin pose de cámara la exportación solo contiene marcas de tiempo y distancias focales: no basta para situar las imágenes en el espacio."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sans pose de caméra, l'export ne contient que des horodatages et des focales — impossible de placer les images dans l'espace."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senza posa della fotocamera l'esportazione contiene solo marche temporali e lunghezze focali — non basta per collocare le immagini nello spazio."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "カメラポーズがないと、書き出しにはタイムスタンプと焦点距離しか含まれず、画像を空間に配置することはできません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "카메라 포즈가 없으면 내보내기에는 타임스탬프와 초점 거리만 담기며, 그것만으로는 이미지를 공간에 배치할 수 없습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zonder camerapose bevat de export alleen tijdstempels en brandpuntsafstanden — daarmee zijn de beelden niet in de ruimte te plaatsen."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sem a pose da câmera a exportação contém apenas marcas de tempo e distâncias focais — não dá para posicionar as imagens no espaço."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "沒有相機姿態，匯出內容只有時間戳記與焦距，無法將影像放置到空間中。"
-          }
-        }
-      }
+    "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten. Die Bilder lassen sich damit nicht im Raum platzieren." : {
+      "localizations" : {}
     },
     "Ohne Position kann eine Beobachtung nicht wiedergefunden werden." : {
       "localizations" : {
@@ -13609,64 +12999,6 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "即使沒有 Pro，每筆記錄與每條路線的 CSV 匯出都仍然開放。你的量測資料屬於你，買不買都一樣。"
-          }
-        }
-      }
-    },
-    "Optional: markiere, wie weit der Schaden reicht — als Kreis um dich herum oder als Polygon entlang des Rands." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optional: mark how far the damage reaches — as a circle around you or as a polygon along its edge."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opcional: marca hasta dónde llega el daño, como círculo a tu alrededor o como polígono a lo largo del borde."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Facultatif : marquez l'étendue de la dégradation — en cercle autour de vous ou en polygone le long du bord."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Facoltativo: marca fin dove arriva il danno — come cerchio attorno a te o come poligono lungo il bordo."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "任意：損傷の広がりを指定できます。自分を中心とした円、または縁に沿った多角形として。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "선택 사항: 손상이 어디까지 미치는지 표시하세요. 자신을 중심으로 한 원, 또는 가장자리를 따라 그린 다각형으로."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Optioneel: markeer hoe ver de schade reikt — als cirkel om je heen of als polygoon langs de rand."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Opcional: marque até onde vai o dano — como círculo ao seu redor ou como polígono ao longo da borda."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "選用：標記損壞延伸的範圍 — 以你為中心的圓，或沿著邊緣畫的多邊形。"
           }
         }
       }
@@ -14503,63 +13835,8 @@
         }
       }
     },
-    "Pro freischalten — %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlock Pro — %@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Desbloquear Pro — %@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Débloquer Pro — %@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sblocca Pro — %@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro を購入 — %@"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro 구입 — %@"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro vrijgeven — %@"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Liberar o Pro — %@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "購買 Pro — %@"
-          }
-        }
-      }
+    "Pro freischalten für %@" : {
+      "localizations" : {}
     },
     "Pro schaltet frei" : {
       "localizations" : {
@@ -15605,121 +14882,8 @@
         }
       }
     },
-    "Schalte oben die Kamera ein — ohne Bild gibt es keine Kamerapose." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turn the camera on above — without an image there is no camera pose."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activa la cámara arriba: sin imagen no hay pose de cámara."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activez la caméra ci-dessus — sans image, pas de pose de caméra."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Attiva la fotocamera qui sopra — senza immagine non c'è posa della fotocamera."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "上でカメラをオンにしてください。映像がなければカメラポーズもありません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "위에서 카메라를 켜세요. 영상이 없으면 카메라 포즈도 없습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zet hierboven de camera aan — zonder beeld is er geen camerapose."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ligue a câmera acima — sem imagem não há pose da câmera."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "請在上方開啟相機 — 沒有畫面就沒有相機姿態。"
-          }
-        }
-      }
-    },
-    "Scharfe, räumlich verteilte Einzelbilder mit Brennweite, Position und Blickrichtung im EXIF, dazu eine Kameratabelle und ein COLMAP-Modell. Der Rohstoff für RealityScan, Metashape oder Meshroom — das Modell rechnet dort, nicht hier." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sharp, well-spaced stills carrying focal length, position and viewing direction in their EXIF, plus a camera table and a COLMAP model. The raw material for RealityScan, Metashape or Meshroom — the model is computed there, not here."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Imágenes nítidas y bien espaciadas, con distancia focal, posición y dirección de vista en el EXIF, más una tabla de cámaras y un modelo COLMAP. La materia prima para RealityScan, Metashape o Meshroom: el modelo se calcula allí, no aquí."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Des images nettes et bien réparties, avec focale, position et direction de visée dans l'EXIF, plus une table de caméras et un modèle COLMAP. La matière première pour RealityScan, Metashape ou Meshroom — le modèle se calcule là-bas, pas ici."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Immagini nitide e ben distribuite, con lunghezza focale, posizione e direzione di ripresa nell’EXIF, più una tabella delle camere e un modello COLMAP. La materia prima per RealityScan, Metashape o Meshroom: il modello si calcola lì, non qui."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "焦点距離・位置・視線方向を EXIF に持つ、鮮明で適度に間隔をあけた静止画。さらにカメラ表と COLMAP モデル。RealityScan、Metashape、Meshroom のための素材です。モデル化はそちらで行います。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "초점 거리, 위치, 시선 방향을 EXIF에 담은 선명하고 적절히 떨어진 스틸 이미지, 그리고 카메라 표와 COLMAP 모델. RealityScan, Metashape, Meshroom을 위한 재료이며 모델은 그쪽에서 계산됩니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scherpe, goed verdeelde stilstaande beelden met brandpuntsafstand, positie en kijkrichting in de EXIF, plus een cameratabel en een COLMAP-model. De grondstof voor RealityScan, Metashape of Meshroom — het model wordt daar berekend, niet hier."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Imagens nítidas e bem distribuídas, com distância focal, posição e direção de visada no EXIF, mais uma tabela de câmeras e um modelo COLMAP. A matéria-prima para RealityScan, Metashape ou Meshroom — o modelo é calculado lá, não aqui."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "清晰且分佈得當的靜態影像，EXIF 內含焦距、位置與視線方向，另附相機表與 COLMAP 模型。這是 RealityScan、Metashape 或 Meshroom 的素材，模型在那裡運算，不在這裡。"
-          }
-        }
-      }
+    "Schalte oben die Kamera ein. Ohne Bild gibt es keine Kamerapose." : {
+      "localizations" : {}
     },
     "Schlagloch" : {
       "localizations" : {
@@ -15837,63 +15001,8 @@
         }
       }
     },
-    "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren — Temperatur, Feuchte, Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Writes every Bluetooth advertisement received during a recording alongside it: identifier, signal strength, name and the raw manufacturer data as hex. That makes RuuviTag or BTHome sensors decodable afterwards — temperature, humidity and pressure sit right in there. The identifier is not a device address: iOS never hands those out, and two recordings will not agree on it."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escribe junto a cada grabación todas las tramas Bluetooth recibidas: identificador, intensidad de señal, nombre y los datos de fabricante en bruto en hexadecimal. Así los sensores RuuviTag o BTHome se pueden decodificar después: temperatura, humedad y presión están justo ahí. El identificador no es una dirección de hardware: iOS nunca la entrega, y dos grabaciones no coinciden en él."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Écrit, à côté de chaque enregistrement, chaque trame Bluetooth reçue : identifiant, puissance du signal, nom et données constructeur brutes en hexadécimal. Les capteurs RuuviTag ou BTHome deviennent ainsi décodables après coup — température, humidité et pression s'y trouvent. L'identifiant n'est pas une adresse matérielle : iOS ne la communique jamais, et deux enregistrements ne s'accordent pas dessus."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scrive accanto a ogni registrazione ogni pacchetto Bluetooth ricevuto: identificativo, intensità del segnale, nome e i dati grezzi del produttore in esadecimale. Così i sensori RuuviTag o BTHome sono decodificabili in seguito: temperatura, umidità e pressione stanno proprio lì. L'identificativo non è un indirizzo hardware: iOS non lo fornisce mai, e due registrazioni non concordano su di esso."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "記録ごとに、受信したすべての Bluetooth パケットも書き出します。識別子、信号強度、名前、そして生の製造者データを16進で。これにより RuuviTag や BTHome のセンサーを後から復号できます。温度・湿度・気圧はまさにそこに入っています。識別子は機器のアドレスではありません。iOS はそれを渡さず、2つの記録の間で一致もしません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기록마다 수신한 모든 Bluetooth 패킷도 함께 저장합니다. 식별자, 신호 세기, 이름, 그리고 원시 제조사 데이터를 16진수로 기록합니다. 이를 통해 RuuviTag나 BTHome 센서를 나중에 해독할 수 있습니다. 온도, 습도, 기압이 바로 그 안에 들어 있습니다. 식별자는 기기 주소가 아닙니다. iOS는 그것을 절대 알려주지 않으며, 두 기록이 서로 일치하지도 않습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schrijft bij elke opname ook elke ontvangen Bluetooth-advertentie weg: identificatie, signaalsterkte, naam en de ruwe fabrikantdata als hex. Daarmee zijn RuuviTag- of BTHome-sensoren achteraf te decoderen — temperatuur, vochtigheid en druk zitten daar precies in. De identificatie is geen hardware-adres: iOS geeft dat nooit vrij, en twee opnamen zijn het er niet over eens."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grava junto a cada gravação todos os pacotes Bluetooth recebidos: identificador, intensidade do sinal, nome e os dados brutos do fabricante em hexadecimal. Assim sensores RuuviTag ou BTHome podem ser decodificados depois — temperatura, umidade e pressão estão ali. O identificador não é um endereço de hardware: o iOS nunca o fornece, e duas gravações não concordam sobre ele."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "每次記錄時，會一併寫下收到的每個 Bluetooth 封包：識別碼、訊號強度、名稱，以及以十六進位表示的原始製造商資料。這讓 RuuviTag 或 BTHome 感測器可以事後解碼——溫度、濕度、氣壓就在其中。這個識別碼不是裝置位址：iOS 從不提供裝置位址，兩次記錄之間也不會一致。"
-          }
-        }
-      }
+    "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig." : {
+      "localizations" : {}
     },
     "Schrittzähler" : {
       "localizations" : {
@@ -16997,63 +16106,8 @@
         }
       }
     },
-    "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten — Dateien, AirDrop, Mail." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Roughly %@. The archive is then offered for sharing — Files, AirDrop, Mail."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aproximadamente %@. Después se ofrecerá el archivo para compartir: Archivos, AirDrop, Mail."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Environ %@. L'archive sera ensuite proposée au partage — Fichiers, AirDrop, Mail."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Circa %@. L'archivio verrà poi proposto per la condivisione — File, AirDrop, Mail."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "およそ %@。作成後、アーカイブは共有できます — ファイル、AirDrop、メール。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "약 %@. 만든 뒤 아카이브를 공유할 수 있습니다 — 파일, AirDrop, 메일."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ongeveer %@. Daarna wordt het archief aangeboden om te delen — Bestanden, AirDrop, Mail."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cerca de %@. Depois o arquivo será oferecido para compartilhar — Arquivos, AirDrop, Mail."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "約 %@。建立後即可分享封存檔 — 檔案、AirDrop、郵件。"
-          }
-        }
-      }
+    "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten: Dateien, AirDrop, Mail." : {
+      "localizations" : {}
     },
     "Unter freiem Himmel dauert das ein paar Sekunden." : {
       "localizations" : {
@@ -17751,6 +16805,10 @@
         }
       }
     },
+    "Weitere Aufnahmen" : {
+      "extractionState" : "manual",
+      "localizations" : {}
+    },
     "Wie weit weg ist das Objekt?" : {
       "localizations" : {
         "en" : {
@@ -17983,121 +17041,11 @@
         }
       }
     },
-    "Während der Aufnahme jede Messung als JSON an eine URL deiner Wahl — für ein eigenes Dashboard, Node-RED oder Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Every reading as JSON to a URL of your choosing while recording — for your own dashboard, Node-RED or Home Assistant. The format matches Sensor Logger's, so an existing endpoint works unchanged."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durante la grabación, cada medición en JSON a la URL que elijas: para tu propio panel, Node-RED o Home Assistant. El formato es el de Sensor Logger, así que un endpoint existente funciona sin cambios."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pendant l'enregistrement, chaque mesure en JSON vers l'URL de votre choix — pour votre tableau de bord, Node-RED ou Home Assistant. Le format est celui de Sensor Logger : un point de terminaison existant fonctionne tel quel."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durante la registrazione ogni misura in JSON verso un URL a tua scelta — per una dashboard tua, Node-RED o Home Assistant. Il formato è quello di Sensor Logger: un endpoint esistente funziona senza modifiche."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "記録中、すべての測定値を JSON で任意の URL へ。自作のダッシュボード、Node-RED、Home Assistant 向けです。形式は Sensor Logger と同じなので、既存のエンドポイントがそのまま使えます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기록 중 모든 측정값을 JSON으로 원하는 URL에. 직접 만든 대시보드, Node-RED, Home Assistant를 위한 기능입니다. 형식은 Sensor Logger와 같아서 기존 엔드포인트가 그대로 동작합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tijdens de opname elke meting als JSON naar een URL naar keuze — voor je eigen dashboard, Node-RED of Home Assistant. Het formaat is dat van Sensor Logger, dus een bestaand eindpunt werkt ongewijzigd."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durante a gravação, cada medição em JSON para a URL que você escolher — para o seu painel, Node-RED ou Home Assistant. O formato é o do Sensor Logger, então um endpoint existente funciona sem mudanças."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "記錄期間將每一筆量測值以 JSON 傳到你指定的網址 — 適用於自建儀表板、Node-RED 或 Home Assistant。格式與 Sensor Logger 相同，既有的端點可直接沿用。"
-          }
-        }
-      }
+    "Während der Aufnahme geht jede Messung als JSON an eine URL deiner Wahl, etwa an ein eigenes Dashboard, an Node-RED oder an Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert." : {
+      "localizations" : {}
     },
-    "Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "While a recording runs, every reading goes to this address as JSON — the same format Sensor Logger sends, so an existing endpoint works unchanged. The recording on the device is independent of it: if the connection drops, nothing is missing from the file."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durante una grabación, cada medición sale hacia esta dirección en JSON: el mismo formato que envía Sensor Logger, así que un endpoint existente funciona sin cambios. La grabación en el dispositivo es independiente de ello: si se cae la conexión, no falta nada en el archivo."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pendant un enregistrement, chaque mesure part vers cette adresse en JSON — le format qu'envoie Sensor Logger, donc un point de terminaison existant fonctionne tel quel. L'enregistrement sur l'appareil en est indépendant : si la connexion tombe, rien ne manque dans le fichier."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durante una registrazione ogni misura parte verso questo indirizzo in JSON — lo stesso formato che invia Sensor Logger, quindi un endpoint esistente funziona senza modifiche. La registrazione sul dispositivo ne è indipendente: se la connessione cade, nel file non manca nulla."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "記録中、すべての測定値が JSON でこのアドレスへ送られます。Sensor Logger が送るのと同じ形式なので、既存のエンドポイントがそのまま使えます。端末上の記録はこれとは独立して続きます。接続が切れても、ファイルには何も欠けません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "기록 중 모든 측정값이 JSON으로 이 주소에 전송됩니다. Sensor Logger가 보내는 것과 같은 형식이므로 기존 엔드포인트가 그대로 동작합니다. 기기의 기록은 이와 무관하게 계속됩니다. 연결이 끊겨도 파일에는 빠지는 것이 없습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tijdens een opname gaat elke meting als JSON naar dit adres — hetzelfde formaat dat Sensor Logger verstuurt, dus een bestaand eindpunt werkt ongewijzigd. De opname op het apparaat staat daar los van: valt de verbinding weg, dan ontbreekt er niets in het bestand."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Durante uma gravação, cada medição vai para este endereço em JSON — o mesmo formato que o Sensor Logger envia, então um endpoint existente funciona sem mudanças. A gravação no aparelho é independente disso: se a conexão cair, nada falta no arquivo."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "記錄期間每一筆量測值都會以 JSON 傳到這個位址 — 與 Sensor Logger 送出的格式相同，既有端點可直接沿用。裝置上的記錄與此無關、會繼續進行：即使連線中斷，檔案裡也不會缺少任何資料。"
-          }
-        }
-      }
+    "Während einer Aufnahme geht jede Messung als JSON an diese Adresse, im selben Format, das Sensor Logger sendet. Ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei." : {
+      "localizations" : {}
     },
     "Während einer Aufnahme lässt sich das nicht ändern." : {
       "localizations" : {
@@ -18157,121 +17105,11 @@
         }
       }
     },
-    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — die Voraussetzung dafür, Bilder in einer 3D-Szene an ihrem Ort zu platzieren." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Records position, viewing direction and focal length for every frame — what it takes to place images at their real spot in a 3D scene."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registra para cada fotograma la posición, la dirección de mira y la distancia focal: lo necesario para situar las imágenes en su sitio dentro de una escena 3D."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistre pour chaque image la position, la direction de visée et la focale — ce qu'il faut pour placer les images à leur endroit réel dans une scène 3D."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registra per ogni fotogramma posizione, direzione di ripresa e lunghezza focale — ciò che serve per collocare le immagini al loro posto in una scena 3D."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1フレームごとに位置・視線方向・焦点距離を記録します。画像を 3D シーン内の本来の場所に配置するために必要なものです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "프레임마다 위치, 시선 방향, 초점 거리를 기록합니다. 이미지를 3D 장면 안의 실제 자리에 놓기 위해 필요한 것들입니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Legt per beeld positie, kijkrichting en brandpuntsafstand vast — wat nodig is om beelden op hun echte plek in een 3D-scène te zetten."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grava para cada quadro a posição, a direção de visada e a distância focal — o que é preciso para colocar as imagens no lugar real dentro de uma cena 3D."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "逐影格記錄位置、視線方向與焦距 — 這正是把影像放到 3D 場景中原本位置所需要的。"
-          }
-        }
-      }
+    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen." : {
+      "localizations" : {}
     },
-    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — genug, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Records position, viewing direction and focal length for every frame — enough to lay the images onto a 3D map in Blender. The video is stored unrotated so the intrinsics still fit."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registra para cada fotograma la posición, la dirección de mira y la distancia focal: lo bastante para colocar las imágenes sobre un mapa 3D en Blender. El vídeo se guarda sin rotar para que las focales sigan encajando."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistre pour chaque image la position, la direction de visée et la focale — de quoi poser les images sur une carte 3D dans Blender. La vidéo est stockée sans rotation pour que les focales restent cohérentes."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Registra per ogni fotogramma posizione, direzione di ripresa e lunghezza focale — abbastanza per posare le immagini su una mappa 3D in Blender. Il video viene salvato non ruotato, così le focali restano coerenti."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1フレームごとに位置・視線方向・焦点距離を記録します。Blender で画像を 3D マップ上に載せるのに十分です。焦点距離と整合するよう、動画は回転させずに保存されます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "프레임마다 위치, 시선 방향, 초점 거리를 기록합니다. Blender에서 이미지를 3D 지도 위에 올리기에 충분합니다. 초점 거리와 맞도록 동영상은 회전하지 않은 채로 저장됩니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Legt per beeld positie, kijkrichting en brandpuntsafstand vast — genoeg om de beelden in Blender op een 3D-kaart te leggen. De video wordt ongedraaid opgeslagen, zodat de brandpuntsafstanden blijven kloppen."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grava para cada quadro a posição, a direção de visada e a distância focal — o bastante para deitar as imagens sobre um mapa 3D no Blender. O vídeo é salvo sem rotação para que as focais continuem batendo."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "逐影格記錄位置、視線方向與焦距 — 足以在 Blender 中把影像鋪到 3D 地圖上。影片以未旋轉的方式儲存，好讓焦距仍然吻合。"
-          }
-        }
-      }
+    "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Erst damit lassen sich Bilder in einer 3D-Szene an ihrem Ort platzieren." : {
+      "localizations" : {}
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Ohne Standortfreigabe fehlt die Nordausrichtung, und die Szene ist um einen unbekannten Winkel verdreht." : {
       "localizations" : {
@@ -18505,63 +17343,8 @@
         }
       }
     },
-    "Zu wenige Fixes für eine Mittelung — unter freiem Himmel nochmals versuchen." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Too few fixes to average — try again under open sky."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Demasiados pocos fixes para promediar: inténtalo de nuevo a cielo abierto."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trop peu de points pour une moyenne — réessayez à ciel ouvert."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Troppo pochi fix per una media — riprova a cielo aperto."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "平均を取るにはフィックスが少なすぎます。屋外でもう一度お試しください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "평균을 내기에는 픽스가 너무 적습니다. 탁 트인 곳에서 다시 시도하세요."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Te weinig fixes om te middelen — probeer het opnieuw onder de blote hemel."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fixes de menos para calcular a média — tente de novo a céu aberto."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "定位點太少，無法取平均 — 請到開闊處再試一次。"
-          }
-        }
-      }
+    "Zu wenige Fixes für eine Mittelung. Versuche es unter freiem Himmel nochmals." : {
+      "localizations" : {}
     },
     "Zuklappen" : {
       "localizations" : {
@@ -18679,63 +17462,8 @@
         }
       }
     },
-    "Zur Aufnahme %@ erfasst — die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Captured during recording %@ — the observations sit on the same clock as its sensor data."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Registrado durante la grabación %@: las observaciones están en el mismo reloj que sus datos de sensores."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Saisi pendant l'enregistrement %@ — les observations sont sur la même horloge que ses données de capteurs."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rilevato durante la registrazione %@ — le osservazioni sono sullo stesso orologio dei suoi dati dei sensori."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "記録 %@ の最中に取得 — 観測点はその記録のセンサーデータと同じ時計の上にあります。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "기록 %@ 중에 수집됨 — 관측는 해당 기록의 센서 데이터와 같은 시계 위에 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vastgelegd tijdens opname %@ — de waarnemingen liggen op dezelfde klok als haar sensordata."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Registrado durante a gravação %@ — as observações estão no mesmo relógio dos dados de sensores dela."
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "於記錄 %@ 期間採集 — 觀測點與該記錄的感測器資料位於同一個時鐘上。"
-          }
-        }
-      }
+    "Zur Aufnahme %@ erfasst. Die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten." : {
+      "localizations" : {}
     },
     "Zurück" : {
       "localizations" : {

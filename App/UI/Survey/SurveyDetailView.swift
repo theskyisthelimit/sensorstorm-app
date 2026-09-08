@@ -114,7 +114,7 @@ struct SurveyDetailView: View {
             infoRow("Grösse", Format.bytes(model.byteSize(of: survey)))
             if let recordingID = survey.recordingID {
                 Divider().overlay(Theme.cardBorder)
-                Text("Zur Aufnahme \(String(recordingID.uuidString.prefix(8))) erfasst — die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten.")
+                Text("Zur Aufnahme \(String(recordingID.uuidString.prefix(8))) erfasst. Die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }

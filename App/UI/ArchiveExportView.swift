@@ -100,7 +100,7 @@ struct ArchiveExportView: View {
         } header: {
             Text("Messaufnahmen")
         } footer: {
-            Text("CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format — der Aufbau steht im README des Archivs.")
+            Text("CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format. Der Aufbau steht im README des Archivs.")
         }
     }
 
@@ -124,7 +124,7 @@ struct ArchiveExportView: View {
             }
         } footer: {
             if hasSomethingToExport {
-                Text("Ungefähr \(Format.bytes(estimatedBytes)). Das Archiv wird danach zum Teilen angeboten — Dateien, AirDrop, Mail.")
+                Text("Ungefähr \(Format.bytes(estimatedBytes)). Das Archiv wird danach zum Teilen angeboten: Dateien, AirDrop, Mail.")
             } else {
                 Text("Nichts ausgewählt, was es zu exportieren gäbe.")
             }

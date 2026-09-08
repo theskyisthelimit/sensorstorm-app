@@ -72,7 +72,7 @@ struct SurveyListView: View {
                 if canStartSurvey {
                     Text("Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
                 } else {
-                    Text("Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.")
+                    Text("Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander, pro Strasse, pro Auftrag oder pro Tag, braucht es Pro.")
                 }
             }
         }

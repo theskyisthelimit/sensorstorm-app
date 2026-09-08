@@ -170,7 +170,7 @@ struct FindingDetailView: View {
                 .foregroundStyle(.secondary)
 
             if let measured = finding.measuredLocation, measured.coordinate.isValid {
-                Text("GPS hatte \(Format.coordinate(measured.latitude)), \(Format.coordinate(measured.longitude)) gemeldet — beides ist gespeichert.")
+                Text("GPS hatte \(Format.coordinate(measured.latitude)), \(Format.coordinate(measured.longitude)) gemeldet. Beides ist gespeichert.")
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }

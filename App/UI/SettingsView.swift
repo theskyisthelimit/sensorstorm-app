@@ -231,7 +231,7 @@ struct SettingsView: View {
             Text("Live-Übertragung")
         } footer: {
             if hub.settings.isStreamingEnabled == true {
-                Text("Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.")
+                Text("Während einer Aufnahme geht jede Messung als JSON an diese Adresse, im selben Format, das Sensor Logger sendet. Ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.")
             } else {
                 Text("Für ein eigenes Dashboard, Node-RED oder Home Assistant. Ohne eingetragene Adresse baut die App keine Verbindung auf.")
             }
@@ -241,7 +241,7 @@ struct SettingsView: View {
             Section {
                 EmptyView()
             } footer: {
-                Text("Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren — Temperatur, Feuchte, Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.")
+                Text("Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.")
             }
         }
 
@@ -340,17 +340,17 @@ struct SettingsView: View {
             if !hub.isARKitAvailable {
                 Text("Dieses Gerät unterstützt kein ARKit-Tracking.")
             } else if !hub.settings.isVideoEnabled {
-                Text("Schalte oben die Kamera ein — ohne Bild gibt es keine Kamerapose.")
+                Text("Schalte oben die Kamera ein. Ohne Bild gibt es keine Kamerapose.")
             } else if !pro.access.allows(.arkitPose) {
-                Text("Die Kamerapose gehört zu Pro: zu jedem Bild Position, Blickrichtung und Brennweite — die Voraussetzung für den Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten.")
+                Text("Die Kamerapose gehört zu Pro. Sie zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf, und ohne sie gibt es keinen Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten.")
             } else if hub.settings.captureEngine == .arkit {
                 if hub.canAlignARKitToNorth {
-                    Text("Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — genug, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.")
+                    Text("Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.")
                 } else {
                     Text("Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Ohne Standortfreigabe fehlt die Nordausrichtung, und die Szene ist um einen unbekannten Winkel verdreht.")
                 }
             } else {
-                Text("Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten — die Bilder lassen sich damit nicht im Raum platzieren.")
+                Text("Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten. Die Bilder lassen sich damit nicht im Raum platzieren.")
             }
         }
     }

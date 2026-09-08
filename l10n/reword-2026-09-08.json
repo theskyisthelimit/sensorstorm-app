@@ -1,0 +1,73 @@
+{
+  "%@ gesammelt — ruhig stehen bleiben":
+  "%@ gesammelt. Bleib ruhig stehen.",
+
+  "Alle Sensoren nebeneinander in einer Tabelle, auf ein gemeinsames Zeitraster gelegt — dazu die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor.":
+  "Alle Sensoren stehen nebeneinander in einer Tabelle, auf einem gemeinsamen Zeitraster. Dazu kommt die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor.",
+
+  "Beliebig viele Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag.":
+  "Beliebig viele Routen nebeneinander: pro Strasse, pro Auftrag, pro Tag.",
+
+  "Bewegungssensoren bei 400 Hz statt 200 Hz — die Auflösung, in der Vibrationen und Stösse noch als Form erkennbar sind.":
+  "Die Bewegungssensoren laufen mit 400 Hz statt 200 Hz. In dieser Auflösung sind Vibrationen und Stösse noch als Form erkennbar.",
+
+  "CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format — der Aufbau steht im README des Archivs.":
+  "CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format. Der Aufbau steht im README des Archivs.",
+
+  "Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnet RealityScan, Metashape oder Meshroom — nicht diese App.":
+  "Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnen RealityScan, Metashape oder Meshroom. Diese App rechnet es nicht.",
+
+  "Die Kamerapose gehört zu Pro: zu jedem Bild Position, Blickrichtung und Brennweite — die Voraussetzung für den Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten.":
+  "Die Kamerapose gehört zu Pro. Sie zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf, und ohne sie gibt es keinen Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten.",
+
+  "Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander — pro Strasse, pro Auftrag, pro Tag — braucht es Pro.":
+  "Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander, pro Strasse, pro Auftrag oder pro Tag, braucht es Pro.",
+
+  "Ein Bündel mit frames.csv, scene.json, Video und GPS-Track — das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt.":
+  "Das Bündel enthält frames.csv, scene.json, das Video und den GPS-Track. Das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt.",
+
+  "Ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus — hundertmal dasselbe Bild nützt keiner Rekonstruktion.":
+  "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion.",
+
+  "GPS hatte %@, %@ gemeldet — beides ist gespeichert.":
+  "GPS hatte %@, %@ gemeldet. Beides ist gespeichert.",
+
+  "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten — die Bilder lassen sich damit nicht im Raum platzieren.":
+  "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten. Die Bilder lassen sich damit nicht im Raum platzieren.",
+
+  "Optional: markiere, wie weit der Schaden reicht — als Kreis um dich herum oder als Polygon entlang des Rands.":
+  "Du kannst markieren, wie weit der Schaden reicht: als Kreis um dich herum oder als Polygon entlang des Rands.",
+
+  "Pro freischalten — %@":
+  "Pro freischalten für %@",
+
+  "Schalte oben die Kamera ein — ohne Bild gibt es keine Kamerapose.":
+  "Schalte oben die Kamera ein. Ohne Bild gibt es keine Kamerapose.",
+
+  "Scharfe, räumlich verteilte Einzelbilder mit Brennweite, Position und Blickrichtung im EXIF, dazu eine Kameratabelle und ein COLMAP-Modell. Der Rohstoff für RealityScan, Metashape oder Meshroom — das Modell rechnet dort, nicht hier.":
+  "Der Export wählt scharfe, räumlich verteilte Einzelbilder und schreibt Brennweite, Position und Blickrichtung ins EXIF. Dazu kommen eine Kameratabelle und ein COLMAP-Modell. RealityScan, Metashape und Meshroom lesen das und rechnen daraus das Modell.",
+
+  "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren — Temperatur, Feuchte, Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.":
+  "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.",
+
+  "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten — Dateien, AirDrop, Mail.":
+  "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten: Dateien, AirDrop, Mail.",
+
+  "Während der Aufnahme jede Messung als JSON an eine URL deiner Wahl — für ein eigenes Dashboard, Node-RED oder Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert.":
+  "Während der Aufnahme geht jede Messung als JSON an eine URL deiner Wahl, etwa an ein eigenes Dashboard, an Node-RED oder an Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert.",
+
+  "Während einer Aufnahme geht jede Messung als JSON an diese Adresse — dasselbe Format, das Sensor Logger sendet, ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.":
+  "Während einer Aufnahme geht jede Messung als JSON an diese Adresse, im selben Format, das Sensor Logger sendet. Ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.",
+
+  "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — die Voraussetzung dafür, Bilder in einer 3D-Szene an ihrem Ort zu platzieren.":
+  "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Erst damit lassen sich Bilder in einer 3D-Szene an ihrem Ort platzieren.",
+
+  "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf — genug, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.":
+  "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen.",
+
+  "Zu wenige Fixes für eine Mittelung — unter freiem Himmel nochmals versuchen.":
+  "Zu wenige Fixes für eine Mittelung. Versuche es unter freiem Himmel nochmals.",
+
+  "Zur Aufnahme %@ erfasst — die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten.":
+  "Zur Aufnahme %@ erfasst. Die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten."
+}

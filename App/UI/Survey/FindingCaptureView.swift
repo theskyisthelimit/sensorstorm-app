@@ -312,7 +312,7 @@ struct FindingCaptureView: View {
             VStack(alignment: .leading, spacing: 4) {
                 ProgressView(value: elapsed, total: Self.measureSeconds)
                     .tint(Theme.accent)
-                Text("\(Format.fixes(model.location.fixCount(inLast: max(elapsed, 1)))) gesammelt — ruhig stehen bleiben")
+                Text("\(Format.fixes(model.location.fixCount(inLast: max(elapsed, 1)))) gesammelt. Bleib ruhig stehen.")
                     .font(.caption2.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
@@ -401,7 +401,7 @@ struct FindingCaptureView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
             } else {
-                Text("Optional: markiere, wie weit der Schaden reicht — als Kreis um dich herum oder als Polygon entlang des Rands.")
+                Text("Du kannst markieren, wie weit der Schaden reicht: als Kreis um dich herum oder als Polygon entlang des Rands.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -562,7 +562,7 @@ struct FindingCaptureView: View {
 
         try? await Task.sleep(for: .seconds(Self.measureSeconds))
         guard let averaged = model.location.averagedFix(seconds: Self.measureSeconds) else {
-            cameraMessage = String(localized: "Zu wenige Fixes für eine Mittelung — unter freiem Himmel nochmals versuchen.")
+            cameraMessage = String(localized: "Zu wenige Fixes für eine Mittelung. Versuche es unter freiem Himmel nochmals.")
             return
         }
         draft.apply(averaged, heading: model.location.heading)
