@@ -9,6 +9,12 @@
             "value" : "تم إرسال %lld"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Odesláno: %lld"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -69,6 +75,12 @@
             "value" : "%lld verzonden"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wysłano: %lld"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -87,10 +99,22 @@
             "value" : "Отправлено: %lld"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Odoslané: %lld"
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%lld skickade"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Надіслано: %lld"
           }
         },
         "zh-Hans" : {
@@ -113,6 +137,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "لا توجد بيانات صحية على هذا الجهاز."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "V tomto zařízení nejsou zdravotní data."
           }
         },
         "da" : {
@@ -175,6 +205,12 @@
             "value" : "Op dit apparaat zijn geen gezondheidsgegevens beschikbaar."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "W tym urządzeniu nie ma danych zdrowotnych."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -193,10 +229,22 @@
             "value" : "На этом устройстве нет данных здоровья."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "V tomto zariadení nie sú zdravotné dáta."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Det finns inga hälsodata på den här enheten."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "На цьому пристрої немає даних здоров’я."
           }
         },
         "zh-Hans" : {
@@ -219,6 +267,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "بدء التسجيل"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spustit záznam"
           }
         },
         "da" : {
@@ -281,6 +335,12 @@
             "value" : "Opname starten"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rozpocznij nagranie"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -299,10 +359,22 @@
             "value" : "Начать запись"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spustiť záznam"
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Starta inspelning"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Почати запис"
           }
         },
         "zh-Hans" : {
@@ -325,6 +397,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "حاول مجددًا"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zkusit znovu"
           }
         },
         "da" : {
@@ -387,6 +465,12 @@
             "value" : "Opnieuw proberen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spróbuj ponownie"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,10 +489,22 @@
             "value" : "Попробовать снова"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Skúsiť znova"
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Försök igen"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Спробувати знову"
           }
         },
         "zh-Hans" : {
@@ -431,6 +527,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "إيقاف"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
           }
         },
         "da" : {
@@ -493,6 +595,12 @@
             "value" : "Stop"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -511,10 +619,22 @@
             "value" : "Стоп"
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Stoppa"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Стоп"
           }
         },
         "zh-Hans" : {

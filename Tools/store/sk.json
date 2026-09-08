@@ -1,0 +1,14 @@
+{
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "Prvá verzia."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "Všetky profi formáty, 400 Hz a 4K. Raz."
+      }
+    }
+  }
+}

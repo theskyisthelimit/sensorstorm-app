@@ -10,6 +10,12 @@
             "value" : "يحصي Sensorstorm عدد أجهزة Bluetooth التي تبثّ في المحيط ويسجّل قوة الإشارة. ولا يُنشأ أي اتصال بها."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm počítá, kolik zařízení Bluetooth v okolí vysílá, a zaznamenává sílu signálu. Spojení s nimi se nenavazuje."
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -76,6 +82,12 @@
             "value" : "Sensorstorm telt hoeveel Bluetooth-apparaten in de buurt uitzenden en registreert de signaalsterkte. Er wordt geen verbinding met ze gemaakt."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm liczy, ile urządzeń Bluetooth nadaje w otoczeniu, i zapisuje siłę sygnału. Połączenie z nimi nie jest nawiązywane."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -94,10 +106,22 @@
             "value" : "Sensorstorm считает, сколько устройств Bluetooth передают поблизости, и записывает силу сигнала. Соединение с ними не устанавливается."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm počíta, koľko zariadení Bluetooth v okolí vysiela, a zaznamenáva silu signálu. Spojenie s nimi sa nenadväzuje."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm räknar hur många Bluetooth-enheter som sänder i omgivningen och registrerar signalstyrkan. Ingen anslutning upprättas till dem."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm рахує, скільки пристроїв Bluetooth передають поблизу, і записує силу сигналу. З’єднання з ними не встановлюється."
           }
         },
         "zh-Hans" : {
@@ -121,6 +145,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "يسجّل Sensorstorm الفيديو متزامنًا مع بيانات المستشعرات ويصوّر الأرضية لأجل ملاحظة."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm nahrává video synchronně s daty senzorů a fotografuje povrch pro pozorování."
           }
         },
         "da" : {
@@ -189,6 +219,12 @@
             "value" : "Sensorstorm neemt video op synchroon met de sensordata en fotografeert de ondergrond voor een waarneming."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm nagrywa wideo synchronicznie z danymi czujników i fotografuje nawierzchnię do obserwacji."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -207,10 +243,22 @@
             "value" : "Sensorstorm снимает видео синхронно с данными датчиков и фотографирует покрытие для наблюдения."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm nahráva video synchrónne s dátami senzorov a fotografuje povrch pre pozorovanie."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm spelar in video synkront med sensordatan och fotograferar beläggningen för en observation."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm знімає відео синхронно з даними датчиків і фотографує покриття для спостереження."
           }
         },
         "zh-Hans" : {
@@ -234,6 +282,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "يرسل Sensorstorm القيم المقاسة إلى العنوان الذي تُدخله في الإعدادات. وإذا كان الخادم على الشبكة نفسها فهذا يحتاج هذا الإذن."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm posílá naměřené hodnoty na adresu, kterou zadáte v nastavení. Pokud je server ve stejné síti, potřebuje to toto oprávnění."
           }
         },
         "da" : {
@@ -302,6 +356,12 @@
             "value" : "Sensorstorm stuurt de metingen naar het adres dat je in de instellingen invult. Staat die server in hetzelfde netwerk, dan is deze toestemming nodig."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm wysyła pomiary pod adres, który wpiszesz w ustawieniach. Jeśli serwer jest w tej samej sieci, wymaga to tego uprawnienia."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -320,10 +380,22 @@
             "value" : "Sensorstorm отправляет измерения на адрес, который вы указали в настройках. Если сервер в той же сети, для этого нужно это разрешение."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm posiela namerané hodnoty na adresu, ktorú zadáte v nastaveniach. Ak je server v tej istej sieti, potrebuje to toto oprávnenie."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm skickar mätvärdena till adressen du anger i inställningarna. Ligger servern på samma nät krävs den här behörigheten."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm надсилає вимірювання на адресу, яку ви вказали в налаштуваннях. Якщо сервер у тій самій мережі, для цього потрібен цей дозвіл."
           }
         },
         "zh-Hans" : {
@@ -347,6 +419,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "يواصل Sensorstorm تسجيل الموقع أيضًا حين تُقفل الشاشة أثناء قياس."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zaznamenává polohu dál i tehdy, když se během měření zamkne obrazovka."
           }
         },
         "da" : {
@@ -415,6 +493,12 @@
             "value" : "Sensorstorm blijft de positie registreren, ook als het scherm tijdens een meting op slot gaat."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zapisuje pozycję dalej także wtedy, gdy podczas pomiaru ekran zostanie zablokowany."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -433,10 +517,22 @@
             "value" : "Sensorstorm продолжает записывать позицию и тогда, когда экран во время измерения блокируется."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zaznamenáva polohu ďalej aj vtedy, keď sa počas merania zamkne obrazovka."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm fortsätter registrera positionen även när skärmen låses under en mätning."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm продовжує записувати позицію й тоді, коли екран під час вимірювання блокується."
           }
         },
         "zh-Hans" : {
@@ -460,6 +556,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "يسجّل Sensorstorm الموقع والارتفاع والسرعة والاتجاه، ويحاذي بيانات الاتجاه إلى الشمال، ويثبّت أين سُجِّلت ملاحظة."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zaznamenává polohu, výšku, rychlost a kurz, srovnává data orientace na sever a podrží, kde bylo pozorování zaznamenáno."
           }
         },
         "da" : {
@@ -528,6 +630,12 @@
             "value" : "Sensorstorm registreert positie, hoogte, snelheid en koers, richt de oriëntatiegegevens op het ware noorden en legt vast waar een waarneming is gedaan."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zapisuje pozycję, wysokość, prędkość i kurs, ustawia dane orientacji na północ i zapamiętuje, gdzie zapisano obserwację."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -546,10 +654,22 @@
             "value" : "Sensorstorm записывает позицию, высоту, скорость и курс, выравнивает данные ориентации по северу и запоминает, где было записано наблюдение."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zaznamenáva polohu, výšku, rýchlosť a kurz, zosúlaďuje dáta orientácie na sever a podrží, kde bolo pozorovanie zaznamenané."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm registrerar position, höjd, hastighet och kurs, riktar in orienteringsdatan mot norr och håller reda på var en observation registrerades."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm записує позицію, висоту, швидкість і курс, вирівнює дані орієнтації на північ і запам’ятовує, де було записано спостереження."
           }
         },
         "zh-Hans" : {
@@ -573,6 +693,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "يقيس Sensorstorm مستوى الصوت، ويسجّل الصوت مع القياس عند الطلب، ويسجّل صوت المقاطع القصيرة لملاحظة."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm měří hlasitost, na přání nahrává zvuk k měření a nahrává zvuk krátkých klipů k pozorování."
           }
         },
         "da" : {
@@ -641,6 +767,12 @@
             "value" : "Sensorstorm meet het geluidsniveau, neemt desgewenst audio op bij een meting en neemt het geluid op van de korte clips bij een waarneming."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm mierzy głośność, na życzenie nagrywa dźwięk do pomiaru i nagrywa dźwięk krótkich klipów do obserwacji."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -659,10 +791,22 @@
             "value" : "Sensorstorm измеряет громкость, по желанию записывает звук к измерению и записывает звук коротких клипов к наблюдению."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm meria hlasitosť, na želanie nahráva zvuk k meraniu a nahráva zvuk krátkych klipov k pozorovaniu."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm mäter ljudstyrkan, spelar vid behov in ljud till mätningen och spelar in ljudet i de korta klippen till en observation."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm вимірює гучність, за потреби записує звук до вимірювання й записує звук коротких кліпів до спостереження."
           }
         },
         "zh-Hans" : {
@@ -686,6 +830,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "يسجّل Sensorstorm التسارع وسرعة الدوران والاتجاه والمجال المغناطيسي والخطوات."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zaznamenává zrychlení, úhlovou rychlost, orientaci, magnetické pole a kroky."
           }
         },
         "da" : {
@@ -754,6 +904,12 @@
             "value" : "Sensorstorm registreert versnelling, draaisnelheid, oriëntatie, magnetisch veld en stappen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zapisuje przyspieszenie, prędkość obrotową, orientację, pole magnetyczne i kroki."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -772,10 +928,22 @@
             "value" : "Sensorstorm записывает ускорение, угловую скорость, ориентацию, магнитное поле и шаги."
           }
         },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm zaznamenáva zrýchlenie, uhlovú rýchlosť, orientáciu, magnetické pole a kroky."
+          }
+        },
         "sv" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm registrerar acceleration, rotationshastighet, orientering, magnetfält och steg."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm записує прискорення, кутову швидкість, орієнтацію, магнітне поле та кроки."
           }
         },
         "zh-Hans" : {
