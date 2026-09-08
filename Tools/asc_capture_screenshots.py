@@ -392,8 +392,15 @@ def replace_screenshot_set(asc, up, localization_id: str, display_type: str,
 
 def matching_locales(locale_ids: dict[str, str], lang_key: str) -> list[str]:
     """App Store locales that serve one catalog language — `de` covers `de-DE`,
-    and a language the current version does not offer matches nothing."""
-    return [loc for loc in locale_ids if loc.split("-")[0].lower() == lang_key.lower()]
+    and a language the current version does not offer matches nothing.
+
+    The exact hit comes first, because a catalog language can carry its region:
+    `pt-BR` and `zh-Hant` are the whole locale, and stripping at the hyphen left
+    `pt` and `zh` — which match no App Store locale at all. Both languages then
+    captured 50 screenshots each and uploaded none of them."""
+    key = lang_key.lower()
+    exact = [loc for loc in locale_ids if loc.lower() == key]
+    return exact or [loc for loc in locale_ids if loc.split("-")[0].lower() == key]
 
 
 UPLOAD_ATTEMPTS = 3
