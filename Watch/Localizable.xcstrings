@@ -45,6 +45,18 @@
             "value" : "%lld envoyés"
           }
         },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Poslano: %lld"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld elküldve"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93,6 +105,12 @@
             "value" : "%lld enviados"
           }
         },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trimise: %lld"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -109,6 +127,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "%lld skickade"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld gönderildi"
           }
         },
         "uk" : {
@@ -175,6 +199,18 @@
             "value" : "Il n'y a pas de données de santé sur cet appareil."
           }
         },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Na ovom uređaju nema zdravstvenih podataka."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ezen az eszközön nincsenek egészségügyi adatok."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -223,6 +259,12 @@
             "value" : "Não há dados de saúde neste aparelho."
           }
         },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pe acest dispozitiv nu există date de sănătate."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -239,6 +281,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Det finns inga hälsodata på den här enheten."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bu cihazda sağlık verisi yok."
           }
         },
         "uk" : {
@@ -305,6 +353,18 @@
             "value" : "Démarrer l'enregistrement"
           }
         },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pokreni snimanje"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Felvétel indítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +413,12 @@
             "value" : "Iniciar gravação"
           }
         },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pornește înregistrarea"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -369,6 +435,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Starta inspelning"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kaydı başlat"
           }
         },
         "uk" : {
@@ -435,6 +507,18 @@
             "value" : "Réessayer"
           }
         },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pokušaj ponovno"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Próbáld újra"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +567,12 @@
             "value" : "Tentar de novo"
           }
         },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Încearcă din nou"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -499,6 +589,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Försök igen"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yeniden dene"
           }
         },
         "uk" : {
@@ -565,6 +661,18 @@
             "value" : "Stop"
           }
         },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Állj"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -613,6 +721,12 @@
             "value" : "Parar"
           }
         },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -629,6 +743,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Stoppa"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Dur"
           }
         },
         "uk" : {

@@ -381,7 +381,7 @@
         "few",
         "other"
       ],
-      "status": "planned",
+      "status": "machine",
       "inflectsBrands": true
     },
     {
@@ -517,7 +517,7 @@
         "one",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "id",
@@ -629,7 +629,7 @@
         "few",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "sk",
@@ -719,7 +719,7 @@
         "one",
         "other"
       ],
-      "status": "planned"
+      "status": "machine"
     },
     {
       "code": "uk",
