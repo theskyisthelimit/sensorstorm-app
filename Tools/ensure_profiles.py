@@ -32,6 +32,8 @@ PROFILES_DIR = os.path.expanduser("~/Library/MobileDevice/Provisioning Profiles"
 
 BUNDLE_ID = "ch.sensorstorm.app"
 PROFILE_NAME = "Sensorstorm CI Distribution"
+WATCH_BUNDLE_ID = "ch.sensorstorm.app.watchkitapp"
+WATCH_PROFILE_NAME = "Sensorstorm Watch CI Distribution"
 
 # Sensorstorm ist ein einzelnes Bundle: keine Widget-Extension, keine App Group,
 # kein iCloud-Container. Alles bleibt im App-Container des Geräts.
@@ -40,6 +42,10 @@ PROFILE_NAME = "Sensorstorm CI Distribution"
 # Die App-ID selbst wird nie automatisch angelegt.
 TARGETS = [
     (BUNDLE_ID, PROFILE_NAME, None),
+    # The watch app is its own bundle and needs its own profile; without it the
+    # embedded binary ships unentitled and altool rejects the upload (90166).
+    # HealthKit is the only capability it asks for — heart rate, read-only.
+    (WATCH_BUNDLE_ID, WATCH_PROFILE_NAME, ["HEALTHKIT"]),
 ]
 
 

@@ -16,7 +16,7 @@ settings:
     SWIFT_VERSION: "6.0"
     DEVELOPMENT_TEAM: "E3CQ6W7CY2"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "8"
+    CURRENT_PROJECT_VERSION: "9"
     SWIFT_EMIT_LOC_STRINGS: "YES"
     ENABLE_USER_SCRIPT_SANDBOXING: "YES"
     SWIFT_STRICT_CONCURRENCY: complete
@@ -129,6 +129,10 @@ targets:
         TARGETED_DEVICE_FAMILY: "4"
         GENERATE_INFOPLIST_FILE: "NO"
         CODE_SIGN_ENTITLEMENTS: Watch/Sensorstorm.entitlements
+        # Without an icon set here altool refuses the whole upload: the watch bundle
+        # has no CFBundleIconName and no icon files (90713, 90391), and that rejects
+        # the iPhone app along with it.
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
       path: Watch/Info.plist
       properties:

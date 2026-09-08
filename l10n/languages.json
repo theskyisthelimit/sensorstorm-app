@@ -1,0 +1,771 @@
+{
+  "$comment": "Die Registry: eine Sprache ist ein Eintrag hier plus `Tools/l10n.py add-language <code>`. code = String Catalog; appleLocale = Simulator/Screenshots; ascLocales = App Store Connect (Listing, IAP); siteLocale = Website-Verzeichnis; pluralCategories = was Xcode im String Catalog anlegt (für fr/it/es/pt/ca one/other, nicht das CLDR-„many“); register = Anrede/Höflichkeit für die Übersetzung; status: source | verified | machine | planned.",
+  "sourceLanguage": "de",
+  "referenceLanguage": "en",
+  "languages": [
+    {
+      "code": "de",
+      "name": "Deutsch",
+      "englishName": "German",
+      "appleLocale": "de_DE",
+      "ascLocales": [
+        "de-DE"
+      ],
+      "siteLocale": "de",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "“"
+      ],
+      "register": "du, ohne Helvetismen im gemeinsamen Text; Schweizer Begriffe nur in overlays/CH",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "source"
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "englishName": "English",
+      "appleLocale": "en_US",
+      "ascLocales": [
+        "en-US",
+        "en-GB",
+        "en-AU",
+        "en-CA"
+      ],
+      "siteLocale": "en",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "plain, second person, British spelling as in the existing catalog (flat, cellar)",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "verified"
+    },
+    {
+      "code": "fr",
+      "name": "Français",
+      "englishName": "French",
+      "appleLocale": "fr_FR",
+      "ascLocales": [
+        "fr-FR",
+        "fr-CA"
+      ],
+      "siteLocale": "fr",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "« ",
+        " »"
+      ],
+      "register": "vouvoiement (vous), comme l’interface d’Apple en français",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "verified",
+      "avoid": [
+        {
+          "pattern": "\\b(tu|ton|ta|tes|toi)\\b|\\bt’(?=[aeiouéè])",
+          "reason": "Tutoiement; diese Sprache siezt"
+        }
+      ]
+    },
+    {
+      "code": "it",
+      "name": "Italiano",
+      "englishName": "Italian",
+      "appleLocale": "it_IT",
+      "ascLocales": [
+        "it"
+      ],
+      "siteLocale": "it",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "tu, come il catalogo esistente; termini svizzeri (pigione, posteggio) solo in overlays/CH",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "verified"
+    },
+    {
+      "code": "es",
+      "name": "Español",
+      "englishName": "Spanish",
+      "appleLocale": "es_ES",
+      "ascLocales": [
+        "es-ES",
+        "es-MX"
+      ],
+      "siteLocale": "es",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "tú; español neutro, sin regionalismos",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine",
+      "avoid": [
+        {
+          "pattern": "\\b(ustedes|acá|computadora|celular)\\b",
+          "reason": "Regionalismus; das Spanische ist neutral"
+        }
+      ]
+    },
+    {
+      "code": "pt-BR",
+      "name": "Português (Brasil)",
+      "englishName": "Portuguese (Brazil)",
+      "appleLocale": "pt_BR",
+      "ascLocales": [
+        "pt-BR"
+      ],
+      "siteLocale": "pt-br",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "você; português brasileiro",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "pt-PT",
+      "name": "Português (Portugal)",
+      "englishName": "Portuguese (Portugal)",
+      "appleLocale": "pt_PT",
+      "ascLocales": [
+        "pt-PT"
+      ],
+      "siteLocale": "pt-pt",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "tu/você informal; português europeu, sem brasileirismos",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine",
+      "avoid": [
+        {
+          "pattern": "\\b(você|celular|ônibus|time|legal)\\b",
+          "reason": "Brasilianismus im europäischen Portugiesisch"
+        }
+      ]
+    },
+    {
+      "code": "ja",
+      "name": "日本語",
+      "englishName": "Japanese",
+      "appleLocale": "ja_JP",
+      "ascLocales": [
+        "ja"
+      ],
+      "siteLocale": "ja",
+      "direction": "ltr",
+      "script": "Jpan",
+      "quotes": [
+        "「",
+        "」"
+      ],
+      "register": "です・ます調（丁寧語）、UI は簡潔に",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "ko",
+      "name": "한국어",
+      "englishName": "Korean",
+      "appleLocale": "ko_KR",
+      "ascLocales": [
+        "ko"
+      ],
+      "siteLocale": "ko",
+      "direction": "ltr",
+      "script": "Kore",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "해요체, UI는 간결하게",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "zh-Hans",
+      "name": "简体中文",
+      "englishName": "Chinese (Simplified)",
+      "appleLocale": "zh_Hans_SG",
+      "ascLocales": [
+        "zh-Hans"
+      ],
+      "siteLocale": "zh-hans",
+      "direction": "ltr",
+      "script": "Hans",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "你（不用您），简体，全角标点",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine",
+      "notes": "Festland-China ist aus der Store-Verfügbarkeit genommen (ICP); bedient SG, MY, Diaspora."
+    },
+    {
+      "code": "zh-Hant",
+      "name": "繁體中文",
+      "englishName": "Chinese (Traditional)",
+      "appleLocale": "zh_Hant_TW",
+      "ascLocales": [
+        "zh-Hant"
+      ],
+      "siteLocale": "zh-hant",
+      "direction": "ltr",
+      "script": "Hant",
+      "quotes": [
+        "「",
+        "」"
+      ],
+      "register": "你，繁體（台灣用語），全形標點",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "hi",
+      "name": "हिन्दी",
+      "englishName": "Hindi",
+      "appleLocale": "hi_IN",
+      "ascLocales": [
+        "hi"
+      ],
+      "siteLocale": "hi",
+      "direction": "ltr",
+      "script": "Deva",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "आप (विनम्र); तकनीकी शब्द जहाँ सामान्य हों अंग्रेज़ी में",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "ru",
+      "name": "Русский",
+      "englishName": "Russian",
+      "appleLocale": "ru_RU",
+      "ascLocales": [
+        "ru"
+      ],
+      "siteLocale": "ru",
+      "direction": "ltr",
+      "script": "Cyrl",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "вы (вежливое, со строчной)",
+      "pluralCategories": [
+        "one",
+        "few",
+        "many",
+        "other"
+      ],
+      "status": "machine",
+      "notes": "In Russland keine Käufe im App Store seit 2022; Cloud-Abo dort nicht kaufbar."
+    },
+    {
+      "code": "ar",
+      "name": "العربية",
+      "englishName": "Arabic",
+      "appleLocale": "ar_SA",
+      "ascLocales": [
+        "ar-SA"
+      ],
+      "siteLocale": "ar",
+      "direction": "rtl",
+      "script": "Arab",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "العربية الفصحى الحديثة، مخاطبة محايدة",
+      "pluralCategories": [
+        "zero",
+        "one",
+        "two",
+        "few",
+        "many",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "ca",
+      "name": "Català",
+      "englishName": "Catalan",
+      "appleLocale": "ca_ES",
+      "ascLocales": [
+        "ca"
+      ],
+      "siteLocale": "ca",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "tu",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "planned"
+    },
+    {
+      "code": "hr",
+      "name": "Hrvatski",
+      "englishName": "Croatian",
+      "appleLocale": "hr_HR",
+      "ascLocales": [
+        "hr"
+      ],
+      "siteLocale": "hr",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "“"
+      ],
+      "register": "ti",
+      "pluralCategories": [
+        "one",
+        "few",
+        "other"
+      ],
+      "status": "machine",
+      "inflectsBrands": true
+    },
+    {
+      "code": "cs",
+      "name": "Čeština",
+      "englishName": "Czech",
+      "appleLocale": "cs_CZ",
+      "ascLocales": [
+        "cs"
+      ],
+      "siteLocale": "cs",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "“"
+      ],
+      "register": "vy (zdvořilé)",
+      "pluralCategories": [
+        "one",
+        "few",
+        "many",
+        "other"
+      ],
+      "status": "machine",
+      "inflectsBrands": true
+    },
+    {
+      "code": "da",
+      "name": "Dansk",
+      "englishName": "Danish",
+      "appleLocale": "da_DK",
+      "ascLocales": [
+        "da"
+      ],
+      "siteLocale": "da",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "»",
+        "«"
+      ],
+      "register": "du",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "nl",
+      "name": "Nederlands",
+      "englishName": "Dutch",
+      "appleLocale": "nl_NL",
+      "ascLocales": [
+        "nl-NL"
+      ],
+      "siteLocale": "nl",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "‘",
+        "’"
+      ],
+      "register": "je/jij",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "fi",
+      "name": "Suomi",
+      "englishName": "Finnish",
+      "appleLocale": "fi_FI",
+      "ascLocales": [
+        "fi"
+      ],
+      "siteLocale": "fi",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "”",
+        "”"
+      ],
+      "register": "sinä",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "el",
+      "name": "Ελληνικά",
+      "englishName": "Greek",
+      "appleLocale": "el_GR",
+      "ascLocales": [
+        "el"
+      ],
+      "siteLocale": "el",
+      "direction": "ltr",
+      "script": "Grek",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "ενικός (εσύ)",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "hu",
+      "name": "Magyar",
+      "englishName": "Hungarian",
+      "appleLocale": "hu_HU",
+      "ascLocales": [
+        "hu"
+      ],
+      "siteLocale": "hu",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "”"
+      ],
+      "register": "tegezés",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "id",
+      "name": "Bahasa Indonesia",
+      "englishName": "Indonesian",
+      "appleLocale": "id_ID",
+      "ascLocales": [
+        "id"
+      ],
+      "siteLocale": "id",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "kamu/Anda netral",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "ms",
+      "name": "Bahasa Melayu",
+      "englishName": "Malay",
+      "appleLocale": "ms_MY",
+      "ascLocales": [
+        "ms"
+      ],
+      "siteLocale": "ms",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "anda",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "planned"
+    },
+    {
+      "code": "nb",
+      "name": "Norsk bokmål",
+      "englishName": "Norwegian Bokmål",
+      "appleLocale": "nb_NO",
+      "ascLocales": [
+        "no"
+      ],
+      "siteLocale": "nb",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "du",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "pl",
+      "name": "Polski",
+      "englishName": "Polish",
+      "appleLocale": "pl_PL",
+      "ascLocales": [
+        "pl"
+      ],
+      "siteLocale": "pl",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "”"
+      ],
+      "register": "ty (forma bezosobowa, gdzie naturalna)",
+      "pluralCategories": [
+        "one",
+        "few",
+        "many",
+        "other"
+      ],
+      "status": "machine",
+      "inflectsBrands": true
+    },
+    {
+      "code": "ro",
+      "name": "Română",
+      "englishName": "Romanian",
+      "appleLocale": "ro_RO",
+      "ascLocales": [
+        "ro"
+      ],
+      "siteLocale": "ro",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "”"
+      ],
+      "register": "tu",
+      "pluralCategories": [
+        "one",
+        "few",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "sk",
+      "name": "Slovenčina",
+      "englishName": "Slovak",
+      "appleLocale": "sk_SK",
+      "ascLocales": [
+        "sk"
+      ],
+      "siteLocale": "sk",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "„",
+        "“"
+      ],
+      "register": "vy (zdvorilé)",
+      "pluralCategories": [
+        "one",
+        "few",
+        "many",
+        "other"
+      ],
+      "status": "machine",
+      "inflectsBrands": true
+    },
+    {
+      "code": "sv",
+      "name": "Svenska",
+      "englishName": "Swedish",
+      "appleLocale": "sv_SE",
+      "ascLocales": [
+        "sv"
+      ],
+      "siteLocale": "sv",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "”",
+        "”"
+      ],
+      "register": "du",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "th",
+      "name": "ไทย",
+      "englishName": "Thai",
+      "appleLocale": "th_TH",
+      "ascLocales": [
+        "th"
+      ],
+      "siteLocale": "th",
+      "direction": "ltr",
+      "script": "Thai",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "คุณ (สุภาพ)",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "tr",
+      "name": "Türkçe",
+      "englishName": "Turkish",
+      "appleLocale": "tr_TR",
+      "ascLocales": [
+        "tr"
+      ],
+      "siteLocale": "tr",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "sen",
+      "pluralCategories": [
+        "one",
+        "other"
+      ],
+      "status": "machine"
+    },
+    {
+      "code": "uk",
+      "name": "Українська",
+      "englishName": "Ukrainian",
+      "appleLocale": "uk_UA",
+      "ascLocales": [
+        "uk"
+      ],
+      "siteLocale": "uk",
+      "direction": "ltr",
+      "script": "Cyrl",
+      "quotes": [
+        "«",
+        "»"
+      ],
+      "register": "ви (ввічливе)",
+      "pluralCategories": [
+        "one",
+        "few",
+        "many",
+        "other"
+      ],
+      "status": "machine",
+      "inflectsBrands": true
+    },
+    {
+      "code": "vi",
+      "name": "Tiếng Việt",
+      "englishName": "Vietnamese",
+      "appleLocale": "vi_VN",
+      "ascLocales": [
+        "vi"
+      ],
+      "siteLocale": "vi",
+      "direction": "ltr",
+      "script": "Latn",
+      "quotes": [
+        "“",
+        "”"
+      ],
+      "register": "bạn",
+      "pluralCategories": [
+        "other"
+      ],
+      "status": "machine"
+    }
+  ]
+}

@@ -16,6 +16,8 @@
     <dict>
         <key>ch.sensorstorm.app</key>
         <string>Sensorstorm CI Distribution</string>
+        <key>ch.sensorstorm.app.watchkitapp</key>
+        <string>Sensorstorm Watch CI Distribution</string>
     </dict>
     <key>uploadSymbols</key>
     <true/>
