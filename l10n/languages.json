@@ -18,7 +18,7 @@
         "„",
         "“"
       ],
-      "register": "du, ohne Helvetismen im gemeinsamen Text; Schweizer Begriffe nur in overlays/CH",
+      "register": "du; Schweizer Rechtschreibung ohne Eszett (Strasse, Grösse), sonst standarddeutsch",
       "pluralCategories": [
         "one",
         "other"
@@ -43,7 +43,7 @@
         "“",
         "”"
       ],
-      "register": "plain, second person, British spelling as in the existing catalog (flat, cellar)",
+      "register": "plain, second person, British spelling as in the existing catalog; technical terms as a field engineer writes them",
       "pluralCategories": [
         "one",
         "other"
@@ -94,7 +94,7 @@
         "«",
         "»"
       ],
-      "register": "tu, come il catalogo esistente; termini svizzeri (pigione, posteggio) solo in overlays/CH",
+      "register": "tu, come il catalogo esistente; terminologia tecnica di misura e rilievo stradale",
       "pluralCategories": [
         "one",
         "other"

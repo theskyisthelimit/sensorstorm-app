@@ -213,7 +213,6 @@
     "MQTT",
     "RuuviTag",
     "BTHome",
-    "Bluetooth",
     "GeoJSON",
     "GPX",
     "KML",
@@ -234,7 +233,8 @@
     "Wi-Fi",
     "3D",
     "4K",
-    "Pro"
+    "Pro",
+    "Bluetooth"
   ],
   "localNames": {
     "3D": {
@@ -255,6 +255,27 @@
       "ru": "Wi-Fi",
       "tr": "kablosuz ağ",
       "pl": "Wi-Fi"
+    },
+    "URL": {
+      "zh-Hant": "網址",
+      "zh-Hans": "网址",
+      "ja": "URL",
+      "ko": "URL",
+      "th": "URL",
+      "ar": "عنوان",
+      "hi": "URL",
+      "el": "διεύθυνση"
+    },
+    "Bluetooth": {
+      "zh-Hans": "蓝牙",
+      "zh-Hant": "藍牙",
+      "ko": "블루투스",
+      "ja": "Bluetooth",
+      "th": "บลูทูธ",
+      "hi": "ब्लूटूथ",
+      "ar": "بلوتوث",
+      "el": "Bluetooth",
+      "ru": "Bluetooth"
     }
   },
   "identicalAllowed": [
@@ -291,6 +312,11 @@
     "×",
     "m²",
     "1 m",
-    "100 m"
+    "100 m",
+    "KML (Google Earth)",
+    "Route starten",
+    "Bluetooth",
+    "Import",
+    "Export"
   ]
 }

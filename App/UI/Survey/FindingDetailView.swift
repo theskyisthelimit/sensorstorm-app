@@ -142,7 +142,7 @@ struct FindingDetailView: View {
             Button {
                 isAddingMedia = true
             } label: {
-                Label(finding.media.isEmpty ? "Aufnahmen machen" : "Weitere Aufnahmen",
+                Label(finding.media.isEmpty ? "Fotos und Clips aufnehmen" : "Weitere Fotos und Clips",
                       systemImage: "camera.fill")
                     .font(.subheadline.weight(.medium))
                     .frame(maxWidth: .infinity)

@@ -49,7 +49,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensorstorm telt hoeveel bluetooth-apparaten in de buurt uitzenden en registreert de signaalsterkte. Er wordt geen verbinding met ze gemaakt."
+            "value" : "Sensorstorm telt hoeveel Bluetooth-apparaten in de buurt uitzenden en registreert de signaalsterkte. Er wordt geen verbinding met ze gemaakt."
           }
         },
         "pt-BR" : {

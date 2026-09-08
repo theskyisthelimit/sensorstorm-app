@@ -60,7 +60,62 @@
       }
     },
     "%@ gesammelt. Bleib ruhig stehen." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ collected. Hold still."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ recogidos. Quédate quieto."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ collectés. Restez immobile."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ raccolti. Resta fermo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ 取得しました。そのまま動かないでください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ 수집했어요. 그대로 서 있어 주세요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ verzameld. Blijf stil staan."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ coletados. Fique parado."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "已收集 %@。請站著別動。"
+          }
+        }
+      }
     },
     "%@ in 10 s" : {
       "localizations" : {
@@ -447,12 +502,6 @@
         "ja" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 件のクリップ"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -465,12 +514,6 @@
         "ko" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "클립 %lld개"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -519,12 +562,6 @@
         "zh-Hant" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 段影片"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -631,12 +668,6 @@
         "ja" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 件のフィックス"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -649,12 +680,6 @@
         "ko" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "픽스 %lld개"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -703,12 +728,6 @@
         "zh-Hant" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 次定位"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -815,12 +834,6 @@
         "ja" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 枚の写真"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -833,12 +846,6 @@
         "ko" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "사진 %lld장"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -887,12 +894,6 @@
         "zh-Hant" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 張照片"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -999,12 +1000,6 @@
         "ja" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 件のマーカー"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -1017,12 +1012,6 @@
         "ko" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "마커 %lld개"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -1071,12 +1060,6 @@
         "zh-Hant" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 個標記"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -2133,7 +2116,62 @@
       }
     },
     "Alle Sensoren stehen nebeneinander in einer Tabelle, auf einem gemeinsamen Zeitraster. Dazu kommt die ganze Aufnahme als JSON oder als SQLite-Datenbank mit einer Tabelle pro Sensor." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "All sensors side by side in one table, on a shared time grid. The whole recording also comes as JSON or as an SQLite database with one table per sensor."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Todos los sensores uno junto a otro en una tabla, sobre una rejilla de tiempo común. La grabación entera también sale como JSON o como base de datos SQLite con una tabla por sensor."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tous les capteurs côte à côte dans un tableau, sur une grille de temps commune. L’enregistrement complet est aussi disponible en JSON ou comme base SQLite avec une table par capteur."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tutti i sensori affiancati in una tabella, su una griglia temporale comune. L’intera registrazione è disponibile anche come JSON o come database SQLite con una tabella per sensore."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "すべてのセンサーが共通の時間グリッド上で1つの表に並びます。記録全体は JSON としても、センサーごとに1つのテーブルを持つ SQLite データベースとしても書き出せます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "모든 센서가 공통 시간 격자 위에서 하나의 표에 나란히 놓여요. 기록 전체는 JSON으로도, 센서마다 테이블 하나를 갖는 SQLite 데이터베이스로도 나와요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Alle sensoren naast elkaar in één tabel, op een gedeeld tijdraster. De hele opname komt er ook als JSON of als SQLite-database met één tabel per sensor."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Todos os sensores lado a lado em uma tabela, sobre uma grade de tempo comum. A gravação inteira também sai como JSON ou como banco SQLite com uma tabela por sensor."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "所有感測器並排在同一張表中，位於共同的時間格線上。整段記錄也可輸出為 JSON，或輸出為每個感測器一張資料表的 SQLite 資料庫。"
+          }
+        }
+      }
     },
     "Alle Streams teilen eine gemeinsame Uhr. Ein Export enthält pro Sensor eine CSV-Datei, das Video und die Metadaten." : {
       "localizations" : {
@@ -3295,10 +3333,6 @@
         }
       }
     },
-    "Aufnahmen machen" : {
-      "extractionState" : "manual",
-      "localizations" : {}
-    },
     "Aufnehmen" : {
       "localizations" : {
         "en" : {
@@ -3706,7 +3740,62 @@
       }
     },
     "Beliebig viele Routen nebeneinander: pro Strasse, pro Auftrag, pro Tag." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "As many routes as you like, side by side: per street, per job, per day."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tantos recorridos como quieras, uno junto a otro: por calle, por encargo, por día."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Autant de parcours que vous voulez, côte à côte : par rue, par mandat, par jour."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quanti percorsi vuoi, affiancati: per strada, per incarico, per giorno."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ルートはいくつでも並行して作れます：道路ごと、案件ごと、日ごと。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "경로는 원하는 만큼 나란히 둘 수 있어요: 도로별, 작업별, 날짜별."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zoveel routes naast elkaar als je wilt: per straat, per opdracht, per dag."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quantos percursos você quiser, lado a lado: por rua, por serviço, por dia."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "路線可以並排任意多條：依街道、依委託、依日期。"
+          }
+        }
+      }
     },
     "Benutzername" : {
       "localizations" : {
@@ -4232,7 +4321,62 @@
     },
     "Bereich bearbeiten" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Edit area"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Editar zona"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Modifier la zone"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Modifica area"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "範囲を編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "범위 편집"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gebied bewerken"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Editar área"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "編輯範圍"
+          }
+        }
+      }
     },
     "Bereich entfernen" : {
       "localizations" : {
@@ -4294,7 +4438,62 @@
     },
     "Bereich markieren" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mark area"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marcar zona"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marquer la zone"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Segna area"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "範囲をマーク"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "범위 표시"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gebied markeren"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marcar área"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "標記範圍"
+          }
+        }
+      }
     },
     "Bereit" : {
       "localizations" : {
@@ -5109,7 +5308,62 @@
       }
     },
     "CSV liest jede Tabelle und jedes Skript direkt. Rohdaten sind kleiner und verlustfrei, brauchen aber einen Leser für das .ssbin-Format. Der Aufbau steht im README des Archivs." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Every spreadsheet and every script reads CSV directly. Raw data is smaller and lossless, but needs a reader for the .ssbin format. The layout is described in the archive README."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cualquier hoja de cálculo y cualquier script leen el CSV directamente. Los datos brutos son más pequeños y sin pérdidas, pero necesitan un lector para el formato .ssbin. Su estructura está descrita en el README del archivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tous les tableurs et tous les scripts lisent directement le CSV. Les données brutes sont plus petites et sans perte, mais demandent un lecteur pour le format .ssbin. Sa structure est décrite dans le README de l’archive."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ogni foglio di calcolo e ogni script legge il CSV direttamente. I dati grezzi sono più piccoli e senza perdite, ma richiedono un lettore per il formato .ssbin. La struttura è descritta nel README dell’archivio."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CSV はどの表計算ソフトもどのスクリプトも直接読めます。生データは小さく可逆ですが、.ssbin 形式のリーダーが必要です。構造はアーカイブの README に書かれています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CSV는 어떤 스프레드시트도 어떤 스크립트도 바로 읽어요. 원시 데이터는 더 작고 무손실이지만 .ssbin 형식을 읽는 도구가 필요해요. 구조는 아카이브의 README에 적혀 있어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elk rekenblad en elk script leest CSV rechtstreeks. Ruwe data is kleiner en verliesvrij, maar heeft een lezer voor het .ssbin-formaat nodig. De opbouw staat in de README van het archief."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Qualquer planilha e qualquer script leem o CSV direto. Os dados brutos são menores e sem perdas, mas exigem um leitor para o formato .ssbin. A estrutura está descrita no README do arquivo."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "任何試算表和任何指令碼都能直接讀取 CSV。原始資料更小且無損，但需要能讀 .ssbin 格式的程式。其結構寫在封存檔的 README 中。"
+          }
+        }
+      }
     },
     "Clip" : {
       "localizations" : {
@@ -5171,7 +5425,62 @@
     },
     "Clip teilen" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Share clip"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compartir clip"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Partager le clip"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Condividi clip"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "クリップを共有"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "클립 공유"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Clip delen"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compartilhar clipe"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "分享片段"
+          }
+        }
+      }
     },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
       "localizations" : {
@@ -5232,7 +5541,62 @@
       }
     },
     "Das Bündel enthält frames.csv, scene.json, das Video und den GPS-Track. Das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The bundle holds frames.csv, scene.json, the video and the GPS track. The Blender add-on turns them into an animated camera that follows the real recording."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El paquete contiene frames.csv, scene.json, el vídeo y la traza GPS. El complemento de Blender hace con ellos una cámara animada que sigue a la grabación real."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le lot contient frames.csv, scene.json, la vidéo et la trace GPS. Le module Blender en fait une caméra animée qui suit l’enregistrement réel."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Il pacchetto contiene frames.csv, scene.json, il video e la traccia GPS. Il componente aggiuntivo per Blender ne ricava una camera animata che segue la registrazione reale."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "バンドルには frames.csv、scene.json、動画、GPS トラックが入っています。Blender アドオンがそこから、実際の記録に追従するアニメーションカメラを作ります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "번들에는 frames.csv, scene.json, 동영상, GPS 트랙이 들어 있어요. Blender 애드온이 이것으로 실제 기록을 따라가는 애니메이션 카메라를 만들어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Het pakket bevat frames.csv, scene.json, de video en het GPS-spoor. De Blender-add-on maakt daar een geanimeerde camera van die de echte opname volgt."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O pacote contém frames.csv, scene.json, o vídeo e a trilha GPS. O complemento do Blender transforma isso em uma câmera animada que segue a gravação real."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "這包檔案含有 frames.csv、scene.json、影片與 GPS 軌跡。Blender 附加元件會據此做出跟隨實際記錄的動畫相機。"
+          }
+        }
+      }
     },
     "Das Dateilayout von Sensor Logger, damit dessen Notebooks die Aufnahme unverändert lesen, und ein .gcsv-Log für die Stabilisierung in Gyroflow." : {
       "localizations" : {
@@ -5351,7 +5715,62 @@
       }
     },
     "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This is a guide, not a promise. Where the camera stood still, fewer images come out, because the same image a hundred times is no use to a reconstruction."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Es una orientación, no una promesa. Donde la cámara se quedó quieta salen menos imágenes, porque cien veces la misma imagen no sirve a ninguna reconstrucción."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "C’est un ordre de grandeur, pas une promesse. Là où la caméra est restée immobile, il sort moins d’images, car cent fois la même image ne sert à aucune reconstruction."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "È un valore indicativo, non una promessa. Dove la fotocamera è rimasta ferma escono meno immagini, perché cento volte la stessa immagine non serve a nessuna ricostruzione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "これは目安であり、約束ではありません。カメラが止まっていた場所では画像は少なくなります。同じ画像が百枚あっても再構成の役には立たないからです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이건 기준값이지 약속이 아니에요. 카메라가 멈춰 있던 곳에서는 이미지가 적게 나와요. 같은 이미지가 백 장이어도 재구성에는 쓸모가 없으니까요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Dit is een richtwaarde, geen belofte. Waar de camera stil is blijven staan, komen er minder beelden uit, want honderd keer hetzelfde beeld helpt geen enkele reconstructie."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "É uma referência, não uma promessa. Onde a câmera ficou parada saem menos imagens, porque cem vezes a mesma imagem não serve a nenhuma reconstrução."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "這是參考值，不是承諾。相機停住的地方出來的影像較少，因為同一張影像一百次對重建毫無幫助。"
+          }
+        }
+      }
     },
     "Daten" : {
       "localizations" : {
@@ -5504,7 +5923,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아이폰을 계측기로."
+            "value" : "iPhone을 계측기로."
           }
         },
         "nl" : {
@@ -5992,7 +6411,62 @@
       }
     },
     "Der Export wählt scharfe, räumlich verteilte Einzelbilder und schreibt Brennweite, Position und Blickrichtung ins EXIF. Dazu kommen eine Kameratabelle und ein COLMAP-Modell. RealityScan, Metashape und Meshroom lesen das und rechnen daraus das Modell." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The export picks sharp, spatially spread stills and writes focal length, position and view direction into the EXIF. A camera table and a COLMAP model come with them. RealityScan, Metashape and Meshroom read that and compute the model from it."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La exportación elige imágenes nítidas y repartidas en el espacio, y escribe la distancia focal, la posición y la dirección de vista en el EXIF. Se añaden una tabla de cámaras y un modelo COLMAP. RealityScan, Metashape y Meshroom los leen y calculan el modelo a partir de ahí."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "L’export choisit des images nettes et bien réparties dans l’espace, et écrit la focale, la position et la direction de visée dans l’EXIF. S’y ajoutent une table de caméras et un modèle COLMAP. RealityScan, Metashape et Meshroom les lisent et calculent le modèle à partir de là."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "L’esportazione sceglie fotogrammi nitidi e distribuiti nello spazio e scrive lunghezza focale, posizione e direzione di vista nell’EXIF. Si aggiungono una tabella delle camere e un modello COLMAP. RealityScan, Metashape e Meshroom li leggono e da lì calcolano il modello."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "書き出しは鮮明で空間的に分散した静止画を選び、焦点距離、位置、視線方向を EXIF に記録します。あわせてカメラテーブルと COLMAP モデルが付きます。RealityScan、Metashape、Meshroom はこれを読み込み、そこからモデルを計算します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "내보내기는 선명하고 공간적으로 고르게 퍼진 정지 이미지를 골라 초점 거리, 위치, 시선 방향을 EXIF에 기록해요. 여기에 카메라 테이블과 COLMAP 모델이 함께 나와요. RealityScan, Metashape, Meshroom이 이를 읽고 모델을 계산해요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De export kiest scherpe, ruimtelijk verspreide beelden en schrijft brandpuntsafstand, positie en kijkrichting in de EXIF. Daar komen een cameratabel en een COLMAP-model bij. RealityScan, Metashape en Meshroom lezen dat en berekenen het model daaruit."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A exportação escolhe imagens nítidas e distribuídas no espaço e grava distância focal, posição e direção de visada no EXIF. Junto vêm uma tabela de câmeras e um modelo COLMAP. RealityScan, Metashape e Meshroom leem isso e calculam o modelo a partir daí."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "匯出會挑選清晰且在空間中分散的單張影像，並把焦距、位置與視線方向寫入 EXIF。另附相機表與 COLMAP 模型。RealityScan、Metashape 與 Meshroom 會讀取這些並據以計算模型。"
+          }
+        }
+      }
     },
     "Der Kauf liess sich nicht überprüfen und wurde nicht freigeschaltet." : {
       "localizations" : {
@@ -6285,10 +6759,120 @@
       }
     },
     "Die Bewegungssensoren laufen mit 400 Hz statt 200 Hz. In dieser Auflösung sind Vibrationen und Stösse noch als Form erkennbar." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The motion sensors run at 400 Hz instead of 200 Hz. At that resolution, vibrations and shocks are still recognisable as a shape."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los sensores de movimiento van a 400 Hz en lugar de 200 Hz. A esa resolución, las vibraciones y los golpes siguen siendo reconocibles como forma."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les capteurs de mouvement tournent à 400 Hz au lieu de 200 Hz. À cette résolution, les vibrations et les chocs restent reconnaissables comme forme."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "I sensori di movimento lavorano a 400 Hz invece di 200 Hz. A questa risoluzione vibrazioni e urti restano riconoscibili come forma."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "モーションセンサーは 200 Hz ではなく 400 Hz で動きます。この分解能なら、振動や衝撃を形として見分けられます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "모션 센서가 200 Hz 대신 400 Hz로 돌아가요. 이 해상도에서는 진동과 충격을 형태로 알아볼 수 있어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De bewegingssensoren draaien op 400 Hz in plaats van 200 Hz. Op die resolutie zijn trillingen en schokken nog als vorm herkenbaar."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Os sensores de movimento rodam a 400 Hz em vez de 200 Hz. Nessa resolução, vibrações e impactos ainda são reconhecíveis como forma."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "動作感測器以 400 Hz 而非 200 Hz 運作。在這個解析度下，振動與衝擊仍能辨認出形狀。"
+          }
+        }
+      }
     },
     "Die Bilder tragen Brennweite, Ort und Zeit im EXIF. Daneben liegen eine Kameratabelle und ein COLMAP-Modell. Das 3D-Modell rechnen RealityScan, Metashape oder Meshroom. Diese App rechnet es nicht." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The images carry focal length, place and time in the EXIF. Next to them sit a camera table and a COLMAP model. RealityScan, Metashape or Meshroom compute the 3D model. This app does not."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Las imágenes llevan la distancia focal, el lugar y la hora en el EXIF. Al lado hay una tabla de cámaras y un modelo COLMAP. El modelo 3D lo calculan RealityScan, Metashape o Meshroom. Esta app no lo calcula."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les images portent la focale, le lieu et l’heure dans l’EXIF. À côté se trouvent une table de caméras et un modèle COLMAP. Le modèle 3D est calculé par RealityScan, Metashape ou Meshroom. Cette app ne le calcule pas."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le immagini portano lunghezza focale, luogo e ora nell’EXIF. Accanto ci sono una tabella delle camere e un modello COLMAP. Il modello 3D lo calcolano RealityScan, Metashape o Meshroom. Questa app non lo calcola."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "画像は焦点距離、場所、時刻を EXIF に持ちます。その横にカメラテーブルと COLMAP モデルがあります。3D モデルを計算するのは RealityScan、Metashape、Meshroom です。このアプリは計算しません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이미지는 초점 거리, 장소, 시간을 EXIF에 담고 있어요. 그 옆에 카메라 테이블과 COLMAP 모델이 있어요. 3D 모델은 RealityScan, Metashape, Meshroom이 계산해요. 이 앱은 계산하지 않아요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De beelden dragen brandpuntsafstand, plaats en tijd in de EXIF. Daarnaast liggen een cameratabel en een COLMAP-model. Het 3D-model wordt berekend door RealityScan, Metashape of Meshroom. Deze app berekent het niet."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "As imagens carregam distância focal, local e hora no EXIF. Ao lado ficam uma tabela de câmeras e um modelo COLMAP. O modelo 3D é calculado por RealityScan, Metashape ou Meshroom. Este app não o calcula."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "影像在 EXIF 中帶有焦距、地點與時間。旁邊是相機表與 COLMAP 模型。3D 模型由 RealityScan、Metashape 或 Meshroom 計算，本 App 不做計算。"
+          }
+        }
+      }
     },
     "Die Bildstabilisierung bleibt aus, damit das Bild exakt zu den Bewegungsdaten passt." : {
       "localizations" : {
@@ -6581,7 +7165,62 @@
       }
     },
     "Die Kamerapose gehört zu Pro. Sie zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf, und ohne sie gibt es keinen Export als 3D-Szene nach Blender. Tippe auf ARKit, um sie freizuschalten." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The camera pose belongs to Pro. It records position, view direction and focal length for every image, and without it there is no export as a 3D scene to Blender. Tap ARKit to unlock it."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La pose de cámara forma parte de Pro. Registra para cada imagen la posición, la dirección de vista y la distancia focal, y sin ella no hay exportación como escena 3D a Blender. Toca ARKit para desbloquearla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La pose de caméra fait partie de Pro. Elle enregistre pour chaque image la position, la direction de visée et la focale, et sans elle il n’y a pas d’export en scène 3D vers Blender. Touchez ARKit pour la débloquer."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La posa della fotocamera fa parte di Pro. Registra per ogni immagine posizione, direzione di vista e lunghezza focale, e senza di essa non c’è esportazione come scena 3D verso Blender. Tocca ARKit per sbloccarla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "カメラポーズは Pro の機能です。画像ごとに位置、視線方向、焦点距離を記録し、これがないと Blender への 3D シーン書き出しはできません。ARKit をタップして購入してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "카메라 포즈는 Pro 기능이에요. 이미지마다 위치, 시선 방향, 초점 거리를 기록하고, 이게 없으면 Blender로 3D 장면을 내보낼 수 없어요. ARKit을 눌러 구입하세요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De camerapose hoort bij Pro. Die legt voor elk beeld positie, kijkrichting en brandpuntsafstand vast, en zonder haar is er geen export als 3D-scène naar Blender. Tik op ARKit om haar vrij te geven."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A pose da câmera faz parte do Pro. Ela registra para cada imagem a posição, a direção de visada e a distância focal, e sem ela não há exportação como cena 3D para o Blender. Toque em ARKit para liberá-la."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "相機姿態屬於 Pro。它會為每張影像記錄位置、視線方向與焦距，沒有它就無法把 3D 場景匯出到 Blender。點一下 ARKit 即可購買。"
+          }
+        }
+      }
     },
     "Die Nachricht ist zu gross für das MQTT-Protokoll." : {
       "localizations" : {
@@ -6990,7 +7629,62 @@
       }
     },
     "Diese Route bleibt vollständig nutzbar: weitere Beobachtungen erfassen, bearbeiten und als CSV exportieren. Für mehrere Routen nebeneinander, pro Strasse, pro Auftrag oder pro Tag, braucht es Pro." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This route stays fully usable: capture more observations, edit them and export them as CSV. For several routes side by side, per street, per job or per day, you need Pro."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Este recorrido sigue siendo plenamente utilizable: registrar más observaciones, editarlas y exportarlas como CSV. Para varios recorridos uno junto a otro, por calle, por encargo o por día, hace falta Pro."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ce parcours reste entièrement utilisable : saisir d’autres observations, les modifier et les exporter en CSV. Pour plusieurs parcours côte à côte, par rue, par mandat ou par jour, il faut Pro."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Questo percorso resta pienamente utilizzabile: registrare altre osservazioni, modificarle ed esportarle come CSV. Per più percorsi affiancati, per strada, per incarico o per giorno, serve Pro."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "このルートはそのまま使えます。観測点をさらに記録し、編集し、CSV として書き出せます。道路ごと、案件ごと、日ごとに複数のルートを並べるには Pro が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이 경로는 그대로 쓸 수 있어요. 관측을 더 기록하고, 편집하고, CSV로 내보낼 수 있어요. 도로별, 작업별, 날짜별로 경로 여러 개를 나란히 두려면 Pro가 필요해요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deze route blijft volledig bruikbaar: meer waarnemingen vastleggen, bewerken en als CSV exporteren. Voor meerdere routes naast elkaar, per straat, per opdracht of per dag, heb je Pro nodig."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Este percurso continua totalmente utilizável: registrar mais observações, editá-las e exportá-las como CSV. Para vários percursos lado a lado, por rua, por serviço ou por dia, é preciso Pro."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "這條路線仍可完整使用：繼續記錄觀測點、編輯，並匯出為 CSV。若要依街道、依委託或依日期並排多條路線，就需要 Pro。"
+          }
+        }
+      }
     },
     "Dieses Gerät unterstützt kein ARKit-Tracking." : {
       "localizations" : {
@@ -7167,7 +7861,62 @@
       }
     },
     "Du kannst markieren, wie weit der Schaden reicht: als Kreis um dich herum oder als Polygon entlang des Rands." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "You can mark how far the damage reaches: as a circle around you or as a polygon along its edge."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Puedes marcar hasta dónde llega el daño: como círculo a tu alrededor o como polígono a lo largo del borde."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Vous pouvez marquer jusqu’où va le dégât : en cercle autour de vous ou en polygone le long du bord."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Puoi segnare fin dove arriva il danno: come cerchio intorno a te o come poligono lungo il bordo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "損傷がどこまで及ぶかをマークできます：自分を中心とした円、または縁に沿ったポリゴンとして。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "손상이 어디까지인지 표시할 수 있어요: 자기 주위의 원으로, 또는 가장자리를 따라가는 다각형으로."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Je kunt markeren hoe ver de schade reikt: als cirkel om je heen of als polygoon langs de rand."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Você pode marcar até onde vai o dano: como círculo em volta de você ou como polígono ao longo da borda."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "你可以標記損壞延伸到哪裡：以你為中心的圓，或沿著邊緣的多邊形。"
+          }
+        }
+      }
     },
     "Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich." : {
       "localizations" : {
@@ -7227,7 +7976,7 @@
         }
       }
     },
-    "Eine Route sammelt Beobachtungen entlang eines Wegs. Pro Beobachtung: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich." : {
+    "Eine Route sammelt Beobachtungen entlang eines Wegs. Je Beobachtung: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -8389,15 +9138,180 @@
     },
     "Foto" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Photo"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Photo"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "写真"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "사진"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "照片"
+          }
+        }
+      }
     },
     "Foto %lld" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Photo %lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Photo %lld"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto %lld"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "写真 %lld"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "사진 %lld"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto %lld"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto %lld"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "照片 %lld"
+          }
+        }
+      }
     },
     "Foto teilen" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Share photo"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compartir foto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Partager la photo"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Condividi foto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "写真を共有"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "사진 공유"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto delen"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Compartilhar foto"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "分享照片"
+          }
+        }
+      }
     },
     "Fotos und Clips" : {
       "localizations" : {
@@ -8453,6 +9367,65 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "照片與影片"
+          }
+        }
+      }
+    },
+    "Fotos und Clips aufnehmen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Take photos and clips"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tomar fotos y clips"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prendre photos et clips"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scatta foto e clip"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "写真とクリップを撮る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "사진과 클립 찍기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Foto’s en clips maken"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tirar fotos e clipes"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "拍照片與片段"
           }
         }
       }
@@ -8806,7 +9779,62 @@
       }
     },
     "GPS hatte %@, %@ gemeldet. Beides ist gespeichert." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GPS reported %@, %@. Both are stored."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "El GPS indicó %@, %@. Ambos están guardados."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le GPS a indiqué %@, %@. Les deux sont enregistrés."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Il GPS ha indicato %@, %@. Entrambi sono salvati."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GPS は %@、%@ を報告しました。どちらも保存されています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GPS가 %@, %@를 알려 줬어요. 둘 다 저장돼 있어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GPS meldde %@, %@. Beide zijn bewaard."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O GPS indicou %@, %@. Os dois estão salvos."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "GPS 回報了 %@、%@。兩者都已儲存。"
+          }
+        }
+      }
     },
     "GPS-Track als GPX" : {
       "localizations" : {
@@ -9506,7 +10534,62 @@
     },
     "Handgelenk" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wrist"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Muñeca"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Poignet"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Polso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "手首"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "손목"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pols"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Punho"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "手腕"
+          }
+        }
+      }
     },
     "Helligkeit" : {
       "localizations" : {
@@ -9568,7 +10651,62 @@
     },
     "Herzfrequenz" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Heart rate"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Frecuencia cardíaca"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fréquence cardiaque"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Frequenza cardiaca"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "心拍数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "심박수"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hartslag"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Frequência cardíaca"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "心率"
+          }
+        }
+      }
     },
     "Höhe hier nullen" : {
       "localizations" : {
@@ -12182,11 +13320,121 @@
     },
     "Nadel setzen" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Drop pin"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Poner chincheta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Poser l’épingle"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Metti spillo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ピンを置く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "핀 놓기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Speld zetten"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Colocar alfinete"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "放置圖釘"
+          }
+        }
+      }
     },
     "Nadel verschieben" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Move pin"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover chincheta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Déplacer l’épingle"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta spillo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ピンを移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "핀 옮기기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Speld verplaatsen"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover alfinete"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移動圖釘"
+          }
+        }
+      }
     },
     "Nadel von Hand" : {
       "localizations" : {
@@ -12827,7 +14075,62 @@
       }
     },
     "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten. Die Bilder lassen sich damit nicht im Raum platzieren." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Without a camera pose the export holds only timestamps and focal lengths. The images cannot be placed in space with those."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sin pose de cámara, la exportación solo contiene marcas de tiempo y distancias focales. Con eso las imágenes no se pueden colocar en el espacio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sans pose de caméra, l’export ne contient que des horodatages et des focales. Les images ne peuvent pas être placées dans l’espace avec cela."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Senza posa della fotocamera l’esportazione contiene solo marche temporali e lunghezze focali. Con quelle le immagini non si possono collocare nello spazio."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "カメラポーズがないと、書き出しにはタイムスタンプと焦点距離しか入りません。それだけでは画像を空間に配置できません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "카메라 포즈가 없으면 내보내기에는 타임스탬프와 초점 거리만 들어가요. 그것만으로는 이미지를 공간에 놓을 수 없어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zonder camerapose bevat de export alleen tijdstempels en brandpuntsafstanden. Daarmee zijn de beelden niet in de ruimte te plaatsen."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sem pose da câmera, a exportação contém apenas marcas de tempo e distâncias focais. Com isso as imagens não podem ser colocadas no espaço."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "沒有相機姿態，匯出只含時間戳記與焦距。單憑這些無法把影像放進空間中。"
+          }
+        }
+      }
     },
     "Ohne Position kann eine Beobachtung nicht wiedergefunden werden." : {
       "localizations" : {
@@ -13272,12 +14575,6 @@
         "ja" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 点の多角形"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -13290,12 +14587,6 @@
         "ko" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld점 다각형"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -13344,12 +14635,6 @@
         "zh-Hant" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld 點的多邊形"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -13456,12 +14741,6 @@
         "ja" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "多角形 · %lld 点 · %@ m²"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -13474,12 +14753,6 @@
         "ko" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "다각형 · %lld점 · %@ m²"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -13528,12 +14801,6 @@
         "zh-Hant" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "多邊形 · %lld 點 · %@ m²"
-                }
-              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -13836,7 +15103,62 @@
       }
     },
     "Pro freischalten für %@" : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Unlock Pro for %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Desbloquear Pro por %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Débloquer Pro pour %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sblocca Pro per %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@ で Pro を購入"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%@에 Pro 구입"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pro vrijgeven voor %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Liberar o Pro por %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "以 %@ 購買 Pro"
+          }
+        }
+      }
     },
     "Pro schaltet frei" : {
       "localizations" : {
@@ -14883,7 +16205,62 @@
       }
     },
     "Schalte oben die Kamera ein. Ohne Bild gibt es keine Kamerapose." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Switch the camera on above. Without an image there is no camera pose."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Activa la cámara arriba. Sin imagen no hay pose de cámara."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Activez la caméra en haut. Sans image, pas de pose de caméra."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Attiva la fotocamera in alto. Senza immagine non c’è posa della fotocamera."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上でカメラをオンにしてください。画像がなければカメラポーズもありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "위에서 카메라를 켜세요. 이미지가 없으면 카메라 포즈도 없어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zet de camera hierboven aan. Zonder beeld is er geen camerapose."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ligue a câmera acima. Sem imagem não há pose da câmera."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "請先在上面開啟相機。沒有影像就沒有相機姿態。"
+          }
+        }
+      }
     },
     "Schlagloch" : {
       "localizations" : {
@@ -15002,7 +16379,62 @@
       }
     },
     "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Writes every Bluetooth packet it receives alongside each recording: identifier, signal strength, name and the raw manufacturer data as hex. That lets you decode RuuviTag or BTHome sensors afterwards, because temperature, humidity and pressure sit right in there. The identifier is not a device address: iOS never hands that out, and two recordings do not agree on it."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Escribe además, en cada grabación, todos los paquetes Bluetooth recibidos: identificador, intensidad de señal, nombre y los datos brutos del fabricante en hexadecimal. Así los sensores RuuviTag o BTHome se pueden decodificar después, porque la temperatura, la humedad y la presión están justo ahí dentro. El identificador no es una dirección de dispositivo: iOS nunca la entrega, y dos grabaciones no coinciden en él."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Écrit en plus, pour chaque enregistrement, chaque paquet Bluetooth reçu : identifiant, force du signal, nom et les données brutes du fabricant en hexadécimal. Cela permet de décoder après coup les capteurs RuuviTag ou BTHome, car la température, l’humidité et la pression s’y trouvent justement. L’identifiant n’est pas une adresse d’appareil : iOS ne la communique jamais, et deux enregistrements ne s’accordent pas dessus."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scrive inoltre, per ogni registrazione, ogni pacchetto Bluetooth ricevuto: identificativo, potenza del segnale, nome e i dati grezzi del produttore in esadecimale. Così i sensori RuuviTag o BTHome si possono decodificare in seguito, perché temperatura, umidità e pressione stanno proprio lì dentro. L’identificativo non è un indirizzo del dispositivo: iOS non lo comunica mai, e due registrazioni non concordano su di esso."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "記録ごとに、受信した Bluetooth パケットもすべて書き出します：識別子、信号強度、名前、メーカー独自データの生の 16 進数。これで RuuviTag や BTHome のセンサーを後から復号できます。温度、湿度、気圧がまさにそこに入っているからです。識別子は機器のアドレスではありません。iOS はそれを決して渡さず、2 つの記録で一致することもありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "기록마다 수신한 Bluetooth 패킷도 함께 기록해요: 식별자, 신호 세기, 이름, 제조사 원시 데이터의 16진수. 이걸로 RuuviTag나 BTHome 센서를 나중에 해독할 수 있어요. 온도, 습도, 기압이 바로 거기에 들어 있으니까요. 식별자는 기기 주소가 아니에요. iOS는 그걸 절대 내주지 않고, 두 기록이 서로 일치하지도 않아요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Schrijft bij elke opname bovendien elk ontvangen Bluetooth-pakket mee: kenmerk, signaalsterkte, naam en de ruwe fabrikantgegevens als hex. Daarmee zijn RuuviTag- of BTHome-sensoren achteraf te decoderen, want temperatuur, vochtigheid en druk staan daar precies in. Het kenmerk is geen apparaatadres: iOS geeft dat nooit vrij, en twee opnamen zijn het daar niet over eens."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Grava também, em cada gravação, todo pacote Bluetooth recebido: identificador, intensidade do sinal, nome e os dados brutos do fabricante em hexadecimal. Assim os sensores RuuviTag ou BTHome podem ser decodificados depois, porque temperatura, umidade e pressão estão exatamente ali dentro. O identificador não é um endereço de dispositivo: o iOS nunca o entrega, e duas gravações não concordam sobre ele."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "每段記錄還會一併寫下收到的每個 Bluetooth 封包：識別碼、訊號強度、名稱，以及廠商原始資料的十六進位。這樣就能事後解碼 RuuviTag 或 BTHome 感測器，因為溫度、濕度與氣壓正好在裡面。識別碼不是裝置位址：iOS 從不交出位址，兩段記錄對它也不一致。"
+          }
+        }
+      }
     },
     "Schrittzähler" : {
       "localizations" : {
@@ -16107,7 +17539,62 @@
       }
     },
     "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten: Dateien, AirDrop, Mail." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "About %@. The archive is then offered for sharing: Files, AirDrop, Mail."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aproximadamente %@. Después se ofrece el archivo para compartir: Archivos, AirDrop, Mail."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Environ %@. L’archive est ensuite proposée au partage : Fichiers, AirDrop, Mail."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Circa %@. L’archivio viene poi offerto per la condivisione: File, AirDrop, Mail."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "約 %@ です。アーカイブはその後、共有用に提示されます：ファイル、AirDrop、メール。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "약 %@예요. 그다음 아카이브를 공유용으로 내놓아요: 파일, AirDrop, 메일."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ongeveer %@. Daarna wordt het archief aangeboden om te delen: Bestanden, AirDrop, Mail."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cerca de %@. Depois o arquivo é oferecido para compartilhar: Arquivos, AirDrop, Mail."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "大約 %@。之後會提供封存檔以供分享：檔案、AirDrop、郵件。"
+          }
+        }
+      }
     },
     "Unter freiem Himmel dauert das ein paar Sekunden." : {
       "localizations" : {
@@ -16805,9 +18292,64 @@
         }
       }
     },
-    "Weitere Aufnahmen" : {
+    "Weitere Fotos und Clips" : {
       "extractionState" : "manual",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "More photos and clips"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Más fotos y clips"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Plus de photos et de clips"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Altre foto e clip"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "写真とクリップを追加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "사진과 클립 더 찍기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Meer foto’s en clips"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mais fotos e clipes"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "更多照片與片段"
+          }
+        }
+      }
     },
     "Wie weit weg ist das Objekt?" : {
       "localizations" : {
@@ -17042,10 +18584,120 @@
       }
     },
     "Während der Aufnahme geht jede Messung als JSON an eine URL deiner Wahl, etwa an ein eigenes Dashboard, an Node-RED oder an Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "While recording, every measurement goes as JSON to a URL of your choice, for example to your own dashboard, to Node-RED or to Home Assistant. The format matches the one Sensor Logger uses, so an existing endpoint works unchanged."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Durante la grabación, cada medición va como JSON a una URL que elijas, por ejemplo a tu propio panel, a Node-RED o a Home Assistant. El formato coincide con el de Sensor Logger, así que un punto final existente funciona sin cambios."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pendant l’enregistrement, chaque mesure part en JSON vers une URL de votre choix, par exemple vers votre propre tableau de bord, vers Node-RED ou vers Home Assistant. Le format correspond à celui de Sensor Logger, un point de terminaison existant fonctionne donc sans changement."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Durante la registrazione ogni misura va come JSON a un URL a tua scelta, per esempio a una tua dashboard, a Node-RED o a Home Assistant. Il formato corrisponde a quello di Sensor Logger, quindi un endpoint esistente funziona senza modifiche."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "記録中、各測定値は JSON として好きな URL に送られます。自分のダッシュボード、Node-RED、Home Assistant などです。形式は Sensor Logger と同じなので、既存のエンドポイントはそのまま使えます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "기록 중 각 측정값이 JSON으로 원하는 URL에 전송돼요. 예를 들어 직접 만든 대시보드, Node-RED, Home Assistant로요. 형식은 Sensor Logger와 같아서 기존 엔드포인트가 그대로 작동해요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tijdens de opname gaat elke meting als JSON naar een URL naar keuze, bijvoorbeeld naar je eigen dashboard, naar Node-RED of naar Home Assistant. Het formaat komt overeen met dat van Sensor Logger, dus een bestaand eindpunt werkt ongewijzigd."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Durante a gravação, cada medição vai como JSON para uma URL à sua escolha, por exemplo para o seu próprio painel, para o Node-RED ou para o Home Assistant. O formato corresponde ao do Sensor Logger, então um endpoint existente funciona sem mudanças."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "記錄期間，每筆量測都會以 JSON 送到你選擇的網址，例如你自己的儀表板、Node-RED 或 Home Assistant。格式與 Sensor Logger 相同，現有的端點不必修改即可運作。"
+          }
+        }
+      }
     },
     "Während einer Aufnahme geht jede Messung als JSON an diese Adresse, im selben Format, das Sensor Logger sendet. Ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "While recording, every measurement goes as JSON to this address, in the same format Sensor Logger sends. An existing endpoint works unchanged. The recording on the device carries on independently: if the connection drops, nothing is missing from the file."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Durante una grabación, cada medición va como JSON a esta dirección, en el mismo formato que envía Sensor Logger. Un punto final existente funciona sin cambios. La grabación en el dispositivo sigue de forma independiente: si se corta la conexión, no falta nada en el archivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pendant un enregistrement, chaque mesure part en JSON vers cette adresse, dans le même format que celui envoyé par Sensor Logger. Un point de terminaison existant fonctionne donc sans changement. L’enregistrement sur l’appareil continue indépendamment : si la connexion tombe, rien ne manque dans le fichier."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Durante una registrazione ogni misura va come JSON a questo indirizzo, nello stesso formato che invia Sensor Logger. Un endpoint esistente funziona quindi senza modifiche. La registrazione sul dispositivo prosegue in modo indipendente: se la connessione cade, nel file non manca nulla."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "記録中、各測定値は JSON としてこのアドレスに送られます。形式は Sensor Logger が送るものと同じなので、既存のエンドポイントはそのまま使えます。端末上の記録はそれとは独立に続きます。接続が切れても、ファイルには何も欠けません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "기록 중 각 측정값이 JSON으로 이 주소에 전송돼요. Sensor Logger가 보내는 것과 같은 형식이라 기존 엔드포인트가 그대로 작동해요. 기기에서의 기록은 그와 무관하게 계속돼요. 연결이 끊겨도 파일에는 빠지는 게 없어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tijdens een opname gaat elke meting als JSON naar dit adres, in hetzelfde formaat dat Sensor Logger stuurt. Een bestaand eindpunt werkt dus ongewijzigd. De opname op het toestel loopt daar onafhankelijk van door: valt de verbinding weg, dan ontbreekt er niets in het bestand."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Durante uma gravação, cada medição vai como JSON para este endereço, no mesmo formato que o Sensor Logger envia. Um endpoint existente funciona sem mudanças. A gravação no aparelho continua de forma independente: se a conexão cair, não falta nada no arquivo."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "記錄期間，每筆量測都會以 JSON 送到這個位址，格式與 Sensor Logger 送出的相同。現有的端點不必修改即可運作。裝置上的記錄與此無關，會繼續進行：即使連線中斷，檔案裡也不會少任何東西。"
+          }
+        }
+      }
     },
     "Während einer Aufnahme lässt sich das nicht ändern." : {
       "localizations" : {
@@ -17106,10 +18758,120 @@
       }
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Records position, view direction and focal length for every image. That is enough to lay the images onto a 3D map in Blender. The video is stored unrotated so that the focal lengths match."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registra para cada imagen la posición, la dirección de vista y la distancia focal. Con eso basta para colocar las imágenes sobre un mapa 3D en Blender. El vídeo se guarda sin rotar para que las distancias focales encajen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enregistre pour chaque image la position, la direction de visée et la focale. Cela suffit pour poser les images sur une carte 3D dans Blender. La vidéo est enregistrée sans rotation pour que les focales correspondent."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registra per ogni immagine posizione, direzione di vista e lunghezza focale. Basta questo per posare le immagini su una mappa 3D in Blender. Il video viene salvato non ruotato, così le lunghezze focali corrispondono."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "画像ごとに位置、視線方向、焦点距離を記録します。これだけあれば、Blender で画像を 3D マップ上に置けます。焦点距離と合うように、動画は回転させずに保存されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이미지마다 위치, 시선 방향, 초점 거리를 기록해요. 그것만으로 Blender에서 이미지를 3D 지도 위에 올릴 수 있어요. 초점 거리와 맞도록 동영상은 회전 없이 저장돼요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Legt voor elk beeld positie, kijkrichting en brandpuntsafstand vast. Dat is genoeg om de beelden in Blender op een 3D-kaart te leggen. De video wordt ongeroteerd bewaard, zodat de brandpuntsafstanden kloppen."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registra para cada imagem a posição, a direção de visada e a distância focal. Isso basta para colocar as imagens sobre um mapa 3D no Blender. O vídeo é salvo sem rotação para que as distâncias focais combinem."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "為每張影像記錄位置、視線方向與焦距。這就足以在 Blender 中把影像放到 3D 地圖上。影片會以未旋轉的方式儲存，好讓焦距對得上。"
+          }
+        }
+      }
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Erst damit lassen sich Bilder in einer 3D-Szene an ihrem Ort platzieren." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Records position, view direction and focal length for every image. Only then can images be placed at their spot in a 3D scene."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registra para cada imagen la posición, la dirección de vista y la distancia focal. Solo así se pueden colocar las imágenes en su sitio dentro de una escena 3D."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enregistre pour chaque image la position, la direction de visée et la focale. C’est seulement ainsi que les images peuvent être placées à leur endroit dans une scène 3D."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registra per ogni immagine posizione, direzione di vista e lunghezza focale. Solo così le immagini si possono collocare al loro posto in una scena 3D."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "画像ごとに位置、視線方向、焦点距離を記録します。これがあって初めて、画像を 3D シーンの正しい場所に配置できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이미지마다 위치, 시선 방향, 초점 거리를 기록해요. 그래야 이미지를 3D 장면의 제자리에 놓을 수 있어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Legt voor elk beeld positie, kijkrichting en brandpuntsafstand vast. Pas daarmee zijn beelden op hun plek in een 3D-scène te zetten."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registra para cada imagem a posição, a direção de visada e a distância focal. Só assim as imagens podem ser colocadas no seu lugar em uma cena 3D."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "為每張影像記錄位置、視線方向與焦距。有了這些，影像才能放到 3D 場景中它們所在的位置。"
+          }
+        }
+      }
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Ohne Standortfreigabe fehlt die Nordausrichtung, und die Szene ist um einen unbekannten Winkel verdreht." : {
       "localizations" : {
@@ -17344,7 +19106,62 @@
       }
     },
     "Zu wenige Fixes für eine Mittelung. Versuche es unter freiem Himmel nochmals." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Too few fixes to average. Try again under open sky."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Muy pocos fix para promediar. Inténtalo de nuevo a cielo abierto."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trop peu de points pour une moyenne. Réessayez à ciel ouvert."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Troppo pochi fix per una media. Riprova sotto cielo libero."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "平均を取るにはフィックスが足りません。空の見える場所でもう一度お試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "평균을 내기에는 픽스가 너무 적어요. 하늘이 트인 곳에서 다시 시도하세요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Te weinig fixes voor een middeling. Probeer het opnieuw onder open hemel."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Poucos fix para uma média. Tente de novo sob céu aberto."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "定位次數太少，無法取平均。請到開闊天空下再試一次。"
+          }
+        }
+      }
     },
     "Zuklappen" : {
       "localizations" : {
@@ -17463,7 +19280,62 @@
       }
     },
     "Zur Aufnahme %@ erfasst. Die Beobachtungen liegen auf derselben Uhr wie deren Sensordaten." : {
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Captured with recording %@. The observations sit on the same clock as its sensor data."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registrado con la grabación %@. Las observaciones están en el mismo reloj que sus datos de sensores."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Saisi avec l’enregistrement %@. Les observations sont sur la même horloge que ses données de capteurs."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rilevato con la registrazione %@. Le osservazioni sono sullo stesso orologio dei suoi dati dei sensori."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "記録 %@ で取得しました。観測点はそのセンサーデータと同じ時計上にあります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "기록 %@에서 수집했어요. 관측은 그 센서 데이터와 같은 시계 위에 있어요."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Vastgelegd bij opname %@. De waarnemingen liggen op dezelfde klok als de sensordata daarvan."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registrado com a gravação %@. As observações estão no mesmo relógio que os dados de sensores dela."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "在記錄 %@ 中採集。觀測點與其感測器資料位於同一個時鐘上。"
+          }
+        }
+      }
     },
     "Zurück" : {
       "localizations" : {

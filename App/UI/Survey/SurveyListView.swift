@@ -84,7 +84,7 @@ struct SurveyListView: View {
         ContentUnavailableView {
             Label("Keine Routen", systemImage: "mappin.and.ellipse")
         } description: {
-            Text("Eine Route sammelt Beobachtungen entlang eines Wegs. Pro Beobachtung: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
+            Text("Eine Route sammelt Beobachtungen entlang eines Wegs. Je Beobachtung: beliebig viele Fotos und Clips, die Position mit ihrer Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich.")
         } actions: {
             Button("Route starten") { startSurvey() }
                 .buttonStyle(.borderedProminent)
