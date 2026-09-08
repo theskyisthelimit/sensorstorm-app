@@ -240,8 +240,8 @@ def sync_version_localizations(version_id: str, support_url: str | None, marketi
 REVIEW_CONTACT = {
     "contactFirstName": "Peter",
     "contactLastName": "Bognar",
-    "contactPhone": "",
-    "contactEmail": "",
+    "contactPhone": "+41798005684",
+    "contactEmail": "peter@bognar.net",
     "notes": (
         "Everything runs on the device: no account, no server of ours, no login. "
         "Grant the permission prompts (camera, microphone, motion, location) and press "

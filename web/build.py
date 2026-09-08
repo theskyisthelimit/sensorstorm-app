@@ -21,18 +21,20 @@ import re
 import shutil
 import sys
 
-# --- Things only the owner can fill in ---------------------------------------------
-# Everything here is placeholder text. The site builds and is fully checkable
-# without it, but the imprint is a legal requirement in DE/AT and the support
-# address is what App Store Review writes to. Grep for TODO before going live.
+# --- Who runs this ------------------------------------------------------------------
+# Name, country and one mailbox, the same shape homeshift.ch uses: the responsible party
+# is reachable, and a private person's home address does not go on a public page. Street
+# and city stay empty unless there is a company to name; the imprint renders whatever is
+# filled in. `email` is the one field that must never be empty — it is where App Store
+# Review writes and where a data-protection request lands.
 
 OWNER = {
     "legal_name": "Peter Bognar",
-    "street": "TODO Strasse und Nummer",
-    "city": "TODO PLZ und Ort",
+    "street": "",
+    "city": "",
     "country_de": "Schweiz",
     "country_en": "Switzerland",
-    "email": "TODO@sensorstorm.ch",
+    "email": "peter@bognar.net",
     "uid": "",           # optional: CHE-xxx.xxx.xxx
 }
 
@@ -257,10 +259,11 @@ def render(path: str, lang: str, title: str, description: str, body: str) -> str
 # --- Copy ------------------------------------------------------------------------------
 
 def _addr(lang: str) -> str:
-    country = OWNER["country_de"] if lang == "de" else OWNER["country_en"]
-    uid = f"<br>{html.escape(OWNER['uid'])}" if OWNER["uid"] else ""
-    return (f"{html.escape(OWNER['legal_name'])}<br>{html.escape(OWNER['street'])}<br>"
-            f"{html.escape(OWNER['city'])}<br>{country}{uid}")
+    """The imprint block. Empty fields are left out rather than rendered as blank lines —
+    a postal address is optional here, a country and a way to reach someone are not."""
+    lines = [OWNER["legal_name"], OWNER["street"], OWNER["city"],
+             OWNER["country_de"] if lang == "de" else OWNER["country_en"], OWNER["uid"]]
+    return "<br>".join(html.escape(line) for line in lines if line)
 
 
 PAGES: dict[str, dict] = {}
@@ -1029,11 +1032,12 @@ def main() -> None:
     files = build(out)
     for name in files:
         print(f"  {name}")
-    todo = sum(1 for v in OWNER.values() if str(v).startswith("TODO"))
     print(f"\n{len(files)} files in {out}")
-    if todo:
-        print(f"WARNING: {todo} placeholder(s) left in OWNER — the imprint is a legal "
-              f"requirement and the support address is where App Store Review writes.",
+    missing = [key for key in ("legal_name", "email") if not OWNER[key]
+               or str(OWNER[key]).startswith("TODO")]
+    if missing:
+        print(f"WARNING: OWNER is incomplete ({', '.join(missing)}) — the imprint is a "
+              f"legal requirement and the address is where App Store Review writes.",
               file=sys.stderr)
 
 

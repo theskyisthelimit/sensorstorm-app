@@ -98,11 +98,28 @@ Aufnahme aus festen UUIDs, damit acht Geräte in zwei Sprachen dieselben Zahlen 
 python3 web/build.py && python3 web/check.py
 ```
 
-Cloudflare Pages: Build-Befehl `python3 build.py`, Wurzel `web`, Ausgabe `dist`.
-`dist/` ist nicht eingecheckt — dieselbe Abmachung wie beim `.xcodeproj`.
+Cloudflare Pages, Projekt `sensorstorm-site` im Konto `pbognar@gmail.com`. `dist/` ist
+nicht eingecheckt — dieselbe Abmachung wie beim `.xcodeproj`. Deployt wird mit dem
+wrangler, der bei homeshift liegt und dort per OAuth angemeldet ist; ein API-Token braucht
+es nicht:
 
-**Vor dem Livegang** die `OWNER`-Angaben in `web/build.py` ausfüllen; der Build warnt,
-solange dort TODO steht. Danach:
+```bash
+python3 web/build.py
+~/GitHub/homeshift-app/server/node_modules/.bin/wrangler pages deploy web/dist \
+  --project-name sensorstorm-site --branch main --commit-dirty=true
+```
+
+Die eigene Domain hängt **nicht** am wrangler dieser Fassung (`pages domain` gibt es dort
+nicht): `sensorstorm.bognar.net` einmalig im Cloudflare-Dashboard unter Pages →
+`sensorstorm-site` → Custom domains eintragen. Der DNS-Eintrag entsteht dabei von selbst,
+weil die Zone im selben Konto liegt. Bis dahin antwortet nur
+`https://sensorstorm-site.pages.dev`.
+
+Die `OWNER`-Angaben in `web/build.py` sind Name, Land und ein Postfach — dieselbe Form wie
+bei homeshift.ch: verantwortlich ist eine erreichbare Adresse, nicht die Wohnadresse einer
+Privatperson. `street` und `city` bleiben leer, solange es keine Firma zu nennen gibt.
+
+Die drei URLs setzen:
 
 ```bash
 python3 Tools/asc_metadata.py \
@@ -123,11 +140,37 @@ StoreKit-Transaktionen zurückerstatten — **jede vorhandene Begehung muss dana
 weiterhin lesbar und als CSV exportierbar sein.** Das ist die Zusage, auf der die
 ganze Sperrlogik steht; `swift test --filter ProAccessTests` hält sie fest.
 
+Angelegt wird der Kauf aus dem Repo, nicht in der Weboberfläche:
+
+```bash
+python3 Tools/asc_iap.py --report              # was existiert, was fehlt
+python3 Tools/asc_iap.py                       # Produkt, elf Sprachen, Preis, Länder
+python3 Tools/asc_iap.py --capture-screenshot  # Kaufblatt schiessen und hochladen
+```
+
+Der Review-Screenshot kommt aus der App selbst: `SS_SCREEN=paywall` öffnet das Kaufblatt,
+und weil ein per `simctl` gestarteter Simulator keine StoreKit-Konfiguration kennt,
+liefert `ScreenshotFixture.price` den Betrag, den auch `Resources/Sensorstorm.storekit`
+und App Store Connect führen. Der Shot liegt in `screenshots-review/` und kann so nie in
+einen Produktseiten-Upload geraten.
+
+## Wenn altool „UPLOAD SUCCEEDED" sagt und nichts erscheint
+
+Die Prüfung läuft zweimal: `altool` prüft lokal, App Store Connect prüft danach noch
+einmal — und was dort scheitert, taucht in `/v1/builds` nie auf. Nachsehen:
+
+```bash
+python3 Tools/asc.py GET '/v1/apps/6795648479/buildUploads?limit=1'
+```
+
+Build 9 ist genau so verschwunden: `90683`, fehlendes `NSHealthUpdateUsageDescription` im
+Bundle der Watch-App. Der Schlüssel ist Pflicht, sobald die HealthKit-Berechtigung im
+Paket liegt, auch wenn nur gelesen wird.
+
 ## Bewusst nicht automatisiert
 
 * **Einreichen zur Prüfung** — bleibt eine bewusste menschliche Handlung.
-* **Preise und Verfügbarkeit** — einmalig in der Weboberfläche.
-* **Der In-App-Kauf selbst** — Anlegen und Bepreisen in ASC, siehe unten.
+* **Der Preis der App selbst** und die Verträge dahinter — Weboberfläche, siehe unten.
 
 ## Offen für 1.0.0
 
@@ -139,17 +182,20 @@ ganze Sperrlogik steht; `swift test --filter ProAccessTests` hält sie fest.
 2. **Apple Small Business Program** anmelden — 15 % statt 30 % Provision unter
    1 Mio. USD Jahresumsatz. Einmalig, wirkt ab dem Folgemonat.
 
-Danach in der ASC-Weboberfläche:
+Dazu in der Weboberfläche, weil es dort keine Schnittstelle gibt:
 
-* **IAP anlegen**: `ch.sensorstorm.app.pro`, nicht verbrauchbar, Anzeigename und
-  Beschreibung pro Locale, Review-Screenshot, **Familienfreigabe an**. Der IAP wird
+* **Custom domain** `sensorstorm.bognar.net` auf das Pages-Projekt legen (siehe oben).
+  Bis dahin zeigen Datenschutz- und Support-URL — und der Link im Kaufblatt der App — auf
+  eine Adresse, die nicht antwortet; Apple lehnt dafür ab.
+
+Erledigt und im Repo festgehalten, nicht mehr von Hand zu tun:
+
+* Der Kauf `ch.sensorstorm.app.pro` samt elf Sprachen, CHF 19 mit Basisland Schweiz,
+  Familienfreigabe, 174 Länder und Review-Screenshot — `Tools/asc_iap.py`. Er wird
   *zusammen mit* der Version eingereicht, nicht davor.
-* **Preis und Verfügbarkeit.** **CHF 19**, Basisland Schweiz. Der Preis steht nur in
-  ASC — eine Korrektur kostet keinen Build, weil die App `product.displayPrice`
-  anzeigt. `Resources/Sensorstorm.storekit` führt denselben Betrag, damit der Kauf im
-  Simulator gegen das getestet wird, was später verlangt wird.
-* **App-Review-Kontakt** (Name, Telefon, E-Mail).
-* **Altersfreigabe.**
+* Altersfreigabe, Länderverfügbarkeit und App-Review-Kontakt — `Tools/asc_metadata.py`,
+  die Antworten stehen dort als `AGE_RATING`, `EXCLUDED_TERRITORIES` und
+  `REVIEW_CONTACT`.
 
 **Die Watch-App wird mit eingereicht.** Sie ist ein eigenes Ziel mit eigenem Bundle
 (`ch.sensorstorm.app.watchkitapp`), also braucht sie ein eigenes Provisioning-Profil und
@@ -161,12 +207,13 @@ geschrieben wird in „Health" nichts.
 
 Aus dem Repo:
 
-* `python3 web/build.py` → Cloudflare Pages, dann die drei URLs setzen (siehe oben).
+* `python3 web/build.py` → `wrangler pages deploy` (siehe oben), dann die drei URLs setzen.
 * `python3 Tools/asc_capture_screenshots.py --upload`
 * `python3 Tools/asc_metadata.py` (Listing, elf Locales)
 * `python3 Tools/asc_metadata.py --attach-build <n>`, sobald die Verarbeitung durch ist
 * `python3 Tools/asc_metadata.py --report-only` — listet auf, was noch blockiert.
   Ziel: „nothing missing — ready to submit".
+* `python3 Tools/asc_iap.py --report` — dasselbe für den Kauf.
 
 Auf echter Hardware verifizieren — der Simulator hat davon nichts:
 

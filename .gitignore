@@ -9,6 +9,9 @@ Resources/Info.plist
 __pycache__/
 *.pyc
 
+# wrangler's local state from `pages deploy`
+.wrangler/
+
 # Build output
 build/
 .derived-data/
