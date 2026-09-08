@@ -1,0 +1,14 @@
+{
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "Первая версия."
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "Все профи-форматы, 400 Hz и 4K. Разово."
+      }
+    }
+  }
+}

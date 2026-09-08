@@ -1,0 +1,14 @@
+{
+  "whatsNew": {
+    "version": "1.0.0",
+    "text": "首个版本。"
+  },
+  "iap": {
+    "products": {
+      "ch.sensorstorm.app.pro": {
+        "name": "Sensorstorm Pro",
+        "description": "全部专业格式、400 Hz 和 4K。一次购买。"
+      }
+    }
+  }
+}

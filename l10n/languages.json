@@ -172,7 +172,7 @@
         "one",
         "other"
       ],
-      "status": "planned",
+      "status": "machine",
       "avoid": [
         {
           "pattern": "\\b(você|celular|ônibus|time|legal)\\b",
@@ -241,7 +241,7 @@
       "pluralCategories": [
         "other"
       ],
-      "status": "planned",
+      "status": "machine",
       "notes": "Festland-China ist aus der Store-Verfügbarkeit genommen (ICP); bedient SG, MY, Diaspora."
     },
     {
@@ -309,7 +309,7 @@
         "many",
         "other"
       ],
-      "status": "planned",
+      "status": "machine",
       "notes": "In Russland keine Käufe im App Store seit 2022; Cloud-Abo dort nicht kaufbar."
     },
     {

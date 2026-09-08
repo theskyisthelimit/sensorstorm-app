@@ -58,6 +58,24 @@
             "value" : "O Sensorstorm conta quantos dispositivos Bluetooth estão transmitindo por perto e registra a intensidade do sinal. Nenhuma conexão é estabelecida com eles."
           }
         },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm conta quantos aparelhos Bluetooth estão a emitir nas proximidades e regista a força do sinal. Não é estabelecida qualquer ligação com eles."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm считает, сколько устройств Bluetooth передают поблизости, и записывает силу сигнала. Соединение с ними не устанавливается."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会统计周围有多少 Bluetooth 设备正在发送信号，并记录信号强度，不会与这些设备建立连接。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +139,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Sensorstorm grava vídeo em sincronia com os dados dos sensores e fotografa o solo para uma observação."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm grava vídeo em sincronia com os dados dos sensores e fotografa o piso para uma observação."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm снимает видео синхронно с данными датчиков и фотографирует покрытие для наблюдения."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会录制与传感器数据同步的视频，并为观测点拍摄地面。"
           }
         },
         "zh-Hant" : {
@@ -188,6 +224,24 @@
             "value" : "O Sensorstorm envia as medições para o endereço que você informa nos ajustes. Se esse servidor estiver na mesma rede, é preciso esta permissão."
           }
         },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm envia os valores medidos para o endereço que indicares nas definições. Se o servidor estiver na mesma rede, isso precisa desta autorização."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm отправляет измерения на адрес, который вы указали в настройках. Если сервер в той же сети, для этого нужно это разрешение."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会把测量值发送到你在设置中填写的地址。如果服务器在同一个网络里，这需要该授权。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -251,6 +305,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Sensorstorm continua registrando a posição mesmo quando a tela é bloqueada durante uma medição."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm continua a registar a posição mesmo quando o ecrã é bloqueado durante uma medição."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm продолжает записывать позицию и тогда, когда экран во время измерения блокируется."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 在测量期间即使屏幕锁定也会继续记录位置。"
           }
         },
         "zh-Hant" : {
@@ -318,6 +390,24 @@
             "value" : "O Sensorstorm registra posição, altitude, velocidade e rumo, referencia os dados de orientação ao norte verdadeiro e anota onde uma observação foi registrada."
           }
         },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm regista posição, altitude, velocidade e rumo, alinha os dados de orientação com o norte e retém onde uma observação foi registada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm записывает позицию, высоту, скорость и курс, выравнивает данные ориентации по северу и запоминает, где было записано наблюдение."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会记录位置、高度、速度和航向，把姿态数据对齐到北向，并记下观测点是在哪里采集的。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +473,24 @@
             "value" : "O Sensorstorm mede o nível sonoro, opcionalmente grava áudio junto a uma medição e grava o áudio dos clipes curtos de uma observação."
           }
         },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm mede o volume, grava som para a medição se quiseres e regista o som dos clipes curtos de uma observação."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm измеряет громкость, по желанию записывает звук к измерению и записывает звук коротких клипов к наблюдению."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会测量音量，按需要为测量录制声音，并录制观测点短片段的声音。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -446,6 +554,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "O Sensorstorm registra aceleração, velocidade de rotação, orientação, campo magnético e passos."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm regista aceleração, velocidade de rotação, orientação, campo magnético e passos."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm записывает ускорение, угловую скорость, ориентацию, магнитное поле и шаги."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会记录加速度、角速度、姿态、磁场和步数。"
           }
         },
         "zh-Hant" : {
