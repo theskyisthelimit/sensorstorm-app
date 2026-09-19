@@ -403,15 +403,34 @@ def replace_screenshot_set(asc, up, localization_id: str, display_type: str,
         list(pool.map(upload_one, reserved))
 
 
+def registry_locales() -> dict[str, list[str]]:
+    """Katalogsprache → App-Store-Locales, aus `l10n/languages.json`.
+
+    Die Registry ist die eine Stelle, an der diese Zuordnung steht. Sie zu raten
+    hat zweimal Bilder gekostet: `pt-BR` und `zh-Hant` liessen sich nicht am
+    Bindestrich kürzen, und `nb` heisst im App Store `no` — keine Zeichenkette
+    der Welt führt von einem zum anderen."""
+    path = ROOT / "l10n/languages.json"
+    if not path.exists():
+        return {}
+    entries = json.loads(path.read_text(encoding="utf-8"))["languages"]
+    return {e["code"]: list(e.get("ascLocales") or []) for e in entries}
+
+
 def matching_locales(locale_ids: dict[str, str], lang_key: str) -> list[str]:
     """App Store locales that serve one catalog language — `de` covers `de-DE`,
     and a language the current version does not offer matches nothing.
 
-    The exact hit comes first, because a catalog language can carry its region:
-    `pt-BR` and `zh-Hant` are the whole locale, and stripping at the hyphen left
-    `pt` and `zh` — which match no App Store locale at all. Both languages then
-    captured 50 screenshots each and uploaded none of them."""
+    Erst die Registry, dann die Zeichenkette: `nb` wird im Store zu `no`, und
+    wer das aus dem Namen ableiten will, lädt für Norwegisch 25 Bilder auf und
+    stellt keines davon in den Store.
+    """
     key = lang_key.lower()
+    declared = [loc for loc in registry_locales().get(lang_key, [])
+                if any(loc.lower() == have.lower() for have in locale_ids)]
+    if declared:
+        return [have for have in locale_ids
+                if any(have.lower() == loc.lower() for loc in declared)]
     exact = [loc for loc in locale_ids if loc.lower() == key]
     return exact or [loc for loc in locale_ids if loc.split("-")[0].lower() == key]
 
