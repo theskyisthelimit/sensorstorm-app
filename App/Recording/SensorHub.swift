@@ -162,14 +162,23 @@ final class SensorHub {
             return .ready
         }
         if syntheticSensors.contains(sensor) { return .simulated }
+
+        let permission = SensorPermission.required(for: sensor)
+        let permissionState = permission?.state
+
+        // A refused permission is never a missing sensor, whatever the hardware probe says.
+        if case .refused = permissionState, let permission { return .permissionRefused(permission) }
+
+        // Core Motion answers its capability questions *through* the permission:
+        // `CMPedometer.isStepCountingAvailable()` and `CMAltimeter.isRelativeAltitudeAvailable()`
+        // both go false once „Bewegung & Fitness" is off. Asking the hardware first would
+        // therefore tell a phone with a perfectly good barometer that it has no barometer —
+        // the exact wrong sentence this whole type exists to stop.
+        if case .missing = permissionState, permission == .motion { return .permissionMissing(.motion) }
+
         guard availableSensors.contains(sensor) else { return .unsupported }
-        if let permission = SensorPermission.required(for: sensor) {
-            switch permission.state {
-            case .missing: return .permissionMissing(permission)
-            case .refused: return .permissionRefused(permission)
-            case .granted: break
-            }
-        }
+
+        if case .missing = permissionState, let permission { return .permissionMissing(permission) }
         return .ready
     }
 
