@@ -1,4 +1,9 @@
 {
+  "name": "Sensorstorm: Sensor Logger",
+  "subtitle": "传感器记录与道路检测",
+  "promotionalText": "所有传感器共用一个时钟，路面病害配上诚实的定位精度。可导出为 CSV、GeoJSON、GPX、KML，也可导入 Blender。",
+  "keywords": "裂缝,坑洼,路面,病害,巡查,测绘,位姿,GeoJSON,QGIS,加速度计,陀螺仪,GPS,IMU,CSV",
+  "description": "Sensorstorm 同时记录 iPhone 上的所有传感器，并记录路面的病害。两个工具，一个共同的时钟。\n\n一个时钟管全部\n\n轻点一下即可全部开始：加速度、角速度、姿态、磁场、GPS、气压、音量、步数、设备状态。需要时还可录制 720p、1080p 或 4K 视频。\n\n所有数据流与视频帧共用同一时间基准。一帧画面和与之对应的加速度值精确对应——无需事后校准，也不会漂移。\n\n现场：把病害记录下来\n\n路线是一段行程，观察是其上的一个点：照片和短片数量不限，1 到 10 的评级，以及以圆形或多边形标出的范围。\n\n每条观察都会写明坐标从何而来：一次 GPS 定位、静止十秒的平均值，或者手动放置的图钉。不确定圆按比例绘制在地图上。\n\n可继续使用的导出\n\n记录可按传感器导出为 CSV、原始数据、Sensor Logger 格式或 Gyroflow 日志。路线可导出为供 QGIS 使用的 GeoJSON、WGS84 与 LV95 并列的 CSV、GPX 或 KML。全部内容可打包成一个 ZIP，并由 manifest.json 逐一描述。\n\n运镜\n\n在 ARKit 模式下，每一帧都会记录位置、视线方向和焦距。导出会写出 frames.csv、scene.json、视频和 GPS 轨迹——Blender 插件据此生成跟随真实拍摄的动画相机。\n\n免费与 Pro\n\n免费：全部传感器、带图表的回放、一条路线、CSV 导出。\n\nSensorstorm Pro 一次购买即可解锁其余功能，无订阅：400 Hz、4K、用于 3D 的相机位姿、原始数据、用于 Blender 的运镜、Sensor Logger、Gyroflow、无限路线、GeoJSON/GPX/KML 以及整体导出。\n\n没有 Pro 也可以导出 CSV。你的测量数据属于你，无论是否购买。\n\n没有云\n\n一切都留在设备上。没有账户，没有跟踪，没有后台分析。\n\n摄影测量与 GPX\n\n在 ARKit 模式下，导出会挑选清晰且分布均匀的照片，并把焦距、位置和视线方向写入 EXIF——供 RealityScan、Metashape 或 Meshroom 使用。GPS 轨迹可直接导出为 GPX 或 KML，无需第三方工具。\n\n本应用支持包含简体中文在内的 27 种语言。",
   "whatsNew": {
     "version": "1.0.0",
     "text": "首个版本。"
