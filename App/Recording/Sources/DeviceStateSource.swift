@@ -99,13 +99,17 @@ enum NetworkKind: Int, Sendable, CaseIterable {
     case wired = 3
     case other = 4
 
+    /// Für die Anzeige, nicht für die Datei: in den Strom geht die Zahl.
+    /// `String(localized:)` statt eines blanken Literals — ein `var label: String`
+    /// mit Literalen sieht weder der Compiler noch der Katalogabgleich als Text,
+    /// und „Mobil“ stand damit in jeder Sprache auf Deutsch.
     var label: String {
         switch self {
         case .none: "—"
-        case .wifi: "WLAN"
-        case .cellular: "Mobil"
-        case .wired: "Kabel"
-        case .other: "Anderes"
+        case .wifi: String(localized: "WLAN")
+        case .cellular: String(localized: "Mobil")
+        case .wired: String(localized: "Kabel")
+        case .other: String(localized: "Anderes")
         }
     }
 }

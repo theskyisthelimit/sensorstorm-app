@@ -321,6 +321,8 @@
     "Route starten",
     "Bluetooth",
     "Import",
-    "Export"
+    "Export",
+    "broker.example.com",
+    "https://192.168.1.20:8080/sensoren"
   ]
 }

@@ -130,9 +130,13 @@ struct RecordView: View {
                     .contentTransition(.numericText())
                     .animation(.default, value: hub.elapsed)
 
+                // `LocalizedStringKey`, nicht `String`: ein Ternär, dessen einer Zweig
+                // `String(localized:)` ist, macht den anderen zu einer gewöhnlichen
+                // Zeichenkette — und die übersetzt niemand mehr. So stand „Messwerte“
+                // auf dem Hauptbildschirm in allen 26 Sprachen auf Deutsch.
                 Text(hub.phase == .recording
-                     ? "\(Format.sampleCount(hub.writtenSampleCount)) Messwerte"
-                     : String(localized: "Bereit"))
+                     ? "\(Format.sampleCount(hub.writtenSampleCount)) Messwerte" as LocalizedStringKey
+                     : "Bereit")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }

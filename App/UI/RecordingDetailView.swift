@@ -267,7 +267,7 @@ struct RecordingDetailView: View {
                 }
                 if let audio = recording.audio {
                     infoDivider
-                    infoRow("Audio", "\(Int(audio.sampleRate)) Hz · \(audio.channelCount) Kanäle")
+                    infoRow("Audio", String(localized: "\(Int(audio.sampleRate)) Hz · \(audio.channelCount) Kanäle"))
                 }
 
                 infoDivider

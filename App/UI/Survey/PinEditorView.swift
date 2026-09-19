@@ -145,9 +145,12 @@ struct PinEditorView: View {
                     .font(.caption.monospacedDigit())
                 Spacer(minLength: 0)
                 if let offset = offsetFromFix {
+                    // `String(localized:)` mit Specifier statt `String(format:)`:
+                    // letzteres ist eine Formatierung, keine Übersetzung, und „vom Fix“
+                    // stand damit in jeder Sprache auf Deutsch.
                     Label(offset < 10
-                          ? String(format: "%.1f m vom Fix", offset)
-                          : String(format: "%.0f m vom Fix", offset),
+                          ? String(localized: "\(offset, specifier: "%.1f") m vom Fix")
+                          : String(localized: "\(offset, specifier: "%.0f") m vom Fix"),
                           systemImage: "arrow.left.and.right")
                         .font(.caption.monospacedDigit())
                         .foregroundStyle(offset > 25 ? .orange : .secondary)

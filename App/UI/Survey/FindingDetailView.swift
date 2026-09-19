@@ -284,7 +284,7 @@ struct FindingDetailView: View {
                 infoRow("Versatz zum GPS-Fix", String(format: "%.1f m", offset))
             }
             if let altitude = location.altitude {
-                infoRow("Höhe", String(format: "%.1f m ü. M.", altitude))
+                infoRow("Höhe", String(localized: "\(altitude, specifier: "%.1f") m ü. M."))
             }
             if let heading = location.heading {
                 infoRow("Blickrichtung", String(format: "%.0f°", heading))

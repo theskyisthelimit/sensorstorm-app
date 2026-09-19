@@ -39,6 +39,12 @@ jobs:
       - name: The localisation locks
         run: python3 Tools/l10n.py verify
 
+      # Die Lücke vor dem Katalogabgleich: ein deutscher Text, den der Compiler gar
+      # nicht erst als übersetzbar erkennt. Sechs davon standen in 26 Sprachen auf
+      # Deutsch, einer auf dem Hauptbildschirm.
+      - name: No German text the compiler never sees
+        run: python3 Tools/l10n_literals.py
+
       - name: Generate the Xcode project
         run: xcodegen generate
 
@@ -50,3 +56,10 @@ jobs:
           -destination 'generic/platform=iOS Simulator'
           -derivedDataPath .derived-data
           CODE_SIGNING_ALLOWED=NO build
+
+      # Ein `LocalizedStringKey`, den niemand in den Katalog getragen hat, fällt in
+      # jeder Sprache auf Deutsch zurück — und `l10n.py doctor` sieht ihn nie, weil
+      # der nur zählt, was schon drinsteht. Genau so standen 61 Texte in 26 Sprachen
+      # auf Deutsch, bis eines davon in einem arabischen Store-Screenshot auffiel.
+      - name: Every localisable text is in the catalog
+        run: DERIVED_DATA=.derived-data python3 Tools/l10n_extract.py
