@@ -14571,6 +14571,806 @@
         }
       }
     },
+    "Braucht Bewegung & Fitness. Zum Erlauben tippen." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب الحركة واللياقة. اضغط للسماح."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje Pohyb a fitness. Klepnutím povolíte."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kræver Bevægelse og fitness. Tryk for at tillade."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρειάζεται Κίνηση και γυμναστική. Άγγιξε για να επιτρέψεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs Motion & Fitness. Tap to allow."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesita Movimiento y forma física. Toca para permitir."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaatii Liikkeen ja kunnon. Salli napauttamalla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite Mouvement et forme. Touchez pour autoriser."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahtijeva Kretanje i kondiciju. Dodirni za dopuštenje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás és fitnesz kell hozzá. Koppints az engedélyezéshez."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiede Movimento e fitness. Tocca per consentire."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "モーションとフィットネスが必要です。タップして許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동작 및 피트니스가 필요해요. 탭해서 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krever Bevegelse og trening. Trykk for å tillate."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereist Beweging en fitness. Tik om toe te staan."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaga Ruchu i sprawności. Stuknij, aby zezwolić."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa de Movimento e Preparo Físico. Toque para permitir."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa de Movimento e fitness. Toca para permitir."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesită Mișcare și fitness. Apasă pentru a permite."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужно «Движение и фитнес». Нажмите, чтобы разрешить."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje Pohyb a fitness. Klepnutím povolíte."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kräver Rörelse och träning. Tryck för att tillåta."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hareket ve Fitness gerekir. İzin vermek için dokun."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрібен «Рух і фітнес». Торкніться, щоб дозволити."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要运动与健身。点按以允许。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要動作與健身。點一下以允許。"
+          }
+        }
+      }
+    },
+    "Braucht Bluetooth. Zum Erlauben tippen." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب بلوتوث. اضغط للسماح."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje Bluetooth. Klepnutím povolíte."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kræver Bluetooth. Tryk for at tillade."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρειάζεται Bluetooth. Άγγιξε για να επιτρέψεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs Bluetooth. Tap to allow."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesita Bluetooth. Toca para permitir."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaatii Bluetooth-yhteyden. Salli napauttamalla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite le Bluetooth. Touchez pour autoriser."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahtijeva Bluetooth. Dodirni za dopuštenje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth kell hozzá. Koppints az engedélyezéshez."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiede il Bluetooth. Tocca per consentire."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetoothが必要です。タップして許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth가 필요해요. 탭해서 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krever Bluetooth. Trykk for å tillate."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereist Bluetooth. Tik om toe te staan."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaga Bluetooth. Stuknij, aby zezwolić."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa do Bluetooth. Toque para permitir."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa do Bluetooth. Toca para permitir."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesită Bluetooth. Apasă pentru a permite."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужен Bluetooth. Нажмите, чтобы разрешить."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje Bluetooth. Klepnutím povolíte."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kräver Bluetooth. Tryck för att tillåta."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth gerekir. İzin vermek için dokun."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрібен Bluetooth. Торкніться, щоб дозволити."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要蓝牙。点按以允许。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要藍牙。點一下以允許。"
+          }
+        }
+      }
+    },
+    "Braucht das Mikrofon. Zum Erlauben tippen." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب الميكروفون. اضغط للسماح."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje mikrofon. Klepnutím povolíte."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kræver mikrofonen. Tryk for at tillade."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρειάζεται το μικρόφωνο. Άγγιξε για να επιτρέψεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs the microphone. Tap to allow."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesita el micrófono. Toca para permitir."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaatii mikrofonin. Salli napauttamalla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite le microphone. Touchez pour autoriser."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahtijeva mikrofon. Dodirni za dopuštenje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mikrofon kell hozzá. Koppints az engedélyezéshez."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiede il microfono. Tocca per consentire."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "マイクが必要です。タップして許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마이크가 필요해요. 탭해서 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krever mikrofonen. Trykk for å tillate."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereist de microfoon. Tik om toe te staan."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaga mikrofonu. Stuknij, aby zezwolić."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa do microfone. Toque para permitir."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa do microfone. Toca para permitir."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesită microfonul. Apasă pentru a permite."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужен микрофон. Нажмите, чтобы разрешить."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje mikrofón. Klepnutím povolíte."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kräver mikrofonen. Tryck för att tillåta."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mikrofon gerekir. İzin vermek için dokun."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрібен мікрофон. Торкніться, щоб дозволити."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要麦克风。点按以允许。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要麥克風。點一下以允許。"
+          }
+        }
+      }
+    },
+    "Braucht die Ortungsdienste. Zum Erlauben tippen." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب خدمات الموقع. اضغط للسماح."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje služby určování polohy. Klepnutím povolíte."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kræver lokalitetstjenester. Tryk for at tillade."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρειάζεται τις υπηρεσίες τοποθεσίας. Άγγιξε για να επιτρέψεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs location services. Tap to allow."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesita los servicios de localización. Toca para permitir."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaatii sijaintipalvelut. Salli napauttamalla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite les services de localisation. Touchez pour autoriser."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahtijeva lokacijske usluge. Dodirni za dopuštenje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helymeghatározás kell hozzá. Koppints az engedélyezéshez."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiede i servizi di localizzazione. Tocca per consentire."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置情報サービスが必要です。タップして許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 서비스가 필요해요. 탭해서 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krever posisjonstjenester. Trykk for å tillate."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereist locatievoorzieningen. Tik om toe te staan."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaga usług lokalizacji. Stuknij, aby zezwolić."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa dos serviços de localização. Toque para permitir."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa dos serviços de localização. Toca para permitir."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesită serviciile de localizare. Apasă pentru a permite."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужны службы геолокации. Нажмите, чтобы разрешить."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje lokalizačné služby. Klepnutím povolíte."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kräver platstjänster. Tryck för att tillåta."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konum servisleri gerekir. İzin vermek için dokun."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрібні служби геопозиції. Торкніться, щоб дозволити."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要定位服务。点按以允许。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要定位服務。點一下以允許。"
+          }
+        }
+      }
+    },
+    "Braucht eine gekoppelte Apple Watch." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يتطلب Apple Watch مقترنة."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje spárované Apple Watch."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kræver et pardannet Apple Watch."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρειάζεται ένα συζευγμένο Apple Watch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Needs a paired Apple Watch."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesita un Apple Watch enlazado."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaatii parina olevan Apple Watchin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite une Apple Watch jumelée."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahtijeva upareni Apple Watch."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Párosított Apple Watch kell hozzá."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richiede un Apple Watch abbinato."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ペアリング済みのApple Watchが必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페어링된 Apple Watch가 필요해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krever en sammenkoblet Apple Watch."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vereist een gekoppelde Apple Watch."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaga sparowanego Apple Watch."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa de um Apple Watch pareado."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precisa de um Apple Watch emparelhado."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Necesită un Apple Watch asociat."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужны подключённые Apple Watch."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyžaduje spárované Apple Watch."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kräver en parkopplad Apple Watch."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eşleştirilmiş bir Apple Watch gerekir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потрібен Apple Watch у парі."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要已配对的 Apple Watch。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要已配對的 Apple Watch。"
+          }
+        }
+      }
+    },
     "Bündel mit Fotos" : {
       "localizations" : {
         "ar" : {
@@ -20652,6 +21452,166 @@
         }
       }
     },
+    "Die Uhr ist gekoppelt, aber Sensorstorm ist nicht darauf installiert. In der Apple-Watch-App unter „Verfügbare Apps“ installieren; die Uhr fragt beim ersten Start selbst nach dem Zugriff auf die Herzfrequenz." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الساعة مقترنة، لكن Sensorstorm غير مثبّت عليها. ثبّته من تطبيق Apple Watch ضمن «التطبيقات المتاحة»؛ وستطلب الساعة بنفسها إذن الوصول إلى معدل ضربات القلب عند أول تشغيل."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hodinky jsou spárované, ale Sensorstorm v nich není nainstalovaný. Nainstalujte jej v aplikaci Apple Watch v části „Dostupné aplikace“; hodinky si při prvním spuštění samy vyžádají přístup k tepu."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uret er pardannet, men Sensorstorm er ikke installeret på det. Installer appen i Apple Watch-appen under »Tilgængelige apps«; uret beder selv om adgang til puls ved første start."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το ρολόι είναι συζευγμένο, αλλά το Sensorstorm δεν είναι εγκατεστημένο σε αυτό. Εγκατάστησέ το από την εφαρμογή Apple Watch στα «Διαθέσιμα apps»· το ρολόι ζητά μόνο του πρόσβαση στον καρδιακό παλμό στην πρώτη εκκίνηση."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The watch is paired, but Sensorstorm is not installed on it. Install it in the Apple Watch app under “Available Apps”; the watch asks for heart-rate access itself on first launch."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El reloj está enlazado, pero Sensorstorm no está instalado en él. Instálalo en la app Apple Watch, en «Apps disponibles»; el reloj pide por sí mismo el acceso a la frecuencia cardiaca en el primer inicio."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kello on parina, mutta Sensorstorm ei ole asennettuna siihen. Asenna se Apple Watch -apissa kohdasta ”Saatavilla olevat apit”; kello pyytää ensimmäisellä käynnistyksellä itse oikeuden sykkeeseen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La montre est jumelée, mais Sensorstorm n’y est pas installé. Installez-le dans l’app Apple Watch sous « Apps disponibles » ; la montre demande elle-même l’accès à la fréquence cardiaque au premier lancement."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sat je uparen, ali Sensorstorm nije instaliran na njemu. Instaliraj ga u aplikaciji Apple Watch pod „Dostupne aplikacije“; sat će pri prvom pokretanju sam zatražiti pristup pulsu."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az óra párosítva van, de a Sensorstorm nincs rátelepítve. Telepítsd az Apple Watch appból az „Elérhető appok” részben; az óra az első indításkor maga kéri a pulzushoz való hozzáférést."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’orologio è abbinato, ma Sensorstorm non è installato. Installalo nell’app Apple Watch sotto «App disponibili»; al primo avvio l’orologio chiede da sé l’accesso alla frequenza cardiaca."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時計はペアリング済みですが、Sensorstormがインストールされていません。Apple Watch Appの「使用可能なApp」からインストールしてください。初回起動時に時計自身が心拍数へのアクセスを確認します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시계는 페어링되어 있지만 Sensorstorm이 설치되어 있지 않아요. Apple Watch 앱의 “사용 가능한 App”에서 설치하세요. 처음 실행할 때 시계가 직접 심박수 접근 권한을 물어봐요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klokken er sammenkoblet, men Sensorstorm er ikke installert på den. Installer den i Apple Watch-appen under «Tilgjengelige apper»; klokken ber selv om tilgang til puls ved første start."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het horloge is gekoppeld, maar Sensorstorm staat er niet op. Installeer het in de Apple Watch-app onder ‘Beschikbare apps’; het horloge vraagt bij de eerste start zelf toegang tot de hartslag."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zegarek jest sparowany, ale Sensorstorm nie jest na nim zainstalowany. Zainstaluj go w aplikacji Apple Watch w sekcji „Dostępne aplikacje”; zegarek sam poprosi o dostęp do tętna przy pierwszym uruchomieniu."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O relógio está pareado, mas o Sensorstorm não está instalado nele. Instale pelo app Apple Watch em “Apps Disponíveis”; o relógio pede sozinho o acesso à frequência cardíaca na primeira abertura."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O relógio está emparelhado, mas o Sensorstorm não está instalado nele. Instala-o na app Apple Watch em “Apps disponíveis”; o relógio pede sozinho o acesso à frequência cardíaca no primeiro arranque."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceasul este asociat, dar Sensorstorm nu este instalat pe el. Instalează-l din aplicația Apple Watch, la „Aplicații disponibile”; ceasul cere singur accesul la puls la prima pornire."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часы подключены, но Sensorstorm на них не установлен. Установите его в приложении Apple Watch в разделе «Доступные приложения»; при первом запуске часы сами запросят доступ к пульсу."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hodinky sú spárované, ale Sensorstorm v nich nie je nainštalovaný. Nainštalujte ho v aplikácii Apple Watch v časti „Dostupné aplikácie“; hodinky si pri prvom spustení samy vyžiadajú prístup k tepu."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klockan är parkopplad, men Sensorstorm är inte installerat på den. Installera det i Apple Watch-appen under ”Tillgängliga appar”; klockan ber själv om åtkomst till puls vid första starten."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saat eşleştirilmiş, ancak Sensorstorm ona yüklü değil. Apple Watch uygulamasındaki “Kullanılabilir Uygulamalar” bölümünden yükle; saat ilk açılışta nabza erişim iznini kendisi ister."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Годинник у парі, але Sensorstorm на ньому не встановлено. Установіть його у програмі Apple Watch у розділі «Доступні програми»; під час першого запуску годинник сам попросить доступ до пульсу."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手表已配对，但未安装 Sensorstorm。请在 Apple Watch App 的“可用 App”中安装；手表首次启动时会自行请求心率访问权限。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手錶已配對，但未安裝 Sensorstorm。請在 Apple Watch App 的「可用的 App」中安裝；手錶首次啟動時會自行要求心率取用權限。"
+          }
+        }
+      }
+    },
     "Die laufende Aufnahme benutzt die Kamera. Beobachtung ohne Foto erfassen oder die Aufnahme stoppen." : {
       "localizations" : {
         "ar" : {
@@ -21612,6 +22572,166 @@
         }
       }
     },
+    "Dieses Gerät hat keinen solchen Sensor." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يحتوي هذا الجهاز على هذا المستشعر."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toto zařízení takový senzor nemá."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne enhed har ikke den sensor."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτή η συσκευή δεν έχει τέτοιον αισθητήρα."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device has no such sensor."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo no tiene ese sensor."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tässä laitteessa ei ole tällaista anturia."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet appareil n’a pas ce capteur."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ovaj uređaj nema takav senzor."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezen a készüléken nincs ilyen érzékelő."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo dispositivo non ha questo sensore."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この端末にはこのセンサーがありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 기기에는 해당 센서가 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne enheten har ingen slik sensor."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dit apparaat heeft die sensor niet."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To urządzenie nie ma takiego czujnika."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo não tem esse sensor."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo não tem esse sensor."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acest dispozitiv nu are un astfel de senzor."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На этом устройстве нет такого датчика."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toto zariadenie taký senzor nemá."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den här enheten har ingen sådan sensor."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu aygıtta böyle bir sensör yok."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На цьому пристрої немає такого датчика."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设备没有该传感器。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這部裝置沒有這個感測器。"
+          }
+        }
+      }
+    },
     "Dieses Gerät unterstützt kein ARKit-Tracking." : {
       "localizations" : {
         "ar" : {
@@ -21768,6 +22888,166 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此裝置不支援 ARKit 追蹤。"
+          }
+        }
+      }
+    },
+    "Dieses iPhone kann keine Apple Watch koppeln." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هذا الجهاز iPhone لا يمكنه إقران Apple Watch."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tento iPhone nelze spárovat s Apple Watch."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne iPhone kan ikke pardanne med et Apple Watch."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αυτό το iPhone δεν μπορεί να συζευχθεί με Apple Watch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This iPhone cannot pair an Apple Watch."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este iPhone no puede enlazar un Apple Watch."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tämä iPhone ei voi muodostaa paria Apple Watchin kanssa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet iPhone ne peut pas jumeler d’Apple Watch."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ovaj iPhone ne može upariti Apple Watch."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez az iPhone nem tud Apple Watch órát párosítani."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo iPhone non può abbinare un Apple Watch."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このiPhoneはApple Watchとペアリングできません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 iPhone은 Apple Watch와 페어링할 수 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne iPhone-en kan ikke sammenkobles med en Apple Watch."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze iPhone kan geen Apple Watch koppelen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten iPhone nie może sparować Apple Watch."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este iPhone não pode parear um Apple Watch."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este iPhone não pode emparelhar um Apple Watch."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acest iPhone nu poate asocia un Apple Watch."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот iPhone не может подключить Apple Watch."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tento iPhone nedokáže spárovať Apple Watch."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denna iPhone kan inte parkoppla en Apple Watch."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu iPhone bir Apple Watch ile eşleştirilemez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цей iPhone не може створити пару з Apple Watch."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此 iPhone 无法配对 Apple Watch。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這部 iPhone 無法配對 Apple Watch。"
           }
         }
       }
@@ -24168,6 +25448,166 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "補充"
+          }
+        }
+      }
+    },
+    "Erlauben" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "السماح"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolit"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillad"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επίτρεψε"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permitir"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salli"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autoriser"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopusti"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezés"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "許可"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "허용"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sta toe"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zezwól"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permitir"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permitir"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povoliť"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillåt"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzin ver"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозволити"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許"
           }
         }
       }
@@ -29938,6 +31378,326 @@
         }
       }
     },
+    "Herzfrequenz und Handgelenkbewegung kommen von einer Apple Watch. Dieses Gerät kann keine koppeln." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معدل ضربات القلب وحركة المعصم يأتيان من Apple Watch. هذا الجهاز لا يمكنه إقران واحدة."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tep a pohyb zápěstí pocházejí z Apple Watch. Toto zařízení je nedokáže spárovat."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls og håndledsbevægelse kommer fra et Apple Watch. Denne enhed kan ikke pardanne med et."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο καρδιακός παλμός και η κίνηση του καρπού έρχονται από ένα Apple Watch. Αυτή η συσκευή δεν μπορεί να συζευχθεί με κάποιο."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heart rate and wrist motion come from an Apple Watch. This device cannot pair one."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La frecuencia cardiaca y el movimiento de la muñeca vienen de un Apple Watch. Este dispositivo no puede enlazar ninguno."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syke ja ranteen liike tulevat Apple Watchista. Tämä laite ei voi muodostaa paria kellon kanssa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fréquence cardiaque et le mouvement du poignet proviennent d’une Apple Watch. Cet appareil ne peut pas en jumeler."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls i pokret zapešća dolaze s Apple Watcha. Ovaj uređaj ga ne može upariti."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A pulzus és a csuklómozgás egy Apple Watch órától érkezik. Ez a készülék nem tud ilyet párosítani."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequenza cardiaca e movimento del polso arrivano da un Apple Watch. Questo dispositivo non può abbinarne uno."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心拍数と手首の動きはApple Watchから届きます。この端末はペアリングできません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "심박수와 손목 움직임은 Apple Watch에서 와요. 이 기기는 페어링할 수 없어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls og håndleddsbevegelse kommer fra en Apple Watch. Denne enheten kan ikke sammenkobles med en."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hartslag en polsbeweging komen van een Apple Watch. Dit apparaat kan er geen koppelen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tętno i ruch nadgarstka pochodzą z Apple Watch. To urządzenie nie może go sparować."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A frequência cardíaca e o movimento do pulso vêm de um Apple Watch. Este dispositivo não pode parear nenhum."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A frequência cardíaca e o movimento do pulso vêm de um Apple Watch. Este dispositivo não pode emparelhar nenhum."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulsul și mișcarea încheieturii vin de la un Apple Watch. Acest dispozitiv nu poate asocia unul."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс и движение запястья поступают с Apple Watch. Это устройство не может их подключить."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tep a pohyb zápästia prichádzajú z Apple Watch. Toto zariadenie ich nedokáže spárovať."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls och handledsrörelse kommer från en Apple Watch. Den här enheten kan inte parkoppla någon."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nabız ve bilek hareketi bir Apple Watch’tan gelir. Bu aygıt bir tane eşleştiremez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс і рух зап’ястя надходять з Apple Watch. Цей пристрій не може створити з ним пару."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心率和手腕动作来自 Apple Watch。此设备无法配对。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心率和手腕動作來自 Apple Watch。這部裝置無法配對。"
+          }
+        }
+      }
+    },
+    "Herzfrequenz und Handgelenkbewegung misst die Apple Watch, nicht das iPhone. Koppel eine Uhr in der Apple-Watch-App, dann erscheinen die beiden Ströme hier." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معدل ضربات القلب وحركة المعصم تقيسهما Apple Watch وليس iPhone. اقرن ساعة في تطبيق Apple Watch، وسيظهر التدفقان هنا."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tep a pohyb zápěstí měří Apple Watch, ne iPhone. Spárujte hodinky v aplikaci Apple Watch a oba toky se objeví zde."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls og håndledsbevægelse måles af dit Apple Watch, ikke af din iPhone. Pardan et ur i Apple Watch-appen, så vises begge strømme her."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Τον καρδιακό παλμό και την κίνηση του καρπού τα μετρά το Apple Watch, όχι το iPhone. Σύζευξε ένα ρολόι στην εφαρμογή Apple Watch και οι δύο ροές θα εμφανιστούν εδώ."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heart rate and wrist motion are measured by the Apple Watch, not the iPhone. Pair a watch in the Apple Watch app and both streams appear here."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La frecuencia cardiaca y el movimiento de la muñeca los mide el Apple Watch, no el iPhone. Enlaza un reloj en la app Apple Watch y los dos flujos aparecerán aquí."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sykkeen ja ranteen liikkeen mittaa Apple Watch, ei iPhone. Muodosta pari kellon kanssa Apple Watch -apissa, niin molemmat virrat näkyvät tässä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fréquence cardiaque et le mouvement du poignet sont mesurés par l’Apple Watch, pas par l’iPhone. Jumelez une montre dans l’app Apple Watch et les deux flux apparaîtront ici."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls i pokret zapešća mjeri Apple Watch, a ne iPhone. Upari sat u aplikaciji Apple Watch i oba toka pojavit će se ovdje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A pulzust és a csuklómozgást az Apple Watch méri, nem az iPhone. Párosíts egy órát az Apple Watch appban, és mindkét adatfolyam megjelenik itt."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequenza cardiaca e movimento del polso li misura Apple Watch, non iPhone. Abbina un orologio nell’app Apple Watch e i due flussi compaiono qui."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心拍数と手首の動きを測るのはApple Watchで、iPhoneではありません。Apple Watch Appで時計をペアリングすると、2つのストリームがここに表示されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "심박수와 손목 움직임은 iPhone이 아니라 Apple Watch가 측정해요. Apple Watch 앱에서 시계를 페어링하면 두 스트림이 여기에 나타나요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls og håndleddsbevegelse måles av Apple Watch, ikke av iPhone. Sammenkoble en klokke i Apple Watch-appen, så vises begge strømmene her."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hartslag en polsbeweging meet de Apple Watch, niet de iPhone. Koppel een horloge in de Apple Watch-app, dan verschijnen beide stromen hier."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tętno i ruch nadgarstka mierzy Apple Watch, a nie iPhone. Sparuj zegarek w aplikacji Apple Watch, a oba strumienie pojawią się tutaj."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A frequência cardíaca e o movimento do pulso são medidos pelo Apple Watch, não pelo iPhone. Pareie um relógio no app Apple Watch e os dois fluxos aparecem aqui."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A frequência cardíaca e o movimento do pulso são medidos pelo Apple Watch, não pelo iPhone. Emparelha um relógio na app Apple Watch e os dois fluxos aparecem aqui."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulsul și mișcarea încheieturii le măsoară Apple Watch, nu iPhone. Asociază un ceas în aplicația Apple Watch și ambele fluxuri vor apărea aici."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс и движение запястья измеряют Apple Watch, а не iPhone. Подключите часы в приложении Apple Watch, и оба потока появятся здесь."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tep a pohyb zápästia meria Apple Watch, nie iPhone. Spárujte hodinky v aplikácii Apple Watch a oba toky sa zobrazia tu."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puls och handledsrörelse mäts av Apple Watch, inte av iPhone. Parkoppla en klocka i Apple Watch-appen, så visas båda strömmarna här."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nabzı ve bilek hareketini iPhone değil, Apple Watch ölçer. Apple Watch uygulamasında bir saat eşleştir; iki akış da burada görünür."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс і рух зап’ястя вимірює Apple Watch, а не iPhone. Створіть пару з годинником у програмі Apple Watch, і обидва потоки з’являться тут."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心率和手腕动作由 Apple Watch 测量，而非 iPhone。在 Apple Watch App 中配对手表后，这两条数据流会出现在这里。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心率和手腕動作由 Apple Watch 測量，而非 iPhone。在 Apple Watch App 中配對手錶後，這兩條資料流會出現在這裡。"
+          }
+        }
+      }
+    },
     "Höhe hier nullen" : {
       "localizations" : {
         "ar" : {
@@ -30254,6 +32014,646 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "封存檔中含有 %@：每個檔案附大小與 SHA-256，每個觀測點附位置、精度、嚴重度以及所屬媒體的路徑。腳本只要讀這一個檔案，不需要知道資料夾的結構。"
+          }
+        }
+      }
+    },
+    "In den Einstellungen „Bewegung & Fitness“ erlauben." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسمح بـ«الحركة واللياقة» في الإعدادات."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolte v Nastavení „Pohyb a fitness“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillad »Bevægelse og fitness« i Indstillinger."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επίτρεψε την «Κίνηση και γυμναστική» στις Ρυθμίσεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow “Motion & Fitness” in Settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite «Movimiento y forma física» en Ajustes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salli ”Liike ja kunto” Asetuksissa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorisez « Mouvement et forme » dans Réglages."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopusti „Kretanje i kondicija“ u Postavkama."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezd a „Mozgás és fitnesz” hozzáférést a Beállításokban."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti «Movimento e fitness» in Impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」で「モーションとフィットネス」を許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정에서 “동작 및 피트니스”를 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat «Bevegelse og trening» i Innstillinger."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sta ‘Beweging en fitness’ toe in Instellingen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zezwól na „Ruch i sprawność” w Ustawieniach."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permita “Movimento e Preparo Físico” nos Ajustes."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite “Movimento e fitness” nas Definições."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite „Mișcare și fitness” în Configurări."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешите «Движение и фитнес» в Настройках."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povoľte v Nastaveniach „Pohyb a fitness“."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillåt ”Rörelse och träning” i Inställningar."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar’da “Hareket ve Fitness”a izin ver."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозвольте «Рух і фітнес» у Налаштуваннях."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在“设置”中允许“运动与健身”。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在「設定」中允許「動作與健身」。"
+          }
+        }
+      }
+    },
+    "In den Einstellungen „Bluetooth“ erlauben." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسمح بـ«بلوتوث» في الإعدادات."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolte v Nastavení „Bluetooth“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillad »Bluetooth« i Indstillinger."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επίτρεψε το «Bluetooth» στις Ρυθμίσεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow “Bluetooth” in Settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite «Bluetooth» en Ajustes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salli ”Bluetooth” Asetuksissa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorisez « Bluetooth » dans Réglages."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopusti „Bluetooth“ u Postavkama."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezd a „Bluetooth” hozzáférést a Beállításokban."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti «Bluetooth» in Impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」で「Bluetooth」を許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정에서 “Bluetooth”를 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat «Bluetooth» i Innstillinger."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sta ‘Bluetooth’ toe in Instellingen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zezwól na „Bluetooth” w Ustawieniach."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permita “Bluetooth” nos Ajustes."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite “Bluetooth” nas Definições."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite „Bluetooth” în Configurări."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешите «Bluetooth» в Настройках."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povoľte v Nastaveniach „Bluetooth“."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillåt ”Bluetooth” i Inställningar."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar’da “Bluetooth”a izin ver."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозвольте «Bluetooth» у Налаштуваннях."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在“设置”中允许“蓝牙”。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在「設定」中允許「藍牙」。"
+          }
+        }
+      }
+    },
+    "In den Einstellungen „Mikrofon“ erlauben." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسمح بـ«الميكروفون» في الإعدادات."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolte v Nastavení „Mikrofon“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillad »Mikrofon« i Indstillinger."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επίτρεψε το «Μικρόφωνο» στις Ρυθμίσεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow “Microphone” in Settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite «Micrófono» en Ajustes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salli ”Mikrofoni” Asetuksissa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorisez « Microphone » dans Réglages."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopusti „Mikrofon“ u Postavkama."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezd a „Mikrofon” hozzáférést a Beállításokban."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti «Microfono» in Impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」で「マイク」を許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정에서 “마이크”를 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat «Mikrofon» i Innstillinger."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sta ‘Microfoon’ toe in Instellingen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zezwól na „Mikrofon” w Ustawieniach."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permita “Microfone” nos Ajustes."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite “Microfone” nas Definições."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite „Microfon” în Configurări."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешите «Микрофон» в Настройках."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povoľte v Nastaveniach „Mikrofón“."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillåt ”Mikrofon” i Inställningar."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar’da “Mikrofon”a izin ver."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозвольте «Мікрофон» у Налаштуваннях."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在“设置”中允许“麦克风”。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在「設定」中允許「麥克風」。"
+          }
+        }
+      }
+    },
+    "In den Einstellungen „Ort“ erlauben." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسمح بـ«الموقع» في الإعدادات."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolte v Nastavení „Poloha“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillad »Lokalitet« i Indstillinger."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επίτρεψε την «Τοποθεσία» στις Ρυθμίσεις."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow “Location” in Settings."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite «Ubicación» en Ajustes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salli ”Sijainti” Asetuksissa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorisez « Position » dans Réglages."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopusti „Lokacija“ u Postavkama."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezd a „Hely” hozzáférést a Beállításokban."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti «Posizione» in Impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定」で「位置情報」を許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정에서 “위치”를 허용하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillat «Posisjon» i Innstillinger."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sta ‘Locatie’ toe in Instellingen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zezwól na „Lokalizacja” w Ustawieniach."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permita “Localização” nos Ajustes."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite “Localização” nas Definições."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permite „Locație” în Configurări."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешите «Геопозиция» в Настройках."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povoľte v Nastaveniach „Poloha“."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillåt ”Plats” i Inställningar."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar’da “Konum”a izin ver."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозвольте «Геопозиція» у Налаштуваннях."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在“设置”中允许“定位”。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在「設定」中允許「定位」。"
           }
         }
       }
@@ -46904,6 +49304,166 @@
         }
       }
     },
+    "Sensorstorm auf der Apple Watch installieren." : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ثبّت Sensorstorm على Apple Watch."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nainstalujte Sensorstorm do Apple Watch."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer Sensorstorm på dit Apple Watch."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Εγκατάστησε το Sensorstorm στο Apple Watch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install Sensorstorm on the Apple Watch."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instala Sensorstorm en el Apple Watch."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asenna Sensorstorm Apple Watchiin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installez Sensorstorm sur l’Apple Watch."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instaliraj Sensorstorm na Apple Watch."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepítsd a Sensorstorm appot az Apple Watch órára."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installa Sensorstorm su Apple Watch."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple WatchにSensorstormをインストールしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Watch에 Sensorstorm을 설치하세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installer Sensorstorm på Apple Watch."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installeer Sensorstorm op de Apple Watch."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zainstaluj Sensorstorm na Apple Watch."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instale o Sensorstorm no Apple Watch."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instala o Sensorstorm no Apple Watch."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instalează Sensorstorm pe Apple Watch."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Установите Sensorstorm на Apple Watch."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nainštalujte Sensorstorm do Apple Watch."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installera Sensorstorm på din Apple Watch."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorstorm’u Apple Watch’a yükle."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Установіть Sensorstorm на Apple Watch."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请在 Apple Watch 上安装 Sensorstorm。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請在 Apple Watch 上安裝 Sensorstorm。"
+          }
+        }
+      }
+    },
     "Setzung" : {
       "localizations" : {
         "ar" : {
@@ -50740,6 +53300,166 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wi-Fi"
+          }
+        }
+      }
+    },
+    "Warum?" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لماذا؟"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proč?"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvorfor?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Γιατί;"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Why?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Por qué?"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miksi?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pourquoi ?"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zašto?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miért?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perché?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "理由"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이유"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvorfor?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waarom?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dlaczego?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por quê?"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Porquê?"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De ce?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Почему?"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prečo?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varför?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neden?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чому?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "为什么？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "為什麼？"
           }
         }
       }

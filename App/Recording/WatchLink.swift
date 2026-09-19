@@ -35,9 +35,21 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
     /// first — so the streams are offered whenever a session exists at all and simply stay
     /// empty if nothing arrives.
     var availableSensors: Set<SensorID> {
-        guard WCSession.isSupported(), WCSession.default.activationState == .activated,
-              WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return [] }
-        return [.heartRate, .wristMotion]
+        gap == nil ? [.heartRate, .wristMotion] : []
+    }
+
+    /// What is missing, when something is. `nil` means a watch is paired, has the app, and
+    /// the session is up — the only state in which the two streams can arrive.
+    ///
+    /// The settings screen shows this instead of a bare „nicht verfügbar": a phone with no
+    /// watch and a phone whose watch lacks the app are the same empty set but two different
+    /// instructions, and only one of them is „install Sensorstorm on the watch".
+    var gap: WatchGap? {
+        guard WCSession.isSupported() else { return .notSupported }
+        guard WCSession.default.activationState == .activated else { return .notPaired }
+        guard WCSession.default.isPaired else { return .notPaired }
+        guard WCSession.default.isWatchAppInstalled else { return .appNotInstalled }
+        return nil
     }
 
     func activate() {
@@ -62,8 +74,19 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     // MARK: - WCSessionDelegate
 
+    /// Called whenever the pairing or the installed-app state changes. Without it the
+    /// settings screen kept saying „keine Uhr" after a watch had just been paired, until
+    /// the app was relaunched.
+    var onReachabilityChange: (@Sendable () -> Void)?
+
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState,
-                 error: Error?) {}
+                 error: Error?) {
+        onReachabilityChange?()
+    }
+
+    func sessionWatchStateDidChange(_ session: WCSession) {
+        onReachabilityChange?()
+    }
 
     func sessionDidBecomeInactive(_ session: WCSession) {}
 

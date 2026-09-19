@@ -36,6 +36,23 @@ final class ActivitySource: @unchecked Sendable {
         CMMotionActivityManager.isActivityAvailable() ? [.activity] : []
     }
 
+    /// Triggers the „Bewegung & Fitness" prompt without starting anything.
+    ///
+    /// Core Motion has no `requestAuthorization`. The prompt is a side effect of the first
+    /// query, so a one-second query into the past is the smallest thing that provokes it —
+    /// the result is thrown away, only the answer to the prompt matters. Returns once the
+    /// user has decided, so the caller can redraw against the new state.
+    func requestAuthorization() async {
+        guard CMMotionActivityManager.isActivityAvailable(),
+              CMMotionActivityManager.authorizationStatus() == .notDetermined else { return }
+        let now = Date()
+        await withCheckedContinuation { continuation in
+            manager.queryActivityStarting(from: now.addingTimeInterval(-1), to: now, to: queue) { _, _ in
+                continuation.resume()
+            }
+        }
+    }
+
     func start(sensors: Set<SensorID>) {
         guard sensors.contains(.activity),
               CMMotionActivityManager.isActivityAvailable(),

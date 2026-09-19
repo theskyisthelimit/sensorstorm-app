@@ -70,10 +70,14 @@ final class DeviceStateSource {
             sink.ingest(.battery, time: time,
                         values: [level, Double(device.batteryState.rawValue)])
         }
-        if active.contains(.brightness) {
-            let screen = UIApplication.shared.connectedScenes
-                .compactMap { ($0 as? UIWindowScene)?.screen }
-                .first ?? UIScreen.main
+        // Brightness belongs to a screen, and a screen is reached through the scene the app
+        // is actually on — `UIScreen.main` is deprecated and, on a Mac or an external
+        // display, is the wrong screen anyway. With no connected scene there is no
+        // brightness to read, so nothing is written rather than a stand-in value.
+        if active.contains(.brightness),
+           let screen = UIApplication.shared.connectedScenes
+               .compactMap({ ($0 as? UIWindowScene)?.screen })
+               .first {
             sink.ingest(.brightness, time: time, values: [Double(screen.brightness) * 100])
         }
         if active.contains(.network) {

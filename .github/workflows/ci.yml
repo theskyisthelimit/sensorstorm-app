@@ -26,6 +26,19 @@ jobs:
           SS_BUNDLE_OUT="${RUNNER_TEMP}/ss-bundle" swift test --filter bundleContents
           python3 Tools/blender/check_bundle.py "${RUNNER_TEMP}/ss-bundle"
 
+      # Every size and every pose. The audit is the cheap half of that promise: it cannot
+      # see a layout, but it catches the constructs that make one impossible — a screen
+      # measured instead of a container, a bar that cannot move to the side, a fixed width.
+      - name: Audit the adaptive layout
+        run: python3 Tools/adaptive_audit.py
+
+      # Arabic ships. Hard-coded left and right survive a German build untouched.
+      - name: Audit for right-to-left
+        run: python3 Tools/rtl_audit.py
+
+      - name: The localisation locks
+        run: python3 Tools/l10n.py verify
+
       - name: Generate the Xcode project
         run: xcodegen generate
 

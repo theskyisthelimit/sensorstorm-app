@@ -29,6 +29,18 @@
 		<string>ru</string>
 		<string>ar</string>
 		<string>da</string>
+		<string>sv</string>
+		<string>nb</string>
+		<string>fi</string>
+		<string>pl</string>
+		<string>cs</string>
+		<string>sk</string>
+		<string>uk</string>
+		<string>hr</string>
+		<string>ro</string>
+		<string>hu</string>
+		<string>tr</string>
+		<string>el</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>

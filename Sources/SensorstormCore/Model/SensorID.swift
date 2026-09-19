@@ -232,4 +232,8 @@ public enum CameraTrackingReason: Double, Sendable, Hashable, CaseIterable {
 public extension SensorID {
     /// Streams the user cannot arm or disarm directly — they follow from the capture engine.
     static let engineControlled: Set<SensorID> = [.cameraPose]
+
+    /// Streams that come from the Apple Watch rather than the phone. Their absence means a
+    /// missing watch, never missing hardware, and the two want different words.
+    static let watchProvided: Set<SensorID> = [.heartRate, .wristMotion]
 }

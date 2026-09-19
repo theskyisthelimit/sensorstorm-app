@@ -33,6 +33,9 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
     private var log: AdvertisementLog?
     private var timer: DispatchSourceTimer?
     private var isRunning = false
+    /// Resumed once from `centralManagerDidUpdateState`, which is the first moment the
+    /// system's answer to the permission prompt is knowable.
+    private var authorizationContinuation: CheckedContinuation<Void, Never>?
 
     init(sink: SampleSink) {
         self.sink = sink
@@ -47,6 +50,22 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
         #else
         [.bluetooth]
         #endif
+    }
+
+    /// Triggers the Bluetooth prompt without scanning.
+    ///
+    /// Constructing a central is what asks; the delegate callback is what tells us the
+    /// answer arrived. Kept around afterwards so a later ``start(sensors:)`` reuses it
+    /// rather than building a second one.
+    func requestAuthorization() async {
+        guard CBManager.authorization == .notDetermined else { return }
+        await withCheckedContinuation { continuation in
+            lock.withLock { authorizationContinuation = continuation }
+            if central == nil {
+                central = CBCentralManager(delegate: self, queue: queue,
+                                           options: [CBCentralManagerOptionShowPowerAlertKey: false])
+            }
+        }
     }
 
     /// Attaches the raw log for one recording. Separate from ``start(sensors:)`` because
@@ -112,6 +131,16 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
     // MARK: - CBCentralManagerDelegate
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        // The first state that is not `.unknown` is also the first moment the permission
+        // answer is knowable, whether it was yes or no.
+        if central.state != .unknown {
+            let waiting = lock.withLock { () -> CheckedContinuation<Void, Never>? in
+                let existing = authorizationContinuation
+                authorizationContinuation = nil
+                return existing
+            }
+            waiting?.resume()
+        }
         guard central.state == .poweredOn, isRunning else { return }
         // Duplicates on: without them a device that stays in range is reported once and its
         // signal never changes again, which is the opposite of a stream.

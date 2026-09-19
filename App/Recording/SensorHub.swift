@@ -106,6 +106,9 @@ final class SensorHub {
         self.syntheticSource = nil
         #endif
 
+        watchLink.onReachabilityChange = { [weak self] in
+            Task { @MainActor in self?.refreshAvailability() }
+        }
         watchLink.activate()
         refreshAvailability()
     }
@@ -145,6 +148,44 @@ final class SensorHub {
 
     func isAvailable(_ sensor: SensorID) -> Bool {
         availableSensors.contains(sensor)
+    }
+
+    /// Why a stream is silent, and what can be done about it — the long form of
+    /// ``isAvailable(_:)``.
+    ///
+    /// Order matters. The watch streams are absent for a reason the hardware check cannot
+    /// express, and a permission that was refused leaves the hardware perfectly present, so
+    /// „unsupported" has to be the last answer rather than the first.
+    func status(for sensor: SensorID) -> SensorStatus {
+        if SensorID.watchProvided.contains(sensor) {
+            if let gap = watchLink.gap { return .needsWatch(gap) }
+            return .ready
+        }
+        if syntheticSensors.contains(sensor) { return .simulated }
+        guard availableSensors.contains(sensor) else { return .unsupported }
+        if let permission = SensorPermission.required(for: sensor) {
+            switch permission.state {
+            case .missing: return .permissionMissing(permission)
+            case .refused: return .permissionRefused(permission)
+            case .granted: break
+            }
+        }
+        return .ready
+    }
+
+    /// Asks for one permission and redraws against the answer.
+    ///
+    /// Only ever called from a row the user tapped, which is the difference between this
+    /// and ``requestPermissions()``: that one asks for everything a recording is about to
+    /// need, this one asks for the single thing someone just pointed at.
+    func requestPermission(_ permission: SensorPermission) async {
+        switch permission {
+        case .motion: await activitySource.requestAuthorization()
+        case .location: locationSource.requestAuthorization()
+        case .microphone: _ = await AudioSource.requestMicrophoneAccess()
+        case .bluetooth: await bluetoothSource.requestAuthorization()
+        }
+        refreshAvailability()
     }
 
     var isCameraAvailable: Bool {
