@@ -119,8 +119,11 @@ extension SensorID {
         case .compass: [0]               // true heading
         case .magneticField: [0, 1, 2]   // drop the accuracy column
         case .orientation: [0, 1, 2]     // roll, pitch, yaw
-        case .network: [0]
-        case .battery: [0]
+        // Alle drei: „type“ allein hat ein Tester auf Build 14 mit „Wieso gibts hier
+        // nicht mehr Infos?!“ beantwortet, und teuer/gedrosselt sind der Grund, aus dem
+        // eine Live-Übertragung unterwegs stockt.
+        case .network: [0, 1, 2]
+        case .battery: [0, 1]            // Stand und Zustand
         case .cameraPose: [0, 1, 2]      // position; intrinsics belong in the detail view
         default: Array(0..<descriptor.channelCount)
         }

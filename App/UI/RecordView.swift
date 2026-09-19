@@ -9,6 +9,9 @@ struct RecordView: View {
     @State private var isAddingAnnotation = false
     @State private var showsSavedBanner = false
     @State private var isArmingSensors = false
+    /// Welcher Sensor gerade allein betrachtet wird. Ein Wert statt eines Flags, weil die
+    /// Ansicht ohne ihn nichts anzuzeigen hätte.
+    @State private var detailSensor: SensorID?
 
     var body: some View {
         NavigationStack {
@@ -60,6 +63,7 @@ struct RecordView: View {
         }
         .overlay(alignment: .top) { savedBanner }
         .sheet(isPresented: $isArmingSensors) { SensorArmingSheet() }
+        .sheet(item: $detailSensor) { SensorDetailView(sensor: $0) }
     }
 
     // MARK: - Camera
@@ -296,7 +300,16 @@ struct RecordView: View {
 
     private func tile(_ sensor: SensorID) -> some View {
         @Bindable var hub = hub
-        return LiveSensorTile(sensor: sensor, sample: hub.live[sensor])
+        return Button {
+            detailSensor = sensor
+        } label: {
+            LiveSensorTile(sensor: sensor, sample: hub.live[sensor])
+        }
+            // `.plain`, sonst färbt SwiftUI die ganze Kachel in der Akzentfarbe ein.
+            // Ein Tipp öffnet den Sensor allein; das Kontextmenü darunter bleibt, was es
+            // war — nur war es als einziger Weg zum Nullpunkt des Barometers unsichtbar,
+            // und genau das hat ein Tester auf Build 14 gemeldet.
+            .buttonStyle(.plain)
             .contextMenu {
                 Button {
                     withAnimation(.snappy(duration: 0.2)) {

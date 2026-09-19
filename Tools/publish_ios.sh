@@ -25,12 +25,12 @@ KEY_ID="${ASC_KEY_ID:?ASC_KEY_ID fehlt}"
 ISSUER="${ASC_ISSUER_ID:?ASC_ISSUER_ID fehlt}"
 P8="$HOME/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8"
 ARCHIVE_PATH="${1:-build/Sensorstorm.xcarchive}"
+SCHEME="Sensorstorm"
 SIGNING="$HOME/.appstoreconnect/ci-signing"
 mkdir -p "$SIGNING"
 cd "$ROOT"
 
 [ -f "$P8" ] || { echo "FEHLER: API-Key fehlt: $P8" >&2; exit 1; }
-[ -d "$ARCHIVE_PATH" ] || { echo "FEHLER: Archiv fehlt: $ARCHIVE_PATH (zuerst archivieren, siehe RELEASE.md)" >&2; exit 1; }
 
 echo "==> 1/6  Distribution-Zertifikat (wiederverwendet falls vorhanden)"
 if [ -f "$SIGNING/dist.key" ] && [ -f "$SIGNING/dist.cer" ]; then
@@ -59,6 +59,9 @@ openssl x509 -inform DER -in "$SIGNING/dist.cer" -out "$SIGNING/dist.pem"
 P12PASS="hs$RANDOM$RANDOM"
 openssl pkcs12 -export -inkey "$SIGNING/dist.key" -in "$SIGNING/dist.pem" \
   -out "$SIGNING/dist.p12" -passout pass:"$P12PASS" -name "Apple Distribution: Sensorstorm CI"
+# Hinweis: `-name` setzt nur das Etikett im Schlüsselbund. codesign und xcodebuild
+# suchen den Common Name des Zertifikats, hier „Apple Distribution: Peter Bognar
+# (E3CQ6W7CY2)“ — deshalb steht in CODE_SIGN_IDENTITY die generische Form.
 chmod 600 "$SIGNING/dist.key" "$SIGNING/dist.p12"
 
 echo "==> 2/6  Provisioning-Profil sicherstellen"
@@ -84,16 +87,38 @@ cleanup() {
 }
 trap cleanup EXIT
 
-echo "==> 4/6  IPA exportieren (manuelles Signing, kein Cloud-Autosigning nötig)"
+# Das Archiv entsteht hier, nicht davor — und zwar signiert.
+#
+# Früher wurde davor mit `CODE_SIGNING_ALLOWED=NO` archiviert und erst beim Export
+# signiert. Dabei überspringt Xcode den Schritt, der die `.entitlements` in eine
+# `.xcent` übersetzt, das Archiv trägt gar keine Berechtigungen, und `-exportArchive`
+# signiert mit der blossen Grundausstattung des Profils. Jedes Entitlement aus einer
+# Datei fiel damit stillschweigend weg. Auf der Uhr stand deshalb „Missing
+# com.apple.developer.healthkit entitlement“, während Projekt, Info.plist, Profil und
+# Store-Text die Herzfrequenz versprachen. Kein Build-Log hat das je gemeldet.
+if [ -d "$ARCHIVE_PATH" ]; then
+  echo "==> 4/7  Bestehendes Archiv verwenden: $ARCHIVE_PATH"
+else
+  echo "==> 4/7  Signiert archivieren"
+  xcodebuild -scheme "$SCHEME" -configuration Release \
+    -destination 'generic/platform=iOS' -archivePath "$ARCHIVE_PATH" \
+    CODE_SIGN_STYLE=Manual \
+    DEVELOPMENT_TEAM=E3CQ6W7CY2 \
+    CODE_SIGN_IDENTITY="Apple Distribution" \
+    OTHER_CODE_SIGN_FLAGS="--keychain $KC" \
+    archive
+fi
+
+echo "==> 5/7  IPA exportieren (manuelles Signing, kein Cloud-Autosigning nötig)"
 rm -rf build/export
 xcodebuild -exportArchive -archivePath "$ARCHIVE_PATH" \
   -exportPath build/export -exportOptionsPlist ExportOptions-CI.plist
 
-echo "==> 5/6  Validieren"
+echo "==> 6/7  Validieren"
 IPA=$(ls build/export/*.ipa | head -1)
 xcrun altool --validate-app -f "$IPA" -t ios --apiKey "$KEY_ID" --apiIssuer "$ISSUER"
 
-echo "==> 6/6  Hochladen"
+echo "==> 7/7  Hochladen"
 xcrun altool --upload-app   -f "$IPA" -t ios --apiKey "$KEY_ID" --apiIssuer "$ISSUER"
 
 echo

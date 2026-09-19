@@ -42,6 +42,14 @@ enum Format {
         return unit.isEmpty ? text : "\(text) \(unit)"
     }
 
+    /// The x-axis of a live curve: seconds *before now*, so the newest value sits at the
+    /// right edge. An absolute clock would say nothing over a thirty-second window, and
+    /// „0 s“ at that edge reads as a measurement rather than as the present moment.
+    static func seconds(_ value: Double) -> String {
+        let rounded = Int(value.rounded())
+        return rounded == 0 ? String(localized: "jetzt") : "\(rounded) s"
+    }
+
     /// Coordinates need six decimals to be worth anything (≈10 cm).
     static func coordinate(_ value: Double) -> String {
         value.isFinite ? String(format: "%.6f", value) : "—"
@@ -97,6 +105,10 @@ enum Format {
             return coordinate(value)
         case (.network, 0):
             return NetworkKind(rawValue: Int(value))?.label ?? "—"
+        // Die beiden Flaggen sind im Strom 0 und 1, weil eine Zeile fester Breite nichts
+        // anderes kann. Auf dem Bildschirm ist „0.000“ jedoch keine Auskunft.
+        case (.network, 1), (.network, 2):
+            return value > 0.5 ? String(localized: "ja") : String(localized: "nein")
         case (.battery, 1):
             return BatteryStateLabel.label(for: Int(value))
         case (.pedometer, 0):

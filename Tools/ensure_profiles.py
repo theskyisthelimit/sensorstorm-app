@@ -81,6 +81,15 @@ def bundle_resource_id(identifier: str, capabilities: list[str] | None = None) -
         sys.exit(1)
     for entry in json.loads(raw)["data"]:
         if entry["attributes"].get("identifier") == identifier:
+            # Auch bei einer bestehenden Bundle-ID: die Capabilities gehören zur
+            # Beschreibung des Ziels, nicht zu seiner Geburt. Sie nur beim Anlegen
+            # zu setzen hiess, dass die Uhr-App-ID — vor dieser Liste angelegt —
+            # HealthKit nie bekam. Das Entitlement stand in der Datei, das Profil
+            # kannte es nicht, und codesign warf es beim Export weg: auf der Uhr
+            # stand dann „Missing com.apple.developer.healthkit entitlement“,
+            # während Katalog, Info.plist und Store-Text die Funktion versprachen.
+            for capability in capabilities or []:
+                enable_capability(entry["id"], capability)
             return entry["id"]
 
     if capabilities is None:

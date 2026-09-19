@@ -82,6 +82,12 @@ public extension SensorID {
     var descriptor: SensorDescriptor { SensorCatalog.descriptor(for: self) }
 }
 
+/// Der Rohwert ist ohnehin der stabile Dateiname des Stroms — eine bessere Identität
+/// gibt es nicht, und `sheet(item:)` braucht eine.
+extension SensorID: Identifiable {
+    public var id: String { rawValue }
+}
+
 public enum SensorCatalog {
     public static let all: [SensorDescriptor] = SensorID.allCases.map(descriptor(for:))
 

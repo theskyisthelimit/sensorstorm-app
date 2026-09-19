@@ -41,14 +41,33 @@ Dann `CURRENT_PROJECT_VERSION` in `project.yml` erhöhen und:
 
 ```bash
 xcodegen generate
-xcodebuild -scheme Sensorstorm -configuration Release -destination 'generic/platform=iOS' \
-  -archivePath build/Sensorstorm.xcarchive \
-  CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" archive
 bash Tools/publish_ios.sh build/Sensorstorm.xcarchive
 ```
 
-Signiert wird erst beim Export, nicht beim Archivieren — dadurch braucht das
-Archiv keine Xcode-Sitzung und kein Cloud-Autosigning.
+Das Skript archiviert selbst, und zwar signiert. Das war nicht immer so: vorher
+wurde mit `CODE_SIGNING_ALLOWED=NO` archiviert und erst beim Export signiert.
+Dabei überspringt Xcode den Schritt, der `.entitlements` in eine `.xcent`
+übersetzt — das Archiv trägt dann gar keine Berechtigungen, und
+`-exportArchive` ergänzt nur die Grundausstattung des Profils. **Jedes
+Entitlement aus einer Datei fiel damit stillschweigend weg.** Auf der Uhr stand
+„Missing com.apple.developer.healthkit entitlement“, während Projekt,
+Info.plist, Profil und Store-Text die Herzfrequenz versprachen; kein Build-Log
+hat es je erwähnt.
+
+Die Profilnamen stehen je Ziel in `project.yml`, nur unter `Release` — auf der
+Kommandozeile gälte einer für alle Ziele, und die Uhr braucht ihren eigenen.
+Der Simulator-Build bleibt unsigniert.
+
+Ein Entitlement gilt als vorhanden, wenn es **im fertigen IPA** steht:
+
+```bash
+unzip -q build/export/Sensorstorm.ipa -d /tmp/ipa
+codesign -d --entitlements :- /tmp/ipa/Payload/Sensorstorm.app/Watch/Sensorstorm.app
+```
+
+Und eine Capability, die im Portal fehlt, lässt das Profil sie weglassen:
+`Tools/ensure_profiles.py` schaltet die in `TARGETS` genannten jetzt auch an
+einer **bestehenden** Bundle-ID ein, nicht nur beim Anlegen.
 
 Verarbeitung dauert 10–30 Minuten, danach ist der Build in TestFlight.
 

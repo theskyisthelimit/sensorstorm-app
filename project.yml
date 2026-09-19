@@ -16,7 +16,7 @@ settings:
     SWIFT_VERSION: "6.0"
     DEVELOPMENT_TEAM: "E3CQ6W7CY2"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: "14"
+    CURRENT_PROJECT_VERSION: "16"
     SWIFT_EMIT_LOC_STRINGS: "YES"
     ENABLE_USER_SCRIPT_SANDBOXING: "YES"
     SWIFT_STRICT_CONCURRENCY: complete
@@ -48,6 +48,14 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: "NO"
+      # Nur Release, damit der Simulator-Build weiter ohne Signatur durchläuft. Je Ziel,
+      # weil ein Profilname auf der Kommandozeile für alle Ziele gilt und die Uhr ihr
+      # eigenes braucht. Steht er nirgends, archiviert xcodebuild ohne Berechtigungen
+      # und der Export ergänzt sie nicht — genau so verlor die Uhr ihr HealthKit.
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          PROVISIONING_PROFILE_SPECIFIER: Sensorstorm CI Distribution
     info:
       path: Resources/Info.plist
       properties:
@@ -160,6 +168,14 @@ targets:
         # has no CFBundleIconName and no icon files (90713, 90391), and that rejects
         # the iPhone app along with it.
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      # Nur Release, damit der Simulator-Build weiter ohne Signatur durchläuft. Je Ziel,
+      # weil ein Profilname auf der Kommandozeile für alle Ziele gilt und die Uhr ihr
+      # eigenes braucht. Steht er nirgends, archiviert xcodebuild ohne Berechtigungen
+      # und der Export ergänzt sie nicht — genau so verlor die Uhr ihr HealthKit.
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          PROVISIONING_PROFILE_SPECIFIER: Sensorstorm Watch CI Distribution
     info:
       path: Watch/Info.plist
       properties:
