@@ -249,7 +249,11 @@ REVIEW_CONTACT = {
         "In-app purchase: Sensorstorm Pro, one-time non-consumable. Settings tab > "
         "Sensorstorm Pro, or any padlock. Recording and CSV/GPX/KML export stay free.\n\n"
         "The Apple Watch app records heart rate and wrist motion while a recording runs on "
-        "the iPhone. It reads HealthKit and writes nothing back."
+        "the iPhone. It reads HealthKit and writes nothing back.\n\n"
+        "Without a paired watch, the Settings tab shows \u201cHeart rate\u201d and "
+        "\u201cWrist\u201d as rows that say a paired Apple Watch is needed, with a "
+        "\u201cWhy?\u201d button. That is the intended state on a review device, not a "
+        "failure."
     ),
 }
 

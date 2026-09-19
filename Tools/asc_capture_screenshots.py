@@ -101,6 +101,19 @@ DEVICES: dict[str, tuple[str, str]] = {
     "ipad_11":   ("iPad Pro 11-inch (M5)", "APP_IPAD_PRO_3GEN_11"),
 }
 
+# One machine, four apps, and sometimes two sessions shipping at once. A run that
+# installs and terminates on „iPhone 17 Pro“ while another app is being
+# photographed on the same simulator ruins both sets, and the damage only shows up
+# as a wrong-looking screenshot in the App Store weeks later.
+#
+# `SS_SIM_SUFFIX=" (Sensorstorm)"` appends that suffix to every simulator name, so
+# a run can be given its own devices — created once with `simctl create
+# "<name><suffix>" "<device type>"`, which guarantees the same screen dimensions
+# and therefore the same accepted display type. Unset, nothing changes.
+_SIM_SUFFIX = os.environ.get("SS_SIM_SUFFIX", "")
+if _SIM_SUFFIX:
+    DEVICES = {key: (name + _SIM_SUFFIX, kind) for key, (name, kind) in DEVICES.items()}
+
 # Only where the generic "<lang>_<LANG>" guess picks the wrong region for the
 # simulator's AppleLocale. Sensorstorm is a Swiss product — LV95, swisstopo — so the
 # German shots use Swiss regional formats: the apostrophe thousands separator and the
