@@ -226,3 +226,52 @@ Auf echter Hardware verifizieren — der Simulator hat davon nichts:
   und Bewegung — die kommen aus `Resources/InfoPlist.xcstrings`, nicht aus dem
   String-Katalog, und sind die Stelle, an der eine Lokalisierung am sichtbarsten
   danebengeht
+
+## Parallele Sitzungen auf einer Maschine
+
+Vier Apps, eine Maschine, und gelegentlich zwei Claude-Sitzungen, die
+gleichzeitig ausliefern. Der Screenshot-Lauf installiert, startet und beendet
+die App auf benannten Simulatoren; tut eine zweite Sitzung dasselbe auf
+demselben Gerät, sind beide Bildsätze hin — und das fällt erst Wochen später
+im Store auf.
+
+```bash
+xcrun simctl create "iPhone 17 Pro (Sensorstorm)" "iPhone 17 Pro" com.apple.CoreSimulator.SimRuntime.iOS-27-0
+SS_SIM_SUFFIX=" (Sensorstorm)" python3 Tools/asc_capture_screenshots.py --upload
+```
+
+`SS_SIM_SUFFIX` hängt den Zusatz an jeden Simulatornamen. Gleicher Gerätetyp
+heisst gleiche Bildmasse und damit derselbe Display-Typ im Store. Ohne die
+Variable ändert sich nichts.
+
+Ein Gerät kann mitten im Lauf abstürzen. Dann fehlt genau dessen Spalte, und
+`--devices <key> --skip-build --skip-install` holt sie nach, statt alles noch
+einmal zu schiessen. Wer es eilig hat, legt zwei weitere Klone an und teilt die
+Sprachen mit `--langs` auf — drei Läufe nebeneinander brauchen ein Drittel.
+
+## Nachzählen am Store, nicht am Protokoll
+
+Ein Lauf, der „done“ meldet, hat nicht unbedingt etwas hochgeladen: Norwegisch
+schoss 25 Bilder und lud keines, weil `nb` im Store `no` heisst. Vor dem
+Einreichen zählt, was drüben liegt:
+
+```bash
+python3 Tools/asc_metadata.py --report-only
+python3 Tools/asc_iap.py --report
+```
+
+## Die drei Lokalisierungsprüfungen
+
+```bash
+python3 Tools/l10n.py verify        # die Sperren über das, was im Katalog steht
+DERIVED_DATA=.derived-data python3 Tools/l10n_extract.py   # steht alles drin, was die App kennt?
+python3 Tools/l10n_literals.py      # deutsche Literale, die der Compiler nie als Text sieht
+```
+
+Die drei prüfen drei verschiedene Dinge, und nur zusammen decken sie die
+Strecke ab. `verify` prüft Vorhandenes. `extract` vergleicht den Katalog mit
+dem, was der Compiler als übersetzbar erkannt hat — `xcodebuild` von der
+Kommandozeile trägt neue Texte nie selbst ein, nur Xcode tut das, also wächst
+die Lücke sonst mit jeder Funktion. `literals` findet die Stufe davor: Text,
+den der Compiler gar nicht erst für übersetzbar hält. Alle drei laufen in der
+CI.
