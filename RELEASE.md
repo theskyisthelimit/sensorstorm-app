@@ -8,15 +8,15 @@ Feste Werte für diese App:
 | Bundle ID | `ch.sensorstorm.app` (Portal-ID `YB5MVW8ZP5`) |
 | App Store Connect App-ID | `6795648479` |
 | Provisioning-Profil | `Sensorstorm CI Distribution` |
-| ASC API Key | `F5T7U925KM`, Issuer `69a6de84-dfc7-47e3-e053-5b8c7c11a4d1` |
+| ASC API Key | `V88Y25T62V`, Issuer `69a6de84-dfc7-47e3-e053-5b8c7c11a4d1` |
 | TestFlight-Gruppe | `Intern` (`fafeb017-823d-43cd-aec4-46bde0cec150`), intern, `hasAccessToAllBuilds` |
-| .p8 | `~/.appstoreconnect/private_keys/AuthKey_F5T7U925KM.p8` |
+| .p8 | `~/.appstoreconnect/private_keys/AuthKey_V88Y25T62V.p8` |
 | CI-Signing | `~/.appstoreconnect/ci-signing/` — **team-weit geteilt, niemals löschen** |
 
 Die Key-Variablen stehen nicht im Shell-Profil. Jedem Aufruf voranstellen:
 
 ```bash
-export ASC_KEY_ID=F5T7U925KM ASC_ISSUER_ID=69a6de84-dfc7-47e3-e053-5b8c7c11a4d1
+export ASC_KEY_ID=V88Y25T62V ASC_ISSUER_ID=69a6de84-dfc7-47e3-e053-5b8c7c11a4d1
 ```
 
 ## Nach jeder grünen Iteration
