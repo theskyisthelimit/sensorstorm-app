@@ -5,9 +5,10 @@ import Foundation
 ///
 /// What comes back is what the exporter wrote with the walk's own `survey.json` beside the
 /// four formats: every route in the archive is merged into the one on this phone that has
-/// the same id, or added when there is none. Raw recordings (`recordings-raw/`) are copied
-/// in when this phone does not have them yet; the table exports of a recording cannot be
-/// turned back into one and are left alone.
+/// the same id, or added when there is none. Recordings exported as raw data (the folder as it
+/// lies on the phone, with its `.ssbin` streams) are copied in when this phone does not have
+/// them yet; the table exports of a recording cannot be turned back into one and are left
+/// alone.
 public struct ArchiveImporter: Sendable {
 
     public struct Result: Sendable, Equatable {
@@ -66,8 +67,12 @@ public struct ArchiveImporter: Sendable {
             switch url.lastPathComponent {
             case SurveyStore.surveyFileName:
                 surveyFiles.append(url)
-            case RecordingStore.metadataFileName where url.deletingLastPathComponent().deletingLastPathComponent().lastPathComponent == "recordings-raw":
-                recordingFolders.append(url.deletingLastPathComponent())
+            case RecordingStore.metadataFileName:
+                // A recording folder as the phone keeps it has its binary streams beside the
+                // metadata; a CSV export of one has the metadata too, but nothing to read back.
+                let folder = url.deletingLastPathComponent()
+                let contents = (try? fileManager.contentsOfDirectory(atPath: folder.path)) ?? []
+                if contents.contains(where: { $0.hasSuffix(".ssbin") }) { recordingFolders.append(folder) }
             default:
                 break
             }
@@ -102,9 +107,14 @@ public struct ArchiveImporter: Sendable {
         }
 
         for source in recordingFolders {
-            guard let id = UUID(uuidString: source.lastPathComponent),
-                  !fileManager.fileExists(atPath: recordingStore.directory(for: id).path) else { continue }
-            try fileManager.copyItem(at: source, to: recordingStore.directory(for: id))
+            guard let data = try? Data(contentsOf: source.appendingPathComponent(RecordingStore.metadataFileName)),
+                  let metadata = try? RecordingStore.decoder.decode(RecordingMetadata.self, from: data) else {
+                result.unreadable += 1
+                continue
+            }
+            let target = recordingStore.directory(for: metadata.id)
+            guard !fileManager.fileExists(atPath: target.path) else { continue }
+            try fileManager.copyItem(at: source, to: target)
             result.recordingsAdded += 1
         }
 

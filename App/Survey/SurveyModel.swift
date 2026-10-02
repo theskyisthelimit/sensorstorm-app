@@ -61,6 +61,8 @@ struct FindingDraft {
     var capturedAt = Date()
     var hostTime: Double = HostClock.now
     var recordingID: UUID?
+    /// The catalog entry and the answers to its questions, when the walk uses a catalog.
+    var attributes: [String: String] = [:]
 
     /// A case without a position is not a case — it cannot be found again, which is the
     /// entire point of writing it down. A hand-placed pin needs no accuracy figure; a GPS
@@ -129,9 +131,15 @@ final class SurveyModel {
     private(set) var surveys: [Survey] = []
     private(set) var totalBytes: Int64 = 0
     private(set) var isExporting = false
+    private(set) var isImporting = false
+    /// The walk whose path is being recorded right now, if any. Only one at a time: there is
+    /// one phone and it is in one place.
+    private(set) var trackingSurveyID: UUID?
+    private var trackSavedAt = Date.distantPast
     var errorMessage: String?
 
     let store: SurveyStore
+    let catalogs = CatalogStore()
     let location = SurveyLocationProvider()
     let camera = SurveyCamera()
 
@@ -203,13 +211,146 @@ final class SurveyModel {
         refresh()
     }
 
-    private func save(_ survey: Survey) {
+    func save(_ survey: Survey) {
         do {
             try store.save(survey)
             refresh()
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+
+    // MARK: - Walk
+
+    var isTracking: Bool { trackingSurveyID != nil }
+
+    /// Starts recording the path of `surveyID`: a point every few metres, with the screen
+    /// locked as well. A closed walk is reopened — nobody records a track on a walk they
+    /// consider finished.
+    func startTracking(_ surveyID: UUID) {
+        guard trackingSurveyID == nil, var survey = survey(surveyID) else { return }
+        trackingSurveyID = surveyID
+        if survey.endedAt != nil {
+            survey.endedAt = nil
+            save(survey)
+        }
+        location.requestAuthorization()
+        location.acquire()
+        location.setBackgroundTracking(true)
+        location.onFix = { [weak self] fix in self?.trackFix(fix) }
+    }
+
+    func stopTracking() {
+        guard trackingSurveyID != nil else { return }
+        flushTrack()
+        location.onFix = nil
+        location.setBackgroundTracking(false)
+        location.release()
+        trackingSurveyID = nil
+    }
+
+    private func trackFix(_ fix: LiveFix) {
+        guard let id = trackingSurveyID, let index = surveys.firstIndex(where: { $0.id == id }) else { return }
+        let point = WalkPoint(time: fix.timestamp, latitude: fix.latitude, longitude: fix.longitude,
+                              altitude: fix.altitude, horizontalAccuracy: fix.horizontalAccuracy)
+        guard surveys[index].appendTrackPoint(point) else { return }
+        // To disk every quarter minute, not every point: the path is one JSON document, and
+        // rewriting a walk's findings 20 times a minute would be wear for no reason. What a
+        // kill between two saves loses is at most that quarter minute.
+        if Date().timeIntervalSince(trackSavedAt) >= 15 { flushTrack() }
+    }
+
+    private func flushTrack() {
+        guard let id = trackingSurveyID, let survey = surveys.first(where: { $0.id == id }) else { return }
+        trackSavedAt = Date()
+        do {
+            try store.save(survey)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    /// Closes the walk: stops its path and stamps the end.
+    func finish(_ surveyID: UUID) {
+        if trackingSurveyID == surveyID { stopTracking() }
+        guard var survey = survey(surveyID), survey.endedAt == nil else { return }
+        survey.endedAt = Date()
+        save(survey)
+    }
+
+    func reopen(_ surveyID: UUID) {
+        guard var survey = survey(surveyID), survey.endedAt != nil else { return }
+        survey.endedAt = nil
+        save(survey)
+    }
+
+    /// A new walk that starts from this one. See ``FindingHistory/repeating(_:name:id:now:includeResolved:copyID:)``.
+    @discardableResult
+    func repeatSurvey(_ survey: Survey, includeResolved: Bool = false) -> Survey? {
+        let name = String(localized: "\(survey.name) (Wiederholung)")
+        let next = FindingHistory.repeating(survey, name: name, includeResolved: includeResolved)
+        do {
+            try store.save(next)
+            refresh()
+            return next
+        } catch {
+            errorMessage = error.localizedDescription
+            return nil
+        }
+    }
+
+    /// Puts several walks together as one new one. The originals stay: merging is not a
+    /// reason to lose the pieces it was made of.
+    @discardableResult
+    func combine(_ ids: [UUID], name: String) -> Survey? {
+        let sources = ids.compactMap { survey($0) }
+        guard sources.count >= 2 else { return nil }
+        let combined = SurveyMerge.combine(sources, name: name)
+        do {
+            let target = try store.prepareDirectory(for: combined.id)
+            for source in sources {
+                for finding in source.findings {
+                    for item in finding.media {
+                        guard let from = store.url(for: item, in: source.id) else { continue }
+                        let to = target.appendingPathComponent(item.fileName)
+                        if !FileManager.default.fileExists(atPath: to.path) {
+                            try FileManager.default.copyItem(at: from, to: to)
+                        }
+                    }
+                }
+            }
+            try store.save(combined)
+            refresh()
+            return combined
+        } catch {
+            errorMessage = error.localizedDescription
+            return nil
+        }
+    }
+
+    /// Reads an archive another phone exported and folds it into this one.
+    func importArchive(from url: URL, recordings: RecordingStore) async -> ArchiveImporter.Result? {
+        isImporting = true
+        defer { isImporting = false }
+        let store = self.store
+        do {
+            let result = try await Task.detached(priority: .userInitiated) {
+                let scoped = url.startAccessingSecurityScopedResource()
+                defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+                return try ArchiveImporter(surveyStore: store, recordingStore: recordings).importArchive(at: url)
+            }.value
+            refresh()
+            return result
+        } catch {
+            errorMessage = error.localizedDescription
+            return nil
+        }
+    }
+
+    /// The history of a case across every walk on the phone.
+    func history(of finding: GroundFinding) -> [FindingHistory.Entry] {
+        FindingHistory.chain(for: finding, in: surveys)
     }
 
     // MARK: - Findings
@@ -242,7 +383,8 @@ final class SurveyModel {
                                     note: draft.note.trimmingCharacters(in: .whitespacesAndNewlines),
                                     media: stored,
                                     area: draft.area,
-                                    recordingID: draft.recordingID)
+                                    recordingID: draft.recordingID,
+                                    attributes: draft.attributes)
 
         survey.upsert(finding)
         save(survey)
@@ -365,14 +507,22 @@ final class SurveyModel {
         let destination = FileManager.default.temporaryDirectory
             .appendingPathComponent("exports", isDirectory: true)
 
+        let copier = Self.photoCopier()
         do {
             return try await Task.detached(priority: .userInitiated) {
-                try SurveyExporter(store: store).export(survey, format: format, into: destination)
+                try SurveyExporter(store: store, photoCopier: copier).export(survey, format: format, into: destination)
             }.value
         } catch {
             errorMessage = error.localizedDescription
             return nil
         }
+    }
+
+    /// The way photos get into an export: copied as they are, or pixelated where they show a
+    /// face or a plate, when the person switched that on.
+    static func photoCopier() -> SurveyExporter.PhotoCopier? {
+        guard SettingsStore.load().anonymisesPhotos else { return nil }
+        return { source, destination in try PhotoAnonymizer.anonymise(source, to: destination) }
     }
 
     // MARK: - Helpers

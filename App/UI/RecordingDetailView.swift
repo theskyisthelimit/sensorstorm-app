@@ -4,6 +4,7 @@ import SwiftUI
 struct RecordingDetailView: View {
     @Environment(RecordingLibrary.self) private var library
     @Environment(SensorHub.self) private var hub
+    @Environment(SurveyModel.self) private var surveys
     @Environment(\.dismiss) private var dismiss
 
     @State private var playback: RecordingPlayback
@@ -12,6 +13,7 @@ struct RecordingDetailView: View {
     @State private var draftName = ""
     @State private var showsDeleteConfirmation = false
     @State private var isChoosingPhotoOptions = false
+    @State private var observationMessage: String?
 
     let recording: RecordingMetadata
 
@@ -72,6 +74,8 @@ struct RecordingDetailView: View {
                     }
                 }
 
+                analysisLink
+
                 infoCard
             }
             .padding(.horizontal, 16)
@@ -115,6 +119,26 @@ struct RecordingDetailView: View {
             }
         }
         .libraryErrorAlert(library)
+    }
+
+    private var analysisLink: some View {
+        NavigationLink {
+            RecordingAnalysisView(recording: recording, store: library.store)
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "chart.xyaxis.line").foregroundStyle(Theme.accent).accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Auswertung").font(.subheadline.weight(.semibold))
+                    Text("Qualität, Karte, Strassenzustand, Komfort, Erschütterung")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "chevron.right").font(.caption).foregroundStyle(.tertiary)
+            }
+            .padding(14)
+            .card()
+        }
+        .buttonStyle(.plain)
     }
 
     @ViewBuilder
@@ -194,6 +218,10 @@ struct RecordingDetailView: View {
 
                 Spacer()
 
+                if recording.stream(.location) != nil {
+                    observationMenu
+                }
+
                 if playback.isZoomed {
                     Button("Alles") { playback.resetZoom() }
                         .font(.caption.weight(.medium))
@@ -208,6 +236,49 @@ struct RecordingDetailView: View {
         }
         .padding(14)
         .card()
+    }
+
+    /// Writes down a case at the playhead: the position then, the video frame shown.
+    private var observationMenu: some View {
+        Menu {
+            ForEach(surveys.surveys) { survey in
+                Button {
+                    captureObservation(in: survey.id)
+                } label: {
+                    Text(verbatim: survey.name)
+                }
+            }
+            if !surveys.surveys.isEmpty { Divider() }
+            Button {
+                if let survey = surveys.createSurvey(name: recording.name, recordingID: recording.id) {
+                    captureObservation(in: survey.id)
+                }
+            } label: {
+                Label("In neuer Route", systemImage: "plus")
+            }
+        } label: {
+            Label("Beobachtung hier", systemImage: "mappin.and.ellipse")
+                .font(.caption.weight(.medium))
+        }
+        .alert(observationMessage ?? "", isPresented: Binding(get: { observationMessage != nil },
+                                                              set: { if !$0 { observationMessage = nil } })) {
+            Button("OK", role: .cancel) { observationMessage = nil }
+        }
+    }
+
+    private func captureObservation(in surveyID: UUID) {
+        playback.pause()
+        let playhead = playback.playhead
+        Task {
+            guard let draft = await PlaybackObservation.makeDraft(metadata: recording, store: library.store,
+                                                                  playhead: playhead) else {
+                observationMessage = String(localized: "Zu dieser Zeit hat die Aufnahme keine Position.")
+                return
+            }
+            if surveys.addFinding(draft, to: surveyID) != nil {
+                observationMessage = String(localized: "Beobachtung bei \(Format.timecode(playhead)) angelegt.")
+            }
+        }
     }
 
     private func transportButton(_ symbol: String, action: @escaping () -> Void) -> some View {

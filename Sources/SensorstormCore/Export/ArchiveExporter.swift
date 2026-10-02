@@ -23,21 +23,15 @@ public struct ArchiveExporter: Sendable {
         public var includesSurveyMedia: Bool
         public var includesRecordings: Bool
         public var recordingFormat: RecordingExporter.Format
-        /// Every recording as it lies on the phone — `.ssbin` streams, metadata, video — under
-        /// `recordings-raw/`. The only form a recording can be imported from again; the table
-        /// formats cannot be turned back. Gigabytes, hence off by default.
-        public var includesRawRecordings: Bool
 
         public init(includesSurveys: Bool = true,
                     includesSurveyMedia: Bool = true,
                     includesRecordings: Bool = false,
-                    recordingFormat: RecordingExporter.Format = .csvBundle,
-                    includesRawRecordings: Bool = false) {
+                    recordingFormat: RecordingExporter.Format = .csvBundle) {
             self.includesSurveys = includesSurveys
             self.includesSurveyMedia = includesSurveyMedia
             self.includesRecordings = includesRecordings
             self.recordingFormat = recordingFormat
-            self.includesRawRecordings = includesRawRecordings
         }
     }
 
@@ -46,19 +40,21 @@ public struct ArchiveExporter: Sendable {
     public static let manifestFileName = "manifest.json"
     public static let surveysFolder = "surveys"
     public static let recordingsFolder = "recordings"
-    public static let rawRecordingsFolder = "recordings-raw"
 
     private let surveyStore: SurveyStore
     private let recordingStore: RecordingStore
     private let appVersion: String
     private let build: String
+    private let photoCopier: SurveyExporter.PhotoCopier?
 
     public init(surveyStore: SurveyStore, recordingStore: RecordingStore,
-                appVersion: String = "", build: String = "") {
+                appVersion: String = "", build: String = "",
+                photoCopier: SurveyExporter.PhotoCopier? = nil) {
         self.surveyStore = surveyStore
         self.recordingStore = recordingStore
         self.appVersion = appVersion
         self.build = build
+        self.photoCopier = photoCopier
     }
 
     /// Writes the archive into `destinationDirectory` and returns the `.zip`.
@@ -113,7 +109,7 @@ public struct ArchiveExporter: Sendable {
         var completed = 0.0
 
         var surveyEntries: [ArchiveManifest.SurveyEntry] = []
-        let surveyExporter = SurveyExporter(store: surveyStore)
+        let surveyExporter = SurveyExporter(store: surveyStore, photoCopier: photoCopier)
         for survey in surveys {
             let folderName = Self.folderName(survey.name.isEmpty ? "Route" : survey.name,
                                              id: survey.id)
@@ -140,16 +136,6 @@ public struct ArchiveExporter: Sendable {
                                                format: options.recordingFormat))
             completed += 1
             progress?(completed / steps)
-        }
-
-        if options.includesRawRecordings {
-            let raw = payload.appendingPathComponent(Self.rawRecordingsFolder, isDirectory: true)
-            try FileManager.default.createDirectory(at: raw, withIntermediateDirectories: true)
-            for metadata in recordingStore.allRecordings() {
-                try FileManager.default.copyItem(
-                    at: recordingStore.directory(for: metadata.id),
-                    to: raw.appendingPathComponent(metadata.id.uuidString, isDirectory: true))
-            }
         }
 
         try Data(Self.readme(surveys: surveyEntries.count,

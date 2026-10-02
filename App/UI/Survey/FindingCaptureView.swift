@@ -368,6 +368,9 @@ struct FindingCaptureView: View {
             TextField("Was ist es? z. B. Schlagloch", text: $draft.label)
                 .textFieldStyle(.plain)
                 .font(.subheadline)
+            if let catalog = model.catalogs.catalog(model.survey(surveyID)?.catalogID) {
+                CatalogEntryChips(catalog: catalog, draft: $draft)
+            }
             LabelSuggestionChips(label: $draft.label, surveys: model.surveys)
             Divider().overlay(Theme.cardBorder)
             TextField("Notiz", text: $draft.note, axis: .vertical)

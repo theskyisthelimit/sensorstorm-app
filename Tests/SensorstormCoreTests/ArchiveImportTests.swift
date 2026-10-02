@@ -128,7 +128,7 @@ struct ArchiveImportTests {
 
         let archive = try ArchiveExporter(surveyStore: sourceSurveys, recordingStore: sourceRecordings)
             .export(into: root.appendingPathComponent("out"),
-                    options: .init(includesSurveys: true, includesRecordings: false, includesRawRecordings: true))
+                    options: .init(includesSurveys: true, includesRecordings: true, recordingFormat: .rawBundle))
 
         let importer = ArchiveImporter(surveyStore: targetSurveys, recordingStore: targetRecordings)
         let first = try importer.importArchive(at: archive)

@@ -16,6 +16,9 @@ struct SurveyDetailView: View {
     @State private var isRenaming = false
     @State private var draftName = ""
     @State private var showsDeleteConfirmation = false
+    @State private var showsOfflineMap = false
+    @State private var isRendering = false
+    @State private var openedRepeatID: UUID?
 
     private var survey: Survey? { model.survey(surveyID) }
 
@@ -42,6 +45,12 @@ struct SurveyDetailView: View {
         .sheet(item: $shareItem) { item in
             ShareSheet(items: [item.url])
         }
+        .sheet(isPresented: $showsOfflineMap) {
+            OfflineMapSheet(bounds: survey?.bounds)
+        }
+        .navigationDestination(item: $openedRepeatID) { id in
+            SurveyDetailView(surveyID: id)
+        }
         .alert("Umbenennen", isPresented: $isRenaming) {
             TextField("Name", text: $draftName)
             Button("Sichern") {
@@ -60,7 +69,7 @@ struct SurveyDetailView: View {
             Text("Alle Beobachtungen, Fotos und Clips dieser Route werden entfernt.")
         }
         .overlay {
-            if model.isExporting { exportOverlay }
+            if model.isExporting || isRendering { exportOverlay }
         }
         .surveyErrorAlert(model)
     }
@@ -72,6 +81,7 @@ struct SurveyDetailView: View {
             VStack(spacing: 14) {
                 SurveyMapView(findings: survey.findings,
                               selection: selection,
+                              track: survey.track.map(\.coordinate),
                               onSelect: { selection = $0.id })
                     .frame(height: 320)
                     .clipShape(.rect(cornerRadius: 16))
@@ -87,6 +97,8 @@ struct SurveyDetailView: View {
                     }
 
                 summaryCard(survey)
+                WalkCard(survey: survey)
+                RepeatComparisonCard(survey: survey)
                 positionCard
 
                 if !survey.findings.isEmpty {
@@ -252,10 +264,30 @@ struct SurveyDetailView: View {
             Menu {
                 Section("Exportieren") {
                     exportButton(.bundle, "Bündel mit Fotos", "shippingbox")
+                    exportButton(.geoPackage, "GeoPackage (QGIS, ArcGIS)", "square.stack.3d.up")
+                    exportButton(.kmz, "KMZ mit Fotos (Google Earth)", "globe.europe.africa.fill")
                     exportButton(.geoJSON, "GeoJSON", "globe")
                     exportButton(.csv, "CSV", "tablecells")
                     exportButton(.kml, "KML (Google Earth)", "globe.europe.africa")
-                    exportButton(.gpx, "GPX-Wegpunkte", "point.topleft.down.to.point.bottomright.curvepath")
+                    exportButton(.gpx, "GPX-Wegpunkte und Weg", "point.topleft.down.to.point.bottomright.curvepath")
+                    ProButton(.surveyGeoExport, "Begehungsprotokoll (PDF)", "doc.richtext") {
+                        renderReport()
+                    }
+                }
+                if let survey {
+                    Section("Route") {
+                        CatalogMenu(survey: survey)
+                        Button {
+                            if let next = model.repeatSurvey(survey) { openedRepeatID = next.id }
+                        } label: {
+                            Label("Begehung wiederholen", systemImage: "arrow.triangle.2.circlepath")
+                        }
+                        Button {
+                            showsOfflineMap = true
+                        } label: {
+                            Label("Karte offline laden", systemImage: "arrow.down.circle")
+                        }
+                    }
                 }
                 Divider()
                 Button {
@@ -295,7 +327,26 @@ struct SurveyDetailView: View {
                 Button(action: run) { Label(title, systemImage: symbol) }
             }
         }
-        .disabled(survey?.findings.isEmpty ?? true)
+        .disabled((survey?.findings.isEmpty ?? true) && (survey?.track.count ?? 0) < 2)
+    }
+
+    private func renderReport() {
+        guard let survey else { return }
+        isRendering = true
+        let settings = hub.settings
+        Task {
+            let url = await SurveyReport.render(.init(
+                survey: survey,
+                catalog: model.catalogs.catalog(survey.catalogID),
+                inspector: settings.inspectorName ?? "",
+                organisation: settings.inspectorOrganisation ?? "",
+                history: { model.history(of: $0) },
+                photoURL: { model.url(for: $0, in: surveyID) },
+                anonymises: settings.anonymisesPhotos,
+                includesResolved: true))
+            isRendering = false
+            if let url { shareItem = ShareItem(url: url) }
+        }
     }
 
     private var exportOverlay: some View {

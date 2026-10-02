@@ -54,6 +54,12 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// Ping the router and the internet once a second during a recording and write the round
     /// trips (and the Wi-Fi signal) as streams of their own.
     var recordsNetworkQualityFlag: Bool?
+    /// Blur faces and number plates in every photo that leaves the phone in an export or a
+    /// report. The photos on the phone stay as they were taken.
+    var anonymisesPhotosFlag: Bool?
+    /// Who signs a report: printed on the cover of a PDF.
+    var inspectorName: String?
+    var inspectorOrganisation: String?
 
     /// Streams hidden from the live tiles and the playback charts.
     ///
@@ -110,6 +116,11 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var looksUpAddresses: Bool {
         get { looksUpAddressesFlag ?? false }
         set { looksUpAddressesFlag = newValue }
+    }
+
+    var anonymisesPhotos: Bool {
+        get { anonymisesPhotosFlag ?? false }
+        set { anonymisesPhotosFlag = newValue }
     }
 
     /// Off by default: it sends a packet a second to the router and to 1.1.1.1.
@@ -204,6 +215,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.collapsedCategories = nil
         mine.looksUpAddressesFlag = nil
         mine.recordsNetworkQualityFlag = nil
+        mine.anonymisesPhotosFlag = nil
+        mine.inspectorName = nil
+        mine.inspectorOrganisation = nil
         mine.gattSubscriptions = nil
         mine.bluetoothAliases = nil
         mine.bluetoothFavourites = nil
@@ -214,6 +228,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.collapsedCategories = nil
         theirs.looksUpAddressesFlag = nil
         theirs.recordsNetworkQualityFlag = nil
+        theirs.anonymisesPhotosFlag = nil
+        theirs.inspectorName = nil
+        theirs.inspectorOrganisation = nil
         return mine != theirs
     }
 

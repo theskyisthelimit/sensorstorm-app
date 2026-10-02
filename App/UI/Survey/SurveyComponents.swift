@@ -33,11 +33,17 @@ extension Theme {
 enum SurveyMapStyle: String, CaseIterable, Hashable {
     case standard
     case satellite
+    /// swisstopo's national map and aerial image: the survey's own basemap in Switzerland,
+    /// drawn from tiles that can be kept on the phone.
+    case swisstopoMap
+    case swisstopoAerial
 
     var title: LocalizedStringKey {
         switch self {
         case .standard: "Karte"
         case .satellite: "Satellit"
+        case .swisstopoMap: "swisstopo Karte"
+        case .swisstopoAerial: "swisstopo Luftbild"
         }
     }
 
@@ -45,6 +51,17 @@ enum SurveyMapStyle: String, CaseIterable, Hashable {
         switch self {
         case .standard: "map"
         case .satellite: "globe.europe.africa.fill"
+        case .swisstopoMap: "mountain.2"
+        case .swisstopoAerial: "airplane"
+        }
+    }
+
+    /// The WMTS layer, for the styles that are not Apple's.
+    var swisstopoLayer: String? {
+        switch self {
+        case .swisstopoMap: SwisstopoTileOverlay.mapLayer
+        case .swisstopoAerial: SwisstopoTileOverlay.aerialLayer
+        case .standard, .satellite: nil
         }
     }
 }
@@ -53,8 +70,8 @@ extension View {
     @ViewBuilder
     func surveyMapStyle(_ style: SurveyMapStyle) -> some View {
         switch style {
-        case .standard: mapStyle(.standard(elevation: .flat))
-        case .satellite: mapStyle(.hybrid(elevation: .flat))
+        case .standard, .swisstopoMap: mapStyle(.standard(elevation: .flat))
+        case .satellite, .swisstopoAerial: mapStyle(.hybrid(elevation: .flat))
         }
     }
 }
@@ -297,17 +314,47 @@ struct SurveyMapView: View {
     var selection: UUID?
     var showsUserLocation = true
     var showsUncertainty = true
+    /// The path that was walked, drawn under the pins.
+    var track: [Coordinate2D] = []
     var onSelect: ((GroundFinding) -> Void)?
 
     @State private var position: MapCameraPosition = .automatic
     @State private var style: SurveyMapStyle = .standard
 
     var body: some View {
+        Group {
+            if let layer = style.swisstopoLayer {
+                swisstopoMap(layer: layer)
+            } else {
+                appleMap
+            }
+        }
+        .overlay(alignment: .topLeading) {
+            MapStylePicker(style: $style)
+                .padding(10)
+        }
+        .overlay(alignment: .bottomTrailing) {
+            if style.swisstopoLayer != nil {
+                Text(verbatim: "© swisstopo")
+                    .font(.caption2)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(.ultraThinMaterial, in: .capsule)
+                    .padding(8)
+            }
+        }
+    }
+
+    private var appleMap: some View {
         Map(position: $position) {
             ForEach(findings) { finding in
                 if let area = finding.area, area.isValid {
                     areaContent(area, severity: finding.severity)
                 }
+            }
+            if track.count >= 2 {
+                MapPolyline(coordinates: track.map(\.clCoordinate))
+                    .stroke(Theme.accent, lineWidth: 4)
             }
             if showsUncertainty {
                 ForEach(findings) { finding in
@@ -340,10 +387,28 @@ struct SurveyMapView: View {
             MapUserLocationButton()
             MapCompass()
         }
-        .overlay(alignment: .topLeading) {
-            MapStylePicker(style: $style)
-                .padding(10)
-        }
+    }
+
+    /// The same content on swisstopo's tiles, drawn by UIKit's map: SwiftUI's `Map` cannot
+    /// take another provider's tiles.
+    private func swisstopoMap(layer: String) -> some View {
+        OverlayMapView(
+            basemap: .swisstopo(layer: layer),
+            pins: findings.map { finding in
+                OverlayMapView.Pin(id: finding.id.uuidString, coordinate: finding.location.coordinate.clCoordinate,
+                                   title: finding.label, color: UIColor(Theme.severity(finding.severity)),
+                                   glyph: "\(finding.severity)", isClosed: !finding.status.isOutstanding)
+            },
+            lines: track.count >= 2 ? [.init(coordinates: track.map(\.clCoordinate), color: UIColor(Theme.accent))] : [],
+            areas: findings.compactMap { finding in
+                guard let area = finding.area, area.isValid else { return nil }
+                return OverlayMapView.Area(coordinates: area.ring().map(\.clCoordinate),
+                                           color: UIColor(Theme.severity(finding.severity)))
+            },
+            showsUserLocation: showsUserLocation,
+            onSelect: { id in
+                if let finding = findings.first(where: { $0.id.uuidString == id }) { onSelect?(finding) }
+            })
     }
 
     @MapContentBuilder

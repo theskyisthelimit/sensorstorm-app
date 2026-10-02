@@ -10,9 +10,11 @@ public struct KMZExporter: Sendable {
     private static let mediaFolder = "files"
 
     private let store: SurveyStore
+    private let photoCopier: SurveyExporter.PhotoCopier?
 
-    public init(store: SurveyStore) {
+    public init(store: SurveyStore, photoCopier: SurveyExporter.PhotoCopier? = nil) {
         self.store = store
+        self.photoCopier = photoCopier
     }
 
     /// - Parameter includingVideo: clips can be large; photos are what a balloon shows.
@@ -25,7 +27,17 @@ public struct KMZExporter: Sendable {
             for item in finding.media where includingVideo || item.kind == .photo {
                 guard written.insert(item.fileName).inserted,
                       let source = store.url(for: item, in: survey.id) else { continue }
-                try zip.addFile("\(Self.mediaFolder)/\(item.fileName)", from: source)
+                if item.kind == .photo, let photoCopier {
+                    // Through a scratch file: the zip wants a file to read twice, and the copier
+                    // writes one.
+                    let scratch = FileManager.default.temporaryDirectory
+                        .appendingPathComponent("kmz-\(UUID().uuidString)-\(item.fileName)")
+                    defer { try? FileManager.default.removeItem(at: scratch) }
+                    try photoCopier(source, scratch)
+                    try zip.addFile("\(Self.mediaFolder)/\(item.fileName)", from: scratch)
+                } else {
+                    try zip.addFile("\(Self.mediaFolder)/\(item.fileName)", from: source)
+                }
             }
         }
         try zip.finish()

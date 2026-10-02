@@ -95,6 +95,8 @@ final class SurveyLocationProvider {
     /// Only the approximate location is allowed — every fix is a circle of kilometres.
     private(set) var isAccuracyReduced = false
     private(set) var isRunning = false
+    /// Called for every usable fix, on the main actor — what a walk's track is built from.
+    var onFix: ((LiveFix) -> Void)?
 
     /// How many screens currently want the live position.
     private var holders = 0
@@ -176,9 +178,19 @@ final class SurveyLocationProvider {
         manager.stopUpdatingHeading()
     }
 
+    /// Keeps the position coming with the screen locked while a walk is being tracked. iOS
+    /// shows the blue indicator for as long as this is on, which is the point: a person
+    /// should see that the phone is following them.
+    func setBackgroundTracking(_ enabled: Bool) {
+        manager.allowsBackgroundLocationUpdates = enabled
+        manager.showsBackgroundLocationIndicator = enabled
+        manager.pausesLocationUpdatesAutomatically = !enabled
+    }
+
     private func record(_ fix: LiveFix) {
         self.fix = fix
         guard fix.isUsable else { return }
+        onFix?(fix)
         recent.append(fix)
 
         let cutoff = Date().addingTimeInterval(-Self.bufferSeconds)

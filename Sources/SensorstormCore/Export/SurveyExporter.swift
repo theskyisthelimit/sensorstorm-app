@@ -21,6 +21,10 @@ public struct SurveyExporter: Sendable {
         case kml
         /// Everything above plus every photo and clip, zipped.
         case bundle
+        /// An OGC GeoPackage: findings, areas and the walked path as three layers.
+        case geoPackage
+        /// KML with the photos in the balloons, zipped as Google Earth wants it.
+        case kmz
 
         public var fileExtension: String {
             switch self {
@@ -29,6 +33,8 @@ public struct SurveyExporter: Sendable {
             case .gpx: "gpx"
             case .kml: "kml"
             case .bundle: "zip"
+            case .geoPackage: "gpkg"
+            case .kmz: "kmz"
             }
         }
     }
@@ -36,10 +42,16 @@ public struct SurveyExporter: Sendable {
     /// Where the media sit inside a bundle, relative to its root.
     static let bundleMediaFolder = "media"
 
-    private let store: SurveyStore
+    /// How a photo gets from the survey folder into an export. The default copies it; the app
+    /// passes one that first blurs faces and number plates when the person asked for that.
+    public typealias PhotoCopier = @Sendable (_ source: URL, _ destination: URL) throws -> Void
 
-    public init(store: SurveyStore) {
+    private let store: SurveyStore
+    private let photoCopier: PhotoCopier?
+
+    public init(store: SurveyStore, photoCopier: PhotoCopier? = nil) {
         self.store = store
+        self.photoCopier = photoCopier
     }
 
     /// Writes the export into `destinationDirectory` and returns the file to share.
@@ -66,6 +78,10 @@ public struct SurveyExporter: Sendable {
             try Data(Self.kml(survey).utf8).write(to: destination, options: .atomic)
         case .bundle:
             try writeBundle(survey, to: destination, in: destinationDirectory)
+        case .geoPackage:
+            try GeoPackageExporter().write(survey, to: destination)
+        case .kmz:
+            try KMZExporter(store: store, photoCopier: photoCopier).write(survey, to: destination)
         }
         return destination
     }
@@ -127,7 +143,11 @@ public struct SurveyExporter: Sendable {
                 if fileManager.fileExists(atPath: target.path) {
                     try fileManager.removeItem(at: target)
                 }
-                try fileManager.copyItem(at: source, to: target)
+                if item.kind == .photo, let photoCopier {
+                    try photoCopier(source, target)
+                } else {
+                    try fileManager.copyItem(at: source, to: target)
+                }
             }
         }
     }

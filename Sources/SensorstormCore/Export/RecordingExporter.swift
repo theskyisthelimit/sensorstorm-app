@@ -514,7 +514,7 @@ public struct RecordingExporter: Sendable {
         return "\"" + text.replacingOccurrences(of: "\"", with: "\"\"") + "\""
     }
 
-    static func sanitize(_ name: String) -> String {
+    public static func sanitize(_ name: String) -> String {
         let allowed = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "-_ "))
         let separators: Set<Character> = ["-", "_", " "]
 

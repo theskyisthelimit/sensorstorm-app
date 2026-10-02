@@ -133,7 +133,7 @@ extension SurveyExporter.Format {
     public var proFeature: ProFeature? {
         switch self {
         case .csv: nil
-        case .geoJSON, .gpx, .kml, .bundle: .surveyGeoExport
+        case .geoJSON, .gpx, .kml, .bundle, .geoPackage, .kmz: .surveyGeoExport
         }
     }
 }

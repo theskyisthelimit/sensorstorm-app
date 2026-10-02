@@ -106,8 +106,11 @@ struct FindingDetailView: View {
 
                 statusCard(finding)
                 describeCard
+                FindingCatalogCard(surveyID: surveyID, finding: finding)
+                MeasurementsCard(surveyID: surveyID, finding: finding)
                 addressCard(finding)
                 areaCard
+                FindingHistoryCard(finding: finding)
                 infoCard(finding)
 
                 Button(role: .destructive) {
