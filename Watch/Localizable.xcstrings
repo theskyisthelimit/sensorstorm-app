@@ -324,6 +324,18 @@
     "Aufnahme beenden" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ukončit záznam"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Afslut optagelse"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -360,6 +372,24 @@
             "value" : "기록 종료"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avslutt opptak"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Opname beëindigen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zakończ nagranie"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -370,6 +400,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terminar gravação"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Încheie înregistrarea"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ukončiť záznam"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avsluta inspelning"
           }
         },
         "zh-Hans" : {
@@ -549,6 +597,18 @@
     "Das iPhone ist nicht erreichbar." : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iPhone není dosažitelný."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iPhonen kan ikke nås."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -585,6 +645,24 @@
             "value" : "iPhone에 연결할 수 없어요."
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iPhone-en kan ikke nås."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De iPhone is niet bereikbaar."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Brak połączenia z iPhone’em."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -595,6 +673,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Não é possível alcançar o iPhone."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iPhone-ul nu poate fi contactat."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iPhone nie je dostupný."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iPhone går inte att nå."
           }
         },
         "zh-Hans" : {
@@ -934,6 +1030,18 @@
     "Zeitpunkt markieren" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Označit okamžik"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markér tidspunkt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -970,6 +1078,24 @@
             "value" : "시점 마커 추가"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marker tidspunkt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Moment markeren"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Oznacz moment"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -980,6 +1106,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Marcar momento"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marchează momentul"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Označiť okamih"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markera tidpunkt"
           }
         },
         "zh-Hans" : {

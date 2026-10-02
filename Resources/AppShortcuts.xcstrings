@@ -4,6 +4,18 @@
     "Aufnahme beenden in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ukončit záznam v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Afslut optagelse i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -40,6 +52,24 @@
             "value" : "${applicationName}에서 기록 종료"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avslutt opptak i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Opname beëindigen in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zakończ nagranie w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -50,6 +80,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terminar gravação no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Încheie înregistrarea în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ukončiť záznam v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avsluta inspelning i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -69,6 +117,18 @@
     "Aufnahme starten in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spustit záznam v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start optagelse i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -105,6 +165,24 @@
             "value" : "${applicationName}에서 기록 시작"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start opptak i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Opname starten in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rozpocznij nagranie w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -115,6 +193,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Iniciar gravação no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pornește înregistrarea în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spustiť záznam v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Starta inspelning i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -134,6 +230,18 @@
     "Beende die Aufnahme in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ukončete záznam v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Afslut optagelsen i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -170,6 +278,24 @@
             "value" : "${applicationName}에서 기록을 종료해 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avslutt opptaket i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Beëindig de opname in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zatrzymaj nagranie w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -180,6 +306,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Termina a gravação no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Încheie înregistrarea din ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ukončite záznam v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avsluta inspelningen i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -199,6 +343,18 @@
     "Beobachtung hier in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pozorování zde v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Observation her i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -235,6 +391,24 @@
             "value" : "${applicationName}에서 여기에 관측 기록"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Observasjon her i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Waarneming hier in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Obserwacja tutaj w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -245,6 +419,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Observação aqui no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Observație aici în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pozorovanie tu v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Observation här i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -264,6 +456,18 @@
     "Halte den Weg in ${applicationName} an" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zastavte stopu v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop stien i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -300,6 +504,24 @@
             "value" : "${applicationName}에서 궤적 기록을 멈춰 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stopp veien i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stop het pad in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zatrzymaj nagrywanie drogi w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -310,6 +532,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Interrompe o trajeto no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Oprește parcursul în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zastavte cestu v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Stoppa vägen i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -329,6 +569,18 @@
     "Halte eine Beobachtung in ${applicationName} fest" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznamenejte pozorování v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registrér en observation i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -365,6 +617,24 @@
             "value" : "${applicationName}에서 관측을 기록해 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registrer en observasjon i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Leg een waarneming vast in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zapisz obserwację w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -375,6 +645,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Regista uma observação no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Înregistrează o observație în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznamenajte pozorovanie v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Registrera en observation i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -394,6 +682,18 @@
     "Markiere einen Zeitpunkt in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Označte okamžik v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markér et tidspunkt i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -430,6 +730,24 @@
             "value" : "${applicationName}에서 시점에 마커를 추가해 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marker et tidspunkt i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markeer een moment in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Oznacz moment w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -440,6 +758,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Marca um momento no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marchează un moment în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Označte okamih v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markera en tidpunkt i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -459,6 +795,18 @@
     "Markierung in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Značka v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markering i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -495,6 +843,24 @@
             "value" : "${applicationName}에서 마커 추가"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markering i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markering in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Znacznik w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -505,6 +871,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Marcação no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Marcaj în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Značka v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Markering i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -524,6 +908,18 @@
     "Netz absuchen in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prohledat síť v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scan netværket i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -560,6 +956,24 @@
             "value" : "${applicationName}에서 네트워크 검색"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Skann nettverket i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Netwerk scannen in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przeszukaj sieć w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -570,6 +984,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fazer scan à rede no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scanează rețeaua în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prehľadať sieť v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Skanna nätverket i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -589,6 +1021,18 @@
     "Starte eine Aufnahme in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spusťte záznam v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start en optagelse i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -625,6 +1069,24 @@
             "value" : "${applicationName}에서 기록을 시작해 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start et opptak i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start een opname in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zacznij nagrywanie w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -635,6 +1097,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inicia uma gravação no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pornește o înregistrare în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spustite záznam v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Starta en inspelning i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -654,6 +1134,18 @@
     "Suche das Netz mit ${applicationName} ab" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prohledejte síť pomocí ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scan netværket med ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -690,6 +1182,24 @@
             "value" : "${applicationName}에서 네트워크를 검색해 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Skann nettverket med ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scan het netwerk met ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przeszukaj sieć za pomocą ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -700,6 +1210,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Faz scan à rede com o ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scanează rețeaua cu ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prehľadajte sieť pomocou ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Skanna nätverket med ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -719,6 +1247,18 @@
     "Weg aufzeichnen in ${applicationName}" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznamenat stopu v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Optag sti i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -755,6 +1295,24 @@
             "value" : "${applicationName}에서 궤적 기록"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ta opp veien i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pad opnemen in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nagrywaj drogę w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -765,6 +1323,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gravar trajeto no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Înregistrează parcursul în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznamenať cestu v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spela in väg i ${applicationName}"
           }
         },
         "zh-Hans" : {
@@ -784,6 +1360,18 @@
     "Zeichne meinen Weg in ${applicationName} auf" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznamenejte mou stopu v ${applicationName}"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Optag min sti i ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -820,6 +1408,24 @@
             "value" : "${applicationName}에서 내 궤적을 기록해 줘"
           }
         },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ta opp veien min i ${applicationName}"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Neem mijn pad op in ${applicationName}"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nagraj moją drogę w ${applicationName}"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -830,6 +1436,24 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Grava o meu trajeto no ${applicationName}"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Înregistrează parcursul meu în ${applicationName}"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznamenajte moju cestu v ${applicationName}"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spela in min väg i ${applicationName}"
           }
         },
         "zh-Hans" : {
