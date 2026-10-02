@@ -5364,6 +5364,9 @@
         }
       }
     },
+    ", capture.magnitude)) g." : {
+      "extractionState" : "manual"
+    },
     "1 m" : {
       "localizations" : {
         "ar" : {
@@ -12784,6 +12787,12 @@
     "Ausgangspunkt" : {
       "extractionState" : "manual"
     },
+    "Ausgelöst durch einen Stoss von %@" : {
+      "extractionState" : "manual"
+    },
+    "Ausgelöst durch einen Stoss von %@ g." : {
+      "extractionState" : "manual"
+    },
     "Ausgestellt für" : {
       "extractionState" : "manual"
     },
@@ -20055,6 +20064,9 @@
       "extractionState" : "manual"
     },
     "Das Telefon flach auf die Fläche legen, mit der Rückseite nach unten. 0° ist waagrecht, 45° sind 100 %. Die Anzeige ist auf etwa ein halbes Grad genau, wenn das Telefon ruht." : {
+      "extractionState" : "manual"
+    },
+    "Das Telefon hört mit, auch wenn niemand aufnimmt, und speichert nur dann eine Aufnahme, wenn ein Stoss die Schwelle überschreitet — mit den Sekunden davor und danach, ohne Video und Ton. Für ein Telefon im Fahrzeug, an einer Maschine, in einem Paket. Läuft nur, solange die App offen ist, der Aufnahme-Bildschirm läuft und keine Aufnahme aktiv ist." : {
       "extractionState" : "manual"
     },
     "Das iPhone ist nicht erreichbar." : {
@@ -29137,6 +29149,15 @@
         }
       }
     },
+    "Ereignis" : {
+      "extractionState" : "manual"
+    },
+    "Ereignis wird gespeichert …" : {
+      "extractionState" : "manual"
+    },
+    "Ereignisaufnahme" : {
+      "extractionState" : "manual"
+    },
     "Erfordert Pro" : {
       "localizations" : {
         "ar" : {
@@ -34954,6 +34975,9 @@
       "extractionState" : "manual"
     },
     "Gesichter und Kennzeichen unkenntlich machen" : {
+      "extractionState" : "manual"
+    },
+    "Gespeicherte Ereignisse" : {
       "extractionState" : "manual"
     },
     "Gespeicherte Scans" : {
@@ -45766,6 +45790,9 @@
     "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet. Das Unkenntlichmachen gilt für Exporte und Berichte, nicht für die Fotos auf dem Telefon; Kennzeichen werden nach den Mustern von CH, D, A, F, I, E und GB erkannt, ein anderes oder ein zu kleines bleibt sichtbar. Name und Organisation stehen im Bericht." : {
       "extractionState" : "manual"
     },
+    "Nachlauf" : {
+      "extractionState" : "manual"
+    },
     "Nachricht" : {
       "extractionState" : "manual"
     },
@@ -55757,6 +55784,9 @@
     "Schräg" : {
       "extractionState" : "manual"
     },
+    "Schwelle" : {
+      "extractionState" : "manual"
+    },
     "Schweregrad" : {
       "extractionState" : "manual"
     },
@@ -57789,6 +57819,9 @@
           }
         }
       }
+    },
+    "Stoss %@ g" : {
+      "extractionState" : "manual"
     },
     "Strassen und Wege" : {
       "extractionState" : "manual"
@@ -62315,6 +62348,9 @@
           }
         }
       }
+    },
+    "Vorlauf" : {
+      "extractionState" : "manual"
     },
     "WGS84" : {
       "extractionState" : "manual",

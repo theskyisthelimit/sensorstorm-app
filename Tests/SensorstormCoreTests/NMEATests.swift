@@ -215,3 +215,32 @@ struct PeerPayloadTests {
         #expect(PeerPayload.decode(Data(count: 10)) == nil)   // 8 + 2: half a float
     }
 }
+
+@Suite("Event buffer")
+struct EventBufferTests {
+    @Test func ringKeepsOnlyTheLastSeconds() {
+        var ring = SampleRing(maxSeconds: 5)
+        for index in 0..<200 { ring.append(time: Double(index) / 10, values: [Double(index)]) }
+        // Samples from t = 14.9 … 19.9: 51 of them at 10 Hz.
+        #expect(ring.count >= 50 && ring.count <= 52)
+        let recent = ring.samples(since: 18)
+        #expect(recent.first?.time == 18)
+        #expect(recent.last?.time == 19.9)
+    }
+
+    @Test func ringSurvivesLongRuns() {
+        var ring = SampleRing(maxSeconds: 2)
+        for index in 0..<20_000 { ring.append(time: Double(index) / 100, values: [0]) }
+        #expect(ring.count <= 202)
+        #expect(ring.samples(since: 0).count == ring.count)
+    }
+
+    @Test func shockFiresOnceThenHoldsOff() {
+        var trigger = ShockTrigger(threshold: 2, holdOff: 10)
+        #expect(trigger.check(time: 1, values: [0.1, 0.1, 0.1]) == nil)
+        let first = trigger.check(time: 2, values: [2, 1.5, 0.5])
+        #expect(first != nil)
+        #expect(trigger.check(time: 3, values: [3, 0, 0]) == nil)       // held off
+        #expect(trigger.check(time: 12.5, values: [3, 0, 0]) != nil)    // quiet period over
+    }
+}

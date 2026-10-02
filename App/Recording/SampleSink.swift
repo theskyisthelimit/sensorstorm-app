@@ -49,6 +49,7 @@ final class SampleSink: @unchecked Sendable {
         lock.lock()
         let writer = writers[sensor]
         let tap = self.tap
+        let observer = self.observer
         var estimator = rateEstimates[sensor] ?? RateEstimator()
         let rate = estimator.record(time: time)
         rateEstimates[sensor] = estimator
@@ -67,6 +68,7 @@ final class SampleSink: @unchecked Sendable {
         // Same reasoning, and one more: the tap opens sockets. Holding this lock across a
         // network stack would let a slow endpoint stall every sensor in the app.
         tap?(sensor, time, values)
+        observer?(sensor, time, values)
     }
 
     /// A value of a stream that is not a built-in sensor.
@@ -128,6 +130,15 @@ final class SampleSink: @unchecked Sendable {
     func setTap(_ tap: (@Sendable (SensorID, Double, [Double]) -> Void)?) {
         lock.lock(); defer { lock.unlock() }
         self.tap = tap
+    }
+
+    /// A second observer, independent of the streaming tap: the event recorder listens while
+    /// nothing is being recorded, and the streaming tap exists only while something is.
+    private var observer: (@Sendable (SensorID, Double, [Double]) -> Void)?
+
+    func setObserver(_ observer: (@Sendable (SensorID, Double, [Double]) -> Void)?) {
+        lock.lock(); defer { lock.unlock() }
+        self.observer = observer
     }
 
     // MARK: - Live view

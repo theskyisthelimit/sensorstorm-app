@@ -58,6 +58,11 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var extraSourcesRaw: [String]?
     /// The iBeacon UUIDs to range, one per line as typed.
     var beaconUUIDs: [String]?
+    /// Save a short recording when a shock of at least this many g arrives, with the seconds
+    /// before and after. `nil` is off.
+    var eventThresholdG: Double?
+    var eventPreRoll: Double?
+    var eventPostRoll: Double?
     /// Offer the live values as a Bluetooth service other devices can subscribe to.
     var offersBluetoothServiceFlag: Bool?
     /// Let a device that connects to that service start, stop and mark this phone's recording.
@@ -167,6 +172,13 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         recordsNetworkQuality = profile.recordsNetworkQuality
         anonymisesPhotos = profile.anonymisesPhotos
         workProfile = profile
+    }
+
+    /// The configuration of the event recorder, or `nil` while it is off.
+    var eventConfiguration: EventRecorder.Configuration? {
+        guard let threshold = eventThresholdG else { return nil }
+        return EventRecorder.Configuration(thresholdG: threshold, preRoll: eventPreRoll ?? 30,
+                                           postRoll: eventPostRoll ?? 30, requestedRateHz: motionRateHz)
     }
 
     var offersBluetoothService: Bool {
@@ -296,6 +308,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.recordsNetworkQualityFlag = nil
         mine.extraSourcesRaw = nil
         mine.beaconUUIDs = nil
+        mine.eventThresholdG = nil
+        mine.eventPreRoll = nil
+        mine.eventPostRoll = nil
         mine.offersBluetoothServiceFlag = nil
         mine.allowsBluetoothControlFlag = nil
         mine.startsPeersTogetherFlag = nil
@@ -324,6 +339,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.recordsNetworkQualityFlag = nil
         theirs.extraSourcesRaw = nil
         theirs.beaconUUIDs = nil
+        theirs.eventThresholdG = nil
+        theirs.eventPreRoll = nil
+        theirs.eventPostRoll = nil
         theirs.offersBluetoothServiceFlag = nil
         theirs.allowsBluetoothControlFlag = nil
         theirs.startsPeersTogetherFlag = nil

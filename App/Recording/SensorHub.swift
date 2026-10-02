@@ -24,7 +24,9 @@ final class SensorHub {
         case finishing
     }
 
-    private(set) var phase: Phase = .idle
+    private(set) var phase: Phase = .idle {
+        didSet { if phase != oldValue { updateEventRecorder() } }
+    }
     /// Result of the network-time measurement for the running recording, if one was asked
     /// for and finished in time. Stored, never applied.
     private var timeReference: TimeReference?
@@ -38,10 +40,16 @@ final class SensorHub {
     private(set) var isLocationAccuracyReduced = false
     private(set) var elapsed: TimeInterval = 0
     private(set) var writtenSampleCount = 0
-    private(set) var isMonitoring = false
+    private(set) var isMonitoring = false {
+        didSet { if isMonitoring != oldValue { updateEventRecorder() } }
+    }
     private(set) var annotations: [Annotation] = []
     private(set) var lastFinishedRecording: RecordingMetadata?
     var errorMessage: String?
+
+    /// Events the event recorder saved since launch, and whether it is writing one now.
+    private(set) var eventsSaved = 0
+    private(set) var isCapturingEvent = false
 
     /// The phone as a Bluetooth sensor, and a second phone seen from this one. Both are
     /// switched on in the settings and do nothing until then.
@@ -64,6 +72,7 @@ final class SensorHub {
             }
             updateWebServer()
             updatePeripheral()
+            updateEventRecorder()
         }
     }
 
@@ -92,6 +101,7 @@ final class SensorHub {
     private let networkQualitySource: NetworkQualitySource
     private let extraSources: ExtraSourcesController
     private let peripheralService = BLEPeripheralService()
+    private let eventRecorder: EventRecorder
     let peerLink: PeerLink
     private let watchLink: WatchLink
     let streamer: LiveStreamer
@@ -133,6 +143,7 @@ final class SensorHub {
         self.networkQualitySource = NetworkQualitySource(sink: sink)
         self.extraSources = ExtraSourcesController(sink: sink)
         self.peerLink = PeerLink(sink: sink)
+        self.eventRecorder = EventRecorder(store: store)
         self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
@@ -162,6 +173,14 @@ final class SensorHub {
             Task { @MainActor in await self?.handleWatchCommand(command) }
         }
         watchLink.activate()
+        eventRecorder.onSaved = { [weak self] _ in
+            Task { @MainActor in self?.eventsSaved += 1 }
+        }
+        eventRecorder.onCapturing = { [weak self] capturing in
+            Task { @MainActor in self?.isCapturingEvent = capturing }
+        }
+        let recorder = eventRecorder
+        sink.setObserver { sensor, time, values in recorder.observe(sensor, time: time, values: values) }
         peripheralService.onControl = { [weak self] command in
             Task { @MainActor in await self?.handleRemoteCommand(command) }
         }
@@ -183,6 +202,7 @@ final class SensorHub {
         refreshAvailability()
         updateWebServer()
         updatePeripheral()
+        updateEventRecorder()
     }
 
     // MARK: - Web server
@@ -191,6 +211,13 @@ final class SensorHub {
     private func announce(isRecording: Bool, since: Date? = nil, hostTime: Double = 0) {
         watchLink.publishStatus(isRecording: isRecording, since: since)
         peripheralService.publishState(isRecording: isRecording, since: hostTime)
+    }
+
+    /// Armed while the sensors are running for the dashboard and nothing is being recorded;
+    /// during a recording the recording is the record.
+    private func updateEventRecorder() {
+        let active = isMonitoring && phase == .idle
+        eventRecorder.configure(active ? settings.eventConfiguration : nil)
     }
 
     private func updatePeripheral() {
