@@ -378,3 +378,60 @@ struct WorkProfileTests {
         #expect(Set(WorkProfile.allCases.map(\.rawValue)).count == WorkProfile.allCases.count)
     }
 }
+
+@Suite("Meldung an andere Systeme")
+struct RemoteReportTests {
+
+    private func sample() -> (GroundFinding, Survey) {
+        var finding = GroundFinding(capturedAt: Date(timeIntervalSince1970: 1_700_000_000),
+                                    location: FindingLocation(latitude: 46.948, longitude: 7.4474, horizontalAccuracy: 3.5),
+                                    severity: 7, label: "Schlagloch & Riss", note: "Vor Nr. 12; tief")
+        finding.address = PostalAddress(street: "Bahnhofstrasse", houseNumber: "12", postcode: "3011", locality: "Bern", egid: 99, source: "swisstopo")
+        finding.attributes = ["surface": "asphalt"]
+        finding.measurements = [CaseMeasurement(kind: .depth, value: 5)]
+        return (finding, Survey(name: "Quartier", findings: [finding]))
+    }
+
+    @Test("Der Webhook trägt Schema, Ort, Zustand und auf Wunsch das Foto")
+    func webhook() throws {
+        let (finding, survey) = sample()
+        let data = RemoteReport.webhookJSON(finding, in: survey, coverPhoto: Data([1, 2, 3]),
+                                            now: Date(timeIntervalSince1970: 1_700_000_100))
+        let object = try #require(try JSONSerialization.jsonObject(with: data) as? [String: Any])
+        #expect(object["schema"] as? String == RemoteReport.webhookSchema && object["event"] as? String == "finding")
+        let body = try #require(object["finding"] as? [String: Any])
+        #expect(body["severity"] as? Int == 7 && body["status"] as? String == "open")
+        #expect(body["address"] as? String == "Bahnhofstrasse 12, 3011 Bern" && body["egid"] as? Int == 99)
+        #expect((body["attributes"] as? [String: String])?["surface"] == "asphalt")
+        #expect(abs((body["latitude"] as? Double ?? 0) - 46.948) < 1e-9)
+        #expect((object["photo"] as? [String: Any])?["base64"] as? String == "AQID")
+        let plain = RemoteReport.webhookJSON(finding, in: survey)
+        #expect((try JSONSerialization.jsonObject(with: plain) as? [String: Any])?["photo"] == nil)
+    }
+
+    @Test("Open311: Felder nach GeoReport v2, Formularkodierung ohne Verwechslung der Trenner")
+    func open311() throws {
+        let (finding, _) = sample()
+        let fields = RemoteReport.open311Fields(finding, serviceCode: "pothole", apiKey: "k", jurisdiction: "bern.ch")
+        let dictionary = Dictionary(uniqueKeysWithValues: fields.map { ($0.name, $0.value) })
+        #expect(dictionary["service_code"] == "pothole" && dictionary["jurisdiction_id"] == "bern.ch")
+        #expect(dictionary["lat"] == "46.9480000" && dictionary["long"] == "7.4474000")
+        #expect(dictionary["description"] == "Schlagloch & Riss\nVor Nr. 12; tief")
+        #expect(dictionary["address_string"] == "Bahnhofstrasse 12, 3011 Bern")
+        let body = String(decoding: RemoteReport.formBody(fields), as: UTF8.self)
+        #expect(body.contains("description=Schlagloch%20%26%20Riss%0AVor%20Nr.%2012%3B%20tief"))
+        #expect(!body.contains(" ") && body.split(separator: "&").count == fields.count)
+
+        var bare = GroundFinding(location: FindingLocation(latitude: 1, longitude: 2, horizontalAccuracy: 3), severity: 4)
+        bare.label = ""
+        #expect(RemoteReport.description(for: bare) == "(4/10)")
+    }
+
+    @Test("Die Antwort eines Open311-Servers: Kennung oder Token")
+    func open311Response() {
+        #expect(RemoteReport.parseOpen311Response(Data(#"[{"service_request_id":"638344"}]"#.utf8)) == "638344")
+        #expect(RemoteReport.parseOpen311Response(Data(#"[{"service_request_id":638344}]"#.utf8)) == "638344")
+        #expect(RemoteReport.parseOpen311Response(Data(#"[{"token":"abc","service_request_id":""}]"#.utf8)) == "abc")
+        #expect(RemoteReport.parseOpen311Response(Data("nonsense".utf8)) == nil)
+    }
+}

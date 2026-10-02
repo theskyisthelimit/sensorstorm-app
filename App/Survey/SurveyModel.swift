@@ -388,7 +388,38 @@ final class SurveyModel {
 
         survey.upsert(finding)
         save(survey)
+        let settings = SettingsStore.load()
+        if settings.autoSendsFindings, RemoteReporter.isWebhookConfigured(settings) {
+            Task { await send(finding.id, in: surveyID, to: .webhook) }
+        }
         return finding
+    }
+
+    enum Destination { case webhook, open311 }
+
+    /// Sends a case on and writes down that it went. A case already sent to a destination is
+    /// sent again only on purpose: the mark is replaced, not stacked.
+    @discardableResult
+    func send(_ findingID: UUID, in surveyID: UUID, to destination: Destination) async -> RemoteReporter.Outcome {
+        guard let survey = survey(surveyID), var finding = survey.finding(findingID) else { return .failed("—") }
+        let settings = SettingsStore.load()
+        let outcome: RemoteReporter.Outcome
+        switch destination {
+        case .webhook:
+            var photo: Data?
+            if settings.webhookIncludesPhoto, let cover = finding.coverPhoto, let url = store.url(for: cover, in: surveyID) {
+                photo = try? Data(contentsOf: url)
+            }
+            outcome = await RemoteReporter.sendWebhook(finding, in: survey, settings: settings, coverPhoto: photo)
+        case .open311:
+            outcome = await RemoteReporter.sendOpen311(finding, settings: settings)
+        }
+        if case .sent(let reference) = outcome {
+            let key = destination == .webhook ? RemoteReporter.webhookMark : RemoteReporter.open311Mark
+            finding.attributes[key] = reference ?? TrackExporter.iso8601(Date())
+            update(finding, in: surveyID)
+        }
+        return outcome
     }
 
     /// Adds photos and clips to a case that already exists — the second visit to the same

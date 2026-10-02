@@ -111,6 +111,7 @@ struct FindingDetailView: View {
                 addressCard(finding)
                 areaCard
                 FindingHistoryCard(finding: finding)
+                FindingReportCard(surveyID: surveyID, finding: finding)
                 infoCard(finding)
 
                 Button(role: .destructive) {

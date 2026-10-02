@@ -130,6 +130,8 @@ struct SettingsView: View {
                     Text("Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet. Das Unkenntlichmachen gilt für Exporte und Berichte, nicht für die Fotos auf dem Telefon; Kennzeichen werden nach den Mustern von CH, D, A, F, I, E und GB erkannt, ein anderes oder ein zu kleines bleibt sichtbar. Name und Organisation stehen im Bericht.")
                 }
 
+                ReportingSettingsSection()
+
                 Section {
                     Button {
                         isCalibratingMicrophone = true

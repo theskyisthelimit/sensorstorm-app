@@ -60,6 +60,16 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// The profile chosen at first start or in the settings, by raw value. Informational: the
     /// switches it set are the settings; changing one does not change this.
     var workProfileRaw: String?
+    /// Where a case can be sent: a webhook of the team's own and an Open311 city reporter.
+    var webhookURL: String?
+    var webhookToken: String?
+    var webhookIncludesPhotoFlag: Bool?
+    var open311URL: String?
+    var open311Key: String?
+    var open311Jurisdiction: String?
+    var open311ServiceCode: String?
+    /// Send every new case to the webhook as soon as it is saved.
+    var autoSendsFindingsFlag: Bool?
     /// dB to add to the microphone's dBFS(A) to get dB(SPL), from a calibration against a
     /// reference. `nil` is uncalibrated.
     var audioCalibrationDecibels: Double?
@@ -122,6 +132,16 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var looksUpAddresses: Bool {
         get { looksUpAddressesFlag ?? false }
         set { looksUpAddressesFlag = newValue }
+    }
+
+    var webhookIncludesPhoto: Bool {
+        get { webhookIncludesPhotoFlag ?? false }
+        set { webhookIncludesPhotoFlag = newValue }
+    }
+
+    var autoSendsFindings: Bool {
+        get { autoSendsFindingsFlag ?? false }
+        set { autoSendsFindingsFlag = newValue }
     }
 
     var workProfile: WorkProfile? {
@@ -238,6 +258,14 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.recordsNetworkQualityFlag = nil
         mine.anonymisesPhotosFlag = nil
         mine.workProfileRaw = nil
+        mine.webhookURL = nil
+        mine.webhookToken = nil
+        mine.webhookIncludesPhotoFlag = nil
+        mine.open311URL = nil
+        mine.open311Key = nil
+        mine.open311Jurisdiction = nil
+        mine.open311ServiceCode = nil
+        mine.autoSendsFindingsFlag = nil
         mine.audioCalibrationDecibels = nil
         mine.inspectorName = nil
         mine.inspectorOrganisation = nil
@@ -253,6 +281,14 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.recordsNetworkQualityFlag = nil
         theirs.anonymisesPhotosFlag = nil
         theirs.workProfileRaw = nil
+        theirs.webhookURL = nil
+        theirs.webhookToken = nil
+        theirs.webhookIncludesPhotoFlag = nil
+        theirs.open311URL = nil
+        theirs.open311Key = nil
+        theirs.open311Jurisdiction = nil
+        theirs.open311ServiceCode = nil
+        theirs.autoSendsFindingsFlag = nil
         theirs.audioCalibrationDecibels = nil
         theirs.inspectorName = nil
         theirs.inspectorOrganisation = nil

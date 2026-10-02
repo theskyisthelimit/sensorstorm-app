@@ -142,7 +142,7 @@ public enum TrackExporter {
         metadata.startedAt.addingTimeInterval(hostTime - metadata.startHostTime)
     }
 
-    static func iso8601(_ date: Date) -> String {
+    public static func iso8601(_ date: Date) -> String {
         date.formatted(.iso8601.year().month().day()
             .dateTimeSeparator(.standard)
             .time(includingFractionalSeconds: true)
