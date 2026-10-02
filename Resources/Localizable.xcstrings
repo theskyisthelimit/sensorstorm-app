@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
+    "${userId} wird durch die Kennung dieses Geräts ersetzt." : {
+      "extractionState" : "manual"
+    },
     "%.0f m vom Fix" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6746,6 +6749,9 @@
         }
       }
     },
+    "Abonnieren, z. B. befehle/#, ${userId}/cmd" : {
+      "extractionState" : "manual"
+    },
     "Abtastrate" : {
       "localizations" : {
         "ar" : {
@@ -7065,6 +7071,9 @@
           }
         }
       }
+    },
+    "Aktion hinzufügen" : {
+      "extractionState" : "manual"
     },
     "Aktivität" : {
       "localizations" : {
@@ -9307,6 +9316,9 @@
         }
       }
     },
+    "Als Excel-Arbeitsmappe" : {
+      "extractionState" : "manual"
+    },
     "Als JSON exportieren" : {
       "localizations" : {
         "ar" : {
@@ -10910,6 +10922,12 @@
         }
       }
     },
+    "Aufnahme beenden" : {
+      "extractionState" : "manual"
+    },
+    "Aufnahme beendet" : {
+      "extractionState" : "manual"
+    },
     "Aufnahme entfernen" : {
       "localizations" : {
         "ar" : {
@@ -12511,6 +12529,9 @@
         }
       }
     },
+    "Auslösen" : {
+      "extractionState" : "manual"
+    },
     "Ausserdem in Pro" : {
       "localizations" : {
         "ar" : {
@@ -12670,6 +12691,12 @@
           }
         }
       }
+    },
+    "Ausserhalb" : {
+      "extractionState" : "manual"
+    },
+    "Automatisierung" : {
+      "extractionState" : "manual"
     },
     "Barometer" : {
       "localizations" : {
@@ -12991,6 +13018,15 @@
         }
       }
     },
+    "Bedingung hinzufügen" : {
+      "extractionState" : "manual"
+    },
+    "Bei Änderung" : {
+      "extractionState" : "manual"
+    },
+    "Beispiel kopieren" : {
+      "extractionState" : "manual"
+    },
     "Belagsausbruch" : {
       "localizations" : {
         "ar" : {
@@ -13310,6 +13346,9 @@
           }
         }
       }
+    },
+    "Benachrichtigung" : {
+      "extractionState" : "manual"
     },
     "Benutzername" : {
       "localizations" : {
@@ -17155,6 +17194,12 @@
         }
       }
     },
+    "Bluetooth-Sensoren" : {
+      "extractionState" : "manual"
+    },
+    "Bluetooth-Sensoren auslesen" : {
+      "extractionState" : "manual"
+    },
     "Braucht Bewegung & Fitness. Zum Erlauben tippen." : {
       "localizations" : {
         "ar" : {
@@ -17954,6 +17999,9 @@
           }
         }
       }
+    },
+    "Breite" : {
+      "extractionState" : "manual"
     },
     "Bündel mit Fotos" : {
       "localizations" : {
@@ -19076,6 +19124,9 @@
         }
       }
     },
+    "Dann" : {
+      "extractionState" : "manual"
+    },
     "Das Bündel enthält frames.csv, scene.json, das Video und den GPS-Track. Das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt." : {
       "localizations" : {
         "ar" : {
@@ -20196,6 +20247,12 @@
           }
         }
       }
+    },
+    "Dauer der Aufnahme" : {
+      "extractionState" : "manual"
+    },
+    "Decoder-Datei hinzufügen" : {
+      "extractionState" : "manual"
     },
     "Dein iPhone als Messgerät." : {
       "localizations" : {
@@ -26438,6 +26495,12 @@
         }
       }
     },
+    "Eigene Decoder" : {
+      "extractionState" : "manual"
+    },
+    "Eine JavaScript-Datei mit beliebig vielen decoder({ … })-Aufrufen. Jeder nennt manufacturerId, serviceUuid oder namePrefix und eine Funktion decode(bytes), die { name: Zahl } zurückgibt. Das Beispiel zeigt beides." : {
+      "extractionState" : "manual"
+    },
     "Eine Route ist ein Weg, eine Beobachtung eine Stelle darauf: beliebig viele Fotos und Clips, die Position samt Abweichung, eine Bewertung von 1 bis 10 und der markierte Bereich." : {
       "localizations" : {
         "ar" : {
@@ -28200,6 +28263,9 @@
         }
       }
     },
+    "Enthält (leer = jede Nachricht)" : {
+      "extractionState" : "manual"
+    },
     "Entladen" : {
       "localizations" : {
         "ar" : {
@@ -28679,6 +28745,9 @@
           }
         }
       }
+    },
+    "Erkennt RuuviTag, BTHome (Shelly, ESPHome), Xiaomi-Thermometer mit ATC- oder pvvx-Firmware und alles, wofür eine eigene Decoder-Datei da ist. Die Werte landen während einer Aufnahme in bluetooth_sensors.csv. Läuft, solange der Aufnahme-Bildschirm offen ist." : {
+      "extractionState" : "manual"
     },
     "Erlauben" : {
       "localizations" : {
@@ -35409,6 +35478,9 @@
         }
       }
     },
+    "Herzfrequenzgurte, Leistungsmesser, Trittfrequenz- und Laufsensoren senden ihre Werte erst nach einer Verbindung. Ein gekoppeltes Gerät wird bei jedem Start wieder verbunden." : {
+      "extractionState" : "manual"
+    },
     "Höhe" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -35889,6 +35961,9 @@
           }
         }
       }
+    },
+    "Im WLAN abrufbar" : {
+      "extractionState" : "manual"
     },
     "In den Einstellungen „Bewegung & Fitness“ erlauben." : {
       "localizations" : {
@@ -36689,6 +36764,15 @@
           }
         }
       }
+    },
+    "Innerhalb" : {
+      "extractionState" : "manual"
+    },
+    "Jedes Gerät im selben WLAN bekommt unter dieser Adresse mit einem einfachen GET die neuesten Werte aller laufenden Sensoren, als JSON im selben Format wie die Live-Übertragung. Nur lesen, nichts ändern. Läuft, solange die App offen ist." : {
+      "extractionState" : "manual"
+    },
+    "Jedes Mal" : {
+      "extractionState" : "manual"
     },
     "KML (Google Earth)" : {
       "localizations" : {
@@ -38613,6 +38697,9 @@
         }
       }
     },
+    "Kein Gurt, Leistungsmesser oder Laufsensor in Reichweite." : {
+      "extractionState" : "manual"
+    },
     "Kein Mikrofon verfügbar." : {
       "localizations" : {
         "ar" : {
@@ -38772,6 +38859,9 @@
           }
         }
       }
+    },
+    "Kein WLAN verbunden." : {
+      "extractionState" : "manual"
     },
     "Kein Zugriff auf den Standort" : {
       "localizations" : {
@@ -40374,6 +40464,9 @@
         }
       }
     },
+    "Konsole" : {
+      "extractionState" : "manual"
+    },
     "Kreis" : {
       "localizations" : {
         "ar" : {
@@ -41496,6 +41589,9 @@
         }
       }
     },
+    "Live" : {
+      "extractionState" : "manual"
+    },
     "Live an einen Server senden" : {
       "localizations" : {
         "ar" : {
@@ -41975,6 +42071,9 @@
           }
         }
       }
+    },
+    "Länge" : {
+      "extractionState" : "manual"
     },
     "Längsriss" : {
       "localizations" : {
@@ -42456,6 +42555,9 @@
           }
         }
       }
+    },
+    "MQTT-Nachricht" : {
+      "extractionState" : "manual"
     },
     "Magnetfeld" : {
       "localizations" : {
@@ -43898,6 +44000,9 @@
         }
       }
     },
+    "Messwert" : {
+      "extractionState" : "manual"
+    },
     "Messwerte" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -44379,6 +44484,12 @@
           }
         }
       }
+    },
+    "Nach Sekunden" : {
+      "extractionState" : "manual"
+    },
+    "Nachricht" : {
+      "extractionState" : "manual"
     },
     "Nadel" : {
       "localizations" : {
@@ -45664,6 +45775,9 @@
         }
       }
     },
+    "Neue Regel" : {
+      "extractionState" : "manual"
+    },
     "Neue Route" : {
       "localizations" : {
         "ar" : {
@@ -46144,6 +46258,9 @@
         }
       }
     },
+    "Noch kein Sensor erkannt. Öffne den Aufnahme-Bildschirm, damit gesucht wird." : {
+      "extractionState" : "manual"
+    },
     "Noch keine Beobachtungen" : {
       "localizations" : {
         "ar" : {
@@ -46303,6 +46420,9 @@
           }
         }
       }
+    },
+    "Noch nichts ausgelöst. Regeln laufen nur während einer Aufnahme." : {
+      "extractionState" : "manual"
     },
     "Nochmals versuchen" : {
       "extractionState" : "manual",
@@ -47904,6 +48024,9 @@
           }
         }
       }
+    },
+    "Ort" : {
+      "extractionState" : "manual"
     },
     "Passwort" : {
       "localizations" : {
@@ -50710,6 +50833,9 @@
         }
       }
     },
+    "Radius (m)" : {
+      "extractionState" : "manual"
+    },
     "Radius wählen" : {
       "localizations" : {
         "ar" : {
@@ -51029,6 +51155,15 @@
           }
         }
       }
+    },
+    "Regel hinzufügen" : {
+      "extractionState" : "manual"
+    },
+    "Regeln" : {
+      "extractionState" : "manual"
+    },
+    "Regeln reagieren während einer Aufnahme auf Messwerte, Ort, Dauer oder MQTT-Nachrichten: mit einer Benachrichtigung, einer Markierung oder dem Ende der Aufnahme." : {
+      "extractionState" : "manual"
     },
     "Rohdaten (.ssbin)" : {
       "localizations" : {
@@ -54071,6 +54206,9 @@
         }
       }
     },
+    "Sensor" : {
+      "extractionState" : "manual"
+    },
     "Sensor Logger" : {
       "localizations" : {
         "ar" : {
@@ -56796,6 +56934,9 @@
         }
       }
     },
+    "Thema, z. B. befehle/#" : {
+      "extractionState" : "manual"
+    },
     "Tippe auf die Karte, um den Mittelpunkt zu versetzen." : {
       "localizations" : {
         "ar" : {
@@ -56955,6 +57096,9 @@
           }
         }
       }
+    },
+    "Titel" : {
+      "extractionState" : "manual"
     },
     "Ton aufnehmen" : {
       "localizations" : {
@@ -58236,6 +58380,9 @@
         }
       }
     },
+    "Verbinden" : {
+      "extractionState" : "manual"
+    },
     "Verbindung testen" : {
       "localizations" : {
         "ar" : {
@@ -58555,6 +58702,9 @@
           }
         }
       }
+    },
+    "Vergleich" : {
+      "extractionState" : "manual"
     },
     "Verlauf" : {
       "extractionState" : "manual",
@@ -61283,6 +61433,9 @@
           }
         }
       }
+    },
+    "Wenn alle zutreffen" : {
+      "extractionState" : "manual"
     },
     "Wert" : {
       "extractionState" : "manual",
@@ -68340,6 +68493,15 @@
           }
         }
       }
+    },
+    "„Bei Änderung“ löst aus, sobald alle Bedingungen zutreffen, und danach erst wieder, wenn sie zwischendurch nicht mehr zutrafen – frühestens nach 5 Sekunden. „Jedes Mal“ löst aus, solange sie zutreffen, höchstens einmal pro Minute. Beides gilt je Regel." : {
+      "extractionState" : "manual"
+    },
+    "Die Datei enthält keinen Decoder." : {
+      "extractionState" : "manual"
+    },
+    "„%@“ nennt weder manufacturerId noch serviceUuid noch namePrefix." : {
+      "extractionState" : "manual"
     }
   },
   "version" : "1.0"

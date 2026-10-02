@@ -332,6 +332,10 @@ struct RecordingDetailView: View {
                     Task { shareItem = await library.export(recording, format: .sqlite)
                         .map(ShareItem.init) }
                 }
+                ProButton(.tableExport, "Als Excel-Arbeitsmappe", "tablecells.fill") {
+                    Task { shareItem = await library.export(recording, format: .excel)
+                        .map(ShareItem.init) }
+                }
                 if recording.stream(.location) != nil {
                     // Free, like CSV. A recorded track is what this app is most often
                     // reached for, and the comparable apps make you convert one with an

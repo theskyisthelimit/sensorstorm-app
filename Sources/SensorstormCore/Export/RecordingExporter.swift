@@ -26,6 +26,8 @@ public struct RecordingExporter: Sendable {
         case json
         /// A SQLite database, one table per sensor. See ``SQLiteExporter``.
         case sqlite
+        /// An Excel workbook, one sheet per sensor. See ``XLSXExporter``.
+        case excel
         /// The GPS track alone, as a `.gpx` file. See ``TrackExporter``.
         case gpxTrack
         /// The GPS track alone, as a `.kml` file. See ``TrackExporter``.
@@ -139,6 +141,11 @@ public struct RecordingExporter: Sendable {
                 metadata, to: folder.appendingPathComponent(SQLiteExporter.fileName),
                 progress: progress)
             try writeSidecars(metadata, format: format, into: folder)
+        case .excel:
+            try XLSXExporter(store: store).write(
+                metadata, to: folder.appendingPathComponent(XLSXExporter.fileName),
+                progress: progress)
+            try writeSidecars(metadata, format: format, into: folder)
         case .gpxTrack, .kmlTrack:
             // Silently skipped rather than thrown here, unlike the single-file export: this
             // path also serves the whole-archive export, and one recording made indoors
@@ -175,16 +182,17 @@ public struct RecordingExporter: Sendable {
             : TrackExporter.gpx(track, metadata: metadata)
     }
 
-    /// The Bluetooth advertisement log, when the recording has one.
+    /// The Bluetooth logs — raw advertisements and decoded sensor values — when the
+    /// recording has them.
     ///
     /// Copied rather than regenerated: it is written during the recording and is the only
     /// part of a recording that is text on disk to begin with.
     private func copyAdvertisementLog(_ metadata: RecordingMetadata, into folder: URL) throws {
-        let source = store.directory(for: metadata.id)
-            .appendingPathComponent(AdvertisementLog.fileName)
-        guard FileManager.default.fileExists(atPath: source.path) else { return }
-        try FileManager.default.copyItem(
-            at: source, to: folder.appendingPathComponent(AdvertisementLog.fileName))
+        for name in [AdvertisementLog.fileName, BLEReadingLog.fileName] {
+            let source = store.directory(for: metadata.id).appendingPathComponent(name)
+            guard FileManager.default.fileExists(atPath: source.path) else { continue }
+            try FileManager.default.copyItem(at: source, to: folder.appendingPathComponent(name))
+        }
     }
 
     /// README and media, for the formats that are a single file rather than a folder full
@@ -220,6 +228,15 @@ public struct RecordingExporter: Sendable {
               One table per sensor, indexed on `time`, plus `metadata`, `streams` and
               `annotations`. The `streams` table maps a sensor name to its table and columns,
               so a script can discover the schema instead of being told it.
+
+            """
+        case .excel:
+            text += """
+
+            recording.xlsx
+              One sheet per sensor at its own timestamps, nothing resampled. `time` is seconds
+              since the start, `epoch` Unix time. Excel stops at 1,048,576 rows; a longer
+              stream is cut there and its header says so.
 
             """
         default:

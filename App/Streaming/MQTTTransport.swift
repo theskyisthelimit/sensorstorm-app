@@ -8,6 +8,10 @@ import SensorstormCore
 /// already speak. Both can run at once — a dashboard on one, Home Assistant on the other —
 /// because the payload is identical and neither transport knows about the other.
 ///
+/// It also listens. Topics in ``Configuration/subscriptions`` are subscribed after the
+/// handshake, and what arrives goes to ``onMessage`` — which is how a rule can react to a
+/// command sent from Home Assistant or Node-RED.
+///
 /// The packet encoding is in ``MQTTPacket``, where it is unit-tested. What is left here is
 /// the socket, the connect handshake, and the one rule that matters under load: never queue.
 final class MQTTTransport: @unchecked Sendable {
@@ -17,9 +21,17 @@ final class MQTTTransport: @unchecked Sendable {
         var port: UInt16
         var usesTLS: Bool
         var topic: String
+        var subscriptions: [String] = []
         var username: String?
         var password: String?
     }
+
+    /// Called on the transport's own queue with every message on a subscribed topic.
+    var onMessage: (@Sendable (_ topic: String, _ payload: String) -> Void)? {
+        get { lock.withLock { _onMessage } }
+        set { lock.withLock { _onMessage = newValue } }
+    }
+    private var _onMessage: (@Sendable (String, String) -> Void)?
 
     private let lock = NSLock()
     private var connection: NWConnection?
@@ -92,18 +104,50 @@ final class MQTTTransport: @unchecked Sendable {
             return
         }
         connection.send(content: packet, completion: .contentProcessed { _ in })
-        // A CONNACK is four bytes and arrives before anything else.
-        connection.receive(minimumIncompleteLength: 4, maximumLength: 8) { [weak self] data, _, _, _ in
+        receive(on: connection, configuration: configuration, buffer: Data())
+    }
+
+    /// One read loop for the life of the connection: the CONNACK first, then whatever the
+    /// subscriptions bring. Ends when the connection does.
+    private func receive(on connection: NWConnection, configuration: Configuration, buffer: Data) {
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 65_536) { [weak self] data, _, isComplete, error in
             guard let self else { return }
-            let accepted = data.map(MQTTPacket.isAccepted(connack:)) ?? false
-            self.lock.withLock {
-                self.isConnected = accepted
-                self._status = accepted
-                    ? .delivered(code: 0, samples: 0)
-                    : .failed(data.map(MQTTPacket.connackMessage) ?? String(
-                        localized: "Der Broker hat nicht geantwortet."))
+            var buffer = buffer
+            if let data { buffer.append(data) }
+            for packet in MQTTPacket.drain(&buffer) {
+                switch packet {
+                case .connack(let connack):
+                    self.handleConnack(connack, on: connection, configuration: configuration)
+                case .publish(let topic, let payload):
+                    self.onMessage?(topic, String(decoding: payload, as: UTF8.self))
+                case .other:
+                    break
+                }
             }
+            guard !isComplete, error == nil, connection.state == .ready else {
+                if buffer.isEmpty, data == nil, self.status == .sending {
+                    self.lock.withLock {
+                        self._status = .failed(String(localized: "Der Broker hat nicht geantwortet."))
+                    }
+                }
+                return
+            }
+            self.receive(on: connection, configuration: configuration, buffer: buffer)
         }
+    }
+
+    private func handleConnack(_ connack: Data, on connection: NWConnection,
+                               configuration: Configuration) {
+        let accepted = MQTTPacket.isAccepted(connack: connack)
+        lock.withLock {
+            isConnected = accepted
+            _status = accepted ? .delivered(code: 0, samples: 0)
+                               : .failed(MQTTPacket.connackMessage(connack))
+        }
+        guard accepted, !configuration.subscriptions.isEmpty,
+              let subscribe = try? MQTTPacket.subscribe(packetID: 1, topics: configuration.subscriptions)
+        else { return }
+        connection.send(content: subscribe, completion: .contentProcessed { _ in })
     }
 
     // MARK: - Publishing

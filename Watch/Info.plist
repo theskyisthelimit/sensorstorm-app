@@ -58,6 +58,10 @@
 	<string>Sensorstorm zeichnet die Bewegung deines Handgelenks auf und überträgt sie an das iPhone.</string>
 	<key>WKApplication</key>
 	<true/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>ch.sensorstorm.app</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>

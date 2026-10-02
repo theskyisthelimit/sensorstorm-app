@@ -75,6 +75,27 @@ struct SettingsView: View {
                 streamingSection
 
                 Section {
+                    NavigationLink {
+                        RulesView()
+                    } label: {
+                        LabeledContent {
+                            Text(hub.rules.count { $0.isEnabled }, format: .number)
+                        } label: {
+                            Label("Regeln", systemImage: "bolt.badge.automatic")
+                        }
+                    }
+                    NavigationLink {
+                        BluetoothSensorsView()
+                    } label: {
+                        Label("Bluetooth-Sensoren", systemImage: "sensor")
+                    }
+                } header: {
+                    Text("Automatisierung")
+                } footer: {
+                    Text("Regeln reagieren während einer Aufnahme auf Messwerte, Ort, Dauer oder MQTT-Nachrichten: mit einer Benachrichtigung, einer Markierung oder dem Ende der Aufnahme.")
+                }
+
+                Section {
                     ProButton(.archiveExport, "Alles exportieren", "shippingbox") {
                         isExportingArchive = true
                     }
@@ -198,9 +219,22 @@ struct SettingsView: View {
                         .font(.callout.monospacedDigit())
                 }
 
-                TextField(Self.defaultTopic,
-                          text: Binding(get: { hub.settings.mqttTopic ?? "" },
-                                        set: { hub.settings.mqttTopic = $0 }))
+                VStack(alignment: .leading, spacing: 4) {
+                    TextField(Self.defaultTopic,
+                              text: Binding(get: { hub.settings.mqttTopic ?? "" },
+                                            set: { hub.settings.mqttTopic = $0 }))
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .font(.callout.monospaced())
+                    Text("${userId} wird durch die Kennung dieses Geräts ersetzt.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+
+                TextField("Abonnieren, z. B. befehle/#, ${userId}/cmd",
+                          text: Binding(get: { hub.settings.mqttSubscriptions ?? "" },
+                                        set: { hub.settings.mqttSubscriptions = $0 }),
+                          axis: .vertical)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .font(.callout.monospaced())
@@ -214,6 +248,27 @@ struct SettingsView: View {
                 SecureField("Passwort",
                             text: Binding(get: { hub.settings.mqttPassword ?? "" },
                                           set: { hub.settings.mqttPassword = $0 }))
+            }
+
+            Toggle(isOn: pro.gated(
+                Binding(get: { hub.settings.isWebServerEnabled ?? false },
+                        set: { hub.settings.isWebServerEnabled = $0 }),
+                feature: { (isOn: Bool) -> ProFeature? in isOn ? .liveStreaming : nil })) {
+                Label("Im WLAN abrufbar",
+                      systemImage: pro.access.allows(.liveStreaming) ? "server.rack" : "lock.fill")
+            }
+
+            if hub.settings.isWebServerEnabled == true {
+                let addresses = LocalWebServer.addresses()
+                if addresses.isEmpty {
+                    Text("Kein WLAN verbunden.")
+                        .foregroundStyle(.secondary)
+                }
+                ForEach(addresses, id: \.self) { address in
+                    Text(verbatim: "http://\(address):\(LocalWebServer.port)")
+                        .font(.callout.monospaced())
+                        .textSelection(.enabled)
+                }
             }
 
             Toggle(isOn: Binding(get: { hub.settings.measuresNetworkTime },
@@ -234,6 +289,14 @@ struct SettingsView: View {
                 Text("Während einer Aufnahme geht jede Messung als JSON an diese Adresse, im selben Format, das Sensor Logger sendet. Ein bestehender Endpunkt funktioniert also unverändert. Die Aufnahme auf dem Gerät läuft davon unabhängig weiter: bricht die Verbindung ab, fehlt nichts in der Datei.")
             } else {
                 Text("Für ein eigenes Dashboard, Node-RED oder Home Assistant. Ohne eingetragene Adresse baut die App keine Verbindung auf.")
+            }
+        }
+
+        if hub.settings.isWebServerEnabled == true {
+            Section {
+                EmptyView()
+            } footer: {
+                Text("Jedes Gerät im selben WLAN bekommt unter dieser Adresse mit einem einfachen GET die neuesten Werte aller laufenden Sensoren, als JSON im selben Format wie die Live-Übertragung. Nur lesen, nichts ändern. Läuft, solange die App offen ist.")
             }
         }
 

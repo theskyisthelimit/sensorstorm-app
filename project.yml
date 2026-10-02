@@ -186,6 +186,10 @@ targets:
         WKApplication: true
         WKCompanionAppBundleIdentifier: ch.sensorstorm.app
         WKRunsIndependentlyOfCompanionApp: false
+        # A workout session without this background mode is refused by watchOS, and the
+        # heart rate sensor then samples every few minutes instead of continuously.
+        WKBackgroundModes:
+          - workout-processing
         CFBundleLocalizations:
           - de
           - en

@@ -157,7 +157,15 @@ final class WatchRecorder: NSObject {
     private func startWristMotion() {
         guard motion.isDeviceMotionAvailable else { return }
         motion.deviceMotionUpdateInterval = 1.0 / 50
-        motion.startDeviceMotionUpdates(to: queue) { [weak self] data, _ in
+        motion.startDeviceMotionUpdates(to: queue, withHandler: Self.wristMotionHandler(self))
+    }
+
+    /// Built outside the main actor on purpose. A closure written inside a `@MainActor`
+    /// method inherits that isolation, and Swift 6 checks it at run time: the first sample
+    /// arriving on the motion queue stopped the app dead — every start, before a single
+    /// batch reached the phone.
+    private nonisolated static func wristMotionHandler(_ recorder: WatchRecorder) -> CMDeviceMotionHandler {
+        { [weak recorder] data, _ in
             guard let data else { return }
             // Sampled on the watch's own clock, converted to wall time here so the phone has
             // one thing to reason about rather than two.
@@ -168,7 +176,7 @@ final class WatchRecorder: NSObject {
                 data.rotationRate.x, data.rotationRate.y, data.rotationRate.z,
                 attitude.roll, attitude.pitch, attitude.yaw,
             ]
-            Task { @MainActor in self?.append(Self.wristMotionStream, time: time, values: values) }
+            Task { @MainActor in recorder?.append(Self.wristMotionStream, time: time, values: values) }
         }
     }
 

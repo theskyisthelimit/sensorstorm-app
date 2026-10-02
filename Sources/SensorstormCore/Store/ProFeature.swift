@@ -21,7 +21,7 @@ public enum ProFeature: String, Sendable, Hashable, CaseIterable, Identifiable {
     case photoExport
     /// The Sensor Logger and Gyroflow interop exports.
     case interopExport
-    /// Every sensor in one table: combined CSV, JSON, SQLite.
+    /// Every sensor in one file: combined CSV, JSON, SQLite, Excel.
     case tableExport
     /// Pushing samples to a server while the recording runs.
     case liveStreaming
@@ -124,7 +124,7 @@ extension RecordingExporter.Format {
         case .rawBundle: .rawExport
         case .sceneBundle: .sceneExport
         case .sensorLoggerBundle, .gyroflowLog: .interopExport
-        case .combinedCSV, .json, .sqlite: .tableExport
+        case .combinedCSV, .json, .sqlite, .excel: .tableExport
         }
     }
 }

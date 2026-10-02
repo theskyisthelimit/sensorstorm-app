@@ -5,6 +5,7 @@ import Observation
 import SensorstormCore
 import SwiftUI
 import UIKit
+import UserNotifications
 
 /// The one object the UI talks to.
 ///
@@ -44,8 +45,20 @@ final class SensorHub {
             if isMonitoring, phase == .idle, settings.affectsCapture(comparedTo: oldValue) {
                 restartMonitoring()
             }
+            updateWebServer()
         }
     }
+
+    /// Evaluated ten times a second while a recording runs. See ``RuleEngine``.
+    var rules: [Rule] {
+        didSet { RuleStore.save(rules) }
+    }
+    /// What the rules did and which messages arrived, newest first, for the running or
+    /// last recording.
+    private(set) var ruleLog: [RuleLogEntry] = []
+    private var ruleEngine = RuleEngine()
+    /// MQTT messages since the last evaluation.
+    private var inbox: [(topic: String, payload: String)] = []
 
     let sink = SampleSink()
     let store: RecordingStore
@@ -60,6 +73,7 @@ final class SensorHub {
     private let bluetoothSource: BluetoothSource
     private let watchLink: WatchLink
     let streamer: LiveStreamer
+    let webServer: LocalWebServer
     private let syntheticSource: SyntheticSource?
 
     private var displayTimer: Timer?
@@ -83,6 +97,7 @@ final class SensorHub {
     init(store: RecordingStore) {
         self.store = store
         self.settings = SettingsStore.load()
+        self.rules = RuleStore.load()
 
         let sink = self.sink
         self.videoRecorder = VideoRecorder(sink: sink)
@@ -97,8 +112,17 @@ final class SensorHub {
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
         // which is exactly as much identity as a live feed needs.
-        self.streamer = LiveStreamer(
-            deviceId: UIDevice.current.identifierForVendor?.uuidString ?? "unknown")
+        let deviceId = UIDevice.current.identifierForVendor?.uuidString ?? "unknown"
+        self.streamer = LiveStreamer(deviceId: deviceId)
+        // The newest value of every running stream, in the push payload's shape.
+        self.webServer = LocalWebServer {
+            let now = HostClock.now
+            let batch = sink.snapshot()
+                .sorted { $0.key.rawValue < $1.key.rawValue }
+                .map { (sensor: $0.key, time: $0.value.hostTime, values: $0.value.values) }
+            return LiveStreamer.payload(batch, messageId: 0, sessionId: "live", deviceId: deviceId,
+                                        hostToEpoch: Date().timeIntervalSince1970 - now)
+        }
 
         #if targetEnvironment(simulator)
         self.syntheticSource = SyntheticSource(sink: sink)
@@ -110,7 +134,34 @@ final class SensorHub {
             Task { @MainActor in self?.refreshAvailability() }
         }
         watchLink.activate()
+        streamer.mqtt.onMessage = { [weak self] topic, payload in
+            Task { @MainActor in self?.receive(topic: topic, payload: payload) }
+        }
         refreshAvailability()
+        updateWebServer()
+    }
+
+    // MARK: - Web server
+
+    private func updateWebServer() {
+        if settings.isWebServerEnabled == true { webServer.start() } else { webServer.stop() }
+    }
+
+    // MARK: - Bluetooth sensors
+
+    var bluetoothReadings: [BluetoothSource.DeviceReading] { bluetoothSource.latestReadings }
+    var connectableBluetoothDevices: [BluetoothSource.Connectable] { bluetoothSource.connectableDevices }
+
+    /// After a decoder file was added or removed. Takes effect on the next advertisement,
+    /// without restarting the scan.
+    func reloadBluetoothDecoders() {
+        configureBluetoothDecoding(for: settings)
+    }
+
+    private func configureBluetoothDecoding(for settings: RecordingSettings) {
+        bluetoothSource.configureDecoding(enabled: settings.decodesBluetoothSensors,
+                                          decoders: settings.decodesBluetoothSensors ? DecoderLibrary.load() : [],
+                                          paired: settings.pairedBluetoothDevices ?? [])
     }
 
     // MARK: - Availability
@@ -289,6 +340,7 @@ final class SensorHub {
         locationSource.start(sensors: wanted, rateHz: settings.motionRateHz, wallToHostOffset: offset)
         deviceStateSource.start(sensors: wanted)
         activitySource.start(sensors: wanted)
+        configureBluetoothDecoding(for: settings)
         bluetoothSource.start(sensors: wanted)
         watchLink.start(sensors: wanted, wallToHostOffset: offset)
         syntheticSource?.start(sensors: wanted.intersection(syntheticSensors),
@@ -365,6 +417,10 @@ final class SensorHub {
         phase = .starting
         errorMessage = nil
         annotations = []
+        ruleLog = []
+        ruleEngine = RuleEngine()
+        inbox = []
+        await requestNotificationPermissionIfNeeded()
 
         await requestPermissions()
         if !isMonitoring {
@@ -450,6 +506,12 @@ final class SensorHub {
                recordingSettings.isEnabled(.bluetooth) {
                 bluetoothSource.beginLogging(
                     try? AdvertisementLog(directory: directory, startHostTime: startHostTime))
+            }
+            if recordingSettings.isEnabled(.bluetooth),
+               recordingSettings.decodesBluetoothSensors
+                || !(recordingSettings.pairedBluetoothDevices ?? []).isEmpty {
+                bluetoothSource.beginReadingLog(
+                    try? BLEReadingLog(directory: directory, startHostTime: startHostTime))
             }
 
             // Streaming rides along with the recording rather than running on its own: a
@@ -603,7 +665,63 @@ final class SensorHub {
         if let active = activeRecording, phase == .recording {
             elapsed = HostClock.now - active.startHostTime
             writtenSampleCount = sink.writtenSampleCount
+            evaluateRules()
         }
+    }
+
+    // MARK: - Rules
+
+    private func evaluateRules() {
+        let messages = inbox
+        inbox.removeAll()
+        guard rules.contains(where: \.isEnabled) else { return }
+        let context = RuleContext(values: live.mapValues(\.values), elapsed: elapsed, messages: messages)
+        for rule in ruleEngine.evaluate(rules, context: context, now: HostClock.now) {
+            for action in rule.actions {
+                perform(action, of: rule)
+            }
+        }
+    }
+
+    private func perform(_ action: Rule.Action, of rule: Rule) {
+        switch action {
+        case let .notify(title, message, emoji):
+            let heading = [emoji, title.isEmpty ? rule.name : title]
+                .filter { !$0.isEmpty }.joined(separator: " ")
+            NotificationPresenter.post(title: heading, body: message)
+            log(.notification, heading, message)
+        case .annotate(let text):
+            let note = text.isEmpty ? rule.name : text
+            addAnnotation(note)
+            log(.annotation, rule.name, note)
+        case .stopRecording:
+            log(.stop, rule.name, String(localized: "Aufnahme beendet"))
+            Task { await stopRecording() }
+        }
+    }
+
+    /// Only during a recording: rules run then, and a console filling up between recordings
+    /// would bury the one that matters.
+    private func receive(topic: String, payload: String) {
+        guard phase == .recording else { return }
+        inbox.append((topic, payload))
+        log(.message, topic, String(payload.prefix(200)))
+    }
+
+    private func log(_ kind: RuleLogEntry.Kind, _ title: String, _ detail: String) {
+        ruleLog.insert(RuleLogEntry(date: Date(), kind: kind, title: title, detail: detail), at: 0)
+        if ruleLog.count > 200 { ruleLog.removeLast() }
+    }
+
+    /// Asked when the first recording with a notifying rule starts — the moment the
+    /// question makes sense — rather than on first launch.
+    private func requestNotificationPermissionIfNeeded() async {
+        let notifies = rules.contains { rule in
+            rule.isEnabled && rule.actions.contains { if case .notify = $0 { true } else { false } }
+        }
+        guard notifies else { return }
+        _ = try? await UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.alert, .sound])
     }
 
     // MARK: - Helpers

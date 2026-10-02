@@ -27,12 +27,20 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var mqttPort: Int?
     var mqttUsesTLS: Bool?
     var mqttTopic: String?
+    /// Topics to listen on, comma- or line-separated. What arrives feeds the rules.
+    var mqttSubscriptions: String?
     var mqttUsername: String?
     var mqttPassword: String?
     /// Measure the device clock against a network time server once per recording.
     var measuresNetworkTimeFlag: Bool?
     /// Write every Bluetooth advertisement, not only the per-second summary.
     var logsBluetoothAdvertisementsFlag: Bool?
+    /// Run the decoders over every advertisement and connect to paired GATT devices.
+    var decodesBluetoothSensorsFlag: Bool?
+    /// Devices the user chose to connect to, by CoreBluetooth identifier.
+    var pairedBluetoothDevices: Set<UUID>?
+    /// Answer `GET` requests on the local network with the newest values.
+    var isWebServerEnabled: Bool?
 
     /// Streams hidden from the live tiles and the playback charts.
     ///
@@ -86,6 +94,13 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         set { logsBluetoothAdvertisementsFlag = newValue }
     }
 
+    /// Off by default for the same reason the raw log is: decoding a neighbour's
+    /// thermometer is reading something that is not yours.
+    var decodesBluetoothSensors: Bool {
+        get { decodesBluetoothSensorsFlag ?? false }
+        set { decodesBluetoothSensorsFlag = newValue }
+    }
+
     /// The broker to publish to, or `nil` when MQTT is off or the host is empty. Nothing
     /// opens a socket unless this is non-nil.
     var mqttConfiguration: MQTTTransport.Configuration? {
@@ -100,6 +115,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
             port: UInt16(mqttPort ?? (tls ? 8883 : 1883)),
             usesTLS: tls,
             topic: topic,
+            subscriptions: MQTTTopic.list(mqttSubscriptions),
             username: mqttUsername.flatMap { $0.isEmpty ? nil : $0 },
             password: mqttPassword.flatMap { $0.isEmpty ? nil : $0 })
     }

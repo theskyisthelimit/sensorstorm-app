@@ -1,13 +1,13 @@
 import Foundation
 
-/// MQTT 3.1.1 packet encoding, enough to connect and publish.
+/// MQTT 3.1.1 packet encoding, enough to connect, publish and subscribe.
 ///
 /// Written out rather than pulled in as a dependency. The subset this app needs is CONNECT,
-/// PUBLISH at QoS 0 and DISCONNECT — three packets, all of them a fixed header, a
+/// PUBLISH and SUBSCRIBE at QoS 0 and DISCONNECT — all of them a fixed header, a
 /// variable-length integer and a few length-prefixed strings. A client library would bring
-/// subscriptions, sessions, QoS 1 and 2, retained messages and a reconnection state machine,
-/// none of which a one-way sensor feed uses, and would put a third party between this app
-/// and the one promise it makes about where data goes.
+/// sessions, QoS 1 and 2, retained messages and a reconnection state machine, none of which
+/// a sensor feed uses, and would put a third party between this app and the one promise it
+/// makes about where data goes.
 ///
 /// The encoding lives here, apart from the socket, because the fiddly part is the
 /// variable-length integer — seven bits per byte, high bit as "more follows" — and that is
@@ -90,7 +90,73 @@ public enum MQTTPacket {
         return packet
     }
 
+    /// Every filter at QoS 0, for the same reason the publish is: a missed command is a
+    /// missed command, not a reason to queue.
+    public static func subscribe(packetID: UInt16, topics: [String]) throws -> Data {
+        var variable = Data([UInt8(packetID >> 8), UInt8(packetID & 0xFF)])
+        for topic in topics {
+            variable.append(string(topic))
+            variable.append(0)
+        }
+        var packet = Data([0x82])
+        packet.append(try remainingLength(variable.count))
+        packet.append(variable)
+        return packet
+    }
+
     public static let disconnect = Data([0xE0, 0x00])
+    public static let pingRequest = Data([0xC0, 0x00])
+
+    /// One packet from the broker, as far as this app cares.
+    public enum Incoming: Sendable, Equatable {
+        case connack(Data)
+        case publish(topic: String, payload: Data)
+        case other(UInt8)
+    }
+
+    /// Splits every complete packet off the front of `buffer` and leaves a partial one in it.
+    ///
+    /// TCP hands over bytes, not packets: a CONNACK and the first PUBLISH can arrive in one
+    /// read, and a large PUBLISH across three.
+    public static func drain(_ buffer: inout Data) -> [Incoming] {
+        var bytes = [UInt8](buffer)
+        var out: [Incoming] = []
+        while bytes.count >= 2 {
+            var length = 0
+            var multiplier = 1
+            var index = 1
+            var complete = false
+            while index < bytes.count, index <= 4 {
+                let byte = bytes[index]
+                length += Int(byte & 0x7F) * multiplier
+                multiplier *= 128
+                index += 1
+                if byte & 0x80 == 0 { complete = true; break }
+            }
+            guard complete, bytes.count >= index + length else { break }
+
+            let header = bytes[0]
+            let body = Array(bytes[index ..< index + length])
+            bytes.removeFirst(index + length)
+
+            switch header >> 4 {
+            case 2:
+                out.append(.connack(Data([header, UInt8(length)] + body)))
+            case 3 where body.count >= 2:
+                let topicLength = Int(body[0]) << 8 | Int(body[1])
+                guard body.count >= 2 + topicLength else { continue }
+                let topic = String(decoding: body[2 ..< 2 + topicLength], as: UTF8.self)
+                // QoS 1 and 2 carry a packet identifier the payload must skip.
+                let qos = (header >> 1) & 0b11
+                let start = 2 + topicLength + (qos > 0 ? 2 : 0)
+                out.append(.publish(topic: topic, payload: Data(body[min(start, body.count)...])))
+            default:
+                out.append(.other(header >> 4))
+            }
+        }
+        buffer = Data(bytes)
+        return out
+    }
 
     /// `true` when the broker accepted the connection. A CONNACK is four bytes; the last one
     /// is the return code, and 0 is the only good value.

@@ -20,7 +20,28 @@ import SensorstormCore
 /// Scanning needs the app in the foreground. iOS refuses a service-less background scan, and
 /// a scan filtered to known services would only find beacons someone already knew to look
 /// for — which is not what „was in the area" means.
-final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Sendable {
+///
+/// **Decoded sensors.** With decoding on, every advertisement also goes past the built-in
+/// decoders and the user's decoder files, and devices the user paired are connected over
+/// GATT — heart rate, cycling power, speed and cadence, running foot pods. What comes out
+/// is shown live and, during a recording, written to ``BLEReadingLog``.
+final class BluetoothSource: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, @unchecked Sendable {
+
+    /// The newest decoded values of one device.
+    struct DeviceReading: Sendable, Identifiable {
+        let id: UUID
+        var name: String?
+        var reading: BLEReading
+        var hostTime: Double
+    }
+
+    /// A device advertising one of the standard GATT profiles, offered for pairing.
+    struct Connectable: Sendable, Identifiable, Hashable {
+        let id: UUID
+        var name: String?
+        var profiles: [BLEDecoders.Profile]
+    }
+
     private let sink: SampleSink
 
     private let queue = DispatchQueue(label: "ch.sensorstorm.bluetooth")
@@ -36,6 +57,17 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
     /// Resumed once from `centralManagerDidUpdateState`, which is the first moment the
     /// system's answer to the permission prompt is knowable.
     private var authorizationContinuation: CheckedContinuation<Void, Never>?
+
+    // Decoding. All guarded by `lock`; read on the scan queue.
+    private var decodesAdvertisements = false
+    private var scriptDecoders: [ScriptDecoders] = []
+    private var paired: Set<UUID> = []
+    private var readings: [UUID: DeviceReading] = [:]
+    private var connectables: [UUID: Connectable] = [:]
+    private var readingLog: BLEReadingLog?
+    /// Strong references: CoreBluetooth drops a peripheral nobody holds, connection and all.
+    private var peripherals: [UUID: CBPeripheral] = [:]
+    private var cadence: [UUID: CSCTracker] = [:]
 
     init(sink: SampleSink) {
         self.sink = sink
@@ -76,12 +108,34 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
     }
 
     func endLogging() {
-        let log = lock.withLock { () -> AdvertisementLog? in
-            let existing = self.log
-            self.log = nil
-            return existing
+        let (log, readingLog) = lock.withLock { () -> (AdvertisementLog?, BLEReadingLog?) in
+            defer { self.log = nil; self.readingLog = nil }
+            return (self.log, self.readingLog)
         }
         log?.close()
+        readingLog?.close()
+    }
+
+    /// Decoded values go to their own file, and only while recording.
+    func beginReadingLog(_ log: BLEReadingLog?) {
+        lock.withLock { readingLog = log }
+    }
+
+    /// Set before ``start(sensors:)``; takes effect with the next scan.
+    func configureDecoding(enabled: Bool, decoders: [ScriptDecoders], paired: Set<UUID>) {
+        lock.withLock {
+            decodesAdvertisements = enabled
+            scriptDecoders = decoders
+            self.paired = paired
+        }
+    }
+
+    var latestReadings: [DeviceReading] {
+        lock.withLock { readings.values.sorted { ($0.name ?? "") < ($1.name ?? "") } }
+    }
+
+    var connectableDevices: [Connectable] {
+        lock.withLock { connectables.values.sorted { ($0.name ?? "~") < ($1.name ?? "~") } }
     }
 
     func start(sensors: Set<SensorID>) {
@@ -107,9 +161,19 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
         timer?.cancel()
         timer = nil
         central?.stopScan()
+        let connected = lock.withLock { () -> [CBPeripheral] in
+            defer {
+                peripherals.removeAll()
+                readings.removeAll()
+                connectables.removeAll()
+                cadence.removeAll()
+            }
+            recent.removeAll()
+            return Array(peripherals.values)
+        }
+        for peripheral in connected { central?.cancelPeripheralConnection(peripheral) }
         central?.delegate = nil
         central = nil
-        lock.withLock { recent.removeAll() }
     }
 
     // MARK: - Sampling
@@ -146,6 +210,24 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
         // signal never changes again, which is the opposite of a stream.
         central.scanForPeripherals(withServices: nil,
                                    options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+
+        // Paired devices are reached by identifier, not by waiting for an advertisement: a
+        // strap already connected to the phone for another app stops advertising.
+        let wanted = lock.withLock { Array(paired) }
+        for peripheral in central.retrievePeripherals(withIdentifiers: wanted) {
+            connect(peripheral)
+        }
+    }
+
+    private func connect(_ peripheral: CBPeripheral) {
+        let isNew = lock.withLock { () -> Bool in
+            guard peripherals[peripheral.identifier] == nil else { return false }
+            peripherals[peripheral.identifier] = peripheral
+            return true
+        }
+        guard isNew else { return }
+        peripheral.delegate = self
+        central?.connect(peripheral)
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
@@ -154,10 +236,37 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
         // no business being averaged into one.
         let rssi = RSSI.doubleValue
         guard rssi < 0 else { return }
-        let log = lock.withLock { () -> AdvertisementLog? in
+        let (log, decodes, decoders, isPaired) = lock.withLock {
             recent[peripheral.identifier] = rssi
-            return self.log
+            return (self.log, decodesAdvertisements, scriptDecoders, paired.contains(peripheral.identifier))
         }
+        let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? peripheral.name
+
+        if decodes {
+            let serviceData = (advertisementData[CBAdvertisementDataServiceDataKey] as? [CBUUID: Data])?
+                .reduce(into: [String: Data]()) { $0[$1.key.uuidString] = $1.value } ?? [:]
+            let advertisement = BLEAdvertisement(
+                name: name,
+                manufacturerData: advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
+                serviceData: serviceData)
+            // The user's own decoders first: someone who wrote one for a device the app also
+            // knows wants theirs.
+            if let reading = decoders.lazy.compactMap({ $0.decode(advertisement) }).first
+                ?? BLEDecoders.decode(advertisement) {
+                record(reading, from: peripheral.identifier, name: name)
+            }
+
+            let profiles = ((advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID]) ?? [])
+                .compactMap { BLEDecoders.Profile(rawValue: $0.uuidString) }
+            if !profiles.isEmpty {
+                lock.withLock {
+                    connectables[peripheral.identifier] = Connectable(
+                        id: peripheral.identifier, name: name, profiles: profiles)
+                }
+            }
+        }
+        if isPaired { connect(peripheral) }
+
         guard let log else { return }
 
         let services = (advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID])?
@@ -165,8 +274,69 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, @unchecked Send
         log.append(hostTime: HostClock.now,
                    address: peripheral.identifier,
                    rssi: rssi,
-                   name: advertisementData[CBAdvertisementDataLocalNameKey] as? String,
+                   name: name,
                    manufacturerData: advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
                    services: services)
+    }
+
+    // MARK: - Decoded readings
+
+    private func record(_ reading: BLEReading, from device: UUID, name: String?) {
+        let now = HostClock.now
+        let log = lock.withLock { () -> BLEReadingLog? in
+            readings[device] = DeviceReading(id: device, name: name ?? readings[device]?.name,
+                                             reading: reading, hostTime: now)
+            return readingLog
+        }
+        log?.append(hostTime: now, device: device, name: name, reading: reading)
+    }
+
+    // MARK: - GATT
+
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        peripheral.discoverServices(BLEDecoders.Profile.allCases.map { CBUUID(string: $0.rawValue) })
+    }
+
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral,
+                        error: Error?) {
+        lock.withLock { _ = peripherals.removeValue(forKey: peripheral.identifier) }
+    }
+
+    /// A strap that drops out mid-ride comes back by itself: `connect` has no timeout and
+    /// completes whenever the device is in range again.
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral,
+                        error: Error?) {
+        guard isRunning, lock.withLock({ paired.contains(peripheral.identifier) }) else { return }
+        central.connect(peripheral)
+    }
+
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        for service in peripheral.services ?? [] {
+            guard let profile = BLEDecoders.Profile(rawValue: service.uuid.uuidString) else { continue }
+            peripheral.discoverCharacteristics([CBUUID(string: profile.measurement)], for: service)
+        }
+    }
+
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService,
+                    error: Error?) {
+        for characteristic in service.characteristics ?? [] {
+            peripheral.setNotifyValue(true, for: characteristic)
+        }
+    }
+
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic,
+                    error: Error?) {
+        guard let data = characteristic.value,
+              let service = characteristic.service,
+              let profile = BLEDecoders.Profile(rawValue: service.uuid.uuidString),
+              var reading = BLEDecoders.decode(profile, data) else { return }
+        if profile == .cyclingSpeedCadence {
+            reading = lock.withLock {
+                var tracker = cadence[peripheral.identifier] ?? CSCTracker()
+                defer { cadence[peripheral.identifier] = tracker }
+                return tracker.update(reading)
+            }
+        }
+        record(reading, from: peripheral.identifier, name: peripheral.name)
     }
 }

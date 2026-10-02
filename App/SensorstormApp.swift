@@ -1,5 +1,6 @@
 import SensorstormCore
 import SwiftUI
+import UserNotifications
 
 @main
 struct SensorstormApp: App {
@@ -23,6 +24,8 @@ struct SensorstormApp: App {
         // rather than an empty library that fills in a moment later. A no-op unless
         // `SS_FIXTURE=1` is set, which only `Tools/asc_capture_screenshots.py` does.
         ScreenshotFixture.seed(recordings: store, surveys: surveyStore)
+
+        UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
     }
 
     var body: some Scene {

@@ -43,7 +43,7 @@ final class LiveStreamer: @unchecked Sendable {
     private var hostToEpoch: Double = 0
     private var timer: DispatchSourceTimer?
 
-    private let deviceId: String
+    let deviceId: String
     private let queue = DispatchQueue(label: "ch.sensorstorm.streaming")
     private let session: URLSession
     /// The same payload, on the protocol most home-automation setups already speak. Both
@@ -70,7 +70,13 @@ final class LiveStreamer: @unchecked Sendable {
     func start(url: URL?, mqtt configuration: MQTTTransport.Configuration?,
                batchSeconds: Double, hostToEpoch: Double) {
         stop()
-        if let configuration { mqtt.start(configuration) }
+        if var configuration {
+            configuration.topic = MQTTTopic.expand(configuration.topic, deviceID: deviceId)
+            configuration.subscriptions = configuration.subscriptions.map {
+                MQTTTopic.expand($0, deviceID: deviceId)
+            }
+            mqtt.start(configuration)
+        }
         lock.withLock {
             isMQTTRunning = configuration != nil
             endpoint = url
