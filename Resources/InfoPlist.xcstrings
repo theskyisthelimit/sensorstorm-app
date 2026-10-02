@@ -9,6 +9,60 @@
             "state" : "needs_review",
             "value" : "Sensorstorm reads NFC stickers on objects you inspect and enters the identifier in the observation."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lee etiquetas NFC en objetos que controlas y anota el identificador en la observación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lit les autocollants NFC sur les objets que vous contrôlez et inscrit l’identifiant dans l’observation."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm legge tag NFC su oggetti che controlli e inserisce l'ID nell'osservazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、点検する対象物の NFC ステッカーを読み取り、その識別子を観測点に記録します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm은 점검하는 물체에 붙은 NFC 스티커를 읽고 식별자를 관측에 기록해요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm lê adesivos NFC em objetos que você inspeciona e registra o identificador na observação."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm lê autocolantes NFC em objetos que controlas e regista o identificador na observação."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 读取你所检查物体上的 NFC 标签，并把标识写入观测点。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 會讀取你所檢查物件上的 NFC 貼紙，並把識別碼填入觀測點。"
+          }
         }
       }
     },
@@ -354,6 +408,60 @@
             "state" : "needs_review",
             "value" : "On request, Sensorstorm reads heart rate, breathing, oxygen, steps and running metrics from the time of a recording and places them next to the other measurements. Nothing is written to Health."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Si lo pides, Sensorstorm lee pulso, respiración, oxígeno, pasos y métricas de carrera del período de una grabación y los coloca junto a los demás valores medidos. No se escribe nada en Salud."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lit, à votre demande, pouls, respiration, oxygène, pas et métriques de course sur la durée d’un enregistrement et les place à côté des autres mesures. Rien n’est écrit dans Santé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se vuoi, Sensorstorm legge battito, respirazione, ossigeno, passi e metriche di corsa dal periodo di una registrazione e li affianca alle altre misure. Non viene scritto nulla in Salute."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、ご希望の場合に、記録の時間帯の脈拍、呼吸、酸素、歩数、ランニング指標を読み取り、他の測定値と並べて保存します。ヘルスケアには何も書き込みません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "원하면 Sensorstorm이 기록 시간대의 심박수, 호흡, 산소, 걸음 수, 러닝 지표를 읽어 다른 측정값 옆에 놓아요. 건강 앱에는 아무것도 쓰지 않아요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando você pede, o Sensorstorm lê frequência cardíaca, respiração, oxigênio, passos e métricas de corrida do período de uma gravação e os coloca ao lado das demais medições. Nada é gravado no Saúde."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando pedido, o Sensorstorm lê pulsação, respiração, oxigénio, passos e métricas de corrida do período de uma gravação e coloca-os junto das restantes medições. Nada é escrito na app Saúde."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "应你的要求，Sensorstorm 会读取一次记录期间的心率、呼吸、血氧、步数和跑步指标，并把它们与其他测量值放在一起。不会向“健康”写入任何内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 可依你的要求，讀取一筆記錄期間的心率、呼吸、血氧、步數與跑步指標，並與其他量測值並列。不會寫入任何資料到「健康」。"
+          }
         }
       }
     },
@@ -368,6 +476,60 @@
             "state" : "needs_review",
             "value" : "On request, Sensorstorm reads temperature, humidity, CO₂ and light from your home’s sensors while a recording runs."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Si lo pides, Sensorstorm lee temperatura, humedad, CO₂ y luz de los sensores de tu hogar mientras hay una grabación en curso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "À votre demande, Sensorstorm lit la température, l’humidité, le CO₂ et la lumière à partir des capteurs de votre domicile tant qu’un enregistrement est en cours."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se vuoi, Sensorstorm legge temperatura, umidità, CO₂ e luce dai sensori della tua casa finché è in corso una registrazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、ご希望の場合に、記録中、自宅のセンサーから温度、湿度、CO₂、光を読み取ります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "원하면 Sensorstorm이 기록 중에 집의 센서에서 온도, 습도, CO₂, 조도를 읽어요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando você pede, o Sensorstorm lê temperatura, umidade, CO₂ e luz dos sensores da sua casa enquanto uma gravação está em andamento."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando pedido, o Sensorstorm lê temperatura, humidade, CO₂ e luz dos sensores da tua casa enquanto uma gravação decorre."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "应你的要求，Sensorstorm 会在记录进行期间，读取你家中传感器的温度、湿度、CO₂ 和光线。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 可依你的要求，在記錄期間讀取你家中感測器的溫度、濕度、CO₂ 與光線。"
+          }
         }
       }
     },
@@ -378,6 +540,60 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm sends the readings to the address you enter in Settings and, on request, searches for devices in your own network. Both need this permission."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm envía los valores medidos a la dirección que introduzcas en Ajustes y, si lo pides, busca los dispositivos de tu propia red. Ambas cosas necesitan este permiso."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm envoie les mesures à l’adresse que vous saisissez dans Réglages et, à votre demande, recherche les appareils de votre propre réseau. Les deux nécessitent cette autorisation."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm invia le misure all'indirizzo che inserisci in Impostazioni e, se vuoi, cerca i dispositivi nella tua rete. Entrambe le funzioni richiedono questa autorizzazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、設定で入力したアドレスに測定値を送信し、ご希望の場合に自分のネットワーク内の端末を検索します。どちらもこの許可が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm은 설정에 입력한 주소로 측정값을 보내고, 원하면 자신의 네트워크에서 기기를 검색해요. 둘 다 이 허용이 필요해요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm envia as medições ao endereço que você informa em Ajustes e, quando você pede, procura dispositivos na sua própria rede. As duas coisas precisam desta permissão."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "O Sensorstorm envia as medições para o endereço que indicas nas Definições e, se pedires, procura os aparelhos na tua própria rede. Ambas as funções precisam desta autorização."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会把测量值发送到你在“设置”中填写的地址，并应你的要求搜索你自己网络中的设备。两者都需要这项授权。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 會把量測值傳送到你在設定中填入的位址，並可依你的要求搜尋自己網路中的裝置。兩者都需要這項授權。"
           }
         }
       }
@@ -1057,6 +1273,60 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "On request, Sensorstorm uses ultra-wideband to measure distance and direction to a second iPhone running Sensorstorm."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Si lo pides, Sensorstorm mide con banda ultraancha la distancia y la dirección a un segundo iPhone en el que se ejecuta Sensorstorm."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "À votre demande, Sensorstorm mesure avec l’ultra-large bande la distance et la direction vers un deuxième iPhone sur lequel Sensorstorm tourne."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se vuoi, Sensorstorm misura con la banda ultralarga distanza e direzione verso un secondo iPhone su cui è attivo Sensorstorm."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、ご希望の場合に、Sensorstorm を実行している 2 台目の iPhone までの距離と方向を、超広帯域で測定します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "원하면 Sensorstorm이 초광대역으로 Sensorstorm이 실행 중인 두 번째 iPhone까지의 거리와 방향을 측정해요."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando você pede, o Sensorstorm mede com banda ultralarga a distância e a direção até um segundo iPhone que esteja rodando o Sensorstorm."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando pedido, o Sensorstorm mede com banda ultralarga a distância e a direção a um segundo iPhone onde o Sensorstorm esteja a funcionar."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "应你的要求，Sensorstorm 会用超宽带测量与另一台运行 Sensorstorm 的 iPhone 之间的距离和方向。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 可依你的要求，以超寬頻量測與另一支同樣執行 Sensorstorm 的 iPhone 之間的距離與方向。"
           }
         }
       }
