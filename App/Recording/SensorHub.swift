@@ -29,6 +29,9 @@ final class SensorHub {
     /// for and finished in time. Stored, never applied.
     private var timeReference: TimeReference?
     private(set) var live: [SensorID: LiveSample] = [:]
+    /// Streams that are not the device's own sensors, newest reading each — Bluetooth
+    /// devices, network measurements. Sorted by title so the tiles do not jump around.
+    private(set) var externalLive: [LiveExternalSample] = []
     private(set) var availableSensors: Set<SensorID> = []
     /// Only the approximate location is allowed. Refreshed with the availability, which is
     /// what an authorisation change triggers.
@@ -427,6 +430,7 @@ final class SensorHub {
         // Spikes from the minutes the dashboard was open before the start are not this
         // recording's business.
         _ = sink.drainExtremes()
+        _ = sink.drainExternalExtremes()
         await requestNotificationPermissionIfNeeded()
 
         await requestPermissions()
@@ -498,7 +502,7 @@ final class SensorHub {
 
             // Arm the writers last: from this instant on, every sample is part of the file.
             let startHostTime = HostClock.now
-            sink.beginRecording(writers: writers)
+            sink.beginRecording(writers: writers, externalDirectory: directory)
 
             // Only while something is actually being recorded, and only when asked for: the
             // scan runs whenever the record screen is open, but writing down which devices
@@ -592,7 +596,8 @@ final class SensorHub {
 
         bluetoothSource.endLogging()
 
-        let streams = sink.endRecording()
+        let ended = sink.endRecordingWithExternals()
+        let streams = ended.streams
         let duration = HostClock.now - active.startHostTime
 
         var metadata = RecordingMetadata(
@@ -612,7 +617,8 @@ final class SensorHub {
             barometerReference: motionSource.barometerReference,
             timeReference: timeReference,
             reducedLocationAccuracy: isLocationAccuracyReduced && active.settings.isEnabled(.location)
-                ? true : nil
+                ? true : nil,
+            externalStreams: ended.external.filter { $0.sampleCount > 0 }.nilIfEmpty
         )
 
         locationSource.setBackgroundUpdates(false)
@@ -626,7 +632,8 @@ final class SensorHub {
         }
 
         // A recording where nothing was captured is noise in the library.
-        if metadata.streams.isEmpty, metadata.video == nil, metadata.audio == nil {
+        if metadata.streams.isEmpty, metadata.externalStreams == nil,
+           metadata.video == nil, metadata.audio == nil {
             try? store.delete(active.id)
             metadata.name = ""
             activeRecording = nil
@@ -671,6 +678,10 @@ final class SensorHub {
 
     private func refreshLiveValues() {
         live = sink.snapshot()
+        sink.dropExternal(olderThan: 30, now: HostClock.now)
+        externalLive = sink.externalSnapshot().values.sorted {
+            $0.info.title == $1.info.title ? $0.id < $1.id : $0.info.title < $1.info.title
+        }
         if let active = activeRecording, phase == .recording {
             elapsed = HostClock.now - active.startHostTime
             writtenSampleCount = sink.writtenSampleCount
@@ -686,11 +697,15 @@ final class SensorHub {
         // Drained even when no rule is on, so switching one on mid-recording starts from the
         // next interval rather than from everything since the recording began.
         let extremes = sink.drainExtremes()
+        let externalExtremes = sink.drainExternalExtremes()
         guard rules.contains(where: \.isEnabled) else { return }
         let context = RuleContext(values: live.mapValues(\.values), elapsed: elapsed,
                                   messages: messages,
                                   minimum: extremes.mapValues(\.minimum),
-                                  maximum: extremes.mapValues(\.maximum))
+                                  maximum: extremes.mapValues(\.maximum),
+                                  externalValues: Dictionary(uniqueKeysWithValues: externalLive.map { ($0.id, $0.values) }),
+                                  externalMinimum: externalExtremes.mapValues(\.minimum),
+                                  externalMaximum: externalExtremes.mapValues(\.maximum))
         for rule in ruleEngine.evaluate(rules, context: context, now: HostClock.now) {
             for action in rule.actions {
                 perform(action, of: rule)

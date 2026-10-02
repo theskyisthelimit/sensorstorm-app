@@ -251,15 +251,21 @@ final class SurveyModel {
 
     /// Adds photos and clips to a case that already exists — the second visit to the same
     /// pothole, or the close-up somebody forgot.
+    ///
+    /// - Parameter role: marks every new item as taken before or after the repair.
     @discardableResult
-    func addMedia(_ pending: [PendingMedia], to findingID: UUID, in surveyID: UUID) -> Bool {
+    func addMedia(_ pending: [PendingMedia], to findingID: UUID, in surveyID: UUID,
+                  role: CaseMedia.Role? = nil) -> Bool {
         guard var survey = survey(surveyID), var finding = survey.finding(findingID) else {
             return false
         }
         let stored = writeMedia(pending, to: surveyID)
         guard stored.count == pending.count else { return false }
 
-        for item in stored { finding.add(item) }
+        for var item in stored {
+            item.role = role
+            finding.add(item)
+        }
         survey.upsert(finding)
         save(survey)
         return true
@@ -301,6 +307,33 @@ final class SurveyModel {
 
     func update(_ finding: GroundFinding, in surveyID: UUID) {
         guard var survey = survey(surveyID) else { return }
+        survey.upsert(finding)
+        save(survey)
+    }
+
+    /// Looks the address up and writes it into the case. `false` when nothing was found —
+    /// no network, no building within reach, or the case was deleted in the meantime.
+    ///
+    /// The case is read again after the answer arrives: the lookup takes seconds, and the
+    /// person may have changed the note, the rating or the pin in the meantime. Writing back
+    /// the copy from before the question would undo that.
+    @discardableResult
+    func resolveAddress(for findingID: UUID, in surveyID: UUID) async -> Bool {
+        guard let coordinate = survey(surveyID)?.finding(findingID)?.location.coordinate,
+              let address = await AddressLookup.address(for: coordinate),
+              var survey = survey(surveyID), var finding = survey.finding(findingID) else {
+            return false
+        }
+        finding.address = address
+        survey.upsert(finding)
+        save(survey)
+        return true
+    }
+
+    func setStatus(_ status: FindingStatus, of findingID: UUID, in surveyID: UUID) {
+        guard var survey = survey(surveyID), var finding = survey.finding(findingID),
+              finding.status != status else { return }
+        finding.setStatus(status)
         survey.upsert(finding)
         save(survey)
     }
@@ -353,6 +386,10 @@ final class SurveyModel {
 
 extension String {
     var nilIfEmpty: String? { isEmpty ? nil : self }
+}
+
+extension Array {
+    var nilIfEmpty: [Element]? { isEmpty ? nil : self }
 }
 
 extension View {

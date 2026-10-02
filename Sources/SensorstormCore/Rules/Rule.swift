@@ -53,6 +53,9 @@ public struct Rule: Codable, Sendable, Hashable, Identifiable {
         case elapsed(seconds: Double)
         /// A message arrived on a subscribed topic. An empty `contains` matches any payload.
         case mqtt(topic: String, contains: String)
+        /// One channel of a stream that is not a built-in sensor — a Bluetooth thermometer, a
+        /// round-trip time. Addressed by the stream's stable id.
+        case external(stream: String, channel: Int, comparison: Comparison, threshold: Double)
     }
 
     public enum Action: Codable, Sendable, Hashable {
@@ -74,6 +77,10 @@ public struct RuleContext: Sendable {
     /// extremes do. A stream missing here falls back to ``values``.
     public var minimum: [SensorID: [Double]]
     public var maximum: [SensorID: [Double]]
+    /// The same three for streams addressed by id rather than by ``SensorID``.
+    public var externalValues: [String: [Double]]
+    public var externalMinimum: [String: [Double]]
+    public var externalMaximum: [String: [Double]]
     /// Seconds since the recording started.
     public var elapsed: Double
     /// Messages received since the previous evaluation.
@@ -82,10 +89,16 @@ public struct RuleContext: Sendable {
     public init(values: [SensorID: [Double]], elapsed: Double,
                 messages: [(topic: String, payload: String)] = [],
                 minimum: [SensorID: [Double]] = [:],
-                maximum: [SensorID: [Double]] = [:]) {
+                maximum: [SensorID: [Double]] = [:],
+                externalValues: [String: [Double]] = [:],
+                externalMinimum: [String: [Double]] = [:],
+                externalMaximum: [String: [Double]] = [:]) {
         self.values = values
         self.minimum = minimum
         self.maximum = maximum
+        self.externalValues = externalValues
+        self.externalMinimum = externalMinimum
+        self.externalMaximum = externalMaximum
         self.elapsed = elapsed
         self.messages = messages
     }
@@ -126,6 +139,16 @@ public struct RuleEngine: Sendable {
             guard let values = pool ?? context.values[sensor], values.indices.contains(channel) else {
                 return false
             }
+            let value = values[channel]
+            guard value.isFinite else { return false }
+            return comparison == .above ? value > threshold : value < threshold
+
+        case let .external(stream, channel, comparison, threshold):
+            let extremes = comparison == .above
+                ? context.externalMaximum[stream] : context.externalMinimum[stream]
+            let pool = extremes.flatMap { $0.indices.contains(channel) ? $0 : nil }
+            guard let values = pool ?? context.externalValues[stream],
+                  values.indices.contains(channel) else { return false }
             let value = values[channel]
             guard value.isFinite else { return false }
             return comparison == .above ? value > threshold : value < threshold

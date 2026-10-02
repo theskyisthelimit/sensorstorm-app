@@ -12,6 +12,7 @@ struct FindingDetailView: View {
     @Environment(SurveyModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.openURL) private var openURL
 
     let surveyID: UUID
     let findingID: UUID
@@ -19,6 +20,8 @@ struct FindingDetailView: View {
     @State private var severity = 5
     @State private var label = ""
     @State private var note = ""
+    @State private var resolutionNote = ""
+    @State private var isResolvingAddress = false
     @State private var area: FindingArea?
     @State private var hasLoaded = false
     @State private var isEditingArea = false
@@ -101,7 +104,9 @@ struct FindingDetailView: View {
                     .padding(14)
                     .card()
 
+                statusCard(finding)
                 describeCard
+                addressCard(finding)
                 areaCard
                 infoCard(finding)
 
@@ -212,12 +217,103 @@ struct FindingDetailView: View {
             TextField("Was ist es?", text: $label)
                 .textFieldStyle(.plain)
                 .font(.subheadline)
+            LabelSuggestionChips(label: $label, surveys: model.surveys)
             Divider().overlay(Theme.cardBorder)
             TextField("Notiz", text: $note, axis: .vertical)
                 .textFieldStyle(.plain)
                 .font(.subheadline)
                 .lineLimit(2...6)
         }
+        .padding(14)
+        .card()
+    }
+
+    /// Where the case stands. The status is written the moment it is picked — a deliberate
+    /// act, like moving the pin — while the note beside it is typing and follows the
+    /// screen's usual save.
+    private func statusCard(_ finding: GroundFinding) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("Status")
+                    .font(.subheadline.weight(.semibold))
+                Spacer(minLength: 0)
+                Menu {
+                    ForEach(FindingStatus.allCases, id: \.self) { status in
+                        Button {
+                            model.setStatus(status, of: findingID, in: surveyID)
+                        } label: {
+                            Label(status.title, systemImage: status.symbol)
+                        }
+                    }
+                } label: {
+                    Label(finding.status.title, systemImage: finding.status.symbol)
+                        .font(.subheadline)
+                        .foregroundStyle(finding.status.isOutstanding ? Theme.accent : .secondary)
+                }
+            }
+            if finding.status != .open {
+                TextField("Was wurde getan?", text: $resolutionNote, axis: .vertical)
+                    .textFieldStyle(.plain)
+                    .font(.subheadline)
+                    .lineLimit(1...4)
+                if let changed = finding.statusChangedAt {
+                    Text(changed.formatted(date: .abbreviated, time: .shortened))
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+            }
+        }
+        .padding(14)
+        .card()
+    }
+
+    /// Street and number, so an office can hand the case to a crew without looking up a
+    /// coordinate, and the way there.
+    private func addressCard(_ finding: GroundFinding) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Adresse")
+                .font(.subheadline.weight(.semibold))
+            if let address = finding.address, !address.isEmpty {
+                Text(address.singleLine)
+                    .font(.subheadline)
+                if let egid = address.egid {
+                    Text(verbatim: "EGID \(egid)")
+                        .font(.caption.monospacedDigit())
+                        .foregroundStyle(.secondary)
+                }
+            } else {
+                Text("Noch keine Adresse.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            HStack(spacing: 16) {
+                Button {
+                    isResolvingAddress = true
+                    Task {
+                        await model.resolveAddress(for: findingID, in: surveyID)
+                        isResolvingAddress = false
+                    }
+                } label: {
+                    Label("Adresse suchen", systemImage: "magnifyingglass")
+                        .font(.caption.weight(.semibold))
+                }
+                .disabled(isResolvingAddress)
+                Button {
+                    let name = label.isEmpty ? String(localized: "Beobachtung") : label
+                    if let url = AddressLookup.directionsURL(to: finding.location.coordinate, name: name) {
+                        openURL(url)
+                    }
+                } label: {
+                    Label("Hinführen", systemImage: "figure.walk")
+                        .font(.caption.weight(.semibold))
+                }
+                if isResolvingAddress { ProgressView().controlSize(.small) }
+            }
+            Text("Die Suche sendet die Koordinate an Apple, in der Schweiz zuerst an swisstopo.")
+                .font(.caption2)
+                .foregroundStyle(.tertiary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
         .card()
     }
@@ -363,6 +459,7 @@ struct FindingDetailView: View {
         severity = finding.severity
         label = finding.label
         note = finding.note
+        resolutionNote = finding.resolutionNote
         area = finding.area
     }
 
@@ -370,14 +467,17 @@ struct FindingDetailView: View {
         guard hasLoaded, var current = finding else { return }
         let trimmedLabel = label.trimmingCharacters(in: .whitespacesAndNewlines)
         let trimmedNote = note.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedResolution = resolutionNote.trimmingCharacters(in: .whitespacesAndNewlines)
         let clamped = GroundFinding.clamp(severity)
 
         guard current.severity != clamped || current.label != trimmedLabel
-                || current.note != trimmedNote || current.area != area else { return }
+                || current.note != trimmedNote || current.area != area
+                || current.resolutionNote != trimmedResolution else { return }
 
         current.severity = clamped
         current.label = trimmedLabel
         current.note = trimmedNote
+        current.resolutionNote = trimmedResolution
         current.area = area
         model.update(current, in: surveyID)
     }

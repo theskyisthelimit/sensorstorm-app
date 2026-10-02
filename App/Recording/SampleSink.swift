@@ -9,6 +9,16 @@ struct LiveSample: Sendable, Equatable {
     var rateHz: Double
 }
 
+/// The newest reading of a stream that is not a built-in sensor.
+struct LiveExternalSample: Sendable, Equatable, Identifiable {
+    var info: ExternalStreamInfo
+    var values: [Double]
+    var hostTime: Double
+    var rateHz: Double
+
+    var id: String { info.id }
+}
+
 /// The single point every sensor callback funnels into.
 ///
 /// Sensors fire on half a dozen different queues at up to a few hundred hertz. Rather than
@@ -23,6 +33,15 @@ final class SampleSink: @unchecked Sendable {
     private var isRecording = false
     /// Smallest and largest value of every channel since ``drainExtremes()`` last ran.
     private var extremes: [SensorID: ChannelRange] = [:]
+
+    // Streams that are not built-in sensors. Created while the app runs — a device walks into
+    // the room, a host starts answering — so their writers are created on the first value
+    // rather than when the recording starts.
+    private var externalLatest: [String: LiveExternalSample] = [:]
+    private var externalRates: [String: RateEstimator] = [:]
+    private var externalExtremes: [String: ChannelRange] = [:]
+    private var externalWriters: [String: StreamWriter] = [:]
+    private var externalDirectory: URL?
 
     // MARK: - Ingest (hot path, any queue)
 
@@ -48,6 +67,58 @@ final class SampleSink: @unchecked Sendable {
         // Same reasoning, and one more: the tap opens sockets. Holding this lock across a
         // network stack would let a slow endpoint stall every sensor in the app.
         tap?(sensor, time, values)
+    }
+
+    /// A value of a stream that is not a built-in sensor.
+    ///
+    /// `values.count` has to equal the description's channel count — a stream is a table of
+    /// fixed width, and a row of the wrong width is dropped rather than written crooked.
+    func ingestExternal(_ info: ExternalStreamInfo, time: Double, values: [Double]) {
+        guard values.count == info.channelCount, info.channelCount > 0 else { return }
+        lock.lock()
+        var estimator = externalRates[info.id] ?? RateEstimator()
+        let rate = estimator.record(time: time)
+        externalRates[info.id] = estimator
+        externalLatest[info.id] = LiveExternalSample(info: info, values: values,
+                                                     hostTime: time, rateHz: rate)
+        if var range = externalExtremes[info.id], range.minimum.count == values.count {
+            range.include(values)
+            externalExtremes[info.id] = range
+        } else {
+            externalExtremes[info.id] = ChannelRange(values)
+        }
+        var writer = externalWriters[info.id]
+        if writer == nil, isRecording, let directory = externalDirectory {
+            // Under the lock on purpose: two threads reporting the first value of the same
+            // stream must not each create a file. It is one small write, once per stream.
+            writer = try? StreamWriter(external: info, directory: directory)
+            externalWriters[info.id] = writer
+        }
+        lock.unlock()
+        writer?.append(time: time, values: values)
+    }
+
+    func externalSnapshot() -> [String: LiveExternalSample] {
+        lock.lock(); defer { lock.unlock() }
+        return externalLatest
+    }
+
+    func drainExternalExtremes() -> [String: ChannelRange] {
+        lock.lock(); defer { lock.unlock() }
+        let drained = externalExtremes
+        externalExtremes.removeAll(keepingCapacity: true)
+        return drained
+    }
+
+    /// Forgets streams not heard from for `seconds` — a thermometer that left the room should
+    /// not stay on the dashboard showing its last value as if it were current.
+    func dropExternal(olderThan seconds: Double, now: Double) {
+        lock.lock(); defer { lock.unlock() }
+        let stale = externalLatest.filter { now - $0.value.hostTime > seconds }.map(\.key)
+        for id in stale {
+            externalLatest[id] = nil
+            externalRates[id] = nil
+        }
     }
 
     /// An observer of every ingested sample, for live streaming. Set when a recording that
@@ -92,24 +163,41 @@ final class SampleSink: @unchecked Sendable {
 
     // MARK: - Recording
 
-    func beginRecording(writers: [SensorID: StreamWriter]) {
+    /// - Parameter externalDirectory: where streams that are not built-in sensors put their
+    ///   files. `nil` leaves them out of the recording; they still show on the dashboard.
+    func beginRecording(writers: [SensorID: StreamWriter], externalDirectory: URL? = nil) {
         lock.lock()
         self.writers = writers
+        self.externalDirectory = externalDirectory
+        self.externalWriters = [:]
         self.isRecording = true
         lock.unlock()
     }
 
     /// Closes every writer and returns the stream descriptions for the metadata file.
     func endRecording() -> [StreamInfo] {
+        endRecordingWithExternals().streams
+    }
+
+    /// Like ``endRecording()``, and also the descriptions of the streams that are not
+    /// built-in sensors — only those that received at least one value.
+    func endRecordingWithExternals() -> (streams: [StreamInfo], external: [ExternalStreamInfo]) {
         lock.lock()
         let closing = writers
+        let closingExternal = externalWriters
         writers = [:]
+        externalWriters = [:]
+        externalDirectory = nil
         isRecording = false
         lock.unlock()
 
-        return closing.values
+        let streams = closing.values
             .map { $0.close() }
             .sorted { $0.sensor.rawValue < $1.sensor.rawValue }
+        let external = closingExternal.values
+            .map { $0.closeExternal() }
+            .sorted { $0.id < $1.id }
+        return (streams, external)
     }
 
     var recording: Bool {
@@ -120,7 +208,7 @@ final class SampleSink: @unchecked Sendable {
     /// Total samples written so far, for the live counter.
     var writtenSampleCount: Int {
         lock.lock()
-        let current = Array(writers.values)
+        let current = Array(writers.values) + Array(externalWriters.values)
         lock.unlock()
         return current.reduce(0) { $0 + $1.sampleCount }
     }

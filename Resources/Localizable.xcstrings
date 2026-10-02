@@ -4502,6 +4502,9 @@
         }
       }
     },
+    "%lld von %lld" : {
+      "extractionState" : "manual"
+    },
     "%lld/%lld" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6911,6 +6914,15 @@
           }
         }
       }
+    },
+    "Adresse" : {
+      "extractionState" : "manual"
+    },
+    "Adresse suchen" : {
+      "extractionState" : "manual"
+    },
+    "Adresse zur Beobachtung suchen" : {
+      "extractionState" : "manual"
     },
     "AirPods-Orientierung" : {
       "localizations" : {
@@ -24257,6 +24269,9 @@
         }
       }
     },
+    "Die Suche sendet die Koordinate an Apple, in der Schweiz zuerst an swisstopo." : {
+      "extractionState" : "manual"
+    },
     "Die Uhr ist gekoppelt, aber Sensorstorm ist nicht darauf installiert. In der Apple-Watch-App unter „Verfügbare Apps“ installieren; die Uhr fragt beim ersten Start selbst nach dem Zugriff auf die Herzfrequenz." : {
       "localizations" : {
         "ar" : {
@@ -25536,6 +25551,9 @@
           }
         }
       }
+    },
+    "Dieses Gerät sendet gerade nicht." : {
+      "extractionState" : "manual"
     },
     "Dieses Gerät unterstützt kein ARKit-Tracking." : {
       "localizations" : {
@@ -28918,6 +28936,9 @@
         }
       }
     },
+    "Erledigt" : {
+      "extractionState" : "manual"
+    },
     "Es wurden keine Daten aufgezeichnet." : {
       "localizations" : {
         "ar" : {
@@ -31483,6 +31504,12 @@
         }
       }
     },
+    "Fremdgerät" : {
+      "extractionState" : "manual"
+    },
+    "Fremdgeräte" : {
+      "extractionState" : "manual"
+    },
     "Front" : {
       "localizations" : {
         "ar" : {
@@ -33724,6 +33751,9 @@
         }
       }
     },
+    "Geplant" : {
+      "extractionState" : "manual"
+    },
     "Gerät" : {
       "localizations" : {
         "ar" : {
@@ -35488,6 +35518,9 @@
       }
     },
     "Herzfrequenzgurte, Leistungsmesser, Trittfrequenz- und Laufsensoren senden ihre Werte erst nach einer Verbindung. Ein gekoppeltes Gerät wird bei jedem Start wieder verbunden." : {
+      "extractionState" : "manual"
+    },
+    "Hinführen" : {
       "extractionState" : "manual"
     },
     "Hoch" : {
@@ -38710,6 +38743,9 @@
       }
     },
     "Kein Gurt, Leistungsmesser oder Laufsensor in Reichweite." : {
+      "extractionState" : "manual"
+    },
+    "Kein Handlungsbedarf" : {
       "extractionState" : "manual"
     },
     "Kein Mikrofon verfügbar." : {
@@ -44503,6 +44539,9 @@
     "Nach Sekunden" : {
       "extractionState" : "manual"
     },
+    "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet." : {
+      "extractionState" : "manual"
+    },
     "Nachricht" : {
       "extractionState" : "manual"
     },
@@ -46276,6 +46315,9 @@
     "Noch kein Sensor erkannt. Öffne den Aufnahme-Bildschirm, damit gesucht wird." : {
       "extractionState" : "manual"
     },
+    "Noch keine Adresse." : {
+      "extractionState" : "manual"
+    },
     "Noch keine Beobachtungen" : {
       "localizations" : {
         "ar" : {
@@ -46437,6 +46479,9 @@
       }
     },
     "Noch nichts ausgelöst. Regeln laufen nur während einer Aufnahme." : {
+      "extractionState" : "manual"
+    },
+    "Noch offen" : {
       "extractionState" : "manual"
     },
     "Nochmals versuchen" : {
@@ -46762,6 +46807,9 @@
           }
         }
       }
+    },
+    "Nur offene" : {
+      "extractionState" : "manual"
     },
     "Nur ungefährer Standort" : {
       "extractionState" : "manual"
@@ -47245,6 +47293,9 @@
           }
         }
       }
+    },
+    "Offen" : {
+      "extractionState" : "manual"
     },
     "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten. Die Bilder lassen sich damit nicht im Raum platzieren." : {
       "localizations" : {
@@ -55995,6 +56046,9 @@
         }
       }
     },
+    "Status" : {
+      "extractionState" : "manual"
+    },
     "Stopp" : {
       "localizations" : {
         "ar" : {
@@ -61299,6 +61353,9 @@
           }
         }
       }
+    },
+    "Was wurde getan?" : {
+      "extractionState" : "manual"
     },
     "Weitere Fotos und Clips" : {
       "extractionState" : "manual",

@@ -12,6 +12,7 @@ struct SurveyDetailView: View {
     @State private var isCapturing = false
     @State private var shareItem: ShareItem?
     @State private var selection: UUID?
+    @State private var showsOnlyOutstanding = false
     @State private var isRenaming = false
     @State private var draftName = ""
     @State private var showsDeleteConfirmation = false
@@ -101,6 +102,9 @@ struct SurveyDetailView: View {
         VStack(alignment: .leading, spacing: 8) {
             infoRow("Start", survey.startedAt.formatted(date: .abbreviated, time: .standard))
             infoRow("Beobachtungen", "\(survey.findings.count)")
+            if survey.outstandingCount != survey.findings.count {
+                infoRow("Noch offen", String(localized: "\(survey.outstandingCount) von \(survey.findings.count)"))
+            }
             if let worst = survey.worstSeverity, let average = survey.averageSeverity {
                 infoRow("Schlimmster", "\(worst)/10")
                 infoRow("Durchschnitt", String(format: "%.1f/10", average))
@@ -162,11 +166,20 @@ struct SurveyDetailView: View {
 
     private func findingList(_ survey: Survey) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Beobachtungen")
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.secondary)
+            HStack {
+                Text("Beobachtungen")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+                // Only worth a control once something has been dealt with.
+                if survey.outstandingCount != survey.findings.count {
+                    Toggle("Nur offene", isOn: $showsOnlyOutstanding)
+                        .toggleStyle(.button)
+                        .font(.caption)
+                }
+            }
 
-            ForEach(survey.findingsByTime) { finding in
+            ForEach(survey.findingsByTime.filter { !showsOnlyOutstanding || $0.status.isOutstanding }) { finding in
                 NavigationLink {
                     FindingDetailView(surveyID: surveyID, findingID: finding.id)
                 } label: {

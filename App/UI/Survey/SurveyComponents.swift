@@ -205,17 +205,68 @@ struct SeverityBadge: View {
     }
 }
 
+extension FindingStatus {
+    var title: LocalizedStringKey {
+        switch self {
+        case .open: "Offen"
+        case .scheduled: "Geplant"
+        case .resolved: "Erledigt"
+        case .noAction: "Kein Handlungsbedarf"
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .open: "circle"
+        case .scheduled: "calendar"
+        case .resolved: "checkmark.circle.fill"
+        case .noAction: "minus.circle"
+        }
+    }
+}
+
+/// The labels used so far as tappable chips, so „Schlagloch“ is one word on the day somebody
+/// counts them. Typing narrows the list; a label typed in full is not offered back.
+struct LabelSuggestionChips: View {
+    @Binding var label: String
+    let surveys: [Survey]
+
+    var body: some View {
+        let suggestions = LabelSuggestions.rank(surveys, prefix: label)
+        if !suggestions.isEmpty {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(suggestions, id: \.self) { suggestion in
+                        Button {
+                            label = suggestion
+                        } label: {
+                            Text(verbatim: suggestion)
+                                .font(.caption)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .background(Theme.cardBorder, in: .capsule)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+        }
+    }
+}
+
 /// A map pin whose colour is the judgement, with a mark when the position was set by hand.
+/// Grey once the case is dealt with: it stays on the map, but stops asking for attention.
 struct FindingPin: View {
     let severity: Int
     var isSelected = false
     var isManual = false
+    var isClosed = false
 
     var body: some View {
         let size: CGFloat = isSelected ? 34 : 26
         ZStack {
             Circle()
-                .fill(Theme.severity(severity))
+                .fill(isClosed ? Color.gray : Theme.severity(severity))
                 .frame(width: size, height: size)
             Circle()
                 .strokeBorder(.white.opacity(isSelected ? 1 : 0.75), lineWidth: isSelected ? 3 : 2)
@@ -275,7 +326,8 @@ struct SurveyMapView: View {
                 Annotation(finding.label, coordinate: finding.location.coordinate.clCoordinate) {
                     FindingPin(severity: finding.severity,
                                isSelected: finding.id == selection,
-                               isManual: finding.positionSource == .manual)
+                               isManual: finding.positionSource == .manual,
+                               isClosed: !finding.status.isOutstanding)
                         .onTapGesture { onSelect?(finding) }
                 }
             }
@@ -353,6 +405,12 @@ struct FindingRow: View {
                         .font(.subheadline.weight(.semibold))
                         .lineLimit(1)
                     Spacer(minLength: 0)
+                    if finding.status != .open {
+                        Image(systemName: finding.status.symbol)
+                            .font(.caption)
+                            .foregroundStyle(finding.status.isOutstanding ? Theme.accent : .secondary)
+                            .accessibilityLabel(Text(finding.status.title))
+                    }
                     SeverityBadge(severity: finding.severity)
                 }
 

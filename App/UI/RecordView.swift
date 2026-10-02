@@ -12,6 +12,7 @@ struct RecordView: View {
     /// Welcher Sensor gerade allein betrachtet wird. Ein Wert statt eines Flags, weil die
     /// Ansicht ohne ihn nichts anzuzeigen hätte.
     @State private var detailSensor: SensorID?
+    @State private var detailExternal: String?
 
     var body: some View {
         NavigationStack {
@@ -67,6 +68,10 @@ struct RecordView: View {
         .overlay(alignment: .top) { savedBanner }
         .sheet(isPresented: $isArmingSensors) { SensorArmingSheet() }
         .sheet(item: $detailSensor) { SensorDetailView(sensor: $0) }
+        .sheet(item: Binding(get: { detailExternal.map(ExternalSelection.init) },
+                             set: { detailExternal = $0?.id })) {
+            ExternalDetailView(streamID: $0.id)
+        }
     }
 
     // MARK: - Camera
@@ -247,7 +252,32 @@ struct RecordView: View {
                     categoryGroup(category, recorded: recorded)
                 }
             }
+            if !hub.externalLive.isEmpty {
+                externalGroup
+            }
             hiddenFooter
+        }
+    }
+
+    /// Everything that is not the phone's own sensor: Bluetooth devices, network measurements.
+    /// Their own group, because they come and go while the others are always there.
+    private var externalGroup: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("Fremdgeräte", systemImage: "sensor")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(.secondary)
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12),
+                                GridItem(.flexible(), spacing: 12)],
+                      spacing: 12) {
+                ForEach(hub.externalLive) { sample in
+                    Button {
+                        detailExternal = sample.id
+                    } label: {
+                        ExternalTile(sample: sample)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
         }
     }
 
@@ -452,5 +482,73 @@ struct LiveSensorTile: View {
         .padding(12)
         .frame(maxWidth: .infinity, minHeight: 108, alignment: .topLeading)
         .card()
+    }
+}
+
+/// Identifies one external stream for `sheet(item:)`, which wants an `Identifiable`.
+struct ExternalSelection: Identifiable {
+    let id: String
+}
+
+/// The tile of a stream that is not a built-in sensor. Same shape as ``LiveSensorTile``, but
+/// the channel names, units and title come from the stream itself.
+struct ExternalTile: View {
+    let sample: LiveExternalSample
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 6) {
+                Image(systemName: sample.info.source.symbol)
+                    .font(.caption)
+                    .foregroundStyle(Theme.accent)
+                Text(verbatim: sample.info.title)
+                    .font(.caption.weight(.semibold))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+                Spacer(minLength: 0)
+            }
+            Grid(alignment: .leading, horizontalSpacing: 6, verticalSpacing: 3) {
+                ForEach(Array(sample.info.channels.prefix(4).enumerated()), id: \.offset) { index, name in
+                    GridRow {
+                        Text(verbatim: name)
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                        Text(verbatim: sample.values.indices.contains(index)
+                             ? Format.value(sample.values[index], unit: sample.info.unit(forChannel: index))
+                             : "—")
+                            .font(.caption.monospacedDigit())
+                            .foregroundStyle(Theme.color(forChannel: index))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                            .gridColumnAlignment(.leading)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            Text(Format.rate(sample.rateHz))
+                .font(.caption2.monospacedDigit())
+                .foregroundStyle(.tertiary)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, minHeight: 108, alignment: .topLeading)
+        .card()
+    }
+}
+
+extension ExternalStreamInfo.Source {
+    var symbol: String {
+        switch self {
+        case .bluetooth: "dot.radiowaves.forward"
+        case .network: "network"
+        case .mqtt: "arrow.left.arrow.right"
+        case .beacon: "antenna.radiowaves.left.and.right.circle"
+        case .nearby: "wave.3.right.circle"
+        case .nfc: "wave.3.right"
+        case .homeKit: "homekit"
+        case .accessory: "cable.connector"
+        case .derived: "function"
+        }
     }
 }

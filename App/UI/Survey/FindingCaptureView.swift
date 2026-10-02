@@ -368,6 +368,7 @@ struct FindingCaptureView: View {
             TextField("Was ist es? z. B. Schlagloch", text: $draft.label)
                 .textFieldStyle(.plain)
                 .font(.subheadline)
+            LabelSuggestionChips(label: $draft.label, surveys: model.surveys)
             Divider().overlay(Theme.cardBorder)
             TextField("Notiz", text: $draft.note, axis: .vertical)
                 .textFieldStyle(.plain)
@@ -591,7 +592,10 @@ struct FindingCaptureView: View {
         }
 
         if let existingCaseID {
-            guard model.addMedia(draft.media, to: existingCaseID, in: surveyID) else { return }
+            // A photo added to a case that was already repaired is the „after“.
+            let role: CaseMedia.Role? = model.survey(surveyID)?.finding(existingCaseID)?.status
+                == .resolved ? .after : nil
+            guard model.addMedia(draft.media, to: existingCaseID, in: surveyID, role: role) else { return }
             dismiss()
             return
         }
@@ -600,7 +604,13 @@ struct FindingCaptureView: View {
             draft.follow(fix, heading: model.location.heading)
         }
         draft.recordingID = hub.activeRecordingID
-        guard model.addFinding(draft, to: surveyID) != nil else { return }
+        guard let saved = model.addFinding(draft, to: surveyID) else { return }
+        if hub.settings.looksUpAddresses {
+            // Not awaited: the screen closes now, the address lands a moment later. The task
+            // outlives this view on purpose.
+            let (model, surveyID) = (model, surveyID)
+            Task { await model.resolveAddress(for: saved.id, in: surveyID) }
+        }
         dismiss()
     }
 

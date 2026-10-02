@@ -68,6 +68,12 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, CBPeripheralDel
     /// Strong references: CoreBluetooth drops a peripheral nobody holds, connection and all.
     private var peripherals: [UUID: CBPeripheral] = [:]
     private var cadence: [UUID: CSCTracker] = [:]
+    /// Which stream a decoded packet belongs to. A decoder may return other names after a
+    /// firmware update; a different set of names is a different stream, not a crooked row.
+    private var registry = ExternalStreamRegistry()
+    /// Time of the newest heartbeat handed on per strap, so a strap that repeats the last
+    /// interval in the next packet does not write the same beat twice.
+    private var lastBeat: [UUID: Double] = [:]
 
     init(sink: SampleSink) {
         self.sink = sink
@@ -167,6 +173,7 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, CBPeripheralDel
                 readings.removeAll()
                 connectables.removeAll()
                 cadence.removeAll()
+                lastBeat.removeAll()
             }
             recent.removeAll()
             return Array(peripherals.values)
@@ -289,6 +296,44 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, CBPeripheralDel
             return readingLog
         }
         log?.append(hostTime: now, device: device, name: name, reading: reading)
+        ingestStream(reading, from: device, name: name, at: now)
+    }
+
+    /// The same values as a stream of their own, so they reach the dashboard, the rules, the
+    /// playback and every export like any other sensor — not only a CSV on the side.
+    private func ingestStream(_ reading: BLEReading, from device: UUID, name: String?, at now: Double) {
+        guard !reading.fields.isEmpty else { return }
+        let short = String(device.uuidString.prefix(8)).lowercased()
+        let label = name.flatMap { $0.isEmpty ? nil : $0 } ?? String(device.uuidString.prefix(4))
+        let base = "ble.\(short).\(ExternalStreamInfo.slug(reading.decoder))"
+        let variant = lock.withLock {
+            registry.resolve(base: base, fields: reading.fields.map(\.name))
+        }
+        let info = ExternalStreamInfo(
+            id: variant.id, source: .bluetooth,
+            title: "\(label) · \(reading.decoder)",
+            channels: variant.fields,
+            channelUnits: variant.fields.map { BLEUnits.unit(for: $0, decoder: reading.decoder) })
+        var named: [String: Double] = [:]
+        for field in reading.fields { named[field.name] = field.value }
+        sink.ingestExternal(info, time: now,
+                            values: ExternalStreamRegistry.values(named, in: variant))
+
+        // Every heartbeat of the packet as its own sample at its own time: the interval
+        // between beats is the whole point of a heart rate strap, and one value per
+        // notification throws half of them away.
+        guard !reading.beats.isEmpty else { return }
+        let beatInfo = ExternalStreamInfo(
+            id: "ble.\(short).rr", source: .bluetooth, title: "\(label) · RR",
+            channels: ["rr"], channelUnits: ["s"])
+        for beat in HeartBeats.times(receivedAt: now, beats: reading.beats) {
+            let isNew = lock.withLock { () -> Bool in
+                guard beat.time > (lastBeat[device] ?? -.infinity) else { return false }
+                lastBeat[device] = beat.time
+                return true
+            }
+            if isNew { sink.ingestExternal(beatInfo, time: beat.time, values: [beat.interval]) }
+        }
     }
 
     // MARK: - GATT

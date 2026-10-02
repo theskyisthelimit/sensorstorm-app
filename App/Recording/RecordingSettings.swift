@@ -41,6 +41,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var pairedBluetoothDevices: Set<UUID>?
     /// Answer `GET` requests on the local network with the newest values.
     var isWebServerEnabled: Bool?
+    /// Look up the street address of a case after it is saved. Off by default: it sends the
+    /// coordinate to Apple and, inside Switzerland, to swisstopo.
+    var looksUpAddressesFlag: Bool?
 
     /// Streams hidden from the live tiles and the playback charts.
     ///
@@ -92,6 +95,11 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var logsBluetoothAdvertisements: Bool {
         get { logsBluetoothAdvertisementsFlag ?? false }
         set { logsBluetoothAdvertisementsFlag = newValue }
+    }
+
+    var looksUpAddresses: Bool {
+        get { looksUpAddressesFlag ?? false }
+        set { looksUpAddressesFlag = newValue }
     }
 
     /// Off by default for the same reason the raw log is: decoding a neighbour's
@@ -178,8 +186,10 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         var theirs = other
         mine.hiddenSensors = nil
         mine.collapsedCategories = nil
+        mine.looksUpAddressesFlag = nil
         theirs.hiddenSensors = nil
         theirs.collapsedCategories = nil
+        theirs.looksUpAddressesFlag = nil
         return mine != theirs
     }
 

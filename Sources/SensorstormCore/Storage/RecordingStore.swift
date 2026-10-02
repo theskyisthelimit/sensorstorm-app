@@ -55,6 +55,16 @@ public struct RecordingStore: Sendable {
         directory(for: id).appendingPathComponent("\(sensor.rawValue).ssbin")
     }
 
+    public func externalStreamURL(for info: ExternalStreamInfo, recording id: UUID) -> URL {
+        directory(for: id).appendingPathComponent(info.fileName)
+    }
+
+    public func reader(for info: ExternalStreamInfo, recording id: UUID) -> StreamReader? {
+        let url = externalStreamURL(for: info, recording: id)
+        guard FileManager.default.fileExists(atPath: url.path) else { return nil }
+        return try? StreamReader(url: url)
+    }
+
     public func reader(for sensor: SensorID, recording id: UUID) -> StreamReader? {
         let url = streamURL(for: sensor, recording: id)
         guard FileManager.default.fileExists(atPath: url.path) else { return nil }

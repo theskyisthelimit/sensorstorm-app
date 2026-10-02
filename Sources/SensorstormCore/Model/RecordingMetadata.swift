@@ -13,6 +13,11 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     public var duration: TimeInterval
     public var device: DeviceInfo
     public var streams: [StreamInfo]
+    /// Streams that are not the device's own sensors — Bluetooth devices, network
+    /// measurements, MQTT values. `nil` for a recording without any, and for every recording
+    /// written before they existed; an older build opens a newer recording and simply does not
+    /// show them.
+    public var externalStreams: [ExternalStreamInfo]?
     public var video: VideoInfo?
     /// Set for microphone-only recordings; when a video is present its audio lives in the
     /// movie file instead.
@@ -61,7 +66,8 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         geodeticAnchor: GeodeticAnchor? = nil,
         barometerReference: BarometerReference? = nil,
         timeReference: TimeReference? = nil,
-        reducedLocationAccuracy: Bool? = nil
+        reducedLocationAccuracy: Bool? = nil,
+        externalStreams: [ExternalStreamInfo]? = nil
     ) {
         self.id = id
         self.name = name
@@ -80,14 +86,20 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.barometerReference = barometerReference
         self.timeReference = timeReference
         self.reducedLocationAccuracy = reducedLocationAccuracy
+        self.externalStreams = externalStreams
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {
         streams.first { $0.sensor == sensor }
     }
 
+    public func externalStream(_ id: String) -> ExternalStreamInfo? {
+        externalStreams?.first { $0.id == id }
+    }
+
     public var totalSampleCount: Int {
         streams.reduce(0) { $0 + $1.sampleCount }
+            + (externalStreams ?? []).reduce(0) { $0 + $1.sampleCount }
     }
 }
 

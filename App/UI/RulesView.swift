@@ -124,6 +124,11 @@ struct RuleEditorView: View {
                         }
                         Button("Dauer der Aufnahme") { rule.conditions.append(.elapsed(seconds: 60)) }
                         Button("MQTT-Nachricht") { rule.conditions.append(.mqtt(topic: "#", contains: "")) }
+                        Button("Fremdgerät") {
+                            rule.conditions.append(.external(stream: hub.externalLive.first?.id ?? "",
+                                                             channel: 0, comparison: .above,
+                                                             threshold: 0))
+                        }
                     } label: {
                         Label("Bedingung hinzufügen", systemImage: "plus")
                     }
@@ -177,6 +182,18 @@ private func element<T>(_ array: Binding<[T]>, _ index: Int, _ fallback: T) -> B
 
 private struct ConditionEditor: View {
     @Binding var condition: Rule.Condition
+    @Environment(SensorHub.self) private var hub
+
+    /// The streams to pick from: what is live right now, plus the one the rule already names
+    /// — a rule written yesterday for a thermometer that is out of range today must still
+    /// show what it is waiting for.
+    private func externalOptions(including id: String) -> [ExternalStreamInfo] {
+        var options = hub.externalLive.map(\.info)
+        if !id.isEmpty, !options.contains(where: { $0.id == id }) {
+            options.append(ExternalStreamInfo(id: id, source: .accessory, title: id, channels: []))
+        }
+        return options
+    }
 
     var body: some View {
         switch condition {
@@ -240,6 +257,39 @@ private struct ConditionEditor: View {
         case .elapsed(let seconds):
             LabeledContent("Nach Sekunden") {
                 NumberField(value: Binding(get: { seconds }, set: { condition = .elapsed(seconds: $0) }))
+            }
+
+        case let .external(stream, channel, comparison, threshold):
+            let options = externalOptions(including: stream)
+            let info = options.first { $0.id == stream }
+            VStack(alignment: .leading) {
+                Picker("Gerät", selection: Binding(
+                    get: { stream },
+                    set: { condition = .external(stream: $0, channel: 0, comparison: comparison, threshold: threshold) })) {
+                    ForEach(options) { option in
+                        Text(verbatim: option.title).tag(option.id)
+                    }
+                }
+                Picker("Kanal", selection: Binding(
+                    get: { channel },
+                    set: { condition = .external(stream: stream, channel: $0, comparison: comparison, threshold: threshold) })) {
+                    ForEach(Array((info?.channels ?? []).enumerated()), id: \.offset) { index, name in
+                        Text(verbatim: unitLabel(name, info?.unit(forChannel: index) ?? "")).tag(index)
+                    }
+                }
+                HStack {
+                    Picker("Vergleich", selection: Binding(
+                        get: { comparison },
+                        set: { condition = .external(stream: stream, channel: channel, comparison: $0, threshold: threshold) })) {
+                        Text(verbatim: ">").tag(Rule.Comparison.above)
+                        Text(verbatim: "<").tag(Rule.Comparison.below)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(maxWidth: 120)
+                    NumberField(value: Binding(
+                        get: { threshold },
+                        set: { condition = .external(stream: stream, channel: channel, comparison: comparison, threshold: $0) }))
+                }
             }
 
         case let .mqtt(topic, contains):

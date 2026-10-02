@@ -157,3 +157,123 @@ private extension JSONDecoder {
         return decoder
     }
 }
+
+@Suite("Fremdströme")
+struct ExternalStreamTests {
+
+    @Test("Der Dateiname ist stabil, lesbar und enthält nur sichere Zeichen")
+    func fileName() {
+        let name = ExternalStreamInfo.fileName(for: "ble.4f2a1c3d.ruuvitag")
+        #expect(name == ExternalStreamInfo.fileName(for: "ble.4f2a1c3d.ruuvitag"))
+        #expect(name.hasPrefix("ext-ble-4f2a1c3d-ruuvitag-"))
+        #expect(name.hasSuffix(".ssbin"))
+        #expect(name.allSatisfy { $0.isASCII && ($0.isLetter || $0.isNumber || $0 == "-" || $0 == ".") })
+        // Two ids that slug to the same text still get different files.
+        #expect(ExternalStreamInfo.fileName(for: "a b") != ExternalStreamInfo.fileName(for: "a.b"))
+        #expect(ExternalStreamInfo.slug("  Wohnzimmer / Thermometer !! ") == "wohnzimmer-thermometer")
+        #expect(ExternalStreamInfo.slug(String(repeating: "x", count: 100)).count == 40)
+    }
+
+    @Test("Ein Fremdstrom schreibt, liest sich zurück und meldet Anzahl und Rate")
+    func roundTrip() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent("ext-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+
+        let info = ExternalStreamInfo(id: "ble.test.thermo", source: .bluetooth, title: "Thermo",
+                                      channels: ["temperature", "humidity"],
+                                      channelUnits: ["°C", "%"])
+        let writer = try StreamWriter(external: info, directory: directory)
+        for step in 0..<5 {
+            writer.append(time: 10 + Double(step), values: [20 + Double(step), 50])
+        }
+        let closed = writer.closeExternal()
+        #expect(closed.sampleCount == 5)
+        #expect(abs(closed.effectiveRateHz - 1) < 1e-9)
+        #expect(closed.id == info.id)
+
+        let store = RecordingStore(root: directory)
+        let id = UUID()
+        try FileManager.default.createDirectory(at: store.directory(for: id), withIntermediateDirectories: true)
+        try FileManager.default.moveItem(at: directory.appendingPathComponent(info.fileName),
+                                         to: store.externalStreamURL(for: info, recording: id))
+        let reader = try #require(store.reader(for: info, recording: id))
+        #expect(reader.channelCount == 2)
+        #expect(reader.sampleCount == 5)
+        #expect(reader.sample(at: 3) == [23, 50])
+    }
+
+    @Test("Ein anderer Satz von Feldnamen wird ein zweiter Strom, kein krummer Datensatz")
+    func registry() {
+        var registry = ExternalStreamRegistry()
+        let first = registry.resolve(base: "ble.x.dev", fields: ["temperature"])
+        #expect(first.id == "ble.x.dev")
+        #expect(registry.resolve(base: "ble.x.dev", fields: ["temperature"]) == first)
+
+        let second = registry.resolve(base: "ble.x.dev", fields: ["temperature", "humidity"])
+        #expect(second.id == "ble.x.dev#2")
+        // Same names in another order are the same stream, and its channel order wins.
+        let again = registry.resolve(base: "ble.x.dev", fields: ["humidity", "temperature"])
+        #expect(again == second)
+        let values = ExternalStreamRegistry.values(["humidity": 40, "temperature": 21], in: again)
+        #expect(values == [21, 40])
+        // A field the packet lacks is NaN, not zero.
+        let partial = ExternalStreamRegistry.values(["temperature": 21], in: second)
+        #expect(partial[0] == 21 && partial[1].isNaN)
+    }
+
+    @Test("Metadaten ohne Fremdströme lesen sich weiter, mit ihnen zählen sie mit")
+    func metadata() throws {
+        var metadata = RecordingMetadata(
+            name: "x", startedAt: Date(timeIntervalSince1970: 0), startHostTime: 0,
+            device: DeviceInfo(model: "t", systemName: "iOS", systemVersion: "18", appVersion: "1"),
+            streams: [StreamInfo(sensor: .battery, channels: ["level", "state"], unit: "%",
+                                 sampleCount: 10, effectiveRateHz: 1)],
+            requestedRateHz: 100)
+        #expect(metadata.externalStreams == nil)
+        #expect(metadata.totalSampleCount == 10)
+
+        metadata.externalStreams = [ExternalStreamInfo(id: "a", source: .network, title: "A",
+                                                        channels: ["rtt"], sampleCount: 7)]
+        #expect(metadata.totalSampleCount == 17)
+        #expect(metadata.externalStream("a")?.title == "A")
+
+        let data = try RecordingStore.encoder.encode(metadata)
+        let decoded = try RecordingStore.decoder.decode(RecordingMetadata.self, from: data)
+        #expect(decoded.externalStreams == metadata.externalStreams)
+
+        // A file from before the field existed.
+        var json = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        json["externalStreams"] = nil
+        let old = try RecordingStore.decoder.decode(
+            RecordingMetadata.self, from: try JSONSerialization.data(withJSONObject: json))
+        #expect(old.externalStreams == nil)
+    }
+
+    @Test("Eine Regel auf einen Fremdstrom sieht die Spitze und kennt die Einheit")
+    func externalRule() {
+        let rule = Rule(name: "heiss",
+                        conditions: [.external(stream: "ble.x.dev", channel: 0,
+                                               comparison: .above, threshold: 30)],
+                        actions: [.annotate(text: "")])
+        var engine = RuleEngine()
+        let context = RuleContext(values: [:], elapsed: 1,
+                                  externalValues: ["ble.x.dev": [22]],
+                                  externalMaximum: ["ble.x.dev": [31.5]])
+        #expect(engine.evaluate([rule], context: context, now: 1).count == 1)
+        var other = RuleEngine()
+        #expect(other.evaluate([rule], context: RuleContext(values: [:], elapsed: 1,
+                                                            externalValues: ["ble.x.dev": [22]]),
+                               now: 1).isEmpty)
+        // An unknown stream is never true.
+        var none = RuleEngine()
+        #expect(none.evaluate([rule], context: RuleContext(values: [:], elapsed: 1), now: 1).isEmpty)
+
+        #expect(BLEUnits.unit(for: "temperature") == "°C")
+        #expect(BLEUnits.unit(for: "temperature2") == "°C")
+        #expect(BLEUnits.unit(for: "cadence", decoder: "Running Speed and Cadence") == "spm")
+        #expect(BLEUnits.unit(for: "cadence", decoder: "Cycling Speed and Cadence") == "rpm")
+        #expect(BLEUnits.unit(for: "unbekannt") == "")
+    }
+}

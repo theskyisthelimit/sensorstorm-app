@@ -96,6 +96,16 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Toggle(isOn: $hub.settings.looksUpAddresses) {
+                        Label("Adresse zur Beobachtung suchen", systemImage: "house")
+                    }
+                } header: {
+                    Text("Beobachtungen")
+                } footer: {
+                    Text("Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet.")
+                }
+
+                Section {
                     ProButton(.archiveExport, "Alles exportieren", "shippingbox") {
                         isExportingArchive = true
                     }
