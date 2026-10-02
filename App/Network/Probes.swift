@@ -135,7 +135,7 @@ private final class ICMPProbe: @unchecked Sendable {
 // MARK: - Run once
 
 /// Lets whichever of a state callback and a timer gets there first finish an attempt.
-private final class OneShot: @unchecked Sendable {
+final class OneShot: @unchecked Sendable {
     private let lock = NSLock()
     private var fired = false
 
@@ -404,6 +404,26 @@ enum DNS {
         guard let record = lookup.response?.answers.first(where: { $0.type == DNSRecordType.ptr.rawValue }) else { return nil }
         let name = record.value.hasSuffix(".") ? String(record.value.dropLast()) : record.value
         return name.isEmpty ? nil : name
+    }
+
+    /// The name the system's resolver has for an address — what a traceroute hop is called.
+    static func systemReverse(_ address: IPv4Addr) async -> String? {
+        await withCheckedContinuation { continuation in
+            DispatchQueue.global(qos: .utility).async {
+                var target = sockaddr_in()
+                target.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+                target.sin_family = sa_family_t(AF_INET)
+                target.sin_addr.s_addr = address.value.bigEndian
+                var buffer = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                let status = withUnsafePointer(to: &target) { pointer in
+                    pointer.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                        getnameinfo($0, socklen_t(MemoryLayout<sockaddr_in>.size), &buffer,
+                                    socklen_t(buffer.count), nil, 0, NI_NAMEREQD)
+                    }
+                }
+                continuation.resume(returning: status == 0 ? String(cString: buffer) : nil)
+            }
+        }
     }
 
     /// What the system's own resolver makes of a name — the answer the app's other

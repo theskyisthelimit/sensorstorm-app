@@ -120,7 +120,7 @@ public enum DNSMessage {
             for _ in 0..<count {
                 guard let (name, next) = readName(b, offset), next + 10 <= b.count else { return nil }
                 let type = UInt16(b[next]) << 8 | UInt16(b[next + 1])
-                let ttl = (2..<6).reduce(UInt32(0)) { $0 << 8 | UInt32(b[next + $1]) }
+                let ttl = (4..<8).reduce(UInt32(0)) { $0 << 8 | UInt32(b[next + $1]) }
                 let length = Int(UInt16(b[next + 8]) << 8 | UInt16(b[next + 9]))
                 let start = next + 10
                 guard start + length <= b.count else { return nil }
