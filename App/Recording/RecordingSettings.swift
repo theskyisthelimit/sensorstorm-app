@@ -57,6 +57,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// Blur faces and number plates in every photo that leaves the phone in an export or a
     /// report. The photos on the phone stay as they were taken.
     var anonymisesPhotosFlag: Bool?
+    /// The profile chosen at first start or in the settings, by raw value. Informational: the
+    /// switches it set are the settings; changing one does not change this.
+    var workProfileRaw: String?
     /// dB to add to the microphone's dBFS(A) to get dB(SPL), from a calibration against a
     /// reference. `nil` is uncalibrated.
     var audioCalibrationDecibels: Double?
@@ -119,6 +122,21 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var looksUpAddresses: Bool {
         get { looksUpAddressesFlag ?? false }
         set { looksUpAddressesFlag = newValue }
+    }
+
+    var workProfile: WorkProfile? {
+        get { workProfileRaw.flatMap(WorkProfile.init(rawValue:)) }
+        set { workProfileRaw = newValue?.rawValue }
+    }
+
+    /// Applies a profile: the streams, the rate, the extras. The camera and the audio track are
+    /// left as they are — a profile does not decide whether to record video.
+    mutating func apply(_ profile: WorkProfile) {
+        enabledSensors = profile.sensors
+        motionRateHz = profile.motionRateHz
+        recordsNetworkQuality = profile.recordsNetworkQuality
+        anonymisesPhotos = profile.anonymisesPhotos
+        workProfile = profile
     }
 
     var anonymisesPhotos: Bool {
@@ -219,6 +237,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.looksUpAddressesFlag = nil
         mine.recordsNetworkQualityFlag = nil
         mine.anonymisesPhotosFlag = nil
+        mine.workProfileRaw = nil
         mine.audioCalibrationDecibels = nil
         mine.inspectorName = nil
         mine.inspectorOrganisation = nil
@@ -233,6 +252,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.looksUpAddressesFlag = nil
         theirs.recordsNetworkQualityFlag = nil
         theirs.anonymisesPhotosFlag = nil
+        theirs.workProfileRaw = nil
         theirs.audioCalibrationDecibels = nil
         theirs.inspectorName = nil
         theirs.inspectorOrganisation = nil

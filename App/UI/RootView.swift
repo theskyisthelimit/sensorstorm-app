@@ -4,6 +4,8 @@ struct RootView: View {
     @Environment(SensorHub.self) private var hub
     @Environment(ProEntitlement.self) private var pro
     @State private var selection: Screen = ScreenshotFixture.initialTab ?? .record
+    @AppStorage("workProfileChosen") private var profileChosen = false
+    @State private var showsProfilePicker = false
 
     /// Not called `Tab` — that name belongs to SwiftUI's tab builder below.
     enum Screen: Hashable {
@@ -53,6 +55,14 @@ struct RootView: View {
         // Lives as long as the app: reads the entitlement, then keeps listening for
         // purchases that arrive from outside — redeemed codes, Family Sharing, Ask to Buy.
         .task { await pro.start() }
+        // Once, at the first start: what the app is for decides which sensors are armed. Not
+        // during a screenshot run, which wants the screen it asked for.
+        .onAppear {
+            if !profileChosen, !ScreenshotFixture.isActive { showsProfilePicker = true }
+        }
+        .sheet(isPresented: $showsProfilePicker) {
+            ProfilePickerView()
+        }
         // Tells the capture script the screen is up. No-op outside a screenshot run.
         // The paywall is the exception: it is a sheet, so readiness belongs to the sheet —
         // marking it here would shoot the settings screen a beat before the sheet slides up.

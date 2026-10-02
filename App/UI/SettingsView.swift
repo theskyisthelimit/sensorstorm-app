@@ -8,12 +8,29 @@ struct SettingsView: View {
     @State private var streamTest: LiveStreamer.Status?
     @State private var isTestingStream = false
     @State private var isCalibratingMicrophone = false
+    @State private var isChoosingProfile = false
 
     var body: some View {
         @Bindable var hub = hub
 
         NavigationStack {
             Form {
+                Section {
+                    Button {
+                        isChoosingProfile = true
+                    } label: {
+                        HStack {
+                            Label("Arbeitsprofil", systemImage: "slider.horizontal.below.rectangle")
+                            Spacer()
+                            if let profile = hub.settings.workProfile {
+                                Text(profile.title).foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                } footer: {
+                    Text("Stellt Sensoren, Rate und Katalog für eine Aufgabe ein.")
+                }
+
                 Section {
                     Picker("Abtastrate", selection: pro.gated($hub.settings.motionRateHz,
                                                               feature: { (rate: Double) -> ProFeature? in
@@ -161,6 +178,9 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $isCalibratingMicrophone) {
                 AudioCalibrationView()
+            }
+            .sheet(isPresented: $isChoosingProfile) {
+                ProfilePickerView()
             }
             .onAppear {
                 if ScreenshotFixture.screen == .export { isExportingArchive = true }

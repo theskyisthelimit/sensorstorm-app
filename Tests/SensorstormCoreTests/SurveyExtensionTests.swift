@@ -357,3 +357,24 @@ struct MapAndPackageTests {
         sqlite3_finalize(statement)
     }
 }
+
+@Suite("Arbeitsprofile")
+struct WorkProfileTests {
+
+    @Test("Jedes Profil nennt Sensoren, eine Rate aus der Liste und einen vorhandenen Katalog")
+    func profilesAreConsistent() {
+        let rates: Set<Double> = [10, 25, 50, 100, 200, 400]
+        for profile in WorkProfile.allCases {
+            #expect(!profile.sensors.isEmpty, "\(profile)")
+            #expect(rates.contains(profile.motionRateHz), "\(profile)")
+            if let id = profile.catalogID {
+                #expect(FindingCatalog.builtIn.contains { $0.id == id }, "\(profile)")
+            }
+            // A stream the person cannot arm by hand must not be armed by a profile.
+            #expect(profile.sensors.isDisjoint(with: SensorID.engineControlled), "\(profile)")
+        }
+        #expect(WorkProfile.network.recordsNetworkQuality && !WorkProfile.roads.recordsNetworkQuality)
+        #expect(WorkProfile.roads.sensors.contains(.verticalAcceleration) && WorkProfile.construction.sensors.contains(.loudnessA))
+        #expect(Set(WorkProfile.allCases.map(\.rawValue)).count == WorkProfile.allCases.count)
+    }
+}
