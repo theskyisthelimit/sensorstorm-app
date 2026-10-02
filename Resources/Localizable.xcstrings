@@ -6830,6 +6830,9 @@
     "Abgelaufen oder noch nicht gültig" : {
       "extractionState" : "manual"
     },
+    "Abnahmeprotokoll als PDF" : {
+      "extractionState" : "manual"
+    },
     "Abonnieren" : {
       "extractionState" : "manual"
     },
@@ -13304,6 +13307,12 @@
       "extractionState" : "manual"
     },
     "Beendet die laufende Aufnahme und speichert sie." : {
+      "extractionState" : "manual"
+    },
+    "Befund" : {
+      "extractionState" : "manual"
+    },
+    "Befunde" : {
       "extractionState" : "manual"
     },
     "Begangener Weg" : {
@@ -20214,6 +20223,9 @@
     "Das lässt sich nicht als Wert lesen." : {
       "extractionState" : "manual"
     },
+    "Dateifreigabe ist erreichbar. Prüfen, wer Zugriff hat." : {
+      "extractionState" : "manual"
+    },
     "Daten" : {
       "localizations" : {
         "ar" : {
@@ -20541,6 +20553,9 @@
       }
     },
     "Datensparmodus ist an" : {
+      "extractionState" : "manual"
+    },
+    "Datum" : {
       "extractionState" : "manual"
     },
     "Dauer" : {
@@ -24993,6 +25008,9 @@
     "Die Voreinstellung: Bewegung, Position, Höhe und Umgebung." : {
       "extractionState" : "manual"
     },
+    "Die Weboberfläche läuft nur unverschlüsselt. Das Passwort reist im Klartext." : {
+      "extractionState" : "manual"
+    },
     "Die Zeit lief %lld-mal rückwärts oder stand still." : {
       "extractionState" : "manual"
     },
@@ -25163,6 +25181,9 @@
       "extractionState" : "manual"
     },
     "Dienstdaten %@" : {
+      "extractionState" : "manual"
+    },
+    "Dienste" : {
       "extractionState" : "manual"
     },
     "Dienste im Netz" : {
@@ -27153,6 +27174,9 @@
       "extractionState" : "manual"
     },
     "Eine Anfrage, in ihre Abschnitte zerlegt: Namensauflösung, Verbindung, TLS, Wartezeit bis zum ersten Byte und Übertragung." : {
+      "extractionState" : "manual"
+    },
+    "Eine Datenbank ist im Netz erreichbar. Auf den Rechner selbst beschränken oder mit Zugangsdaten und Verschlüsselung schützen." : {
       "extractionState" : "manual"
     },
     "Eine JavaScript-Datei mit beliebig vielen decoder({ … })-Aufrufen. Jeder nennt manufacturerId, serviceUuid oder namePrefix und eine Funktion decode(bytes), die { name: Zahl } zurückgibt. Das Beispiel zeigt beides." : {
@@ -30272,6 +30296,9 @@
         }
       }
     },
+    "FTP überträgt Passwörter im Klartext. Durch SFTP ersetzen." : {
+      "extractionState" : "manual"
+    },
     "Fahrkomfort" : {
       "extractionState" : "manual"
     },
@@ -30611,6 +30638,12 @@
       "extractionState" : "manual"
     },
     "Fernsteuerung erlauben" : {
+      "extractionState" : "manual"
+    },
+    "Fernzugriff auf den Bildschirm ist offen. Nur aus dem eigenen Netz, mit starkem Passwort." : {
+      "extractionState" : "manual"
+    },
+    "Fernzugriff auf die Kommandozeile ohne Verschlüsselung. Abschalten oder durch SSH ersetzen." : {
       "extractionState" : "manual"
     },
     "Fertig" : {
@@ -33730,6 +33763,9 @@
     "Gefunden durch" : {
       "extractionState" : "manual"
     },
+    "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen gibt iOS nicht heraus." : {
+      "extractionState" : "manual"
+    },
     "Gefährlicher Ast" : {
       "extractionState" : "manual"
     },
@@ -33903,6 +33939,9 @@
       "extractionState" : "manual"
     },
     "Gemeinsam starten und stoppen" : {
+      "extractionState" : "manual"
+    },
+    "Gemessen" : {
       "extractionState" : "manual"
     },
     "Gemittelt aus %@, gemessene Streuung ±%@ m." : {
@@ -34725,6 +34764,9 @@
       "extractionState" : "manual"
     },
     "Geräte" : {
+      "extractionState" : "manual"
+    },
+    "Geräte gefunden" : {
       "extractionState" : "manual"
     },
     "Geräte im Netz" : {
@@ -36424,6 +36466,9 @@
       "extractionState" : "manual"
     },
     "Hinführen" : {
+      "extractionState" : "manual"
+    },
+    "Hinweis" : {
       "extractionState" : "manual"
     },
     "Hinzufügen" : {
@@ -38444,6 +38489,9 @@
           }
         }
       }
+    },
+    "Kamera-Datenstrom ist erreichbar. Prüfen, ob er Zugangsdaten verlangt." : {
+      "extractionState" : "manual"
     },
     "Kamerafahrt für Blender" : {
       "localizations" : {
@@ -42046,6 +42094,9 @@
     "Kritisch" : {
       "extractionState" : "manual"
     },
+    "Kritische Befunde" : {
+      "extractionState" : "manual"
+    },
     "Käufe wiederherstellen" : {
       "localizations" : {
         "ar" : {
@@ -43715,6 +43766,9 @@
       }
     },
     "Lücken" : {
+      "extractionState" : "manual"
+    },
+    "MQTT-Broker ohne Verschlüsselung erreichbar." : {
       "extractionState" : "manual"
     },
     "MQTT-Broker testen" : {
@@ -47037,6 +47091,9 @@
           }
         }
       }
+    },
+    "Netzwerk-Abnahmeprotokoll" : {
+      "extractionState" : "manual"
     },
     "Netzwerkspeicher" : {
       "extractionState" : "manual"
@@ -57906,6 +57963,9 @@
     "Ströme" : {
       "extractionState" : "manual"
     },
+    "Stufe" : {
+      "extractionState" : "manual"
+    },
     "Stösse" : {
       "extractionState" : "manual"
     },
@@ -60449,6 +60509,9 @@
     "Vergleiche die Uhr von %@ …" : {
       "extractionState" : "manual"
     },
+    "Verglichen mit dem Scan vom %@." : {
+      "extractionState" : "manual"
+    },
     "Verlangte Rate" : {
       "extractionState" : "manual"
     },
@@ -62579,6 +62642,12 @@
       "extractionState" : "manual"
     },
     "Wake-on-LAN" : {
+      "extractionState" : "manual"
+    },
+    "Warnung" : {
+      "extractionState" : "manual"
+    },
+    "Warnungen" : {
       "extractionState" : "manual"
     },
     "Wartezeit" : {
@@ -70126,6 +70195,9 @@
           }
         }
       }
+    },
+    "Änderungen seit dem letzten Scan" : {
+      "extractionState" : "manual"
     },
     "Öffentliche Adresse abfragen" : {
       "extractionState" : "manual"

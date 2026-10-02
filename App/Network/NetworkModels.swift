@@ -196,10 +196,20 @@ final class NetworkScanner {
     }
 }
 
+/// The figures of the last speed test, kept so the acceptance protocol can quote them.
+struct SpeedTestSummary: Sendable, Equatable {
+    var date: Date
+    var downloadMegabits: Double?
+    var uploadMegabits: Double?
+    var idleLatency: Double?
+    var loadedLatency: Double?
+}
+
 /// Everything the network tab needs, created once at launch.
 @MainActor @Observable
 final class NetworkHub {
     let environment = NetworkEnvironment()
     let scanner = NetworkScanner()
     let inventory = NetworkInventoryStore()
+    var lastSpeedTest: SpeedTestSummary?
 }

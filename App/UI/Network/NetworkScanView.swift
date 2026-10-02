@@ -4,8 +4,10 @@ import SwiftUI
 /// Every device the sweep found in the local network, with what it answered to.
 struct NetworkScanView: View {
     @Environment(NetworkHub.self) private var network
+    @Environment(SensorHub.self) private var hub
     @State private var search = ""
     @State private var showsOptions = false
+    @State private var shareItem: ShareItem?
 
     var body: some View {
         let scanner = network.scanner
@@ -55,6 +57,13 @@ struct NetworkScanView: View {
                         Label("Als Tabelle teilen", systemImage: "square.and.arrow.up")
                     }
                 }
+                if let snapshot = scanner.latest ?? network.inventory.snapshots.first {
+                    Button {
+                        shareItem = renderReport(snapshot).map(ShareItem.init)
+                    } label: {
+                        Label("Abnahmeprotokoll als PDF", systemImage: "doc.richtext")
+                    }
+                }
                 Button {
                     showsOptions = true
                 } label: {
@@ -65,8 +74,21 @@ struct NetworkScanView: View {
         .sheet(isPresented: $showsOptions) {
             ScanOptionsView()
         }
+        .sheet(item: $shareItem) { item in ShareSheet(items: [item.url]) }
         .task { network.environment.start() }
         .onDisappear { scanner.cancel() }
+    }
+
+    private func renderReport(_ snapshot: NetworkSnapshot) -> URL? {
+        let aliases = Dictionary(snapshot.hosts.map {
+            ($0.address, network.inventory.annotation(address: $0.address, subnet: snapshot.subnet))
+        }, uniquingKeysWith: { first, _ in first })
+        return NetworkReport.render(NetworkReport.Input(
+            snapshot: snapshot, previous: network.inventory.previous(to: snapshot),
+            wifi: network.environment.wifi, radio: network.environment.radioTechnologies,
+            speed: network.lastSpeedTest,
+            inspector: hub.settings.inspectorName ?? "", organisation: hub.settings.inspectorOrganisation ?? "",
+            aliases: aliases))
     }
 
     // MARK: Parts

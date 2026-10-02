@@ -436,3 +436,36 @@ struct NetworkCoreTests {
         #expect(lines[2] == "10.0.0.7,,unknown,,,,")
     }
 }
+
+@Suite("Network audit")
+struct NetworkAuditTests {
+    private func snapshot(_ hosts: [HostRecord]) -> NetworkSnapshot {
+        NetworkSnapshot(networkName: "Büro", subnet: "192.168.1.0/24", gateway: "192.168.1.1", hosts: hosts)
+    }
+
+    @Test func telnetIsCriticalAndComesFirst() {
+        let findings = NetworkAudit.findings(for: snapshot([
+            HostRecord(address: "192.168.1.30", hostNames: ["nas"], openPorts: [445]),
+            HostRecord(address: "192.168.1.20", hostNames: ["drucker"], openPorts: [23, 9100])
+        ]))
+        #expect(findings.first?.severity == .critical)
+        #expect(findings.first?.address == "192.168.1.20")
+        #expect(findings.first?.kind == .remoteShell)
+        #expect(findings.contains { $0.kind == .fileSharing && $0.address == "192.168.1.30" })
+    }
+
+    @Test func httpWithoutHTTPSIsNoted() {
+        let plain = NetworkAudit.findings(for: snapshot([HostRecord(address: "192.168.1.5", openPorts: [80])]))
+        #expect(plain.contains { $0.kind == .plainHTTPOnly })
+        let both = NetworkAudit.findings(for: snapshot([HostRecord(address: "192.168.1.5", openPorts: [80, 443])]))
+        #expect(!both.contains { $0.kind == .plainHTTPOnly })
+    }
+
+    @Test func aQuietNetworkHasNoFindings() {
+        let findings = NetworkAudit.findings(for: snapshot([
+            HostRecord(address: "192.168.1.1", openPorts: [443]),
+            HostRecord(address: "192.168.1.2", openPorts: [])
+        ]))
+        #expect(findings.isEmpty)
+    }
+}

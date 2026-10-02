@@ -89,6 +89,7 @@ final class SpeedTestModel {
 }
 
 struct SpeedTestView: View {
+    @Environment(NetworkHub.self) private var network
     @State private var model = SpeedTestModel()
 
     var body: some View {
@@ -171,6 +172,13 @@ struct SpeedTestView: View {
         .scrollContentBackground(.hidden)
         .navigationTitle("Geschwindigkeit")
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: model.stage) { _, stage in
+            guard stage == .done else { return }
+            network.lastSpeedTest = SpeedTestSummary(
+                date: Date(), downloadMegabits: model.download?.megabits, uploadMegabits: model.upload?.megabits,
+                idleLatency: SpeedTestModel.median(model.idleLatency),
+                loadedLatency: SpeedTestModel.median(model.loadedLatency))
+        }
         .onDisappear { model.cancel() }
     }
 }
