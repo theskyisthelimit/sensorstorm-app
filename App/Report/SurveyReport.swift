@@ -31,10 +31,11 @@ enum SurveyReport {
         // Photos are read before drawing: the canvas is main-actor and the anonymiser is not
         // quick, so a report of forty photos should not freeze a scroll view for a minute.
         var thumbnails: [UUID: UIImage] = [:]
+        let anonymise = input.anonymises
         for finding in findings {
             guard let cover = finding.coverPhoto, let url = input.photoURL(cover) else { continue }
             if let image = await Task.detached(priority: .userInitiated, operation: {
-                Self.loadPhoto(url, anonymise: input.anonymises)
+                SurveyReport.loadPhoto(url, anonymise: anonymise)
             }).value {
                 thumbnails[finding.id] = image
             }
