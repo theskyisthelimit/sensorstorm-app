@@ -194,13 +194,14 @@ final class Iperf3Model {
         result = nil
         live = []
         let target = host.trimmingCharacters(in: .whitespacesAndNewlines)
+        let onSample: @Sendable (ThroughputEngine.Sample) -> Void = { [weak self] sample in
+            Task { @MainActor in self?.live.append(sample) }
+        }
         task = Task { [weak self] in
             do {
                 let outcome = try await Iperf3Client.run(
                     host: target, port: UInt16(clamping: port), duration: duration, parallel: streams,
-                    reverse: reverse) { sample in
-                        Task { @MainActor [weak self] in self?.live.append(sample) }
-                    }
+                    reverse: reverse, onSample: onSample)
                 guard let self else { return }
                 result = outcome
                 state = .done
