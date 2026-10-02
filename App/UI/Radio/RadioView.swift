@@ -53,6 +53,11 @@ struct RadioView: View {
                         Label("Werkzeuge", systemImage: "wrench.and.screwdriver")
                     }
                     NavigationLink {
+                        RoutingTableView()
+                    } label: {
+                        Label("Routingtabelle", systemImage: "arrow.triangle.branch")
+                    }
+                    NavigationLink {
                         SpeedTestView()
                     } label: {
                         Label("Geschwindigkeit", systemImage: "gauge.with.dots.needle.67percent")

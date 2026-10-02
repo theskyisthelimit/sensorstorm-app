@@ -3310,6 +3310,9 @@
         }
       }
     },
+    "%lld Einträge" : {
+      "extractionState" : "manual"
+    },
     "%lld Fixe · Median ±%.1f m · 90 %% besser als ±%.1f m · längster Ausfall %.0f s" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -23683,6 +23686,9 @@
           }
         }
       }
+    },
+    "Auch automatisch angelegte Einträge" : {
+      "extractionState" : "manual"
     },
     "Audio" : {
       "localizations" : {
@@ -47838,6 +47844,9 @@
           }
         }
       }
+    },
+    "Das Telefon legt für jedes Gerät, mit dem es spricht, einen Eintrag an (Kürzel W). Sie verdecken die paar Einträge, die jemand eingerichtet hat." : {
+      "extractionState" : "manual"
     },
     "Das iPhone ist nicht erreichbar." : {
       "extractionState" : "manual",
@@ -110853,6 +110862,9 @@
         }
       }
     },
+    "Lese …" : {
+      "extractionState" : "manual"
+    },
     "Lesen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -142991,6 +143003,9 @@
           }
         }
       }
+    },
+    "Routingtabelle" : {
+      "extractionState" : "manual"
     },
     "Ruck" : {
       "extractionState" : "manual",
@@ -184742,6 +184757,9 @@
           }
         }
       }
+    },
+    "iOS gibt die Routingtabelle in dieser Version nicht heraus." : {
+      "extractionState" : "manual"
     },
     "iOS liest und beschreibt Tags im NDEF-Format. Karten mit eigener Verschlüsselung, etwa Zutritts- oder Bezahlkarten, gibt iOS nicht heraus; von ihnen erscheinen Art und Seriennummer. Die Seriennummer lässt sich weder ändern noch kopieren, kopiert wird der Inhalt." : {
       "extractionState" : "manual"

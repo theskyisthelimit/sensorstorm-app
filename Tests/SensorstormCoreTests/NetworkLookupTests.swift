@@ -213,4 +213,67 @@ struct NetworkLookupTests {
         #expect(DeviceClassifier.guess(vendor: "TP-LINK TECHNOLOGIES CO.,LTD.") == nil)
         #expect(DeviceClassifier.guess(vendor: "Samsung Electronics Co.,Ltd") == nil)
     }
+
+    /// A route message as the kernel writes it: the header with flags, interface and the
+    /// address bits, then each address padded to four bytes.
+    private func routeMessage(flags: UInt32, interface: UInt16, addresses: [[UInt8]]) -> [UInt8] {
+        let padded = addresses.map { address -> [UInt8] in
+            var out = address
+            while out.count % 4 != 0 { out.append(0) }
+            return out
+        }
+        let length = 92 + padded.reduce(0) { $0 + $1.count }
+        var header = [UInt8](repeating: 0, count: 92)
+        header[0] = UInt8(length & 0xFF); header[1] = UInt8(length >> 8)
+        header[3] = 4
+        header[4] = UInt8(interface & 0xFF); header[5] = UInt8(interface >> 8)
+        for index in 0..<4 { header[8 + index] = UInt8(flags >> UInt32(8 * index) & 0xFF) }
+        header[12] = UInt8((1 << addresses.count) - 1)
+        return header + padded.flatMap { $0 }
+    }
+
+    private func inet(_ octets: [UInt8]) -> [UInt8] { [16, 2, 0, 0] + octets + [UInt8](repeating: 0, count: 8) }
+
+    private func link(index: UInt8, mac: [UInt8] = []) -> [UInt8] {
+        [20, 18, index, 0, 6, 0, UInt8(mac.count), 0] + mac + [UInt8](repeating: 0, count: 12 - mac.count)
+    }
+
+    @Test("Die Routingtabelle: Standardroute, Netz am Link, Nachbar mit Hardware-Adresse")
+    func routeTable() throws {
+        let buffer = routeMessage(flags: 0x803, interface: 6,
+                                  addresses: [inet([0, 0, 0, 0]), inet([192, 168, 1, 1]), [0, 0, 0, 0]])
+            + routeMessage(flags: 0x901, interface: 6,
+                           addresses: [inet([192, 168, 1, 0]), link(index: 6), [7, 2, 0, 0, 255, 255, 255]])
+            + routeMessage(flags: 0x1 | 0x4 | 0x400 | 0x20000 | 0x1000000 | 0x4000000, interface: 6,
+                           addresses: [inet([192, 168, 1, 20]), link(index: 6, mac: [0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF])])
+        let routes = RouteTable.parse(buffer)
+        #expect(routes.count == 3)
+
+        let standard = routes[0]
+        #expect(standard.isDefault && standard.destination == nil && standard.prefix == 0)
+        #expect(standard.gateway == .address(IPv4Addr(octets: [192, 168, 1, 1])))
+        #expect(standard.flagLetters == "UGS" && standard.interfaceIndex == 6 && !standard.isCloned)
+
+        let network = routes[1]
+        #expect(network.destination?.description == "192.168.1.0" && network.prefix == 24)
+        #expect(network.gateway == .link(interface: 6, mac: nil))
+        #expect(network.flagLetters == "UCS" && !network.isDefault)
+
+        let neighbour = routes[2]
+        #expect(neighbour.destination?.description == "192.168.1.20" && neighbour.prefix == nil)
+        #expect(neighbour.isHostRoute && neighbour.isCloned)
+        #expect(neighbour.flagLetters == "UHLWIi")
+        #expect(neighbour.gateway == .link(interface: 6, mac: MACAddress("aa:bb:cc:dd:ee:ff")))
+    }
+
+    @Test("Beschädigte Routingnachrichten geben leer oder das Lesbare")
+    func routeMalformed() {
+        #expect(RouteTable.parse([]).isEmpty)
+        #expect(RouteTable.parse([UInt8](repeating: 0, count: 300)).isEmpty)
+        let good = routeMessage(flags: 0x1, interface: 1, addresses: [inet([10, 0, 0, 0]), inet([10, 0, 0, 1]), [7, 2, 0, 0, 255, 0, 0]])
+        #expect(RouteTable.parse(good).first?.prefix == 8)
+        #expect(RouteTable.parse(good + [0xFF, 0xFF] + [UInt8](repeating: 0, count: 100)).count == 1)
+        #expect(RouteTable.parse(Array(good.dropLast(6))).isEmpty)
+        #expect(!RouteEntry.legend.isEmpty)
+    }
 }

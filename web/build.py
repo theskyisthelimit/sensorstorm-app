@@ -684,8 +684,9 @@ Ziels.</p>
 <tr><td>Mikrofon</td><td>Lautstärke messen und den Ton von Aufnahmen und Clips
     aufzeichnen. Auf Wunsch Frequenzbänder und Geräuschklassen bestimmen, auf dem Gerät.</td></tr>
 <tr><td>Bluetooth</td><td>Bluetooth-Geräte in der Umgebung zählen, Sensoren wie Pulsgurte und
-    Thermometer lesen, auf Wunsch das Telefon selbst als Bluetooth-Sensor anbieten und ein
-    zweites iPhone verbinden</td></tr>
+    Thermometer lesen, auf Wunsch das Telefon selbst als Bluetooth-Sensor anbieten, ein
+    zweites iPhone verbinden und, wenn du es einschaltest, einen Verlauf der gehörten Geräte
+    auf dem Telefon führen</td></tr>
 <tr><td>Lokales Netzwerk</td><td>Geräte im eigenen Netz suchen (Bonjour, Ping, Portprüfung) und
     Messwerte an die Adresse senden, die du einträgst</td></tr>
 <tr><td>WLAN-Informationen</td><td>Namen und Signal des verbundenen WLANs im Netzwerk-Scanner
@@ -695,8 +696,9 @@ Ziels.</p>
     nichts in Health.</td></tr>
 <tr><td>HomeKit</td><td>Auf Wunsch Temperatur, Feuchte, CO₂ und Licht aus den Sensoren deines
     Zuhauses lesen, solange eine Aufnahme läuft</td></tr>
-<tr><td>NFC</td><td>NFC-Aufkleber an kontrollierten Objekten lesen und die Kennung in die
-    Beobachtung eintragen</td></tr>
+<tr><td>NFC</td><td>NFC-Tags lesen, beschreiben, kopieren und löschen: als Kontrollpunkte an
+    kontrollierten Objekten, mit der Kennung in der Beobachtung, und im NFC-Werkzeug. Der Inhalt
+    bleibt auf dem Gerät.</td></tr>
 <tr><td>Nearby Interaction</td><td>Abstand und Richtung zu einem zweiten iPhone mit
     Ultrabreitband messen</td></tr>
 </table>
@@ -723,7 +725,11 @@ standardmässig aus; schaltest du sie ein, geht die Koordinate der Beobachtung a
 iperf3 senden Pakete an Ziele, die du wählst. Die Geschwindigkeitsmessung und die
 Netzqualität in einer Aufnahme (beides auf Wunsch) gehen standardmässig an
 <code>speed.cloudflare.com</code> und <code>1.1.1.1</code> von Cloudflare. Die öffentliche
-IP-Adresse fragt die App nur auf Knopfdruck bei Cloudflare ab. Der Zeitserver
+IP-Adresse fragt die App nur auf Knopfdruck bei Cloudflare ab. Für den Netzbetreiber und das
+Land eines Routers auf dem Weg (Traceroute, abschaltbar) und der öffentlichen Adresse stellt die
+App eine Namensabfrage an <code>origin.asn.cymru.com</code>, die der DNS-Server deines Netzes
+beantwortet; Team Cymru betreibt diesen Dienst. Die Herstellerliste für Hardware-Adressen (IEEE)
+steckt in der App, dafür geht nichts ins Netz. Der Zeitserver
 <code>time.apple.com</code> wird nur gefragt, wenn du das in den Einstellungen einschaltest.</li>
 <li><strong>Weiterleitung und Live-Übertragung.</strong> Webhook, Open311, MQTT und die
 Live-Übertragung senden Daten nur an die Adresse, die du selbst einträgst, und nur wenn du sie
@@ -794,8 +800,9 @@ your decision, and from that point the receiving service's policy applies.</p>
 <tr><td>Microphone</td><td>measuring loudness and recording the audio of measurements and
     clips. On request, determining frequency bands and sound classes, on the device.</td></tr>
 <tr><td>Bluetooth</td><td>counting Bluetooth devices nearby, reading sensors such as heart-rate
-    straps and thermometers, on request offering the phone itself as a Bluetooth sensor and
-    connecting a second iPhone</td></tr>
+    straps and thermometers, on request offering the phone itself as a Bluetooth sensor,
+    connecting a second iPhone and, if you switch it on, keeping a history of the devices heard
+    on the phone</td></tr>
 <tr><td>Local network</td><td>finding devices in your own network (Bonjour, ping, port checks)
     and sending measurements to the address you enter</td></tr>
 <tr><td>Wi-Fi information</td><td>showing the name and signal of the connected Wi-Fi in the
@@ -805,8 +812,9 @@ your decision, and from that point the receiving service's policy applies.</p>
     nothing into Health.</td></tr>
 <tr><td>HomeKit</td><td>on request, reading temperature, humidity, CO₂ and light from your home's
     sensors while a recording runs</td></tr>
-<tr><td>NFC</td><td>reading NFC stickers on inspected objects and entering the identifier in the
-    observation</td></tr>
+<tr><td>NFC</td><td>reading, writing, copying and erasing NFC tags: as checkpoints on inspected
+    objects, with the identifier in the observation, and in the NFC tool. The content stays on
+    the device.</td></tr>
 <tr><td>Nearby Interaction</td><td>measuring distance and direction to a second iPhone with
     ultra-wideband</td></tr>
 </table>
@@ -830,8 +838,11 @@ observation is off by default; if you switch it on, the observation's coordinate
 <li><strong>Network tools.</strong> Ping, connection checks, traceroute, port checks and iperf3
 send packets to targets you choose. The speed test and the network quality in a recording (both
 on request) go by default to <code>speed.cloudflare.com</code> and <code>1.1.1.1</code> at
-Cloudflare. The public IP address is asked from Cloudflare only when you press the button. The
-time server <code>time.apple.com</code> is asked only if you switch that on in the settings.</li>
+Cloudflare. The public IP address is asked from Cloudflare only when you press the button. For the
+network operator and country of a router on the path (traceroute, can be switched off) and of the
+public address, the app sends a name query to <code>origin.asn.cymru.com</code>, answered through
+your network's DNS server; Team Cymru runs that service. The manufacturer list for hardware
+addresses (IEEE) is inside the app and needs no network. The time server <code>time.apple.com</code> is asked only if you switch that on in the settings.</li>
 <li><strong>Forwarding and live streaming.</strong> Webhook, Open311, MQTT and live streaming
 send data only to the address you enter yourself, and only when you switch them on or tap send.
 We see none of it.</li>

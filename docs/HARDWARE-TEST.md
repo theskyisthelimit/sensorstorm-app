@@ -34,6 +34,24 @@ Auf einem **echten WLAN**, nicht im Simulator.
 - [ ] Abnahmeprotokoll (PDF) aus dem Scan: Befunde, Geräte, Geschwindigkeit.
 - [ ] „Netzqualität mitschreiben“ in einer Aufnahme: Antwortzeit Router und Internet,
   WLAN-Signal als Ströme; beim Gehen durch das Haus sinkt das Signal.
+- [ ] **Hardware-Adressen:** Nach einem Scan stehen unter den Geräten MAC und Hersteller
+  (Nachbartabelle über `sysctl`, **ob iOS 18 sie herausgibt, ist offen**). Bleibt es leer,
+  steht in der Detailansicht kein Eintrag; das ist der erwartete Rückfall. Geräte, die weder
+  Ping noch Ports beantworten, tauchen mit der Quelle `arp` auf, wenn die Tabelle da ist.
+  Zufallsadressen (Telefone mit privater WLAN-Adresse) zeigen „Zufällige Adresse“.
+- [ ] Kürzel (G, W, S, F, P, U, B, N, D, M, Q) neben den Geräten, Legende über das Symbol
+  „Kürzel“ in der Leiste.
+- [ ] Traceroute mit „Netzbetreiber und Land nachschlagen“: je öffentlichem Router
+  erscheinen AS-Nummer, Name und Flagge (Namensabfrage bei Team Cymru über den DNS-Server des
+  Netzes). Aus: keine Abfrage. Das Ergebnis lässt sich als Text teilen.
+- [ ] DNS „Alle gängigen Typen“: A, AAAA, CNAME, MX, NS, SOA (siebenteilig), CAA, TXT mit
+  Flags, ID, TTL und Antwortzeit.
+- [ ] Portscan zeigt geschlossene Bereiche als „Geschlossen 1 bis 21“ zwischen den offenen.
+- [ ] Verbindung: DNS-Server (kleine C-Funktion mit `res_ninit`, **ungeprüft**), Proxy,
+  Verschlüsselungsart und Hersteller des Access Points, IPv4 und IPv6 der öffentlichen Adresse
+  mit Anbieter.
+- [ ] Routingtabelle (`NET_RT_DUMP`, **ob iOS sie herausgibt, ist offen**): Standardroute
+  `UGSc`, das lokale Netz, Hosts. Ohne Zugriff erscheint der Hinweis.
 
 ## 3. Bluetooth (Tab „Funk“)
 
@@ -45,8 +63,33 @@ Auf einem **echten WLAN**, nicht im Simulator.
 - [ ] Hintergrund: Bildschirm sperren während einer Aufnahme mit Gurt. Verbundene Geräte laufen
   weiter; Zustandswiederherstellung nach Beenden der App durch iOS ist **ungeprüft**.
 - [ ] `bluetooth_devices.csv` im Export neben `bluetooth_advertisements.csv`.
+- [ ] Explorer: Eigenschafts-Kürzel R, W, WWR, N, I, ASW, NENC, IENC an jedem Merkmal; ein
+  Wert lässt sich als Hex, Text, Dezimal, Ganzzahl, Fliesskomma oder binär lesen; lange Werte
+  erscheinen als Hexdump.
+- [ ] Verlauf der Funde (Uhr-Symbol im Scanner): „Funde mitschreiben“ einschalten, durch ein
+  Gebäude gehen, Zeit des ersten und letzten Pakets und Signalspanne je Gerät prüfen, als
+  Tabelle teilen, löschen.
 - [ ] Externer GNSS-Empfänger (Bluetooth-Seriell, NMEA): abonnieren, Strom `gnss.…` mit
   Qualität (RTK fix/float), Satelliten, Genauigkeit.
+
+## 3a. NFC-Werkzeug (Tab „Funk“ → NFC)
+
+Mit echten Tags: NTAG213/215/216, ein MIFARE-Ultralight-Aufkleber, nach Möglichkeit ein
+ISO-15693-Tag und eine Chipkarte (Zutritt oder Bank: es sollen nur Art und Seriennummer
+erscheinen).
+
+- [ ] Lesen: Art, Chip (bei NTAG und Ultralight aus GET_VERSION), Hersteller, Seriennummer,
+  NDEF-Status, Belegung in Byte, Inhalt je Eintrag, Rohdaten, Speicherauszug.
+- [ ] Schreiben: URL, Text, Telefon, E-Mail, SMS, Ort, WLAN, Kontakt, Bluetooth, eigener Typ.
+  Danach liest die App zurück („der Inhalt stimmt“). Das iPhone öffnet die URL beim Antippen
+  des Tags im Hintergrund; ein Android-Gerät tritt dem WLAN bei.
+- [ ] Zu grosse Nachricht (über 144 Byte auf NTAG213) meldet den Fehler vor dem Schreiben.
+- [ ] Kopieren: zuerst den Quell-Tag, dann den Ziel-Tag. Die Seriennummer bleibt anders.
+- [ ] Löschen: danach „Der Tag ist leer“.
+- [ ] Schreibschutz: **nur an einem Wegwerf-Tag**, nicht rückgängig zu machen.
+- [ ] Bibliothek: sichern, umbenennen, auf einen neuen Tag schreiben.
+- [ ] Die Info.plist-Schlüssel für ISO 7816 und FeliCa müssen im Build stehen, sonst startet
+  die Sitzung mit ISO 14443 nicht.
 
 ## 4. Route (Beobachtungen)
 

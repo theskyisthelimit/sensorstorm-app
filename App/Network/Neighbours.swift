@@ -30,6 +30,29 @@ enum ARPCache {
     }
 }
 
+// MARK: - Routing table
+
+enum RouteCache {
+    /// The IPv4 routing table, or nothing when iOS refuses the sysctl.
+    static func read() -> [RouteEntry] {
+        // CTL_NET, PF_ROUTE, 0, AF_INET, NET_RT_DUMP, 0.
+        var mib: [Int32] = [4, 17, 0, 2, 1, 0]
+        var size = 0
+        guard sysctl(&mib, UInt32(mib.count), nil, &size, nil, 0) == 0, size > 0 else { return [] }
+        var buffer = [UInt8](repeating: 0, count: size)
+        guard sysctl(&mib, UInt32(mib.count), &buffer, &size, nil, 0) == 0 else { return [] }
+        return RouteTable.parse(Array(buffer.prefix(size)))
+    }
+
+    /// `en0` for interface number 6.
+    static func interfaceName(_ index: Int) -> String {
+        var buffer = [CChar](repeating: 0, count: 16)
+        guard if_indextoname(UInt32(index), &buffer) != nil else { return "#\(index)" }
+        let bytes = buffer.prefix { $0 != 0 }.map { UInt8(bitPattern: $0) }
+        return String(decoding: bytes, as: UTF8.self)
+    }
+}
+
 // MARK: - Manufacturers
 
 /// The IEEE prefix list shipped as `oui.bin`, loaded the first time a vendor is asked for.
