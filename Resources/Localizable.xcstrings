@@ -2420,6 +2420,12 @@
         }
       }
     },
+    "%lld Byte" : {
+      "extractionState" : "manual"
+    },
+    "%lld Byte. Ein NTAG213 fasst 144, ein NTAG215 504 und ein NTAG216 888 Byte." : {
+      "extractionState" : "manual"
+    },
     "%lld Clips" : {
       "localizations" : {
         "ar" : {
@@ -5955,6 +5961,9 @@
         }
       }
     },
+    "%lld Ports geschlossen, %lld bis %lld" : {
+      "extractionState" : "manual"
+    },
     "%lld Routen ergänzt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7885,6 +7894,9 @@
           }
         }
       }
+    },
+    "%lld von %lld Byte belegt" : {
+      "extractionState" : "manual"
     },
     "%lld von %lld Geräten" : {
       "extractionState" : "manual",
@@ -11904,6 +11916,9 @@
         }
       }
     },
+    "Ablauf" : {
+      "extractionState" : "manual"
+    },
     "Abnahmeprotokoll als PDF" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -14962,6 +14977,9 @@
           }
         }
       }
+    },
+    "Aktualisierung" : {
+      "extractionState" : "manual"
     },
     "Aktueller Wert" : {
       "extractionState" : "manual",
@@ -41854,6 +41872,9 @@
         }
       }
     },
+    "Bonjour" : {
+      "extractionState" : "manual"
+    },
     "Bonjour-Namen und -Dienste" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -43461,6 +43482,9 @@
           }
         }
       }
+    },
+    "Bytes, zum Beispiel 0A FF" : {
+      "extractionState" : "manual"
     },
     "Bündel mit Fotos" : {
       "localizations" : {
@@ -48297,6 +48321,9 @@
         }
       }
     },
+    "Dateifreigabe" : {
+      "extractionState" : "manual"
+    },
     "Dateifreigabe ist erreichbar. Prüfen, wer Zugriff hat." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -48619,6 +48646,9 @@
       }
     },
     "Daten als Hex" : {
+      "extractionState" : "manual"
+    },
+    "Datenbank" : {
       "extractionState" : "manual"
     },
     "Datensatz erzeugen" : {
@@ -84542,6 +84572,9 @@
     "Gelesen: %lld Einträge, %@ Byte." : {
       "extractionState" : "manual"
     },
+    "Gelesen: %lld Einträge, %lld Byte." : {
+      "extractionState" : "manual"
+    },
     "Gelände oder Strasse" : {
       "localizations" : {
         "ar" : {
@@ -88244,6 +88277,12 @@
           }
         }
       }
+    },
+    "Geschlossen %lld" : {
+      "extractionState" : "manual"
+    },
+    "Geschlossen %lld bis %lld" : {
+      "extractionState" : "manual"
     },
     "Geschrieben und zurückgelesen: der Inhalt stimmt." : {
       "extractionState" : "manual"
@@ -115482,6 +115521,9 @@
         }
       }
     },
+    "Mail-Server" : {
+      "extractionState" : "manual"
+    },
     "Markiert." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118703,6 +118745,9 @@
           }
         }
       }
+    },
+    "Minimale Lebensdauer" : {
+      "extractionState" : "manual"
     },
     "Minimum" : {
       "extractionState" : "manual",
@@ -123542,6 +123587,9 @@
           }
         }
       }
+    },
+    "NetBIOS" : {
+      "extractionState" : "manual"
     },
     "Netz" : {
       "extractionState" : "manual",
@@ -143586,6 +143634,9 @@
         }
       }
     },
+    "SSH" : {
+      "extractionState" : "manual"
+    },
     "Satellit" : {
       "localizations" : {
         "ar" : {
@@ -160525,6 +160576,9 @@
     "Typ, zum Beispiel application/x-demo" : {
       "extractionState" : "manual"
     },
+    "UPnP" : {
+      "extractionState" : "manual"
+    },
     "UWB-Abstand zu %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -171807,6 +171861,9 @@
     "Webseite" : {
       "extractionState" : "manual"
     },
+    "Webserver" : {
+      "extractionState" : "manual"
+    },
     "Weg" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -174864,6 +174921,9 @@
           }
         }
       }
+    },
+    "Wiederholung" : {
+      "extractionState" : "manual"
     },
     "Windows-Namen (NetBIOS)" : {
       "extractionState" : "manual",

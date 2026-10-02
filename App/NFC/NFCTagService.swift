@@ -112,9 +112,9 @@ final class NFCTagService: NSObject, NFCTagReaderSessionDelegate, @unchecked Sen
             return
         }
         let (action, success) = lock.withLock { (self.action, self.successMessage) }
-        let session = Box(session)
-        let tag = Box(tag)
-        Task { await self.handle(tag, session: session, action: action, success: success) }
+        let sessionBox = Box(session)
+        let tagBox = Box(tag)
+        Task { await self.handle(tagBox, session: sessionBox, action: action, success: success) }
     }
 
     // MARK: Job

@@ -65,7 +65,7 @@ struct NFCTests {
         let record = NDEFRecord.text("Hallo Welt", language: "de")
         #expect(record.payload == Data([2]) + Data("de".utf8) + Data("Hallo Welt".utf8))
         #expect(NDEFContent(record) == .text("Hallo Welt", language: "de"))
-        var utf16 = Data([0x80 | 2]) + Data("en".utf8)
+        var utf16 = Data([UInt8(0x82)]) + Data("en".utf8)
         utf16.append(contentsOf: [0xFE, 0xFF, 0x00, 0x48, 0x00, 0x69])
         #expect(NDEFContent(NDEFRecord(format: .wellKnown, type: Data("T".utf8), payload: utf16))
                 == .text("Hi", language: "en"))
