@@ -80,9 +80,15 @@ final class WatchRecorder: NSObject {
         }
     }
 
-    fileprivate func apply(context: [String: Any]) {
-        phoneRecording = context["recording"] as? Bool ?? false
-        phoneStartedAt = (context["since"] as? Double).map { Date(timeIntervalSince1970: $0) }
+    fileprivate func apply(recording: Bool, since: Date?) {
+        phoneRecording = recording
+        phoneStartedAt = since
+    }
+
+    /// The dictionary is not `Sendable`; the two values in it are.
+    nonisolated fileprivate static func status(from context: [String: Any]) -> (recording: Bool, since: Date?) {
+        (context["recording"] as? Bool ?? false,
+         (context["since"] as? Double).map { Date(timeIntervalSince1970: $0) })
     }
 
     fileprivate func refreshReachability() {
@@ -277,9 +283,9 @@ extension WatchRecorder: WCSessionDelegate {
                              error: Error?) {
         // Transfers queue until activation completes on their own; what is left to do is take
         // over what the phone said last.
-        let context = session.receivedApplicationContext
+        let (recording, since) = Self.status(from: session.receivedApplicationContext)
         Task { @MainActor [weak self] in
-            self?.apply(context: context)
+            self?.apply(recording: recording, since: since)
             self?.refreshReachability()
         }
     }
@@ -289,6 +295,7 @@ extension WatchRecorder: WCSessionDelegate {
     }
 
     nonisolated func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        Task { @MainActor [weak self] in self?.apply(context: applicationContext) }
+        let (recording, since) = Self.status(from: applicationContext)
+        Task { @MainActor [weak self] in self?.apply(recording: recording, since: since) }
     }
 }
