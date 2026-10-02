@@ -322,7 +322,15 @@
       }
     },
     "Aufnahme beenden" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "End recording"
+          }
+        }
+      }
     },
     "Aufnahme starten" : {
       "localizations" : {
@@ -485,7 +493,15 @@
       }
     },
     "Das iPhone ist nicht erreichbar." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The iPhone cannot be reached."
+          }
+        }
+      }
     },
     "Nochmals versuchen" : {
       "localizations" : {
@@ -808,7 +824,15 @@
       }
     },
     "Zeitpunkt markieren" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mark moment"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

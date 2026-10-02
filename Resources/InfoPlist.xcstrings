@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
+    "NFCReaderUsageDescription" : {
+      "comment" : "Privacy - NFC Scan Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm reads NFC stickers on objects you inspect and enters the identifier in the observation."
+          }
+        }
+      }
+    },
     "NSBluetoothAlwaysUsageDescription" : {
       "comment" : "Privacy - Bluetooth Always Usage Description",
       "localizations" : {
@@ -335,169 +346,35 @@
         }
       }
     },
+    "NSHealthShareUsageDescription" : {
+      "comment" : "Privacy - Health Share Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On request, Sensorstorm reads heart rate, breathing, oxygen, steps and running metrics from the time of a recording and places them next to the other measurements. Nothing is written to Health."
+          }
+        }
+      }
+    },
+    "NSHomeKitUsageDescription" : {
+      "comment" : "Privacy - HomeKit Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On request, Sensorstorm reads temperature, humidity, CO₂ and light from your home’s sensors while a recording runs."
+          }
+        }
+      }
+    },
     "NSLocalNetworkUsageDescription" : {
       "comment" : "Privacy - Local Network Usage Description",
       "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يرسل Sensorstorm القيم المقاسة إلى العنوان الذي تُدخله في الإعدادات. وإذا كان الخادم على الشبكة نفسها فهذا يحتاج هذا الإذن."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm posílá naměřené hodnoty na adresu, kterou zadáte v nastavení. Pokud je server ve stejné síti, potřebuje to toto oprávnění."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sender måleværdierne til den adresse, du indtaster i indstillingerne. Ligger serveren på samme net, kræver det denne tilladelse."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Το Sensorstorm στέλνει τις μετρήσεις στη διεύθυνση που καταχωρείς στις ρυθμίσεις. Αν ο διακομιστής βρίσκεται στο ίδιο δίκτυο, χρειάζεται αυτή η άδεια."
-          }
-        },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sends readings to the address you enter in Settings. If that server is on the same network, this permission is what allows it."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm envía las mediciones a la dirección que introduzcas en los ajustes. Si ese servidor está en la misma red, hace falta este permiso."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm lähettää mittausarvot osoitteeseen, jonka annat asetuksissa. Jos palvelin on samassa verkossa, se vaatii tämän luvan."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm envoie les mesures à l'adresse que vous saisissez dans les réglages. Si ce serveur est sur le même réseau, cette autorisation est nécessaire."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm šalje izmjerene vrijednosti na adresu koju upišeš u postavkama. Ako je poslužitelj u istoj mreži, za to treba ovo dopuštenje."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Sensorstorm a mért értékeket arra a címre küldi, amelyet a beállításokban megadsz. Ha a kiszolgáló ugyanabban a hálózatban van, ehhez kell ez az engedély."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm invia le misure all'indirizzo che inserisci nelle impostazioni. Se quel server si trova sulla stessa rete, serve questa autorizzazione."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm は設定で入力したアドレスへ測定値を送信します。そのサーバーが同じネットワーク上にある場合、この許可が必要です。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm은 설정에 입력한 주소로 측정값을 보냅니다. 그 서버가 같은 네트워크에 있다면 이 권한이 필요합니다."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sender måleverdiene til adressen du oppgir i innstillingene. Ligger serveren på samme nett, krever det denne tillatelsen."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm stuurt de metingen naar het adres dat je in de instellingen invult. Staat die server in hetzelfde netwerk, dan is deze toestemming nodig."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm wysyła pomiary pod adres, który wpiszesz w ustawieniach. Jeśli serwer jest w tej samej sieci, wymaga to tego uprawnienia."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Sensorstorm envia as medições para o endereço que você informa nos ajustes. Se esse servidor estiver na mesma rede, é preciso esta permissão."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Sensorstorm envia os valores medidos para o endereço que indicares nas definições. Se o servidor estiver na mesma rede, isso precisa desta autorização."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm trimite valorile măsurate la adresa pe care o introduci în configurări. Dacă serverul este în aceeași rețea, este nevoie de această permisiune."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm отправляет измерения на адрес, который вы указали в настройках. Если сервер в той же сети, для этого нужно это разрешение."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm posiela namerané hodnoty na adresu, ktorú zadáte v nastaveniach. Ak je server v tej istej sieti, potrebuje to toto oprávnenie."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm skickar mätvärdena till adressen du anger i inställningarna. Ligger servern på samma nät krävs den här behörigheten."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm ölçüm değerlerini ayarlarda girdiğin adrese gönderir. Sunucu aynı ağdaysa bunun için bu izin gerekir."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm надсилає вимірювання на адресу, яку ви вказали в налаштуваннях. Якщо сервер у тій самій мережі, для цього потрібен цей дозвіл."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm 会把测量值发送到你在设置中填写的地址。如果服务器在同一个网络里，这需要该授权。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm 會將量測值送到你在設定中填入的位址。若該伺服器位於同一個網路，就需要這項權限。"
+            "state" : "needs_review",
+            "value" : "Sensorstorm sends the readings to the address you enter in Settings and, on request, searches for devices in your own network. Both need this permission."
           }
         }
       }
@@ -1166,6 +1043,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm 會記錄加速度、角速度、姿態、磁場與步數。"
+          }
+        }
+      }
+    },
+    "NSNearbyInteractionUsageDescription" : {
+      "comment" : "Privacy - Nearby Interaction Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On request, Sensorstorm uses ultra-wideband to measure distance and direction to a second iPhone running Sensorstorm."
           }
         }
       }

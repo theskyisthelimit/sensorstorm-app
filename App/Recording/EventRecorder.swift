@@ -77,9 +77,9 @@ final class EventRecorder: @unchecked Sendable {
         lock.lock()
         guard let configuration else { lock.unlock(); return }
 
-        var ring = rings[sensor] ?? SampleRing(maxSeconds: configuration.preRoll)
-        ring.append(time: time, values: values)
-        rings[sensor] = ring
+        // In place, through the dictionary: copying the ring out and back would copy every
+        // stored sample on every append — at 400 Hz that is the whole buffer, 400 times a second.
+        rings[sensor, default: SampleRing(maxSeconds: configuration.preRoll)].append(time: time, values: values)
 
         var finished: Capture?
         if var current = capture {
