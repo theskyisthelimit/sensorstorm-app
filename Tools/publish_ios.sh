@@ -15,7 +15,7 @@
 # frischen Temp-Keychain.
 #
 # Aufruf: ASC_KEY_ID=... ASC_ISSUER_ID=... bash Tools/publish_ios.sh [archivePfad]
-#   archivePfad: optional, Default build/Sensorstorm.xcarchive
+#   archivePfad: optional, Default build/Sensorstorm<Build-Nummer>.xcarchive
 set -euo pipefail
 
 # Repo-Wurzel aus dem Skriptpfad ableiten, damit der Lauf nicht an einem
@@ -24,7 +24,11 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 KEY_ID="${ASC_KEY_ID:?ASC_KEY_ID fehlt}"
 ISSUER="${ASC_ISSUER_ID:?ASC_ISSUER_ID fehlt}"
 P8="$HOME/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8"
-ARCHIVE_PATH="${1:-build/Sensorstorm.xcarchive}"
+# Die Build-Nummer gehört in den Standardpfad: ein vorhandenes Archiv wird ungefragt
+# wiederverwendet, und unter dem nackten Namen lag Build 6 — am 2.10.2026 exportierte
+# der Lauf für Build 17 genau das und ASC lehnte es als Duplikat ab.
+BUILD_NUMBER="$(grep -m1 'CURRENT_PROJECT_VERSION' "$ROOT/project.yml" | grep -o '[0-9]\+')"
+ARCHIVE_PATH="${1:-build/Sensorstorm${BUILD_NUMBER}.xcarchive}"
 SCHEME="Sensorstorm"
 SIGNING="$HOME/.appstoreconnect/ci-signing"
 mkdir -p "$SIGNING"
