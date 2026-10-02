@@ -1,13 +1,37 @@
 import Foundation
 
-/// A guess at what a device in the network is, from what it answers on. Said to be a guess:
-/// iOS cannot read a device's hardware address, so there is no vendor lookup — only the
-/// services it offers and the name it gives.
+/// A guess at what a device in the network is, from what it answers on and, when the hardware
+/// address could be read, who made its network chip. Said to be a guess: a company that makes
+/// routers also makes smart plugs.
 public enum DeviceGuess: String, Codable, Sendable, CaseIterable {
     case router, printer, nas, camera, mediaPlayer, smartHome, apple, computer, server, unknown
 }
 
 public enum DeviceClassifier {
+    /// What a manufacturer's name suggests, for a host nothing else could place. Only
+    /// companies that make one kind of thing: a name that covers laptops and printers, or
+    /// routers and phones, says nothing and gives `nil`.
+    public static func guess(vendor: String) -> DeviceGuess? {
+        let name = vendor.lowercased()
+        func any(_ words: [String]) -> Bool { words.contains { name.contains($0) } }
+        if any(["apple"]) { return .apple }
+        if any(["espressif", "tuya", "shelly", "allterco", "sonoff", "itead", "signify", "philips lighting",
+                "ikea of sweden", "nordic semiconductor", "ring llc", "ecobee", "nest labs", "lifx",
+                "wiz connected", "yeelink", "xiaomi", "aqara", "lumi united", "ledvance", "tp-link smart"]) {
+            return .smartHome
+        }
+        if any(["sonos", "roku", "chromecast", "vizio", "bose", "denon", "yamaha corporation"]) { return .mediaPlayer }
+        if any(["hikvision", "dahua", "axis communications", "reolink", "amcrest", "foscam", "vivotek",
+                "uniview", "arlo"]) { return .camera }
+        if any(["brother industries", "canon", "seiko epson", "epson", "lexmark", "kyocera", "ricoh", "xerox",
+                "konica", "oki data", "zebra technologies"]) { return .printer }
+        if any(["synology", "qnap", "western digital", "buffalo"]) { return .nas }
+        if any(["raspberry pi", "intel corporate", "dell", "lenovo", "micro-star", "gigabyte", "asustek"]) {
+            return .computer
+        }
+        return nil
+    }
+
     public static func guess(address: String, gateway: String?, openPorts: [Int],
                              services: [String], names: [String]) -> DeviceGuess {
         let ports = Set(openPorts)
@@ -41,15 +65,19 @@ public struct HostRecord: Codable, Sendable, Hashable, Identifiable {
     public var services: [String]
     public var openPorts: [Int]
     public var roundTrip: Double?
-    /// How the host was found: `ping`, `tcp`, `bonjour`, `netbios`, `ssdp`.
+    /// How the host was found: `ping`, `tcp`, `bonjour`, `netbios`, `ssdp`, `arp`.
     public var sources: [String]
     public var guess: DeviceGuess
+    /// The hardware address from the neighbour table, when iOS let the app read it. Absent is
+    /// the normal case on some releases, not an error.
+    public var mac: String?
 
     public var id: String { address }
 
     public init(address: String, hostNames: [String] = [], services: [String] = [],
                 openPorts: [Int] = [], roundTrip: Double? = nil, sources: [String] = [],
-                guess: DeviceGuess = .unknown) {
+                guess: DeviceGuess = .unknown, mac: String? = nil) {
+        self.mac = mac
         self.address = address
         self.hostNames = hostNames
         self.services = services
@@ -70,6 +98,53 @@ public struct HostRecord: Codable, Sendable, Hashable, Identifiable {
         openPorts = Array(Set(openPorts + other.openPorts)).sorted()
         for source in other.sources where !sources.contains(source) { sources.append(source) }
         if let rtt = other.roundTrip { roundTrip = min(roundTrip ?? rtt, rtt) }
+        if let mac = other.mac { self.mac = mac }
+    }
+}
+
+/// The one-letter marks of a host in the list: what it offers, at a glance.
+///
+/// They are derived from what the scan found — the ports that answered and the ways the host
+/// announced itself — so a badge is a fact about the host and never a guess. `ipv6` is not here
+/// because a sweep of an IPv4 subnet cannot see a host's other address.
+public enum HostBadge: String, Sendable, CaseIterable, Codable {
+    case gateway, web, ssh, files, printer, upnp, bonjour, netbios, dns, mail, database
+
+    public var letter: String {
+        switch self {
+        case .gateway: "G"
+        case .web: "W"
+        case .ssh: "S"
+        case .files: "F"
+        case .printer: "P"
+        case .upnp: "U"
+        case .bonjour: "B"
+        case .netbios: "N"
+        case .dns: "D"
+        case .mail: "M"
+        case .database: "Q"
+        }
+    }
+
+    public static func badges(for host: HostRecord, isGateway: Bool) -> [HostBadge] {
+        let ports = Set(host.openPorts)
+        let kinds = Set(host.services.map { $0.lowercased() })
+        var badges: [HostBadge] = []
+        if isGateway { badges.append(.gateway) }
+        if !ports.isDisjoint(with: [80, 81, 443, 8000, 8008, 8080, 8081, 8123, 8443, 8888, 9090])
+            || !kinds.isDisjoint(with: ["_http._tcp", "_https._tcp"]) { badges.append(.web) }
+        if ports.contains(22) || kinds.contains("_ssh._tcp") || kinds.contains("_sftp-ssh._tcp") { badges.append(.ssh) }
+        if !ports.isDisjoint(with: [21, 139, 445, 548, 2049, 873, 990])
+            || !kinds.isDisjoint(with: ["_smb._tcp", "_afpovertcp._tcp", "_nfs._tcp", "_ftp._tcp"]) { badges.append(.files) }
+        if !ports.isDisjoint(with: [515, 631, 9100])
+            || !kinds.isDisjoint(with: ["_ipp._tcp", "_ipps._tcp", "_printer._tcp", "_pdl-datastream._tcp"]) { badges.append(.printer) }
+        if host.sources.contains("ssdp") { badges.append(.upnp) }
+        if host.sources.contains("bonjour") || !host.services.isEmpty { badges.append(.bonjour) }
+        if host.sources.contains("netbios") { badges.append(.netbios) }
+        if ports.contains(53) { badges.append(.dns) }
+        if !ports.isDisjoint(with: [25, 110, 143, 465, 587, 993, 995]) { badges.append(.mail) }
+        if !ports.isDisjoint(with: [1433, 3306, 5432, 6379, 27017, 1521]) { badges.append(.database) }
+        return badges
     }
 }
 
@@ -132,9 +207,10 @@ public struct InventoryDiff: Sendable, Equatable {
 
 extension NetworkSnapshot {
     /// One row per host, for a spreadsheet: what a network person hands to a customer.
-    public func csv() -> String {
-        var lines = ["address,name,guess,open_ports,services,round_trip_ms,sources"]
+    public func csv(vendor: (MACAddress) -> String? = { _ in nil }) -> String {
+        var lines = ["address,name,guess,open_ports,services,round_trip_ms,sources,mac,vendor"]
         for host in hosts {
+            let mac = host.mac.flatMap { MACAddress($0) }
             let fields = [
                 host.address,
                 host.hostNames.joined(separator: "; "),
@@ -143,6 +219,8 @@ extension NetworkSnapshot {
                 host.services.joined(separator: " "),
                 host.roundTrip.map { String(format: "%.2f", $0 * 1_000) } ?? "",
                 host.sources.joined(separator: " "),
+                mac?.description ?? "",
+                mac.flatMap(vendor) ?? "",
             ]
             lines.append(fields.map(RecordingExporter.csvEscape).joined(separator: ","))
         }

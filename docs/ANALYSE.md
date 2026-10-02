@@ -1986,3 +1986,53 @@ Suchbegriffe bringen Nutzer, die heute nie auf „Sensor Logger“ stossen.
 | 2 | WLAN-Signalstärke | So nicht machbar (F11). Ersatz: N4 Netzqualität, als Abdeckungskarte mit U2 (Kapitel 6.3) |
 | 3 | Bluetooth aufräumen | F12 aufteilen, dann zum vollwertigen Werkzeug ausbauen: B1–B8 auf D1 (Kapitel 6.2); dazu F14, F15, F17 |
 | 4 | Detailansicht je Sensorwert | **Erledigt** (`App/UI/SensorDetailView.swift`). Den Eintrag aus der TODO-Liste streichen. |
+
+---
+
+## Umsetzungsstand (2026-10-02)
+
+Gebaut gegen den Compiler und die Kern-Tests (CI grün), **an keinem Gerät geprüft**. Die
+Reihenfolge zum Prüfen steht in [HARDWARE-TEST.md](HARDWARE-TEST.md).
+
+| Gruppe | Gebaut | Teilweise | Nicht gebaut |
+|--------|--------|-----------|--------------|
+| **S** Schnelle Gewinne | S1–S7, S9, S10, S12, S13 | S8 (Kurzbefehle, Siri, Aktionstaste; keine Live-Aktivität), S11 (Datenschutzseite; Store-Texte nicht) | – |
+| **U** Oberfläche und Route | U1–U12 | – | – |
+| **M** Auswertung | M1–M4, M6, M8, M9 | M5 (Datensatz; ohne Beschriftung, ohne Vergleich zweier Aufnahmen), M6 (Strom, nicht als Position für Beobachtungen) | M7 |
+| **D** Dynamische Ströme | D1 | – | – |
+| **B** Bluetooth | B1–B8 | B8 (Geräteliste; kein GATT-Protokoll als Datei) | – |
+| **N** Netzwerk | N1–N7 | – | – |
+| **I** Weitere Quellen | I1–I7, I9, I11–I13 | I7 (Abstand zur Bildmitte, keine Tiefenkarte je Bild), I10 (800 Hz Beschleunigung, ohne Device Motion), I13 (Speicher und Audio-Route; kein Näherungssensor) | I8, I14, I15 |
+
+Warum nicht gebaut:
+
+- **M7** Standbilder für die Fotogrammetrie: die Intrinsics des Standbilds weichen von denen der
+  Videobilder ab, `cameras.csv` und der COLMAP-Export müssen sie je Bild führen.
+- **S8 Live-Aktivität** braucht eine Widget-Erweiterung mit eigener App-ID und eigenem Profil.
+- **I8** Körper-Tracking ist eine eigene ARKit-Konfiguration und schliesst das Weltmodell aus,
+  das die Kamerapose braucht.
+- **I14** USB-Messmikrofone mit Kalibrierdatei und MFi-GNSS: eigene Quelle, ohne Gerät nicht zu
+  entwickeln.
+- **I15** SensorKit gibt es nur für von Apple genehmigte Forschungsstudien.
+- **Staffelung in Gratis und Pro** (Kapitel 8): die neuen Werkzeuge hängen nicht an `ProAccess`.
+
+### Nachtrag: Anregungen aus Wettbewerbs-Apps (Paket 9 bis 11)
+
+Nach Bildschirmfotos von Bluetooth-, NFC- und Netzwerk-Apps (BLE-Scanner mit Dienst- und
+Merkmalbrowser, NFC Tools, Network Analyzer) kam dazu, was dort gut gelöst ist und hier fehlte:
+
+| Bereich | Vorbild zeigt | Sensorstorm |
+|---------|---------------|-------------|
+| Geräteliste | MAC, Hersteller, Kürzel (G, W, U, P, S, B, 6) | MAC aus der Nachbartabelle, Hersteller aus der IEEE-Liste (`oui.bin`), Zufallsadressen erkannt, Geräte ohne Antwort über ARP; elf Kürzel mit Legende (G, W, S, F, P, U, B, N, D, M, Q); kein „6“, weil ein IPv4-Sweep die IPv6-Adresse eines Geräts nicht sieht |
+| Route | Sprünge mit AS, Land, Namen | Traceroute mit Netzbetreiber, Land (Flagge), Verlust und Teilen; Namensabfrage bei Team Cymru, abschaltbar |
+| DNS | Einträge aller Typen mit SOA, CAA, TTL, Status, Zeit | „Alle gängigen Typen“ gruppiert, SOA siebenteilig, CAA, Flags, ID |
+| Ports | geschlossene Bereiche gefaltet, Dienstnamen | `PortRow`: „Geschlossen 1 bis 21“, Bezeichnungen aus `PortCatalog.title` |
+| Info | DNS-Server, Proxy, WLAN-Sicherheit, externe IPv6 | DNS-Server (C-Funktion `res_ninit`), Proxy, Art der Verschlüsselung, Hersteller des Access Points, IPv4 und IPv6 mit Anbieter |
+| Routing | Routingtabelle mit Flags | `RouteTable` über `NET_RT_DUMP`, Kürzel wie `netstat -r`, Namen der Router |
+| NFC | Lesen, Schreiben von URL, Text, WLAN, Kontakt, Bluetooth, Kopieren, Löschen, Sperren, Speicher | alles davon, dazu Zurücklesen nach dem Schreiben, Bibliothek, Hexdump, Chip aus GET_VERSION |
+| Bluetooth | Eigenschaften-Kürzel R W N I WWR NENC ASW IENC, Hex und ASCII, Scanner-Log mit Filter, Teilen, Löschen | Kürzel an jedem Merkmal, sieben Wertformate, Hexdump langer Werte, Verlauf der Funde mit erster und letzter Zeit (aus, bis man ihn einschaltet), Tabelle, Löschen; 46 Dienste, 174 Merkmale und weitere Hersteller benannt |
+
+Offen aus diesem Nachtrag: NTAG-Passwortschutz (braucht rohe MIFARE-Befehle auf Konfigurationsseiten),
+Lesen geschützter Chipkarten (iOS gibt sie nicht heraus), MA-M- und MA-S-Blöcke der Herstellerliste,
+Bluetooth-Verlauf ohne laufenden Scanner (iOS erlaubt im Hintergrund nur gefilterte Suchen).
+

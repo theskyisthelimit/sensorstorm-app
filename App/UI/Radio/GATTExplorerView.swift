@@ -279,6 +279,7 @@ struct GATTCharacteristicRow: View {
     let onTemplate: () -> Void
 
     @Environment(SensorHub.self) private var hub
+    @State private var format: GATTValueFormat?
 
     private var subscription: GATTSubscription {
         GATTSubscription(device: deviceID, deviceName: deviceName, service: info.serviceUUID,
@@ -302,10 +303,12 @@ struct GATTCharacteristicRow: View {
                         .accessibilityLabel(Text("Wird aufgezeichnet"))
                 }
             }
-            Text(verbatim: BluetoothNames.shortForm(info.uuid) + " · "
-                 + info.properties.map(\.rawValue).joined(separator: ", "))
-                .font(.caption2.monospaced())
-                .foregroundStyle(.tertiary)
+            HStack(spacing: 8) {
+                Text(verbatim: BluetoothNames.shortForm(info.uuid))
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.tertiary)
+                GATTPropertyBadges(properties: info.properties)
+            }
 
             if let value = info.value {
                 valueBlock(value)
@@ -317,18 +320,50 @@ struct GATTCharacteristicRow: View {
 
     private func valueBlock(_ value: Data) -> some View {
         VStack(alignment: .leading, spacing: 3) {
-            Text(verbatim: HexCoding.string(value))
-                .font(.caption.monospaced())
-                .textSelection(.enabled)
-            Text(verbatim: HexCoding.ascii(value))
-                .font(.caption2.monospaced())
-                .foregroundStyle(.tertiary)
+            if value.count > 16 {
+                // A long value as a dump: offsets on the left, the printable reading on the right.
+                Text(verbatim: HexCoding.dump(value))
+                    .font(.system(size: 11, design: .monospaced))
+                    .textSelection(.enabled)
+            } else {
+                Text(verbatim: HexCoding.string(value))
+                    .font(.caption.monospaced())
+                    .textSelection(.enabled)
+                Text(verbatim: HexCoding.ascii(value))
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.tertiary)
+            }
+            formatLine(value)
             if let decoded = info.decoded() {
                 Text(verbatim: decoded.fields.map {
                     "\($0.name) \(Format.value($0.value, unit: unit(of: $0.name, decoder: decoded.decoder)))"
                 }.joined(separator: " · "))
                 .font(.caption.monospacedDigit())
                 .foregroundStyle(Theme.accent)
+            }
+        }
+    }
+
+    /// The value in the format the person picked, beside the default reading.
+    @ViewBuilder
+    private func formatLine(_ value: Data) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 6) {
+            Menu {
+                Picker("Als", selection: $format) {
+                    Text("Standard").tag(GATTValueFormat?.none)
+                    ForEach(GATTValueFormat.allCases) { format in
+                        Text(format.title).tag(Optional(format))
+                    }
+                }
+            } label: {
+                Label("Format", systemImage: "textformat.123").font(.caption2)
+            }
+            if let format {
+                if let text = format.render(value) {
+                    Text(verbatim: text).font(.caption.monospaced()).textSelection(.enabled)
+                } else {
+                    Text("So nicht lesbar").font(.caption).foregroundStyle(.secondary)
+                }
             }
         }
     }
@@ -409,6 +444,69 @@ struct GATTCharacteristicRow: View {
         hub.settings.setRecording(true, next)
         hub.settings.setEnabled(true, for: .bluetooth)
         hub.settings.decodesBluetoothSensors = true
+    }
+}
+
+// MARK: - Property badges
+
+extension GATTCharacteristicInfo.Property {
+    /// What the mark stands for, for VoiceOver and the legend.
+    var title: LocalizedStringKey {
+        switch self {
+        case .broadcast: "Senden (Broadcast)"
+        case .read: "Lesen"
+        case .writeWithoutResponse: "Schreiben ohne Antwort"
+        case .write: "Schreiben"
+        case .notify: "Benachrichtigung"
+        case .indicate: "Bestätigte Benachrichtigung"
+        case .authenticatedSignedWrites: "Signiertes Schreiben"
+        case .extendedProperties: "Erweiterte Eigenschaften"
+        case .notifyEncryptionRequired: "Benachrichtigung nur verschlüsselt"
+        case .indicateEncryptionRequired: "Bestätigte Benachrichtigung nur verschlüsselt"
+        }
+    }
+
+    var tint: Color {
+        switch self {
+        case .read: .green
+        case .write, .writeWithoutResponse, .authenticatedSignedWrites: .orange
+        case .notify, .indicate: .blue
+        case .notifyEncryptionRequired, .indicateEncryptionRequired: .purple
+        case .broadcast, .extendedProperties: .gray
+        }
+    }
+}
+
+extension GATTValueFormat {
+    var title: LocalizedStringKey {
+        switch self {
+        case .hex: "Hex"
+        case .text: "Text"
+        case .decimal: "Dezimal"
+        case .unsigned: "Ganzzahl"
+        case .signed: "Ganzzahl mit Vorzeichen"
+        case .float: "Fliesskomma"
+        case .binary: "Binär"
+        }
+    }
+}
+
+/// The marks of a characteristic — R, W, WWR, N, I, ASW, NENC, IENC — as small tinted tags.
+struct GATTPropertyBadges: View {
+    let properties: [GATTCharacteristicInfo.Property]
+
+    var body: some View {
+        HStack(spacing: 3) {
+            ForEach(properties, id: \.self) { property in
+                Text(verbatim: property.badge)
+                    .font(.system(size: 9, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 4)
+                    .frame(height: 15)
+                    .background(property.tint, in: Capsule())
+                    .accessibilityLabel(Text(property.title))
+            }
+        }
     }
 }
 

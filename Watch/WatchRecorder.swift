@@ -38,6 +38,8 @@ final class WatchRecorder: NSObject {
     private(set) var phoneStartedAt: Date?
     private(set) var phoneReachable = false
     private(set) var remoteMessage: String?
+    /// The phone asked for the wrist acceleration at the high rate.
+    private(set) var phoneWantsFast = false
 
     /// Sensor names on the wire. They match `SensorID` on the phone, which is also the file
     /// name on disk — so these strings are as fixed as those are.
@@ -51,6 +53,8 @@ final class WatchRecorder: NSObject {
     private var workout: HKWorkoutSession?
     private var heartRateQuery: HKAnchoredObjectQuery?
     private var pending: [[String: Any]] = []
+    private var pendingBinary: [Data] = []
+    private var fastTask: Task<Void, Never>?
     private var flushTimer: Timer?
 
     /// How often a batch goes over. Every transfer costs radio time on both ends, so
@@ -80,15 +84,18 @@ final class WatchRecorder: NSObject {
         }
     }
 
-    fileprivate func apply(recording: Bool, since: Date?) {
+    fileprivate func apply(recording: Bool, since: Date?, fast: Bool) {
         phoneRecording = recording
         phoneStartedAt = since
+        phoneWantsFast = fast
     }
 
-    /// The dictionary is not `Sendable`; the two values in it are.
-    nonisolated fileprivate static func status(from context: [String: Any]) -> (recording: Bool, since: Date?) {
+    /// The dictionary is not `Sendable`; the values in it are.
+    nonisolated fileprivate static func status(from context: [String: Any])
+        -> (recording: Bool, since: Date?, fast: Bool) {
         (context["recording"] as? Bool ?? false,
-         (context["since"] as? Double).map { Date(timeIntervalSince1970: $0) })
+         (context["since"] as? Double).map { Date(timeIntervalSince1970: $0) },
+         context["fast"] as? Bool ?? false)
     }
 
     fileprivate func refreshReachability() {
@@ -132,6 +139,7 @@ final class WatchRecorder: NSObject {
 
         startHeartRate(heartRateType)
         startWristMotion()
+        startFastAccelerometer()
 
         startedAt = Date()
         sentSamples = 0
@@ -147,6 +155,8 @@ final class WatchRecorder: NSObject {
     func stop() {
         flushTimer?.invalidate()
         flushTimer = nil
+        fastTask?.cancel()
+        fastTask = nil
         motion.stopDeviceMotionUpdates()
         if let heartRateQuery {
             healthStore.stop(heartRateQuery)
@@ -220,6 +230,55 @@ final class WatchRecorder: NSObject {
         }
     }
 
+    // MARK: - High-rate acceleration
+
+    /// 800 Hz needs a watch that has the batched sensor (Series 8 and later, Ultra) and a
+    /// running workout session, which this recorder has. The samples arrive in batches of about
+    /// a second and leave as one packet each — see `WatchPacket` on the phone's side.
+    private func startFastAccelerometer() {
+        guard phoneWantsFast, fastTask == nil, CMBatchedSensorManager.isAccelerometerSupported else { return }
+        let target = self
+        fastTask = Task.detached(priority: .userInitiated) {
+            let manager = CMBatchedSensorManager()
+            do {
+                for try await batch in manager.accelerometerUpdates() {
+                    let packet = Self.fastPacket(batch)
+                    await target.enqueue(binary: packet)
+                }
+            } catch {
+                // The sequence ends when the recording does; nothing to report.
+            }
+            manager.stopAccelerometerUpdates()
+        }
+    }
+
+    private func enqueue(binary: Data) {
+        guard !binary.isEmpty else { return }
+        pendingBinary.append(binary)
+        // About two minutes of a phone out of range; more than that and the oldest go.
+        if pendingBinary.count > 120 { pendingBinary.removeFirst(pendingBinary.count - 120) }
+    }
+
+    /// The same bytes as `WatchPacket.encode` on the phone: magic 0xB1, version 1, kind 1
+    /// (accelerometer), three channels, a Float64 base time in wall-clock seconds, a UInt32 row
+    /// count, then per row a Float32 offset from the base and three Float32 values in g.
+    private nonisolated static func fastPacket(_ batch: [CMAccelerometerData]) -> Data {
+        guard let first = batch.first else { return Data() }
+        // The sample's clock is the watch's uptime; the phone expects wall time.
+        let base = Date().timeIntervalSince1970 - (ProcessInfo.processInfo.systemUptime - first.timestamp)
+        var data = Data([0xB1, 1, 1, 3])
+        withUnsafeBytes(of: base.bitPattern.littleEndian) { data.append(contentsOf: $0) }
+        withUnsafeBytes(of: UInt32(batch.count).littleEndian) { data.append(contentsOf: $0) }
+        for sample in batch {
+            let values = [Float(sample.timestamp - first.timestamp), Float(sample.acceleration.x),
+                          Float(sample.acceleration.y), Float(sample.acceleration.z)]
+            for value in values {
+                withUnsafeBytes(of: value.bitPattern.littleEndian) { data.append(contentsOf: $0) }
+            }
+        }
+        return data
+    }
+
     // MARK: - Sending
 
     private func append(_ stream: String, time: Double, values: [Double]) {
@@ -233,9 +292,14 @@ final class WatchRecorder: NSObject {
     }
 
     private func flush() {
-        guard !pending.isEmpty, WCSession.isSupported() else { return }
+        guard WCSession.isSupported() else { return }
         let session = WCSession.default
         guard session.activationState == .activated else { return }
+        if !pendingBinary.isEmpty {
+            session.transferUserInfo(["bin": pendingBinary])
+            pendingBinary.removeAll(keepingCapacity: true)
+        }
+        guard !pending.isEmpty else { return }
 
         let batch = pending
         pending.removeAll(keepingCapacity: true)
@@ -283,9 +347,9 @@ extension WatchRecorder: WCSessionDelegate {
                              error: Error?) {
         // Transfers queue until activation completes on their own; what is left to do is take
         // over what the phone said last.
-        let (recording, since) = Self.status(from: session.receivedApplicationContext)
+        let (recording, since, fast) = Self.status(from: session.receivedApplicationContext)
         Task { @MainActor [weak self] in
-            self?.apply(recording: recording, since: since)
+            self?.apply(recording: recording, since: since, fast: fast)
             self?.refreshReachability()
         }
     }
@@ -295,7 +359,7 @@ extension WatchRecorder: WCSessionDelegate {
     }
 
     nonisolated func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        let (recording, since) = Self.status(from: applicationContext)
-        Task { @MainActor [weak self] in self?.apply(recording: recording, since: since) }
+        let (recording, since, fast) = Self.status(from: applicationContext)
+        Task { @MainActor [weak self] in self?.apply(recording: recording, since: since, fast: fast) }
     }
 }

@@ -56,6 +56,7 @@ final class BluetoothScannerModel {
         task?.cancel()
         task = nil
         source.releaseScanner()
+        BluetoothSightingStore.shared.save()
     }
 
     func clear() {
@@ -66,6 +67,7 @@ final class BluetoothScannerModel {
     func refresh() {
         devices = source.scannedDevices()
         availability = source.availability
+        BluetoothSightingStore.shared.merge(devices)
     }
 
     func device(_ id: UUID) -> ScannedDevice? {
@@ -153,6 +155,14 @@ struct BluetoothScannerView: View {
         .scrollContentBackground(.hidden)
         .searchable(text: $model.search, prompt: Text("Name, Hersteller, Dienst"))
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    BluetoothLogView()
+                } label: {
+                    Image(systemName: "clock.arrow.circlepath")
+                        .accessibilityLabel(Text("Verlauf der Funde"))
+                }
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Picker("Sortieren", selection: $model.sort) {

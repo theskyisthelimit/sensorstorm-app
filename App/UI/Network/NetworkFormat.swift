@@ -56,6 +56,88 @@ extension DeviceGuess {
     }
 }
 
+extension HostBadge {
+    var title: LocalizedStringKey {
+        switch self {
+        case .gateway: "Router des Netzes"
+        case .web: "Webserver"
+        case .ssh: "SSH"
+        case .files: "Dateifreigabe"
+        case .printer: "Drucker"
+        case .upnp: "UPnP"
+        case .bonjour: "Bonjour"
+        case .netbios: "NetBIOS"
+        case .dns: "DNS-Server"
+        case .mail: "Mail-Server"
+        case .database: "Datenbank"
+        }
+    }
+
+    var tint: Color {
+        switch self {
+        case .gateway: .blue
+        case .web: .green
+        case .ssh: .orange
+        case .files: .purple
+        case .printer: .brown
+        case .upnp: .teal
+        case .bonjour: .indigo
+        case .netbios: .cyan
+        case .dns: .mint
+        case .mail: .pink
+        case .database: .red
+        }
+    }
+}
+
+/// The one-letter marks of a host: a row of small tinted squares. Each reads out as its full
+/// name to VoiceOver, never as a letter.
+struct HostBadgeStrip: View {
+    let badges: [HostBadge]
+
+    var body: some View {
+        HStack(spacing: 3) {
+            ForEach(badges, id: \.self) { badge in
+                Text(verbatim: badge.letter)
+                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .frame(width: 16, height: 16)
+                    .background(badge.tint, in: RoundedRectangle(cornerRadius: 4))
+                    .accessibilityLabel(Text(badge.title))
+            }
+        }
+    }
+}
+
+/// What every letter stands for, for the person who has not memorised them yet.
+struct HostBadgeLegend: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    ForEach(HostBadge.allCases, id: \.self) { badge in
+                        HStack(spacing: 12) {
+                            HostBadgeStrip(badges: [badge])
+                            Text(badge.title)
+                        }
+                    }
+                } footer: {
+                    Text("Die Kürzel stehen nur da, wo der Scan es belegt hat: ein offener Port oder eine Ankündigung des Geräts im Netz.")
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .navigationTitle("Kürzel")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Fertig") { dismiss() } }
+            }
+        }
+        .presentationDetents([.medium, .large])
+    }
+}
+
 extension NetworkInterface.Kind {
     var title: LocalizedStringKey {
         switch self {

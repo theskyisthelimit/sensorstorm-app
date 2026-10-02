@@ -8,6 +8,8 @@ import SwiftUI
 @MainActor @Observable
 final class PortScanModel {
     private(set) var findings: [PortScanner.Finding] = []
+    /// What was tried, so the closed ports can be shown as ranges and not left out.
+    private(set) var scanned: [Int] = []
     private(set) var checked = 0
     private(set) var total = 0
     private(set) var isRunning = false
@@ -35,6 +37,7 @@ final class PortScanModel {
             ports = PortCatalog.services(preset)
         }
         total = ports.count
+        scanned = ports
         isRunning = true
         task = Task { [weak self] in
             let address = await PingModel.resolve(host)
@@ -125,19 +128,14 @@ struct PortScanToolView: View {
                     if model.findings.isEmpty {
                         Text("Kein Port offen.").foregroundStyle(.secondary)
                     }
-                    ForEach(model.findings, id: \.port) { finding in
-                        VStack(alignment: .leading, spacing: 2) {
-                            HStack {
-                                Text(verbatim: "\(finding.port)").font(.body.monospacedDigit().weight(.semibold))
-                                let name = PortCatalog.name(finding.port)
-                                if !name.isEmpty { Text(verbatim: name).foregroundStyle(.secondary) }
-                                Spacer()
-                                Text(verbatim: NetFormat.milliseconds(finding.roundTrip))
-                                    .font(.footnote.monospacedDigit()).foregroundStyle(.secondary)
+                    ForEach(PortRow.rows(scanned: model.scanned, open: model.findings.map(\.port)), id: \.self) { row in
+                        switch row {
+                        case .open(let port):
+                            if let finding = model.findings.first(where: { $0.port == port }) {
+                                openRow(finding)
                             }
-                            if let banner = finding.banner {
-                                Text(verbatim: banner).font(.footnote.monospaced()).foregroundStyle(.secondary)
-                            }
+                        case .closed(let first, let last, let count):
+                            closedRow(first: first, last: last, count: count)
                         }
                     }
                 } header: {
@@ -149,6 +147,43 @@ struct PortScanToolView: View {
         .navigationTitle("Portscan")
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear { model.stop() }
+    }
+
+    private func openRow(_ finding: PortScanner.Finding) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            HStack(alignment: .firstTextBaseline) {
+                Image(systemName: "circle.fill").font(.caption2).foregroundStyle(.green).accessibilityHidden(true)
+                Text(verbatim: "\(finding.port)").font(.body.monospacedDigit().weight(.semibold))
+                Spacer()
+                Text(verbatim: NetFormat.milliseconds(finding.roundTrip))
+                    .font(.footnote.monospacedDigit()).foregroundStyle(.secondary)
+            }
+            let title = PortCatalog.title(finding.port)
+            let name = PortCatalog.name(finding.port)
+            if !title.isEmpty || !name.isEmpty {
+                Text(verbatim: title.isEmpty ? name : title).font(.footnote).foregroundStyle(.secondary)
+            }
+            if let banner = finding.banner {
+                Text(verbatim: banner).font(.footnote.monospaced()).foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    /// A run of ports that stayed shut: „Geschlossen 1 bis 21". When the scan skipped some
+    /// ports inside the range, the row says how many were actually tried.
+    @ViewBuilder
+    private func closedRow(first: Int, last: Int, count: Int) -> some View {
+        HStack {
+            Image(systemName: "circle").font(.caption2).foregroundStyle(.secondary).accessibilityHidden(true)
+            if first == last {
+                Text("Geschlossen \(first)")
+            } else if count == last - first + 1 {
+                Text("Geschlossen \(first) bis \(last)")
+            } else {
+                Text("\(count) Ports geschlossen, \(first) bis \(last)")
+            }
+        }
+        .font(.footnote).foregroundStyle(.secondary)
     }
 }
 

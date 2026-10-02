@@ -12,6 +12,11 @@ struct HostDetailView: View {
     @State private var annotation = HostAnnotation()
     @State private var loaded = false
 
+    /// What the person typed, else what the neighbour table said.
+    private var effectiveMAC: MACAddress? {
+        MACAddress(annotation.mac ?? "") ?? host.mac.flatMap { MACAddress($0) }
+    }
+
     var body: some View {
         List {
             Section {
@@ -29,6 +34,22 @@ struct HostDetailView: View {
                 }
                 if host.address == gateway {
                     Label("Router des Netzes", systemImage: "wifi.router")
+                }
+                if let mac = effectiveMAC {
+                    LabeledContent("Hardware-Adresse") {
+                        Text(verbatim: mac.formatted(uppercase: true)).monospaced().textSelection(.enabled)
+                    }
+                    if let vendor = VendorLookup.registered(mac) {
+                        LabeledContent("Hersteller") {
+                            Text(verbatim: vendor).multilineTextAlignment(.trailing).textSelection(.enabled)
+                        }
+                    } else if mac.isLocallyAdministered {
+                        LabeledContent("Hersteller") { Text("Zufällige Adresse") }
+                    }
+                }
+                let badges = HostBadge.badges(for: host, isGateway: host.address == gateway)
+                if !badges.isEmpty {
+                    HostBadgeStrip(badges: badges)
                 }
                 if let roundTrip = host.roundTrip {
                     LabeledContent("Antwortzeit") { Text(verbatim: NetFormat.milliseconds(roundTrip)).monospacedDigit() }
@@ -56,8 +77,8 @@ struct HostDetailView: View {
                     ForEach(host.openPorts, id: \.self) { port in
                         HStack {
                             Text(verbatim: "\(port)").font(.body.monospacedDigit().weight(.semibold))
-                            let name = PortCatalog.name(port)
-                            if !name.isEmpty { Text(verbatim: name).foregroundStyle(.secondary) }
+                            let name = PortCatalog.title(port).isEmpty ? PortCatalog.name(port) : PortCatalog.title(port)
+                            if !name.isEmpty { Text(verbatim: name).foregroundStyle(.secondary).lineLimit(2) }
                             Spacer()
                             if let url = webURL(port) {
                                 Link(destination: url) {
@@ -89,7 +110,7 @@ struct HostDetailView: View {
                         Label("HTTP-Test", systemImage: "arrow.left.arrow.right")
                     }
                 }
-                NavigationLink { WakeOnLANView(mac: annotation.mac ?? "") } label: {
+                NavigationLink { WakeOnLANView(mac: annotation.mac ?? host.mac ?? "") } label: {
                     Label("Wake-on-LAN", systemImage: "power")
                 }
             }
@@ -106,7 +127,7 @@ struct HostDetailView: View {
             } header: {
                 Text("Meine Angaben")
             } footer: {
-                Text("Bleiben auf diesem Telefon und gelten für dieses Netz. iOS verrät die Hardware-Adresse nicht; wer sie kennt, kann sie hier für Wake-on-LAN eintragen.")
+                Text("Bleiben auf diesem Telefon und gelten für dieses Netz. Liest iOS die Hardware-Adresse nicht aus, kann sie hier eingetragen werden, zum Beispiel für Wake-on-LAN.")
             }
         }
         .scrollContentBackground(.hidden)

@@ -241,6 +241,7 @@ final class SensorHub {
     }
 
     private func updatePeripheral() {
+        watchLink.setFastRate(settings.isOn(.watchFast))
         peripheralService.setNearbyToken(settings.offersBluetoothService && settings.isOn(.uwb)
                                          ? nearbyLink.prepare() : nil)
         if settings.offersBluetoothService {

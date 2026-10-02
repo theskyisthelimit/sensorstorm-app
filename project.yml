@@ -50,6 +50,10 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: "NO"
         CODE_SIGN_ENTITLEMENTS: Resources/Sensorstorm.entitlements
+        # <resolv.h> is in no module the SDK ships for iOS; one small C file reads the system's
+        # DNS servers and the bridging header makes it visible to Swift.
+        SWIFT_OBJC_BRIDGING_HEADER: App/Bridging/Sensorstorm-Bridging-Header.h
+        OTHER_LDFLAGS: "$(inherited) -lresolv"
       # Nur Release, damit der Simulator-Build weiter ohne Signatur durchläuft. Je Ziel,
       # weil ein Profilname auf der Kommandozeile für alle Ziele gilt und die Uhr ihr
       # eigenes braucht. Steht er nirgends, archiviert xcodebuild ohne Berechtigungen
@@ -142,6 +146,11 @@ targets:
           Sensorstorm liest auf Wunsch Puls, Atmung, Sauerstoff, Schritte und Laufmetriken aus
           der Zeit einer Aufnahme und legt sie neben die übrigen Messwerte. Es wird nichts in
           Health geschrieben.
+        # Required as soon as the HealthKit entitlement is in the bundle, even when the app only
+        # reads: App Store validation rejects the upload otherwise (the watch app lost build 9 to it).
+        NSHealthUpdateUsageDescription: >-
+          Sensorstorm schreibt nichts in „Health". Gelesene Werte werden nur zusammen mit den
+          übrigen Messwerten in der Aufnahme abgelegt.
         NSHomeKitUsageDescription: >-
           Sensorstorm liest auf Wunsch Temperatur, Feuchte, CO₂ und Licht aus den Sensoren
           deines Zuhauses, solange eine Aufnahme läuft.
@@ -149,8 +158,20 @@ targets:
           Sensorstorm misst auf Wunsch mit Ultrabreitband Abstand und Richtung zu einem
           zweiten iPhone, auf dem Sensorstorm läuft.
         NFCReaderUsageDescription: >-
-          Sensorstorm liest NFC-Aufkleber an Objekten, die du kontrollierst, und trägt die
-          Kennung in die Beobachtung ein.
+          Sensorstorm liest und beschreibt NFC-Tags auf Wunsch: als Kontrollpunkte an
+          Objekten, die du kontrollierst, und im NFC-Werkzeug.
+        # Polling for ISO 14443 tags (MIFARE Ultralight, NTAG) makes iOS ask for the smart-card
+        # applications the app may select, and for ISO 18092 the FeliCa system codes. NDEF
+        # type 4 tags, FIDO keys and PIV cards answer to these; the app only reads what a tag
+        # volunteers (type and serial number) and never selects a payment application.
+        com.apple.developer.nfc.readersession.iso7816.select-identifiers:
+          - D2760000850101
+          - D2760000850100
+          - A0000006472F0001
+          - A000000308000010000100
+        com.apple.developer.nfc.readersession.felica.systemcodes:
+          - 12FC
+          - FE00
         NSLocalNetworkUsageDescription: >-
           Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen
           einträgst und sucht auf Wunsch die Geräte im eigenen Netz. Beides braucht diese

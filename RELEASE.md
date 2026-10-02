@@ -69,6 +69,15 @@ Und eine Capability, die im Portal fehlt, lässt das Profil sie weglassen:
 `Tools/ensure_profiles.py` schaltet die in `TARGETS` genannten jetzt auch an
 einer **bestehenden** Bundle-ID ein, nicht nur beim Anlegen.
 
+**Die Telefon-App hat seit der Erweiterung Berechtigungen** (`Resources/Sensorstorm.entitlements`):
+WLAN-Informationen, HealthKit (nur lesen), HomeKit und NFC-Lesen. `Tools/ensure_profiles.py` schaltet
+die vier Capabilities (`ACCESS_WIFI_INFORMATION`, `HEALTHKIT`, `HOMEKIT`, `NFC_TAG_READING`) an der
+bestehenden App-ID ein und erneuert das Profil; **vor dem ersten Build danach einmal laufen lassen**
+und im IPA nachsehen, ob die vier Entitlements wirklich drin stehen (Befehl oben, Pfad ohne
+`Watch/Sensorstorm.app`). Zu HealthKit gehört `NSHealthUpdateUsageDescription` in der Info.plist, auch
+wenn nur gelesen wird; sie steht in `project.yml`. Nicht enthalten, weil nur auf Antrag: Multicast
+Networking (Wake-on-LAN), SensorKit, Wassertiefe der Uhr.
+
 Verarbeitung dauert 10–30 Minuten, danach ist der Build in TestFlight.
 
 Die Gruppe `Intern` hat `hasAccessToAllBuilds`: jeder neue Build erscheint dort

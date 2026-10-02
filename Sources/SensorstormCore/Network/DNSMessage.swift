@@ -10,6 +10,7 @@ public enum DNSRecordType: UInt16, Sendable, CaseIterable {
     case txt = 16
     case aaaa = 28
     case srv = 33
+    case caa = 257
     case any = 255
 
     public var label: String {
@@ -23,6 +24,7 @@ public enum DNSRecordType: UInt16, Sendable, CaseIterable {
         case .txt: "TXT"
         case .aaaa: "AAAA"
         case .srv: "SRV"
+        case .caa: "CAA"
         case .any: "ANY"
         }
     }
@@ -44,6 +46,27 @@ public struct DNSRecord: Sendable, Equatable {
     }
 
     public var typeLabel: String { DNSRecordType(rawValue: type)?.label ?? "TYPE\(type)" }
+
+    /// The fields of an SOA record: who is the primary server, who to write to, and the timers
+    /// a secondary server follows. `nil` for any other record or one that did not parse.
+    public struct SOA: Sendable, Equatable {
+        public var primary: String
+        public var mailbox: String
+        public var serial: UInt32
+        public var refresh: UInt32
+        public var retry: UInt32
+        public var expire: UInt32
+        public var minimum: UInt32
+    }
+
+    public var soa: SOA? {
+        guard type == DNSRecordType.soa.rawValue else { return nil }
+        let parts = value.split(separator: " ")
+        guard parts.count == 7, let serial = UInt32(parts[2]), let refresh = UInt32(parts[3]),
+              let retry = UInt32(parts[4]), let expire = UInt32(parts[5]), let minimum = UInt32(parts[6]) else { return nil }
+        return SOA(primary: String(parts[0]), mailbox: String(parts[1]), serial: serial,
+                   refresh: refresh, retry: retry, expire: expire, minimum: minimum)
+    }
 }
 
 public struct DNSResponse: Sendable, Equatable {
@@ -53,8 +76,19 @@ public struct DNSResponse: Sendable, Equatable {
     public var rcode: Int
     /// The answer did not fit in a UDP packet; asking again over TCP would give all of it.
     public var isTruncated: Bool
+    /// The header's flag bits (QR, AA, TC, RD, RA, AD, CD).
+    public var flags: UInt16
     public var answers: [DNSRecord]
     public var authorities: [DNSRecord]
+
+    /// `qr aa rd ra`: the flags that are set, in the lower-case names `dig` prints.
+    public var flagNames: [String] {
+        let names: [(UInt16, String)] = [(0x8000, "qr"), (0x0400, "aa"), (0x0200, "tc"), (0x0100, "rd"),
+                                         (0x0080, "ra"), (0x0020, "ad"), (0x0010, "cd")]
+        return names.filter { flags & $0.0 != 0 }.map(\.1)
+    }
+
+    public var isAuthoritative: Bool { flags & 0x0400 != 0 }
 
     public var rcodeLabel: String {
         switch rcode {
@@ -142,6 +176,7 @@ public enum DNSMessage {
                            isResponse: flags & 0x8000 != 0,
                            rcode: Int(flags & 0x000F),
                            isTruncated: flags & 0x0200 != 0,
+                           flags: flags,
                            answers: answers, authorities: authorities)
     }
 
@@ -207,7 +242,20 @@ public enum DNSMessage {
                   let (mailbox, afterMailbox) = readName(b, afterPrimary),
                   afterMailbox + 4 <= end else { return hex(b[start..<end]) }
             let serial = (0..<4).reduce(UInt32(0)) { $0 << 8 | UInt32(b[afterMailbox + $1]) }
-            return "\(primary) \(mailbox) \(serial)"
+            guard afterMailbox + 20 <= end else { return "\(primary) \(mailbox) \(serial)" }
+            // refresh, retry, expire and the negative-caching time follow the serial
+            let timers = (1..<5).map { index in
+                (0..<4).reduce(UInt32(0)) { $0 << 8 | UInt32(b[afterMailbox + 4 * index + $1]) }
+            }
+            return ([primary, mailbox, String(serial)] + timers.map(String.init)).joined(separator: " ")
+        case 257 where length >= 3:
+            // flags, tag length, tag, value: `0 issue "letsencrypt.org"`
+            let flags = Int(b[start])
+            let tagLength = Int(b[start + 1])
+            guard start + 2 + tagLength <= end else { return hex(b[start..<end]) }
+            let tag = String(decoding: b[(start + 2)..<(start + 2 + tagLength)], as: UTF8.self)
+            let value = String(decoding: b[(start + 2 + tagLength)..<end], as: UTF8.self)
+            return "\(flags) \(tag) \"\(value)\""
         default:
             return hex(b[start..<end])
         }

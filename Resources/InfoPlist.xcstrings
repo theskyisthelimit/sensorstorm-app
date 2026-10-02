@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "de",
   "strings" : {
+    "NFCReaderUsageDescription" : {
+      "comment" : "Privacy - NFC Scan Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm reads and writes NFC tags on request: as checkpoints on objects you inspect, and in the NFC tool."
+          }
+        }
+      }
+    },
     "NSBluetoothAlwaysUsageDescription" : {
       "comment" : "Privacy - Bluetooth Always Usage Description",
       "localizations" : {
@@ -335,169 +346,496 @@
         }
       }
     },
+    "NSHealthShareUsageDescription" : {
+      "comment" : "Privacy - Health Share Usage Description",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يقرأ Sensorstorm عند الطلب النبض والتنفس والأكسجين والخطوات ومقاييس الجري من وقت تسجيل ويضعها بجانب القيم المقاسة الأخرى. ولا يُكتب شيء في «الصحة»."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na požádání čte tep, dýchání, kyslík, kroky a metriky běhu z doby záznamu a ukládá je vedle ostatních naměřených hodnot. Do Zdraví se nic nezapisuje."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm læser efter ønske puls, vejrtrækning, ilt, skridt og løbemetrikker fra tidsrummet for en optagelse og lægger dem ved siden af de øvrige målinger. Der skrives intet i Sundhed."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm διαβάζει, όταν το ζητήσεις, καρδιακούς παλμούς, αναπνοή, οξυγόνο, βήματα και μετρικές τρεξίματος από τον χρόνο μιας εγγραφής και τα τοποθετεί δίπλα στις υπόλοιπες τιμές μέτρησης. Τίποτα δεν γράφεται στην Υγεία."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On request, Sensorstorm reads heart rate, breathing, oxygen, steps and running metrics from the time of a recording and places them next to the other measurements. Nothing is written to Health."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Si lo pides, Sensorstorm lee pulso, respiración, oxígeno, pasos y métricas de carrera del período de una grabación y los coloca junto a los demás valores medidos. No se escribe nada en Salud."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lukee pyydettäessä sykkeen, hengityksen, happisaturaation, askeleet ja juoksumittarit tallenteen ajalta ja asettaa ne muiden mittausarvojen viereen. Terveys-sovellukseen ei kirjoiteta mitään."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lit, à votre demande, pouls, respiration, oxygène, pas et métriques de course sur la durée d’un enregistrement et les place à côté des autres mesures. Rien n’est écrit dans Santé."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na zahtjev čita puls, disanje, kisik, korake i metrike trčanja iz vremena snimke i stavlja ih uz ostale mjerne vrijednosti. U Zdravlje se ništa ne zapisuje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A Sensorstorm kérésedre kiolvassa a pulzust, a légzést, az oxigént, a lépéseket és a futási mutatókat egy felvétel idejéből, és a többi mérési érték mellé teszi őket. Az Egészség appba semmi sem íródik."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se vuoi, Sensorstorm legge battito, respirazione, ossigeno, passi e metriche di corsa dal periodo di una registrazione e li affianca alle altre misure. Non viene scritto nulla in Salute."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、ご希望の場合に、記録の時間帯の脈拍、呼吸、酸素、歩数、ランニング指標を読み取り、他の測定値と並べて保存します。ヘルスケアには何も書き込みません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "원하면 Sensorstorm이 기록 시간대의 심박수, 호흡, 산소, 걸음 수, 러닝 지표를 읽어 다른 측정값 옆에 놓아요. 건강 앱에는 아무것도 쓰지 않아요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm leser på forespørsel puls, respirasjon, oksygen, skritt og løpemål fra tiden for et opptak og legger dem ved siden av de andre måleverdiene. Det skrives ikke noe i Helse."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm leest op verzoek hartslag, ademhaling, zuurstof, stappen en loopgegevens uit de tijd van een opname en legt ze naast de overige metingen. Er wordt niets naar Gezondheid geschreven."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Na życzenie Sensorstorm odczytuje tętno, oddech, tlen, kroki i wskaźniki biegu z czasu nagrania i umieszcza je obok pozostałych pomiarów. Nic nie jest zapisywane w aplikacji Zdrowie."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando você pede, o Sensorstorm lê frequência cardíaca, respiração, oxigênio, passos e métricas de corrida do período de uma gravação e os coloca ao lado das demais medições. Nada é gravado no Saúde."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando pedido, o Sensorstorm lê pulsação, respiração, oxigénio, passos e métricas de corrida do período de uma gravação e coloca-os junto das restantes medições. Nada é escrito na app Saúde."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm citește, la cerere, pulsul, respirația, oxigenul, pașii și metricile de alergare din intervalul unei înregistrări și le pune lângă celelalte valori măsurate. Nu se scrie nimic în Health."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "По вашему запросу Sensorstorm считывает пульс, дыхание, кислород, шаги и показатели бега за время записи и кладёт их рядом с остальными измеренными значениями. В Health ничего не записывается."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na požiadanie číta tep, dych, kyslík, kroky a bežecké metriky z času záznamu a ukladá ich k ostatným nameraným hodnotám. Do aplikácie Zdravie sa nič nezapisuje."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm läser på begäran puls, andning, syre, steg och löpmått från tiden för en inspelning och lägger dem bredvid de andra mätvärdena. Ingenting skrivs till Hälsa."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "İstersen Sensorstorm, bir kaydın zamanından nabız, solunum, oksijen, adım ve koşu ölçütlerini okur ve diğer ölçüm değerlerinin yanına koyar. Sağlık’a hiçbir şey yazılmaz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm на ваше прохання читає пульс, дихання, кисень, кроки та показники бігу за час запису й кладе їх поряд з іншими виміряними значеннями. У «Здоров’я» нічого не записується."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "应你的要求，Sensorstorm 会读取一次记录期间的心率、呼吸、血氧、步数和跑步指标，并把它们与其他测量值放在一起。不会向“健康”写入任何内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 可依你的要求，讀取一筆記錄期間的心率、呼吸、血氧、步數與跑步指標，並與其他量測值並列。不會寫入任何資料到「健康」。"
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription" : {
+      "comment" : "Privacy - Health Update Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm writes nothing to “Health”. Values it reads are stored only together with the other readings in the recording."
+          }
+        }
+      }
+    },
+    "NSHomeKitUsageDescription" : {
+      "comment" : "Privacy - HomeKit Usage Description",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يقرأ Sensorstorm عند الطلب درجة الحرارة والرطوبة وCO₂ والضوء من مستشعرات منزلك أثناء التسجيل."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na požádání čte teplotu, vlhkost, CO₂ a světlo ze senzorů vaší domácnosti, dokud běží záznam."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm læser efter ønske temperatur, fugtighed, CO₂ og lys fra sensorerne i dit hjem, så længe en optagelse kører."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm διαβάζει, όταν το ζητήσεις, θερμοκρασία, υγρασία, CO₂ και φως από τους αισθητήρες του σπιτιού σου όσο τρέχει μια εγγραφή."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On request, Sensorstorm reads temperature, humidity, CO₂ and light from your home’s sensors while a recording runs."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Si lo pides, Sensorstorm lee temperatura, humedad, CO₂ y luz de los sensores de tu hogar mientras hay una grabación en curso."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm lukee pyydettäessä lämpötilan, kosteuden, CO₂:n ja valon kotisi antureista tallenteen ollessa käynnissä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "À votre demande, Sensorstorm lit la température, l’humidité, le CO₂ et la lumière à partir des capteurs de votre domicile tant qu’un enregistrement est en cours."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na zahtjev čita temperaturu, vlažnost, CO₂ i svjetlo iz senzora tvog doma dok traje snimanje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A Sensorstorm kérésedre kiolvassa a hőmérsékletet, a páratartalmat, a CO₂-t és a fényt az otthonod érzékelőiből, amíg egy felvétel fut."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se vuoi, Sensorstorm legge temperatura, umidità, CO₂ e luce dai sensori della tua casa finché è in corso una registrazione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、ご希望の場合に、記録中、自宅のセンサーから温度、湿度、CO₂、光を読み取ります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "원하면 Sensorstorm이 기록 중에 집의 센서에서 온도, 습도, CO₂, 조도를 읽어요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm leser på forespørsel temperatur, fuktighet, CO₂ og lys fra sensorene i hjemmet ditt så lenge et opptak pågår."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm leest op verzoek temperatuur, vochtigheid, CO₂ en licht uit de sensoren van je huis, zolang een opname loopt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Na życzenie Sensorstorm odczytuje temperaturę, wilgotność, CO₂ i światło z czujników twojego domu, dopóki trwa nagranie."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando você pede, o Sensorstorm lê temperatura, umidade, CO₂ e luz dos sensores da sua casa enquanto uma gravação está em andamento."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando pedido, o Sensorstorm lê temperatura, humidade, CO₂ e luz dos sensores da tua casa enquanto uma gravação decorre."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm citește, la cerere, temperatura, umiditatea, CO₂ și lumina din senzorii locuinței tale, cât timp o înregistrare este în curs."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "По вашему запросу Sensorstorm считывает температуру, влажность, CO₂ и свет с датчиков вашего дома, пока идёт запись."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na požiadanie číta teplotu, vlhkosť, CO₂ a svetlo zo senzorov vašej domácnosti, kým beží záznam."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm läser på begäran temperatur, fuktighet, CO₂ och ljus från sensorerna i ditt hem så länge en inspelning pågår."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "İstersen Sensorstorm, bir kayıt sürdüğü sürece evindeki sensörlerden sıcaklığı, nemi, CO₂’yi ve ışığı okur."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm на ваше прохання читає температуру, вологість, CO₂ і світло з датчиків вашого дому, поки триває запис."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "应你的要求，Sensorstorm 会在记录进行期间，读取你家中传感器的温度、湿度、CO₂ 和光线。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 可依你的要求，在記錄期間讀取你家中感測器的溫度、濕度、CO₂ 與光線。"
+          }
+        }
+      }
+    },
     "NSLocalNetworkUsageDescription" : {
       "comment" : "Privacy - Local Network Usage Description",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "يرسل Sensorstorm القيم المقاسة إلى العنوان الذي تُدخله في الإعدادات. وإذا كان الخادم على الشبكة نفسها فهذا يحتاج هذا الإذن."
+            "state" : "needs_review",
+            "value" : "يرسل Sensorstorm القيم المقاسة إلى العنوان الذي تدخله في الإعدادات، ويبحث عند الطلب عن الأجهزة في شبكتك. كلاهما يحتاج إلى هذا الإذن."
           }
         },
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm posílá naměřené hodnoty na adresu, kterou zadáte v nastavení. Pokud je server ve stejné síti, potřebuje to toto oprávnění."
+            "state" : "needs_review",
+            "value" : "Sensorstorm odesílá naměřené hodnoty na adresu, kterou zadáte v Nastavení, a na požádání hledá zařízení ve vlastní síti. Obojí potřebuje toto povolení."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sender måleværdierne til den adresse, du indtaster i indstillingerne. Ligger serveren på samme net, kræver det denne tilladelse."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe."
+            "state" : "needs_review",
+            "value" : "Sensorstorm sender målingerne til den adresse, du angiver i Indstillinger, og søger efter ønske efter enheder på dit eget netværk. Begge dele kræver denne tilladelse."
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Το Sensorstorm στέλνει τις μετρήσεις στη διεύθυνση που καταχωρείς στις ρυθμίσεις. Αν ο διακομιστής βρίσκεται στο ίδιο δίκτυο, χρειάζεται αυτή η άδεια."
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm στέλνει τις τιμές μέτρησης στη διεύθυνση που καταχωρίζεις στις Ρυθμίσεις και, όταν το ζητήσεις, αναζητά συσκευές στο δικό σου δίκτυο. Και τα δύο χρειάζονται αυτή την άδεια."
           }
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sends readings to the address you enter in Settings. If that server is on the same network, this permission is what allows it."
+            "state" : "needs_review",
+            "value" : "Sensorstorm sends the readings to the address you enter in Settings and, on request, searches for devices in your own network. Both need this permission."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm envía las mediciones a la dirección que introduzcas en los ajustes. Si ese servidor está en la misma red, hace falta este permiso."
+            "state" : "needs_review",
+            "value" : "Sensorstorm envía los valores medidos a la dirección que introduzcas en Ajustes y, si lo pides, busca los dispositivos de tu propia red. Ambas cosas necesitan este permiso."
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm lähettää mittausarvot osoitteeseen, jonka annat asetuksissa. Jos palvelin on samassa verkossa, se vaatii tämän luvan."
+            "state" : "needs_review",
+            "value" : "Sensorstorm lähettää mittausarvot osoitteeseen, jonka kirjoitat Asetuksiin, ja etsii pyydettäessä laitteita omasta verkostasi. Molemmat tarvitsevat tämän luvan."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm envoie les mesures à l'adresse que vous saisissez dans les réglages. Si ce serveur est sur le même réseau, cette autorisation est nécessaire."
+            "state" : "needs_review",
+            "value" : "Sensorstorm envoie les mesures à l’adresse que vous saisissez dans Réglages et, à votre demande, recherche les appareils de votre propre réseau. Les deux nécessitent cette autorisation."
           }
         },
         "hr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm šalje izmjerene vrijednosti na adresu koju upišeš u postavkama. Ako je poslužitelj u istoj mreži, za to treba ovo dopuštenje."
+            "state" : "needs_review",
+            "value" : "Sensorstorm šalje mjerne vrijednosti na adresu koju upišeš u Postavkama i na zahtjev traži uređaje u vlastitoj mreži. Oboje treba ovo dopuštenje."
           }
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "A Sensorstorm a mért értékeket arra a címre küldi, amelyet a beállításokban megadsz. Ha a kiszolgáló ugyanabban a hálózatban van, ehhez kell ez az engedély."
+            "state" : "needs_review",
+            "value" : "A Sensorstorm a mérési értékeket arra a címre küldi, amelyet a Beállításokban megadsz, és kérésedre megkeresi a saját hálózatod eszközeit. Mindkettőhöz szükség van erre az engedélyre."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm invia le misure all'indirizzo che inserisci nelle impostazioni. Se quel server si trova sulla stessa rete, serve questa autorizzazione."
+            "state" : "needs_review",
+            "value" : "Sensorstorm invia le misure all'indirizzo che inserisci in Impostazioni e, se vuoi, cerca i dispositivi nella tua rete. Entrambe le funzioni richiedono questa autorizzazione."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm は設定で入力したアドレスへ測定値を送信します。そのサーバーが同じネットワーク上にある場合、この許可が必要です。"
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、設定で入力したアドレスに測定値を送信し、ご希望の場合に自分のネットワーク内の端末を検索します。どちらもこの許可が必要です。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm은 설정에 입력한 주소로 측정값을 보냅니다. 그 서버가 같은 네트워크에 있다면 이 권한이 필요합니다."
+            "state" : "needs_review",
+            "value" : "Sensorstorm은 설정에 입력한 주소로 측정값을 보내고, 원하면 자신의 네트워크에서 기기를 검색해요. 둘 다 이 허용이 필요해요."
           }
         },
         "nb" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm sender måleverdiene til adressen du oppgir i innstillingene. Ligger serveren på samme nett, krever det denne tillatelsen."
+            "state" : "needs_review",
+            "value" : "Sensorstorm sender måleverdiene til adressen du legger inn i Innstillinger, og søker på forespørsel etter enheter på ditt eget nettverk. Begge deler krever denne tillatelsen."
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm stuurt de metingen naar het adres dat je in de instellingen invult. Staat die server in hetzelfde netwerk, dan is deze toestemming nodig."
+            "state" : "needs_review",
+            "value" : "Sensorstorm stuurt de metingen naar het adres dat je in Instellingen invoert en zoekt op verzoek naar apparaten in je eigen netwerk. Beide hebben deze toestemming nodig."
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm wysyła pomiary pod adres, który wpiszesz w ustawieniach. Jeśli serwer jest w tej samej sieci, wymaga to tego uprawnienia."
+            "state" : "needs_review",
+            "value" : "Sensorstorm wysyła pomiary na adres wpisany w Ustawieniach i na życzenie wyszukuje urządzenia we własnej sieci. Jedno i drugie wymaga tej zgody."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Sensorstorm envia as medições para o endereço que você informa nos ajustes. Se esse servidor estiver na mesma rede, é preciso esta permissão."
+            "state" : "needs_review",
+            "value" : "O Sensorstorm envia as medições ao endereço que você informa em Ajustes e, quando você pede, procura dispositivos na sua própria rede. As duas coisas precisam desta permissão."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "O Sensorstorm envia os valores medidos para o endereço que indicares nas definições. Se o servidor estiver na mesma rede, isso precisa desta autorização."
+            "state" : "needs_review",
+            "value" : "O Sensorstorm envia as medições para o endereço que indicas nas Definições e, se pedires, procura os aparelhos na tua própria rede. Ambas as funções precisam desta autorização."
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm trimite valorile măsurate la adresa pe care o introduci în configurări. Dacă serverul este în aceeași rețea, este nevoie de această permisiune."
+            "state" : "needs_review",
+            "value" : "Sensorstorm trimite valorile măsurate la adresa pe care o introduci în Configurări și, la cerere, caută dispozitive în propria rețea. Ambele au nevoie de această permisiune."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm отправляет измерения на адрес, который вы указали в настройках. Если сервер в той же сети, для этого нужно это разрешение."
+            "state" : "needs_review",
+            "value" : "Sensorstorm отправляет измеренные значения на адрес, который вы укажете в Настройках, и по вашему запросу ищет устройства в вашей сети. Для обоих нужно это разрешение."
           }
         },
         "sk" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm posiela namerané hodnoty na adresu, ktorú zadáte v nastaveniach. Ak je server v tej istej sieti, potrebuje to toto oprávnenie."
+            "state" : "needs_review",
+            "value" : "Sensorstorm odosiela namerané hodnoty na adresu, ktorú zadáte v Nastaveniach, a na požiadanie hľadá zariadenia vo vlastnej sieti. Oboje vyžaduje toto povolenie."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm skickar mätvärdena till adressen du anger i inställningarna. Ligger servern på samma nät krävs den här behörigheten."
+            "state" : "needs_review",
+            "value" : "Sensorstorm skickar mätvärdena till adressen som du anger i Inställningar och söker på begäran efter enheter i det egna nätverket. Båda kräver det här tillståndet."
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm ölçüm değerlerini ayarlarda girdiğin adrese gönderir. Sunucu aynı ağdaysa bunun için bu izin gerekir."
+            "state" : "needs_review",
+            "value" : "Sensorstorm, ölçüm değerlerini Ayarlar’a girdiğin adrese gönderir ve istersen kendi ağındaki cihazları arar. İkisi de bu izni gerektirir."
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm надсилає вимірювання на адресу, яку ви вказали в налаштуваннях. Якщо сервер у тій самій мережі, для цього потрібен цей дозвіл."
+            "state" : "needs_review",
+            "value" : "Sensorstorm надсилає виміряні значення на адресу, яку ви вводите в Налаштуваннях, і за потреби шукає пристрої у вашій мережі. Для обох потрібен цей дозвіл."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm 会把测量值发送到你在设置中填写的地址。如果服务器在同一个网络里，这需要该授权。"
+            "state" : "needs_review",
+            "value" : "Sensorstorm 会把测量值发送到你在“设置”中填写的地址，并应你的要求搜索你自己网络中的设备。两者都需要这项授权。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sensorstorm 會將量測值送到你在設定中填入的位址。若該伺服器位於同一個網路，就需要這項權限。"
+            "state" : "needs_review",
+            "value" : "Sensorstorm 會把量測值傳送到你在設定中填入的位址，並可依你的要求搜尋自己網路中的裝置。兩者都需要這項授權。"
           }
         }
       }
@@ -1166,6 +1504,167 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorstorm 會記錄加速度、角速度、姿態、磁場與步數。"
+          }
+        }
+      }
+    },
+    "NSNearbyInteractionUsageDescription" : {
+      "comment" : "Privacy - Nearby Interaction Usage Description",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "يقيس Sensorstorm عند الطلب بالنطاق فائق العرض المسافة والاتجاه إلى iPhone ثانٍ يعمل عليه Sensorstorm."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na požádání měří pomocí ultraširokého pásma vzdálenost a směr k druhému iPhonu, na kterém běží Sensorstorm."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm måler efter ønske med ultrabredbånd afstand og retning til en anden iPhone, som kører Sensorstorm."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm μετρά, όταν το ζητήσεις, με υπερευρεία ζώνη την απόσταση και την κατεύθυνση προς ένα δεύτερο iPhone στο οποίο τρέχει το Sensorstorm."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "On request, Sensorstorm uses ultra-wideband to measure distance and direction to a second iPhone running Sensorstorm."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Si lo pides, Sensorstorm mide con banda ultraancha la distancia y la dirección a un segundo iPhone en el que se ejecuta Sensorstorm."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm mittaa pyydettäessä ultralaajakaistalla etäisyyden ja suunnan toiseen iPhoneen, jossa Sensorstorm on käynnissä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "À votre demande, Sensorstorm mesure avec l’ultra-large bande la distance et la direction vers un deuxième iPhone sur lequel Sensorstorm tourne."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na zahtjev ultraširokopojasnom vezom mjeri udaljenost i smjer do drugog iPhone uređaja na kojem radi Sensorstorm."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A Sensorstorm kérésedre ultraszélessávval méri a távolságot és az irányt egy második iPhone-hoz, amelyen a Sensorstorm fut."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se vuoi, Sensorstorm misura con la banda ultralarga distanza e direzione verso un secondo iPhone su cui è attivo Sensorstorm."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm は、ご希望の場合に、Sensorstorm を実行している 2 台目の iPhone までの距離と方向を、超広帯域で測定します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "원하면 Sensorstorm이 초광대역으로 Sensorstorm이 실행 중인 두 번째 iPhone까지의 거리와 방향을 측정해요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm måler på forespørsel avstand og retning med ultrabredbånd til en annen iPhone som kjører Sensorstorm."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm meet op verzoek met ultrabreedband afstand en richting tot een tweede iPhone waarop Sensorstorm draait."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Na życzenie Sensorstorm mierzy za pomocą ultraszerokiego pasma odległość i kierunek do drugiego iPhone’a z uruchomionym Sensorstorm."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando você pede, o Sensorstorm mede com banda ultralarga a distância e a direção até um segundo iPhone que esteja rodando o Sensorstorm."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quando pedido, o Sensorstorm mede com banda ultralarga a distância e a direção a um segundo iPhone onde o Sensorstorm esteja a funcionar."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm măsoară, la cerere, cu ultra-wideband distanța și direcția către un al doilea iPhone pe care rulează Sensorstorm."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "По вашему запросу Sensorstorm измеряет по сверхширокополосной связи расстояние и направление до второго iPhone, на котором запущен Sensorstorm."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm na požiadanie meria ultraširokopásmovým rádiom vzdialenosť a smer k druhému iPhonu, na ktorom beží Sensorstorm."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm mäter på begäran med ultrabredband avstånd och riktning till en annan iPhone som kör Sensorstorm."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "İstersen Sensorstorm, ultra geniş bant ile Sensorstorm’un çalıştığı ikinci bir iPhone’a mesafeyi ve yönü ölçer."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm на ваше прохання вимірює надширокосмуговим зв’язком відстань і напрямок до другого iPhone, на якому запущено Sensorstorm."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "应你的要求，Sensorstorm 会用超宽带测量与另一台运行 Sensorstorm 的 iPhone 之间的距离和方向。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm 可依你的要求，以超寬頻量測與另一支同樣執行 Sensorstorm 的 iPhone 之間的距離與方向。"
           }
         }
       }

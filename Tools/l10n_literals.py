@@ -73,6 +73,8 @@ ALLOWED_FILES = {
     # Eine Gemeinde, die ihren Katalog als Datei einliest, bringt dieselbe Form mit; der
     # String Catalog der App kennt diese Texte nie.
     "Sources/SensorstormCore/Model/FindingCatalog.swift",
+    # Namen aus den Tabellen der Bluetooth SIG: die Fachbegriffe stehen überall so, auf Englisch.
+    "Sources/SensorstormCore/Bluetooth/BluetoothNames.swift",
 }
 
 

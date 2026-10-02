@@ -88,17 +88,23 @@ enum NetworkReport {
 
             canvas.heading(String(localized: "Geräte"))
             canvas.table(
-                header: [String(localized: "Adresse"), String(localized: "Name"), String(localized: "Dienste")],
+                header: [String(localized: "Adresse"), String(localized: "Name"),
+                         String(localized: "Hardware-Adresse"), String(localized: "Dienste")],
                 rows: snapshot.hosts.map { host in
                     let alias = input.aliases[host.address]?.alias
                     let ports = host.openPorts.map { "\($0) \(PortCatalog.name($0))" }.joined(separator: ", ")
+                    let mac = (input.aliases[host.address]?.mac).flatMap { MACAddress($0) }
+                        ?? host.mac.flatMap { MACAddress($0) }
+                    let hardware = mac.map { address in
+                        [address.formatted(uppercase: true), VendorLookup.name(address)].compactMap { $0 }.joined(separator: " ")
+                    }
                     return [host.address, alias.flatMap { $0.isEmpty ? nil : $0 } ?? host.displayName,
-                            ports.isEmpty ? "—" : ports]
+                            hardware ?? "—", ports.isEmpty ? "—" : ports]
                 },
-                weights: [2, 3, 5])
+                weights: [2, 3, 3, 5])
 
             canvas.space(18)
-            canvas.text(String(localized: "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen gibt iOS nicht heraus."),
+            canvas.text(String(localized: "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen stehen nur da, wo iOS sie aus der Nachbartabelle herausgab."),
                         font: .systemFont(ofSize: 8.5), color: .darkGray)
             canvas.space(30)
             canvas.text(String(localized: "Ort, Datum, Unterschrift"), font: .systemFont(ofSize: 9), color: .darkGray)
