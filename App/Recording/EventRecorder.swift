@@ -34,6 +34,8 @@ final class EventRecorder: @unchecked Sendable {
     }
 
     private let store: RecordingStore
+    /// Read on the main actor when the hub is created: `UIDevice` may not be asked anywhere else.
+    private let device: DeviceInfo
     private let lock = NSLock()
     private var configuration: Configuration?
     private var rings: [SensorID: SampleRing] = [:]
@@ -45,8 +47,9 @@ final class EventRecorder: @unchecked Sendable {
     /// Called when the armed state changes, for the screen.
     var onCapturing: (@Sendable (Bool) -> Void)?
 
-    init(store: RecordingStore) {
+    init(store: RecordingStore, device: DeviceInfo) {
         self.store = store
+        self.device = device
     }
 
     /// `nil` disarms: the buffer is dropped and the observer does nothing.
@@ -150,7 +153,7 @@ final class EventRecorder: @unchecked Sendable {
         let magnitudeText = String(format: "%.1f", capture.magnitude)
         let metadata = RecordingMetadata(
             id: capture.id, name: name, startedAt: capture.startedAt, startHostTime: capture.startHostTime,
-            duration: capture.endHostTime - capture.startHostTime, device: SensorHub.deviceInfo(),
+            duration: capture.endHostTime - capture.startHostTime, device: device,
             streams: streams, requestedRateHz: configuration.requestedRateHz,
             notes: String(localized: "Ausgelöst durch einen Stoss von \(magnitudeText) g."))
         do {

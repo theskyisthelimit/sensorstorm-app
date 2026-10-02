@@ -143,7 +143,7 @@ final class SensorHub {
         self.networkQualitySource = NetworkQualitySource(sink: sink)
         self.extraSources = ExtraSourcesController(sink: sink)
         self.peerLink = PeerLink(sink: sink)
-        self.eventRecorder = EventRecorder(store: store)
+        self.eventRecorder = EventRecorder(store: store, device: Self.deviceInfo())
         self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —

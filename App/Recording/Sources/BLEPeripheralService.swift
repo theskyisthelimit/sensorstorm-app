@@ -17,10 +17,10 @@ final class BLEPeripheralService: NSObject, CBPeripheralManagerDelegate, @unchec
         case start = 1, stop = 2, mark = 3
     }
 
-    static let serviceUUID = CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000001")
-    static let stateUUID = CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000002")
-    static let controlUUID = CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000003")
-    static let clockUUID = CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000004")
+    static var serviceUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000001") }
+    static var stateUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000002") }
+    static var controlUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000003") }
+    static var clockUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000004") }
 
     /// A sensor's characteristic id: a hash of its name, so that adding a sensor to the app
     /// never renumbers the others. FNV-1a, 32 bit.
