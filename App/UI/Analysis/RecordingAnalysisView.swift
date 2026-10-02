@@ -65,8 +65,7 @@ struct RecordingAnalysisView: View {
                             Spacer()
                             VerdictChip(verdict: gps.verdict, compact: true)
                         }
-                        Text(verbatim: String(format: "%d Fixe · Median ±%.1f m · 90 %% besser als ±%.1f m · längster Ausfall %.0f s",
-                                              gps.fixCount, gps.medianAccuracy, gps.worstDecile, gps.longestOutage))
+                        Text("\(gps.fixCount) Fixe · Median ±\(gps.medianAccuracy, specifier: "%.1f") m · 90 % besser als ±\(gps.worstDecile, specifier: "%.1f") m · längster Ausfall \(gps.longestOutage, specifier: "%.0f") s")
                             .font(.caption2).foregroundStyle(.secondary)
                     }
                 }
@@ -101,15 +100,20 @@ struct RecordingAnalysisView: View {
     static func sentence(_ note: QualityNote) -> String {
         switch note {
         case .rateBelowRequested(let measured, let requested):
-            return String(localized: "Nur \(String(format: "%.0f", measured)) Hz statt der gewünschten \(String(format: "%.0f", requested)) Hz.")
+            let have = String(format: "%.0f", measured)
+            let want = String(format: "%.0f", requested)
+            return String(localized: "Nur \(have) Hz statt der gewünschten \(want) Hz.")
         case .gaps(let count, let longest):
-            return String(localized: "\(count) Lücken, die längste \(String(format: "%.1f", longest)) s.")
+            let longestText = String(format: "%.1f", longest)
+            return String(localized: "\(count) Lücken, die längste \(longestText) s.")
         case .missingValues(let share):
-            return String(localized: "\(String(format: "%.0f", share * 100)) % der Werte fehlen.")
+            let percent = Int((share * 100).rounded())
+            return String(localized: "\(percent) % der Werte fehlen.")
         case .timeWentBackwards(let count):
             return String(localized: "Die Zeit lief \(count)-mal rückwärts oder stand still.")
         case .frozen(let share):
-            return String(localized: "\(String(format: "%.0f", share * 100)) % der Werte sind unverändert — der Sensor hing vermutlich.")
+            let percent = Int((share * 100).rounded())
+            return String(localized: "\(percent) % der Werte sind unverändert — der Sensor hing vermutlich.")
         case .tooShort:
             return String(localized: "Zu wenige Werte für eine Beurteilung.")
         }
@@ -183,7 +187,9 @@ struct RecordingAnalysisView: View {
                         (String(localized: "Schläge"), "\(road.shocks.count)"),
                     ])
                     if let worst = road.worstSegments.max(by: { $0.rms < $1.rms }) {
-                        Text("Rauester Abschnitt: \(String(format: "%.2f", worst.rms)) m/s² bei \(String(format: "%.0f", worst.speed * 3.6)) km/h")
+                        let worstText = String(format: "%.2f", worst.rms)
+                        let worstSpeedText = String(format: "%.0f", worst.speed * 3.6)
+                        Text("Rauester Abschnitt: \(worstText) m/s² bei \(worstSpeedText) km/h")
                             .font(.caption).foregroundStyle(.secondary)
                     }
                     ForEach(Array(road.shocks.prefix(10).enumerated()), id: \.offset) { _, shock in
@@ -220,7 +226,8 @@ struct RecordingAnalysisView: View {
         draft.positionSource = .gps
         draft.hostTime = shock.time
         draft.recordingID = model.metadata.id
-        draft.note = String(localized: "Aus der Aufnahme erkannt: \(String(format: "%.2f", shock.peak)) g.")
+        let peakText = String(format: "%.2f", shock.peak)
+        draft.note = String(localized: "Aus der Aufnahme erkannt: \(peakText) g.")
         surveys.addFinding(draft, to: surveyID)
     }
 
@@ -249,7 +256,8 @@ struct RecordingAnalysisView: View {
                             (String(localized: "Ruck"), String(format: "%.2f m/s³", ride.peakJerk)),
                         ])
                         if let vibration = ride.cruiseVibration {
-                            Text("Vibration während der Fahrt (A95, Spitze–Spitze): \(String(format: "%.0f", vibration)) mg")
+                            let vibrationText = String(format: "%.0f", vibration)
+                            Text("Vibration während der Fahrt (A95, Spitze–Spitze): \(vibrationText) mg")
                                 .font(.caption2).foregroundStyle(.secondary)
                         }
                     }

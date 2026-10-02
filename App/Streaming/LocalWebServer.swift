@@ -55,13 +55,21 @@ final class LocalWebServer: @unchecked Sendable {
             guard let self else { connection.cancel(); return }
             let request = data.map { String(decoding: $0, as: UTF8.self) } ?? ""
             let path = request.split(separator: " ").dropFirst().first.map(String.init) ?? ""
-            let response: (String, String) = switch path.split(separator: "?").first ?? "" {
-            case "/", "/data": ("200 OK", self.body())
-            default: ("404 Not Found", #"{"error":"not found"}"#)
+            // A browser asks for „/" and wants the page; a script asks for „/" and wants the
+            // JSON it has always got. The Accept header tells them apart, and „/data" is
+            // always the data.
+            let wantsPage = request.lowercased().contains("accept: text/html") || request.lowercased().contains("accept:text/html")
+            let route = String(path.split(separator: "?").first ?? "")
+            let response: (status: String, type: String, body: String)
+            switch route {
+            case "/dashboard": response = ("200 OK", "text/html; charset=utf-8", DashboardPage.html)
+            case "/" where wantsPage: response = ("200 OK", "text/html; charset=utf-8", DashboardPage.html)
+            case "/", "/data": response = ("200 OK", "application/json", self.body())
+            default: response = ("404 Not Found", "application/json", #"{"error":"not found"}"#)
             }
-            let payload = Data(response.1.utf8)
-            let head = "HTTP/1.1 \(response.0)\r\n"
-                + "Content-Type: application/json\r\n"
+            let payload = Data(response.body.utf8)
+            let head = "HTTP/1.1 \(response.status)\r\n"
+                + "Content-Type: \(response.type)\r\n"
                 + "Access-Control-Allow-Origin: *\r\n"
                 + "Cache-Control: no-store\r\n"
                 + "Content-Length: \(payload.count)\r\n"

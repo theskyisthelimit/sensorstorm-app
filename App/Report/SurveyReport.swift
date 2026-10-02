@@ -68,7 +68,9 @@ enum SurveyReport {
                 canvas.text(String(localized: "Bei der Begehung wurden keine Mängel festgestellt."),
                             font: .systemFont(ofSize: 12, weight: .medium), after: 6)
                 if survey.track.count >= 2 {
-                    canvas.text(String(localized: "Der Weg wurde zwischen \(survey.track[0].time.formatted(date: .omitted, time: .shortened)) und \(survey.track[survey.track.count - 1].time.formatted(date: .omitted, time: .shortened)) begangen und ist auf der Karte eingetragen."),
+                    let from = survey.track[0].time.formatted(date: .omitted, time: .shortened)
+                    let until = survey.track[survey.track.count - 1].time.formatted(date: .omitted, time: .shortened)
+                    canvas.text(String(localized: "Der Weg wurde zwischen \(from) und \(until) begangen und ist auf der Karte eingetragen."),
                                 font: .systemFont(ofSize: 10), color: .darkGray)
                 }
             } else {

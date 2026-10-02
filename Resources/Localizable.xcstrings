@@ -1290,6 +1290,21 @@
         }
       }
     },
+    "%lld %% der Ströme einwandfrei" : {
+      "extractionState" : "manual"
+    },
+    "%lld %% der Ströme sind einwandfrei." : {
+      "extractionState" : "manual"
+    },
+    "%lld %% der Werte fehlen." : {
+      "extractionState" : "manual"
+    },
+    "%lld %% der Werte sind unverändert — der Sensor hing vermutlich." : {
+      "extractionState" : "manual"
+    },
+    "%lld Aufnahmen" : {
+      "extractionState" : "manual"
+    },
     "%lld Clips" : {
       "localizations" : {
         "ar" : {
@@ -1852,6 +1867,9 @@
         }
       }
     },
+    "%lld Dateien nicht lesbar" : {
+      "extractionState" : "manual"
+    },
     "%lld Diagramm(e) ausgeblendet · einblenden" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2012,6 +2030,9 @@
           }
         }
       }
+    },
+    "%lld Fixe · Median ±%.1f m · 90 %% besser als ±%.1f m · längster Ausfall %.0f s" : {
+      "extractionState" : "manual"
     },
     "%lld Fixes" : {
       "localizations" : {
@@ -3301,6 +3322,12 @@
         }
       }
     },
+    "%lld Kacheln liessen sich nicht laden." : {
+      "extractionState" : "manual"
+    },
+    "%lld Lücken, die längste %@ s." : {
+      "extractionState" : "manual"
+    },
     "%lld Markierungen" : {
       "localizations" : {
         "ar" : {
@@ -4023,6 +4050,12 @@
         }
       }
     },
+    "%lld Routen ergänzt" : {
+      "extractionState" : "manual"
+    },
+    "%lld Stösse über 1 m/s²" : {
+      "extractionState" : "manual"
+    },
     "%lld Themen gehört" : {
       "extractionState" : "manual"
     },
@@ -4507,6 +4540,9 @@
           }
         }
       }
+    },
+    "%lld neue und %lld geänderte Beobachtungen" : {
+      "extractionState" : "manual"
     },
     "%lld offen" : {
       "extractionState" : "manual"
@@ -6773,6 +6809,9 @@
         }
       }
     },
+    "Abfallbehälter" : {
+      "extractionState" : "manual"
+    },
     "Abfragen" : {
       "extractionState" : "manual"
     },
@@ -8102,6 +8141,9 @@
         }
       }
     },
+    "Alle Kacheln löschen" : {
+      "extractionState" : "manual"
+    },
     "Alle Ports prüfen" : {
       "extractionState" : "manual"
     },
@@ -8744,6 +8786,12 @@
           }
         }
       }
+    },
+    "Alle Ströme sind lückenlos, in der verlangten Rate und ohne fehlende Werte." : {
+      "extractionState" : "manual"
+    },
+    "Alle paar Meter ein Punkt, auch bei gesperrtem Bildschirm. iOS zeigt dafür den blauen Streifen an." : {
+      "extractionState" : "manual"
     },
     "Alles" : {
       "localizations" : {
@@ -12486,6 +12534,9 @@
         }
       }
     },
+    "Aus der Aufnahme erkannt: %@ g." : {
+      "extractionState" : "manual"
+    },
     "Ausblenden" : {
       "localizations" : {
         "ar" : {
@@ -12824,6 +12875,9 @@
     "BSSID" : {
       "extractionState" : "manual"
     },
+    "Bank beschädigt" : {
+      "extractionState" : "manual"
+    },
     "Banner lesen" : {
       "extractionState" : "manual"
     },
@@ -13159,6 +13213,9 @@
     "Bei allen Servern vergleichen" : {
       "extractionState" : "manual"
     },
+    "Bei der Begehung wurden keine Mängel festgestellt." : {
+      "extractionState" : "manual"
+    },
     "Bei Änderung" : {
       "extractionState" : "manual"
     },
@@ -13325,6 +13382,9 @@
         }
       }
     },
+    "Beleuchtung und Mobiliar" : {
+      "extractionState" : "manual"
+    },
     "Beliebig viele Routen nebeneinander: pro Strasse, pro Auftrag, pro Tag." : {
       "localizations" : {
         "ar" : {
@@ -13486,6 +13546,9 @@
       }
     },
     "Benachrichtigung" : {
+      "extractionState" : "manual"
+    },
+    "Bench damaged" : {
       "extractionState" : "manual"
     },
     "Benutzername" : {
@@ -15893,6 +15956,15 @@
         }
       }
     },
+    "Beschleunigung, Ruck und Vibration wie in ISO 18738, aber mit dem Beschleunigungssensor eines Telefons gemessen: ein Anhaltspunkt, kein Prüfprotokoll." : {
+      "extractionState" : "manual"
+    },
+    "Beschriftet mit den Notizen der Aufnahme: eine Notiz gilt bis zur nächsten. Ausgegeben werden die Messwerte im festen Raster, Fenster mit Kennzahlen und je Beschriftung ein Ordner im Format von Create ML." : {
+      "extractionState" : "manual"
+    },
+    "Beschädigt" : {
+      "extractionState" : "manual"
+    },
     "Bewegung" : {
       "localizations" : {
         "ar" : {
@@ -17020,6 +17092,9 @@
           }
         }
       }
+    },
+    "Blocked" : {
+      "extractionState" : "manual"
     },
     "Bluetooth" : {
       "localizations" : {
@@ -18165,6 +18240,9 @@
     "Broadcast-Adresse" : {
       "extractionState" : "manual"
     },
+    "Building and facade" : {
+      "extractionState" : "manual"
+    },
     "Byte ab" : {
       "extractionState" : "manual"
     },
@@ -19138,6 +19216,18 @@
     "DNS-Abfrage" : {
       "extractionState" : "manual"
     },
+    "Dafür braucht es Beschleunigung mit mindestens 100 Hz über mehr als vier Sekunden." : {
+      "extractionState" : "manual"
+    },
+    "Dafür braucht es mindestens zehn Sekunden Beschleunigung mit 20 Hz oder mehr." : {
+      "extractionState" : "manual"
+    },
+    "Damaged" : {
+      "extractionState" : "manual"
+    },
+    "Dangerous branch" : {
+      "extractionState" : "manual"
+    },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
       "localizations" : {
         "ar" : {
@@ -19299,6 +19389,15 @@
       }
     },
     "Dann" : {
+      "extractionState" : "manual"
+    },
+    "Das Archiv enthält einen unzulässigen Pfad: %@." : {
+      "extractionState" : "manual"
+    },
+    "Das Archiv ist beschädigt (%@)." : {
+      "extractionState" : "manual"
+    },
+    "Das Archiv nutzt etwas, das hier nicht gelesen wird: %@." : {
       "extractionState" : "manual"
     },
     "Das Bündel enthält frames.csv, scene.json, das Video und den GPS-Track. Das Blender-Add-on macht daraus eine animierte Kamera, die der echten Aufnahme folgt." : {
@@ -19793,6 +19892,12 @@
     "Das System hat das Senden verweigert." : {
       "extractionState" : "manual"
     },
+    "Das Telefon an einen akustischen Kalibrator halten (94 dB bei 1 kHz) oder neben ein Schallpegelmessgerät in gleichmässiges Rauschen legen, den Wert dort ablesen und hier eintragen." : {
+      "extractionState" : "manual"
+    },
+    "Das Telefon flach auf die Fläche legen, mit der Rückseite nach unten. 0° ist waagrecht, 45° sind 100 %. Die Anzeige ist auf etwa ein halbes Grad genau, wenn das Telefon ruht." : {
+      "extractionState" : "manual"
+    },
     "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
       "localizations" : {
         "ar" : {
@@ -20115,6 +20220,9 @@
           }
         }
       }
+    },
+    "Datensatz für maschinelles Lernen" : {
+      "extractionState" : "manual"
     },
     "Datenschutz" : {
       "localizations" : {
@@ -20771,6 +20879,9 @@
           }
         }
       }
+    },
+    "Der Aufschlag gilt für dieses Gerät und diese Hülle. Er wird mit jeder Aufnahme gespeichert, die den Strom „Lautstärke dB(A)“ enthält." : {
+      "extractionState" : "manual"
     },
     "Der Broker hat die Verbindung abgelehnt." : {
       "localizations" : {
@@ -22052,6 +22163,9 @@
         }
       }
     },
+    "Der Katalog hat keinen Eintrag." : {
+      "extractionState" : "manual"
+    },
     "Der Kauf liess sich nicht überprüfen und wurde nicht freigeschaltet." : {
       "localizations" : {
         "ar" : {
@@ -22378,6 +22492,12 @@
     "Der Name lässt sich nicht auflösen." : {
       "extractionState" : "manual"
     },
+    "Der Schlüssel „%@“ kommt doppelt vor." : {
+      "extractionState" : "manual"
+    },
+    "Der Schweregrad von „%@“ liegt nicht zwischen 1 und 10." : {
+      "extractionState" : "manual"
+    },
     "Der Server antwortete mit %lld." : {
       "localizations" : {
         "ar" : {
@@ -22550,6 +22670,18 @@
     "Der Server meldet einen Fehler." : {
       "extractionState" : "manual"
     },
+    "Der Strom „Lautstärke dB(A)“ misst mit der Bewertungskurve eines Schallpegelmessers. Ohne Kalibrierung sind die Werte relativ." : {
+      "extractionState" : "manual"
+    },
+    "Der Weg einer anderen Route wird gerade aufgezeichnet." : {
+      "extractionState" : "manual"
+    },
+    "Der Weg wird aufgezeichnet" : {
+      "extractionState" : "manual"
+    },
+    "Der Weg wurde zwischen %@ und %@ begangen und ist auf der Karte eingetragen." : {
+      "extractionState" : "manual"
+    },
     "Details" : {
       "localizations" : {
         "ar" : {
@@ -22711,6 +22843,9 @@
       }
     },
     "Diagnose" : {
+      "extractionState" : "manual"
+    },
+    "Diagonal" : {
       "extractionState" : "manual"
     },
     "Die Abfrage hat nicht geklappt." : {
@@ -22884,6 +23019,15 @@
           }
         }
       }
+    },
+    "Die Aufnahme enthält keinen der gewählten Sensoren." : {
+      "extractionState" : "manual"
+    },
+    "Die Aufnahme hat keine brauchbaren Positionen." : {
+      "extractionState" : "manual"
+    },
+    "Die Auswahl „%@“ hat keine Möglichkeiten." : {
+      "extractionState" : "manual"
     },
     "Die Bewegungssensoren laufen mit 400 Hz statt 200 Hz. In dieser Auflösung sind Vibrationen und Stösse noch als Form erkennbar." : {
       "localizations" : {
@@ -23365,7 +23509,16 @@
         }
       }
     },
+    "Die Datei %@ konnte nicht angelegt werden." : {
+      "extractionState" : "manual"
+    },
     "Die Datei enthält keinen Decoder." : {
+      "extractionState" : "manual"
+    },
+    "Die Datei ist kein Katalog." : {
+      "extractionState" : "manual"
+    },
+    "Die Datei ist kein Zip-Archiv." : {
       "extractionState" : "manual"
     },
     "Die Daten bleiben in der Aufnahme" : {
@@ -24500,6 +24653,9 @@
         }
       }
     },
+    "Die Route hat noch keine Beobachtung und keinen Weg, für die sich ein Gebiet bestimmen liesse." : {
+      "extractionState" : "manual"
+    },
     "Die Suche sendet die Koordinate an Apple, in der Schweiz zuerst an swisstopo." : {
       "extractionState" : "manual"
     },
@@ -24663,6 +24819,9 @@
         }
       }
     },
+    "Die Zeit lief %lld-mal rückwärts oder stand still." : {
+      "extractionState" : "manual"
+    },
     "Die laufende Aufnahme benutzt die Kamera. Beobachtung ohne Foto erfassen oder die Aufnahme stoppen." : {
       "localizations" : {
         "ar" : {
@@ -24822,6 +24981,9 @@
           }
         }
       }
+    },
+    "Die neue Route enthält alle Beobachtungen, Fotos und Wege der gewählten. Die ursprünglichen bleiben erhalten." : {
+      "extractionState" : "manual"
     },
     "Dienstdaten %@" : {
       "extractionState" : "manual"
@@ -25631,6 +25793,9 @@
           }
         }
       }
+    },
+    "Dieses Gerät hat keinen Bewegungssensor." : {
+      "extractionState" : "manual"
     },
     "Dieses Gerät hat keinen solchen Sensor." : {
       "localizations" : {
@@ -26795,6 +26960,9 @@
     "Ein Ping je Sekunde über ICMP. Manche Geräte und Firewalls antworten nicht darauf, obwohl sie da sind; dann hilft der Portscan." : {
       "extractionState" : "manual"
     },
+    "Ein Richtwert aus der Vertikalbeschleunigung des Telefons, kein Messwert nach Norm: er hängt vom Fahrzeug und von der Halterung ab. Aussagekräftig ist der Vergleich der Abschnitte einer Fahrt." : {
+      "extractionState" : "manual"
+    },
     "Ein falscher Wert kann ein Gerät verstellen. Geschrieben wird erst nach einer Rückfrage." : {
       "extractionState" : "manual"
     },
@@ -27288,6 +27456,9 @@
       }
     },
     "Eine der Adressen ist ungültig." : {
+      "extractionState" : "manual"
+    },
+    "Einfärben nach" : {
       "extractionState" : "manual"
     },
     "Eingabe" : {
@@ -28262,6 +28433,9 @@
       }
     },
     "Empfangen" : {
+      "extractionState" : "manual"
+    },
+    "Empfindlich oder schützenswert" : {
       "extractionState" : "manual"
     },
     "Empfänger" : {
@@ -29243,6 +29417,9 @@
       "extractionState" : "manual"
     },
     "Erneut verbinden" : {
+      "extractionState" : "manual"
+    },
+    "Erschütterung" : {
       "extractionState" : "manual"
     },
     "Erst lesen oder abonnieren, damit ein Wert da ist, an dem sich die Felder prüfen lassen." : {
@@ -30540,6 +30717,9 @@
           }
         }
       }
+    },
+    "Fläche" : {
+      "extractionState" : "manual"
     },
     "Form" : {
       "localizations" : {
@@ -32154,6 +32334,9 @@
         }
       }
     },
+    "Full" : {
+      "extractionState" : "manual"
+    },
     "Funk" : {
       "extractionState" : "manual"
     },
@@ -33280,10 +33463,28 @@
         }
       }
     },
+    "GPX-Wegpunkte und Weg" : {
+      "extractionState" : "manual"
+    },
+    "Gebiet der Route" : {
+      "extractionState" : "manual"
+    },
+    "Gebäude und Fassade" : {
+      "extractionState" : "manual"
+    },
+    "Gebäudeart" : {
+      "extractionState" : "manual"
+    },
     "Gefunden durch" : {
       "extractionState" : "manual"
     },
+    "Gefährlicher Ast" : {
+      "extractionState" : "manual"
+    },
     "Gegenstelle" : {
+      "extractionState" : "manual"
+    },
+    "Gegenüber „%@“" : {
       "extractionState" : "manual"
     },
     "Gelände oder Strasse" : {
@@ -33767,6 +33968,9 @@
         }
       }
     },
+    "Genauigkeit der Position" : {
+      "extractionState" : "manual"
+    },
     "GeoJSON" : {
       "localizations" : {
         "ar" : {
@@ -34088,6 +34292,9 @@
       }
     },
     "Geplant" : {
+      "extractionState" : "manual"
+    },
+    "Geprüft von" : {
       "extractionState" : "manual"
     },
     "Gerät" : {
@@ -34428,13 +34635,22 @@
     "Geschwindigkeit" : {
       "extractionState" : "manual"
     },
+    "Geschwächt" : {
+      "extractionState" : "manual"
+    },
     "Geschätzt: iOS hat die Adresse nicht genannt, es ist die erste im Netz." : {
       "extractionState" : "manual"
     },
     "Gesendet" : {
       "extractionState" : "manual"
     },
+    "Gesichter und Kennzeichen unkenntlich machen" : {
+      "extractionState" : "manual"
+    },
     "Gespeicherte Scans" : {
+      "extractionState" : "manual"
+    },
+    "Gewerbe und Industrie" : {
       "extractionState" : "manual"
     },
     "Gilt für alle Bewegungssensoren. GPS, Barometer und Schrittzähler liefern in ihrem eigenen Takt." : {
@@ -34763,6 +34979,9 @@
         }
       }
     },
+    "Green spaces and trees" : {
+      "extractionState" : "manual"
+    },
     "Grösse" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34923,6 +35142,9 @@
           }
         }
       }
+    },
+    "Grünflächen und Bäume" : {
+      "extractionState" : "manual"
     },
     "Gyroflow-Log" : {
       "localizations" : {
@@ -35916,10 +36138,19 @@
     "Hinführen" : {
       "extractionState" : "manual"
     },
+    "Hinzufügen" : {
+      "extractionState" : "manual"
+    },
     "Hoch" : {
       "extractionState" : "manual"
     },
     "Häufige und Geräte-Ports" : {
+      "extractionState" : "manual"
+    },
+    "Höchste Schwinggeschwindigkeit" : {
+      "extractionState" : "manual"
+    },
+    "Höchste Schwinggeschwindigkeit je Achse gegen die Richtwerte der DIN 4150-3. Ein Screening mit dem Beschleunigungssensor des Telefons, das nicht kalibriert ist und nicht am Fundament sass: es zeigt, ob man nahe am Richtwert oder weit davon liegt, und ersetzt kein Gutachten." : {
       "extractionState" : "manual"
     },
     "Höchstens" : {
@@ -36411,6 +36642,9 @@
           }
         }
       }
+    },
+    "Im Archiv liegt keine Route und keine Aufnahme, die sich übernehmen lässt." : {
+      "extractionState" : "manual"
     },
     "Im Browser öffnen" : {
       "extractionState" : "manual"
@@ -37239,6 +37473,9 @@
     "Jedes Mal" : {
       "extractionState" : "manual"
     },
+    "Jetzt entspricht dieser Pegel dem Soll" : {
+      "extractionState" : "manual"
+    },
     "Jetzt zu: %@" : {
       "extractionState" : "manual"
     },
@@ -37404,6 +37641,9 @@
           }
         }
       }
+    },
+    "KMZ mit Fotos (Google Earth)" : {
+      "extractionState" : "manual"
     },
     "Kabel" : {
       "extractionState" : "manual",
@@ -40159,6 +40399,9 @@
         }
       }
     },
+    "Keine Fahrt gefunden. Das Telefon muss im Aufzug auf dem Boden liegen; gesucht wird eine Höhenänderung ab 1,5 m." : {
+      "extractionState" : "manual"
+    },
     "Keine Kamera verfügbar." : {
       "localizations" : {
         "ar" : {
@@ -40638,6 +40881,9 @@
           }
         }
       }
+    },
+    "Keine Ströme zum Einfärben." : {
+      "extractionState" : "manual"
     },
     "Keine TLS-Verbindung möglich." : {
       "extractionState" : "manual"
@@ -41939,6 +42185,9 @@
         }
       }
     },
+    "Lautstärke dB(A)" : {
+      "extractionState" : "manual"
+    },
     "Leeren" : {
       "localizations" : {
         "ar" : {
@@ -42103,6 +42352,9 @@
       "extractionState" : "manual"
     },
     "Lesen" : {
+      "extractionState" : "manual"
+    },
+    "Lighting and street furniture" : {
       "extractionState" : "manual"
     },
     "Liste leeren" : {
@@ -42594,7 +42846,13 @@
         }
       }
     },
+    "Lädt die swisstopo-Karte für das Gebiet in den Zoomstufen 12 bis 17 auf das Telefon. Ohne Netz zeigt die Karte dann genau diese Kacheln. Quelle: © swisstopo." : {
+      "extractionState" : "manual"
+    },
     "Länge" : {
+      "extractionState" : "manual"
+    },
+    "Längs" : {
       "extractionState" : "manual"
     },
     "Längsriss" : {
@@ -42756,6 +43014,9 @@
           }
         }
       }
+    },
+    "Längster Ausfall" : {
+      "extractionState" : "manual"
     },
     "Läuft in %lld Tagen ab" : {
       "extractionState" : "manual"
@@ -43083,6 +43344,9 @@
           }
         }
       }
+    },
+    "Lücken" : {
+      "extractionState" : "manual"
     },
     "MQTT-Broker testen" : {
       "extractionState" : "manual"
@@ -45055,7 +45319,13 @@
     "Nach Sekunden" : {
       "extractionState" : "manual"
     },
+    "Nach dem Muster von EN 12299, mit einem einfachen Filter statt der Normgewichtung — wirkt strenger als die Norm. Zum Vergleich von Strecken und Fahrten gedacht. Das Telefon muss im Fahrzeug fest liegen, nicht in der Hand." : {
+      "extractionState" : "manual"
+    },
     "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet." : {
+      "extractionState" : "manual"
+    },
+    "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet. Das Unkenntlichmachen gilt für Exporte und Berichte, nicht für die Fotos auf dem Telefon; Kennzeichen werden nach den Mustern von CH, D, A, F, I, E und GB erkannt, ein anderes oder ein zu kleines bleibt sichtbar. Name und Organisation stehen im Bericht." : {
       "extractionState" : "manual"
     },
     "Nachricht" : {
@@ -46185,6 +46455,12 @@
         }
       }
     },
+    "Name der neuen Route" : {
+      "extractionState" : "manual"
+    },
+    "Name der prüfenden Person" : {
+      "extractionState" : "manual"
+    },
     "Name, Hersteller, Dienst" : {
       "extractionState" : "manual"
     },
@@ -46192,6 +46468,9 @@
       "extractionState" : "manual"
     },
     "Namensauflösung" : {
+      "extractionState" : "manual"
+    },
+    "Neigung, Tiefe, Breite, Länge oder Stückzahl. Aus Fläche und Tiefe rechnet die App das Volumen aus." : {
       "extractionState" : "manual"
     },
     "Netz" : {
@@ -46695,6 +46974,12 @@
         }
       }
     },
+    "Nicht gewählt" : {
+      "extractionState" : "manual"
+    },
+    "Nicht kalibriert: die Werte sind relativ, nicht dB(SPL)." : {
+      "extractionState" : "manual"
+    },
     "Nicht mehr aufzeichnen" : {
       "extractionState" : "manual"
     },
@@ -47036,6 +47321,9 @@
         }
       }
     },
+    "Noch nicht geprüft" : {
+      "extractionState" : "manual"
+    },
     "Noch nicht gesucht. Der Scan fragt jede Adresse des Netzes mit Ping und kurzen Verbindungsversuchen und liest die Namen, die Geräte im Netz von sich bekannt geben." : {
       "extractionState" : "manual"
     },
@@ -47371,6 +47659,9 @@
           }
         }
       }
+    },
+    "Nur %@ Hz statt der gewünschten %@ Hz." : {
+      "extractionState" : "manual"
     },
     "Nur Favoriten" : {
       "extractionState" : "manual"
@@ -48849,6 +49140,9 @@
       "extractionState" : "manual"
     },
     "Ping" : {
+      "extractionState" : "manual"
+    },
+    "Playground equipment defect" : {
       "extractionState" : "manual"
     },
     "Polygon" : {
@@ -51039,6 +51333,9 @@
     "Prüfen" : {
       "extractionState" : "manual"
     },
+    "Punkte" : {
+      "extractionState" : "manual"
+    },
     "Quad9" : {
       "extractionState" : "manual"
     },
@@ -51201,6 +51498,15 @@
           }
         }
       }
+    },
+    "Qualität der Aufnahme" : {
+      "extractionState" : "manual"
+    },
+    "Qualität, Karte, Strassenzustand, Komfort, Erschütterung" : {
+      "extractionState" : "manual"
+    },
+    "Qualitätsbericht der Aufnahme" : {
+      "extractionState" : "manual"
     },
     "Quelle" : {
       "extractionState" : "manual",
@@ -51856,6 +52162,12 @@
       "extractionState" : "manual"
     },
     "Regeln reagieren während einer Aufnahme auf Messwerte, Ort, Dauer oder MQTT-Nachrichten: mit einer Benachrichtigung, einer Markierung oder dem Ende der Aufnahme." : {
+      "extractionState" : "manual"
+    },
+    "Richtwert aus der Vertikalbeschleunigung, kein Messwert nach Norm." : {
+      "extractionState" : "manual"
+    },
+    "Richtwert überschritten" : {
       "extractionState" : "manual"
     },
     "Rohdaten (.ssbin)" : {
@@ -53458,6 +53770,9 @@
         }
       }
     },
+    "Routen zusammenführen" : {
+      "extractionState" : "manual"
+    },
     "Router" : {
       "extractionState" : "manual"
     },
@@ -54594,6 +54909,9 @@
         }
       }
     },
+    "Schläge" : {
+      "extractionState" : "manual"
+    },
     "Schreiben" : {
       "extractionState" : "manual"
     },
@@ -54916,6 +55234,12 @@
           }
         }
       }
+    },
+    "Schräg" : {
+      "extractionState" : "manual"
+    },
+    "Screening mit dem Beschleunigungssensor eines Telefons, kein Gutachten." : {
+      "extractionState" : "manual"
     },
     "Sechs Sekunden mithören" : {
       "extractionState" : "manual"
@@ -56388,7 +56712,13 @@
         }
       }
     },
+    "Sign damaged" : {
+      "extractionState" : "manual"
+    },
     "Signal" : {
+      "extractionState" : "manual"
+    },
+    "Signal beschädigt" : {
       "extractionState" : "manual"
     },
     "Signal neu messen" : {
@@ -56406,7 +56736,13 @@
     "Sortieren" : {
       "extractionState" : "manual"
     },
+    "Spielgerät defekt" : {
+      "extractionState" : "manual"
+    },
     "Spricht mit einem iperf3-Server (Standardport 5201), den du selbst betreibst: iperf3 -s. Gemessen wird TCP. Der Test belastet das Netz voll; das Ergebnis der Empfängerseite sagt, was tatsächlich ankam." : {
+      "extractionState" : "manual"
+    },
+    "Staining" : {
       "extractionState" : "manual"
     },
     "Standort" : {
@@ -57062,6 +57398,15 @@
           }
         }
       }
+    },
+    "Ströme" : {
+      "extractionState" : "manual"
+    },
+    "Stösse" : {
+      "extractionState" : "manual"
+    },
+    "Stückzahl" : {
+      "extractionState" : "manual"
     },
     "Suche" : {
       "extractionState" : "manual"
@@ -59193,6 +59538,9 @@
     "Upload-Adresse" : {
       "extractionState" : "manual"
     },
+    "Urteil" : {
+      "extractionState" : "manual"
+    },
     "VPN" : {
       "extractionState" : "manual"
     },
@@ -59545,6 +59893,9 @@
           }
         }
       }
+    },
+    "Verfärbung" : {
+      "extractionState" : "manual"
     },
     "Vergleich" : {
       "extractionState" : "manual"
@@ -60359,7 +60710,13 @@
         }
       }
     },
+    "Verstopft" : {
+      "extractionState" : "manual"
+    },
     "Vertikalbeschleunigung" : {
+      "extractionState" : "manual"
+    },
+    "Vibration während der Fahrt (A95, Spitze–Spitze): %@ mg" : {
       "extractionState" : "manual"
     },
     "Video" : {
@@ -61002,6 +61359,15 @@
           }
         }
       }
+    },
+    "Vital" : {
+      "extractionState" : "manual"
+    },
+    "Vitality" : {
+      "extractionState" : "manual"
+    },
+    "Vitalität" : {
+      "extractionState" : "manual"
     },
     "Voll" : {
       "localizations" : {
@@ -62140,6 +62506,12 @@
     "Was wurde getan?" : {
       "extractionState" : "manual"
     },
+    "Waste bin" : {
+      "extractionState" : "manual"
+    },
+    "Weakened" : {
+      "extractionState" : "manual"
+    },
     "Weg" : {
       "extractionState" : "manual"
     },
@@ -62803,6 +63175,9 @@
           }
         }
       }
+    },
+    "Wieder öffnen" : {
+      "extractionState" : "manual"
     },
     "Windows-Namen (NetBIOS)" : {
       "extractionState" : "manual"
@@ -64752,6 +65127,12 @@
         }
       }
     },
+    "Zu dieser Zeit hat die Aufnahme keine Position." : {
+      "extractionState" : "manual"
+    },
+    "Zu wenig Fahrt zum Beurteilen: es braucht Beschleunigung mit mindestens 20 Hz und eine Geschwindigkeit zwischen 11 und 160 km/h." : {
+      "extractionState" : "manual"
+    },
     "Zu wenig freier Speicher für eine Aufnahme." : {
       "localizations" : {
         "ar" : {
@@ -65071,6 +65452,9 @@
           }
         }
       }
+    },
+    "Zu wenige Werte für eine Beurteilung." : {
+      "extractionState" : "manual"
     },
     "Zugriff auf das lokale Netz fehlt" : {
       "extractionState" : "manual"
@@ -65878,6 +66262,12 @@
         }
       }
     },
+    "Zusammenführen" : {
+      "extractionState" : "manual"
+    },
+    "Zusammengeführt" : {
+      "extractionState" : "manual"
+    },
     "Zustandserfassung Abschnitt West" : {
       "localizations" : {
         "ar" : {
@@ -66199,6 +66589,33 @@
       }
     },
     "Zwischenzertifikat %lld" : {
+      "extractionState" : "manual"
+    },
+    "accuracy" : {
+      "extractionState" : "manual"
+    },
+    "arrow.triangle.2.circlepath" : {
+      "extractionState" : "manual"
+    },
+    "arrow.triangle.merge" : {
+      "extractionState" : "manual"
+    },
+    "arrow.uturn.backward.circle" : {
+      "extractionState" : "manual"
+    },
+    "bench" : {
+      "extractionState" : "manual"
+    },
+    "bin" : {
+      "extractionState" : "manual"
+    },
+    "blocked" : {
+      "extractionState" : "manual"
+    },
+    "brain" : {
+      "extractionState" : "manual"
+    },
+    "branch" : {
       "extractionState" : "manual"
     },
     "brauchbar" : {
@@ -66523,6 +66940,15 @@
         }
       }
     },
+    "checkmark.circle" : {
+      "extractionState" : "manual"
+    },
+    "checkmark.shield" : {
+      "extractionState" : "manual"
+    },
+    "damaged" : {
+      "extractionState" : "manual"
+    },
     "deutlich" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -66684,6 +67110,12 @@
         }
       }
     },
+    "diagonal" : {
+      "extractionState" : "manual"
+    },
+    "eingehalten" : {
+      "extractionState" : "manual"
+    },
     "einzelner GPS-Fix" : {
       "localizations" : {
         "ar" : {
@@ -66843,6 +67275,18 @@
           }
         }
       }
+    },
+    "exclamationmark.triangle" : {
+      "extractionState" : "manual"
+    },
+    "exclamationmark.triangle.fill" : {
+      "extractionState" : "manual"
+    },
+    "eye.slash" : {
+      "extractionState" : "manual"
+    },
+    "full" : {
+      "extractionState" : "manual"
     },
     "gemittelt" : {
       "extractionState" : "manual",
@@ -67012,6 +67456,9 @@
       "extractionState" : "manual"
     },
     "getrennt" : {
+      "extractionState" : "manual"
+    },
+    "globe.europe.africa.fill" : {
       "extractionState" : "manual"
     },
     "grob" : {
@@ -68307,6 +68754,12 @@
         }
       }
     },
+    "mappin" : {
+      "extractionState" : "manual"
+    },
+    "mit Einschränkungen" : {
+      "extractionState" : "manual"
+    },
     "nein" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -68467,6 +68920,9 @@
           }
         }
       }
+    },
+    "nicht abgeschlossen" : {
+      "extractionState" : "manual"
     },
     "nur ungefähr" : {
       "extractionState" : "manual"
@@ -68632,6 +69088,15 @@
         }
       }
     },
+    "playground" : {
+      "extractionState" : "manual"
+    },
+    "plus.circle" : {
+      "extractionState" : "manual"
+    },
+    "point.topleft.down.to.point.bottomright.curvepath" : {
+      "extractionState" : "manual"
+    },
     "schwer" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -68793,6 +69258,12 @@
         }
       }
     },
+    "sign" : {
+      "extractionState" : "manual"
+    },
+    "stain" : {
+      "extractionState" : "manual"
+    },
     "unauffällig" : {
       "localizations" : {
         "ar" : {
@@ -68953,6 +69424,12 @@
         }
       }
     },
+    "vital" : {
+      "extractionState" : "manual"
+    },
+    "vitality" : {
+      "extractionState" : "manual"
+    },
     "wartet …" : {
       "localizations" : {
         "ar" : {
@@ -69112,6 +69589,15 @@
           }
         }
       }
+    },
+    "waveform" : {
+      "extractionState" : "manual"
+    },
+    "waveform.path" : {
+      "extractionState" : "manual"
+    },
+    "weak" : {
+      "extractionState" : "manual"
     },
     "Öffentliche Adresse abfragen" : {
       "extractionState" : "manual"
@@ -69279,6 +69765,9 @@
         }
       }
     },
+    "Überlappung" : {
+      "extractionState" : "manual"
+    },
     "Übernehmen" : {
       "localizations" : {
         "ar" : {
@@ -69440,6 +69929,9 @@
       }
     },
     "Übertragung" : {
+      "extractionState" : "manual"
+    },
+    "überschritten" : {
       "extractionState" : "manual"
     },
     "„%@“ nennt weder manufacturerId noch serviceUuid noch namePrefix." : {
