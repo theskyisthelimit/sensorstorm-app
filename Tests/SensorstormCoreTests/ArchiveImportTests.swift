@@ -110,8 +110,8 @@ struct ArchiveImportTests {
         item.add(try sourceSurveys.writePhoto(Data("jpeg-bytes".utf8), in: survey.id))
         survey.findings = [item]
         survey.track = [
-            TrackPoint(time: survey.startedAt, latitude: 46.948, longitude: 7.4474, horizontalAccuracy: 3),
-            TrackPoint(time: survey.startedAt.addingTimeInterval(30), latitude: 46.9485, longitude: 7.448, horizontalAccuracy: 3),
+            WalkPoint(time: survey.startedAt, latitude: 46.948, longitude: 7.4474, horizontalAccuracy: 3),
+            WalkPoint(time: survey.startedAt.addingTimeInterval(30), latitude: 46.9485, longitude: 7.448, horizontalAccuracy: 3),
         ]
         try sourceSurveys.save(survey)
 

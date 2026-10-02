@@ -633,7 +633,7 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
     /// before the field existed, which is how an old one shows as „never closed".
     public var endedAt: Date?
     /// The path actually walked, a point every few metres. Empty unless the walk recorded one.
-    public var track: [TrackPoint]
+    public var track: [WalkPoint]
     /// The catalog whose entries and attributes this walk offers. `nil` is free text.
     public var catalogID: String?
     /// The walk this one repeats, when it was started as a repeat inspection.
@@ -646,7 +646,7 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
                 recordingID: UUID? = nil,
                 findings: [GroundFinding] = [],
                 endedAt: Date? = nil,
-                track: [TrackPoint] = [],
+                track: [WalkPoint] = [],
                 catalogID: String? = nil,
                 repeatsSurveyID: UUID? = nil) {
         self.id = id
@@ -670,7 +670,7 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
         recordingID = try container.decodeIfPresent(UUID.self, forKey: .recordingID)
         findings = try container.decodeIfPresent([GroundFinding].self, forKey: .findings) ?? []
         endedAt = try container.decodeIfPresent(Date.self, forKey: .endedAt)
-        track = try container.decodeIfPresent([TrackPoint].self, forKey: .track) ?? []
+        track = try container.decodeIfPresent([WalkPoint].self, forKey: .track) ?? []
         catalogID = try container.decodeIfPresent(String.self, forKey: .catalogID)
         repeatsSurveyID = try container.decodeIfPresent(UUID.self, forKey: .repeatsSurveyID)
     }
@@ -729,7 +729,7 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
     /// seconds, so a stop shows as a stop — or from a fix too poor to trust. A phone held
     /// still would otherwise write a thousand points on one spot.
     @discardableResult
-    public mutating func appendTrackPoint(_ point: TrackPoint, minimumDistance: Double = 4,
+    public mutating func appendTrackPoint(_ point: WalkPoint, minimumDistance: Double = 4,
                                           stationaryInterval: TimeInterval = 30,
                                           maximumAccuracy: Double = 50) -> Bool {
         guard point.coordinate.isValid, point.horizontalAccuracy > 0,
@@ -758,7 +758,7 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
 }
 
 /// One point of the path a walk took.
-public struct TrackPoint: Codable, Sendable, Hashable {
+public struct WalkPoint: Codable, Sendable, Hashable {
     public var time: Date
     public var latitude: Double
     public var longitude: Double

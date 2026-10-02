@@ -21,9 +21,9 @@ struct SurveyTrackTests {
     func trackRules() {
         var survey = Survey(name: "Weg")
         let start = Date(timeIntervalSince1970: 1_700_000_000)
-        func point(_ offsetNorth: Double, at seconds: Double, accuracy: Double = 5) -> TrackPoint {
+        func point(_ offsetNorth: Double, at seconds: Double, accuracy: Double = 5) -> WalkPoint {
             // One degree of latitude is ~111.2 km.
-            TrackPoint(time: start.addingTimeInterval(seconds), latitude: 46.9480 + offsetNorth / 111_200,
+            WalkPoint(time: start.addingTimeInterval(seconds), latitude: 46.9480 + offsetNorth / 111_200,
                        longitude: 7.4474, horizontalAccuracy: accuracy)
         }
         #expect(survey.appendTrackPoint(point(0, at: 0)))
@@ -78,7 +78,7 @@ struct SurveyTrackTests {
     func exportsCarryTheTrack() throws {
         var survey = Survey(name: "Mit Weg", startedAt: Date(timeIntervalSince1970: 1_700_000_000))
         for index in 0..<3 {
-            survey.track.append(TrackPoint(time: survey.startedAt.addingTimeInterval(Double(index) * 10),
+            survey.track.append(WalkPoint(time: survey.startedAt.addingTimeInterval(Double(index) * 10),
                                            latitude: 46.9480 + Double(index) * 0.0001, longitude: 7.4474,
                                            horizontalAccuracy: 4))
         }
@@ -230,8 +230,8 @@ struct SurveyHistoryTests {
         theirs.setStatus(.resolved, at: Date(timeIntervalSince1970: 5_000))
         theirs.media = [CaseMedia(kind: .photo, fileName: "theirs.jpg")]
         remote.findings = [theirs, finding("Nur dort", at: Date(timeIntervalSince1970: 2_000))]
-        local.track = [TrackPoint(time: Date(timeIntervalSince1970: 10), latitude: 46.9, longitude: 7.4, horizontalAccuracy: 3)]
-        remote.track = local.track + [TrackPoint(time: Date(timeIntervalSince1970: 20), latitude: 46.9001, longitude: 7.4, horizontalAccuracy: 3)]
+        local.track = [WalkPoint(time: Date(timeIntervalSince1970: 10), latitude: 46.9, longitude: 7.4, horizontalAccuracy: 3)]
+        remote.track = local.track + [WalkPoint(time: Date(timeIntervalSince1970: 20), latitude: 46.9001, longitude: 7.4, horizontalAccuracy: 3)]
 
         let result = SurveyMerge.merge(local: local, remote: remote)
         #expect(result.report == SurveyMerge.Report(added: 1, updated: 1, kept: 0, trackPointsAdded: 1))
@@ -304,8 +304,8 @@ struct MapAndPackageTests {
         item.attributes = ["surface": "asphalt"]
         survey.findings = [item]
         survey.track = [
-            TrackPoint(time: Date(timeIntervalSince1970: 0), latitude: 46.9480, longitude: 7.4474, horizontalAccuracy: 3),
-            TrackPoint(time: Date(timeIntervalSince1970: 60), latitude: 46.9490, longitude: 7.4480, horizontalAccuracy: 3),
+            WalkPoint(time: Date(timeIntervalSince1970: 0), latitude: 46.9480, longitude: 7.4474, horizontalAccuracy: 3),
+            WalkPoint(time: Date(timeIntervalSince1970: 60), latitude: 46.9490, longitude: 7.4480, horizontalAccuracy: 3),
         ]
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("test-\(UUID().uuidString).gpkg")
         defer { try? FileManager.default.removeItem(at: url) }
