@@ -3,8 +3,8 @@ import Foundation
 /// The ports worth asking about, with the name a service usually answers to.
 ///
 /// A port scan of 65 535 ports takes minutes and tells a person nothing they cannot learn
-/// from the hundred that matter. The first list is nmap's hundred most frequently open TCP
-/// ports; the second adds the rest of the well-known range and the services that live in
+/// from the hundred that matter. The first list is the ninety-odd TCP ports nmap finds open
+/// most often; the second adds the rest of the well-known range and the services that live in
 /// networks full of small devices — MQTT, Home Assistant, Node-RED, ESPHome, Modbus.
 public enum PortCatalog {
 

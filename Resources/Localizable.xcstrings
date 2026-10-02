@@ -3137,6 +3137,9 @@
         }
       }
     },
+    "%lld Geräte" : {
+      "extractionState" : "manual"
+    },
     "%lld Hz · %lld Kanäle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4020,6 +4023,9 @@
         }
       }
     },
+    "%lld Themen gehört" : {
+      "extractionState" : "manual"
+    },
     "%lld ausgeblendet · alle einblenden" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4502,10 +4508,16 @@
         }
       }
     },
+    "%lld offen" : {
+      "extractionState" : "manual"
+    },
     "%lld von %lld" : {
       "extractionState" : "manual"
     },
     "%lld von %lld Geräten" : {
+      "extractionState" : "manual"
+    },
+    "%lld von %lld Ports geprüft" : {
       "extractionState" : "manual"
     },
     "%lld/%lld" : {
@@ -5794,6 +5806,9 @@
         }
       }
     },
+    "1–1024 und Geräte-Ports" : {
+      "extractionState" : "manual"
+    },
     "3D" : {
       "localizations" : {
         "ar" : {
@@ -6435,6 +6450,9 @@
         }
       }
     },
+    "ALPN" : {
+      "extractionState" : "manual"
+    },
     "ARKit" : {
       "localizations" : {
         "ar" : {
@@ -6755,10 +6773,19 @@
         }
       }
     },
+    "Abfragen" : {
+      "extractionState" : "manual"
+    },
+    "Abgelaufen oder noch nicht gültig" : {
+      "extractionState" : "manual"
+    },
     "Abonnieren" : {
       "extractionState" : "manual"
     },
     "Abonnieren, z. B. befehle/#, ${userId}/cmd" : {
+      "extractionState" : "manual"
+    },
+    "Abschnitte" : {
       "extractionState" : "manual"
     },
     "Abtastrate" : {
@@ -6924,10 +6951,19 @@
     "Adresse" : {
       "extractionState" : "manual"
     },
+    "Adresse des Servers" : {
+      "extractionState" : "manual"
+    },
+    "Adresse oder Name" : {
+      "extractionState" : "manual"
+    },
     "Adresse suchen" : {
       "extractionState" : "manual"
     },
     "Adresse zur Beobachtung suchen" : {
+      "extractionState" : "manual"
+    },
+    "Adresse, Name, Dienst" : {
       "extractionState" : "manual"
     },
     "Advertisement" : {
@@ -8065,6 +8101,9 @@
           }
         }
       }
+    },
+    "Alle Ports prüfen" : {
+      "extractionState" : "manual"
     },
     "Alle Sensordaten und das Video werden entfernt." : {
       "localizations" : {
@@ -9669,10 +9708,16 @@
         }
       }
     },
+    "Als Tabelle teilen" : {
+      "extractionState" : "manual"
+    },
     "Als Zahlen lesen" : {
       "extractionState" : "manual"
     },
     "Als Zahlen lesen …" : {
+      "extractionState" : "manual"
+    },
+    "Alternative Namen" : {
       "extractionState" : "manual"
     },
     "Anderes" : {
@@ -9835,6 +9880,33 @@
           }
         }
       }
+    },
+    "Anhalten" : {
+      "extractionState" : "manual"
+    },
+    "Antwort" : {
+      "extractionState" : "manual"
+    },
+    "Antwortzeit" : {
+      "extractionState" : "manual"
+    },
+    "Antwortzeit Internet (1.1.1.1)" : {
+      "extractionState" : "manual"
+    },
+    "Antwortzeit Router" : {
+      "extractionState" : "manual"
+    },
+    "Antwortzeit im Leerlauf" : {
+      "extractionState" : "manual"
+    },
+    "Antwortzeit unter Last" : {
+      "extractionState" : "manual"
+    },
+    "Antwortzeit …" : {
+      "extractionState" : "manual"
+    },
+    "Apple-Gerät" : {
+      "extractionState" : "manual"
     },
     "Archiv erstellen" : {
       "localizations" : {
@@ -12248,6 +12320,9 @@
         }
       }
     },
+    "Aufwecken" : {
+      "extractionState" : "manual"
+    },
     "Aufzeichnen" : {
       "extractionState" : "manual"
     },
@@ -12571,6 +12646,12 @@
         }
       }
     },
+    "Ausgestellt für" : {
+      "extractionState" : "manual"
+    },
+    "Ausgestellt von" : {
+      "extractionState" : "manual"
+    },
     "Auslösen" : {
       "extractionState" : "manual"
     },
@@ -12738,6 +12819,12 @@
       "extractionState" : "manual"
     },
     "Automatisierung" : {
+      "extractionState" : "manual"
+    },
+    "BSSID" : {
+      "extractionState" : "manual"
+    },
+    "Banner lesen" : {
       "extractionState" : "manual"
     },
     "Barometer" : {
@@ -13060,10 +13147,16 @@
         }
       }
     },
+    "Baut eine TLS-Verbindung auf und liest, was der Server zeigt — auch bei selbst signierten oder abgelaufenen Zertifikaten. Gesendet wird nur der Handschlag." : {
+      "extractionState" : "manual"
+    },
     "Bedingung hinzufügen" : {
       "extractionState" : "manual"
     },
     "Bei Benachrichtigung" : {
+      "extractionState" : "manual"
+    },
+    "Bei allen Servern vergleichen" : {
       "extractionState" : "manual"
     },
     "Bei Änderung" : {
@@ -16764,6 +16857,9 @@
         }
       }
     },
+    "Bleiben auf diesem Telefon und gelten für dieses Netz. iOS verrät die Hardware-Adresse nicht; wer sie kennt, kann sie hier für Wake-on-LAN eintragen." : {
+      "extractionState" : "manual"
+    },
     "Blickrichtung" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17258,6 +17354,9 @@
       "extractionState" : "manual"
     },
     "Bluetooth-Sensoren auslesen" : {
+      "extractionState" : "manual"
+    },
+    "Bonjour-Namen und -Dienste" : {
       "extractionState" : "manual"
     },
     "Braucht Bewegung & Fitness. Zum Erlauben tippen." : {
@@ -18061,6 +18160,9 @@
       }
     },
     "Breite" : {
+      "extractionState" : "manual"
+    },
+    "Broadcast-Adresse" : {
       "extractionState" : "manual"
     },
     "Byte ab" : {
@@ -19027,6 +19129,15 @@
         }
       }
     },
+    "Cloudflare" : {
+      "extractionState" : "manual"
+    },
+    "Computer" : {
+      "extractionState" : "manual"
+    },
+    "DNS-Abfrage" : {
+      "extractionState" : "manual"
+    },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
       "localizations" : {
         "ar" : {
@@ -19673,6 +19784,15 @@
     "Das Gerät führt aus, was es empfängt." : {
       "extractionState" : "manual"
     },
+    "Das Netz hat mehr als 1024 Adressen. Gesucht wird im Bereich um das Telefon." : {
+      "extractionState" : "manual"
+    },
+    "Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt — Hardware-Adressen, WLAN-Kanäle, Nachbarnetze — fehlt hier und wird nicht vorgetäuscht." : {
+      "extractionState" : "manual"
+    },
+    "Das System hat das Senden verweigert." : {
+      "extractionState" : "manual"
+    },
     "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
       "localizations" : {
         "ar" : {
@@ -20155,6 +20275,9 @@
           }
         }
       }
+    },
+    "Datensparmodus ist an" : {
+      "extractionState" : "manual"
     },
     "Dauer" : {
       "extractionState" : "manual",
@@ -22252,6 +22375,9 @@
     "Der Name gilt nur auf diesem Telefon und für diese Adresse." : {
       "extractionState" : "manual"
     },
+    "Der Name lässt sich nicht auflösen." : {
+      "extractionState" : "manual"
+    },
     "Der Server antwortete mit %lld." : {
       "localizations" : {
         "ar" : {
@@ -22412,6 +22538,18 @@
         }
       }
     },
+    "Der Server hat den Test abgebrochen." : {
+      "extractionState" : "manual"
+    },
+    "Der Server hat den Test abgelehnt (er ist vermutlich beschäftigt)." : {
+      "extractionState" : "manual"
+    },
+    "Der Server hat keine Ergebnisse geschickt." : {
+      "extractionState" : "manual"
+    },
+    "Der Server meldet einen Fehler." : {
+      "extractionState" : "manual"
+    },
     "Details" : {
       "localizations" : {
         "ar" : {
@@ -22571,6 +22709,21 @@
           }
         }
       }
+    },
+    "Diagnose" : {
+      "extractionState" : "manual"
+    },
+    "Die Abfrage hat nicht geklappt." : {
+      "extractionState" : "manual"
+    },
+    "Die Adresse ist ungültig." : {
+      "extractionState" : "manual"
+    },
+    "Die Antwortzeit steigt unter Last stark. Das deutet auf einen überfüllten Puffer im Router hin (Bufferbloat)." : {
+      "extractionState" : "manual"
+    },
+    "Die Art des Geräts ist eine Vermutung aus Namen, Diensten und offenen Ports." : {
+      "extractionState" : "manual"
     },
     "Die Aufnahme als .ssbin, verlustfrei und in voller Auflösung, statt gerundet in CSV." : {
       "localizations" : {
@@ -23535,6 +23688,15 @@
         }
       }
     },
+    "Die Funktechnik, mit der das Telefon gerade verbunden ist. Netzbetreiber, Zellen-ID und Signalstärke gibt iOS an Apps nicht heraus." : {
+      "extractionState" : "manual"
+    },
+    "Die Gegenstelle hat die Verbindung geschlossen." : {
+      "extractionState" : "manual"
+    },
+    "Die Hardware-Adresse ist ungültig." : {
+      "extractionState" : "manual"
+    },
     "Die Kamera ist noch nicht bereit." : {
       "localizations" : {
         "ar" : {
@@ -24175,6 +24337,9 @@
         }
       }
     },
+    "Die Portliste ist ungültig." : {
+      "extractionState" : "manual"
+    },
     "Die Route als GeoJSON für QGIS, als KML für Google Earth, als GPX zum Wiederfinden, oder als Bündel mit jedem Foto und Clip." : {
       "localizations" : {
         "ar" : {
@@ -24659,6 +24824,9 @@
       }
     },
     "Dienstdaten %@" : {
+      "extractionState" : "manual"
+    },
+    "Dienste im Netz" : {
       "extractionState" : "manual"
     },
     "Dienste und Merkmale" : {
@@ -25790,6 +25958,9 @@
         }
       }
     },
+    "Dieses iPhone" : {
+      "extractionState" : "manual"
+    },
     "Dieses iPhone kann keine Apple Watch koppeln." : {
       "localizations" : {
         "ar" : {
@@ -25949,6 +26120,18 @@
           }
         }
       }
+    },
+    "Direktverbindung" : {
+      "extractionState" : "manual"
+    },
+    "Download" : {
+      "extractionState" : "manual"
+    },
+    "Download …" : {
+      "extractionState" : "manual"
+    },
+    "Download-Adresse" : {
+      "extractionState" : "manual"
     },
     "Drehrate" : {
       "localizations" : {
@@ -26269,6 +26452,9 @@
           }
         }
       }
+    },
+    "Drucker" : {
+      "extractionState" : "manual"
     },
     "Du kannst markieren, wie weit der Schaden reicht: als Kreis um dich herum oder als Polygon entlang des Rands." : {
       "localizations" : {
@@ -26594,7 +26780,28 @@
     "Eigene Decoder" : {
       "extractionState" : "manual"
     },
+    "Eigene Liste" : {
+      "extractionState" : "manual"
+    },
+    "Eigener Name" : {
+      "extractionState" : "manual"
+    },
+    "Eigener Server" : {
+      "extractionState" : "manual"
+    },
+    "Ein Gerät, das keinen Ping beantwortet, verrät sich meist durch eine abgelehnte oder angenommene Verbindung. Hardware-Adressen liest iOS nicht aus, deshalb gibt es keine Herstellerangabe." : {
+      "extractionState" : "manual"
+    },
+    "Ein Ping je Sekunde über ICMP. Manche Geräte und Firewalls antworten nicht darauf, obwohl sie da sind; dann hilft der Portscan." : {
+      "extractionState" : "manual"
+    },
     "Ein falscher Wert kann ein Gerät verstellen. Geschrieben wird erst nach einer Rückfrage." : {
+      "extractionState" : "manual"
+    },
+    "Eine Anfrage an 1.1.1.1 (Cloudflare) zeigt, unter welcher Adresse das Telefon im Internet auftritt. Sie wird nur gesendet, wenn du auf den Knopf tippst." : {
+      "extractionState" : "manual"
+    },
+    "Eine Anfrage, in ihre Abschnitte zerlegt: Namensauflösung, Verbindung, TLS, Wartezeit bis zum ersten Byte und Übertragung." : {
       "extractionState" : "manual"
     },
     "Eine JavaScript-Datei mit beliebig vielen decoder({ … })-Aufrufen. Jeder nennt manufacturerId, serviceUuid oder namePrefix und eine Funktion decode(bytes), die { name: Zahl } zurückgibt. Das Beispiel zeigt beides." : {
@@ -27079,6 +27286,9 @@
           }
         }
       }
+    },
+    "Eine der Adressen ist ungültig." : {
+      "extractionState" : "manual"
     },
     "Eingabe" : {
       "extractionState" : "manual"
@@ -28051,6 +28261,12 @@
         }
       }
     },
+    "Empfangen" : {
+      "extractionState" : "manual"
+    },
+    "Empfänger" : {
+      "extractionState" : "manual"
+    },
     "Entfernen" : {
       "localizations" : {
         "ar" : {
@@ -28693,6 +28909,9 @@
           }
         }
       }
+    },
+    "Ergebnis" : {
+      "extractionState" : "manual"
     },
     "Ergänzen" : {
       "localizations" : {
@@ -31446,6 +31665,9 @@
         }
       }
     },
+    "Fragt den Server direkt über UDP Port 53. Der Vergleich zeigt, ob das Netz einen Namen anders auflöst als die öffentlichen Server — ein Hinweis auf Filter, Umleitungen und fehlerhafte Router." : {
+      "extractionState" : "manual"
+    },
     "Freigeschaltet" : {
       "localizations" : {
         "ar" : {
@@ -33058,6 +33280,12 @@
         }
       }
     },
+    "Gefunden durch" : {
+      "extractionState" : "manual"
+    },
+    "Gegenstelle" : {
+      "extractionState" : "manual"
+    },
     "Gelände oder Strasse" : {
       "localizations" : {
         "ar" : {
@@ -34028,6 +34256,12 @@
     "Gerät suchen" : {
       "extractionState" : "manual"
     },
+    "Geräte" : {
+      "extractionState" : "manual"
+    },
+    "Geräte im Netz" : {
+      "extractionState" : "manual"
+    },
     "Gesamtexport" : {
       "localizations" : {
         "ar" : {
@@ -34188,6 +34422,21 @@
         }
       }
     },
+    "Gesamtzeit" : {
+      "extractionState" : "manual"
+    },
+    "Geschwindigkeit" : {
+      "extractionState" : "manual"
+    },
+    "Geschätzt: iOS hat die Adresse nicht genannt, es ist die erste im Netz." : {
+      "extractionState" : "manual"
+    },
+    "Gesendet" : {
+      "extractionState" : "manual"
+    },
+    "Gespeicherte Scans" : {
+      "extractionState" : "manual"
+    },
     "Gilt für alle Bewegungssensoren. GPS, Barometer und Schrittzähler liefern in ihrem eigenen Takt." : {
       "localizations" : {
         "ar" : {
@@ -34347,6 +34596,12 @@
           }
         }
       }
+    },
+    "Gilt nicht für diesen Namen" : {
+      "extractionState" : "manual"
+    },
+    "Google" : {
+      "extractionState" : "manual"
     },
     "Gravitation" : {
       "localizations" : {
@@ -34829,6 +35084,15 @@
         }
       }
     },
+    "Gültig ab" : {
+      "extractionState" : "manual"
+    },
+    "Gültig bis" : {
+      "extractionState" : "manual"
+    },
+    "HTTP-Test" : {
+      "extractionState" : "manual"
+    },
     "Handgelenk" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34989,6 +35253,15 @@
           }
         }
       }
+    },
+    "Handschlag" : {
+      "extractionState" : "manual"
+    },
+    "Hardware-Adresse" : {
+      "extractionState" : "manual"
+    },
+    "Hardware-Adresse (aa:bb:cc:dd:ee:ff)" : {
+      "extractionState" : "manual"
     },
     "Helligkeit" : {
       "localizations" : {
@@ -35646,6 +35919,9 @@
     "Hoch" : {
       "extractionState" : "manual"
     },
+    "Häufige und Geräte-Ports" : {
+      "extractionState" : "manual"
+    },
     "Höchstens" : {
       "extractionState" : "manual"
     },
@@ -35970,6 +36246,12 @@
         }
       }
     },
+    "IPv4" : {
+      "extractionState" : "manual"
+    },
+    "IPv6" : {
+      "extractionState" : "manual"
+    },
     "Im Archiv liegt %@: jede Datei mit Grösse und SHA-256, jede Beobachtung mit Position, Genauigkeit, Bewertung und den Pfaden ihrer Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen." : {
       "localizations" : {
         "ar" : {
@@ -36129,6 +36411,9 @@
           }
         }
       }
+    },
+    "Im Browser öffnen" : {
+      "extractionState" : "manual"
     },
     "Im WLAN abrufbar" : {
       "extractionState" : "manual"
@@ -36936,16 +37221,28 @@
     "Innerhalb" : {
       "extractionState" : "manual"
     },
+    "Internet" : {
+      "extractionState" : "manual"
+    },
     "Intervall" : {
       "extractionState" : "manual"
     },
     "Je näher das Gerät, desto schneller das Klopfen. Mit dem Telefon langsam drehen und gehen." : {
       "extractionState" : "manual"
     },
+    "Jeder Server, der eine grosse Datei ausliefert und POST-Daten annimmt, taugt — auch einer im eigenen Netz, um das WLAN ohne Internet zu messen." : {
+      "extractionState" : "manual"
+    },
     "Jedes Gerät im selben WLAN bekommt unter dieser Adresse mit einem einfachen GET die neuesten Werte aller laufenden Sensoren, als JSON im selben Format wie die Live-Übertragung. Nur lesen, nichts ändern. Läuft, solange die App offen ist." : {
       "extractionState" : "manual"
     },
     "Jedes Mal" : {
+      "extractionState" : "manual"
+    },
+    "Jetzt zu: %@" : {
+      "extractionState" : "manual"
+    },
+    "Jitter" : {
       "extractionState" : "manual"
     },
     "KML (Google Earth)" : {
@@ -37268,6 +37565,9 @@
           }
         }
       }
+    },
+    "Kabel oder Adapter" : {
+      "extractionState" : "manual"
     },
     "Kamera" : {
       "localizations" : {
@@ -39037,7 +39337,16 @@
         }
       }
     },
+    "Kein Netz" : {
+      "extractionState" : "manual"
+    },
+    "Kein Port offen." : {
+      "extractionState" : "manual"
+    },
     "Kein WLAN verbunden." : {
+      "extractionState" : "manual"
+    },
+    "Kein WLAN-Name verfügbar." : {
       "extractionState" : "manual"
     },
     "Kein Zugriff auf den Standort" : {
@@ -39681,6 +39990,15 @@
         }
       }
     },
+    "Kein lokales Netz gefunden. Verbinde das Telefon mit einem WLAN oder einem Ethernet-Adapter." : {
+      "extractionState" : "manual"
+    },
+    "Keine Antwort innerhalb der Frist." : {
+      "extractionState" : "manual"
+    },
+    "Keine Antwort." : {
+      "extractionState" : "manual"
+    },
     "Keine Aufnahmen" : {
       "localizations" : {
         "ar" : {
@@ -40321,6 +40639,9 @@
         }
       }
     },
+    "Keine TLS-Verbindung möglich." : {
+      "extractionState" : "manual"
+    },
     "Kennung" : {
       "extractionState" : "manual"
     },
@@ -40645,6 +40966,9 @@
       }
     },
     "Konsole" : {
+      "extractionState" : "manual"
+    },
+    "Kopfzeilen" : {
       "extractionState" : "manual"
     },
     "Kreis" : {
@@ -41452,6 +41776,9 @@
         }
       }
     },
+    "Land" : {
+      "extractionState" : "manual"
+    },
     "Lautstärke" : {
       "localizations" : {
         "ar" : {
@@ -41771,6 +42098,9 @@
           }
         }
       }
+    },
+    "Lese Namen und Ports …" : {
+      "extractionState" : "manual"
     },
     "Lesen" : {
       "extractionState" : "manual"
@@ -42101,6 +42431,9 @@
         }
       }
     },
+    "Loopback" : {
+      "extractionState" : "manual"
+    },
     "Lädt" : {
       "localizations" : {
         "ar" : {
@@ -42424,6 +42757,12 @@
         }
       }
     },
+    "Läuft in %lld Tagen ab" : {
+      "extractionState" : "manual"
+    },
+    "Läuft über Cloudflare WARP" : {
+      "extractionState" : "manual"
+    },
     "Läuft, seit diese Ansicht offen ist. Die Aufnahme startet weiterhin auf der Hauptseite." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -42744,6 +43083,9 @@
           }
         }
       }
+    },
+    "MQTT-Broker testen" : {
+      "extractionState" : "manual"
     },
     "MQTT-Nachricht" : {
       "extractionState" : "manual"
@@ -43549,6 +43891,15 @@
         }
       }
     },
+    "Maximum" : {
+      "extractionState" : "manual"
+    },
+    "Mediengerät" : {
+      "extractionState" : "manual"
+    },
+    "Mehr Ports heisst längere Suche. Die Liste mit 1–1024 braucht je Gerät einige Sekunden." : {
+      "extractionState" : "manual"
+    },
     "Mehrere Routen" : {
       "localizations" : {
         "ar" : {
@@ -43708,6 +44059,9 @@
           }
         }
       }
+    },
+    "Meine Angaben" : {
+      "extractionState" : "manual"
     },
     "Meine Position" : {
       "localizations" : {
@@ -44189,6 +44543,9 @@
         }
       }
     },
+    "Messung starten" : {
+      "extractionState" : "manual"
+    },
     "Messwert" : {
       "extractionState" : "manual"
     },
@@ -44353,6 +44710,9 @@
         }
       }
     },
+    "Methode" : {
+      "extractionState" : "manual"
+    },
     "Mindestens 3 Punkte antippen oder ablaufen" : {
       "localizations" : {
         "ar" : {
@@ -44513,10 +44873,19 @@
         }
       }
     },
+    "Minimum" : {
+      "extractionState" : "manual"
+    },
+    "Misst, wie schnell das Telefon aus dem Internet lädt und dorthin sendet, und wie stark sich die Antwortzeit verschlechtert, solange die Leitung voll ist. Vier Verbindungen, je acht Sekunden. Standardmässig gegen die öffentlichen Messpunkte von Cloudflare; das verbraucht Datenvolumen." : {
+      "extractionState" : "manual"
+    },
     "Mit Bestätigung des Geräts" : {
       "extractionState" : "manual"
     },
     "Mit diesen Angaben ergibt sich noch kein Wert." : {
+      "extractionState" : "manual"
+    },
+    "Mittel" : {
       "extractionState" : "manual"
     },
     "Mobil" : {
@@ -44679,6 +45048,9 @@
           }
         }
       }
+    },
+    "Mobilfunk" : {
+      "extractionState" : "manual"
     },
     "Nach Sekunden" : {
       "extractionState" : "manual"
@@ -45816,6 +46188,21 @@
     "Name, Hersteller, Dienst" : {
       "extractionState" : "manual"
     },
+    "Namen vom Router (DNS)" : {
+      "extractionState" : "manual"
+    },
+    "Namensauflösung" : {
+      "extractionState" : "manual"
+    },
+    "Netz" : {
+      "extractionState" : "manual"
+    },
+    "Netz absuchen" : {
+      "extractionState" : "manual"
+    },
+    "Netzqualität mitschreiben" : {
+      "extractionState" : "manual"
+    },
     "Netzwerk" : {
       "localizations" : {
         "ar" : {
@@ -45975,6 +46362,12 @@
           }
         }
       }
+    },
+    "Netzwerkspeicher" : {
+      "extractionState" : "manual"
+    },
+    "Neu offen: %@" : {
+      "extractionState" : "manual"
     },
     "Neue Regel" : {
       "extractionState" : "manual"
@@ -46138,6 +46531,9 @@
           }
         }
       }
+    },
+    "Nicht aktiv" : {
+      "extractionState" : "manual"
     },
     "Nicht aufzeichnen" : {
       "localizations" : {
@@ -46465,6 +46861,15 @@
         }
       }
     },
+    "Nichts hat sich verändert." : {
+      "extractionState" : "manual"
+    },
+    "Noch %lld Tage gültig" : {
+      "extractionState" : "manual"
+    },
+    "Noch kein Scan gespeichert. Jede abgeschlossene Suche im Netz landet hier." : {
+      "extractionState" : "manual"
+    },
     "Noch kein Sensor erkannt. Öffne den Aufnahme-Bildschirm, damit gesucht wird." : {
       "extractionState" : "manual"
     },
@@ -46630,6 +47035,9 @@
           }
         }
       }
+    },
+    "Noch nicht gesucht. Der Scan fragt jede Adresse des Netzes mit Ping und kurzen Verbindungsversuchen und liest die Namen, die Geräte im Netz von sich bekannt geben." : {
+      "extractionState" : "manual"
     },
     "Noch nichts ausgelöst. Regeln laufen nur während einer Aufnahme." : {
       "extractionState" : "manual"
@@ -47462,6 +47870,9 @@
     "Offen" : {
       "extractionState" : "manual"
     },
+    "Offene Ports" : {
+      "extractionState" : "manual"
+    },
     "Ohne Kamerapose enthält der Export nur Zeitstempel und Brennweiten. Die Bilder lassen sich damit nicht im Raum platzieren." : {
       "localizations" : {
         "ar" : {
@@ -48102,6 +48513,12 @@
         }
       }
     },
+    "Ohne diese Freigabe antwortet im eigenen Netz nichts. In den Einstellungen unter „Datenschutz & Sicherheit“ → „Lokales Netzwerk“ einschalten." : {
+      "extractionState" : "manual"
+    },
+    "Optionen" : {
+      "extractionState" : "manual"
+    },
     "Orientierung" : {
       "localizations" : {
         "ar" : {
@@ -48427,6 +48844,12 @@
           }
         }
       }
+    },
+    "Persönlicher Hotspot" : {
+      "extractionState" : "manual"
+    },
+    "Ping" : {
+      "extractionState" : "manual"
     },
     "Polygon" : {
       "localizations" : {
@@ -49470,6 +49893,15 @@
           }
         }
       }
+    },
+    "Ports" : {
+      "extractionState" : "manual"
+    },
+    "Ports der gefundenen Geräte prüfen" : {
+      "extractionState" : "manual"
+    },
+    "Portscan" : {
+      "extractionState" : "manual"
     },
     "Position" : {
       "localizations" : {
@@ -50595,10 +51027,19 @@
         }
       }
     },
+    "Probiert aus, welche TCP-Ports Verbindungen annehmen. Das Banner ist die erste Zeile, mit der sich ein Dienst meldet. Scanne nur Geräte, die dir gehören oder die du prüfen darfst." : {
+      "extractionState" : "manual"
+    },
     "Protokoll" : {
       "extractionState" : "manual"
     },
     "Protokoll teilen" : {
+      "extractionState" : "manual"
+    },
+    "Prüfen" : {
+      "extractionState" : "manual"
+    },
+    "Quad9" : {
       "extractionState" : "manual"
     },
     "Qualität" : {
@@ -51244,6 +51685,9 @@
           }
         }
       }
+    },
+    "Rechenzentrum" : {
+      "extractionState" : "manual"
     },
     "Rechte Fahrspur, Tiefe rund 6 cm." : {
       "localizations" : {
@@ -53014,6 +53458,12 @@
         }
       }
     },
+    "Router" : {
+      "extractionState" : "manual"
+    },
+    "Router des Netzes" : {
+      "extractionState" : "manual"
+    },
     "Rück" : {
       "localizations" : {
         "ar" : {
@@ -53334,6 +53784,9 @@
         }
       }
     },
+    "Rückrichtung (Server sendet)" : {
+      "extractionState" : "manual"
+    },
     "Satellit" : {
       "localizations" : {
         "ar" : {
@@ -53653,6 +54106,12 @@
           }
         }
       }
+    },
+    "Schickt das „Magic Packet“ per UDP an die Broadcast-Adresse des Netzes. iOS liest Hardware-Adressen von Geräten nicht aus; sie muss einmal eingegeben werden. Und iOS erlaubt Apps Broadcast im lokalen Netz nur mit einer besonderen Freigabe von Apple — ohne sie kann das Senden scheitern, ohne dass die App etwas daran ändern kann." : {
+      "extractionState" : "manual"
+    },
+    "Schickt während einer Aufnahme jede Sekunde einen Ping an den Router und an 1.1.1.1 und schreibt Antwortzeit und Verlust als eigene Ströme mit, dazu die WLAN-Signalstärke, soweit iOS sie herausgibt. Mit dem Standort zusammen zeigt die Aufnahme, wo im Gebäude das Netz schwach wird." : {
+      "extractionState" : "manual"
     },
     "Schlagloch" : {
       "localizations" : {
@@ -54458,7 +54917,22 @@
         }
       }
     },
+    "Sechs Sekunden mithören" : {
+      "extractionState" : "manual"
+    },
+    "Seit %@" : {
+      "extractionState" : "manual"
+    },
+    "Selbst signiert" : {
+      "extractionState" : "manual"
+    },
     "Sendeleistung" : {
+      "extractionState" : "manual"
+    },
+    "Senden" : {
+      "extractionState" : "manual"
+    },
+    "Sender" : {
       "extractionState" : "manual"
     },
     "Sensor" : {
@@ -55588,6 +56062,12 @@
     "Sensorstorm darf Bluetooth nicht benutzen." : {
       "extractionState" : "manual"
     },
+    "Seriennummer" : {
+      "extractionState" : "manual"
+    },
+    "Server" : {
+      "extractionState" : "manual"
+    },
     "Setzung" : {
       "localizations" : {
         "ar" : {
@@ -55908,13 +56388,25 @@
         }
       }
     },
+    "Signal" : {
+      "extractionState" : "manual"
+    },
     "Signal neu messen" : {
       "extractionState" : "manual"
     },
     "Signalstärke" : {
       "extractionState" : "manual"
     },
+    "Smart Home" : {
+      "extractionState" : "manual"
+    },
+    "Sonstige" : {
+      "extractionState" : "manual"
+    },
     "Sortieren" : {
+      "extractionState" : "manual"
+    },
+    "Spricht mit einem iperf3-Server (Standardport 5201), den du selbst betreibst: iperf3 -s. Gemessen wird TCP. Der Test belastet das Netz voll; das Ergebnis der Empfängerseite sagt, was tatsächlich ankam." : {
       "extractionState" : "manual"
     },
     "Standort" : {
@@ -56240,6 +56732,12 @@
           }
         }
       }
+    },
+    "Starten" : {
+      "extractionState" : "manual"
+    },
+    "Statistik" : {
+      "extractionState" : "manual"
     },
     "Status" : {
       "extractionState" : "manual"
@@ -56569,6 +57067,9 @@
       "extractionState" : "manual"
     },
     "Suche Dienste …" : {
+      "extractionState" : "manual"
+    },
+    "Suche Geräte …" : {
       "extractionState" : "manual"
     },
     "Suche beenden" : {
@@ -57055,6 +57556,15 @@
           }
         }
       }
+    },
+    "Test starten" : {
+      "extractionState" : "manual"
+    },
+    "Testen" : {
+      "extractionState" : "manual"
+    },
+    "Teuer: Mobilfunk oder Hotspot" : {
+      "extractionState" : "manual"
     },
     "Text" : {
       "localizations" : {
@@ -57544,6 +58054,9 @@
           }
         }
       }
+    },
+    "Traceroute" : {
+      "extractionState" : "manual"
     },
     "Typ" : {
       "extractionState" : "manual"
@@ -58348,6 +58861,9 @@
         }
       }
     },
+    "Unerwarteter Zustand %lld vom Server." : {
+      "extractionState" : "manual"
+    },
     "Ungefähr %@. Das Archiv wird danach zum Teilen angeboten: Dateien, AirDrop, Mail." : {
       "localizations" : {
         "ar" : {
@@ -58668,6 +59184,18 @@
         }
       }
     },
+    "Upload" : {
+      "extractionState" : "manual"
+    },
+    "Upload …" : {
+      "extractionState" : "manual"
+    },
+    "Upload-Adresse" : {
+      "extractionState" : "manual"
+    },
+    "VPN" : {
+      "extractionState" : "manual"
+    },
     "Verbindbar" : {
       "extractionState" : "manual"
     },
@@ -58675,6 +59203,12 @@
       "extractionState" : "manual"
     },
     "Verbinden" : {
+      "extractionState" : "manual"
+    },
+    "Verbindet sich, prüft die Zugangsdaten und hört auf alle Themen („#“), um zu sehen, was der Broker führt. Es wird nichts veröffentlicht." : {
+      "extractionState" : "manual"
+    },
+    "Verbindung" : {
       "extractionState" : "manual"
     },
     "Verbindung testen" : {
@@ -58837,7 +59371,19 @@
         }
       }
     },
+    "Verbindungen" : {
+      "extractionState" : "manual"
+    },
+    "Verbindungsversuche bei Geräten ohne Ping" : {
+      "extractionState" : "manual"
+    },
+    "Verbindungszeit" : {
+      "extractionState" : "manual"
+    },
     "Verbunden" : {
+      "extractionState" : "manual"
+    },
+    "Verbunden, aber der Broker antwortet nicht auf MQTT." : {
       "extractionState" : "manual"
     },
     "Verbunden." : {
@@ -59325,6 +59871,9 @@
         }
       }
     },
+    "Verlust" : {
+      "extractionState" : "manual"
+    },
     "Versatz" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -59646,6 +60195,9 @@
           }
         }
       }
+    },
+    "Verschlüsselt" : {
+      "extractionState" : "manual"
     },
     "Version" : {
       "localizations" : {
@@ -60611,6 +61163,9 @@
         }
       }
     },
+    "Vom System anerkannt" : {
+      "extractionState" : "manual"
+    },
     "Vor der Einmündung, Kante scharf." : {
       "localizations" : {
         "ar" : {
@@ -61092,6 +61647,15 @@
           }
         }
       }
+    },
+    "WLAN-Signal" : {
+      "extractionState" : "manual"
+    },
+    "Wake-on-LAN" : {
+      "extractionState" : "manual"
+    },
+    "Wartezeit" : {
+      "extractionState" : "manual"
     },
     "Warum?" : {
       "localizations" : {
@@ -61576,6 +62140,12 @@
     "Was wurde getan?" : {
       "extractionState" : "manual"
     },
+    "Weg" : {
+      "extractionState" : "manual"
+    },
+    "Weitere" : {
+      "extractionState" : "manual"
+    },
     "Weitere Fotos und Clips" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -61737,7 +62307,13 @@
         }
       }
     },
+    "Weiterleitungen" : {
+      "extractionState" : "manual"
+    },
     "Wenn alle zutreffen" : {
+      "extractionState" : "manual"
+    },
+    "Werkzeuge" : {
       "extractionState" : "manual"
     },
     "Wert" : {
@@ -62065,6 +62641,9 @@
         }
       }
     },
+    "Wie gesucht wird" : {
+      "extractionState" : "manual"
+    },
     "Wie weit weg ist das Objekt?" : {
       "localizations" : {
         "ar" : {
@@ -62224,6 +62803,9 @@
           }
         }
       }
+    },
+    "Windows-Namen (NetBIOS)" : {
+      "extractionState" : "manual"
     },
     "Wird aufgezeichnet" : {
       "extractionState" : "manual"
@@ -63674,6 +64256,9 @@
         }
       }
     },
+    "Zeigt die Router auf dem Weg. Jeder Sprung bekommt drei Pakete mit steigender Lebensdauer; ein Router, der nicht antwortet, erscheint als Stern." : {
+      "extractionState" : "manual"
+    },
     "Zeit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -63994,6 +64579,18 @@
           }
         }
       }
+    },
+    "Zertifikat des Servers" : {
+      "extractionState" : "manual"
+    },
+    "Zertifikat prüfen" : {
+      "extractionState" : "manual"
+    },
+    "Ziel erreicht" : {
+      "extractionState" : "manual"
+    },
+    "Ziele" : {
+      "extractionState" : "manual"
     },
     "Zu diesem Apple-Account wurde kein Kauf von Sensorstorm Pro gefunden." : {
       "localizations" : {
@@ -64474,6 +65071,9 @@
           }
         }
       }
+    },
+    "Zugriff auf das lokale Netz fehlt" : {
+      "extractionState" : "manual"
     },
     "Zuklappen" : {
       "localizations" : {
@@ -65597,6 +66197,9 @@
           }
         }
       }
+    },
+    "Zwischenzertifikat %lld" : {
+      "extractionState" : "manual"
     },
     "brauchbar" : {
       "extractionState" : "manual",
@@ -66893,6 +67496,12 @@
           }
         }
       }
+    },
+    "iOS gibt den WLAN-Namen nur heraus, wenn die App mit WLAN verbunden ist, die Standortfreigabe hat und die Berechtigung „Zugriff auf WLAN-Informationen“ trägt. Die Signalstärke kommt als Wert von 0 bis 100 %, nicht in dBm, und Kanal, Bandbreite oder andere Netze in der Nähe liefert iOS an keine App." : {
+      "extractionState" : "manual"
+    },
+    "iperf3" : {
+      "extractionState" : "manual"
     },
     "ja" : {
       "extractionState" : "manual",
@@ -68504,6 +69113,12 @@
         }
       }
     },
+    "Öffentliche Adresse abfragen" : {
+      "extractionState" : "manual"
+    },
+    "Über einen Proxy" : {
+      "extractionState" : "manual"
+    },
     "Über etwa 12 m, noch ohne Ausbruch." : {
       "localizations" : {
         "ar" : {
@@ -68823,6 +69438,9 @@
           }
         }
       }
+    },
+    "Übertragung" : {
+      "extractionState" : "manual"
     },
     "„%@“ nennt weder manufacturerId noch serviceUuid noch namePrefix." : {
       "extractionState" : "manual"

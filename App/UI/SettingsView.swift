@@ -286,6 +286,11 @@ struct SettingsView: View {
                 Label("Zeit gegen einen Zeitserver messen", systemImage: "clock.badge.checkmark")
             }
 
+            Toggle(isOn: Binding(get: { hub.settings.recordsNetworkQuality },
+                                 set: { hub.settings.recordsNetworkQuality = $0 })) {
+                Label("Netzqualität mitschreiben", systemImage: "network")
+            }
+
             if hub.settings.isEnabled(.bluetooth) {
                 Toggle(isOn: Binding(get: { hub.settings.logsBluetoothAdvertisements },
                                      set: { hub.settings.logsBluetoothAdvertisements = $0 })) {
@@ -315,6 +320,14 @@ struct SettingsView: View {
                 EmptyView()
             } footer: {
                 Text("Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig.")
+            }
+        }
+
+        if hub.settings.recordsNetworkQuality {
+            Section {
+                EmptyView()
+            } footer: {
+                Text("Schickt während einer Aufnahme jede Sekunde einen Ping an den Router und an 1.1.1.1 und schreibt Antwortzeit und Verlust als eigene Ströme mit, dazu die WLAN-Signalstärke, soweit iOS sie herausgibt. Mit dem Standort zusammen zeigt die Aufnahme, wo im Gebäude das Netz schwach wird.")
             }
         }
 

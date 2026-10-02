@@ -36,6 +36,13 @@ public struct DNSRecord: Sendable, Equatable {
     /// the text of a TXT record. Hex for a type this does not know.
     public var value: String
 
+    public init(name: String, type: UInt16, ttl: UInt32, value: String) {
+        self.name = name
+        self.type = type
+        self.ttl = ttl
+        self.value = value
+    }
+
     public var typeLabel: String { DNSRecordType(rawValue: type)?.label ?? "TYPE\(type)" }
 }
 

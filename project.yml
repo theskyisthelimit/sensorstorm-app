@@ -138,7 +138,45 @@ targets:
           zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut.
         NSLocalNetworkUsageDescription: >-
           Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen
-          einträgst. Liegt der Server im selben Netz, braucht das diese Freigabe.
+          einträgst und sucht auf Wunsch die Geräte im eigenen Netz. Beides braucht diese
+          Freigabe.
+        # iOS lets an app browse only the Bonjour service types it lists. Same list as
+        # `Bonjour.serviceTypes` in App/Network/Discovery.swift — a type missing here is a
+        # device class the network scan never names.
+        NSBonjourServices:
+          - _http._tcp
+          - _https._tcp
+          - _ssh._tcp
+          - _sftp-ssh._tcp
+          - _smb._tcp
+          - _afpovertcp._tcp
+          - _nfs._tcp
+          - _adisk._tcp
+          - _workstation._tcp
+          - _device-info._tcp
+          - _ipp._tcp
+          - _ipps._tcp
+          - _printer._tcp
+          - _pdl-datastream._tcp
+          - _scanner._tcp
+          - _uscan._tcp
+          - _airplay._tcp
+          - _raop._tcp
+          - _companion-link._tcp
+          - _apple-mobdev2._tcp
+          - _homekit._tcp
+          - _hap._tcp
+          - _matter._tcp
+          - _googlecast._tcp
+          - _spotify-connect._tcp
+          - _sonos._tcp
+          - _daap._tcp
+          - _rtsp._tcp
+          - _mqtt._tcp
+          - _esphomelib._tcp
+          - _hue._tcp
+          - _home-assistant._tcp
+          - _eppc._tcp
         # The endpoint is whatever the user typed, and a self-hosted receiver on the LAN is
         # the normal case: a Raspberry Pi, a Node-RED box, Home Assistant. Those speak plain
         # HTTP and cannot present a certificate any CA would sign. The exception is scoped

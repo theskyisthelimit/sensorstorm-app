@@ -81,6 +81,7 @@ final class SensorHub {
     private let deviceStateSource: DeviceStateSource
     private let activitySource: ActivitySource
     let bluetoothSource: BluetoothSource
+    private let networkQualitySource: NetworkQualitySource
     private let watchLink: WatchLink
     let streamer: LiveStreamer
     let webServer: LocalWebServer
@@ -118,6 +119,7 @@ final class SensorHub {
         self.deviceStateSource = DeviceStateSource(sink: sink)
         self.activitySource = ActivitySource(sink: sink)
         self.bluetoothSource = BluetoothSource(sink: sink)
+        self.networkQualitySource = NetworkQualitySource(sink: sink)
         self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
@@ -530,6 +532,10 @@ final class SensorHub {
                     try? BLEReadingLog(directory: directory, startHostTime: startHostTime))
             }
 
+            if recordingSettings.recordsNetworkQuality {
+                networkQualitySource.start()
+            }
+
             // Streaming rides along with the recording rather than running on its own: a
             // feed without a file behind it is a feed nobody can check afterwards.
             let endpoint = recordingSettings.streamingEndpoint
@@ -600,6 +606,7 @@ final class SensorHub {
         }
 
         bluetoothSource.endLogging()
+        networkQualitySource.stop()
 
         let ended = sink.endRecordingWithExternals()
         let streams = ended.streams

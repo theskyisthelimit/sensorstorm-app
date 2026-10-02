@@ -129,3 +129,23 @@ public struct InventoryDiff: Sendable, Equatable {
         return InventoryDiff(added: added, removed: removed, changed: changed)
     }
 }
+
+extension NetworkSnapshot {
+    /// One row per host, for a spreadsheet: what a network person hands to a customer.
+    public func csv() -> String {
+        var lines = ["address,name,guess,open_ports,services,round_trip_ms,sources"]
+        for host in hosts {
+            let fields = [
+                host.address,
+                host.hostNames.joined(separator: "; "),
+                host.guess.rawValue,
+                host.openPorts.map(String.init).joined(separator: " "),
+                host.services.joined(separator: " "),
+                host.roundTrip.map { String(format: "%.2f", $0 * 1_000) } ?? "",
+                host.sources.joined(separator: " "),
+            ]
+            lines.append(fields.map(RecordingExporter.csvEscape).joined(separator: ","))
+        }
+        return lines.joined(separator: "\n") + "\n"
+    }
+}

@@ -419,4 +419,20 @@ struct NetworkCoreTests {
         #expect(Array(packet.suffix(6)) == mac)
         #expect(WakeOnLAN.magicPacket(mac: [1, 2, 3]) == nil)
     }
+
+    @Test("Der Bestand als Tabelle: eine Zeile je Gerät, Namen maskiert")
+    func snapshotCSV() {
+        let snapshot = NetworkSnapshot(
+            networkName: "Büro", subnet: "10.0.0.0/24", gateway: "10.0.0.1",
+            hosts: [
+                HostRecord(address: "10.0.0.1", hostNames: ["router, oben"], services: ["_http._tcp"],
+                           openPorts: [53, 80], roundTrip: 0.0012, sources: ["ping", "dns"], guess: .router),
+                HostRecord(address: "10.0.0.7"),
+            ])
+        let lines = snapshot.csv().split(separator: "\n").map(String.init)
+        #expect(lines.count == 3)
+        #expect(lines[0] == "address,name,guess,open_ports,services,round_trip_ms,sources")
+        #expect(lines[1] == "10.0.0.1,\"router, oben\",router,53 80,_http._tcp,1.20,ping dns")
+        #expect(lines[2] == "10.0.0.7,,unknown,,,,")
+    }
 }

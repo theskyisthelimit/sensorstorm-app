@@ -51,6 +51,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// Look up the street address of a case after it is saved. Off by default: it sends the
     /// coordinate to Apple and, inside Switzerland, to swisstopo.
     var looksUpAddressesFlag: Bool?
+    /// Ping the router and the internet once a second during a recording and write the round
+    /// trips (and the Wi-Fi signal) as streams of their own.
+    var recordsNetworkQualityFlag: Bool?
 
     /// Streams hidden from the live tiles and the playback charts.
     ///
@@ -107,6 +110,12 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var looksUpAddresses: Bool {
         get { looksUpAddressesFlag ?? false }
         set { looksUpAddressesFlag = newValue }
+    }
+
+    /// Off by default: it sends a packet a second to the router and to 1.1.1.1.
+    var recordsNetworkQuality: Bool {
+        get { recordsNetworkQualityFlag ?? false }
+        set { recordsNetworkQualityFlag = newValue }
     }
 
     /// Off by default for the same reason the raw log is: decoding a neighbour's
@@ -194,6 +203,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.hiddenSensors = nil
         mine.collapsedCategories = nil
         mine.looksUpAddressesFlag = nil
+        mine.recordsNetworkQualityFlag = nil
         mine.gattSubscriptions = nil
         mine.bluetoothAliases = nil
         mine.bluetoothFavourites = nil
@@ -203,6 +213,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.hiddenSensors = nil
         theirs.collapsedCategories = nil
         theirs.looksUpAddressesFlag = nil
+        theirs.recordsNetworkQualityFlag = nil
         return mine != theirs
     }
 
