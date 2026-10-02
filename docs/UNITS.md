@@ -145,6 +145,54 @@ aus der Kameraeinstellung ([`SensorID.engineControlled`](../Sources/SensorstormC
 
 ---
 
+## Weitere Ströme (`externalStreams`)
+
+Alles, was kein eingebauter Sensor ist, steht in `metadata.json` unter `externalStreams` und als
+`ext-<lesbarer Teil>-<Kurzhash>.ssbin` im Ordner. Gleiches Format, gleiche Zeitbasis, gleiche
+Regel für fehlende Werte. Kennung, Titel und Kanäle stehen in der Beschreibung; `source` ist
+`bluetooth`, `network`, `mqtt`, `beacon`, `nearby`, `nfc`, `homeKit`, `accessory`, `derived`,
+`health` oder `device`.
+
+| Kennung | Kanäle | Einheit | Anmerkung |
+|---------|--------|---------|-----------|
+| `ble.<Gerät>.<Decoder>` | je Decoder | je Decoder | Werte aus Werbepaketen und Merkmalen; `rr` hat je Herzschlag eine eigene Zeit |
+| `ble.<Gerät>.gatt.<Merkmal>` | je Vorlage | je Vorlage | gewähltes GATT-Merkmal, bei Benachrichtigung oder im festen Takt |
+| `gnss.<Gerät>` | latitude, longitude | ° | externer GNSS-Empfänger (NMEA) |
+| | altitude | m | über Meer |
+| | quality, satellites, hdop | — | 0 keine, 1 GPS, 2 DGPS, 4 RTK fest, 5 RTK schwebend |
+| | speed, course | m/s, ° | aus RMC, `NaN` ohne gültigen Satz |
+| | horizontalAccuracy, verticalAccuracy | m | aus GST, eine Standardabweichung |
+| `net.rtt.gateway`, `net.rtt.internet` | rtt, lost | ms, — | ein Ping pro Sekunde; ein verlorener hat `rtt` = `NaN` und `lost` = 1 |
+| `net.wifi.signal` | signal | % | die Skala des Systems, 0 bis 100; keine dBm |
+| `motion.altitude.absolute` | altitude, accuracy, precision | m | GPS und Barometer vom System verrechnet |
+| `location.origin` | simulated, accessory, floor | —, —, Stockwerk | nur Zeilen, wenn eine Position nicht vom eigenen Empfänger kommt |
+| `system.storage` | free | GB | alle 5 s |
+| `system.audio` | volume, inputs, outputs | 0…1, Anzahl, Anzahl | Audio-Route |
+| `audio.spectrum` | dominant | Hz | Pegelspitze, interpoliert |
+| | 31.5 … 16k | dBFS | zehn Oktavbänder; ein Vollaussteuerungs-Sinus allein im Band liest −3 dB |
+| `camera.light` | intensity, temperature | lm, K | ARKit-Schätzung, kein Luxmeter |
+| `camera.depth.centre` | distance, confidence | m, 0…2 | Median der mittleren 5 × 5 Pixel; nur LiDAR-Geräte |
+| `beacon.<UUID>.<major>.<minor>` | rssi, distance, proximity | dBm, m, 0…3 | `NaN` bei „unbekannt“ |
+| `home.<Gerät>.<Merkmal>` | je Merkmal | °C, %, ppm, lx | HomeKit |
+| `health.<Metrik>` | value | 1/min, ms, %, Schritte, W, m, cm | nachträglich aus Health; Zeit = Beginn der Probe |
+| `peer.<Gerät>.<Sensor>` | wie der Sensor | wie der Sensor | zweites iPhone, auf die Zeit dieses Telefons umgerechnet; Versatz und Unsicherheit in `peerDevices` |
+| `nearby.uwb` | distance, x, y, z | m, Einheitsvektor | Richtung im Gerätesystem: x rechts, y oben, z aus der Rückseite |
+
+### bluetooth_devices.csv
+
+Eine Zeile je Gerät aus `bluetooth_advertisements.csv`: Kennung, Namen, Hersteller, Dienste, erstes
+und letztes Mal gesehen (Sekunden seit Beginn), Pakete, kleinster, mittlerer und grösster RSSI.
+
+### Zweites iPhone: Paketformat
+
+Meldung = Zeit auf der Uhr des Senders als Float64, dann die Kanäle als Float32, alles little
+endian. Der Dienst hat die Kennung `53454E53-4F52-5354-4F52-4D5000000001`; die Merkmale für
+Zustand, Steuerung, Uhr und UWB-Token enden auf `…02`, `…03`, `…04`, `…05`, die der Sensoren auf
+einen FNV-1a-Hash ihres Namens. Der Uhrabgleich ist ein NTP-Austausch: Median der schnellen
+Hälfte von sechzehn Anfragen, Unsicherheit = halbe kürzeste Laufzeit oder halbe Streuung.
+
+---
+
 ## Fehlende Werte
 
 `NaN` in der Binärdatei, **leeres Feld** in jedem CSV-Export. Kein `0`, kein `-999`. Ein leeres
