@@ -1986,3 +1986,32 @@ Suchbegriffe bringen Nutzer, die heute nie auf „Sensor Logger“ stossen.
 | 2 | WLAN-Signalstärke | So nicht machbar (F11). Ersatz: N4 Netzqualität, als Abdeckungskarte mit U2 (Kapitel 6.3) |
 | 3 | Bluetooth aufräumen | F12 aufteilen, dann zum vollwertigen Werkzeug ausbauen: B1–B8 auf D1 (Kapitel 6.2); dazu F14, F15, F17 |
 | 4 | Detailansicht je Sensorwert | **Erledigt** (`App/UI/SensorDetailView.swift`). Den Eintrag aus der TODO-Liste streichen. |
+
+---
+
+## Umsetzungsstand (2026-10-02)
+
+Gebaut gegen den Compiler und die Kern-Tests (CI grün), **an keinem Gerät geprüft**. Die
+Reihenfolge zum Prüfen steht in [HARDWARE-TEST.md](HARDWARE-TEST.md).
+
+| Gruppe | Gebaut | Teilweise | Nicht gebaut |
+|--------|--------|-----------|--------------|
+| **S** Schnelle Gewinne | S1–S7, S9, S10, S12, S13 | S8 (Kurzbefehle, Siri, Aktionstaste; keine Live-Aktivität), S11 (Datenschutzseite; Store-Texte nicht) | – |
+| **U** Oberfläche und Route | U1–U12 | – | – |
+| **M** Auswertung | M1–M4, M6, M8, M9 | M5 (Datensatz; ohne Beschriftung, ohne Vergleich zweier Aufnahmen), M6 (Strom, nicht als Position für Beobachtungen) | M7 |
+| **D** Dynamische Ströme | D1 | – | – |
+| **B** Bluetooth | B1–B8 | B8 (Geräteliste; kein GATT-Protokoll als Datei) | – |
+| **N** Netzwerk | N1–N7 | – | – |
+| **I** Weitere Quellen | I1–I7, I9, I11–I13 | I7 (Abstand zur Bildmitte, keine Tiefenkarte je Bild), I10 (800 Hz Beschleunigung, ohne Device Motion), I13 (Speicher und Audio-Route; kein Näherungssensor) | I8, I14, I15 |
+
+Warum nicht gebaut:
+
+- **M7** Standbilder für die Fotogrammetrie: die Intrinsics des Standbilds weichen von denen der
+  Videobilder ab, `cameras.csv` und der COLMAP-Export müssen sie je Bild führen.
+- **S8 Live-Aktivität** braucht eine Widget-Erweiterung mit eigener App-ID und eigenem Profil.
+- **I8** Körper-Tracking ist eine eigene ARKit-Konfiguration und schliesst das Weltmodell aus,
+  das die Kamerapose braucht.
+- **I14** USB-Messmikrofone mit Kalibrierdatei und MFi-GNSS: eigene Quelle, ohne Gerät nicht zu
+  entwickeln.
+- **I15** SensorKit gibt es nur für von Apple genehmigte Forschungsstudien.
+- **Staffelung in Gratis und Pro** (Kapitel 8): die neuen Werkzeuge hängen nicht an `ProAccess`.
