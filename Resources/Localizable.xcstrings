@@ -487,6 +487,9 @@
         }
       }
     },
+    "%@ (Wiederholung)" : {
+      "extractionState" : "manual"
+    },
     "%@ Messwerte" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4053,6 +4056,9 @@
     "%lld Routen ergänzt" : {
       "extractionState" : "manual"
     },
+    "%lld Routen waren schon da" : {
+      "extractionState" : "manual"
+    },
     "%lld Stösse über 1 m/s²" : {
       "extractionState" : "manual"
     },
@@ -4543,6 +4549,9 @@
           }
         }
       }
+    },
+    "%lld neue Routen" : {
+      "extractionState" : "manual"
     },
     "%lld neue und %lld geänderte Beobachtungen" : {
       "extractionState" : "manual"
@@ -5364,9 +5373,6 @@
         }
       }
     },
-    ", capture.magnitude)) g." : {
-      "extractionState" : "manual"
-    },
     "1 bis 1024 und Geräte-Ports" : {
       "extractionState" : "manual"
     },
@@ -5850,6 +5856,9 @@
           }
         }
       }
+    },
+    "22, 80, 8000-8100" : {
+      "extractionState" : "manual"
     },
     "3D" : {
       "localizations" : {
@@ -6824,13 +6833,13 @@
         }
       }
     },
-    "Abfallbehälter" : {
-      "extractionState" : "manual"
-    },
     "Abfragen" : {
       "extractionState" : "manual"
     },
     "Abgelaufen oder noch nicht gültig" : {
+      "extractionState" : "manual"
+    },
+    "Abgeschlossen am %@" : {
       "extractionState" : "manual"
     },
     "Abnahmeprotokoll als PDF" : {
@@ -7015,6 +7024,9 @@
       }
     },
     "Adresse" : {
+      "extractionState" : "manual"
+    },
+    "Adresse des Brokers" : {
       "extractionState" : "manual"
     },
     "Adresse des Servers" : {
@@ -9304,6 +9316,9 @@
       }
     },
     "Alles hier läuft nur während einer Aufnahme und schreibt eigene Ströme: sie stehen in der Wiedergabe und in jedem Export neben den übrigen Sensoren. Frequenzbänder und Geräuschklassen brauchen das Mikrofon und laufen nicht zusammen mit einer Videoaufnahme ohne ARKit." : {
+      "extractionState" : "manual"
+    },
+    "Allgemein" : {
       "extractionState" : "manual"
     },
     "Als Beobachtung" : {
@@ -12458,6 +12473,9 @@
     "Aufzeichnen" : {
       "extractionState" : "manual"
     },
+    "Aufzug" : {
+      "extractionState" : "manual"
+    },
     "Aufzugfahrten" : {
       "extractionState" : "manual"
     },
@@ -12787,9 +12805,6 @@
     "Ausgangspunkt" : {
       "extractionState" : "manual"
     },
-    "Ausgelöst durch einen Stoss von %@" : {
-      "extractionState" : "manual"
-    },
     "Ausgelöst durch einen Stoss von %@ g." : {
       "extractionState" : "manual"
     },
@@ -12968,6 +12983,9 @@
     "Ausserhalb" : {
       "extractionState" : "manual"
     },
+    "Auswerten" : {
+      "extractionState" : "manual"
+    },
     "Auswertung" : {
       "extractionState" : "manual"
     },
@@ -12978,9 +12996,6 @@
       "extractionState" : "manual"
     },
     "Bahn, Tram und Bus" : {
-      "extractionState" : "manual"
-    },
-    "Bank beschädigt" : {
       "extractionState" : "manual"
     },
     "Banner lesen" : {
@@ -13333,6 +13348,9 @@
     "Begehungsprotokoll" : {
       "extractionState" : "manual"
     },
+    "Begehungsprotokoll (PDF)" : {
+      "extractionState" : "manual"
+    },
     "Beginn" : {
       "extractionState" : "manual"
     },
@@ -13511,9 +13529,6 @@
         }
       }
     },
-    "Beleuchtung und Mobiliar" : {
-      "extractionState" : "manual"
-    },
     "Beliebig viele Routen nebeneinander: pro Strasse, pro Auftrag, pro Tag." : {
       "localizations" : {
         "ar" : {
@@ -13675,9 +13690,6 @@
       }
     },
     "Benachrichtigung" : {
-      "extractionState" : "manual"
-    },
-    "Bench damaged" : {
       "extractionState" : "manual"
     },
     "Benutzername" : {
@@ -14163,6 +14175,12 @@
         }
       }
     },
+    "Beobachtung an meinem Standort" : {
+      "extractionState" : "manual"
+    },
+    "Beobachtung bei %@ angelegt." : {
+      "extractionState" : "manual"
+    },
     "Beobachtung erfassen" : {
       "localizations" : {
         "ar" : {
@@ -14322,6 +14340,9 @@
           }
         }
       }
+    },
+    "Beobachtung gesichert." : {
+      "extractionState" : "manual"
     },
     "Beobachtung hier" : {
       "extractionState" : "manual"
@@ -16106,7 +16127,7 @@
     "Beschriftet mit den Notizen der Aufnahme: eine Notiz gilt bis zur nächsten. Ausgegeben werden die Messwerte im festen Raster, Fenster mit Kennzahlen und je Beschriftung ein Ordner im Format von Create ML." : {
       "extractionState" : "manual"
     },
-    "Beschädigt" : {
+    "Besser" : {
       "extractionState" : "manual"
     },
     "Beurteilt" : {
@@ -16595,6 +16616,9 @@
           }
         }
       }
+    },
+    "Bezeichnung" : {
+      "extractionState" : "manual"
     },
     "Big Endian" : {
       "extractionState" : "manual"
@@ -17242,9 +17266,6 @@
           }
         }
       }
-    },
-    "Blocked" : {
-      "extractionState" : "manual"
     },
     "Bluetooth" : {
       "localizations" : {
@@ -18405,9 +18426,6 @@
     "Broadcast-Adresse" : {
       "extractionState" : "manual"
     },
-    "Building and facade" : {
-      "extractionState" : "manual"
-    },
     "Byte ab" : {
       "extractionState" : "manual"
     },
@@ -19385,12 +19403,6 @@
       "extractionState" : "manual"
     },
     "Dafür braucht es mindestens zehn Sekunden Beschleunigung mit 20 Hz oder mehr." : {
-      "extractionState" : "manual"
-    },
-    "Damaged" : {
-      "extractionState" : "manual"
-    },
-    "Dangerous branch" : {
       "extractionState" : "manual"
     },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
@@ -22859,6 +22871,9 @@
     "Der Weg einer anderen Route wird gerade aufgezeichnet." : {
       "extractionState" : "manual"
     },
+    "Der Weg ist gespeichert." : {
+      "extractionState" : "manual"
+    },
     "Der Weg wird aufgezeichnet" : {
       "extractionState" : "manual"
     },
@@ -23029,9 +23044,6 @@
       }
     },
     "Diagnose" : {
-      "extractionState" : "manual"
-    },
-    "Diagonal" : {
       "extractionState" : "manual"
     },
     "Die Abfrage hat nicht geklappt." : {
@@ -29656,6 +29668,9 @@
     "Erledigung" : {
       "extractionState" : "manual"
     },
+    "Erneut senden" : {
+      "extractionState" : "manual"
+    },
     "Erneut verbinden" : {
       "extractionState" : "manual"
     },
@@ -30324,6 +30339,9 @@
       "extractionState" : "manual"
     },
     "Fahrt" : {
+      "extractionState" : "manual"
+    },
+    "Fahrt %lld" : {
       "extractionState" : "manual"
     },
     "Faktor" : {
@@ -32631,9 +32649,6 @@
         }
       }
     },
-    "Full" : {
-      "extractionState" : "manual"
-    },
     "Funk" : {
       "extractionState" : "manual"
     },
@@ -33772,9 +33787,6 @@
     "Gebiet der Route" : {
       "extractionState" : "manual"
     },
-    "Gebäude und Fassade" : {
-      "extractionState" : "manual"
-    },
     "Gebäude und Fassaden" : {
       "extractionState" : "manual"
     },
@@ -33785,9 +33797,6 @@
       "extractionState" : "manual"
     },
     "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen gibt iOS nicht heraus." : {
-      "extractionState" : "manual"
-    },
-    "Gefährlicher Ast" : {
       "extractionState" : "manual"
     },
     "Gegenstelle" : {
@@ -34612,6 +34621,9 @@
         }
       }
     },
+    "GeoPackage (QGIS, ArcGIS)" : {
+      "extractionState" : "manual"
+    },
     "Geplant" : {
       "extractionState" : "manual"
     },
@@ -34965,9 +34977,6 @@
     "Geschwindigkeit" : {
       "extractionState" : "manual"
     },
-    "Geschwächt" : {
-      "extractionState" : "manual"
-    },
     "Geschätzt: iOS hat die Adresse nicht genannt, es ist die erste im Netz." : {
       "extractionState" : "manual"
     },
@@ -35152,6 +35161,9 @@
     "Gilt nicht für diesen Namen" : {
       "extractionState" : "manual"
     },
+    "Gleich" : {
+      "extractionState" : "manual"
+    },
     "Google" : {
       "extractionState" : "manual"
     },
@@ -35315,9 +35327,6 @@
         }
       }
     },
-    "Green spaces and trees" : {
-      "extractionState" : "manual"
-    },
     "Grösse" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -35478,9 +35487,6 @@
           }
         }
       }
-    },
-    "Grünflächen und Bäume" : {
-      "extractionState" : "manual"
     },
     "Gyroflow-Log" : {
       "localizations" : {
@@ -41628,6 +41634,9 @@
     "Kontrollpunkt" : {
       "extractionState" : "manual"
     },
+    "Kontrollpunkt %@ gesichert." : {
+      "extractionState" : "manual"
+    },
     "Kontrollpunkt scannen" : {
       "extractionState" : "manual"
     },
@@ -42787,9 +42796,6 @@
       "extractionState" : "manual"
     },
     "Liest Temperatur, Feuchte, CO₂, Licht, Kontakt und Bewegung aus dem eigenen Zuhause, solange die Aufnahme läuft." : {
-      "extractionState" : "manual"
-    },
-    "Lighting and street furniture" : {
       "extractionState" : "manual"
     },
     "Liste leeren" : {
@@ -44120,6 +44126,9 @@
           }
         }
       }
+    },
+    "Markiert." : {
+      "extractionState" : "manual"
     },
     "Markierte Fläche" : {
       "extractionState" : "manual",
@@ -45787,9 +45796,6 @@
     "Nach dem Muster von EN 12299, mit einem einfachen Filter statt der Normgewichtung. Wirkt strenger als die Norm. Zum Vergleich von Strecken und Fahrten gedacht. Das Telefon muss im Fahrzeug fest liegen, nicht in der Hand." : {
       "extractionState" : "manual"
     },
-    "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet." : {
-      "extractionState" : "manual"
-    },
     "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet. Das Unkenntlichmachen gilt für Exporte und Berichte, nicht für die Fotos auf dem Telefon; Kennzeichen werden nach den Mustern von CH, D, A, F, I, E und GB erkannt, ein anderes oder ein zu kleines bleibt sichtbar. Name und Organisation stehen im Bericht." : {
       "extractionState" : "manual"
     },
@@ -47126,6 +47132,9 @@
       "extractionState" : "manual"
     },
     "Netzwerkspeicher" : {
+      "extractionState" : "manual"
+    },
+    "Neu" : {
       "extractionState" : "manual"
     },
     "Neu offen: %@" : {
@@ -49293,6 +49302,9 @@
     "Ohne diese Freigabe antwortet im eigenen Netz nichts. In den Einstellungen unter „Datenschutz & Sicherheit“ → „Lokales Netzwerk“ einschalten." : {
       "extractionState" : "manual"
     },
+    "Open311" : {
+      "extractionState" : "manual"
+    },
     "Open311-Adresse" : {
       "extractionState" : "manual"
     },
@@ -49638,9 +49650,6 @@
       "extractionState" : "manual"
     },
     "Ping" : {
-      "extractionState" : "manual"
-    },
-    "Playground equipment defect" : {
       "extractionState" : "manual"
     },
     "Polygon" : {
@@ -52502,6 +52511,9 @@
     "Rate" : {
       "extractionState" : "manual"
     },
+    "Rauester Abschnitt: %@ m/s² bei %@ km/h" : {
+      "extractionState" : "manual"
+    },
     "Rechenzentrum" : {
       "extractionState" : "manual"
     },
@@ -54784,6 +54796,9 @@
     "Sauerstoffsättigung (Health)" : {
       "extractionState" : "manual"
     },
+    "Schall" : {
+      "extractionState" : "manual"
+    },
     "Schallpegel" : {
       "extractionState" : "manual"
     },
@@ -55281,6 +55296,9 @@
           }
         }
       }
+    },
+    "Schlimmer" : {
+      "extractionState" : "manual"
     },
     "Schlimmster" : {
       "extractionState" : "manual",
@@ -55784,9 +55802,6 @@
         }
       }
     },
-    "Schräg" : {
-      "extractionState" : "manual"
-    },
     "Schwelle" : {
       "extractionState" : "manual"
     },
@@ -55812,6 +55827,9 @@
       "extractionState" : "manual"
     },
     "Senden" : {
+      "extractionState" : "manual"
+    },
+    "Senden fehlgeschlagen: %@" : {
       "extractionState" : "manual"
     },
     "Sender" : {
@@ -57279,13 +57297,7 @@
         }
       }
     },
-    "Sign damaged" : {
-      "extractionState" : "manual"
-    },
     "Signal" : {
-      "extractionState" : "manual"
-    },
-    "Signal beschädigt" : {
       "extractionState" : "manual"
     },
     "Signal neu messen" : {
@@ -57312,16 +57324,10 @@
     "Speicher und Audio-Route" : {
       "extractionState" : "manual"
     },
-    "Spielgerät defekt" : {
-      "extractionState" : "manual"
-    },
     "Spricht mit einem iperf3-Server (Standardport 5201), den du selbst betreibst: iperf3 -s. Gemessen wird TCP. Der Test belastet das Netz voll; das Ergebnis der Empfängerseite sagt, was tatsächlich ankam." : {
       "extractionState" : "manual"
     },
     "Später" : {
-      "extractionState" : "manual"
-    },
-    "Staining" : {
       "extractionState" : "manual"
     },
     "Standort" : {
@@ -60542,9 +60548,6 @@
     "Verbundene Geräte" : {
       "extractionState" : "manual"
     },
-    "Verfärbung" : {
-      "extractionState" : "manual"
-    },
     "Vergleich" : {
       "extractionState" : "manual"
     },
@@ -61367,9 +61370,6 @@
         }
       }
     },
-    "Verstopft" : {
-      "extractionState" : "manual"
-    },
     "Vertikalbeschleunigung" : {
       "extractionState" : "manual"
     },
@@ -62022,15 +62022,6 @@
           }
         }
       }
-    },
-    "Vital" : {
-      "extractionState" : "manual"
-    },
-    "Vitality" : {
-      "extractionState" : "manual"
-    },
-    "Vitalität" : {
-      "extractionState" : "manual"
     },
     "Voll" : {
       "localizations" : {
@@ -63181,10 +63172,7 @@
     "Was wurde getan?" : {
       "extractionState" : "manual"
     },
-    "Waste bin" : {
-      "extractionState" : "manual"
-    },
-    "Weakened" : {
+    "Webhook" : {
       "extractionState" : "manual"
     },
     "Webhook-Adresse" : {
@@ -65662,6 +65650,9 @@
           }
         }
       }
+    },
+    "Zeitpunkt markieren" : {
+      "extractionState" : "manual"
     },
     "Zertifikat des Servers" : {
       "extractionState" : "manual"
@@ -69104,6 +69095,9 @@
         }
       }
     },
+    "komfortabel" : {
+      "extractionState" : "manual"
+    },
     "kritisch" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -69427,6 +69421,9 @@
       }
     },
     "mit Einschränkungen" : {
+      "extractionState" : "manual"
+    },
+    "mittel" : {
       "extractionState" : "manual"
     },
     "nein" : {
@@ -69921,6 +69918,15 @@
         }
       }
     },
+    "sehr komfortabel" : {
+      "extractionState" : "manual"
+    },
+    "swisstopo Karte" : {
+      "extractionState" : "manual"
+    },
+    "swisstopo Luftbild" : {
+      "extractionState" : "manual"
+    },
     "unauffällig" : {
       "localizations" : {
         "ar" : {
@@ -70081,6 +70087,9 @@
         }
       }
     },
+    "unkomfortabel" : {
+      "extractionState" : "manual"
+    },
     "wartet …" : {
       "localizations" : {
         "ar" : {
@@ -70240,6 +70249,9 @@
           }
         }
       }
+    },
+    "weniger komfortabel" : {
+      "extractionState" : "manual"
     },
     "Änderungen seit dem letzten Scan" : {
       "extractionState" : "manual"
@@ -70577,6 +70589,9 @@
       "extractionState" : "manual"
     },
     "überschritten" : {
+      "extractionState" : "manual"
+    },
+    "—" : {
       "extractionState" : "manual"
     },
     "„%@“ nennt weder manufacturerId noch serviceUuid noch namePrefix." : {

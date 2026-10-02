@@ -67,7 +67,13 @@ ALLOWED: dict[str, str] = {
 }
 
 # Die README im Fotogrammetrie-Bündel ist ein deutsches Dokument, kein UI-Text.
-ALLOWED_FILES = {"Sources/SensorstormCore/Export/PhotoSetReadme.swift"}
+ALLOWED_FILES = {
+    "Sources/SensorstormCore/Export/PhotoSetReadme.swift",
+    # Die Kataloge für Schäden führen ihre Texte selbst, je Sprache im Eintrag (de, en).
+    # Eine Gemeinde, die ihren Katalog als Datei einliest, bringt dieselbe Form mit; der
+    # String Catalog der App kennt diese Texte nie.
+    "Sources/SensorstormCore/Model/FindingCatalog.swift",
+}
 
 
 def literals(line: str) -> list[str]:

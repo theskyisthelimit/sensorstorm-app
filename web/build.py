@@ -42,7 +42,7 @@ DOMAIN = "https://sensorstorm.bognar.net"
 APP_ID = "6795648479"
 APP_STORE_URL = f"https://apps.apple.com/app/id{APP_ID}"
 GITHUB_URL = "https://github.com/theskyisthelimit/sensorstorm-app"
-UPDATED = "2026-09-06"
+UPDATED = "2026-10-02"
 
 ACCENT = "#4ac7f0"   # Theme.accent from the app, so the two look like one product
 
@@ -682,7 +682,23 @@ Ziels.</p>
 <tr><td>Kamera</td><td>Video synchron zu den Sensordaten aufnehmen und den Boden für einen
     Beobachtung fotografieren</td></tr>
 <tr><td>Mikrofon</td><td>Lautstärke messen und den Ton von Aufnahmen und Clips
-    aufzeichnen</td></tr>
+    aufzeichnen. Auf Wunsch Frequenzbänder und Geräuschklassen bestimmen, auf dem Gerät.</td></tr>
+<tr><td>Bluetooth</td><td>Bluetooth-Geräte in der Umgebung zählen, Sensoren wie Pulsgurte und
+    Thermometer lesen, auf Wunsch das Telefon selbst als Bluetooth-Sensor anbieten und ein
+    zweites iPhone verbinden</td></tr>
+<tr><td>Lokales Netzwerk</td><td>Geräte im eigenen Netz suchen (Bonjour, Ping, Portprüfung) und
+    Messwerte an die Adresse senden, die du einträgst</td></tr>
+<tr><td>WLAN-Informationen</td><td>Namen und Signal des verbundenen WLANs im Netzwerk-Scanner
+    anzeigen</td></tr>
+<tr><td>Health (nur lesen)</td><td>Auf Wunsch Puls, Atmung, Sauerstoff, Schritte und
+    Laufmetriken aus der Zeit einer Aufnahme neben die Messwerte legen. Sensorstorm schreibt
+    nichts in Health.</td></tr>
+<tr><td>HomeKit</td><td>Auf Wunsch Temperatur, Feuchte, CO₂ und Licht aus den Sensoren deines
+    Zuhauses lesen, solange eine Aufnahme läuft</td></tr>
+<tr><td>NFC</td><td>NFC-Aufkleber an kontrollierten Objekten lesen und die Kennung in die
+    Beobachtung eintragen</td></tr>
+<tr><td>Nearby Interaction</td><td>Abstand und Richtung zu einem zweiten iPhone mit
+    Ultrabreitband messen</td></tr>
 </table>
 </div>
 <p>Jede Berechtigung lässt sich in den iOS-Einstellungen jederzeit widerrufen. Die App
@@ -690,13 +706,31 @@ funktioniert dann eingeschränkt weiter — ohne Standort etwa bleibt für eine 
 von Hand gesetzte Nadel.</p>
 
 <h2>Wo doch etwas das Gerät verlässt</h2>
-<p>Zwei Stellen, an denen „nichts verlässt das Gerät" eine Fussnote braucht:</p>
+<p>Mehrere Stellen, an denen „nichts verlässt das Gerät" eine Fussnote braucht. Alle ausser
+den ersten beiden laufen nur, wenn du sie benutzt:</p>
 <ul>
 <li><strong>Karten.</strong> Die Kartenansichten nutzen Apple MapKit. Zum Laden der Kacheln
 kontaktiert iOS Apple-Server; dabei wird der dargestellte Kartenausschnitt übermittelt. Das
 geschieht innerhalb des Betriebssystems, nach Apples
 <a href="https://www.apple.com/legal/privacy/">Datenschutzrichtlinie</a>. Wir erhalten davon
 nichts.</li>
+<li><strong>Schweizer Karten.</strong> Die Karten und Luftbilder von swisstopo, auch zum
+Laden für offline, kommen als Kacheln direkt von <code>wmts.geo.admin.ch</code>. Dabei erfährt der
+Bund den Kartenausschnitt und deine IP-Adresse. Die Adresssuche zu einer Beobachtung ist
+standardmässig aus; schaltest du sie ein, geht die Koordinate der Beobachtung an
+<code>api3.geo.admin.ch</code>, ausserhalb der Schweiz an Apple.</li>
+<li><strong>Netzwerkwerkzeuge.</strong> Ping, Verbindungsprüfung, Traceroute, Portprüfung und
+iperf3 senden Pakete an Ziele, die du wählst. Die Geschwindigkeitsmessung und die
+Netzqualität in einer Aufnahme (beides auf Wunsch) gehen standardmässig an
+<code>speed.cloudflare.com</code> und <code>1.1.1.1</code> von Cloudflare. Die öffentliche
+IP-Adresse fragt die App nur auf Knopfdruck bei Cloudflare ab. Der Zeitserver
+<code>time.apple.com</code> wird nur gefragt, wenn du das in den Einstellungen einschaltest.</li>
+<li><strong>Weiterleitung und Live-Übertragung.</strong> Webhook, Open311, MQTT und die
+Live-Übertragung senden Daten nur an die Adresse, die du selbst einträgst, und nur wenn du sie
+einschaltest oder auf Senden tippst. Wir sehen davon nichts.</li>
+<li><strong>Gesundheit, HomeKit, NFC, Bluetooth und Ultrabreitband.</strong> Was die App dort
+liest, geht nicht an uns und nicht an Dritte. Es wird neben deine Messwerte gelegt und verlässt das
+Gerät nur, wenn du die Aufnahme selbst exportierst.</li>
 <li><strong>Der Kauf.</strong> Sensorstorm Pro wird über Apples In-App-Kauf abgewickelt.
 Zahlung und Berechtigung liegen vollständig bei Apple und hängen an deinem Apple-Account.
 Wir erhalten weder deinen Namen noch deine Zahlungsdaten noch eine Kennung, mit der sich ein
@@ -758,19 +792,52 @@ your decision, and from that point the receiving service's policy applies.</p>
 <tr><td>Camera</td><td>recording video in sync with the sensor data, and photographing the
     ground for an observation</td></tr>
 <tr><td>Microphone</td><td>measuring loudness and recording the audio of measurements and
-    clips</td></tr>
+    clips. On request, determining frequency bands and sound classes, on the device.</td></tr>
+<tr><td>Bluetooth</td><td>counting Bluetooth devices nearby, reading sensors such as heart-rate
+    straps and thermometers, on request offering the phone itself as a Bluetooth sensor and
+    connecting a second iPhone</td></tr>
+<tr><td>Local network</td><td>finding devices in your own network (Bonjour, ping, port checks)
+    and sending measurements to the address you enter</td></tr>
+<tr><td>Wi-Fi information</td><td>showing the name and signal of the connected Wi-Fi in the
+    network scanner</td></tr>
+<tr><td>Health (read only)</td><td>on request, placing heart rate, breathing, oxygen, steps and
+    running metrics from the time of a recording next to the measurements. Sensorstorm writes
+    nothing into Health.</td></tr>
+<tr><td>HomeKit</td><td>on request, reading temperature, humidity, CO₂ and light from your home's
+    sensors while a recording runs</td></tr>
+<tr><td>NFC</td><td>reading NFC stickers on inspected objects and entering the identifier in the
+    observation</td></tr>
+<tr><td>Nearby Interaction</td><td>measuring distance and direction to a second iPhone with
+    ultra-wideband</td></tr>
 </table>
 </div>
 <p>Every permission can be revoked at any time in iOS Settings. The app keeps working with
 less — without location, for instance, an observation can still be placed with the hand-set pin.</p>
 
 <h2>Where something does leave the device</h2>
-<p>Two places where "nothing leaves the device" needs a footnote:</p>
+<p>Several places where "nothing leaves the device" needs a footnote. All but the first two
+run only when you use them:</p>
 <ul>
 <li><strong>Maps.</strong> The map views use Apple MapKit. To load tiles, iOS contacts
 Apple's servers, which involves sending the region being displayed. That happens inside the
 operating system under Apple's
 <a href="https://www.apple.com/legal/privacy/">privacy policy</a>. We receive none of it.</li>
+<li><strong>Swiss maps.</strong> The swisstopo maps and aerial images, including those
+downloaded for offline use, come as tiles directly from <code>wmts.geo.admin.ch</code>. The
+Swiss federal government learns the region shown and your IP address. The address lookup for an
+observation is off by default; if you switch it on, the observation's coordinate goes to
+<code>api3.geo.admin.ch</code>, outside Switzerland to Apple.</li>
+<li><strong>Network tools.</strong> Ping, connection checks, traceroute, port checks and iperf3
+send packets to targets you choose. The speed test and the network quality in a recording (both
+on request) go by default to <code>speed.cloudflare.com</code> and <code>1.1.1.1</code> at
+Cloudflare. The public IP address is asked from Cloudflare only when you press the button. The
+time server <code>time.apple.com</code> is asked only if you switch that on in the settings.</li>
+<li><strong>Forwarding and live streaming.</strong> Webhook, Open311, MQTT and live streaming
+send data only to the address you enter yourself, and only when you switch them on or tap send.
+We see none of it.</li>
+<li><strong>Health, HomeKit, NFC, Bluetooth and ultra-wideband.</strong> What the app reads
+there goes neither to us nor to third parties. It is placed next to your measurements and leaves
+the device only when you export the recording yourself.</li>
 <li><strong>The purchase.</strong> Sensorstorm Pro is handled by Apple's in-app purchase.
 Payment and entitlement rest entirely with Apple and are tied to your Apple Account. We
 receive neither your name, nor your payment details, nor any identifier that would let a
