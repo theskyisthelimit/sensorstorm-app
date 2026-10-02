@@ -2015,3 +2015,24 @@ Warum nicht gebaut:
   entwickeln.
 - **I15** SensorKit gibt es nur für von Apple genehmigte Forschungsstudien.
 - **Staffelung in Gratis und Pro** (Kapitel 8): die neuen Werkzeuge hängen nicht an `ProAccess`.
+
+### Nachtrag: Anregungen aus Wettbewerbs-Apps (Paket 9 bis 11)
+
+Nach Bildschirmfotos von Bluetooth-, NFC- und Netzwerk-Apps (BLE-Scanner mit Dienst- und
+Merkmalbrowser, NFC Tools, Network Analyzer) kam dazu, was dort gut gelöst ist und hier fehlte:
+
+| Bereich | Vorbild zeigt | Sensorstorm |
+|---------|---------------|-------------|
+| Geräteliste | MAC, Hersteller, Kürzel (G, W, U, P, S, B, 6) | MAC aus der Nachbartabelle, Hersteller aus der IEEE-Liste (`oui.bin`), Zufallsadressen erkannt, Geräte ohne Antwort über ARP; elf Kürzel mit Legende (G, W, S, F, P, U, B, N, D, M, Q); kein „6“, weil ein IPv4-Sweep die IPv6-Adresse eines Geräts nicht sieht |
+| Route | Sprünge mit AS, Land, Namen | Traceroute mit Netzbetreiber, Land (Flagge), Verlust und Teilen; Namensabfrage bei Team Cymru, abschaltbar |
+| DNS | Einträge aller Typen mit SOA, CAA, TTL, Status, Zeit | „Alle gängigen Typen“ gruppiert, SOA siebenteilig, CAA, Flags, ID |
+| Ports | geschlossene Bereiche gefaltet, Dienstnamen | `PortRow`: „Geschlossen 1 bis 21“, Bezeichnungen aus `PortCatalog.title` |
+| Info | DNS-Server, Proxy, WLAN-Sicherheit, externe IPv6 | DNS-Server (C-Funktion `res_ninit`), Proxy, Art der Verschlüsselung, Hersteller des Access Points, IPv4 und IPv6 mit Anbieter |
+| Routing | Routingtabelle mit Flags | `RouteTable` über `NET_RT_DUMP`, Kürzel wie `netstat -r`, Namen der Router |
+| NFC | Lesen, Schreiben von URL, Text, WLAN, Kontakt, Bluetooth, Kopieren, Löschen, Sperren, Speicher | alles davon, dazu Zurücklesen nach dem Schreiben, Bibliothek, Hexdump, Chip aus GET_VERSION |
+| Bluetooth | Eigenschaften-Kürzel R W N I WWR NENC ASW IENC, Hex und ASCII, Scanner-Log mit Filter, Teilen, Löschen | Kürzel an jedem Merkmal, sieben Wertformate, Hexdump langer Werte, Verlauf der Funde mit erster und letzter Zeit (aus, bis man ihn einschaltet), Tabelle, Löschen; 46 Dienste, 174 Merkmale und weitere Hersteller benannt |
+
+Offen aus diesem Nachtrag: NTAG-Passwortschutz (braucht rohe MIFARE-Befehle auf Konfigurationsseiten),
+Lesen geschützter Chipkarten (iOS gibt sie nicht heraus), MA-M- und MA-S-Blöcke der Herstellerliste,
+Bluetooth-Verlauf ohne laufenden Scanner (iOS erlaubt im Hintergrund nur gefilterte Suchen).
+
