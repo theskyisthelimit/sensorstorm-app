@@ -40,6 +40,12 @@ public enum RoadRoughness {
 
         /// The 10 % roughest stretches.
         public var worstSegments: [Segment] { segments.filter { $0.rank >= 0.9 } }
+
+        public init(segments: [Segment], shocks: [Shock], distance: Double) {
+            self.segments = segments
+            self.shocks = shocks
+            self.distance = distance
+        }
     }
 
     public struct Settings: Sendable, Equatable {

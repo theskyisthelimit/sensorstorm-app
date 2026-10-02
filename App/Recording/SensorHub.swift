@@ -514,11 +514,15 @@ final class SensorHub {
     private func configureAudioExtras(_ settings: RecordingSettings) {
         audioSource.computesWeighted = settings.isEnabled(.loudnessA)
         audioSource.computesSpectrum = settings.isOn(.spectrum)
-        audioSource.onSoundClass = settings.isOn(.soundClasses)
-            ? { [weak self] time, label, confidence in
+        // An `if`, not a ternary: a closure on one side and `nil` on the other makes the
+        // compiler give up on the type.
+        if settings.isOn(.soundClasses) {
+            audioSource.onSoundClass = { [weak self] time, label, confidence in
                 Task { @MainActor in self?.noteSound(time: time, label: label, confidence: confidence) }
             }
-            : nil
+        } else {
+            audioSource.onSoundClass = nil
+        }
     }
 
     /// A heard sound becomes a note on the recording's timeline, at the moment it was heard.
