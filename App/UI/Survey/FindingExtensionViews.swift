@@ -224,10 +224,6 @@ struct MeasurementsCard: View {
     }
 }
 
-extension CaseMeasurement.Kind: @retroactive Identifiable {
-    var id: String { rawValue }
-}
-
 /// Reads the slope from the phone's own attitude: lay it on the surface, wait for the number
 /// to settle, take it.
 struct InclinationSheet: View {

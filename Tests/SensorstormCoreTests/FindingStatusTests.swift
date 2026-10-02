@@ -62,7 +62,8 @@ struct FindingStatusTests {
 
         let csv = SurveyExporter.csv(survey).split(separator: "\n").map(String.init)
         let header = csv[0].split(separator: ",").map(String.init)
-        #expect(header.last == "egid")
+        // Columns are only ever added at the end; the later additions follow `egid`.
+        #expect(header.firstIndex(of: "egid").map { header[($0 + 1)...] } == ["attributes", "slopeDegrees", "depthCentimetres", "volumeCubicMetres", "origin"])
         #expect(header.firstIndex(of: "recording") == header.firstIndex(of: "status").map { $0 - 1 })
         let row = csv[1]
         #expect(row.contains(",resolved,"))

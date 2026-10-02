@@ -320,7 +320,7 @@ public struct CaseMedia: Codable, Sendable, Hashable, Identifiable {
 /// Kept apart from the free-text note because a note cannot be summed, sorted or put in a
 /// column — and „4 cm deep" is exactly what a repair order is priced on.
 public struct CaseMeasurement: Codable, Sendable, Hashable, Identifiable {
-    public enum Kind: String, Codable, Sendable, Hashable, CaseIterable {
+    public enum Kind: String, Codable, Sendable, Hashable, CaseIterable, Identifiable {
         /// Degrees from horizontal. Percent is derived, never stored.
         case slope
         /// Centimetres.
@@ -332,6 +332,8 @@ public struct CaseMeasurement: Codable, Sendable, Hashable, Identifiable {
         /// Pieces: signs, trees, lamps.
         case count
         case other
+
+        public var id: String { rawValue }
 
         public var defaultUnit: String {
             switch self {
