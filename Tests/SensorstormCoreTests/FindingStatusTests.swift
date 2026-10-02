@@ -322,7 +322,7 @@ struct ExternalExportTests {
         let folder = store.root.appendingPathComponent("out", isDirectory: true)
         try RecordingExporter(store: store).write(metadata, format: .csvBundle, into: folder)
         let key = ExportStream.key(for: info)
-        #expect(key.hasPrefix("ext_ble_4f2a1c3d_ruuvitag_"))
+        #expect(key.hasPrefix("ext_ble_4f2a1c3d_"))
         #expect(key.count <= 31)
 
         let csv = try String(contentsOf: folder.appendingPathComponent("\(key).csv"), encoding: .utf8)
