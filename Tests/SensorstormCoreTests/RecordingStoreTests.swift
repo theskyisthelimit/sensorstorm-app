@@ -321,7 +321,7 @@ struct SensorCatalogTests {
         // orphans every recording that already used it.
         #expect(SensorID.verticalAcceleration.rawValue == "verticalAcceleration")
         #expect(SensorID.thermal.rawValue == "thermal")
-        #expect(SensorID.allCases.count == 24)
+        #expect(SensorID.allCases.count == 25)
     }
 
     @Test("The camera pose stream carries a full pinhole camera per frame")

@@ -20,6 +20,7 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
     let session = AVCaptureSession()
 
     private let sink: SampleSink
+    private let weightedMeter = AWeightedMeter()
     private let sessionQueue = DispatchQueue(label: "ch.sensorstorm.capture.session")
     private let outputQueue = DispatchQueue(label: "ch.sensorstorm.capture.output")
 
@@ -42,6 +43,7 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
         var isConfigured = false
         var isFrontCamera = false
         var measuresLoudness = false
+        var measuresWeighted = false
         var width = 0
         var height = 0
         var frameRate: Double = 30
@@ -88,12 +90,13 @@ final class VideoRecorder: NSObject, @unchecked Sendable {
     // MARK: - Session lifecycle
 
     func configure(mode: VideoMode, quality: VideoQuality,
-                   includeAudio: Bool, measuresLoudness: Bool) async throws {
+                   includeAudio: Bool, measuresLoudness: Bool, measuresWeighted: Bool = false) async throws {
         guard mode != .off else { return }
 
         state.withLock {
             $0.isFrontCamera = mode.isFront
             $0.measuresLoudness = measuresLoudness
+            $0.measuresWeighted = measuresWeighted
         }
 
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
@@ -365,9 +368,13 @@ extension VideoRecorder: AVCaptureVideoDataOutputSampleBufferDelegate,
         let presentationTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
 
         if output === audioOutput {
-            let measures = state.withLock { $0.measuresLoudness }
+            let (measures, weightedWanted) = state.withLock { ($0.measuresLoudness, $0.measuresWeighted) }
             if measures, let level = AudioLevelMeter.level(from: sampleBuffer) {
                 sink.ingest(.loudness, time: hostTime(for: presentationTime),
+                            values: [level.average, level.peak])
+            }
+            if weightedWanted, let level = weightedMeter.level(from: sampleBuffer) {
+                sink.ingest(.loudnessA, time: hostTime(for: presentationTime),
                             values: [level.average, level.peak])
             }
         }

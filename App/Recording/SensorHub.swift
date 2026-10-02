@@ -307,7 +307,7 @@ final class SensorHub {
         if settings.isEnabled(.location) || settings.isEnabled(.compass) {
             locationSource.requestAuthorization()
         }
-        if settings.isEnabled(.loudness) || settings.recordsAudio {
+        if settings.isEnabled(.loudness) || settings.isEnabled(.loudnessA) || settings.recordsAudio {
             _ = await AudioSource.requestMicrophoneAccess()
         }
         if settings.isVideoEnabled, VideoRecorder.cameraAuthorizationStatus == .notDetermined {
@@ -364,7 +364,7 @@ final class SensorHub {
             poseRecorder.start(quality: settings.videoQuality)
             // ARKit owns the camera and delivers no audio, so metering has to come from the
             // microphone tap rather than from a capture session's audio output.
-            if wanted.contains(.loudness) || settings.recordsAudio {
+            if wanted.contains(.loudness) || wanted.contains(.loudnessA) || settings.recordsAudio {
                 startAudioMetering()
             }
         } else if settings.isVideoEnabled, isCameraAvailable {
@@ -376,7 +376,7 @@ final class SensorHub {
             if settings.isVideoEnabled {
                 errorMessage = String(localized: "Keine Kamera verfügbar. Es werden nur Sensordaten aufgezeichnet.")
             }
-            if wanted.contains(.loudness) || settings.recordsAudio {
+            if wanted.contains(.loudness) || wanted.contains(.loudnessA) || settings.recordsAudio {
                 startAudioMetering()
             }
         }
@@ -395,8 +395,9 @@ final class SensorHub {
             try await videoRecorder.configure(
                 mode: settings.videoMode,
                 quality: settings.videoQuality,
-                includeAudio: settings.recordsAudio || settings.isEnabled(.loudness),
-                measuresLoudness: settings.isEnabled(.loudness)
+                includeAudio: settings.recordsAudio || settings.isEnabled(.loudness) || settings.isEnabled(.loudnessA),
+                measuresLoudness: settings.isEnabled(.loudness),
+                measuresWeighted: settings.isEnabled(.loudnessA)
             )
         } catch {
             errorMessage = error.localizedDescription
@@ -404,6 +405,7 @@ final class SensorHub {
     }
 
     private func startAudioMetering() {
+        audioSource.computesWeighted = settings.isEnabled(.loudnessA)
         do {
             try audioSource.start(fileURL: nil)
         } catch {
@@ -491,6 +493,7 @@ final class SensorHub {
             if recordingSettings.recordsAudio, !carriesAudioInMovie {
                 // Metering is already running; restart it so the same tap also writes a file.
                 _ = audioSource.stop()
+                audioSource.computesWeighted = recordingSettings.isEnabled(.loudnessA)
                 try audioSource.start(fileURL: directory.appendingPathComponent("audio.m4a"))
                 writesAudioFile = true
             }
@@ -600,7 +603,7 @@ final class SensorHub {
         var audioInfo: AudioInfo?
         if active.writesAudioFile {
             audioInfo = audioSource.stop()
-            if active.settings.isEnabled(.loudness) {
+            if active.settings.isEnabled(.loudness) || active.settings.isEnabled(.loudnessA) {
                 startAudioMetering()  // back to plain metering for the live view
             }
         }
@@ -630,7 +633,8 @@ final class SensorHub {
             timeReference: timeReference,
             reducedLocationAccuracy: isLocationAccuracyReduced && active.settings.isEnabled(.location)
                 ? true : nil,
-            externalStreams: ended.external.filter { $0.sampleCount > 0 }.nilIfEmpty
+            externalStreams: ended.external.filter { $0.sampleCount > 0 }.nilIfEmpty,
+            audioCalibrationDecibels: active.settings.isEnabled(.loudnessA) ? active.settings.audioCalibrationDecibels : nil
         )
 
         locationSource.setBackgroundUpdates(false)

@@ -89,6 +89,7 @@ public enum InteropExporter {
         case .barometer: "Barometer"
         case .compass: "Compass"
         case .loudness: "Microphone"
+        case .loudnessA: "MicrophoneA"
         case .pedometer: "Pedometer"
         case .battery: "Battery"
         case .brightness: "Brightness"

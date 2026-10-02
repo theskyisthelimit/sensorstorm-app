@@ -7,6 +7,7 @@ struct SettingsView: View {
     @State private var isExportingArchive = false
     @State private var streamTest: LiveStreamer.Status?
     @State private var isTestingStream = false
+    @State private var isCalibratingMicrophone = false
 
     var body: some View {
         @Bindable var hub = hub
@@ -99,10 +100,32 @@ struct SettingsView: View {
                     Toggle(isOn: $hub.settings.looksUpAddresses) {
                         Label("Adresse zur Beobachtung suchen", systemImage: "house")
                     }
+                    Toggle(isOn: $hub.settings.anonymisesPhotos) {
+                        Label("Gesichter und Kennzeichen unkenntlich machen", systemImage: "eye.slash")
+                    }
+                    TextField("Name der prüfenden Person", text: Binding(
+                        get: { hub.settings.inspectorName ?? "" }, set: { hub.settings.inspectorName = $0 }))
+                    TextField("Organisation", text: Binding(
+                        get: { hub.settings.inspectorOrganisation ?? "" }, set: { hub.settings.inspectorOrganisation = $0 }))
                 } header: {
                     Text("Beobachtungen")
                 } footer: {
-                    Text("Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet.")
+                    Text("Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet. Das Unkenntlichmachen gilt für Exporte und Berichte, nicht für die Fotos auf dem Telefon; Kennzeichen werden nach den Mustern von CH, D, A, F, I, E und GB erkannt, ein anderes oder ein zu kleines bleibt sichtbar. Name und Organisation stehen im Bericht.")
+                }
+
+                Section {
+                    Button {
+                        isCalibratingMicrophone = true
+                    } label: {
+                        Label("Mikrofon kalibrieren", systemImage: "mic.badge.plus")
+                    }
+                    if let offset = hub.settings.audioCalibrationDecibels {
+                        LabeledContent("Aufschlag") { Text(verbatim: String(format: "%+.1f dB", offset)).monospacedDigit() }
+                    }
+                } header: {
+                    Text("Schallpegel")
+                } footer: {
+                    Text("Der Strom „Lautstärke dB(A)“ misst mit der Bewertungskurve eines Schallpegelmessers. Ohne Kalibrierung sind die Werte relativ.")
                 }
 
                 Section {
@@ -135,6 +158,9 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
             .sheet(isPresented: $isExportingArchive) {
                 ArchiveExportView()
+            }
+            .sheet(isPresented: $isCalibratingMicrophone) {
+                AudioCalibrationView()
             }
             .onAppear {
                 if ScreenshotFixture.screen == .export { isExportingArchive = true }

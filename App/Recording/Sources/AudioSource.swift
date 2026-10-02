@@ -22,7 +22,16 @@ final class AudioSource: @unchecked Sendable {
         self.sink = sink
     }
 
-    var availableSensors: Set<SensorID> { [.loudness] }
+    var availableSensors: Set<SensorID> { [.loudness, .loudnessA] }
+
+    private let weightedMeter = AWeightedMeter()
+    /// Whether the A-weighted level is computed too. Set before `start`; the filter costs a few
+    /// per cent of a core at 48 kHz, which is why it is not simply always on.
+    var computesWeighted: Bool {
+        get { lock.lock(); defer { lock.unlock() }; return _computesWeighted }
+        set { lock.lock(); _computesWeighted = newValue; lock.unlock() }
+    }
+    private var _computesWeighted = false
 
     static var isMicrophoneAuthorized: Bool {
         AVAudioApplication.shared.recordPermission == .granted
@@ -109,6 +118,9 @@ final class AudioSource: @unchecked Sendable {
 
         if let level = AudioLevelMeter.level(from: buffer) {
             sink.ingest(.loudness, time: time, values: [level.average, level.peak])
+        }
+        if computesWeighted, let weighted = weightedMeter.level(from: buffer) {
+            sink.ingest(.loudnessA, time: time, values: [weighted.average, weighted.peak])
         }
 
         lock.lock()

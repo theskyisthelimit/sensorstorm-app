@@ -48,6 +48,10 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     /// stream's accuracy column then reads in kilometres, and this says why. `nil` for a
     /// recording with full accuracy, or one written before the field existed.
     public var reducedLocationAccuracy: Bool?
+    /// What was added to the microphone's dBFS to get dB(SPL), when the person calibrated it
+    /// against a reference — 94 dB from a calibrator, say. `nil` means uncalibrated: the
+    /// `loudnessA` stream is then relative, and says so.
+    public var audioCalibrationDecibels: Double?
 
     public init(
         id: UUID = UUID(),
@@ -67,7 +71,8 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         barometerReference: BarometerReference? = nil,
         timeReference: TimeReference? = nil,
         reducedLocationAccuracy: Bool? = nil,
-        externalStreams: [ExternalStreamInfo]? = nil
+        externalStreams: [ExternalStreamInfo]? = nil,
+        audioCalibrationDecibels: Double? = nil
     ) {
         self.id = id
         self.name = name
@@ -87,6 +92,7 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.timeReference = timeReference
         self.reducedLocationAccuracy = reducedLocationAccuracy
         self.externalStreams = externalStreams
+        self.audioCalibrationDecibels = audioCalibrationDecibels
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {

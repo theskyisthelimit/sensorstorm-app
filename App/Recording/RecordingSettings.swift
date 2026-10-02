@@ -57,6 +57,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// Blur faces and number plates in every photo that leaves the phone in an export or a
     /// report. The photos on the phone stay as they were taken.
     var anonymisesPhotosFlag: Bool?
+    /// dB to add to the microphone's dBFS(A) to get dB(SPL), from a calibration against a
+    /// reference. `nil` is uncalibrated.
+    var audioCalibrationDecibels: Double?
     /// Who signs a report: printed on the cover of a PDF.
     var inspectorName: String?
     var inspectorOrganisation: String?
@@ -216,6 +219,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.looksUpAddressesFlag = nil
         mine.recordsNetworkQualityFlag = nil
         mine.anonymisesPhotosFlag = nil
+        mine.audioCalibrationDecibels = nil
         mine.inspectorName = nil
         mine.inspectorOrganisation = nil
         mine.gattSubscriptions = nil
@@ -229,6 +233,7 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.looksUpAddressesFlag = nil
         theirs.recordsNetworkQualityFlag = nil
         theirs.anonymisesPhotosFlag = nil
+        theirs.audioCalibrationDecibels = nil
         theirs.inspectorName = nil
         theirs.inspectorOrganisation = nil
         return mine != theirs

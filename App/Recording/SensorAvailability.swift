@@ -62,7 +62,7 @@ enum SensorPermission: String, Equatable, CaseIterable {
         switch sensor {
         case .pedometer, .activity, .barometer: .motion
         case .location, .compass: .location
-        case .loudness: .microphone
+        case .loudness, .loudnessA: .microphone
         case .bluetooth: .bluetooth
         default: nil
         }

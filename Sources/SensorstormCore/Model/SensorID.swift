@@ -25,6 +25,10 @@ public enum SensorID: String, CaseIterable, Sendable, Codable, Hashable {
 
     // Audio.
     case loudness
+    /// The same microphone level through the A-weighting curve of IEC 61672 — dB(A), what a
+    /// sound level meter reports. Uncalibrated: it is dBFS(A), and the recording's
+    /// `audioCalibrationDecibels` says how far the person calibrated it.
+    case loudnessA
 
     // Activity.
     case pedometer
@@ -168,6 +172,10 @@ public enum SensorCatalog {
             return .init(id: id, category: .audio, unit: "dBFS",
                          channels: ["average", "peak"], channelUnits: ["dBFS", "dBFS"],
                          defaultEnabled: true, isEventDriven: false)
+        case .loudnessA:
+            return .init(id: id, category: .audio, unit: "dBFS(A)",
+                         channels: ["average", "peak"], channelUnits: ["dBFS(A)", "dBFS(A)"],
+                         defaultEnabled: false, isEventDriven: false)
         case .pedometer:
             return .init(id: id, category: .activity, unit: "",
                          channels: ["steps", "distance", "cadence", "pace",
