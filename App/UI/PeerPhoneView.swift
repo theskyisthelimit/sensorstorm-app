@@ -20,7 +20,7 @@ struct PeerPhoneView: View {
             } header: {
                 Text("Dieses iPhone")
             } footer: {
-                Text("Andere Geräte — ein ESP32, ein Raspberry Pi, ein Mac, ein zweites iPhone — abonnieren die Messwerte per Bluetooth, ohne WLAN und ohne Server. Jeder Sensor ist ein eigenes Merkmal; eine Meldung enthält die Zeit auf der Uhr dieses Telefons und die Kanäle. Mit der Fernsteuerung kann jedes Gerät in Reichweite die Aufnahme starten, anhalten und markieren — nur einschalten, wenn das gewollt ist. Die App muss dafür offen sein.")
+                Text("Andere Geräte (ein ESP32, ein Raspberry Pi, ein Mac, ein zweites iPhone) abonnieren die Messwerte per Bluetooth, ohne WLAN und ohne Server. Jeder Sensor ist ein eigenes Merkmal; eine Meldung enthält die Zeit auf der Uhr dieses Telefons und die Kanäle. Mit der Fernsteuerung kann jedes Gerät in Reichweite die Aufnahme starten, anhalten und markieren. Nur einschalten, wenn das gewollt ist. Die App muss dafür offen sein.")
             }
 
             Section {

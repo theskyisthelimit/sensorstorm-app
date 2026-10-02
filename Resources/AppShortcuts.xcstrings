@@ -1,0 +1,45 @@
+{
+  "sourceLanguage" : "de",
+  "strings" : {
+    "Aufnahme beenden in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Aufnahme starten in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Beende die Aufnahme in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Beobachtung hier in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Halte den Weg in ${applicationName} an" : {
+      "extractionState" : "manual"
+    },
+    "Halte eine Beobachtung in ${applicationName} fest" : {
+      "extractionState" : "manual"
+    },
+    "Markiere einen Zeitpunkt in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Markierung in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Netz absuchen in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Starte eine Aufnahme in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Suche das Netz mit ${applicationName} ab" : {
+      "extractionState" : "manual"
+    },
+    "Weg aufzeichnen in ${applicationName}" : {
+      "extractionState" : "manual"
+    },
+    "Zeichne meinen Weg in ${applicationName} auf" : {
+      "extractionState" : "manual"
+    }
+  },
+  "version" : "1.0"
+}

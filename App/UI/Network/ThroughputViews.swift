@@ -166,7 +166,7 @@ struct SpeedTestView: View {
             } header: {
                 Text("Gegenstelle")
             } footer: {
-                Text("Jeder Server, der eine grosse Datei ausliefert und POST-Daten annimmt, taugt — auch einer im eigenen Netz, um das WLAN ohne Internet zu messen.")
+                Text("Jeder Server, der eine grosse Datei ausliefert und POST-Daten annimmt, taugt, auch einer im eigenen Netz, um das WLAN ohne Internet zu messen.")
             }
         }
         .scrollContentBackground(.hidden)

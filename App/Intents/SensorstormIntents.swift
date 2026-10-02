@@ -71,7 +71,7 @@ struct MarkMomentIntent: AppIntent {
 
 struct QuickObservationIntent: AppIntent {
     static let title: LocalizedStringResource = "Beobachtung an meinem Standort"
-    static let description = IntentDescription("Hält an der aktuellen Position eine Beobachtung fest, ohne die App zu öffnen — für die Aktionstaste.")
+    static let description = IntentDescription("Hält an der aktuellen Position eine Beobachtung fest, ohne die App zu öffnen. Für die Aktionstaste.")
     static let openAppWhenRun = false
 
     @Parameter(title: "Bezeichnung")

@@ -53,6 +53,8 @@ REPORT_DIR = "l10n/reports"
 CATALOG = "Resources/Localizable.xcstrings"
 INFOPLIST = "Resources/InfoPlist.xcstrings"
 WATCH = "Watch/Localizable.xcstrings"
+# Die Siri-Sätze der Kurzbefehle: Apple liest sie aus einem eigenen Katalog, nicht aus dem der App.
+SHORTCUTS = "Resources/AppShortcuts.xcstrings"
 STORE = "Tools/store"
 PROJECT = "project.yml"
 SWIFT_DIRS = ("App", "Watch")
@@ -377,7 +379,7 @@ class XCStringsAdapter:
         lines = text.split("\n")
         for index, line in enumerate(lines):
             stripped = line.strip()
-            if not (stripped.startswith("NS") and "UsageDescription" in stripped and ":" in stripped):
+            if not (stripped.startswith(("NS", "NFC")) and "UsageDescription" in stripped and ":" in stripped):
                 continue
             key, _, value = stripped.partition(":")
             value = value.strip().strip('"')
@@ -2051,6 +2053,7 @@ def adapters() -> dict:
         "catalog": XCStringsAdapter(CATALOG, "catalog"),
         "infoplist": XCStringsAdapter(INFOPLIST, "infoplist", with_context=False),
         "watch": XCStringsAdapter(WATCH, "watch"),
+        "shortcuts": XCStringsAdapter(SHORTCUTS, "shortcuts", with_context=False),
         "store": StoreAdapter(),
     }
 
@@ -2084,7 +2087,7 @@ def verify_language(lang: str, surfaces: list[str] | None = None) -> tuple[list[
     gloss = glossary()
     hard: list[str] = []
     soft: list[str] = []
-    for name in ("catalog", "infoplist", "watch"):
+    for name in ("catalog", "infoplist", "watch", "shortcuts"):
         if surfaces and name not in surfaces:
             continue
         adapter = adapters()[name]
@@ -2791,20 +2794,20 @@ def main(argv: list[str] | None = None) -> int:
 
     verify = sub.add_parser("verify", help="deterministische Sperren prüfen")
     verify.add_argument("--lang")
-    verify.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
+    verify.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "shortcuts", "store"])
     verify.add_argument("--warnings", action="store_true", help="auch Warnungen zeigen")
     verify.set_defaults(func=cmd_verify)
 
     export = sub.add_parser("export", help="offene Texte als JSONL")
     export.add_argument("--lang", required=True)
-    export.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
+    export.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "shortcuts", "store"])
     export.add_argument("--all", action="store_true", help="auch schon übersetzte Texte")
     export.add_argument("--out")
     export.set_defaults(func=cmd_export)
 
     pack = sub.add_parser("pack", help="Übersetzungspaket schreiben: eine Datei, die sich selbst erklärt")
     pack.add_argument("--lang", required=True)
-    pack.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
+    pack.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "shortcuts", "store"])
     pack.add_argument("--all", action="store_true", help="auch schon Übersetztes, nicht nur Offenes")
     pack.add_argument("--chunk", type=int, default=0, help="in Teile à N Texte zerlegen (0 = eine Datei)")
     pack.add_argument("--out", help="Zielordner, sonst l10n/packs/<lang>")
@@ -2823,7 +2826,7 @@ def main(argv: list[str] | None = None) -> int:
             p.add_argument("--no-apply", action="store_true", help="nur Bericht, nichts schreiben")
         else:
             p.add_argument("--langs", help="Kommaliste, sonst alle")
-        p.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "store"])
+        p.add_argument("--surface", action="append", choices=["catalog", "infoplist", "watch", "shortcuts", "store"])
         p.add_argument("--engine", default="claude", choices=["claude", "mock"])
         p.add_argument("--max-rounds", type=int, default=3)
         p.set_defaults(func=func)

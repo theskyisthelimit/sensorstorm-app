@@ -113,7 +113,7 @@ struct RecordingAnalysisView: View {
             return String(localized: "Die Zeit lief \(count)-mal rückwärts oder stand still.")
         case .frozen(let share):
             let percent = Int((share * 100).rounded())
-            return String(localized: "\(percent) % der Werte sind unverändert — der Sensor hing vermutlich.")
+            return String(localized: "\(percent) % der Werte sind unverändert. Der Sensor hing vermutlich.")
         case .tooShort:
             return String(localized: "Zu wenige Werte für eine Beurteilung.")
         }
@@ -257,7 +257,7 @@ struct RecordingAnalysisView: View {
                         ])
                         if let vibration = ride.cruiseVibration {
                             let vibrationText = String(format: "%.0f", vibration)
-                            Text("Vibration während der Fahrt (A95, Spitze–Spitze): \(vibrationText) mg")
+                            Text("Vibration während der Fahrt (A95, Spitze zu Spitze): \(vibrationText) mg")
                                 .font(.caption2).foregroundStyle(.secondary)
                         }
                     }
@@ -290,7 +290,7 @@ struct RecordingAnalysisView: View {
                 if !result.jolts.isEmpty {
                     Text("\(result.jolts.count) Stösse über 1 m/s²").font(.caption).foregroundStyle(.secondary)
                 }
-                Text("Nach dem Muster von EN 12299, mit einem einfachen Filter statt der Normgewichtung — wirkt strenger als die Norm. Zum Vergleich von Strecken und Fahrten gedacht. Das Telefon muss im Fahrzeug fest liegen, nicht in der Hand.")
+                Text("Nach dem Muster von EN 12299, mit einem einfachen Filter statt der Normgewichtung. Wirkt strenger als die Norm. Zum Vergleich von Strecken und Fahrten gedacht. Das Telefon muss im Fahrzeug fest liegen, nicht in der Hand.")
                     .font(.caption2).foregroundStyle(.secondary)
             } else if model.comfortFailed {
                 Text("Dafür braucht es mindestens zehn Sekunden Beschleunigung mit 20 Hz oder mehr.")

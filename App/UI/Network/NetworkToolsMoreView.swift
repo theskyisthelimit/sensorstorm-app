@@ -80,7 +80,7 @@ struct PortScanToolView: View {
                 TargetField(title: "Adresse oder Name", text: $host)
                 Picker("Ports", selection: $preset) {
                     Text("Häufige und Geräte-Ports").tag(PortCatalog.Preset.top100)
-                    Text("1–1024 und Geräte-Ports").tag(PortCatalog.Preset.wellKnown)
+                    Text("1 bis 1024 und Geräte-Ports").tag(PortCatalog.Preset.wellKnown)
                     Text("Eigene Liste").tag(PortCatalog.Preset.custom)
                 }
                 if preset == .custom {
@@ -200,7 +200,7 @@ struct TLSToolView: View {
                 }
                 .disabled(host.trimmingCharacters(in: .whitespaces).isEmpty || model.state == .running)
             } footer: {
-                Text("Baut eine TLS-Verbindung auf und liest, was der Server zeigt — auch bei selbst signierten oder abgelaufenen Zertifikaten. Gesendet wird nur der Handschlag.")
+                Text("Baut eine TLS-Verbindung auf und liest, was der Server zeigt, auch bei selbst signierten oder abgelaufenen Zertifikaten. Gesendet wird nur der Handschlag.")
             }
 
             switch model.state {
@@ -702,7 +702,7 @@ struct WakeOnLANView: View {
                 }
                 .disabled(sending)
             } footer: {
-                Text("Schickt das „Magic Packet“ per UDP an die Broadcast-Adresse des Netzes. iOS liest Hardware-Adressen von Geräten nicht aus; sie muss einmal eingegeben werden. Und iOS erlaubt Apps Broadcast im lokalen Netz nur mit einer besonderen Freigabe von Apple — ohne sie kann das Senden scheitern, ohne dass die App etwas daran ändern kann.")
+                Text("Schickt das „Magic Packet“ per UDP an die Broadcast-Adresse des Netzes. iOS liest Hardware-Adressen von Geräten nicht aus; sie muss einmal eingegeben werden. Und iOS erlaubt Apps Broadcast im lokalen Netz nur mit einer besonderen Freigabe von Apple. Ohne sie kann das Senden scheitern, ohne dass die App etwas daran ändern kann.")
             }
             switch result {
             case .sent?:

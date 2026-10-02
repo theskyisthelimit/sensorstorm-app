@@ -94,7 +94,7 @@ struct EventRecordingSection: View {
                 }
             }
         } footer: {
-            Text("Das Telefon hört mit, auch wenn niemand aufnimmt, und speichert nur dann eine Aufnahme, wenn ein Stoss die Schwelle überschreitet — mit den Sekunden davor und danach, ohne Video und Ton. Für ein Telefon im Fahrzeug, an einer Maschine, in einem Paket. Läuft nur, solange die App offen ist, der Aufnahme-Bildschirm läuft und keine Aufnahme aktiv ist.")
+            Text("Das Telefon hört mit, auch wenn niemand aufnimmt, und speichert nur dann eine Aufnahme, wenn ein Stoss die Schwelle überschreitet, mit den Sekunden davor und danach, ohne Video und Ton. Für ein Telefon im Fahrzeug, an einer Maschine, in einem Paket. Läuft nur, solange die App offen ist, der Aufnahme-Bildschirm läuft und keine Aufnahme aktiv ist.")
         }
     }
 }

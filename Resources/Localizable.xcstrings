@@ -1299,7 +1299,7 @@
     "%lld %% der Werte fehlen." : {
       "extractionState" : "manual"
     },
-    "%lld %% der Werte sind unverändert — der Sensor hing vermutlich." : {
+    "%lld %% der Werte sind unverändert. Der Sensor hing vermutlich." : {
       "extractionState" : "manual"
     },
     "%lld Aufnahmen" : {
@@ -5367,6 +5367,9 @@
     ", capture.magnitude)) g." : {
       "extractionState" : "manual"
     },
+    "1 bis 1024 und Geräte-Ports" : {
+      "extractionState" : "manual"
+    },
     "1 m" : {
       "localizations" : {
         "ar" : {
@@ -5847,9 +5850,6 @@
           }
         }
       }
-    },
-    "1–1024 und Geräte-Ports" : {
-      "extractionState" : "manual"
     },
     "3D" : {
       "localizations" : {
@@ -9807,7 +9807,7 @@
     "Alternative Namen" : {
       "extractionState" : "manual"
     },
-    "Andere Geräte — ein ESP32, ein Raspberry Pi, ein Mac, ein zweites iPhone — abonnieren die Messwerte per Bluetooth, ohne WLAN und ohne Server. Jeder Sensor ist ein eigenes Merkmal; eine Meldung enthält die Zeit auf der Uhr dieses Telefons und die Kanäle. Mit der Fernsteuerung kann jedes Gerät in Reichweite die Aufnahme starten, anhalten und markieren — nur einschalten, wenn das gewollt ist. Die App muss dafür offen sein." : {
+    "Andere Geräte (ein ESP32, ein Raspberry Pi, ein Mac, ein zweites iPhone) abonnieren die Messwerte per Bluetooth, ohne WLAN und ohne Server. Jeder Sensor ist ein eigenes Merkmal; eine Meldung enthält die Zeit auf der Uhr dieses Telefons und die Kanäle. Mit der Fernsteuerung kann jedes Gerät in Reichweite die Aufnahme starten, anhalten und markieren. Nur einschalten, wenn das gewollt ist. Die App muss dafür offen sein." : {
       "extractionState" : "manual"
     },
     "Anderes" : {
@@ -13309,7 +13309,7 @@
     "Baustelle und Erschütterung" : {
       "extractionState" : "manual"
     },
-    "Baut eine TLS-Verbindung auf und liest, was der Server zeigt — auch bei selbst signierten oder abgelaufenen Zertifikaten. Gesendet wird nur der Handschlag." : {
+    "Baut eine TLS-Verbindung auf und liest, was der Server zeigt, auch bei selbst signierten oder abgelaufenen Zertifikaten. Gesendet wird nur der Handschlag." : {
       "extractionState" : "manual"
     },
     "Bedingung hinzufügen" : {
@@ -20054,7 +20054,7 @@
     "Das Netz hat mehr als 1024 Adressen. Gesucht wird im Bereich um das Telefon." : {
       "extractionState" : "manual"
     },
-    "Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt — Hardware-Adressen, WLAN-Kanäle, Nachbarnetze — fehlt hier und wird nicht vorgetäuscht." : {
+    "Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (Hardware-Adressen, WLAN-Kanäle, Nachbarnetze), fehlt hier und wird nicht vorgetäuscht." : {
       "extractionState" : "manual"
     },
     "Das System hat das Senden verweigert." : {
@@ -20066,7 +20066,7 @@
     "Das Telefon flach auf die Fläche legen, mit der Rückseite nach unten. 0° ist waagrecht, 45° sind 100 %. Die Anzeige ist auf etwa ein halbes Grad genau, wenn das Telefon ruht." : {
       "extractionState" : "manual"
     },
-    "Das Telefon hört mit, auch wenn niemand aufnimmt, und speichert nur dann eine Aufnahme, wenn ein Stoss die Schwelle überschreitet — mit den Sekunden davor und danach, ohne Video und Ton. Für ein Telefon im Fahrzeug, an einer Maschine, in einem Paket. Läuft nur, solange die App offen ist, der Aufnahme-Bildschirm läuft und keine Aufnahme aktiv ist." : {
+    "Das Telefon hört mit, auch wenn niemand aufnimmt, und speichert nur dann eine Aufnahme, wenn ein Stoss die Schwelle überschreitet, mit den Sekunden davor und danach, ohne Video und Ton. Für ein Telefon im Fahrzeug, an einer Maschine, in einem Paket. Läuft nur, solange die App offen ist, der Aufnahme-Bildschirm läuft und keine Aufnahme aktiv ist." : {
       "extractionState" : "manual"
     },
     "Das iPhone ist nicht erreichbar." : {
@@ -32127,7 +32127,7 @@
         }
       }
     },
-    "Fragt den Server direkt über UDP Port 53. Der Vergleich zeigt, ob das Netz einen Namen anders auflöst als die öffentlichen Server — ein Hinweis auf Filter, Umleitungen und fehlerhafte Router." : {
+    "Fragt den Server direkt über UDP Port 53. Der Vergleich zeigt, ob das Netz einen Namen anders auflöst als die öffentlichen Server. Das ist ein Hinweis auf Filter, Umleitungen und fehlerhafte Router." : {
       "extractionState" : "manual"
     },
     "Freier Speicher" : {
@@ -36504,7 +36504,7 @@
     "HomeKit-Sensoren" : {
       "extractionState" : "manual"
     },
-    "Hält an der aktuellen Position eine Beobachtung fest, ohne die App zu öffnen — für die Aktionstaste." : {
+    "Hält an der aktuellen Position eine Beobachtung fest, ohne die App zu öffnen. Für die Aktionstaste." : {
       "extractionState" : "manual"
     },
     "Hält die Aufzeichnung des Wegs an." : {
@@ -37839,7 +37839,7 @@
     "Je näher das Gerät, desto schneller das Klopfen. Mit dem Telefon langsam drehen und gehen." : {
       "extractionState" : "manual"
     },
-    "Jeder Server, der eine grosse Datei ausliefert und POST-Daten annimmt, taugt — auch einer im eigenen Netz, um das WLAN ohne Internet zu messen." : {
+    "Jeder Server, der eine grosse Datei ausliefert und POST-Daten annimmt, taugt, auch einer im eigenen Netz, um das WLAN ohne Internet zu messen." : {
       "extractionState" : "manual"
     },
     "Jedes Gerät im selben WLAN bekommt unter dieser Adresse mit einem einfachen GET die neuesten Werte aller laufenden Sensoren, als JSON im selben Format wie die Live-Übertragung. Nur lesen, nichts ändern. Läuft, solange die App offen ist." : {
@@ -44614,7 +44614,7 @@
     "Mehr" : {
       "extractionState" : "manual"
     },
-    "Mehr Ports heisst längere Suche. Die Liste mit 1–1024 braucht je Gerät einige Sekunden." : {
+    "Mehr Ports heisst längere Suche. Die Liste mit 1 bis 1024 braucht je Gerät einige Sekunden." : {
       "extractionState" : "manual"
     },
     "Mehrere Routen" : {
@@ -45784,7 +45784,7 @@
     "Nach Sekunden" : {
       "extractionState" : "manual"
     },
-    "Nach dem Muster von EN 12299, mit einem einfachen Filter statt der Normgewichtung — wirkt strenger als die Norm. Zum Vergleich von Strecken und Fahrten gedacht. Das Telefon muss im Fahrzeug fest liegen, nicht in der Hand." : {
+    "Nach dem Muster von EN 12299, mit einem einfachen Filter statt der Normgewichtung. Wirkt strenger als die Norm. Zum Vergleich von Strecken und Fahrten gedacht. Das Telefon muss im Fahrzeug fest liegen, nicht in der Hand." : {
       "extractionState" : "manual"
     },
     "Nach dem Sichern wird die Koordinate an Apple gesendet, in der Schweiz zuerst an swisstopo, damit Strasse, Hausnummer und Gebäudekennung dabeistehen. Aus, wird nichts gesendet." : {
@@ -54950,7 +54950,7 @@
         }
       }
     },
-    "Schickt das „Magic Packet“ per UDP an die Broadcast-Adresse des Netzes. iOS liest Hardware-Adressen von Geräten nicht aus; sie muss einmal eingegeben werden. Und iOS erlaubt Apps Broadcast im lokalen Netz nur mit einer besonderen Freigabe von Apple — ohne sie kann das Senden scheitern, ohne dass die App etwas daran ändern kann." : {
+    "Schickt das „Magic Packet“ per UDP an die Broadcast-Adresse des Netzes. iOS liest Hardware-Adressen von Geräten nicht aus; sie muss einmal eingegeben werden. Und iOS erlaubt Apps Broadcast im lokalen Netz nur mit einer besonderen Freigabe von Apple. Ohne sie kann das Senden scheitern, ohne dass die App etwas daran ändern kann." : {
       "extractionState" : "manual"
     },
     "Schickt jede Beobachtung als JSON an diese Adresse: Ort, Schweregrad, Zustand, Adresse, Eigenschaften und Messwerte. Ohne Adresse wird nichts gesendet." : {
@@ -61379,7 +61379,7 @@
     "Vertikale Oszillation (Health)" : {
       "extractionState" : "manual"
     },
-    "Vibration während der Fahrt (A95, Spitze–Spitze): %@ mg" : {
+    "Vibration während der Fahrt (A95, Spitze zu Spitze): %@ mg" : {
       "extractionState" : "manual"
     },
     "Video" : {

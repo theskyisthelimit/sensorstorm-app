@@ -58,7 +58,7 @@ struct RadioView: View {
                 } header: {
                     Text("Netzwerk")
                 } footer: {
-                    Text("Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt — Hardware-Adressen, WLAN-Kanäle, Nachbarnetze — fehlt hier und wird nicht vorgetäuscht.")
+                    Text("Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (Hardware-Adressen, WLAN-Kanäle, Nachbarnetze), fehlt hier und wird nicht vorgetäuscht.")
                 }
             }
             .navigationTitle("Funk")

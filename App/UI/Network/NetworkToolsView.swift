@@ -475,7 +475,7 @@ struct DNSToolView: View {
                 }
                 .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty || model.isRunning)
             } footer: {
-                Text("Fragt den Server direkt über UDP Port 53. Der Vergleich zeigt, ob das Netz einen Namen anders auflöst als die öffentlichen Server — ein Hinweis auf Filter, Umleitungen und fehlerhafte Router.")
+                Text("Fragt den Server direkt über UDP Port 53. Der Vergleich zeigt, ob das Netz einen Namen anders auflöst als die öffentlichen Server. Das ist ein Hinweis auf Filter, Umleitungen und fehlerhafte Router.")
             }
 
             if model.isRunning {

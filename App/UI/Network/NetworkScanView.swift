@@ -242,7 +242,7 @@ struct ScanOptionsView: View {
                     if scanner.options.scansPorts {
                         Picker("Ports", selection: $scanner.options.portPreset) {
                             Text("Häufige und Geräte-Ports").tag(PortCatalog.Preset.top100)
-                            Text("1–1024 und Geräte-Ports").tag(PortCatalog.Preset.wellKnown)
+                            Text("1 bis 1024 und Geräte-Ports").tag(PortCatalog.Preset.wellKnown)
                             Text("Eigene Liste").tag(PortCatalog.Preset.custom)
                         }
                         if scanner.options.portPreset == .custom {
@@ -257,7 +257,7 @@ struct ScanOptionsView: View {
                 } header: {
                     Text("Ports")
                 } footer: {
-                    Text("Mehr Ports heisst längere Suche. Die Liste mit 1–1024 braucht je Gerät einige Sekunden.")
+                    Text("Mehr Ports heisst längere Suche. Die Liste mit 1 bis 1024 braucht je Gerät einige Sekunden.")
                 }
             }
             .scrollContentBackground(.hidden)
