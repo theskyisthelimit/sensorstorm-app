@@ -236,7 +236,7 @@ public struct VCard: Sendable, Equatable {
 
     static func escape(_ text: String) -> String {
         text.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: ",", with: "\\,")
-            .replacingOccurrences(of: ";", with: "\;").replacingOccurrences(of: "\n", with: "\\n")
+            .replacingOccurrences(of: ";", with: "\\;").replacingOccurrences(of: "\n", with: "\\n")
     }
 
     static func unescape(_ text: String) -> String {

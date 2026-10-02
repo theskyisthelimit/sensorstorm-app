@@ -96,7 +96,7 @@ public struct NDEFMessage: Sendable, Equatable, Hashable {
             let chunked = header & 0x20 != 0
             let short = header & 0x10 != 0
             let hasIdentifier = header & 0x08 != 0
-            guard begins == records.isEmpty, !chunked, let format = Format(rawValue: header & 0x07) else { return nil }
+            guard begins == records.isEmpty, !chunked, let format = NDEFRecord.Format(rawValue: header & 0x07) else { return nil }
             guard offset < b.count else { return nil }
             let typeLength = Int(b[offset])
             offset += 1
