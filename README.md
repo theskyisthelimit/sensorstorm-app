@@ -226,7 +226,15 @@ in [docs/HARDWARE-TEST.md](docs/HARDWARE-TEST.md).
 - **Funk.** Bluetooth-Scanner und GATT-Explorer mit Decodern für Ruuvi, BTHome, Pulsgurt,
   Leistungsmesser und eigene Vorlagen; Netzwerk-Scanner (Ping, Bonjour, NetBIOS, SSDP,
   Ports), Traceroute, DNS, Zertifikate, iperf3, Geschwindigkeit mit Antwortzeit unter Last,
-  Bestand mit Vergleich zum letzten Scan und ein Abnahmeprotokoll als PDF.
+  Bestand mit Vergleich zum letzten Scan und ein Abnahmeprotokoll als PDF. Der Scan zeigt
+  Hardware-Adresse und Hersteller (IEEE-Liste in der App, Nachbartabelle des Kernels, wo iOS
+  sie herausgibt), Kürzel je Gerät und Geräte, die nur über ARP auffallen; Traceroute nennt
+  Netzbetreiber und Land, DNS fragt alle Typen bis CAA und SOA, der Portscan faltet
+  geschlossene Bereiche; dazu Routingtabelle, DNS-Server und Proxy. Bluetooth zeigt
+  Eigenschafts-Kürzel, Wertformate und einen Verlauf der Funde mit erster und letzter Zeit.
+- **NFC.** Tags lesen (Chip, Hersteller, Seriennummer, Speicher), beschreiben (URL, Text,
+  Telefon, E-Mail, SMS, Ort, WLAN, Kontakt, Bluetooth, eigener Typ) mit Rücklesen,
+  kopieren, löschen, schreibschützen und eine Bibliothek.
 - **Route.** Weg, Katalog, Messwerte, Status, Wiederholung, Zusammenführen, Archiv, Karten
   (swisstopo, offline), Bericht, Anonymisierung, Export bis GeoPackage und Excel,
   Weiterleitung an Webhook und Open311, NFC-Kontrollpunkte.
@@ -252,7 +260,9 @@ Sources/SensorstormCore/   reine Logik, ohne UIKit: Speicherformat, Zeitbasis, E
                            Gyroflow, GPX/KML, JSON, SQLite
   Model/                   Aufnahme-Metadaten, Sensoren, Fälle und Begehungen
   Analysis/                Zeitreihen, Filter, Qualität, Rauheit, Aufzug, Komfort, Spektrum
-  Bluetooth/ Network/      Decoder und Namen; Adressen, ICMP, DNS, iperf3, Audit, Bestand
+  Bluetooth/ Network/      Decoder und Namen; Adressen, ICMP, DNS, iperf3, Audit, Bestand,
+                           Hardware-Adressen und Hersteller, Nachbar- und Routingtabelle
+  NFC/                     NDEF-Codec, Wi-Fi-, Kontakt-, Bluetooth-Einträge, Chip-Auskunft
   Streams/ Streaming/      NMEA; MQTT und das Paketformat zwischen zwei Telefonen
 App/
   Recording/               Sensorquellen, Sink, Videoaufnahme, ARKit-Pose, Koordination
