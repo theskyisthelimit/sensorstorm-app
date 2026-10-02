@@ -26,18 +26,20 @@ struct SurveyTrackTests {
             WalkPoint(time: start.addingTimeInterval(seconds), latitude: 46.9480 + offsetNorth / 111_200,
                        longitude: 7.4474, horizontalAccuracy: accuracy)
         }
-        #expect(survey.appendTrackPoint(point(0, at: 0)))
+        // `#expect` cannot hold a call that mutates a local, so the calls come first.
+        let first = survey.appendTrackPoint(point(0, at: 0))
         // 1 m and 3 s later: nothing new.
-        #expect(!survey.appendTrackPoint(point(1, at: 3)))
+        let tooClose = survey.appendTrackPoint(point(1, at: 3))
         // 6 m on: a step.
-        #expect(survey.appendTrackPoint(point(6, at: 6)))
+        let step = survey.appendTrackPoint(point(6, at: 6))
         // Standing still for half a minute is worth one point, so a stop shows.
-        #expect(survey.appendTrackPoint(point(6.5, at: 40)))
+        let stop = survey.appendTrackPoint(point(6.5, at: 40))
         // A poor fix, or none, is not a position.
-        #expect(!survey.appendTrackPoint(point(50, at: 50, accuracy: 120)))
-        #expect(!survey.appendTrackPoint(point(50, at: 51, accuracy: -1)))
+        let poor = survey.appendTrackPoint(point(50, at: 50, accuracy: 120))
+        let none = survey.appendTrackPoint(point(50, at: 51, accuracy: -1))
         // Time going backwards is a glitch.
-        #expect(!survey.appendTrackPoint(point(80, at: 10)))
+        let backwards = survey.appendTrackPoint(point(80, at: 10))
+        #expect(first && !tooClose && step && stop && !poor && !none && !backwards)
         #expect(survey.track.count == 3)
         #expect(abs(survey.trackLength - 6.5) < 0.2)
         #expect(survey.trackDuration == 40)
@@ -332,9 +334,9 @@ struct MapAndPackageTests {
         #expect(scalar("SELECT hex(substr(geom, 1, 8)) FROM findings") == "47500001E6100000")
         // The point's blob: header (8 bytes) + byte order + type 1 + two doubles.
         #expect(scalar("SELECT length(geom) FROM findings") == "29")
-        #expect(scalar("SELECT length(geom) FROM track") == "\(8 + 1 + 4 + 4 + 2 * 16)")
+        #expect(scalar("SELECT length(geom) FROM track") == "49")
         // Polygon: header + order + type + one ring + points (a closed 48-gon is 49 points).
-        #expect(scalar("SELECT length(geom) FROM areas") == "\(8 + 1 + 4 + 4 + 4 + 49 * 16)")
+        #expect(scalar("SELECT length(geom) FROM areas") == "805")
         #expect(abs((Double(scalar("SELECT length_m FROM track")) ?? 0) - survey.trackLength) < 0.01)
     }
 
