@@ -52,27 +52,30 @@ public struct MACAddress: Hashable, Sendable, Codable, CustomStringConvertible {
     }
 }
 
-/// Who made the network chip: the IEEE's list of 24-bit prefixes, shipped with the app.
+/// Who made the network chip: the IEEE's registers of address blocks, shipped with the app.
 ///
-/// The list is the IEEE MA-L registry as compiled by the oui-data project, one prefix and
-/// name per line, sorted, deflate-compressed — 53 000 manufacturers in about half a megabyte.
-/// It is searched in place, with no dictionary built, so loading costs one decompression and
-/// a pass over the text to find where the lines start.
+/// The list holds the three registers the IEEE keeps: MA-L (24-bit prefixes, six hex digits),
+/// MA-M (28 bit, seven digits) and MA-S (36 bit, nine digits). Many small makers of sensors
+/// and smart plugs own only an MA-S block carved out of a larger one, so the longest prefix
+/// that matches wins. One prefix and name per line, sorted by bytes, deflate-compressed: some
+/// 53 000 entries in about half a megabyte. It is searched in place, with no dictionary built,
+/// so loading costs one decompression and a pass over the text to find where the lines start.
 public final class OUIDatabase: @unchecked Sendable {
     private let text: [UInt8]
-    /// Offset of each line, in file order — which is prefix order, since the file is sorted.
+    /// Offset of each line, in file order — which is key order, since the file is sorted.
     private let lines: [Int32]
 
-    /// `text` is the decompressed list: `AABBCC<TAB>Name<LF>`, sorted by prefix.
+    /// `text` is the decompressed list: `KEY<TAB>Name<LF>`, sorted by the bytes of the key.
     public init(text: Data) {
         let bytes = [UInt8](text)
         var starts: [Int32] = []
         starts.reserveCapacity(bytes.count / 32)
         var lineStart = 0
         for (index, byte) in bytes.enumerated() where byte == 0x0A {
-            if index - lineStart > 7 { starts.append(Int32(lineStart)) }
+            if index - lineStart >= 8 { starts.append(Int32(lineStart)) }
             lineStart = index + 1
         }
+        if bytes.count - lineStart >= 8 { starts.append(Int32(lineStart)) }
         self.text = bytes
         self.lines = starts
     }
@@ -89,41 +92,53 @@ public final class OUIDatabase: @unchecked Sendable {
     /// administered address, which has no manufacturer to find.
     public func vendor(of mac: MACAddress) -> String? {
         guard !mac.isLocallyAdministered, !mac.isMulticast else { return nil }
-        return vendor(oui: mac.oui)
+        let hex = Array(mac.formatted(uppercase: true, separator: "").utf8)
+        for length in [9, 7, 6] {
+            if let name = find(Array(hex.prefix(length))) { return name }
+        }
+        return nil
     }
 
+    /// The owner of a 24-bit prefix.
     public func vendor(oui: UInt32) -> String? {
+        find(Array(String(format: "%06X", oui).utf8))
+    }
+
+    private func find(_ key: [UInt8]) -> String? {
         var low = 0
         var high = lines.count - 1
         while low <= high {
             let middle = (low + high) / 2
             let start = Int(lines[middle])
-            guard let key = prefix(at: start) else { return nil }
-            if key == oui {
-                var end = start + 7
+            switch compare(at: start, with: key) {
+            case 0:
+                var begin = start
+                while begin < text.count, text[begin] != 0x09 { begin += 1 }
+                begin += 1
+                var end = begin
                 while end < text.count, text[end] != 0x0A { end += 1 }
-                return String(decoding: text[(start + 7)..<end], as: UTF8.self)
+                return String(decoding: text[begin..<end], as: UTF8.self)
+            case ..<0:
+                low = middle + 1
+            default:
+                high = middle - 1
             }
-            if key < oui { low = middle + 1 } else { high = middle - 1 }
         }
         return nil
     }
 
-    private func prefix(at start: Int) -> UInt32? {
-        guard start + 7 <= text.count else { return nil }
-        var value: UInt32 = 0
-        for offset in 0..<6 {
-            let digit = text[start + offset]
-            let nibble: UInt32
-            switch digit {
-            case 0x30...0x39: nibble = UInt32(digit - 0x30)
-            case 0x41...0x46: nibble = UInt32(digit - 0x41 + 10)
-            case 0x61...0x66: nibble = UInt32(digit - 0x61 + 10)
-            default: return nil
-            }
-            value = value << 4 | nibble
+    /// Orders the key of the line at `start` against `key`, byte by byte; a key that is a
+    /// prefix of the other comes first, as in the sorted file.
+    private func compare(at start: Int, with key: [UInt8]) -> Int {
+        var offset = 0
+        while true {
+            let position = start + offset
+            let lineEnded = position >= text.count || text[position] == 0x09
+            if lineEnded { return offset == key.count ? 0 : -1 }
+            if offset == key.count { return 1 }
+            if text[position] != key[offset] { return text[position] < key[offset] ? -1 : 1 }
+            offset += 1
         }
-        return value
     }
 
     /// A manufacturer's name as the registry writes it — „Apple, Inc.", „Hon Hai Precision

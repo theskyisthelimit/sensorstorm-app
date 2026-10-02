@@ -2,24 +2,26 @@
 
 ## Herstellerliste für Hardware-Adressen (`Resources/oui.bin`)
 
-Die Datei ordnet den ersten drei Bytes einer Hardware-Adresse (OUI) den Namen des Herstellers
-zu. Sie enthält 53 667 Einträge, einen je Zeile (`AABBCC<TAB>Name`), sortiert, roh mit Deflate
-komprimiert (`NSData.decompressed(using: .zlib)`).
+Die Datei ordnet den Anfangsbytes einer Hardware-Adresse den Namen des Herstellers zu. Sie
+enthält die drei Register der IEEE: MA-L (24 Bit, sechs Hexziffern), MA-M (28 Bit, sieben) und
+MA-S (36 Bit, neun), zusammen 53 453 Einträge, einen je Zeile (`SCHLÜSSEL<TAB>Name`), nach Bytes
+sortiert, roh mit Deflate komprimiert (`NSData.decompressed(using: .zlib)`). Die Suche nimmt den
+längsten passenden Schlüssel: viele kleine Hersteller von Sensoren und Steckdosen besitzen nur
+einen MA-S-Block innerhalb eines grösseren.
 
-- **Quelle der Daten:** IEEE Registration Authority, MA-L-Register
-  (<https://standards-oui.ieee.org/oui/oui.txt>).
-- **Aufbereitung:** die Zusammenstellung des Projekts *oui-data* von silverwind
-  (<https://github.com/silverwind/oui-data>), BSD-Lizenz.
+- **Quelle der Daten:** IEEE Registration Authority (<https://standards-oui.ieee.org/>).
+- **Aufbereitung des ausgelieferten Stands:** die Zusammenstellung des Projekts *oui-data* von
+  silverwind (<https://github.com/silverwind/oui-data>), BSD-Lizenz, mit `Tools/make_oui.py
+  --normalise` bereinigt (HTML-Zeichen aufgelöst, „Private" entfernt, nach Bytes sortiert).
 - **Lizenz der Aufbereitung (BSD 3-Clause):** Weitergabe in Quell- und Binärform ist mit dem
   Hinweis auf die Urheber erlaubt; der Name der Urheber darf nicht ohne Zustimmung zur Werbung
   verwendet werden. Die Namen der Hersteller selbst sind Marken ihrer Inhaber.
-- **Aktualisieren:** Quelle neu laden, nach `AABBCC<TAB>Name` sortieren, mit `zlib` im Modus
-  `-15` (rohes Deflate) komprimieren und die Datei ersetzen. Der Test `ouiCompressed` prüft
-  Aufbau und Kompression, `ouiLookup` die Suche.
+- **Aktualisieren:** die drei CSV-Dateien der IEEE laden (`oui.csv`, `mam.csv`, `oui36.csv`) und
+  `Tools/make_oui.py oui.csv mam.csv oui36.csv` aufrufen. Die Tests `ouiLookup`, `ouiCompressed`
+  und `shippedList` prüfen Aufbau, Sortierung und die Suche über alle drei Schlüssellängen.
 - **Grenzen:** Adressen mit gesetztem „lokal verwaltet“-Bit (Bit 1 des ersten Bytes) haben keinen
-  Hersteller, die App sagt „Zufällige Adresse“. MA-M- und MA-S-Blöcke (28 und 36 Bit) stehen
-  nicht in der Liste; ein Hersteller mit eigenem kleinen Block erscheint unter dem Namen des
-  Registers für den umgebenden 24-Bit-Block.
+  Hersteller, die App sagt „Zufällige Adresse“. Blöcke, die an einen nicht genannten
+  Auftraggeber gingen („Private"), fehlen; für sie bleibt der Hersteller leer.
 
 ## Netzbetreiber und Land eines Routers (Team Cymru)
 

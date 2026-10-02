@@ -34,23 +34,53 @@ struct NetworkLookupTests {
     private let list = Data("""
         000000\tXEROX CORPORATION
         001B63\tApple, Inc.
+        001BC5000\tConverging Systems Inc.
+        001BC5001\tOpenRB.com, Direct SIA
+        0055DA0\tShort Range Co
         3C2EF9\tApple, Inc.
         B827EB\tRaspberry Pi Foundation
         FCFC48\tApple, Inc.
 
         """.utf8)
 
-    @Test("Der Hersteller wird im Text gesucht, ohne ein Wörterbuch aufzubauen")
+    @Test("Der Hersteller wird im Text gesucht, mit dem längsten passenden Präfix")
     func ouiLookup() throws {
         let database = OUIDatabase(text: list)
-        #expect(database.count == 5)
+        #expect(database.count == 8)
         #expect(database.vendor(of: try #require(MACAddress("00:1b:63:84:45:e6"))) == "Apple, Inc.")
         #expect(database.vendor(of: try #require(MACAddress("b8:27:eb:00:00:01"))) == "Raspberry Pi Foundation")
         #expect(database.vendor(of: try #require(MACAddress("00:00:00:00:00:01"))) == "XEROX CORPORATION")
         #expect(database.vendor(of: try #require(MACAddress("fc:fc:48:00:00:00"))) == "Apple, Inc.")
         #expect(database.vendor(of: try #require(MACAddress("00:11:22:00:00:00"))) == nil)
+        // The small blocks: 36 bit (nine digits) and 28 bit (seven digits).
+        #expect(database.vendor(of: try #require(MACAddress("00:1b:c5:00:00:01"))) == "Converging Systems Inc.")
+        #expect(database.vendor(of: try #require(MACAddress("00:1b:c5:00:10:00"))) == "OpenRB.com, Direct SIA")
+        #expect(database.vendor(of: try #require(MACAddress("00:1b:c5:ff:00:00"))) == nil)
+        #expect(database.vendor(of: try #require(MACAddress("00:55:da:0f:00:00"))) == "Short Range Co")
+        #expect(database.vendor(oui: 0x3C2EF9) == "Apple, Inc.")
         // Locally administered: a lookup would only find a company by accident.
         #expect(database.vendor(of: try #require(MACAddress("02:1b:63:84:45:e6"))) == nil)
+    }
+
+    @Test("Die mitgelieferte Liste: sortiert, mit allen drei Schlüssellängen, Namen sauber")
+    func shippedList() throws {
+        let url = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+            .deletingLastPathComponent().appendingPathComponent("Resources/oui.bin")
+        let data = try Data(contentsOf: url)
+        let database = try #require(OUIDatabase(compressed: data))
+        #expect(database.count > 50_000)
+        #expect(database.vendor(of: try #require(MACAddress("3c:2e:f9:00:00:01")))?.contains("Apple") == true)
+        #expect(database.vendor(of: try #require(MACAddress("b8:27:eb:11:22:33")))?.contains("Raspberry") == true)
+        // A 36-bit block: the maker of the sensor is found, not the register's owner.
+        let small = try #require(database.vendor(of: try #require(MACAddress("00:1b:c5:00:00:01"))))
+        #expect(small == "Converging Systems Inc.")
+        let text = try (data as NSData).decompressed(using: .zlib) as Data
+        let lines = String(decoding: text, as: UTF8.self).split(separator: "\n").map(String.init)
+        let keys = lines.map { String($0.prefix { $0 != "\t" }) }
+        #expect(keys == keys.sorted { Array($0.utf8).lexicographicallyPrecedes(Array($1.utf8)) })
+        #expect(Set(keys).count == keys.count)
+        #expect(Set(keys.map(\.count)) == [6, 7, 9])
+        #expect(!text.isEmpty && !lines.contains { $0.contains("&amp;") || $0.contains("&quot;") })
     }
 
     @Test("Die ausgelieferte Form: roh komprimiert, wieder lesbar")
