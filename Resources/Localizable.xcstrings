@@ -2415,10 +2415,26 @@
       }
     },
     "%lld Byte" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld bytes"
+          }
+        }
+      }
     },
     "%lld Byte. Ein NTAG213 fasst 144, ein NTAG215 504 und ein NTAG216 888 Byte." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld bytes. An NTAG213 holds 144, an NTAG215 504 and an NTAG216 888 bytes."
+          }
+        }
+      }
     },
     "%lld Clips" : {
       "localizations" : {
@@ -3305,7 +3321,15 @@
       }
     },
     "%lld Einträge" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld entries"
+          }
+        }
+      }
     },
     "%lld Fixe · Median ±%.1f m · 90 %% besser als ±%.1f m · längster Ausfall %.0f s" : {
       "extractionState" : "manual",
@@ -5959,7 +5983,15 @@
       }
     },
     "%lld Ports geschlossen, %lld bis %lld" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld ports closed, %lld to %lld"
+          }
+        }
+      }
     },
     "%lld Routen ergänzt" : {
       "extractionState" : "manual",
@@ -7893,7 +7925,15 @@
       }
     },
     "%lld von %lld Byte belegt" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%lld of %lld bytes used"
+          }
+        }
+      }
     },
     "%lld von %lld Geräten" : {
       "extractionState" : "manual",
@@ -11914,7 +11954,15 @@
       }
     },
     "Ablauf" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Expire"
+          }
+        }
+      }
     },
     "Abnahmeprotokoll als PDF" : {
       "extractionState" : "manual",
@@ -13365,7 +13413,15 @@
       }
     },
     "Adresse (URL)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Address (URL)"
+          }
+        }
+      }
     },
     "Adresse des Brokers" : {
       "extractionState" : "manual",
@@ -14334,7 +14390,15 @@
       }
     },
     "Adresse, zum Beispiel AA:BB:CC:11:22:33" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Address, for example AA:BB:CC:11:22:33"
+          }
+        }
+      }
     },
     "Advertisement" : {
       "extractionState" : "manual",
@@ -14979,7 +15043,15 @@
       }
     },
     "Aktualisierung" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Refresh"
+          }
+        }
+      }
     },
     "Aktueller Wert" : {
       "extractionState" : "manual",
@@ -16105,7 +16177,15 @@
       }
     },
     "Alle Funde löschen?" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete all sightings?"
+          }
+        }
+      }
     },
     "Alle Geräte in Reichweite mit Signal, Paketen und Diensten. Ein Tipp öffnet das Gerät, und wo es sich verbinden lässt, zeigt der Explorer, was es kann." : {
       "extractionState" : "manual",
@@ -17553,7 +17633,15 @@
       }
     },
     "Alle gängigen Typen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "All common types"
+          }
+        }
+      }
     },
     "Alle paar Meter ein Punkt, auch bei gesperrtem Bildschirm. iOS zeigt dafür den blauen Streifen an." : {
       "extractionState" : "manual",
@@ -18358,7 +18446,15 @@
       }
     },
     "Alles löschen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete all"
+          }
+        }
+      }
     },
     "Allgemein" : {
       "extractionState" : "manual",
@@ -18522,7 +18618,15 @@
       }
     },
     "Als" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "As"
+          }
+        }
+      }
     },
     "Als Beobachtung" : {
       "extractionState" : "manual",
@@ -19649,7 +19753,15 @@
       }
     },
     "Als Text teilen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Share as text"
+          }
+        }
+      }
     },
     "Als Zahlen lesen" : {
       "extractionState" : "manual",
@@ -20135,7 +20247,15 @@
       }
     },
     "Anbieter" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Provider"
+          }
+        }
+      }
     },
     "Andere Geräte (ein ESP32, ein Raspberry Pi, ein Mac, ein zweites iPhone) abonnieren die Messwerte per Bluetooth, ohne WLAN und ohne Server. Jeder Sensor ist ein eigenes Merkmal; eine Meldung enthält die Zeit auf der Uhr dieses Telefons und die Kanäle. Mit der Fernsteuerung kann jedes Gerät in Reichweite die Aufnahme starten, anhalten und markieren. Nur einschalten, wenn das gewollt ist. Die App muss dafür offen sein." : {
       "extractionState" : "manual",
@@ -20460,7 +20580,15 @@
       }
     },
     "Android verbindet sich beim Antippen mit dem Netz. iPhones lesen den Eintrag, treten dem Netz aber nicht von selbst bei." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Android connects to the network when you tap it. iPhones read the record but do not join the network on their own."
+          }
+        }
+      }
     },
     "Anfahren" : {
       "extractionState" : "manual",
@@ -22073,7 +22201,15 @@
       }
     },
     "Anwendungsdaten" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Application data"
+          }
+        }
+      }
     },
     "Anzeige jetzt" : {
       "extractionState" : "manual",
@@ -23685,7 +23821,15 @@
       }
     },
     "Auch automatisch angelegte Einträge" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Including automatically created entries"
+          }
+        }
+      }
     },
     "Audio" : {
       "localizations" : {
@@ -24009,7 +24153,15 @@
       }
     },
     "Auf Tag schreiben" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write to tag"
+          }
+        }
+      }
     },
     "Auf dem Aufkleber steht kein Text und keine Adresse." : {
       "extractionState" : "manual",
@@ -24173,7 +24325,15 @@
       }
     },
     "Auf dem Tag steht nichts, das sich kopieren lässt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "There is nothing on the tag that can be copied."
+          }
+        }
+      }
     },
     "Auf dem Telefon" : {
       "extractionState" : "manual",
@@ -24498,7 +24658,15 @@
       }
     },
     "Auf den Ziel-Tag schreiben" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write to the target tag"
+          }
+        }
+      }
     },
     "Auf diesem Gerät gibt es kein Bluetooth. Im Simulator lässt sich der Scanner nicht prüfen." : {
       "extractionState" : "manual",
@@ -33822,7 +33990,15 @@
       }
     },
     "Benachrichtigung nur verschlüsselt" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Notification, encrypted only"
+          }
+        }
+      }
     },
     "Benutzername" : {
       "localizations" : {
@@ -37837,7 +38013,15 @@
       }
     },
     "Beschreibbar" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Writable"
+          }
+        }
+      }
     },
     "Beschriftet mit den Notizen der Aufnahme: eine Notiz gilt bis zur nächsten. Ausgegeben werden die Messwerte im festen Raster, Fenster mit Kennzahlen und je Beschriftung ein Ordner im Format von Create ML." : {
       "extractionState" : "manual",
@@ -38162,13 +38346,37 @@
       }
     },
     "Bestätigte Benachrichtigung" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Confirmed notification"
+          }
+        }
+      }
     },
     "Bestätigte Benachrichtigung nur verschlüsselt" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Confirmed notification, encrypted only"
+          }
+        }
+      }
     },
     "Betreff" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Subject"
+          }
+        }
+      }
     },
     "Beurteilt" : {
       "extractionState" : "manual",
@@ -39135,7 +39343,15 @@
       }
     },
     "Bibliothek" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Library"
+          }
+        }
+      }
     },
     "Big Endian" : {
       "extractionState" : "manual",
@@ -39779,10 +39995,26 @@
       }
     },
     "Binär" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Binary"
+          }
+        }
+      }
     },
     "Bleiben auf diesem Telefon und gelten für dieses Netz. Liest iOS die Hardware-Adresse nicht aus, kann sie hier eingetragen werden, zum Beispiel für Wake-on-LAN." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "These stay on this phone and apply to this network. If iOS does not report the hardware address, you can enter it here, for example for Wake-on-LAN."
+          }
+        }
+      }
     },
     "Blickrichtung" : {
       "extractionState" : "manual",
@@ -40106,7 +40338,15 @@
       }
     },
     "Bluetooth Low Energy" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bluetooth Low Energy"
+          }
+        }
+      }
     },
     "Bluetooth ist aus oder nicht erlaubt." : {
       "extractionState" : "manual",
@@ -41718,7 +41958,15 @@
       }
     },
     "Bonjour" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bonjour"
+          }
+        }
+      }
     },
     "Bonjour-Namen und -Dienste" : {
       "extractionState" : "manual",
@@ -42843,7 +43091,15 @@
       }
     },
     "Breite, zum Beispiel 47.3769" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Latitude, for example 47.3769"
+          }
+        }
+      }
     },
     "Bremsen" : {
       "extractionState" : "manual",
@@ -43329,7 +43585,15 @@
       }
     },
     "Bytes, zum Beispiel 0A FF" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bytes, for example 0A FF"
+          }
+        }
+      }
     },
     "Bündel mit Fotos" : {
       "localizations" : {
@@ -43972,7 +44236,15 @@
       }
     },
     "Chip" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Chip"
+          }
+        }
+      }
     },
     "Clip" : {
       "localizations" : {
@@ -44779,7 +45051,15 @@
       }
     },
     "DNS-Server" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "DNS server"
+          }
+        }
+      }
     },
     "Dafür braucht es Beschleunigung mit mindestens 100 Hz über mehr als vier Sekunden." : {
       "extractionState" : "manual",
@@ -45104,7 +45384,15 @@
       }
     },
     "Danach kann niemand diesen Tag mehr beschreiben oder löschen, auch nicht mit diesem Gerät. Es gibt keinen Weg zurück." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "After this, nobody can write to or delete this tag again, not even with this device. There is no way back."
+          }
+        }
+      }
     },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
       "localizations" : {
@@ -46874,10 +47162,26 @@
       }
     },
     "Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (WLAN-Kanäle, Nachbarnetze, bei manchen Versionen die Hardware-Adressen), fehlt hier und wird nicht vorgetäuscht." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The network the phone is on: interfaces, devices, ping, traceroute, DNS, ports, certificates and throughput. What iOS does not provide (Wi-Fi channels, neighbouring networks, on some versions the hardware addresses) is missing here and is not faked."
+          }
+        }
+      }
     },
     "Das Schreiben ersetzt, was auf dem Tag steht. Danach liest die App den Tag zurück und prüft den Inhalt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Writing replaces what is on the tag. Afterwards the app reads the tag back and checks the content."
+          }
+        }
+      }
     },
     "Das System hat das Senden verweigert." : {
       "extractionState" : "manual",
@@ -47524,7 +47828,15 @@
       }
     },
     "Das Telefon legt für jedes Gerät, mit dem es spricht, einen Eintrag an (Kürzel W). Sie verdecken die paar Einträge, die jemand eingerichtet hat." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "For every device it talks to, the phone creates an entry (badge W). They bury the few entries that someone set up."
+          }
+        }
+      }
     },
     "Das iPhone ist nicht erreichbar." : {
       "extractionState" : "manual",
@@ -48009,7 +48321,15 @@
       }
     },
     "Dateifreigabe" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "File sharing"
+          }
+        }
+      }
     },
     "Dateifreigabe ist erreichbar. Prüfen, wer Zugriff hat." : {
       "extractionState" : "manual",
@@ -48333,10 +48653,26 @@
       }
     },
     "Daten als Hex" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Data as hex"
+          }
+        }
+      }
     },
     "Datenbank" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Database"
+          }
+        }
+      }
     },
     "Datensatz erzeugen" : {
       "extractionState" : "manual",
@@ -49465,7 +49801,15 @@
       }
     },
     "Dauerhaft schreibschützen?" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Make permanently read-only?"
+          }
+        }
+      }
     },
     "Decoder-Datei hinzufügen" : {
       "extractionState" : "manual",
@@ -51712,7 +52056,15 @@
       }
     },
     "Der Inhalt des Tags wird durch einen leeren Eintrag ersetzt. Das lässt sich nicht rückgängig machen." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The tag’s content is replaced by an empty record. This cannot be undone."
+          }
+        }
+      }
     },
     "Der Katalog hat keinen Eintrag." : {
       "extractionState" : "manual",
@@ -53805,10 +54157,26 @@
       }
     },
     "Der Tag ist jetzt dauerhaft schreibgeschützt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The tag is now permanently read-only."
+          }
+        }
+      }
     },
     "Der Tag ist leer." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The tag is empty."
+          }
+        }
+      }
     },
     "Der Weg einer anderen Route wird gerade aufgezeichnet." : {
       "extractionState" : "manual",
@@ -54616,7 +54984,15 @@
       }
     },
     "Der ganze Speicher des Chips, vier Byte je Seite. Seite 3 enthält die Grösse, ab Seite 4 steht der Inhalt. Geschützte Bereiche fehlen." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The chip’s entire memory, four bytes per page. Page 3 holds the size, the content starts at page 4. Protected areas are missing."
+          }
+        }
+      }
     },
     "Details" : {
       "localizations" : {
@@ -54779,7 +55155,15 @@
       }
     },
     "Dezimal" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Decimal"
+          }
+        }
+      }
     },
     "Diagnose" : {
       "extractionState" : "manual",
@@ -58959,10 +59343,26 @@
       }
     },
     "Die Kürzel stehen nur da, wo der Scan es belegt hat: ein offener Port oder eine Ankündigung des Geräts im Netz." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The badges appear only where the scan has evidence for them: an open port or an announcement by the device on the network."
+          }
+        }
+      }
     },
     "Die Nachricht braucht %lld Byte, der Tag fasst %lld." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The message needs %lld bytes, the tag holds %lld."
+          }
+        }
+      }
     },
     "Die Nachricht ist zu gross für das MQTT-Protokoll." : {
       "localizations" : {
@@ -59607,10 +60007,26 @@
       }
     },
     "Die Server, die das Netz oder der VPN-Zugang dem System genannt hat, und ein eingerichteter Proxy. Beides erklärt, warum ein Name hier anders aufgelöst wird als anderswo." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The servers that the network or VPN access has given the system, plus any configured proxy. Either can explain why a name resolves differently here than elsewhere."
+          }
+        }
+      }
     },
     "Die Sprache als Kürzel, zum Beispiel de oder en-GB." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The language code, for example de or en-GB."
+          }
+        }
+      }
     },
     "Die Suche sendet die Koordinate an Apple, in der Schweiz zuerst an swisstopo." : {
       "extractionState" : "manual",
@@ -60095,7 +60511,15 @@
       }
     },
     "Die Uhr misst die Beschleunigung des Handgelenks mit 800 Hz statt mit 50 Hz und schickt sie als Strom mit. Braucht eine Apple Watch ab Series 8 oder Ultra und eine Uhr-Aufnahme." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The watch measures wrist acceleration at 800 Hz instead of 50 Hz and sends it along as a stream. Needs an Apple Watch Series 8 or later, or an Ultra, and a watch recording."
+          }
+        }
+      }
     },
     "Die Verbindung wurde getrennt." : {
       "extractionState" : "manual",
@@ -62668,13 +63092,37 @@
       }
     },
     "Dieser Tag ist schreibgeschützt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This tag is read-only."
+          }
+        }
+      }
     },
     "Dieser Tag lässt sich nicht im NDEF-Format beschreiben." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This tag cannot be written in NDEF format."
+          }
+        }
+      }
     },
     "Dieses Gerät hat kein NFC." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This device has no NFC."
+          }
+        }
+      }
     },
     "Dieses Gerät hat keinen Bewegungssensor." : {
       "extractionState" : "manual",
@@ -63159,7 +63607,15 @@
       }
     },
     "Dieses Gerät kann keine NFC-Tags lesen oder schreiben." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "This device cannot read or write NFC tags."
+          }
+        }
+      }
     },
     "Dieses Gerät sendet gerade nicht." : {
       "extractionState" : "manual",
@@ -65411,7 +65867,15 @@
       }
     },
     "E-Mail" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Email"
+          }
+        }
+      }
     },
     "Eigene Decoder" : {
       "extractionState" : "manual",
@@ -66058,10 +66522,26 @@
       }
     },
     "Eigener Typ" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Custom type"
+          }
+        }
+      }
     },
     "Ein Gerät, das keinen Ping beantwortet, verrät sich meist durch eine abgelehnte oder angenommene Verbindung. Hardware-Adressen und Hersteller zeigt die Liste, wenn iOS die Nachbartabelle herausgibt. Das hängt von der iOS-Version ab." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A device that does not answer ping usually gives itself away by a refused or accepted connection. The list shows hardware addresses and manufacturers when iOS provides the neighbour table. This depends on the iOS version."
+          }
+        }
+      }
     },
     "Ein Ping je Sekunde über ICMP. Manche Geräte und Firewalls antworten nicht darauf, obwohl sie da sind; dann hilft der Portscan." : {
       "extractionState" : "manual",
@@ -66547,7 +67027,15 @@
       }
     },
     "Ein Telefon oder Lautsprecher, der den Eintrag liest, findet das Gerät über diese Adresse und koppelt sich." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A phone or speaker that reads the record finds the device through this address and pairs with it."
+          }
+        }
+      }
     },
     "Ein falscher Wert kann ein Gerät verstellen. Geschrieben wird erst nach einer Rückfrage." : {
       "extractionState" : "manual",
@@ -66711,7 +67199,15 @@
       }
     },
     "Eine Anfrage an 1.1.1.1 (Cloudflare) zeigt, unter welcher Adresse das Telefon im Internet auftritt, je eine über IPv4 und über IPv6. Dazu kommen zwei Namensabfragen bei Team Cymru, wer das Netz betreibt. Gesendet wird nur, wenn du auf den Knopf tippst." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A request to 1.1.1.1 (Cloudflare) shows which address the phone appears under on the internet, one over IPv4 and one over IPv6. Two name lookups at Team Cymru add who operates the network. Data is sent only when you tap the button."
+          }
+        }
+      }
     },
     "Eine Anfrage, in ihre Abschnitte zerlegt: Namensauflösung, Verbindung, TLS, Wartezeit bis zum ersten Byte und Übertragung." : {
       "extractionState" : "manual",
@@ -69283,10 +69779,26 @@
       }
     },
     "Eintrag" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Record"
+          }
+        }
+      }
     },
     "Eintrag hinzufügen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Add record"
+          }
+        }
+      }
     },
     "Einzelner GPS-Fix, festgehalten bei der ersten Aufnahme." : {
       "extractionState" : "manual",
@@ -73469,10 +73981,26 @@
       }
     },
     "Erstmals %@" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "First seen %@"
+          }
+        }
+      }
     },
     "Erweiterte Eigenschaften" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Extended properties"
+          }
+        }
+      }
     },
     "Es läuft keine Aufnahme." : {
       "extractionState" : "manual",
@@ -74759,7 +75287,15 @@
       }
     },
     "Externer Typ" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "External type"
+          }
+        }
+      }
     },
     "FTP überträgt Passwörter im Klartext. Durch SFTP ersetzen." : {
       "extractionState" : "manual",
@@ -76209,7 +76745,15 @@
       }
     },
     "FeliCa" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "FeliCa"
+          }
+        }
+      }
     },
     "Fenster" : {
       "extractionState" : "manual",
@@ -77338,7 +77882,15 @@
       }
     },
     "Firma" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Company"
+          }
+        }
+      }
     },
     "Fixe" : {
       "extractionState" : "manual",
@@ -77663,10 +78215,26 @@
       }
     },
     "Flags" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Flags"
+          }
+        }
+      }
     },
     "Fliesskomma" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Floating point"
+          }
+        }
+      }
     },
     "Fläche" : {
       "extractionState" : "manual",
@@ -80883,7 +81451,15 @@
       }
     },
     "Funde mitschreiben" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Log sightings"
+          }
+        }
+      }
     },
     "Funk" : {
       "extractionState" : "manual",
@@ -81208,7 +81784,15 @@
       }
     },
     "Funktion" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Job title"
+          }
+        }
+      }
     },
     "Für Mängelmelder von Städten und Gemeinden, die Open311 GeoReport v2 sprechen. Die Adresse ist die des Servers; der Dienstcode benennt die Art der Meldung, wie ihn die Gemeinde festgelegt hat." : {
       "extractionState" : "manual",
@@ -81853,7 +82437,15 @@
       }
     },
     "Für immer schreibschützen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Make read-only permanently"
+          }
+        }
+      }
     },
     "GPS" : {
       "localizations" : {
@@ -82817,10 +83409,26 @@
       }
     },
     "Ganzzahl" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Integer"
+          }
+        }
+      }
     },
     "Ganzzahl mit Vorzeichen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Signed integer"
+          }
+        }
+      }
     },
     "Gebiet der Route" : {
       "extractionState" : "manual",
@@ -83467,7 +84075,15 @@
       }
     },
     "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen stehen nur da, wo iOS sie aus der Nachbartabelle herausgab." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Devices found are those that answer ping, Bonjour or a connection on one of the checked ports. A device that stays silent does not appear. Hardware addresses appear only where iOS supplied them from the neighbour table."
+          }
+        }
+      }
     },
     "Gegenstelle" : {
       "extractionState" : "manual",
@@ -83792,13 +84408,37 @@
       }
     },
     "Gelesen." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Read."
+          }
+        }
+      }
     },
     "Gelesen. Jetzt den Ziel-Tag." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Read. Now the target tag."
+          }
+        }
+      }
     },
     "Gelesen: %lld Einträge, %lld Byte." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Read: %lld records, %lld bytes."
+          }
+        }
+      }
     },
     "Gelände oder Strasse" : {
       "localizations" : {
@@ -83961,7 +84601,15 @@
       }
     },
     "Gelöscht." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deleted."
+          }
+        }
+      }
     },
     "Gemeinde-Kennung" : {
       "extractionState" : "manual",
@@ -86858,7 +87506,15 @@
       }
     },
     "Gerätename" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Device name"
+          }
+        }
+      }
     },
     "Geräusch: %@ (%lld %%)" : {
       "extractionState" : "manual",
@@ -87504,22 +88160,70 @@
       }
     },
     "Geschlossen %lld" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Closed %lld"
+          }
+        }
+      }
     },
     "Geschlossen %lld bis %lld" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Closed %lld to %lld"
+          }
+        }
+      }
     },
     "Geschrieben und zurückgelesen: der Inhalt stimmt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Written and read back: the content matches."
+          }
+        }
+      }
     },
     "Geschrieben, aber der Tag gibt etwas anderes zurück. Bitte prüfen." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Written, but the tag returns something different. Please check."
+          }
+        }
+      }
     },
     "Geschrieben." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Written."
+          }
+        }
+      }
     },
     "Geschrieben. Zurücklesen war nicht möglich." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Written. Reading back was not possible."
+          }
+        }
+      }
     },
     "Geschwindigkeit" : {
       "extractionState" : "manual",
@@ -90256,7 +90960,15 @@
       }
     },
     "HTTP-Proxy" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "HTTP proxy"
+          }
+        }
+      }
     },
     "HTTP-Test" : {
       "extractionState" : "manual",
@@ -90420,7 +91132,15 @@
       }
     },
     "HTTPS-Proxy" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "HTTPS proxy"
+          }
+        }
+      }
     },
     "Halte das iPhone an den Aufkleber." : {
       "extractionState" : "manual",
@@ -90584,22 +91304,70 @@
       }
     },
     "Halte das iPhone an den Tag, auf den geschrieben werden soll." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hold the iPhone to the tag you want to write to."
+          }
+        }
+      }
     },
     "Halte das iPhone an den Tag, der für immer schreibgeschützt werden soll." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hold the iPhone to the tag to be made permanently read-only."
+          }
+        }
+      }
     },
     "Halte das iPhone an den Tag, der gelöscht werden soll." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hold the iPhone to the tag you want to delete."
+          }
+        }
+      }
     },
     "Halte das iPhone an den Tag, der kopiert werden soll." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hold the iPhone to the tag you want to copy."
+          }
+        }
+      }
     },
     "Halte das iPhone an den Tag." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hold the iPhone to the tag."
+          }
+        }
+      }
     },
     "Halte das iPhone an den Ziel-Tag." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hold the iPhone to the target tag."
+          }
+        }
+      }
     },
     "Handgelenk" : {
       "extractionState" : "manual",
@@ -93175,7 +93943,15 @@
       }
     },
     "Hex" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hex"
+          }
+        }
+      }
     },
     "Hinführen" : {
       "extractionState" : "manual",
@@ -93661,7 +94437,15 @@
       }
     },
     "Historische Bytes" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Historical bytes"
+          }
+        }
+      }
     },
     "Hoch" : {
       "extractionState" : "manual",
@@ -95434,7 +96218,15 @@
       }
     },
     "ID" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ID"
+          }
+        }
+      }
     },
     "IPv4" : {
       "extractionState" : "manual",
@@ -95759,10 +96551,26 @@
       }
     },
     "ISO 15693 (Vicinity)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ISO 15693 (Vicinity)"
+          }
+        }
+      }
     },
     "ISO 7816 (Chipkarte)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ISO 7816 (smart card)"
+          }
+        }
+      }
     },
     "Im Archiv liegt %@: jede Datei mit Grösse und SHA-256, jede Beobachtung mit Position, Genauigkeit, Bewertung und den Pfaden ihrer Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen." : {
       "localizations" : {
@@ -97209,7 +98017,15 @@
       }
     },
     "In der Bibliothek sichern" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Save to library"
+          }
+        }
+      }
     },
     "In neuer Route" : {
       "extractionState" : "manual",
@@ -102676,7 +103492,15 @@
       }
     },
     "Kein Fund passt zum Filter." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No sighting matches the filter."
+          }
+        }
+      }
     },
     "Kein Gurt, Leistungsmesser oder Laufsensor in Reichweite." : {
       "extractionState" : "manual",
@@ -103161,7 +103985,15 @@
       }
     },
     "Kein NDEF" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No NDEF"
+          }
+        }
+      }
     },
     "Kein Netz" : {
       "extractionState" : "manual",
@@ -105253,7 +106085,15 @@
       }
     },
     "Keine Einträge dieses Typs." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No records of this type."
+          }
+        }
+      }
     },
     "Keine Fahrt gefunden. Das Telefon muss im Aufzug auf dem Boden liegen; gesucht wird eine Höhenänderung ab 1,5 m." : {
       "extractionState" : "manual",
@@ -106380,7 +107220,15 @@
       }
     },
     "Keiner" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "None"
+          }
+        }
+      }
     },
     "Kennung" : {
       "extractionState" : "manual",
@@ -107991,13 +108839,37 @@
       }
     },
     "Kopieren" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copy"
+          }
+        }
+      }
     },
     "Kopieren abbrechen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cancel copying"
+          }
+        }
+      }
     },
     "Kopiert." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copied."
+          }
+        }
+      }
     },
     "Kreis" : {
       "localizations" : {
@@ -108963,7 +109835,15 @@
       }
     },
     "Kürzel" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Badges"
+          }
+        }
+      }
     },
     "LV95" : {
       "extractionState" : "manual",
@@ -109770,7 +110650,15 @@
       }
     },
     "Leer" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Empty"
+          }
+        }
+      }
     },
     "Leeren" : {
       "localizations" : {
@@ -110094,7 +110982,15 @@
       }
     },
     "Lese …" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reading …"
+          }
+        }
+      }
     },
     "Lesen" : {
       "extractionState" : "manual",
@@ -112670,7 +113566,15 @@
       }
     },
     "Länge, zum Beispiel 8.5417" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Longitude, for example 8.5417"
+          }
+        }
+      }
     },
     "Längs" : {
       "extractionState" : "manual",
@@ -113959,19 +114863,59 @@
       }
     },
     "MIFARE" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "MIFARE"
+          }
+        }
+      }
     },
     "MIFARE DESFire" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "MIFARE DESFire"
+          }
+        }
+      }
     },
     "MIFARE Plus" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "MIFARE Plus"
+          }
+        }
+      }
     },
     "MIFARE Ultralight oder NTAG" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "MIFARE Ultralight or NTAG"
+          }
+        }
+      }
     },
     "MIME-Daten" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "MIME data"
+          }
+        }
+      }
     },
     "MQTT-Broker ohne Verschlüsselung erreichbar." : {
       "extractionState" : "manual",
@@ -114777,7 +115721,15 @@
       }
     },
     "Mail-Server" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mail server"
+          }
+        }
+      }
     },
     "Markiert." : {
       "extractionState" : "manual",
@@ -116227,10 +117179,26 @@
       }
     },
     "Mehr als ein Tag erkannt. Halte nur einen." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "More than one tag detected. Hold just one."
+          }
+        }
+      }
     },
     "Mehr als ein Tag in Reichweite. Halte nur einen." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "More than one tag in range. Hold just one."
+          }
+        }
+      }
     },
     "Mehrere Routen" : {
       "localizations" : {
@@ -117839,7 +118807,15 @@
       }
     },
     "Mindestens" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Minimum"
+          }
+        }
+      }
     },
     "Mindestens 3 Punkte antippen oder ablaufen" : {
       "localizations" : {
@@ -118002,7 +118978,15 @@
       }
     },
     "Minimale Lebensdauer" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Minimum TTL"
+          }
+        }
+      }
     },
     "Minimum" : {
       "extractionState" : "manual",
@@ -119615,10 +120599,26 @@
       }
     },
     "NDEF" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "NDEF"
+          }
+        }
+      }
     },
     "NFC" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "NFC"
+          }
+        }
+      }
     },
     "Nach Sekunden" : {
       "extractionState" : "manual",
@@ -120265,7 +121265,15 @@
       }
     },
     "Nachname" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Surname"
+          }
+        }
+      }
     },
     "Nachricht" : {
       "extractionState" : "manual",
@@ -122358,7 +123366,15 @@
       }
     },
     "Namensauflösung und Proxy" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Name resolution and proxy"
+          }
+        }
+      }
     },
     "Neigung" : {
       "extractionState" : "manual",
@@ -122844,7 +123860,15 @@
       }
     },
     "NetBIOS" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "NetBIOS"
+          }
+        }
+      }
     },
     "Netz" : {
       "extractionState" : "manual",
@@ -123330,7 +124354,15 @@
       }
     },
     "Netzbetreiber und Land nachschlagen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Look up operator and country"
+          }
+        }
+      }
     },
     "Netzqualität mitschreiben" : {
       "extractionState" : "manual",
@@ -123976,7 +125008,15 @@
       }
     },
     "Netzwerkname (SSID)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Network name (SSID)"
+          }
+        }
+      }
     },
     "Netzwerkspeicher" : {
       "extractionState" : "manual",
@@ -126391,7 +127431,15 @@
       }
     },
     "Noch kein Eintrag. Ein Tag kann mehrere tragen, zum Beispiel eine Adresse und einen Text." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No records yet. A tag can carry several, for example an address and a text."
+          }
+        }
+      }
     },
     "Noch kein Scan gespeichert. Jede abgeschlossene Suche im Netz landet hier." : {
       "extractionState" : "manual",
@@ -127037,7 +128085,15 @@
       }
     },
     "Noch keine Funde." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No sightings yet."
+          }
+        }
+      }
     },
     "Noch nicht geprüft" : {
       "extractionState" : "manual",
@@ -127684,7 +128740,15 @@
       }
     },
     "Noch nichts gesichert. Gelesene Tags und selbst gebaute Nachrichten lassen sich hier ablegen und später auf neue Tags schreiben." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nothing saved yet. Tags you have read and messages you have built yourself can be stored here and written to new tags later."
+          }
+        }
+      }
     },
     "Noch offen" : {
       "extractionState" : "manual",
@@ -128813,7 +129877,15 @@
       }
     },
     "Nur mit Namen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Only with names"
+          }
+        }
+      }
     },
     "Nur offene" : {
       "extractionState" : "manual",
@@ -130261,7 +131333,15 @@
       }
     },
     "Ohne Namen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Unnamed"
+          }
+        }
+      }
     },
     "Ohne Position kann eine Beobachtung nicht wiedergefunden werden." : {
       "localizations" : {
@@ -130744,7 +131824,15 @@
       }
     },
     "Ohne Schema wird https:// ergänzt. Jeder Tag öffnet die Adresse beim Antippen mit dem Handy." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Without a scheme, https:// is added. Every tag opens the address on tap with the phone."
+          }
+        }
+      }
     },
     "Ohne diese Freigabe antwortet im eigenen Netz nichts. In den Einstellungen unter „Datenschutz & Sicherheit“ → „Lokales Netzwerk“ einschalten." : {
       "extractionState" : "manual",
@@ -135327,7 +136415,15 @@
       }
     },
     "Primärer Server" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Primary server"
+          }
+        }
+      }
     },
     "Pro freischalten" : {
       "localizations" : {
@@ -136293,10 +137389,26 @@
       }
     },
     "Proxy" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Proxy"
+          }
+        }
+      }
     },
     "Proxy-Skript" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Proxy script"
+          }
+        }
+      }
     },
     "Prüfen" : {
       "extractionState" : "manual",
@@ -140159,7 +141271,15 @@
       }
     },
     "Rohdaten" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Raw data"
+          }
+        }
+      }
     },
     "Rohdaten (.ssbin)" : {
       "localizations" : {
@@ -142245,7 +143365,15 @@
       }
     },
     "Routingtabelle" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Routing table"
+          }
+        }
+      }
     },
     "Ruck" : {
       "extractionState" : "manual",
@@ -142890,10 +144018,26 @@
       }
     },
     "SMS" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "SMS"
+          }
+        }
+      }
     },
     "SSH" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "SSH"
+          }
+        }
+      }
     },
     "Satellit" : {
       "localizations" : {
@@ -145790,16 +146934,48 @@
       }
     },
     "Schreiben ohne Antwort" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write without response"
+          }
+        }
+      }
     },
     "Schreibgeschützt" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Read-only"
+          }
+        }
+      }
     },
     "Schreibschutz gesetzt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Write protection set."
+          }
+        }
+      }
     },
     "Schreibschutz setzen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Set write protection"
+          }
+        }
+      }
     },
     "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig." : {
       "localizations" : {
@@ -148054,7 +149230,15 @@
       }
     },
     "Senden (Broadcast)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Broadcast"
+          }
+        }
+      }
     },
     "Senden fehlgeschlagen: %@" : {
       "extractionState" : "manual",
@@ -151430,7 +152614,15 @@
       }
     },
     "Signiertes Schreiben" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Signed write"
+          }
+        }
+      }
     },
     "Smart Home" : {
       "extractionState" : "manual",
@@ -151594,13 +152786,37 @@
       }
     },
     "Smart Poster" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smart Poster"
+          }
+        }
+      }
     },
     "So nicht lesbar" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Not readable this way"
+          }
+        }
+      }
     },
     "Solange der Scanner offen ist, merkt sich die App jedes gehörte Gerät mit der Zeit des ersten und des letzten Pakets und mit der Signalstärke. Die Liste bleibt auf diesem Telefon." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "As long as the scanner is open, the app remembers every device it hears, with the time of the first and last packet and the signal strength. The list stays on this phone."
+          }
+        }
+      }
     },
     "Soll" : {
       "extractionState" : "manual",
@@ -152247,7 +153463,15 @@
       }
     },
     "Speicher" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Memory"
+          }
+        }
+      }
     },
     "Speicher und Audio-Route" : {
       "extractionState" : "manual",
@@ -152411,7 +153635,15 @@
       }
     },
     "Sprache" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Language"
+          }
+        }
+      }
     },
     "Spricht mit einem iperf3-Server (Standardport 5201), den du selbst betreibst: iperf3 -s. Gemessen wird TCP. Der Test belastet das Netz voll; das Ergebnis der Empfängerseite sagt, was tatsächlich ankam." : {
       "extractionState" : "manual",
@@ -152736,7 +153968,15 @@
       }
     },
     "Standard" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Default"
+          }
+        }
+      }
     },
     "Standort" : {
       "extractionState" : "manual",
@@ -156762,7 +158002,15 @@
       }
     },
     "Systemcode" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "System code"
+          }
+        }
+      }
     },
     "TLS" : {
       "extractionState" : "manual",
@@ -156926,22 +158174,70 @@
       }
     },
     "Tag" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tag"
+          }
+        }
+      }
     },
     "Tag kopieren" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Copy tag"
+          }
+        }
+      }
     },
     "Tag lesen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Read tag"
+          }
+        }
+      }
     },
     "Tag löschen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete tag"
+          }
+        }
+      }
     },
     "Tag löschen?" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete tag?"
+          }
+        }
+      }
     },
     "Tags lesen, beschreiben, kopieren, löschen und sperren, mit URL, Text, Telefon, E-Mail, WLAN, Kontakt und Bluetooth als Inhalt. Dazu der Inhalt von Chip und Speicher, wo iOS ihn herausgibt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Read, write, copy, delete and lock tags, with URL, text, phone, email, Wi-Fi, contact and Bluetooth as content. Plus the contents of the chip and memory, where iOS provides them."
+          }
+        }
+      }
     },
     "Takt" : {
       "localizations" : {
@@ -157104,10 +158400,26 @@
       }
     },
     "Telefon" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Phone"
+          }
+        }
+      }
     },
     "Telefonnummer" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Phone number"
+          }
+        }
+      }
     },
     "Temperatur" : {
       "extractionState" : "manual",
@@ -159844,10 +161156,26 @@
       }
     },
     "Typ, zum Beispiel application/x-demo" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Type, for example application/x-demo"
+          }
+        }
+      }
     },
     "UPnP" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "UPnP"
+          }
+        }
+      }
     },
     "UWB-Abstand zu %@" : {
       "extractionState" : "manual",
@@ -160172,10 +161500,26 @@
       }
     },
     "Uhr mit hoher Rate" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Watch at high rate"
+          }
+        }
+      }
     },
     "Uhr: Beschleunigung (hohe Rate)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Watch: acceleration (high rate)"
+          }
+        }
+      }
     },
     "Uhrversatz" : {
       "extractionState" : "manual",
@@ -165965,7 +167309,15 @@
       }
     },
     "Verlauf der Funde" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sighting history"
+          }
+        }
+      }
     },
     "Verlauf zurücksetzen" : {
       "extractionState" : "manual",
@@ -166773,7 +168125,15 @@
       }
     },
     "Verschlüsselung" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Encryption"
+          }
+        }
+      }
     },
     "Version" : {
       "localizations" : {
@@ -169024,13 +170384,37 @@
       }
     },
     "Vorname" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "First name"
+          }
+        }
+      }
     },
     "WEP (veraltet)" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WEP (obsolete)"
+          }
+        }
+      }
     },
     "WEP, veraltet" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WEP, obsolete"
+          }
+        }
+      }
     },
     "WGS84" : {
       "extractionState" : "manual",
@@ -169516,19 +170900,59 @@
       }
     },
     "WPA" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WPA"
+          }
+        }
+      }
     },
     "WPA und WPA2" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WPA and WPA2"
+          }
+        }
+      }
     },
     "WPA, Passwort" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WPA, password"
+          }
+        }
+      }
     },
     "WPA, Unternehmen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WPA, enterprise"
+          }
+        }
+      }
     },
     "WPA2" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WPA2"
+          }
+        }
+      }
     },
     "Wake-on-LAN" : {
       "extractionState" : "manual",
@@ -171138,10 +172562,26 @@
       }
     },
     "Webseite" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Website"
+          }
+        }
+      }
     },
     "Webserver" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Web server"
+          }
+        }
+      }
     },
     "Weg" : {
       "extractionState" : "manual",
@@ -174202,7 +175642,15 @@
       }
     },
     "Wiederholung" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Retry"
+          }
+        }
+      }
     },
     "Windows-Namen (NetBIOS)" : {
       "extractionState" : "manual",
@@ -176772,7 +178220,15 @@
       }
     },
     "Zeigt die Router auf dem Weg. Jeder Sprung bekommt drei Pakete mit steigender Lebensdauer; ein Router, der nicht antwortet, erscheint als Stern. Für Netzbetreiber und Land geht die Adresse jedes öffentlichen Routers als Namensabfrage an den DNS-Server des Netzes, der sie an Team Cymru weiterreicht." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Shows the routers along the way. Each hop gets three packets with increasing TTL; a router that does not answer appears as an asterisk. For operator and country, the address of every public router is sent as a name lookup to the network’s DNS server, which passes it on to Team Cymru."
+          }
+        }
+      }
     },
     "Zeit" : {
       "extractionState" : "manual",
@@ -178864,10 +180320,26 @@
       }
     },
     "Zufällige Adresse" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Random address"
+          }
+        }
+      }
     },
     "Zufällige Kennung, sie ändert sich bei jedem Kontakt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Random identifier that changes with every contact."
+          }
+        }
+      }
     },
     "Zugangstoken (Bearer)" : {
       "extractionState" : "manual",
@@ -179352,7 +180824,15 @@
       }
     },
     "Zuletzt %@" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Last seen %@"
+          }
+        }
+      }
     },
     "Zuletzt gesehen" : {
       "extractionState" : "manual",
@@ -180799,7 +182279,15 @@
       }
     },
     "Zuständig" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Responsible"
+          }
+        }
+      }
     },
     "Zusätzlich an einen MQTT-Broker" : {
       "localizations" : {
@@ -183376,7 +184864,15 @@
       }
     },
     "https://example.com" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "https://example.com"
+          }
+        }
+      }
     },
     "iBeacon-Kennungen" : {
       "extractionState" : "manual",
@@ -183862,13 +185358,37 @@
       }
     },
     "iOS gibt die Routingtabelle in dieser Version nicht heraus." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iOS does not provide the routing table in this version."
+          }
+        }
+      }
     },
     "iOS liest und beschreibt Tags im NDEF-Format. Karten mit eigener Verschlüsselung, etwa Zutritts- oder Bezahlkarten, gibt iOS nicht heraus; von ihnen erscheinen Art und Seriennummer. Die Seriennummer lässt sich weder ändern noch kopieren, kopiert wird der Inhalt." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iOS reads and writes tags in NDEF format. Cards with their own encryption, such as access or payment cards, are not released by iOS; only their type and serial number appear. The serial number can be neither changed nor copied; the content is what gets copied."
+          }
+        }
+      }
     },
     "iOS nennt keine DNS-Server." : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "iOS does not report any DNS servers."
+          }
+        }
+      }
     },
     "iperf3" : {
       "extractionState" : "manual",
@@ -187732,7 +189252,15 @@
       }
     },
     "Öffnen" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open"
+          }
+        }
+      }
     },
     "Über einen Proxy" : {
       "extractionState" : "manual",

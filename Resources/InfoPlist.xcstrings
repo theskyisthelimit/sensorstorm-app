@@ -3,7 +3,14 @@
   "strings" : {
     "NFCReaderUsageDescription" : {
       "comment" : "Privacy - NFC Scan Usage Description",
-      "localizations" : {}
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm reads and writes NFC tags on request: as checkpoints on objects you inspect, and in the NFC tool."
+          }
+        }
+      }
     },
     "NSBluetoothAlwaysUsageDescription" : {
       "comment" : "Privacy - Bluetooth Always Usage Description",
@@ -501,7 +508,15 @@
       }
     },
     "NSHealthUpdateUsageDescription" : {
-      "comment" : "Privacy - Health Update Usage Description"
+      "comment" : "Privacy - Health Update Usage Description",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sensorstorm writes nothing to “Health”. Values it reads are stored only together with the other readings in the recording."
+          }
+        }
+      }
     },
     "NSHomeKitUsageDescription" : {
       "comment" : "Privacy - HomeKit Usage Description",

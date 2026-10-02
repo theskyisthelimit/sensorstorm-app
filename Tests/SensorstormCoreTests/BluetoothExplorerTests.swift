@@ -96,7 +96,7 @@ struct BluetoothExplorerTests {
         #expect(log.entries.isEmpty)
 
         var full = SightingLog()
-        let many = (0..<(SightingLog.capacity + 5)).map { device(UUID(), rssi: -60, packets: 1) }
+        let many = (0..<(SightingLog.capacity + 5)).map { _ in device(UUID(), rssi: -60, packets: 1) }
         full.merge(many, now: Date())
         #expect(full.entries.count == SightingLog.capacity)
     }
