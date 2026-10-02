@@ -16,6 +16,7 @@ enum ExtraSource: String, CaseIterable, Identifiable, Sendable {
     case cameraLight
     case depth
     case uwb
+    case watchFast
 
     var id: String { rawValue }
 
@@ -30,6 +31,7 @@ enum ExtraSource: String, CaseIterable, Identifiable, Sendable {
         case .cameraLight: "sun.max"
         case .depth: "ruler"
         case .uwb: "wave.3.right.circle"
+        case .watchFast: "applewatch.radiowaves.left.and.right"
         }
     }
 
@@ -44,6 +46,7 @@ enum ExtraSource: String, CaseIterable, Identifiable, Sendable {
         case .cameraLight: String(localized: "Helligkeit über die Kamera")
         case .depth: String(localized: "LiDAR-Abstand")
         case .uwb: String(localized: "UWB-Abstand zum zweiten iPhone")
+        case .watchFast: String(localized: "Uhr mit hoher Rate")
         }
     }
 
@@ -65,6 +68,8 @@ enum ExtraSource: String, CaseIterable, Identifiable, Sendable {
             String(localized: "Schätzt die Helligkeit der Umgebung aus dem Kamerabild, in Lumen. Eine Schätzung, kein Luxmeter. Braucht die Aufnahme mit ARKit.")
         case .depth:
             String(localized: "Misst mit dem LiDAR den Abstand zur Bildmitte, bis etwa fünf Meter. Braucht ein Gerät mit LiDAR und die Aufnahme mit ARKit.")
+        case .watchFast:
+            String(localized: "Die Uhr misst die Beschleunigung des Handgelenks mit 800 Hz statt mit 50 Hz und schickt sie als Strom mit. Braucht eine Apple Watch ab Series 8 oder Ultra und eine Uhr-Aufnahme.")
         case .uwb:
             String(localized: "Misst mit Ultrabreitband Abstand und Richtung zu einem zweiten iPhone, auf Zentimeter genau. Beide Telefone brauchen Ultrabreitband und die Verbindung unter „Bluetooth-Dienst und zweites iPhone“.")
         }

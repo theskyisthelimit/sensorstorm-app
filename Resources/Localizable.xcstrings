@@ -26810,6 +26810,9 @@
         }
       }
     },
+    "Die Uhr misst die Beschleunigung des Handgelenks mit 800 Hz statt mit 50 Hz und schickt sie als Strom mit. Braucht eine Apple Watch ab Series 8 oder Ultra und eine Uhr-Aufnahme." : {
+      "extractionState" : "manual"
+    },
     "Die Verbindung wurde getrennt." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -64177,6 +64180,12 @@
           }
         }
       }
+    },
+    "Uhr mit hoher Rate" : {
+      "extractionState" : "manual"
+    },
+    "Uhr: Beschleunigung (hohe Rate)" : {
+      "extractionState" : "manual"
     },
     "Uhrversatz" : {
       "extractionState" : "manual",

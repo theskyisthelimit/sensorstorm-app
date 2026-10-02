@@ -24,6 +24,9 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
     /// from a second device over a queue. One out-of-order heart-rate sample would corrupt
     /// that silently, so it is dropped instead.
     private var lastTime: [SensorID: Double] = [:]
+    private var lastFastTime = -Double.greatestFiniteMagnitude
+    private var lastStatus: (isRecording: Bool, since: Date?) = (false, nil)
+    private var wantsFast = false
 
     init(sink: SampleSink) {
         self.sink = sink
@@ -65,6 +68,7 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
             // sensor — either the watch is sending or it is not.
             isRunning = !sensors.isDisjoint(with: [.heartRate, .wristMotion])
             lastTime.removeAll()
+            lastFastTime = -Double.greatestFiniteMagnitude
         }
     }
 
@@ -86,11 +90,51 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
     /// rather than a message: the watch may not be looking, and the latest state is all it will
     /// ever want.
     func publishStatus(isRecording: Bool, since: Date?) {
+        lock.withLock { lastStatus = (isRecording, since) }
+        sendContext()
+    }
+
+    /// Whether the watch should stream its wrist acceleration at the high rate. Rides in the
+    /// same application context, so the watch reads it when it starts, whoever starts it.
+    func setFastRate(_ on: Bool) {
+        let changed = lock.withLock { () -> Bool in
+            guard wantsFast != on else { return false }
+            wantsFast = on
+            return true
+        }
+        if changed { sendContext() }
+    }
+
+    private func sendContext() {
         guard WCSession.isSupported(), WCSession.default.activationState == .activated,
               WCSession.default.isWatchAppInstalled else { return }
-        var context: [String: Any] = ["recording": isRecording]
-        if let since { context["since"] = since.timeIntervalSince1970 }
+        let (status, fast) = lock.withLock { (lastStatus, wantsFast) }
+        var context: [String: Any] = ["recording": status.isRecording, "fast": fast]
+        if let since = status.since { context["since"] = since.timeIntervalSince1970 }
         try? WCSession.default.updateApplicationContext(context)
+    }
+
+    static let fastAccelerometerStream = ExternalStreamInfo(
+        id: "watch.accelerometer.fast", source: .device,
+        title: String(localized: "Uhr: Beschleunigung (hohe Rate)"),
+        channels: ["x", "y", "z"], channelUnits: ["g", "g", "g"])
+
+    private func ingestBinary(_ packets: [Data]) {
+        let (running, offset) = lock.withLock { (isRunning, wallToHostOffset) }
+        guard running else { return }
+        for data in packets {
+            guard let packet = WatchPacket.decode(data) else { continue }
+            for row in packet.rows {
+                let time = row.time + offset
+                // Monotonic, like every stream: a reader's binary search depends on it.
+                let accepted = lock.withLock { () -> Bool in
+                    guard time > lastFastTime else { return false }
+                    lastFastTime = time
+                    return true
+                }
+                if accepted { sink.ingestExternal(Self.fastAccelerometerStream, time: time, values: row.values) }
+            }
+        }
     }
 
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
@@ -115,6 +159,10 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
     }
 
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
+        if let packets = userInfo["bin"] as? [Data] {
+            ingestBinary(packets)
+            return
+        }
         guard let batch = userInfo["batch"] as? [[String: Any]] else { return }
         let (running, offset) = lock.withLock { (isRunning, wallToHostOffset) }
         guard running else { return }

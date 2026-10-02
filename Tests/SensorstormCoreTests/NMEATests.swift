@@ -284,3 +284,30 @@ struct BluetoothDeviceSummaryTests {
         #expect(Data(hex: "zz") == nil)
     }
 }
+
+@Suite("Watch packet")
+struct WatchPacketTests {
+    @Test func roundTrip() throws {
+        let rows: [(offset: Float, values: [Float])] = (0..<800).map { index in
+            (Float(index) / 800, [Float(index) * 0.001, -0.5, 1])
+        }
+        let data = WatchPacket.encode(kind: .accelerometer, base: 1_700_000_000.25, rows: rows)
+        #expect(data.count == 16 + 800 * 16)
+        let decoded = try #require(WatchPacket.decode(data))
+        #expect(decoded.kind == .accelerometer)
+        #expect(decoded.base == 1_700_000_000.25)
+        #expect(decoded.rows.count == 800)
+        #expect(abs(decoded.rows[400].time - 1_700_000_000.75) < 1e-6)
+        #expect(decoded.rows[400].values[1] == -0.5)
+    }
+
+    @Test func malformedPacketsAreRefused() {
+        #expect(WatchPacket.decode(Data()) == nil)
+        #expect(WatchPacket.decode(Data(repeating: 0, count: 16)) == nil)
+        let good = WatchPacket.encode(kind: .accelerometer, base: 1, rows: [(0, [1, 2, 3])])
+        #expect(WatchPacket.decode(good.dropLast()) == nil)
+        var wrongVersion = good
+        wrongVersion[1] = 9
+        #expect(WatchPacket.decode(wrongVersion) == nil)
+    }
+}
