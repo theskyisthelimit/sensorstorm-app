@@ -806,9 +806,6 @@
         }
       }
     },
-    "%@ Byte. Ein NTAG213 fasst 144, ein NTAG215 504 und ein NTAG216 888 Byte." : {
-      "extractionState" : "manual"
-    },
     "%@ Messwerte" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1289,9 +1286,6 @@
           }
         }
       }
-    },
-    "%@ von %@ Byte belegt" : {
-      "extractionState" : "manual"
     },
     "%@, %@" : {
       "extractionState" : "manual",
@@ -13369,6 +13363,9 @@
           }
         }
       }
+    },
+    "Adresse (URL)" : {
+      "extractionState" : "manual"
     },
     "Adresse des Brokers" : {
       "extractionState" : "manual",
@@ -37839,6 +37836,9 @@
         }
       }
     },
+    "Beschreibbar" : {
+      "extractionState" : "manual"
+    },
     "Beschriftet mit den Notizen der Aufnahme: eine Notiz gilt bis zur nächsten. Ausgegeben werden die Messwerte im festen Raster, Fenster mit Kennzahlen und je Beschriftung ein Ordner im Format von Create ML." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -39783,167 +39783,6 @@
     },
     "Bleiben auf diesem Telefon und gelten für dieses Netz. Liest iOS die Hardware-Adresse nicht aus, kann sie hier eingetragen werden, zum Beispiel für Wake-on-LAN." : {
       "extractionState" : "manual"
-    },
-    "Bleiben auf diesem Telefon und gelten für dieses Netz. iOS verrät die Hardware-Adresse nicht; wer sie kennt, kann sie hier für Wake-on-LAN eintragen." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "تبقى على هذا الهاتف وتسري على هذه الشبكة. لا يكشف iOS عنوان العتاد؛ ومن يعرفه يمكنه إدخاله هنا لـ Wake-on-LAN."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zůstávají v tomto telefonu a platí pro tuto síť. iOS hardwarovou adresu neprozradí; kdo ji zná, může ji sem zadat pro Wake-on-LAN."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Forbliver på denne telefon og gælder for dette netværk. iOS røber ikke hardwareadressen. Hvis du kender den, kan du indtaste den her til Wake-on-LAN."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Μένουν σε αυτό το τηλέφωνο και ισχύουν για αυτό το δίκτυο. Το iOS δεν αποκαλύπτει τη διεύθυνση υλικού· αν τη γνωρίζεις, μπορείς να την καταχωρίσεις εδώ για Wake-on-LAN."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "These stay on this phone and apply to this network. iOS does not reveal the hardware address; if you know it, you can enter it here for Wake-on-LAN."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Se quedan en este teléfono y valen para esta red. iOS no revela la dirección de hardware; quien la conozca puede introducirla aquí para Wake-on-LAN."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pysyvät tässä puhelimessa ja koskevat tätä verkkoa. iOS ei kerro laiteosoitetta; jos tiedät sen, voit kirjoittaa sen tähän Wake-on-LANia varten."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Restent sur ce téléphone et valent pour ce réseau. iOS ne révèle pas l’adresse matérielle ; si vous la connaissez, vous pouvez la saisir ici pour Wake-on-LAN."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ostaju na ovom telefonu i vrijede za ovu mrežu. iOS ne otkriva hardversku adresu; ako je znaš, možeš je ovdje upisati za Wake-on-LAN."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ezen a telefonon maradnak, és erre a hálózatra érvényesek. Az iOS nem adja ki a hardvercímet; aki ismeri, itt megadhatja Wake-on-LAN-hoz."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Restano su questo telefono e valgono per questa rete. iOS non rivela l'indirizzo hardware; se lo conosci, puoi inserirlo qui per Wake-on-LAN."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "この端末内にのみ保存され、このネットワークで有効です。iOS はハードウェアアドレスを公開しません。ご存じの場合は、Wake-on-LAN 用にここへ入力できます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "이 휴대폰에만 저장되며 이 네트워크에 적용돼요. iOS는 하드웨어 주소를 알려주지 않아요. 알고 있다면 Wake-on-LAN용으로 여기에 입력할 수 있어요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Blir værende på denne telefonen og gjelder for dette nettverket. iOS oppgir ikke maskinvareadressen; hvis du kjenner den, kan du legge den inn her for Wake-on-LAN."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Blijven op deze telefoon en gelden voor dit netwerk. iOS geeft het hardwareadres niet vrij; wie het kent, kan het hier voor Wake-on-LAN invullen."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pozostają na tym telefonie i dotyczą tej sieci. iOS nie podaje adresu sprzętowego; jeśli go znasz, możesz go tu wpisać dla Wake-on-LAN."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ficam neste celular e valem para esta rede. O iOS não informa o endereço de hardware; quem o conhece pode inseri-lo aqui para Wake-on-LAN."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ficam neste telemóvel e valem para esta rede. O iOS não revela o endereço de hardware; se o souberes, podes introduzi-lo aqui para Wake-on-LAN."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rămân pe acest telefon și se aplică acestei rețele. iOS nu dezvăluie adresa hardware; dacă o cunoști, o poți introduce aici pentru Wake-on-LAN."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Остаются на этом телефоне и действуют для этой сети. iOS не сообщает аппаратный адрес; если вы его знаете, можете ввести его здесь для Wake-on-LAN."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zostávajú v tomto telefóne a platia pre túto sieť. iOS neprezrádza hardvérovú adresu; ak ju poznáte, môžete ju tu zadať pre Wake-on-LAN."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Stannar på den här telefonen och gäller för det här nätverket. iOS avslöjar inte hårdvaruadressen; den som känner till den kan skriva in den här för Wake-on-LAN."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bu telefonda kalır ve bu ağ için geçerlidir. iOS donanım adresini vermez; biliyorsan Wake-on-LAN için buraya girebilirsin."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Лишаються на цьому телефоні й діють для цієї мережі. iOS не повідомляє апаратну адресу; якщо ви її знаєте, можете вписати її тут для Wake-on-LAN."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "保留在这部手机上，仅适用于这个网络。iOS 不提供硬件地址；如果你知道，可以在这里填写，用于 Wake-on-LAN。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "保留在這支手機上，並套用於這個網路。iOS 不會提供硬體位址；若你知道，可在此填入以用於 Wake-on-LAN。"
-          }
-        }
-      }
     },
     "Blickrichtung" : {
       "extractionState" : "manual",
@@ -47030,167 +46869,6 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "這個網路有超過 1024 個位址。搜尋範圍限於手機附近的位址。"
-          }
-        }
-      }
-    },
-    "Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (Hardware-Adressen, WLAN-Kanäle, Nachbarnetze), fehlt hier und wird nicht vorgetäuscht." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "الشبكة التي يتصل بها الهاتف: الواجهات والأجهزة وPing وTraceroute وDNS والمنافذ والشهادات ومعدل النقل. ما لا يوفّره iOS (عناوين العتاد وقنوات Wi-Fi والشبكات المجاورة) غير متوفر هنا ولا يُختلق."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Síť, ve které je telefon: rozhraní, zařízení, ping, traceroute, DNS, porty, certifikáty a propustnost. Co iOS nevydává (hardwarové adresy, kanály Wi-Fi, okolní sítě), zde chybí a nepředstírá se."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Det netværk, telefonen er på: grænseflader, enheder, ping, traceroute, DNS, porte, certifikater og gennemløb. Det, iOS ikke udleverer (hardwareadresser, Wi-Fi-kanaler, nabonetværk), mangler her og bliver ikke foregøglet."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Το δίκτυο στο οποίο βρίσκεται το τηλέφωνο: διεπαφές, συσκευές, ping, traceroute, DNS, θύρες, πιστοποιητικά και ρυθμός μεταφοράς. Ό,τι δεν παρέχει το iOS (διευθύνσεις υλικού, κανάλια Wi-Fi, γειτονικά δίκτυα) λείπει εδώ και δεν προσποιούμαστε ότι υπάρχει."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "The network the phone is on: interfaces, devices, ping, traceroute, DNS, ports, certificates and throughput. What iOS does not reveal (hardware addresses, Wi-Fi channels, neighbouring networks) is missing here and is not faked."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "La red en la que está el teléfono: interfaces, dispositivos, ping, traceroute, DNS, puertos, certificados y rendimiento. Lo que iOS no entrega (direcciones de hardware, canales Wi-Fi, redes vecinas) falta aquí y no se simula."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Verkko, jossa puhelin on: liitännät, laitteet, ping, traceroute, DNS, portit, varmenteet ja siirtonopeus. Mitä iOS ei luovuta (laiteosoitteet, Wi-Fi-kanavat, naapuriverkot), puuttuu tästä eikä sitä teeskennellä."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Le réseau dans lequel se trouve le téléphone : interfaces, appareils, ping, traceroute, DNS, ports, certificats et débit. Ce qu’iOS ne fournit pas (adresses matérielles, canaux Wi-Fi, réseaux voisins) manque ici et n’est pas simulé."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Mreža u kojoj se telefon nalazi: sučelja, uređaji, ping, traceroute, DNS, portovi, certifikati i propusnost. Ono što iOS ne daje (hardverske adrese, Wi-Fi kanali, susjedne mreže) ovdje nedostaje i ne glumi se."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "A hálózat, amelyben a telefon van: interfészek, eszközök, ping, traceroute, DNS, portok, tanúsítványok és átviteli sebesség. Amit az iOS nem ad ki (hardvercímek, Wi-Fi-csatornák, szomszédos hálózatok), az itt hiányzik, és nem is tettetjük."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "La rete in cui si trova il telefono: interfacce, dispositivi, ping, traceroute, DNS, porte, certificati e throughput. Ciò che iOS non fornisce (indirizzi hardware, canali Wi-Fi, reti vicine) manca qui e non viene simulato."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "iPhone が接続しているネットワーク: インターフェース、端末、ping、traceroute、DNS、ポート、証明書、スループット。iOS が公開しないもの（ハードウェアアドレス、Wi-Fi チャンネル、近隣のネットワーク）はここにはなく、偽って表示することもありません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "휴대폰이 연결된 네트워크: 인터페이스, 기기, ping, traceroute, DNS, 포트, 인증서, 처리량. iOS가 알려주지 않는 정보(하드웨어 주소, Wi-Fi 채널, 주변 네트워크)는 여기에 없으며 있는 것처럼 꾸며내지 않아요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nettverket telefonen er koblet til: grensesnitt, enheter, ping, traceroute, DNS, porter, sertifikater og gjennomstrømning. Det iOS ikke gir fra seg (maskinvareadresser, Wi-Fi-kanaler, nabonettverk) mangler her og blir ikke fingert."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Het netwerk waarop de telefoon zit: interfaces, apparaten, ping, traceroute, DNS, poorten, certificaten en doorvoer. Wat iOS niet vrijgeeft (hardwareadressen, Wi-Fi-kanalen, netwerken in de buurt) ontbreekt hier en wordt niet nagebootst."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sieć, w której jest telefon: interfejsy, urządzenia, ping, traceroute, DNS, porty, certyfikaty i przepustowość. Czego iOS nie udostępnia (adresy sprzętowe, kanały Wi-Fi, sieci sąsiadów), tego tu brakuje i nie jest to udawane."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "A rede em que o celular está: interfaces, dispositivos, ping, traceroute, DNS, portas, certificados e taxa de transferência. O que o iOS não informa (endereços de hardware, canais Wi-Fi, redes vizinhas) não aparece aqui e não é simulado."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "A rede em que o telemóvel está: interfaces, aparelhos, ping, traceroute, DNS, portas, certificados e débito. O que o iOS não fornece (endereços de hardware, canais Wi-Fi, redes vizinhas) falta aqui e não é fingido."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rețeaua în care se află telefonul: interfețe, dispozitive, ping, traceroute, DNS, porturi, certificate și debit. Ce nu oferă iOS (adrese hardware, canale Wi-Fi, rețele vecine) lipsește aici și nu este simulat."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Сеть, в которой находится телефон: интерфейсы, устройства, ping, traceroute, DNS, порты, сертификаты и пропускная способность. Чего iOS не отдаёт (аппаратные адреса, каналы Wi-Fi, соседние сети), здесь нет, и это не имитируется."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sieť, v ktorej je telefón: rozhrania, zariadenia, ping, traceroute, DNS, porty, certifikáty a priepustnosť. Čo iOS neposkytuje (hardvérové adresy, kanály Wi-Fi, susedné siete), tu chýba a nepredstiera sa."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nätverket som telefonen är ansluten till: gränssnitt, enheter, ping, traceroute, DNS, portar, certifikat och genomströmning. Det som iOS inte lämnar ut (hårdvaruadresser, Wi-Fi-kanaler, grannätverk) saknas här och hittas inte på."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Telefonun bulunduğu ağ: arayüzler, cihazlar, ping, traceroute, DNS, portlar, sertifikalar ve aktarım hızı. iOS’un vermediği şeyler (donanım adresleri, Wi-Fi kanalları, komşu ağlar) burada yoktur ve varmış gibi gösterilmez."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Мережа, у якій перебуває телефон: інтерфейси, пристрої, ping, traceroute, DNS, порти, сертифікати й пропускна здатність. Те, чого iOS не віддає (апаратні адреси, канали Wi-Fi, сусідні мережі), тут відсутнє, і його не вигадують."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "手机所在的网络：接口、设备、Ping、Traceroute、DNS、端口、证书和吞吐量。iOS 不提供的内容（硬件地址、Wi-Fi 信道、邻近网络）这里没有，也不会假装有。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "手機所在的網路：介面、裝置、Ping、Traceroute、DNS、連接埠、憑證與吞吐量。iOS 不提供的內容（硬體位址、Wi-Fi 頻道、鄰近網路）這裡沒有，也不會假裝有。"
           }
         }
       }
@@ -55100,6 +54778,9 @@
         }
       }
     },
+    "Dezimal" : {
+      "extractionState" : "manual"
+    },
     "Diagnose" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -59280,7 +58961,7 @@
     "Die Kürzel stehen nur da, wo der Scan es belegt hat: ein offener Port oder eine Ankündigung des Geräts im Netz." : {
       "extractionState" : "manual"
     },
-    "Die Nachricht braucht %@ Byte, der Tag fasst %@." : {
+    "Die Nachricht braucht %lld Byte, der Tag fasst %lld." : {
       "extractionState" : "manual"
     },
     "Die Nachricht ist zu gross für das MQTT-Protokoll." : {
@@ -66376,166 +66057,8 @@
         }
       }
     },
-    "Ein Gerät, das keinen Ping beantwortet, verrät sich meist durch eine abgelehnte oder angenommene Verbindung. Hardware-Adressen liest iOS nicht aus, deshalb gibt es keine Herstellerangabe." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "الجهاز الذي لا يرد على Ping يكشف عن نفسه غالبًا برفض الاتصال أو قبوله. لا يقرأ iOS عناوين العتاد، لذلك لا توجد معلومة عن الشركة المصنّعة."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zařízení, které neodpovídá na ping, se obvykle prozradí odmítnutým nebo přijatým spojením. Hardwarové adresy iOS nečte, proto chybí údaj o výrobci."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En enhed, der ikke besvarer et ping, røber sig oftest ved en afvist eller accepteret forbindelse. iOS læser ikke hardwareadresser, derfor findes der ingen producentoplysning."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Μια συσκευή που δεν απαντά σε ping συνήθως προδίδεται από μια απορριφθείσα ή αποδεκτή σύνδεση. Το iOS δεν διαβάζει διευθύνσεις υλικού, γι' αυτό δεν υπάρχει πληροφορία κατασκευαστή."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "A device that does not answer a ping usually gives itself away by a refused or accepted connection. iOS does not read hardware addresses, so there is no manufacturer information."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Un dispositivo que no responde al ping suele delatarse por una conexión rechazada o aceptada. iOS no lee las direcciones de hardware, por eso no hay información del fabricante."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Laite, joka ei vastaa pingiin, paljastaa itsensä yleensä hylätyllä tai hyväksytyllä yhteydellä. iOS ei lue laiteosoitteita, joten valmistajatietoa ei ole."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Un appareil qui ne répond pas au ping se trahit généralement par une connexion refusée ou acceptée. iOS ne lit pas les adresses matérielles, il n’y a donc pas d’indication du fabricant."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Uređaj koji ne odgovara na ping obično se odaje odbijenom ili prihvaćenom vezom. iOS ne čita hardverske adrese, pa nema podatka o proizvođaču."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Az a készülék, amely nem válaszol a pingre, általában egy elutasított vagy elfogadott kapcsolattal árulja el magát. Az iOS nem olvassa ki a hardvercímeket, ezért nincs gyártóadat."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Un dispositivo che non risponde al ping di solito si tradisce con una connessione rifiutata o accettata. iOS non legge gli indirizzi hardware, quindi non c'è l'indicazione del produttore."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ping に応答しない端末は、接続が拒否されるか受け入れられることで存在がわかることが多いです。iOS はハードウェアアドレスを読み取れないため、メーカー情報はありません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ping에 응답하지 않는 기기는 대개 연결이 거부되거나 수락되는 것으로 존재가 드러나요. iOS는 하드웨어 주소를 읽지 않기 때문에 제조사 정보는 없어요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En enhet som ikke svarer på ping, røper seg som regel gjennom en avvist eller akseptert tilkobling. iOS leser ikke ut maskinvareadresser, derfor finnes det ingen produsentinformasjon."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Een apparaat dat geen ping beantwoordt, verraadt zich meestal door een geweigerde of geaccepteerde verbinding. iOS leest geen hardwareadressen uit, daarom is er geen fabrikantgegeven."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Urządzenie, które nie odpowiada na ping, zwykle zdradza się odrzuconym lub przyjętym połączeniem. iOS nie odczytuje adresów sprzętowych, dlatego nie ma informacji o producencie."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Um dispositivo que não responde a ping costuma se revelar por uma conexão recusada ou aceita. O iOS não lê endereços de hardware, por isso não há informação do fabricante."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Um aparelho que não responde a um ping costuma denunciar-se por uma ligação recusada ou aceite. O iOS não lê endereços de hardware, por isso não há indicação do fabricante."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Un dispozitiv care nu răspunde la ping se dă de obicei de gol printr-o conexiune refuzată sau acceptată. iOS nu citește adresele hardware, de aceea nu există informații despre producător."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Устройство, не отвечающее на ping, обычно выдаёт себя отклонённым или принятым соединением. iOS не считывает аппаратные адреса, поэтому сведений о производителе нет."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zariadenie, ktoré neodpovedá na ping, sa zvyčajne prezradí odmietnutým alebo prijatým spojením. iOS hardvérové adresy nečíta, preto tu nie je údaj o výrobcovi."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En enhet som inte svarar på ping avslöjar sig oftast genom en nekad eller godtagen anslutning. iOS läser inte av hårdvaruadresser, därför finns ingen tillverkaruppgift."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ping’e yanıt vermeyen bir cihaz genellikle reddedilen ya da kabul edilen bir bağlantıyla kendini belli eder. iOS donanım adreslerini okumaz, bu yüzden üretici bilgisi yoktur."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Пристрій, який не відповідає на ping, зазвичай видає себе відхиленим або прийнятим з’єднанням. iOS не зчитує апаратні адреси, тому даних про виробника немає."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "不响应 Ping 的设备，通常会因连接被拒绝或被接受而暴露自己。iOS 不读取硬件地址，所以没有厂商信息。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "不回應 Ping 的裝置，通常會因連線被拒絕或被接受而暴露。iOS 不會讀取硬體位址，因此沒有製造商資訊。"
-          }
-        }
-      }
+    "Eigener Typ" : {
+      "extractionState" : "manual"
     },
     "Ein Gerät, das keinen Ping beantwortet, verrät sich meist durch eine abgelehnte oder angenommene Verbindung. Hardware-Adressen und Hersteller zeigt die Liste, wenn iOS die Nachbartabelle herausgibt. Das hängt von der iOS-Version ab." : {
       "extractionState" : "manual"
@@ -67189,167 +66712,6 @@
     },
     "Eine Anfrage an 1.1.1.1 (Cloudflare) zeigt, unter welcher Adresse das Telefon im Internet auftritt, je eine über IPv4 und über IPv6. Dazu kommen zwei Namensabfragen bei Team Cymru, wer das Netz betreibt. Gesendet wird nur, wenn du auf den Knopf tippst." : {
       "extractionState" : "manual"
-    },
-    "Eine Anfrage an 1.1.1.1 (Cloudflare) zeigt, unter welcher Adresse das Telefon im Internet auftritt. Sie wird nur gesendet, wenn du auf den Knopf tippst." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "يُظهر طلب إلى 1.1.1.1 (Cloudflare) العنوان الذي يظهر به الهاتف على الإنترنت. ولا يُرسل إلا عند الضغط على الزر."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dotaz na 1.1.1.1 (Cloudflare) ukáže, pod jakou adresou se telefon na internetu představuje. Odešle se, jen když klepnete na tlačítko."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En forespørgsel til 1.1.1.1 (Cloudflare) viser, under hvilken adresse telefonen optræder på internettet. Den sendes kun, når du trykker på knappen."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ένα αίτημα προς το 1.1.1.1 (Cloudflare) δείχνει με ποια διεύθυνση εμφανίζεται το τηλέφωνο στο Internet. Στέλνεται μόνο όταν αγγίξεις το κουμπί."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "A request to 1.1.1.1 (Cloudflare) shows the address the phone appears under on the internet. It is sent only when you tap the button."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Una solicitud a 1.1.1.1 (Cloudflare) muestra con qué dirección aparece el teléfono en Internet. Solo se envía cuando tocas el botón."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pyyntö osoitteeseen 1.1.1.1 (Cloudflare) näyttää, millä osoitteella puhelin näkyy internetissä. Se lähetetään vain, kun napautat painiketta."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Une requête vers 1.1.1.1 (Cloudflare) montre sous quelle adresse le téléphone apparaît sur Internet. Elle n’est envoyée que si vous touchez le bouton."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Upit prema 1.1.1.1 (Cloudflare) pokazuje pod kojom se adresom telefon pojavljuje na internetu. Šalje se samo kad dodirneš gumb."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Egy 1.1.1.1-re (Cloudflare) küldött kérés megmutatja, milyen címen jelenik meg a telefon az interneten. Csak akkor kerül elküldésre, ha a gombra koppintasz."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Una richiesta a 1.1.1.1 (Cloudflare) mostra con quale indirizzo il telefono appare su Internet. Viene inviata solo quando tocchi il pulsante."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "1.1.1.1（Cloudflare）へのリクエストで、iPhone がインターネット上でどのアドレスに見えるかがわかります。ボタンをタップしたときだけ送信されます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "1.1.1.1(Cloudflare)로 보내는 요청으로 휴대폰이 인터넷에서 어떤 주소로 보이는지 알 수 있어요. 버튼을 탭할 때만 전송돼요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En forespørsel til 1.1.1.1 (Cloudflare) viser hvilken adresse telefonen har på internett. Den sendes bare når du trykker på knappen."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Een verzoek aan 1.1.1.1 (Cloudflare) laat zien onder welk adres de telefoon op internet verschijnt. Het wordt alleen verstuurd als je op de knop tikt."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zapytanie do 1.1.1.1 (Cloudflare) pokazuje, pod jakim adresem telefon występuje w internecie. Jest wysyłane tylko po stuknięciu przycisku."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Uma requisição a 1.1.1.1 (Cloudflare) mostra com que endereço o celular aparece na internet. Ela só é enviada quando você toca no botão."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Um pedido a 1.1.1.1 (Cloudflare) mostra com que endereço o telemóvel aparece na Internet. Só é enviado quando tocas no botão."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "O cerere către 1.1.1.1 (Cloudflare) arată sub ce adresă apare telefonul pe internet. Se trimite doar când atingi butonul."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Запрос к 1.1.1.1 (Cloudflare) показывает, под каким адресом телефон виден в интернете. Он отправляется, только когда вы нажимаете кнопку."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dopyt na 1.1.1.1 (Cloudflare) ukáže, pod akou adresou sa telefón javí na internete. Odošle sa len vtedy, keď klepnete na tlačidlo."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En förfrågan till 1.1.1.1 (Cloudflare) visar vilken adress telefonen har på internet. Den skickas bara när du trycker på knappen."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "1.1.1.1’e (Cloudflare) gönderilen bir istek, telefonun internette hangi adresle göründüğünü gösterir. Yalnızca düğmeye dokunduğunda gönderilir."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Запит до 1.1.1.1 (Cloudflare) показує, під якою адресою телефон видно в інтернеті. Він надсилається лише тоді, коли ви торкаєтеся кнопки."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向 1.1.1.1（Cloudflare）发送一次请求，可显示手机在互联网上使用的地址。仅在你点按按钮时才会发送。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向 1.1.1.1（Cloudflare）發出一次請求，可看出手機在網際網路上使用哪個位址。只有在你點按按鈕時才會送出。"
-          }
-        }
-      }
     },
     "Eine Anfrage, in ihre Abschnitte zerlegt: Namensauflösung, Verbindung, TLS, Wartezeit bis zum ersten Byte und Übertragung." : {
       "extractionState" : "manual",
@@ -74106,6 +73468,12 @@
         }
       }
     },
+    "Erstmals %@" : {
+      "extractionState" : "manual"
+    },
+    "Erweiterte Eigenschaften" : {
+      "extractionState" : "manual"
+    },
     "Es läuft keine Aufnahme." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -75389,6 +74757,9 @@
           }
         }
       }
+    },
+    "Externer Typ" : {
+      "extractionState" : "manual"
     },
     "FTP überträgt Passwörter im Klartext. Durch SFTP ersetzen." : {
       "extractionState" : "manual",
@@ -76836,6 +76207,9 @@
           }
         }
       }
+    },
+    "FeliCa" : {
+      "extractionState" : "manual"
     },
     "Fenster" : {
       "extractionState" : "manual",
@@ -78289,6 +77663,9 @@
       }
     },
     "Flags" : {
+      "extractionState" : "manual"
+    },
+    "Fliesskomma" : {
       "extractionState" : "manual"
     },
     "Fläche" : {
@@ -83439,6 +82816,9 @@
         }
       }
     },
+    "Ganzzahl" : {
+      "extractionState" : "manual"
+    },
     "Ganzzahl mit Vorzeichen" : {
       "extractionState" : "manual"
     },
@@ -84086,167 +83466,6 @@
         }
       }
     },
-    "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen gibt iOS nicht heraus." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "تُكتشف الأجهزة التي ترد على Ping أو Bonjour أو على اتصال عبر أحد المنافذ المفحوصة. الجهاز الذي يلتزم الصمت لا يظهر. ولا يوفّر iOS عناوين العتاد."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nalezena jsou zařízení, která odpoví na ping, Bonjour nebo spojení na jednom z kontrolovaných portů. Zařízení, které mlčí, se neobjeví. Hardwarové adresy iOS nevydává."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Der findes enheder, som svarer på ping, Bonjour eller en forbindelse på en af de kontrollerede porte. En enhed, der tier, dukker ikke op. Hardwareadresser udleverer iOS ikke."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Εντοπίζονται συσκευές που απαντούν σε ping, Bonjour ή σε σύνδεση σε μία από τις θύρες που ελέγχθηκαν. Μια συσκευή που σιωπά δεν εμφανίζεται. Το iOS δεν δίνει διευθύνσεις υλικού."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Devices that answer a ping, Bonjour or a connection on one of the checked ports are found. A device that stays silent does not appear. iOS does not reveal hardware addresses."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Se encuentran los dispositivos que responden a ping, Bonjour o a una conexión en alguno de los puertos comprobados. Un dispositivo que calla no aparece. iOS no entrega las direcciones de hardware."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Löytyvät laitteet, jotka vastaavat pingiin, Bonjouriin tai yhteyteen jollakin tarkistetuista porteista. Hiljaa pysyvä laite ei näy. iOS ei luovuta laiteosoitteita."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sont trouvés les appareils qui répondent à un ping, à Bonjour ou à une connexion sur l’un des ports vérifiés. Un appareil muet n’apparaît pas. iOS ne communique pas les adresses matérielles."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pronalaze se uređaji koji odgovaraju na ping, Bonjour ili vezu na jednom od provjerenih portova. Uređaj koji šuti ne pojavljuje se. Hardverske adrese iOS ne daje."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Azok az eszközök kerülnek elő, amelyek válaszolnak pingre, Bonjourra, vagy kapcsolatot fogadnak az ellenőrzött portok egyikén. Egy néma eszköz nem jelenik meg. A hardvercímeket az iOS nem adja ki."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vengono trovati i dispositivi che rispondono a ping, Bonjour o a una connessione su una delle porte controllate. Un dispositivo che tace non compare. iOS non fornisce gli indirizzi hardware."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ping、Bonjour、または確認したポートのいずれかへの接続に応答する端末が見つかります。応答しない端末は表示されません。ハードウェアアドレスは iOS が公開しません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ping, Bonjour, 또는 검사한 포트 중 하나로 연결에 응답하는 기기가 발견돼요. 응답하지 않는 기기는 나타나지 않아요. iOS는 하드웨어 주소를 알려주지 않아요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Enheter som svarer på ping, Bonjour eller en tilkobling på en av de sjekkede portene, blir funnet. En enhet som tier, dukker ikke opp. iOS gir ikke fra seg maskinvareadresser."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Gevonden worden apparaten die antwoorden op ping, Bonjour of een verbinding op een van de gecontroleerde poorten. Een apparaat dat zwijgt, verschijnt niet. Hardwareadressen geeft iOS niet vrij."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Znajdowane są urządzenia, które odpowiadają na ping, Bonjour lub połączenie na jednym ze sprawdzanych portów. Urządzenie, które milczy, się nie pojawi. Adresów sprzętowych iOS nie udostępnia."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "São encontrados os dispositivos que respondem a ping, Bonjour ou a uma conexão em uma das portas verificadas. Um dispositivo que fica em silêncio não aparece. O iOS não informa endereços de hardware."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "São encontrados aparelhos que respondem a um ping, ao Bonjour ou a uma ligação numa das portas verificadas. Um aparelho que se cala não aparece. O iOS não fornece endereços de hardware."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sunt găsite dispozitivele care răspund la ping, Bonjour sau la o conexiune pe unul dintre porturile verificate. Un dispozitiv care tace nu apare. iOS nu dezvăluie adresele hardware."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Находятся устройства, отвечающие на ping, Bonjour или соединение на одном из проверяемых портов. Устройство, которое молчит, не появится. Аппаратные адреса iOS не отдаёт."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nájdu sa zariadenia, ktoré odpovedajú na ping, Bonjour alebo spojenie na niektorom z kontrolovaných portov. Zariadenie, ktoré mlčí, sa neobjaví. Hardvérové adresy iOS neposkytuje."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Det som hittas är enheter som svarar på ping, Bonjour eller en anslutning på någon av de kontrollerade portarna. En enhet som tiger syns inte. Hårdvaruadresser lämnar iOS inte ut."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ping’e, Bonjour’a ya da denetlenen portlardan birindeki bir bağlantıya yanıt veren cihazlar bulunur. Sessiz kalan bir cihaz görünmez. iOS donanım adreslerini vermez."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Знаходяться пристрої, що відповідають на ping, Bonjour або з’єднання на одному з перевірених портів. Пристрій, що мовчить, не з’явиться. Апаратні адреси iOS не віддає."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "能找到的设备，是对 Ping、Bonjour 或所检查端口之一的连接有响应的设备。保持沉默的设备不会出现。iOS 不提供硬件地址。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "找得到的是會回應 Ping、Bonjour，或在已檢查連接埠上接受連線的裝置。保持沉默的裝置不會出現。iOS 不提供硬體位址。"
-          }
-        }
-      }
-    },
     "Gefunden werden Geräte, die auf Ping, Bonjour oder eine Verbindung auf einem der geprüften Ports antworten. Ein Gerät, das schweigt, taucht nicht auf. Hardware-Adressen stehen nur da, wo iOS sie aus der Nachbartabelle herausgab." : {
       "extractionState" : "manual"
     },
@@ -84576,9 +83795,6 @@
       "extractionState" : "manual"
     },
     "Gelesen. Jetzt den Ziel-Tag." : {
-      "extractionState" : "manual"
-    },
-    "Gelesen: %lld Einträge, %@ Byte." : {
       "extractionState" : "manual"
     },
     "Gelesen: %lld Einträge, %lld Byte." : {
@@ -93958,6 +93174,9 @@
         }
       }
     },
+    "Hex" : {
+      "extractionState" : "manual"
+    },
     "Hinführen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -96538,6 +95757,12 @@
           }
         }
       }
+    },
+    "ISO 15693 (Vicinity)" : {
+      "extractionState" : "manual"
+    },
+    "ISO 7816 (Chipkarte)" : {
+      "extractionState" : "manual"
     },
     "Im Archiv liegt %@: jede Datei mit Grösse und SHA-256, jede Beobachtung mit Position, Genauigkeit, Bewertung und den Pfaden ihrer Aufnahmen. Ein Skript liest diese eine Datei und braucht sonst nichts über die Ordner zu wissen." : {
       "localizations" : {
@@ -103935,6 +103160,9 @@
         }
       }
     },
+    "Kein NDEF" : {
+      "extractionState" : "manual"
+    },
     "Kein Netz" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -110541,6 +109769,9 @@
         }
       }
     },
+    "Leer" : {
+      "extractionState" : "manual"
+    },
     "Leeren" : {
       "localizations" : {
         "ar" : {
@@ -114727,7 +113958,19 @@
         }
       }
     },
+    "MIFARE" : {
+      "extractionState" : "manual"
+    },
+    "MIFARE DESFire" : {
+      "extractionState" : "manual"
+    },
+    "MIFARE Plus" : {
+      "extractionState" : "manual"
+    },
     "MIFARE Ultralight oder NTAG" : {
+      "extractionState" : "manual"
+    },
+    "MIME-Daten" : {
       "extractionState" : "manual"
     },
     "MQTT-Broker ohne Verschlüsselung erreichbar." : {
@@ -135280,9 +134523,6 @@
         }
       }
     },
-    "Position Quality" : {
-      "extractionState" : "manual"
-    },
     "Position wird gesucht …" : {
       "localizations" : {
         "ar" : {
@@ -143649,6 +142889,9 @@
         }
       }
     },
+    "SMS" : {
+      "extractionState" : "manual"
+    },
     "SSH" : {
       "extractionState" : "manual"
     },
@@ -146546,6 +145789,9 @@
         }
       }
     },
+    "Schreiben ohne Antwort" : {
+      "extractionState" : "manual"
+    },
     "Schreibgeschützt" : {
       "extractionState" : "manual"
     },
@@ -148806,6 +148052,9 @@
           }
         }
       }
+    },
+    "Senden (Broadcast)" : {
+      "extractionState" : "manual"
     },
     "Senden fehlgeschlagen: %@" : {
       "extractionState" : "manual",
@@ -152180,6 +151429,9 @@
         }
       }
     },
+    "Signiertes Schreiben" : {
+      "extractionState" : "manual"
+    },
     "Smart Home" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -152340,6 +151592,9 @@
           }
         }
       }
+    },
+    "Smart Poster" : {
+      "extractionState" : "manual"
     },
     "So nicht lesbar" : {
       "extractionState" : "manual"
@@ -169771,6 +169026,9 @@
     "Vorname" : {
       "extractionState" : "manual"
     },
+    "WEP (veraltet)" : {
+      "extractionState" : "manual"
+    },
     "WEP, veraltet" : {
       "extractionState" : "manual"
     },
@@ -170257,6 +169515,9 @@
         }
       }
     },
+    "WPA" : {
+      "extractionState" : "manual"
+    },
     "WPA und WPA2" : {
       "extractionState" : "manual"
     },
@@ -170264,6 +169525,9 @@
       "extractionState" : "manual"
     },
     "WPA, Unternehmen" : {
+      "extractionState" : "manual"
+    },
+    "WPA2" : {
       "extractionState" : "manual"
     },
     "Wake-on-LAN" : {
@@ -177507,167 +176771,6 @@
         }
       }
     },
-    "Zeigt die Router auf dem Weg. Jeder Sprung bekommt drei Pakete mit steigender Lebensdauer; ein Router, der nicht antwortet, erscheint als Stern." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "يعرض الموجّهات على الطريق. تحصل كل قفزة على ثلاث حزم بعمر متزايد (TTL)؛ والموجّه الذي لا يرد يظهر كنجمة."
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ukazuje routery na cestě. Každý skok dostane tři pakety s rostoucí dobou života; router, který neodpoví, se zobrazí jako hvězdička."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Viser routerne på vejen. Hvert hop får tre pakker med stigende levetid. En router, der ikke svarer, vises som en stjerne."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Δείχνει τους δρομολογητές στην πορεία. Κάθε hop παίρνει τρία πακέτα με αυξανόμενο χρόνο ζωής (TTL)· ένας δρομολογητής που δεν απαντά εμφανίζεται ως αστέρι."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Shows the routers along the way. Each hop gets three packets with increasing time to live; a router that does not answer appears as an asterisk."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Muestra los routers del camino. Cada salto recibe tres paquetes con vida útil creciente; un router que no responde aparece como asterisco."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Näyttää reitittimet matkan varrella. Jokainen hyppy saa kolme pakettia kasvavalla TTL-arvolla; reititin, joka ei vastaa, näkyy tähtenä."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Affiche les routeurs sur le chemin. Chaque saut reçoit trois paquets avec une durée de vie croissante ; un routeur qui ne répond pas apparaît sous forme d’astérisque."
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prikazuje routere na putu. Svaki skok dobiva tri paketa s rastućim vijekom trajanja (TTL); router koji ne odgovara prikazuje se kao zvjezdica."
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Megmutatja az útvonalon lévő routereket. Minden ugrás három csomagot kap növekvő élettartammal (TTL); a nem válaszoló router csillagként jelenik meg."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Mostra i router lungo il tragitto. Ogni salto riceve tre pacchetti con time to live crescente; un router che non risponde compare come asterisco."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "途中のルーターを表示します。各ホップに、有効期限（TTL）を増やした 3 つのパケットを送ります。応答しないルーターは星印として表示されます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "경로상의 라우터를 보여줘요. 각 홉에 수명(TTL)이 늘어나는 패킷 3개를 보내며, 응답하지 않는 라우터는 별표로 나타나요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Viser routerne på veien. Hvert hopp får tre pakker med økende levetid; en router som ikke svarer, vises som en stjerne."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Toont de routers onderweg. Elke hop krijgt drie pakketten met oplopende levensduur; een router die niet antwoordt, verschijnt als sterretje."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pokazuje routery na drodze. Każdy przeskok dostaje trzy pakiety z rosnącym czasem życia; router, który nie odpowiada, pojawia się jako gwiazdka."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Mostra os roteadores no caminho. Cada salto recebe três pacotes com tempo de vida crescente; um roteador que não responde aparece como asterisco."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Mostra os routers pelo caminho. Cada salto recebe três pacotes com tempo de vida crescente; um router que não responde aparece como asterisco."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Arată routerele de pe drum. Fiecare salt primește trei pachete cu durată de viață crescătoare; un router care nu răspunde apare ca asterisc."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Показывает роутеры на пути. Каждый хоп получает три пакета с возрастающим временем жизни; роутер, который не отвечает, отображается звёздочкой."
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ukáže routery na ceste. Každý skok dostane tri pakety s rastúcou životnosťou; router, ktorý neodpovedá, sa zobrazí ako hviezdička."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Visar routrarna på vägen. Varje hopp får tre paket med stigande livslängd; en router som inte svarar visas som en stjärna."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Yoldaki yönlendiricileri gösterir. Her sıçrama, artan yaşam süreli (TTL) üç paket alır; yanıt vermeyen bir yönlendirici yıldız olarak görünür."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Показує маршрутизатори на шляху. Кожен стрибок отримує три пакети зі зростаючим часом життя; маршрутизатор, що не відповідає, з’являється як зірочка."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "显示沿途的路由器。每一跳会发送三个生存时间递增的数据包；不响应的路由器显示为星号。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "顯示沿途的路由器。每個躍點會收到三個存活時間遞增的封包；不回應的路由器會顯示為星號。"
-          }
-        }
-      }
-    },
     "Zeigt die Router auf dem Weg. Jeder Sprung bekommt drei Pakete mit steigender Lebensdauer; ein Router, der nicht antwortet, erscheint als Stern. Für Netzbetreiber und Land geht die Adresse jedes öffentlichen Routers als Namensabfrage an den DNS-Server des Netzes, der sie an Team Cymru weiterreicht." : {
       "extractionState" : "manual"
     },
@@ -180248,6 +179351,9 @@
         }
       }
     },
+    "Zuletzt %@" : {
+      "extractionState" : "manual"
+    },
     "Zuletzt gesehen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -182820,9 +181926,6 @@
           }
         }
       }
-    },
-    "dice" : {
-      "extractionState" : "manual"
     },
     "eingehalten" : {
       "extractionState" : "manual",
@@ -187663,9 +186766,6 @@
           }
         }
       }
-    },
-    "trash" : {
-      "extractionState" : "manual"
     },
     "unauffällig" : {
       "localizations" : {

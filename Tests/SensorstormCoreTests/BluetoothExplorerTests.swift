@@ -79,7 +79,7 @@ struct BluetoothExplorerTests {
     func sightingStorage() throws {
         var log = SightingLog()
         let ids = (0..<3).map { _ in UUID() }
-        log.merge(ids.enumerated().map { device($1, name: "Gerät, \($0)", rssi: -60, packets: 1) },
+        log.merge(ids.enumerated().map { pair in device(pair.element, name: "Gerät, \(pair.offset)", rssi: -60, packets: 1) },
                   now: Date(timeIntervalSince1970: 2_000))
         let data = try JSONEncoder().encode(log)
         let loaded = try JSONDecoder().decode(SightingLog.self, from: data)
