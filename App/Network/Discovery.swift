@@ -99,8 +99,9 @@ private final class BonjourRun: @unchecked Sendable {
         let key = "\(type)|\(name)"
         guard seen.insert(key).inserted else { return }
 
-        var txt: [String: String] = [:]
-        if case .bonjour(let record) = result.metadata { txt = record.dictionary }
+        var collected: [String: String] = [:]
+        if case .bonjour(let record) = result.metadata { collected = record.dictionary }
+        let txt = collected
 
         // The service endpoint carries no address. Opening a connection to it makes the
         // system resolve one, and the path then says which — the cheapest way to get an
@@ -230,10 +231,11 @@ enum NetworkScanEngine {
 
         // --- What are they?
         let list = records.values.sorted { ($0.address) < ($1.address) }
+        let servicesByAddress = byAddress
         let enrichCounter = Counter()
         let enriched = await concurrentMap(list, limit: 10) { record -> HostRecord in
             var record = record
-            record = await enrich(record, services: byAddress[record.address] ?? [], gateway: gateway,
+            record = await enrich(record, services: servicesByAddress[record.address] ?? [], gateway: gateway,
                                   options: options)
             let done = enrichCounter.increment()
             callbacks.progress(0.55 + Double(done) / Double(max(list.count, 1)) * 0.45, .enriching)
