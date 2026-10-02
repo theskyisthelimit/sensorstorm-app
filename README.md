@@ -213,6 +213,34 @@ Fotos und Clips lassen sich weglassen; die Aufnahmen bleiben dann im Manifest be
 ohne Pfad. Messaufnahmen sind standardmässig nicht dabei: eine Begehung ist Kilobytes, eine
 4K-Aufnahme Gigabytes.
 
+## Was seit der Analyse dazugekommen ist
+
+Die Begründung steht in [docs/ANALYSE.md](docs/ANALYSE.md), die Reihenfolge zum Prüfen am Gerät
+in [docs/HARDWARE-TEST.md](docs/HARDWARE-TEST.md).
+
+- **Fremdströme.** Ein Strom, der kein eingebauter Sensor ist, hat eine stabile Kennung,
+  einen Titel und eigene Kanäle und liegt im selben `.ssbin` neben den anderen
+  (`metadata.json` → `externalStreams`). Bluetooth-Geräte, Netzmessungen, MQTT, Health,
+  Beacons, HomeKit und ein zweites Telefon schreiben so — Wiedergabe, Regeln und jeder Export
+  kennen sie, ohne dass jemand sie einzeln einbauen musste.
+- **Funk.** Bluetooth-Scanner und GATT-Explorer mit Decodern für Ruuvi, BTHome, Pulsgurt,
+  Leistungsmesser und eigene Vorlagen; Netzwerk-Scanner (Ping, Bonjour, NetBIOS, SSDP,
+  Ports), Traceroute, DNS, Zertifikate, iperf3, Geschwindigkeit mit Antwortzeit unter Last,
+  Bestand mit Vergleich zum letzten Scan und ein Abnahmeprotokoll als PDF.
+- **Route.** Weg, Katalog, Messwerte, Status, Wiederholung, Zusammenführen, Archiv, Karten
+  (swisstopo, offline), Bericht, Anonymisierung, Export bis GeoPackage und Excel,
+  Weiterleitung an Webhook und Open311, NFC-Kontrollpunkte.
+- **Auswertung.** Qualitätsprüfung, Strassenrauheit, Aufzug (ISO 18738), Fahrkomfort
+  (EN 12299), Erschütterung (DIN 4150-3), dB(A) mit Kalibrierung, Datensatz für Training.
+- **Weitere Quellen.** Absolute Höhe, Beacons, HomeKit, Frequenzbänder, Geräuschklassen,
+  Kameralicht und LiDAR-Abstand, Health-Import, externer GNSS-Empfänger über Bluetooth.
+- **Mehrere Geräte.** Das Telefon bietet seine Werte als Bluetooth-Dienst an; ein zweites
+  Telefon verbindet sich, vergleicht die Uhren (sechzehn Anfragen, Median der schnellen
+  Hälfte, Unsicherheit mit abgelegt) und zeichnet gemeinsam auf. Die Uhr bedient das Telefon
+  als Fernbedienung.
+- **Ereignisaufnahme.** Ein Ringpuffer hält die letzten Sekunden; ein Stoss über der Schwelle
+  schreibt Vor- und Nachlauf als Aufnahme.
+
 ## Aufbau
 
 ```
@@ -223,8 +251,13 @@ Sources/SensorstormCore/   reine Logik, ohne UIKit: Speicherformat, Zeitbasis, E
   Export/                  CSV, Rohdaten, Kamerafahrt, Fotogrammetrie, Sensor Logger,
                            Gyroflow, GPX/KML, JSON, SQLite
   Model/                   Aufnahme-Metadaten, Sensoren, Fälle und Begehungen
+  Analysis/                Zeitreihen, Filter, Qualität, Rauheit, Aufzug, Komfort, Spektrum
+  Bluetooth/ Network/      Decoder und Namen; Adressen, ICMP, DNS, iperf3, Audit, Bestand
+  Streams/ Streaming/      NMEA; MQTT und das Paketformat zwischen zwei Telefonen
 App/
   Recording/               Sensorquellen, Sink, Videoaufnahme, ARKit-Pose, Koordination
+  Network/ Health/         Sonden und Scanner; Import aus Health
+  Report/ Map/ Intents/    PDF-Berichte; Karten; Kurzbefehle
   Survey/                  Fälle: Kamera für Foto und Clip, Ortung, Modell
   UI/                      SwiftUI: Aufnehmen, Bibliothek, Wiedergabe mit Diagrammen
   UI/Survey/               Karte, Erfassung, Nadel- und Bereichseditor
