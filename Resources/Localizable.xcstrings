@@ -806,6 +806,9 @@
         }
       }
     },
+    "%@ Byte. Ein NTAG213 fasst 144, ein NTAG215 504 und ein NTAG216 888 Byte." : {
+      "extractionState" : "manual"
+    },
     "%@ Messwerte" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1286,6 +1289,9 @@
           }
         }
       }
+    },
+    "%@ von %@ Byte belegt" : {
+      "extractionState" : "manual"
     },
     "%@, %@" : {
       "extractionState" : "manual",
@@ -14312,6 +14318,9 @@
         }
       }
     },
+    "Adresse, zum Beispiel AA:BB:CC:11:22:33" : {
+      "extractionState" : "manual"
+    },
     "Advertisement" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -20423,6 +20432,9 @@
         }
       }
     },
+    "Android verbindet sich beim Antippen mit dem Netz. iPhones lesen den Eintrag, treten dem Netz aber nicht von selbst bei." : {
+      "extractionState" : "manual"
+    },
     "Anfahren" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -22032,6 +22044,9 @@
           }
         }
       }
+    },
+    "Anwendungsdaten" : {
+      "extractionState" : "manual"
     },
     "Anzeige jetzt" : {
       "extractionState" : "manual",
@@ -23963,6 +23978,9 @@
         }
       }
     },
+    "Auf Tag schreiben" : {
+      "extractionState" : "manual"
+    },
     "Auf dem Aufkleber steht kein Text und keine Adresse." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24123,6 +24141,9 @@
           }
         }
       }
+    },
+    "Auf dem Tag steht nichts, das sich kopieren lässt." : {
+      "extractionState" : "manual"
     },
     "Auf dem Telefon" : {
       "extractionState" : "manual",
@@ -24445,6 +24466,9 @@
           }
         }
       }
+    },
+    "Auf den Ziel-Tag schreiben" : {
+      "extractionState" : "manual"
     },
     "Auf diesem Gerät gibt es kein Bluetooth. Im Simulator lässt sich der Scanner nicht prüfen." : {
       "extractionState" : "manual",
@@ -38101,6 +38125,9 @@
         }
       }
     },
+    "Betreff" : {
+      "extractionState" : "manual"
+    },
     "Beurteilt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -39064,6 +39091,9 @@
           }
         }
       }
+    },
+    "Bibliothek" : {
+      "extractionState" : "manual"
     },
     "Big Endian" : {
       "extractionState" : "manual",
@@ -40190,6 +40220,9 @@
           }
         }
       }
+    },
+    "Bluetooth Low Energy" : {
+      "extractionState" : "manual"
     },
     "Bluetooth ist aus oder nicht erlaubt." : {
       "extractionState" : "manual",
@@ -42922,6 +42955,9 @@
         }
       }
     },
+    "Breite, zum Beispiel 47.3769" : {
+      "extractionState" : "manual"
+    },
     "Bremsen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -44044,6 +44080,9 @@
           }
         }
       }
+    },
+    "Chip" : {
+      "extractionState" : "manual"
     },
     "Clip" : {
       "localizations" : {
@@ -45173,6 +45212,9 @@
           }
         }
       }
+    },
+    "Danach kann niemand diesen Tag mehr beschreiben oder löschen, auch nicht mit diesem Gerät. Es gibt keinen Weg zurück." : {
+      "extractionState" : "manual"
     },
     "Danke. Der Kauf hängt an deinem Apple-Account und gilt auf jedem Gerät, an dem du damit angemeldet bist." : {
       "localizations" : {
@@ -47102,6 +47144,12 @@
         }
       }
     },
+    "Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (WLAN-Kanäle, Nachbarnetze, bei manchen Versionen die Hardware-Adressen), fehlt hier und wird nicht vorgetäuscht." : {
+      "extractionState" : "manual"
+    },
+    "Das Schreiben ersetzt, was auf dem Tag steht. Danach liest die App den Tag zurück und prüft den Inhalt." : {
+      "extractionState" : "manual"
+    },
     "Das System hat das Senden verweigert." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -48549,6 +48597,9 @@
         }
       }
     },
+    "Daten als Hex" : {
+      "extractionState" : "manual"
+    },
     "Datensatz erzeugen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -49674,6 +49725,9 @@
           }
         }
       }
+    },
+    "Dauerhaft schreibschützen?" : {
+      "extractionState" : "manual"
     },
     "Decoder-Datei hinzufügen" : {
       "extractionState" : "manual",
@@ -51919,6 +51973,9 @@
         }
       }
     },
+    "Der Inhalt des Tags wird durch einen leeren Eintrag ersetzt. Das lässt sich nicht rückgängig machen." : {
+      "extractionState" : "manual"
+    },
     "Der Katalog hat keinen Eintrag." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -54009,6 +54066,12 @@
         }
       }
     },
+    "Der Tag ist jetzt dauerhaft schreibgeschützt." : {
+      "extractionState" : "manual"
+    },
+    "Der Tag ist leer." : {
+      "extractionState" : "manual"
+    },
     "Der Weg einer anderen Route wird gerade aufgezeichnet." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -54813,6 +54876,9 @@
           }
         }
       }
+    },
+    "Der ganze Speicher des Chips, vier Byte je Seite. Seite 3 enthält die Größe, ab Seite 4 steht der Inhalt. Geschützte Bereiche fehlen." : {
+      "extractionState" : "manual"
     },
     "Details" : {
       "localizations" : {
@@ -59154,6 +59220,9 @@
     "Die Kürzel stehen nur da, wo der Scan es belegt hat: ein offener Port oder eine Ankündigung des Geräts im Netz." : {
       "extractionState" : "manual"
     },
+    "Die Nachricht braucht %@ Byte, der Tag fasst %@." : {
+      "extractionState" : "manual"
+    },
     "Die Nachricht ist zu gross für das MQTT-Protokoll." : {
       "localizations" : {
         "ar" : {
@@ -59797,6 +59866,9 @@
       }
     },
     "Die Server, die das Netz oder der VPN-Zugang dem System genannt hat, und ein eingerichteter Proxy. Beides erklärt, warum ein Name hier anders aufgelöst wird als anderswo." : {
+      "extractionState" : "manual"
+    },
+    "Die Sprache als Kürzel, zum Beispiel de oder en-GB." : {
       "extractionState" : "manual"
     },
     "Die Suche sendet die Koordinate an Apple, in der Schweiz zuerst an swisstopo." : {
@@ -62854,6 +62926,15 @@
         }
       }
     },
+    "Dieser Tag ist schreibgeschützt." : {
+      "extractionState" : "manual"
+    },
+    "Dieser Tag lässt sich nicht im NDEF-Format beschreiben." : {
+      "extractionState" : "manual"
+    },
+    "Dieses Gerät hat kein NFC." : {
+      "extractionState" : "manual"
+    },
     "Dieses Gerät hat keinen Bewegungssensor." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -63335,6 +63416,9 @@
           }
         }
       }
+    },
+    "Dieses Gerät kann keine NFC-Tags lesen oder schreiben." : {
+      "extractionState" : "manual"
     },
     "Dieses Gerät sendet gerade nicht." : {
       "extractionState" : "manual",
@@ -65585,6 +65669,9 @@
         }
       }
     },
+    "E-Mail" : {
+      "extractionState" : "manual"
+    },
     "Eigene Decoder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -66875,6 +66962,9 @@
           }
         }
       }
+    },
+    "Ein Telefon oder Lautsprecher, der den Eintrag liest, findet das Gerät über diese Adresse und koppelt sich." : {
+      "extractionState" : "manual"
     },
     "Ein falscher Wert kann ein Gerät verstellen. Geschrieben wird erst nach einer Rückfrage." : {
       "extractionState" : "manual",
@@ -69769,6 +69859,12 @@
           }
         }
       }
+    },
+    "Eintrag" : {
+      "extractionState" : "manual"
+    },
+    "Eintrag hinzufügen" : {
+      "extractionState" : "manual"
     },
     "Einzelner GPS-Fix, festgehalten bei der ersten Aufnahme." : {
       "extractionState" : "manual",
@@ -77807,6 +77903,9 @@
         }
       }
     },
+    "Firma" : {
+      "extractionState" : "manual"
+    },
     "Fixe" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -81668,6 +81767,9 @@
         }
       }
     },
+    "Funktion" : {
+      "extractionState" : "manual"
+    },
     "Für Mängelmelder von Städten und Gemeinden, die Open311 GeoReport v2 sprechen. Die Adresse ist die des Servers; der Dienstcode benennt die Art der Meldung, wie ihn die Gemeinde festgelegt hat." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -82309,6 +82411,9 @@
           }
         }
       }
+    },
+    "Für immer schreibschützen" : {
+      "extractionState" : "manual"
     },
     "GPS" : {
       "localizations" : {
@@ -84401,6 +84506,15 @@
         }
       }
     },
+    "Gelesen." : {
+      "extractionState" : "manual"
+    },
+    "Gelesen. Jetzt den Ziel-Tag." : {
+      "extractionState" : "manual"
+    },
+    "Gelesen: %lld Einträge, %@ Byte." : {
+      "extractionState" : "manual"
+    },
     "Gelände oder Strasse" : {
       "localizations" : {
         "ar" : {
@@ -84560,6 +84674,9 @@
           }
         }
       }
+    },
+    "Gelöscht." : {
+      "extractionState" : "manual"
     },
     "Gemeinde-Kennung" : {
       "extractionState" : "manual",
@@ -87455,6 +87572,9 @@
         }
       }
     },
+    "Gerätename" : {
+      "extractionState" : "manual"
+    },
     "Geräusch: %@ (%lld %%)" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -88097,6 +88217,18 @@
           }
         }
       }
+    },
+    "Geschrieben und zurückgelesen: der Inhalt stimmt." : {
+      "extractionState" : "manual"
+    },
+    "Geschrieben, aber der Tag gibt etwas anderes zurück. Bitte prüfen." : {
+      "extractionState" : "manual"
+    },
+    "Geschrieben." : {
+      "extractionState" : "manual"
+    },
+    "Geschrieben. Zurücklesen war nicht möglich." : {
+      "extractionState" : "manual"
     },
     "Geschwindigkeit" : {
       "extractionState" : "manual",
@@ -91160,6 +91292,24 @@
         }
       }
     },
+    "Halte das iPhone an den Tag, auf den geschrieben werden soll." : {
+      "extractionState" : "manual"
+    },
+    "Halte das iPhone an den Tag, der für immer schreibgeschützt werden soll." : {
+      "extractionState" : "manual"
+    },
+    "Halte das iPhone an den Tag, der gelöscht werden soll." : {
+      "extractionState" : "manual"
+    },
+    "Halte das iPhone an den Tag, der kopiert werden soll." : {
+      "extractionState" : "manual"
+    },
+    "Halte das iPhone an den Tag." : {
+      "extractionState" : "manual"
+    },
+    "Halte das iPhone an den Ziel-Tag." : {
+      "extractionState" : "manual"
+    },
     "Handgelenk" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -94215,6 +94365,9 @@
           }
         }
       }
+    },
+    "Historische Bytes" : {
+      "extractionState" : "manual"
     },
     "Hoch" : {
       "extractionState" : "manual",
@@ -97754,6 +97907,9 @@
           }
         }
       }
+    },
+    "In der Bibliothek sichern" : {
+      "extractionState" : "manual"
     },
     "In neuer Route" : {
       "extractionState" : "manual",
@@ -108528,6 +108684,15 @@
         }
       }
     },
+    "Kopieren" : {
+      "extractionState" : "manual"
+    },
+    "Kopieren abbrechen" : {
+      "extractionState" : "manual"
+    },
+    "Kopiert." : {
+      "extractionState" : "manual"
+    },
     "Kreis" : {
       "localizations" : {
         "ar" : {
@@ -113192,6 +113357,9 @@
         }
       }
     },
+    "Länge, zum Beispiel 8.5417" : {
+      "extractionState" : "manual"
+    },
     "Längs" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -114477,6 +114645,9 @@
           }
         }
       }
+    },
+    "MIFARE Ultralight oder NTAG" : {
+      "extractionState" : "manual"
     },
     "MQTT-Broker ohne Verschlüsselung erreichbar." : {
       "extractionState" : "manual",
@@ -116727,6 +116898,12 @@
           }
         }
       }
+    },
+    "Mehr als ein Tag erkannt. Halte nur einen." : {
+      "extractionState" : "manual"
+    },
+    "Mehr als ein Tag in Reichweite. Halte nur einen." : {
+      "extractionState" : "manual"
     },
     "Mehrere Routen" : {
       "localizations" : {
@@ -120104,6 +120281,12 @@
         }
       }
     },
+    "NDEF" : {
+      "extractionState" : "manual"
+    },
+    "NFC" : {
+      "extractionState" : "manual"
+    },
     "Nach Sekunden" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -120747,6 +120930,9 @@
           }
         }
       }
+    },
+    "Nachname" : {
+      "extractionState" : "manual"
     },
     "Nachricht" : {
       "extractionState" : "manual",
@@ -124453,6 +124639,9 @@
         }
       }
     },
+    "Netzwerkname (SSID)" : {
+      "extractionState" : "manual"
+    },
     "Netzwerkspeicher" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -126865,6 +127054,9 @@
         }
       }
     },
+    "Noch kein Eintrag. Ein Tag kann mehrere tragen, zum Beispiel eine Adresse und einen Text." : {
+      "extractionState" : "manual"
+    },
     "Noch kein Scan gespeichert. Jede abgeschlossene Suche im Netz landet hier." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -128151,6 +128343,9 @@
           }
         }
       }
+    },
+    "Noch nichts gesichert. Gelesene Tags und selbst gebaute Nachrichten lassen sich hier ablegen und später auf neue Tags schreiben." : {
+      "extractionState" : "manual"
     },
     "Noch offen" : {
       "extractionState" : "manual",
@@ -130723,6 +130918,9 @@
         }
       }
     },
+    "Ohne Namen" : {
+      "extractionState" : "manual"
+    },
     "Ohne Position kann eine Beobachtung nicht wiedergefunden werden." : {
       "localizations" : {
         "ar" : {
@@ -131202,6 +131400,9 @@
           }
         }
       }
+    },
+    "Ohne Schema wird https:// ergänzt. Jeder Tag öffnet die Adresse beim Antippen mit dem Handy." : {
+      "extractionState" : "manual"
     },
     "Ohne diese Freigabe antwortet im eigenen Netz nichts. In den Einstellungen unter „Datenschutz & Sicherheit“ → „Lokales Netzwerk“ einschalten." : {
       "extractionState" : "manual",
@@ -140615,6 +140816,9 @@
         }
       }
     },
+    "Rohdaten" : {
+      "extractionState" : "manual"
+    },
     "Rohdaten (.ssbin)" : {
       "localizations" : {
         "ar" : {
@@ -146233,6 +146437,15 @@
           }
         }
       }
+    },
+    "Schreibgeschützt" : {
+      "extractionState" : "manual"
+    },
+    "Schreibschutz gesetzt." : {
+      "extractionState" : "manual"
+    },
+    "Schreibschutz setzen" : {
+      "extractionState" : "manual"
     },
     "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig." : {
       "localizations" : {
@@ -152664,6 +152877,9 @@
         }
       }
     },
+    "Speicher" : {
+      "extractionState" : "manual"
+    },
     "Speicher und Audio-Route" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -152824,6 +153040,9 @@
           }
         }
       }
+    },
+    "Sprache" : {
+      "extractionState" : "manual"
     },
     "Spricht mit einem iperf3-Server (Standardport 5201), den du selbst betreibst: iperf3 -s. Gemessen wird TCP. Der Test belastet das Netz voll; das Ergebnis der Empfängerseite sagt, was tatsächlich ankam." : {
       "extractionState" : "manual",
@@ -157170,6 +157389,9 @@
         }
       }
     },
+    "Systemcode" : {
+      "extractionState" : "manual"
+    },
     "TLS" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -157331,6 +157553,24 @@
         }
       }
     },
+    "Tag" : {
+      "extractionState" : "manual"
+    },
+    "Tag kopieren" : {
+      "extractionState" : "manual"
+    },
+    "Tag lesen" : {
+      "extractionState" : "manual"
+    },
+    "Tag löschen" : {
+      "extractionState" : "manual"
+    },
+    "Tag löschen?" : {
+      "extractionState" : "manual"
+    },
+    "Tags lesen, beschreiben, kopieren, löschen und sperren, mit URL, Text, Telefon, E-Mail, WLAN, Kontakt und Bluetooth als Inhalt. Dazu der Inhalt von Chip und Speicher, wo iOS ihn herausgibt." : {
+      "extractionState" : "manual"
+    },
     "Takt" : {
       "localizations" : {
         "ar" : {
@@ -157490,6 +157730,12 @@
           }
         }
       }
+    },
+    "Telefon" : {
+      "extractionState" : "manual"
+    },
+    "Telefonnummer" : {
+      "extractionState" : "manual"
     },
     "Temperatur" : {
       "extractionState" : "manual",
@@ -160224,6 +160470,9 @@
           }
         }
       }
+    },
+    "Typ, zum Beispiel application/x-demo" : {
+      "extractionState" : "manual"
     },
     "UWB-Abstand zu %@" : {
       "extractionState" : "manual",
@@ -169396,6 +169645,9 @@
         }
       }
     },
+    "Vorname" : {
+      "extractionState" : "manual"
+    },
     "WEP, veraltet" : {
       "extractionState" : "manual"
     },
@@ -169881,6 +170133,9 @@
           }
         }
       }
+    },
+    "WPA und WPA2" : {
+      "extractionState" : "manual"
     },
     "WPA, Passwort" : {
       "extractionState" : "manual"
@@ -171494,6 +171749,9 @@
           }
         }
       }
+    },
+    "Webseite" : {
+      "extractionState" : "manual"
     },
     "Weg" : {
       "extractionState" : "manual",
@@ -179376,6 +179634,9 @@
     "Zufällige Adresse" : {
       "extractionState" : "manual"
     },
+    "Zufällige Kennung, sie ändert sich bei jedem Kontakt." : {
+      "extractionState" : "manual"
+    },
     "Zugangstoken (Bearer)" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -182431,6 +182692,9 @@
         }
       }
     },
+    "dice" : {
+      "extractionState" : "manual"
+    },
     "eingehalten" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -183879,6 +184143,9 @@
         }
       }
     },
+    "https://example.com" : {
+      "extractionState" : "manual"
+    },
     "iBeacon-Kennungen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -184361,6 +184628,9 @@
           }
         }
       }
+    },
+    "iOS liest und beschreibt Tags im NDEF-Format. Karten mit eigener Verschlüsselung, etwa Zutritts- oder Bezahlkarten, gibt iOS nicht heraus; von ihnen erscheinen Art und Seriennummer. Die Seriennummer lässt sich weder ändern noch kopieren, kopiert wird der Inhalt." : {
+      "extractionState" : "manual"
     },
     "iOS nennt keine DNS-Server." : {
       "extractionState" : "manual"
@@ -187262,6 +187532,9 @@
         }
       }
     },
+    "trash" : {
+      "extractionState" : "manual"
+    },
     "unauffällig" : {
       "localizations" : {
         "ar" : {
@@ -188225,6 +188498,9 @@
           }
         }
       }
+    },
+    "Öffnen" : {
+      "extractionState" : "manual"
     },
     "Über einen Proxy" : {
       "extractionState" : "manual",

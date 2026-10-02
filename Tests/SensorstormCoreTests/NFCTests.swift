@@ -192,4 +192,75 @@ struct NFCTests {
                           "0018  72 6C 64 21 58 59" + String(repeating: " ", count: 8) + "rld!XY"])
         #expect(HexCoding.dump(Data()) == "")
     }
+
+    @Test("Aus den Eingaben des Formulars wird ein Eintrag, oder nichts")
+    func draft() throws {
+        var draft = NFCDraft(kind: .url)
+        #expect(draft.record() == nil && !draft.isComplete)
+        draft.url = "  example.com/a "
+        #expect(NDEFContent(try #require(draft.record())) == .uri("https://example.com/a"))
+        draft.url = "mailto:x@y.ch"
+        #expect(NDEFContent(try #require(draft.record())) == .uri("mailto:x@y.ch"))
+
+        draft = NFCDraft(kind: .text)
+        draft.text = "Grüezi"
+        #expect(NDEFContent(try #require(draft.record())) == .text("Grüezi", language: "de"))
+
+        draft = NFCDraft(kind: .phone)
+        draft.phone = "abc"
+        #expect(draft.record() == nil)
+        draft.phone = "+41 79 1"
+        #expect(NDEFContent(try #require(draft.record())).summary == "tel:+41791")
+
+        draft = NFCDraft(kind: .mail)
+        draft.mailAddress = "nope"
+        #expect(draft.record() == nil)
+        draft.mailAddress = "a@b.ch"
+        #expect(draft.record() != nil)
+
+        draft = NFCDraft(kind: .location)
+        draft.latitude = "47,3769"
+        draft.longitude = "8.5417"
+        #expect(NDEFContent(try #require(draft.record())).summary == "geo:47.376900,8.541700")
+        draft.latitude = "91"
+        #expect(draft.record() == nil)
+
+        draft = NFCDraft(kind: .wifi)
+        draft.wifiSSID = "Büro"
+        #expect(draft.record() == nil)                 // a protected network needs its key
+        draft.wifiPassword = "geheim123"
+        #expect(draft.record() != nil)
+        draft.wifiSecurity = .open
+        draft.wifiPassword = ""
+        #expect(draft.record() != nil)
+        draft.wifiSSID = String(repeating: "x", count: 33)
+        #expect(draft.record() == nil)                 // an SSID is at most 32 bytes
+
+        draft = NFCDraft(kind: .contact)
+        #expect(draft.record() == nil)
+        draft.contact.lastName = "Meier"
+        #expect(NDEFContent(try #require(draft.record())).summary == "Meier")
+
+        draft = NFCDraft(kind: .bluetooth)
+        draft.bluetoothAddress = "AA:BB:CC:11:22:33"
+        draft.bluetoothName = "Boxen"
+        #expect(NDEFContent(try #require(draft.record())) == .bluetooth(address: "AA:BB:CC:11:22:33", name: "Boxen", lowEnergy: false))
+        draft.bluetoothLowEnergy = true
+        #expect(NDEFContent(try #require(draft.record())) == .bluetooth(address: "AA:BB:CC:11:22:33", name: "Boxen", lowEnergy: true))
+        draft.bluetoothAddress = "zz"
+        #expect(draft.record() == nil)
+
+        draft = NFCDraft(kind: .custom)
+        draft.mimeType = "application/x-demo"
+        draft.customPayload = "hello"
+        #expect(try #require(draft.record()).payload == Data("hello".utf8))
+        draft.customIsHex = true
+        draft.customPayload = "0A ff"
+        #expect(try #require(draft.record()).payload == Data([0x0A, 0xFF]))
+        draft.customPayload = "0A f"
+        #expect(draft.record() == nil)
+        draft.mimeType = "demo"
+        draft.customPayload = "00"
+        #expect(draft.record() == nil)
+    }
 }

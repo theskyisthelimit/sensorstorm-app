@@ -26,6 +26,18 @@ struct RadioView: View {
 
                 Section {
                     NavigationLink {
+                        NFCToolView()
+                    } label: {
+                        Label("NFC", systemImage: "wave.3.right.circle")
+                    }
+                } header: {
+                    Text("NFC")
+                } footer: {
+                    Text("Tags lesen, beschreiben, kopieren, löschen und sperren, mit URL, Text, Telefon, E-Mail, WLAN, Kontakt und Bluetooth als Inhalt. Dazu der Inhalt von Chip und Speicher, wo iOS ihn herausgibt.")
+                }
+
+                Section {
+                    NavigationLink {
                         NetworkOverviewView()
                     } label: {
                         Label("Verbindung", systemImage: "network")
@@ -58,7 +70,7 @@ struct RadioView: View {
                 } header: {
                     Text("Netzwerk")
                 } footer: {
-                    Text("Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (Hardware-Adressen, WLAN-Kanäle, Nachbarnetze), fehlt hier und wird nicht vorgetäuscht.")
+                    Text("Das Netz, in dem das Telefon ist: Schnittstellen, Geräte, Ping, Traceroute, DNS, Ports, Zertifikate und Durchsatz. Was iOS nicht herausgibt (WLAN-Kanäle, Nachbarnetze, bei manchen Versionen die Hardware-Adressen), fehlt hier und wird nicht vorgetäuscht.")
                 }
             }
             .navigationTitle("Funk")
