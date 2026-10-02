@@ -4505,6 +4505,9 @@
     "%lld von %lld" : {
       "extractionState" : "manual"
     },
+    "%lld von %lld Geräten" : {
+      "extractionState" : "manual"
+    },
     "%lld/%lld" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6752,6 +6755,9 @@
         }
       }
     },
+    "Abonnieren" : {
+      "extractionState" : "manual"
+    },
     "Abonnieren, z. B. befehle/#, ${userId}/cmd" : {
       "extractionState" : "manual"
     },
@@ -6922,6 +6928,9 @@
       "extractionState" : "manual"
     },
     "Adresse zur Beobachtung suchen" : {
+      "extractionState" : "manual"
+    },
+    "Advertisement" : {
       "extractionState" : "manual"
     },
     "AirPods-Orientierung" : {
@@ -7246,6 +7255,12 @@
           }
         }
       }
+    },
+    "Aktueller Wert" : {
+      "extractionState" : "manual"
+    },
+    "Alle %lld s lesen" : {
+      "extractionState" : "manual"
     },
     "Alle 1,5 m ein Bild. Für einen abgelaufenen Weg oder eine Strasse." : {
       "localizations" : {
@@ -7886,6 +7901,9 @@
           }
         }
       }
+    },
+    "Alle Geräte in Reichweite mit Signal, Paketen und Diensten. Ein Tipp öffnet das Gerät, und wo es sich verbinden lässt, zeigt der Explorer, was es kann." : {
+      "extractionState" : "manual"
     },
     "Alle Gruppen aufklappen" : {
       "extractionState" : "manual",
@@ -9651,6 +9669,12 @@
         }
       }
     },
+    "Als Zahlen lesen" : {
+      "extractionState" : "manual"
+    },
+    "Als Zahlen lesen …" : {
+      "extractionState" : "manual"
+    },
     "Anderes" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10292,6 +10316,9 @@
           }
         }
       }
+    },
+    "Auf diesem Gerät gibt es kein Bluetooth. Im Simulator lässt sich der Scanner nicht prüfen." : {
+      "extractionState" : "manual"
     },
     "Auf diesem Gerät gibt es keine Gesundheitsdaten." : {
       "extractionState" : "manual",
@@ -12221,6 +12248,9 @@
         }
       }
     },
+    "Aufzeichnen" : {
+      "extractionState" : "manual"
+    },
     "Aus" : {
       "localizations" : {
         "ar" : {
@@ -13033,6 +13063,9 @@
     "Bedingung hinzufügen" : {
       "extractionState" : "manual"
     },
+    "Bei Benachrichtigung" : {
+      "extractionState" : "manual"
+    },
     "Bei Änderung" : {
       "extractionState" : "manual"
     },
@@ -13681,6 +13714,9 @@
           }
         }
       }
+    },
+    "Beobachtet seit" : {
+      "extractionState" : "manual"
     },
     "Beobachtung" : {
       "localizations" : {
@@ -16245,6 +16281,9 @@
         }
       }
     },
+    "Big Endian" : {
+      "extractionState" : "manual"
+    },
     "Bilder" : {
       "localizations" : {
         "ar" : {
@@ -17046,6 +17085,12 @@
         }
       }
     },
+    "Bluetooth ist ausgeschaltet. Im Kontrollzentrum einschalten." : {
+      "extractionState" : "manual"
+    },
+    "Bluetooth startet neu …" : {
+      "extractionState" : "manual"
+    },
     "Bluetooth-Rohdaten mitschreiben" : {
       "localizations" : {
         "ar" : {
@@ -17205,6 +17250,9 @@
           }
         }
       }
+    },
+    "Bluetooth-Scanner" : {
+      "extractionState" : "manual"
     },
     "Bluetooth-Sensoren" : {
       "extractionState" : "manual"
@@ -18013,6 +18061,9 @@
       }
     },
     "Breite" : {
+      "extractionState" : "manual"
+    },
+    "Byte ab" : {
       "extractionState" : "manual"
     },
     "Bündel mit Fotos" : {
@@ -19619,6 +19670,9 @@
         }
       }
     },
+    "Das Gerät führt aus, was es empfängt." : {
+      "extractionState" : "manual"
+    },
     "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
       "localizations" : {
         "ar" : {
@@ -19778,6 +19832,9 @@
           }
         }
       }
+    },
+    "Das lässt sich nicht als Wert lesen." : {
+      "extractionState" : "manual"
     },
     "Daten" : {
       "localizations" : {
@@ -20264,6 +20321,12 @@
       "extractionState" : "manual"
     },
     "Decoder-Datei hinzufügen" : {
+      "extractionState" : "manual"
+    },
+    "Decoder-Vorlage kopieren" : {
+      "extractionState" : "manual"
+    },
+    "Decoder-Vorlage kopiert" : {
       "extractionState" : "manual"
     },
     "Dein iPhone als Messgerät." : {
@@ -22185,6 +22248,9 @@
           }
         }
       }
+    },
+    "Der Name gilt nur auf diesem Telefon und für diese Adresse." : {
+      "extractionState" : "manual"
     },
     "Der Server antwortete mit %lld." : {
       "localizations" : {
@@ -24592,6 +24658,12 @@
         }
       }
     },
+    "Dienstdaten %@" : {
+      "extractionState" : "manual"
+    },
+    "Dienste und Merkmale" : {
+      "extractionState" : "manual"
+    },
     "Diese Aufnahme enthält kein Video." : {
       "localizations" : {
         "ar" : {
@@ -25553,6 +25625,9 @@
       }
     },
     "Dieses Gerät sendet gerade nicht." : {
+      "extractionState" : "manual"
+    },
+    "Dieses Gerät unterstützt Bluetooth Low Energy nicht." : {
       "extractionState" : "manual"
     },
     "Dieses Gerät unterstützt kein ARKit-Tracking." : {
@@ -26519,6 +26594,9 @@
     "Eigene Decoder" : {
       "extractionState" : "manual"
     },
+    "Ein falscher Wert kann ein Gerät verstellen. Geschrieben wird erst nach einer Rückfrage." : {
+      "extractionState" : "manual"
+    },
     "Eine JavaScript-Datei mit beliebig vielen decoder({ … })-Aufrufen. Jeder nennt manufacturerId, serviceUuid oder namePrefix und eine Funktion decode(bytes), die { name: Zahl } zurückgibt. Das Beispiel zeigt beides." : {
       "extractionState" : "manual"
     },
@@ -27001,6 +27079,12 @@
           }
         }
       }
+    },
+    "Eingabe" : {
+      "extractionState" : "manual"
+    },
+    "Einheit" : {
+      "extractionState" : "manual"
     },
     "Einmal kaufen, dauerhaft behalten" : {
       "localizations" : {
@@ -28939,6 +29023,12 @@
     "Erledigt" : {
       "extractionState" : "manual"
     },
+    "Erneut verbinden" : {
+      "extractionState" : "manual"
+    },
+    "Erst lesen oder abonnieren, damit ein Wert da ist, an dem sich die Felder prüfen lassen." : {
+      "extractionState" : "manual"
+    },
     "Es wurden keine Daten aufgezeichnet." : {
       "localizations" : {
         "ar" : {
@@ -29579,6 +29669,9 @@
         }
       }
     },
+    "Faktor" : {
+      "extractionState" : "manual"
+    },
     "Fassade oder Raum" : {
       "localizations" : {
         "ar" : {
@@ -29738,6 +29831,9 @@
           }
         }
       }
+    },
+    "Favorit" : {
+      "extractionState" : "manual"
     },
     "Fehler" : {
       "localizations" : {
@@ -29899,6 +29995,9 @@
         }
       }
     },
+    "Feld hinzufügen" : {
+      "extractionState" : "manual"
+    },
     "Fertig" : {
       "localizations" : {
         "ar" : {
@@ -30058,6 +30157,9 @@
           }
         }
       }
+    },
+    "Filter" : {
+      "extractionState" : "manual"
     },
     "Fixes" : {
       "extractionState" : "manual",
@@ -31829,6 +31931,12 @@
           }
         }
       }
+    },
+    "Funk" : {
+      "extractionState" : "manual"
+    },
+    "Funk läuft nicht geradlinig durch einen Raum: Körper und Wände verschieben das Signal um zehn Dezibel, und das ist ein Faktor drei in der Entfernung. Deshalb steht hier eine Spanne." : {
+      "extractionState" : "manual"
     },
     "Für dieses Gerät ist keine Videoaufnahme möglich." : {
       "localizations" : {
@@ -33914,6 +34022,12 @@
         }
       }
     },
+    "Gerät nicht mehr in Reichweite" : {
+      "extractionState" : "manual"
+    },
+    "Gerät suchen" : {
+      "extractionState" : "manual"
+    },
     "Gesamtexport" : {
       "localizations" : {
         "ar" : {
@@ -35036,6 +35150,12 @@
         }
       }
     },
+    "Hersteller" : {
+      "extractionState" : "manual"
+    },
+    "Herstellerdaten" : {
+      "extractionState" : "manual"
+    },
     "Herzfrequenz" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -35524,6 +35644,9 @@
       "extractionState" : "manual"
     },
     "Hoch" : {
+      "extractionState" : "manual"
+    },
+    "Höchstens" : {
       "extractionState" : "manual"
     },
     "Höhe" : {
@@ -36811,6 +36934,12 @@
       }
     },
     "Innerhalb" : {
+      "extractionState" : "manual"
+    },
+    "Intervall" : {
+      "extractionState" : "manual"
+    },
+    "Je näher das Gerät, desto schneller das Klopfen. Mit dem Telefon langsam drehen und gehen." : {
       "extractionState" : "manual"
     },
     "Jedes Gerät im selben WLAN bekommt unter dieser Adresse mit einem einfachen GET die neuesten Werte aller laufenden Sensoren, als JSON im selben Format wie die Live-Übertragung. Nur lesen, nichts ändern. Läuft, solange die App offen ist." : {
@@ -40192,6 +40321,9 @@
         }
       }
     },
+    "Kennung" : {
+      "extractionState" : "manual"
+    },
     "Kleine Schritte: alle 10 cm ein Bild. Für etwas, das man umrundet." : {
       "localizations" : {
         "ar" : {
@@ -41639,6 +41771,12 @@
           }
         }
       }
+    },
+    "Lesen" : {
+      "extractionState" : "manual"
+    },
+    "Liste leeren" : {
+      "extractionState" : "manual"
     },
     "Live" : {
       "extractionState" : "manual"
@@ -44375,6 +44513,12 @@
         }
       }
     },
+    "Mit Bestätigung des Geräts" : {
+      "extractionState" : "manual"
+    },
+    "Mit diesen Angaben ergibt sich noch kein Wert." : {
+      "extractionState" : "manual"
+    },
     "Mobil" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -45669,6 +45813,9 @@
         }
       }
     },
+    "Name, Hersteller, Dienst" : {
+      "extractionState" : "manual"
+    },
     "Netzwerk" : {
       "localizations" : {
         "ar" : {
@@ -46152,6 +46299,12 @@
         }
       }
     },
+    "Nicht mehr aufzeichnen" : {
+      "extractionState" : "manual"
+    },
+    "Nicht verbunden" : {
+      "extractionState" : "manual"
+    },
     "Nichts ausgewählt, was es zu exportieren gäbe." : {
       "localizations" : {
         "ar" : {
@@ -46481,6 +46634,9 @@
     "Noch nichts ausgelöst. Regeln laufen nur während einer Aufnahme." : {
       "extractionState" : "manual"
     },
+    "Noch nichts gehört. Telefone, Uhren und Kopfhörer wechseln ihre Adresse alle paar Minuten; mehrere Einträge können deshalb dasselbe Gerät sein." : {
+      "extractionState" : "manual"
+    },
     "Noch offen" : {
       "extractionState" : "manual"
     },
@@ -46808,10 +46964,19 @@
         }
       }
     },
+    "Nur Favoriten" : {
+      "extractionState" : "manual"
+    },
+    "Nur mit Daten" : {
+      "extractionState" : "manual"
+    },
     "Nur offene" : {
       "extractionState" : "manual"
     },
     "Nur ungefährer Standort" : {
+      "extractionState" : "manual"
+    },
+    "Nur verbindbare" : {
       "extractionState" : "manual"
     },
     "Nutzungsbedingungen" : {
@@ -48098,6 +48263,9 @@
       }
     },
     "Ort" : {
+      "extractionState" : "manual"
+    },
+    "Pakete" : {
       "extractionState" : "manual"
     },
     "Passwort" : {
@@ -50426,6 +50594,12 @@
           }
         }
       }
+    },
+    "Protokoll" : {
+      "extractionState" : "manual"
+    },
+    "Protokoll teilen" : {
+      "extractionState" : "manual"
     },
     "Qualität" : {
       "localizations" : {
@@ -53961,6 +54135,9 @@
         }
       }
     },
+    "Schreiben" : {
+      "extractionState" : "manual"
+    },
     "Schreibt zu jeder Aufnahme zusätzlich jedes empfangene Bluetooth-Paket mit: Kennung, Signalstärke, Name und die rohen Herstellerdaten als Hex. Damit lassen sich RuuviTag- oder BTHome-Sensoren nachträglich dekodieren, denn Temperatur, Feuchte und Druck stehen genau dort drin. Die Kennung ist keine Geräteadresse: iOS gibt die nie heraus, und zwei Aufnahmen sind sich darüber nicht einig." : {
       "localizations" : {
         "ar" : {
@@ -54280,6 +54457,9 @@
           }
         }
       }
+    },
+    "Sendeleistung" : {
+      "extractionState" : "manual"
     },
     "Sensor" : {
       "extractionState" : "manual"
@@ -55405,6 +55585,9 @@
         }
       }
     },
+    "Sensorstorm darf Bluetooth nicht benutzen." : {
+      "extractionState" : "manual"
+    },
     "Setzung" : {
       "localizations" : {
         "ar" : {
@@ -55724,6 +55907,15 @@
           }
         }
       }
+    },
+    "Signal neu messen" : {
+      "extractionState" : "manual"
+    },
+    "Signalstärke" : {
+      "extractionState" : "manual"
+    },
+    "Sortieren" : {
+      "extractionState" : "manual"
     },
     "Standort" : {
       "extractionState" : "manual"
@@ -56372,6 +56564,15 @@
           }
         }
       }
+    },
+    "Suche" : {
+      "extractionState" : "manual"
+    },
+    "Suche Dienste …" : {
+      "extractionState" : "manual"
+    },
+    "Suche beenden" : {
+      "extractionState" : "manual"
     },
     "System" : {
       "extractionState" : "manual",
@@ -57181,6 +57382,9 @@
     "Titel" : {
       "extractionState" : "manual"
     },
+    "Ton" : {
+      "extractionState" : "manual"
+    },
     "Ton aufnehmen" : {
       "localizations" : {
         "ar" : {
@@ -57340,6 +57544,9 @@
           }
         }
       }
+    },
+    "Typ" : {
+      "extractionState" : "manual"
     },
     "Um den Schacht, flach." : {
       "localizations" : {
@@ -58461,6 +58668,12 @@
         }
       }
     },
+    "Verbindbar" : {
+      "extractionState" : "manual"
+    },
+    "Verbinde …" : {
+      "extractionState" : "manual"
+    },
     "Verbinden" : {
       "extractionState" : "manual"
     },
@@ -58623,6 +58836,9 @@
           }
         }
       }
+    },
+    "Verbunden" : {
+      "extractionState" : "manual"
     },
     "Verbunden." : {
       "localizations" : {
@@ -61685,6 +61901,9 @@
         }
       }
     },
+    "Wert wirklich schreiben?" : {
+      "extractionState" : "manual"
+    },
     "Werte" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -62005,6 +62224,9 @@
           }
         }
       }
+    },
+    "Wird aufgezeichnet" : {
+      "extractionState" : "manual"
     },
     "Wird gesendet …" : {
       "localizations" : {
@@ -62967,6 +63189,9 @@
       }
     },
     "Wärmezustand" : {
+      "extractionState" : "manual"
+    },
+    "Zahl" : {
       "extractionState" : "manual"
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen." : {
@@ -64409,6 +64634,9 @@
           }
         }
       }
+    },
+    "Zuletzt gesehen" : {
+      "extractionState" : "manual"
     },
     "Zum Fix" : {
       "localizations" : {
@@ -66173,6 +66401,15 @@
           }
         }
       }
+    },
+    "geschätzt, Bezugspegel angenommen" : {
+      "extractionState" : "manual"
+    },
+    "geschätzt, Bezugspegel vom Gerät" : {
+      "extractionState" : "manual"
+    },
+    "getrennt" : {
+      "extractionState" : "manual"
     },
     "grob" : {
       "extractionState" : "manual",

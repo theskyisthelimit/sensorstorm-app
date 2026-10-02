@@ -108,7 +108,7 @@ public enum GATTDecoding {
 
 /// The 7-byte Presentation Format descriptor (`0x2904`): how to read the characteristic it
 /// belongs to. A device that sets it can be read with no decoder at all, and with its unit.
-public struct PresentationFormat: Sendable, Equatable {
+public struct PresentationFormat: Sendable, Equatable, Hashable, Codable {
     public var format: UInt8
     public var exponent: Int8
     public var unit: UInt16

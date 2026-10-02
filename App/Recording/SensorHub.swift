@@ -50,6 +50,10 @@ final class SensorHub {
             // Show/hide and collapse are display state and must not disturb the hardware.
             if isMonitoring, phase == .idle, settings.affectsCapture(comparedTo: oldValue) {
                 restartMonitoring()
+            } else if !settings.hasSameBluetoothSubscriptions(as: oldValue) {
+                // No restart: choosing a characteristic in the explorer must not tear down the
+                // very connection it is looking at.
+                configureBluetoothDecoding(for: settings)
             }
             updateWebServer()
         }
@@ -76,7 +80,7 @@ final class SensorHub {
     private let audioSource: AudioSource
     private let deviceStateSource: DeviceStateSource
     private let activitySource: ActivitySource
-    private let bluetoothSource: BluetoothSource
+    let bluetoothSource: BluetoothSource
     private let watchLink: WatchLink
     let streamer: LiveStreamer
     let webServer: LocalWebServer
@@ -167,7 +171,8 @@ final class SensorHub {
     private func configureBluetoothDecoding(for settings: RecordingSettings) {
         bluetoothSource.configureDecoding(enabled: settings.decodesBluetoothSensors,
                                           decoders: settings.decodesBluetoothSensors ? DecoderLibrary.load() : [],
-                                          paired: settings.pairedBluetoothDevices ?? [])
+                                          paired: settings.pairedBluetoothDevices ?? [],
+                                          subscriptions: settings.gattSubscriptions ?? [])
     }
 
     // MARK: - Availability

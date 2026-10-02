@@ -602,3 +602,158 @@ struct BluetoothDecodingTests {
         #expect(RangeEstimate.metres(rssi: .nan, referencePower: -59).isNaN)
     }
 }
+
+@Suite("Bluetooth: Geräteliste")
+struct DeviceTableTests {
+
+    private let device = UUID()
+
+    @Test("Ein Antwortpaket ergänzt den Namen, ohne die Herstellerdaten zu verlieren")
+    func merges() {
+        var table = DeviceTable()
+        table.record(id: device, time: 0, rssi: -60,
+                     advertisement: ScannedAdvertisement(
+                        manufacturerData: Data([0x99, 0x04, 0x05]), serviceUUIDs: ["180F"],
+                        txPower: -12, isConnectable: true))
+        table.record(id: device, time: 0.1, rssi: -62,
+                     advertisement: ScannedAdvertisement(name: "Ruuvi 4F2A", serviceUUIDs: ["180F", "181A"]))
+        let seen = table.devices[device]
+        #expect(seen?.name == "Ruuvi 4F2A")
+        #expect(seen?.manufacturerData == Data([0x99, 0x04, 0x05]))
+        #expect(seen?.serviceUUIDs == ["180F", "181A"])
+        #expect(seen?.txPower == -12)
+        #expect(seen?.isConnectable == true)
+        #expect(seen?.rssi == -62)
+        #expect(seen?.company?.name == "Ruuvi Innovations Ltd.")
+        #expect(seen?.serviceNames == ["Battery", "Environmental Sensing"])
+        // An empty name does not erase a good one.
+        table.record(id: device, time: 0.2, rssi: -61, advertisement: ScannedAdvertisement(name: ""))
+        #expect(table.devices[device]?.name == "Ruuvi 4F2A")
+    }
+
+    @Test("Verlauf höchstens zwei Punkte pro Sekunde und höchstens 120 Punkte")
+    func history() {
+        var scanned = ScannedDevice(id: device, time: 0, rssi: -50)
+        for step in 0..<1_000 {
+            scanned.record(time: Double(step) * 0.1, rssi: -50 - Double(step % 7),
+                           advertisement: ScannedAdvertisement())
+        }
+        #expect(scanned.count == 1_000)
+        #expect(scanned.history.count == ScannedDevice.historyLimit)
+        let gaps = zip(scanned.history, scanned.history.dropFirst()).map { $1.time - $0.time }
+        #expect(gaps.allSatisfy { $0 >= ScannedDevice.historyStep - 1e-9 })
+        // The newest packet is always the current reading, whether or not it made the curve.
+        #expect(scanned.rssi == -50 - Double(999 % 7))
+        // A device speaking every 0.1 s has a mean interval near 0.1 s.
+        #expect(abs((scanned.meanInterval ?? 0) - 0.1) < 1e-6)
+    }
+
+    @Test("Voll heisst: das am längsten stumme Gerät geht")
+    func capacity() {
+        var table = DeviceTable()
+        let first = UUID()
+        table.record(id: first, time: 0, rssi: -60, advertisement: ScannedAdvertisement())
+        for step in 1..<DeviceTable.capacity {
+            table.record(id: UUID(), time: Double(step), rssi: -60, advertisement: ScannedAdvertisement())
+        }
+        #expect(table.devices.count == DeviceTable.capacity)
+        table.record(id: UUID(), time: 1_000, rssi: -60, advertisement: ScannedAdvertisement())
+        #expect(table.devices.count == DeviceTable.capacity)
+        #expect(table.devices[first] == nil)
+
+        table.prune(olderThan: 100, now: 1_000)
+        #expect(table.devices.count == 1)
+    }
+
+    @Test("Der Bezugspegel kommt vom Beacon, vom Gerät oder ist eine ausgewiesene Annahme")
+    func reference() {
+        var table = DeviceTable()
+        table.record(id: device, time: 0, rssi: -69, advertisement: ScannedAdvertisement())
+        #expect(table.devices[device]?.referencePower.isAssumed == true)
+        #expect(table.devices[device]?.referencePower.value == -59)
+        table.record(id: device, time: 1, rssi: -69, advertisement: ScannedAdvertisement(txPower: -69))
+        #expect(table.devices[device]?.referencePower.isAssumed == false)
+        // At the reference power the device is at one metre.
+        let range = table.devices[device]?.distance
+        #expect(abs((range?.near ?? 0) - 1) < 1e-9)
+        table.record(id: device, time: 2, rssi: -69,
+                     advertisement: ScannedAdvertisement(beacon: .altBeacon(id1: "x", id2: 1, id3: 2, referenceRSSI: -50)))
+        #expect(table.devices[device]?.referencePower.value == -50)
+    }
+
+    @Test("Ein aufgezeichnetes Merkmal: Vorlage vor Standard vor Presentation Format")
+    func subscription() throws {
+        let uuid = UUID()
+        var subscription = GATTSubscription(device: uuid, deviceName: "Thermo", service: "181A",
+                                            characteristic: "2A6E", characteristicName: "Temperature")
+        #expect(subscription.streamBase == "ble.\(String(uuid.uuidString.prefix(8)).lowercased()).gatt.2a6e")
+        let value = Data([0x66, 0x08])           // 21.50 °C
+        #expect(abs((subscription.decode(value)?.value("temperature") ?? 0) - 21.5) < 1e-9)
+
+        // A template wins over the standard decoding.
+        subscription.template = GATTTemplate(characteristic: "2A6E", name: "Meine", fields: [
+            .init(name: "raw", offset: 0, type: .uint16)])
+        #expect(subscription.decode(value)?.value("raw") == 0x0866)
+        #expect(subscription.unit(forField: "raw", decoder: "Meine") == "")
+
+        // An unknown characteristic with a presentation format reads through it.
+        var unknown = GATTSubscription(device: uuid, deviceName: "X", service: "FFF0",
+                                       characteristic: "FFF1", characteristicName: "Wert")
+        #expect(unknown.decode(value) == nil)
+        unknown.presentation = PresentationFormat(Data([0x0E, 0xFE, 0x2F, 0x27, 0, 0, 0]))
+        #expect(abs((unknown.decode(value)?.value("value") ?? 0) - 21.5) < 1e-9)
+        #expect(unknown.unit(forField: "value", decoder: "Wert") == "°C")
+
+        let data = try JSONEncoder().encode(unknown)
+        #expect(try JSONDecoder().decode(GATTSubscription.self, from: data) == unknown)
+        #expect(unknown.id.hasSuffix("|FFF0|FFF1"))
+    }
+}
+
+@Suite("Bluetooth: Hex und Decoder-Vorlage")
+struct HexAndTemplateTests {
+
+    @Test("Hex wird streng gelesen: ungerade Stellen und fremde Zeichen sind Fehler")
+    func hex() {
+        #expect(HexCoding.data("0A ff 12") == Data([0x0A, 0xFF, 0x12]))
+        #expect(HexCoding.data("0x0A,0xFF:12-00") == Data([0x0A, 0xFF, 0x12, 0x00]))
+        #expect(HexCoding.data("") == Data())
+        #expect(HexCoding.data("0AF") == nil)
+        #expect(HexCoding.data("0G") == nil)
+        #expect(HexCoding.string(Data([0x0A, 0xFF])) == "0A FF")
+        #expect(HexCoding.string(Data([0x0A, 0xFF]), separator: "") == "0AFF")
+        #expect(HexCoding.ascii(Data([0x48, 0x69, 0x00, 0x7F])) == "Hi..")
+        #expect(HexCoding.bytes(of: 0x0102, width: 2, bigEndian: false) == Data([0x02, 0x01]))
+        #expect(HexCoding.bytes(of: 0x0102, width: 2, bigEndian: true) == Data([0x01, 0x02]))
+        #expect(HexCoding.bytes(of: 0x1FF, width: 1, bigEndian: false) == Data([0xFF]))
+    }
+
+    @Test("Die Decoder-Vorlage trägt Firma oder Dienst schon ein und lädt als Decoder-Datei")
+    func decoderTemplate() throws {
+        var table = DeviceTable()
+        let id = UUID()
+        table.record(id: id, time: 0, rssi: -60, advertisement: ScannedAdvertisement(
+            name: "Mein \"Sensor\"", manufacturerData: Data([0x99, 0x04, 0x05, 0x12])))
+        let device = try #require(table.devices[id])
+        let text = DecoderTemplate.make(for: device)
+        #expect(text.contains("manufacturerId: 0x0499"))
+        #expect(text.contains("Ruuvi Innovations Ltd."))
+        #expect(text.contains("99 04 05 12"))
+        #expect(!text.contains("\"Sensor\""))
+        // The file the scanner hands over is a decoder file the app accepts.
+        _ = try ScriptDecoders(source: text)
+
+        var other = DeviceTable()
+        other.record(id: id, time: 0, rssi: -60, advertisement: ScannedAdvertisement(
+            name: "Thermo", serviceData: ["FCD2": Data([0x40, 0x02, 0x01])]))
+        let service = DecoderTemplate.make(for: try #require(other.devices[id]))
+        #expect(service.contains("serviceUuid: \"FCD2\""))
+        _ = try ScriptDecoders(source: service)
+
+        var bare = DeviceTable()
+        bare.record(id: id, time: 0, rssi: -60, advertisement: ScannedAdvertisement(name: "Nur Name"))
+        let named = DecoderTemplate.make(for: try #require(bare.devices[id]))
+        #expect(named.contains("namePrefix: \"Nur Na\""))
+        _ = try ScriptDecoders(source: named)
+    }
+}

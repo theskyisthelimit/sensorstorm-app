@@ -10,6 +10,7 @@ struct RootView: View {
         case record
         case library
         case survey
+        case radio
         case settings
     }
 
@@ -25,6 +26,9 @@ struct RootView: View {
             }
             Tab("Beobachtungen", systemImage: "mappin.and.ellipse", value: Screen.survey) {
                 SurveyListView()
+            }
+            Tab("Funk", systemImage: "antenna.radiowaves.left.and.right", value: Screen.radio) {
+                RadioView()
             }
             Tab("Einstellungen", systemImage: "slider.horizontal.3", value: Screen.settings) {
                 SettingsView()

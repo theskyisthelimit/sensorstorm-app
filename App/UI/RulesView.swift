@@ -344,7 +344,7 @@ private struct ActionEditor: View {
 
 /// A decimal number as text, without fighting the user mid-typing: the text is kept as
 /// typed and the value only follows when it parses.
-private struct NumberField: View {
+struct NumberField: View {
     @Binding var value: Double
     @State private var text = ""
 

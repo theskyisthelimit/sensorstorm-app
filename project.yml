@@ -108,6 +108,10 @@ targets:
         UIBackgroundModes:
           - location
           - audio
+          # Connected sensors (straps, power meters, chosen characteristics) keep delivering
+          # while the screen is locked during a recording, and iOS can hand the connections
+          # back after relaunching the app.
+          - bluetooth-central
         # Recordings are meant to leave the phone — Files.app access is part of the product.
         UIFileSharingEnabled: true
         LSSupportsOpeningDocumentsInPlace: true

@@ -41,6 +41,13 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var pairedBluetoothDevices: Set<UUID>?
     /// Answer `GET` requests on the local network with the newest values.
     var isWebServerEnabled: Bool?
+    /// Characteristics of Bluetooth devices the user chose to record, each a stream of its own.
+    var gattSubscriptions: [GATTSubscription]?
+    /// Names the user gave devices in the scanner, by CoreBluetooth identifier. Their own
+    /// addresses rotate; this is only a label on what the phone currently calls them.
+    var bluetoothAliases: [String: String]?
+    /// Devices pinned to the top of the scanner.
+    var bluetoothFavourites: Set<UUID>?
     /// Look up the street address of a case after it is saved. Off by default: it sends the
     /// coordinate to Apple and, inside Switzerland, to swisstopo.
     var looksUpAddressesFlag: Bool?
@@ -187,6 +194,12 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.hiddenSensors = nil
         mine.collapsedCategories = nil
         mine.looksUpAddressesFlag = nil
+        mine.gattSubscriptions = nil
+        mine.bluetoothAliases = nil
+        mine.bluetoothFavourites = nil
+        theirs.gattSubscriptions = nil
+        theirs.bluetoothAliases = nil
+        theirs.bluetoothFavourites = nil
         theirs.hiddenSensors = nil
         theirs.collapsedCategories = nil
         theirs.looksUpAddressesFlag = nil
@@ -202,6 +215,42 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     }
 
     var isVideoEnabled: Bool { videoMode != .off }
+
+    func hasSameBluetoothSubscriptions(as other: RecordingSettings) -> Bool {
+        gattSubscriptions == other.gattSubscriptions
+    }
+
+    func alias(for device: UUID) -> String? {
+        bluetoothAliases?[device.uuidString].flatMap { $0.isEmpty ? nil : $0 }
+    }
+
+    mutating func setAlias(_ alias: String, for device: UUID) {
+        var all = bluetoothAliases ?? [:]
+        let trimmed = alias.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty { all[device.uuidString] = nil } else { all[device.uuidString] = trimmed }
+        bluetoothAliases = all.isEmpty ? nil : all
+    }
+
+    func isFavourite(_ device: UUID) -> Bool {
+        bluetoothFavourites?.contains(device) ?? false
+    }
+
+    mutating func setFavourite(_ favourite: Bool, for device: UUID) {
+        var all = bluetoothFavourites ?? []
+        if favourite { all.insert(device) } else { all.remove(device) }
+        bluetoothFavourites = all.isEmpty ? nil : all
+    }
+
+    func isRecording(_ subscription: GATTSubscription) -> Bool {
+        (gattSubscriptions ?? []).contains { $0.id == subscription.id }
+    }
+
+    mutating func setRecording(_ recorded: Bool, _ subscription: GATTSubscription) {
+        var all = gattSubscriptions ?? []
+        all.removeAll { $0.id == subscription.id }
+        if recorded { all.append(subscription) }
+        gattSubscriptions = all.isEmpty ? nil : all
+    }
 }
 
 enum VideoMode: String, Codable, Sendable, CaseIterable, Identifiable {
