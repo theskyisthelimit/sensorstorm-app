@@ -155,8 +155,8 @@ public enum RecordingQuality {
             outage = max(outage, next.0 - previous.0)
         }
         let verdict: QualityVerdict
-        if median > 30 || within < 0.3 { verdict = .poor }
-        else if median > 10 || within < 0.7 || outage > 20 { verdict = .fair }
+        if median > 30 { verdict = .poor }
+        else if median > 10 || within < 0.5 || outage > 20 { verdict = .fair }
         else { verdict = .good }
         return GPSQuality(fixCount: usable.count, medianAccuracy: median, worstDecile: worst,
                           shareWithin10m: within, longestOutage: outage, verdict: verdict)

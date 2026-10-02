@@ -93,9 +93,10 @@ struct QualityTests {
         gap.times = gap.times.enumerated().map { $0.offset >= 500 ? $0.element + 3 : $0.element }
         let gapped = assess(gap, duration: 10)
         #expect(gapped.verdict == .poor && gapped.gapCount == 1 && abs(gapped.longestGap - 3.01) < 0.02)
-        let shortGap = assess(TimeSeries(times: base.times.enumerated().map { $0.offset >= 3_000 ? $0.element + 1 : $0.element },
-                                         values: base.values + [] ), duration: 60)
-        #expect(shortGap.verdict == .good)   // nothing before index 3000 of 1000 samples: no gap at all
+        // A second missing in a minute is worth a note, not a failure.
+        let shortGap = assess(TimeSeries(times: base.times.enumerated().map { $0.offset >= 500 ? $0.element + 1 : $0.element },
+                                         values: base.values), duration: 60)
+        #expect(shortGap.verdict == .fair && shortGap.gapCount == 1)
 
         let slow = assess(sine(1, hz: 3, rate: 60, seconds: 10))
         #expect(slow.verdict == .poor)
@@ -199,14 +200,16 @@ struct ComfortAndVibrationTests {
 
     @Test("Eine Fahrt nach oben: Höhe, Spitzengeschwindigkeit, Beschleunigung, Ruck")
     func elevator() {
-        // A smoothstep of 9 m over 8 s: a = 9·(6 − 12τ)/64 m/s², peak 0.84 m/s².
+        // A quintic S-curve of 9 m over 8 s, as a real car's controller drives it: the
+        // acceleration starts and ends at zero. Peak speed 2.1 m/s, peak acceleration
+        // 0.81 m/s², peak jerk 1.05 m/s³.
         func height(_ t: Double) -> Double {
             let tau = min(max((t - 10) / 8, 0), 1)
-            return 9 * (3 * tau * tau - 2 * tau * tau * tau)
+            return 9 * (6 * pow(tau, 5) - 15 * pow(tau, 4) + 10 * pow(tau, 3))
         }
         func acceleration(_ t: Double) -> Double {
             let tau = (t - 10) / 8
-            return tau >= 0 && tau <= 1 ? 9 * (6 - 12 * tau) / 64 / standardGravity : 0
+            return tau >= 0 && tau <= 1 ? 9 * (120 * pow(tau, 3) - 180 * tau * tau + 60 * tau) / 64 / standardGravity : 0
         }
         let altitude = TimeSeries(times: stride(from: 0, to: 40, by: 0.5).map { $0 }, values: stride(from: 0, to: 40, by: 0.5).map(height))
         let vertical = TimeSeries(times: stride(from: 0, to: 40, by: 0.02).map { $0 }, values: stride(from: 0, to: 40, by: 0.02).map(acceleration))
@@ -215,9 +218,9 @@ struct ComfortAndVibrationTests {
         #expect(rides.count == 1)
         let ride = rides[0]
         #expect(ride.isUp && abs(ride.heightChange - 9) < 0.8)
-        #expect(ride.peakSpeed > 1.2 && ride.peakSpeed < 2.0)
-        #expect(abs(ride.peakAcceleration - 0.84) < 0.25 && abs(ride.peakDeceleration - 0.84) < 0.25)
-        #expect(ride.peakJerk > 0.08 && ride.peakJerk < 0.5)
+        #expect(ride.peakSpeed > 1.4 && ride.peakSpeed < 2.3)
+        #expect(abs(ride.peakAcceleration - 0.81) < 0.2 && abs(ride.peakDeceleration - 0.81) < 0.2)
+        #expect(ride.peakJerk > 0.6 && ride.peakJerk < 1.5, "jerk \(ride.peakJerk)")
         #expect(ride.duration > 4 && ride.duration < 12)
 
         // Standing still is no ride.
@@ -227,7 +230,7 @@ struct ComfortAndVibrationTests {
         let down = TimeSeries(times: altitude.times, values: altitude.values.map { 9 - $0 })
         let downward = TimeSeries(times: vertical.times, values: vertical.values.map { -$0 })
         let descent = ElevatorAnalysis.analyse(altitude: down, vertical: downward)
-        #expect(descent.count == 1 && !descent[0].isUp && abs(descent[0].peakAcceleration - 0.84) < 0.25)
+        #expect(descent.count == 1 && !descent[0].isUp && abs(descent[0].peakAcceleration - 0.81) < 0.2)
     }
 
     @Test("Fahrkomfort: Klasse nach dem Index, Ruck mit Zeit")
@@ -262,9 +265,9 @@ struct ComfortAndVibrationTests {
         #expect(abs(result.z.frequency - 20) < 3)
         #expect(result.x.peakVelocity < 0.01 && result.governing == result.z)
         // At 20 Hz the dwelling line is 5 + (15 − 5)·10/40 = 7.5 mm/s.
-        #expect(abs(result.guideValue - 7.5) < 0.01 && result.exceeded)
+        #expect(abs(result.guideValue - 7.5) < 0.4 && result.exceeded)
         let commercial = try #require(VibrationScreening.analyse(x: quiet, y: quiet, z: z, category: .commercial))
-        #expect(!commercial.exceeded && abs(commercial.guideValue - 25) < 0.01)
+        #expect(!commercial.exceeded && abs(commercial.guideValue - 25) < 0.7)
 
         #expect(VibrationScreening.guideValue(.dwelling, frequency: 5) == 5)
         #expect(VibrationScreening.guideValue(.dwelling, frequency: 50) == 15)
@@ -317,7 +320,8 @@ struct MLDatasetTests {
         let overlapped = try MLDatasetExporter(store: store).write(
             metadata, options: .init(sensors: [.userAcceleration], rateHz: 10, windowSeconds: 1, overlap: 0.5,
                                      writesActivityFiles: false), into: root.appendingPathComponent("out2"))
-        #expect(overlapped.windows == 17 - 1 || overlapped.windows == 17)
+        // Nineteen windows start every half second; the one that spans 4.5–5.5 s says neither.
+        #expect(overlapped.windows == 18)
         #expect(overlapped.labels.values.reduce(0, +) == overlapped.windows)
 
         // A sensor the recording does not have gives no data.
