@@ -79,6 +79,25 @@ final class WatchLink: NSObject, WCSessionDelegate, @unchecked Sendable {
     /// the app was relaunched.
     var onReachabilityChange: (@Sendable () -> Void)?
 
+    /// Commands from the watch: `start`, `stop`, `mark`. Run by whoever owns the recording.
+    var onCommand: (@Sendable (String) -> Void)?
+
+    /// Tells the watch whether the phone is recording, and since when. An application context
+    /// rather than a message: the watch may not be looking, and the latest state is all it will
+    /// ever want.
+    func publishStatus(isRecording: Bool, since: Date?) {
+        guard WCSession.isSupported(), WCSession.default.activationState == .activated,
+              WCSession.default.isWatchAppInstalled else { return }
+        var context: [String: Any] = ["recording": isRecording]
+        if let since { context["since"] = since.timeIntervalSince1970 }
+        try? WCSession.default.updateApplicationContext(context)
+    }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
+        guard let command = message["cmd"] as? String else { return }
+        onCommand?(command)
+    }
+
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
         onReachabilityChange?()

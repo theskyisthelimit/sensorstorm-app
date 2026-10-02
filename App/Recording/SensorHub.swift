@@ -145,6 +145,9 @@ final class SensorHub {
         watchLink.onReachabilityChange = { [weak self] in
             Task { @MainActor in self?.refreshAvailability() }
         }
+        watchLink.onCommand = { [weak self] command in
+            Task { @MainActor in await self?.handleWatchCommand(command) }
+        }
         watchLink.activate()
         streamer.mqtt.onMessage = { [weak self] topic, payload in
             Task { @MainActor in self?.receive(topic: topic, payload: payload) }
@@ -575,6 +578,7 @@ final class SensorHub {
             UIApplication.shared.isIdleTimerDisabled = recordingSettings.keepsScreenAwake
             elapsed = 0
             phase = .recording
+            watchLink.publishStatus(isRecording: true, since: activeRecording?.startedAt)
         } catch {
             errorMessage = error.localizedDescription
             _ = sink.endRecording()
@@ -654,6 +658,7 @@ final class SensorHub {
             metadata.name = ""
             activeRecording = nil
             phase = .idle
+            watchLink.publishStatus(isRecording: false, since: nil)
             errorMessage = String(localized: "Es wurden keine Daten aufgezeichnet.")
             return nil
         }
@@ -663,7 +668,21 @@ final class SensorHub {
         elapsed = 0
         writtenSampleCount = 0
         phase = .idle
+        watchLink.publishStatus(isRecording: false, since: nil)
         return metadata
+    }
+
+    /// The wrist's three buttons. The phone is the one that records, so a command that does not
+    /// fit its state — a second start, a stop while idle — is simply ignored; the status the hub
+    /// publishes afterwards is what the watch believes.
+    private func handleWatchCommand(_ command: String) async {
+        switch command {
+        case "start": await startRecording()
+        case "stop": _ = await stopRecording()
+        case "mark":
+            if phase == .recording { addAnnotation(String(localized: "Markierung (Uhr)")) }
+        default: break
+        }
     }
 
     // MARK: - Annotations

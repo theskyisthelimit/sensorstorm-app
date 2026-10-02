@@ -133,7 +133,7 @@ struct RecordingDetailView: View {
                         .font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 0)
-                Image(systemName: "chevron.right").font(.caption).foregroundStyle(.tertiary)
+                Image(systemName: "chevron.forward").font(.caption).foregroundStyle(.tertiary)
             }
             .padding(14)
             .card()

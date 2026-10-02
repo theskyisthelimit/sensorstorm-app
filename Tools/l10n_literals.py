@@ -144,6 +144,10 @@ def scan() -> list[tuple[str, int, str]]:
                 stripped = line.lstrip()
                 if stripped.startswith(("//", "///", "*")):
                     continue
+                # Sprechbefehle für Siri stehen nicht im App-Katalog, sondern in
+                # AppShortcuts.xcstrings, mit `${applicationName}` als Platzhalter.
+                if "\\(.applicationName)" in line:
+                    continue
                 for text in literals(line):
                     if not GERMAN.search(text):
                         continue

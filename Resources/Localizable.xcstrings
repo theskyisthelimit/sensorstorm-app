@@ -6489,6 +6489,9 @@
     "ALPN" : {
       "extractionState" : "manual"
     },
+    "API-Schlüssel" : {
+      "extractionState" : "manual"
+    },
     "ARKit" : {
       "localizations" : {
         "ar" : {
@@ -7816,6 +7819,9 @@
           }
         }
       }
+    },
+    "Alle Bewegungssensoren, beschriftbar mit Notizen, für Datensätze." : {
+      "extractionState" : "manual"
     },
     "Alle Fotos und Clips dieser Beobachtung werden mitgelöscht." : {
       "localizations" : {
@@ -12875,6 +12881,9 @@
     "BSSID" : {
       "extractionState" : "manual"
     },
+    "Bahn, Tram und Bus" : {
+      "extractionState" : "manual"
+    },
     "Bank beschädigt" : {
       "extractionState" : "manual"
     },
@@ -13201,10 +13210,16 @@
         }
       }
     },
+    "Baustelle und Erschütterung" : {
+      "extractionState" : "manual"
+    },
     "Baut eine TLS-Verbindung auf und liest, was der Server zeigt — auch bei selbst signierten oder abgelaufenen Zertifikaten. Gesendet wird nur der Handschlag." : {
       "extractionState" : "manual"
     },
     "Bedingung hinzufügen" : {
+      "extractionState" : "manual"
+    },
+    "Beendet die laufende Aufnahme und speichert sie." : {
       "extractionState" : "manual"
     },
     "Bei Benachrichtigung" : {
@@ -15955,6 +15970,15 @@
           }
         }
       }
+    },
+    "Beschleunigung mit 200 Hz und Schallpegel, für Erschütterungen und Lärm." : {
+      "extractionState" : "manual"
+    },
+    "Beschleunigung und Position für den Zustand einer Strasse, dazu der Katalog für Schäden." : {
+      "extractionState" : "manual"
+    },
+    "Beschleunigung, Drehung und Position für den Fahrkomfort." : {
+      "extractionState" : "manual"
     },
     "Beschleunigung, Ruck und Vibration wie in ISO 18738, aber mit dem Beschleunigungssensor eines Telefons gemessen: ein Anhaltspunkt, kein Prüfprotokoll." : {
       "extractionState" : "manual"
@@ -19898,6 +19922,9 @@
     "Das Telefon flach auf die Fläche legen, mit der Rückseite nach unten. 0° ist waagrecht, 45° sind 100 %. Die Anzeige ist auf etwa ein halbes Grad genau, wenn das Telefon ruht." : {
       "extractionState" : "manual"
     },
+    "Das iPhone ist nicht erreichbar." : {
+      "extractionState" : "manual"
+    },
     "Das ist ein Richtwert, keine Zusage. Wo die Kamera stehen geblieben ist, kommen weniger Bilder heraus, denn hundertmal dasselbe Bild nützt keiner Rekonstruktion." : {
       "localizations" : {
         "ar" : {
@@ -22679,6 +22706,9 @@
     "Der Weg wird aufgezeichnet" : {
       "extractionState" : "manual"
     },
+    "Der Weg wird aufgezeichnet." : {
+      "extractionState" : "manual"
+    },
     "Der Weg wurde zwischen %@ und %@ begangen und ist auf der Karte eingetragen." : {
       "extractionState" : "manual"
     },
@@ -23024,6 +23054,12 @@
       "extractionState" : "manual"
     },
     "Die Aufnahme hat keine brauchbaren Positionen." : {
+      "extractionState" : "manual"
+    },
+    "Die Aufnahme ist gespeichert." : {
+      "extractionState" : "manual"
+    },
+    "Die Aufnahme läuft." : {
       "extractionState" : "manual"
     },
     "Die Auswahl „%@“ hat keine Möglichkeiten." : {
@@ -24818,6 +24854,9 @@
           }
         }
       }
+    },
+    "Die Voreinstellung: Bewegung, Position, Höhe und Umgebung." : {
+      "extractionState" : "manual"
     },
     "Die Zeit lief %lld-mal rückwärts oder stand still." : {
       "extractionState" : "manual"
@@ -26958,6 +26997,9 @@
       "extractionState" : "manual"
     },
     "Ein Ping je Sekunde über ICMP. Manche Geräte und Firewalls antworten nicht darauf, obwohl sie da sind; dann hilft der Portscan." : {
+      "extractionState" : "manual"
+    },
+    "Ein Profil stellt Sensoren, Rate und Katalog ein. Alles lässt sich danach einzeln ändern, und das Profil wechseln geht jederzeit unter Einstellungen." : {
       "extractionState" : "manual"
     },
     "Ein Richtwert aus der Vertikalbeschleunigung des Telefons, kein Messwert nach Norm: er hängt vom Fahrzeug und von der Halterung ab. Aussagekräftig ist der Vergleich der Abschnitte einer Fahrt." : {
@@ -29425,6 +29467,15 @@
     "Erst lesen oder abonnieren, damit ein Wert da ist, an dem sich die Felder prüfen lassen." : {
       "extractionState" : "manual"
     },
+    "Es läuft keine Aufnahme." : {
+      "extractionState" : "manual"
+    },
+    "Es läuft schon eine Aufnahme." : {
+      "extractionState" : "manual"
+    },
+    "Es wird gerade kein Weg aufgezeichnet." : {
+      "extractionState" : "manual"
+    },
     "Es wurden keine Daten aufgezeichnet." : {
       "localizations" : {
         "ar" : {
@@ -31041,6 +31092,9 @@
         }
       }
     },
+    "Forschung und Datensätze" : {
+      "extractionState" : "manual"
+    },
     "Foto" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -32343,6 +32397,9 @@
     "Funk läuft nicht geradlinig durch einen Raum: Körper und Wände verschieben das Signal um zehn Dezibel, und das ist ein Faktor drei in der Entfernung. Deshalb steht hier eine Spanne." : {
       "extractionState" : "manual"
     },
+    "Für Mängelmelder von Städten und Gemeinden, die Open311 GeoReport v2 sprechen. Die Adresse ist die des Servers; der Dienstcode benennt die Art der Meldung, wie ihn die Gemeinde festgelegt hat." : {
+      "extractionState" : "manual"
+    },
     "Für dieses Gerät ist keine Videoaufnahme möglich." : {
       "localizations" : {
         "ar" : {
@@ -33470,6 +33527,9 @@
       "extractionState" : "manual"
     },
     "Gebäude und Fassade" : {
+      "extractionState" : "manual"
+    },
+    "Gebäude und Fassaden" : {
       "extractionState" : "manual"
     },
     "Gebäudeart" : {
@@ -36144,6 +36204,12 @@
     "Hoch" : {
       "extractionState" : "manual"
     },
+    "Hält an der aktuellen Position eine Beobachtung fest, ohne die App zu öffnen — für die Aktionstaste." : {
+      "extractionState" : "manual"
+    },
+    "Hält die Aufzeichnung des Wegs an." : {
+      "extractionState" : "manual"
+    },
     "Häufige und Geräte-Ports" : {
       "extractionState" : "manual"
     },
@@ -36647,6 +36713,9 @@
       "extractionState" : "manual"
     },
     "Im Browser öffnen" : {
+      "extractionState" : "manual"
+    },
+    "Im Netz sind %lld Geräte." : {
       "extractionState" : "manual"
     },
     "Im WLAN abrufbar" : {
@@ -40888,6 +40957,9 @@
     "Keine TLS-Verbindung möglich." : {
       "extractionState" : "manual"
     },
+    "Keine genaue Position gefunden. Versuche es im Freien noch einmal." : {
+      "extractionState" : "manual"
+    },
     "Kennung" : {
       "extractionState" : "manual"
     },
@@ -43995,6 +44067,9 @@
         }
       }
     },
+    "Markierung (Uhr)" : {
+      "extractionState" : "manual"
+    },
     "Markierung setzen" : {
       "localizations" : {
         "ar" : {
@@ -46479,7 +46554,13 @@
     "Netz absuchen" : {
       "extractionState" : "manual"
     },
+    "Netz und Funk" : {
+      "extractionState" : "manual"
+    },
     "Netzqualität mitschreiben" : {
+      "extractionState" : "manual"
+    },
+    "Netzqualität und Bluetooth entlang eines Wegs, für die Abdeckung im Gebäude." : {
       "extractionState" : "manual"
     },
     "Netzwerk" : {
@@ -50677,6 +50758,9 @@
         }
       }
     },
+    "Position, Kompass und Höhe für Begehungen von Gebäuden, mit dem Katalog für Mängel." : {
+      "extractionState" : "manual"
+    },
     "Positionen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -54262,6 +54346,9 @@
         }
       }
     },
+    "Schallpegel in dB(A), mit Position." : {
+      "extractionState" : "manual"
+    },
     "Schalte oben die Kamera ein. Ohne Bild gibt es keine Kamerapose." : {
       "localizations" : {
         "ar" : {
@@ -54423,6 +54510,9 @@
       }
     },
     "Schickt das „Magic Packet“ per UDP an die Broadcast-Adresse des Netzes. iOS liest Hardware-Adressen von Geräten nicht aus; sie muss einmal eingegeben werden. Und iOS erlaubt Apps Broadcast im lokalen Netz nur mit einer besonderen Freigabe von Apple — ohne sie kann das Senden scheitern, ohne dass die App etwas daran ändern kann." : {
+      "extractionState" : "manual"
+    },
+    "Schickt jede Beobachtung als JSON an diese Adresse: Ort, Schweregrad, Zustand, Adresse, Eigenschaften und Messwerte. Ohne Adresse wird nichts gesendet." : {
       "extractionState" : "manual"
     },
     "Schickt während einer Aufnahme jede Sekunde einen Ping an den Router und an 1.1.1.1 und schreibt Antwortzeit und Verlust als eigene Ströme mit, dazu die WLAN-Signalstärke, soweit iOS sie herausgibt. Mit dem Standort zusammen zeigt die Aufnahme, wo im Gebäude das Netz schwach wird." : {
@@ -56386,10 +56476,16 @@
     "Sensorstorm darf Bluetooth nicht benutzen." : {
       "extractionState" : "manual"
     },
+    "Sensorstorm ist noch nicht bereit. Öffne die App und versuche es noch einmal." : {
+      "extractionState" : "manual"
+    },
     "Seriennummer" : {
       "extractionState" : "manual"
     },
     "Server" : {
+      "extractionState" : "manual"
+    },
+    "Setzt eine Notiz in die laufende Aufnahme, auf die gemeinsame Uhr aller Sensoren." : {
       "extractionState" : "manual"
     },
     "Setzung" : {
@@ -56742,6 +56838,9 @@
     "Spricht mit einem iperf3-Server (Standardport 5201), den du selbst betreibst: iperf3 -s. Gemessen wird TCP. Der Test belastet das Netz voll; das Ergebnis der Empfängerseite sagt, was tatsächlich ankam." : {
       "extractionState" : "manual"
     },
+    "Später" : {
+      "extractionState" : "manual"
+    },
     "Staining" : {
       "extractionState" : "manual"
     },
@@ -57072,10 +57171,16 @@
     "Starten" : {
       "extractionState" : "manual"
     },
+    "Startet eine Aufnahme mit den eingestellten Sensoren." : {
+      "extractionState" : "manual"
+    },
     "Statistik" : {
       "extractionState" : "manual"
     },
     "Status" : {
+      "extractionState" : "manual"
+    },
+    "Stellt Sensoren, Rate und Katalog für eine Aufgabe ein." : {
       "extractionState" : "manual"
     },
     "Stopp" : {
@@ -57237,6 +57342,9 @@
           }
         }
       }
+    },
+    "Strassen und Wege" : {
+      "extractionState" : "manual"
     },
     "Streuung" : {
       "extractionState" : "manual",
@@ -57418,6 +57526,9 @@
       "extractionState" : "manual"
     },
     "Suche beenden" : {
+      "extractionState" : "manual"
+    },
+    "Sucht die Geräte im lokalen Netz und nennt, wie viele es sind." : {
       "extractionState" : "manual"
     },
     "System" : {
@@ -60716,6 +60827,9 @@
     "Vertikalbeschleunigung" : {
       "extractionState" : "manual"
     },
+    "Vertikalbeschleunigung und Höhe für Fahrten im Aufzug." : {
+      "extractionState" : "manual"
+    },
     "Vibration während der Fahrt (A95, Spitze–Spitze): %@ mg" : {
       "extractionState" : "manual"
     },
@@ -63665,6 +63779,9 @@
         }
       }
     },
+    "Wofür nutzt du Sensorstorm?" : {
+      "extractionState" : "manual"
+    },
     "Während der Aufnahme geht jede Messung als JSON an eine URL deiner Wahl, etwa an ein eigenes Dashboard, an Node-RED oder an Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert." : {
       "localizations" : {
         "ar" : {
@@ -64149,6 +64266,9 @@
       "extractionState" : "manual"
     },
     "Zahl" : {
+      "extractionState" : "manual"
+    },
+    "Zeichnet den Weg der offenen Route auf, auch bei gesperrtem Bildschirm." : {
       "extractionState" : "manual"
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen." : {

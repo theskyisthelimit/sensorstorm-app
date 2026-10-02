@@ -33,6 +33,11 @@ final class WatchRecorder: NSObject {
     private(set) var heartRate: Double?
     private(set) var sentSamples = 0
     private(set) var startedAt: Date?
+    /// What the phone says about its own recording, from the application context it pushes.
+    private(set) var phoneRecording = false
+    private(set) var phoneStartedAt: Date?
+    private(set) var phoneReachable = false
+    private(set) var remoteMessage: String?
 
     /// Sensor names on the wire. They match `SensorID` on the phone, which is also the file
     /// name on disk — so these strings are as fixed as those are.
@@ -57,6 +62,31 @@ final class WatchRecorder: NSObject {
         queue.maxConcurrentOperationCount = 1
         super.init()
         activateConnectivity()
+    }
+
+    // MARK: - Remote control of the phone
+
+    /// Starts or stops the phone's recording, or marks a moment in it. The phone answers
+    /// through its application context, which is what the buttons then show.
+    func command(_ name: String) {
+        guard WCSession.isSupported(), WCSession.default.activationState == .activated else { return }
+        guard WCSession.default.isReachable else {
+            remoteMessage = String(localized: "Das iPhone ist nicht erreichbar.")
+            return
+        }
+        remoteMessage = nil
+        WCSession.default.sendMessage(["cmd": name], replyHandler: nil) { [weak self] error in
+            Task { @MainActor in self?.remoteMessage = error.localizedDescription }
+        }
+    }
+
+    fileprivate func apply(context: [String: Any]) {
+        phoneRecording = context["recording"] as? Bool ?? false
+        phoneStartedAt = (context["since"] as? Double).map { Date(timeIntervalSince1970: $0) }
+    }
+
+    fileprivate func refreshReachability() {
+        phoneReachable = WCSession.default.isReachable
     }
 
     // MARK: - Lifecycle
@@ -245,6 +275,20 @@ extension WatchRecorder: WCSessionDelegate {
     nonisolated func session(_ session: WCSession,
                              activationDidCompleteWith activationState: WCSessionActivationState,
                              error: Error?) {
-        // Nothing to do: transfers queue until activation completes on their own.
+        // Transfers queue until activation completes on their own; what is left to do is take
+        // over what the phone said last.
+        let context = session.receivedApplicationContext
+        Task { @MainActor [weak self] in
+            self?.apply(context: context)
+            self?.refreshReachability()
+        }
+    }
+
+    nonisolated func sessionReachabilityDidChange(_ session: WCSession) {
+        Task { @MainActor [weak self] in self?.refreshReachability() }
+    }
+
+    nonisolated func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        Task { @MainActor [weak self] in self?.apply(context: applicationContext) }
     }
 }

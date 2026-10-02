@@ -6,41 +6,79 @@ struct WatchRootView: View {
     @Environment(WatchRecorder.self) private var recorder
 
     var body: some View {
-        VStack(spacing: 10) {
-            heartRate
+        ScrollView {
+            VStack(spacing: 10) {
+                watchControl
+                phoneControl
+            }
+            .padding(.horizontal, 4)
+        }
+    }
 
-            switch recorder.phase {
-            case .idle:
-                button(title: "Aufnahme starten", symbol: "record.circle", tint: .red) {
-                    Task { await recorder.start() }
-                }
-            case .starting:
-                ProgressView()
-                    .frame(maxHeight: .infinity)
-            case .running:
-                // A plain computed property would render once and then sit there; the clock
-                // has to be told to tick.
-                TimelineView(.periodic(from: .now, by: 1)) { _ in
-                    Text(verbatim: elapsed)
-                        .font(.title3.monospacedDigit())
-                }
-                Text("\(recorder.sentSamples) gesendet")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                button(title: "Stopp", symbol: "stop.circle", tint: .gray) {
-                    recorder.stop()
-                }
-            case .failed(let message):
-                Text(message)
-                    .font(.caption2)
-                    .foregroundStyle(.red)
-                    .multilineTextAlignment(.center)
-                button(title: "Nochmals versuchen", symbol: "arrow.clockwise", tint: .red) {
-                    Task { await recorder.start() }
-                }
+    @ViewBuilder
+    private var watchControl: some View {
+        heartRate
+
+        switch recorder.phase {
+        case .idle:
+            button(title: "Aufnahme starten", symbol: "record.circle", tint: .red) {
+                Task { await recorder.start() }
+            }
+        case .starting:
+            ProgressView()
+        case .running:
+            // A plain computed property would render once and then sit there; the clock
+            // has to be told to tick.
+            TimelineView(.periodic(from: .now, by: 1)) { _ in
+                Text(verbatim: elapsed)
+                    .font(.title3.monospacedDigit())
+            }
+            Text("\(recorder.sentSamples) gesendet")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            button(title: "Stopp", symbol: "stop.circle", tint: .gray) {
+                recorder.stop()
+            }
+        case .failed(let message):
+            Text(message)
+                .font(.caption2)
+                .foregroundStyle(.red)
+                .multilineTextAlignment(.center)
+            button(title: "Nochmals versuchen", symbol: "arrow.clockwise", tint: .red) {
+                Task { await recorder.start() }
             }
         }
-        .padding(.horizontal, 4)
+    }
+
+    /// The phone's recording, from the wrist: start, mark a moment, stop. The phone answers with
+    /// its own state, so the button always shows what the phone is doing — not what was asked.
+    private var phoneControl: some View {
+        VStack(spacing: 6) {
+            Divider()
+            Text(verbatim: "iPhone").font(.caption2).foregroundStyle(.secondary)
+            if recorder.phoneRecording {
+                if let since = recorder.phoneStartedAt {
+                    TimelineView(.periodic(from: .now, by: 1)) { _ in
+                        let seconds = max(Int(Date().timeIntervalSince(since)), 0)
+                        Text(verbatim: String(format: "%d:%02d", seconds / 60, seconds % 60))
+                            .font(.title3.monospacedDigit())
+                    }
+                }
+                button(title: "Zeitpunkt markieren", symbol: "flag", tint: .orange) {
+                    recorder.command("mark")
+                }
+                button(title: "Aufnahme beenden", symbol: "stop.circle", tint: .gray) {
+                    recorder.command("stop")
+                }
+            } else {
+                button(title: "Aufnahme starten", symbol: "record.circle", tint: .red) {
+                    recorder.command("start")
+                }
+            }
+            if let message = recorder.remoteMessage {
+                Text(message).font(.caption2).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            }
+        }
     }
 
     @ViewBuilder

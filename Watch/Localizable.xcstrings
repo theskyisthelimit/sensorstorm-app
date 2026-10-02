@@ -321,6 +321,9 @@
         }
       }
     },
+    "Aufnahme beenden" : {
+      "extractionState" : "manual"
+    },
     "Aufnahme starten" : {
       "localizations" : {
         "ar" : {
@@ -480,6 +483,9 @@
           }
         }
       }
+    },
+    "Das iPhone ist nicht erreichbar." : {
+      "extractionState" : "manual"
     },
     "Nochmals versuchen" : {
       "localizations" : {
@@ -800,6 +806,9 @@
           }
         }
       }
+    },
+    "Zeitpunkt markieren" : {
+      "extractionState" : "manual"
     }
   },
   "version" : "1.0"
