@@ -112,6 +112,11 @@ struct SettingsView: View {
                     } label: {
                         Label("Weitere Quellen", systemImage: "puzzlepiece.extension")
                     }
+                    NavigationLink {
+                        PeerPhoneView()
+                    } label: {
+                        Label("Bluetooth-Dienst und zweites iPhone", systemImage: "iphone.gen3.radiowaves.left.and.right")
+                    }
                 } header: {
                     Text("Automatisierung")
                 } footer: {

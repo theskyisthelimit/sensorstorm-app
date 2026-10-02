@@ -52,6 +52,11 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     /// against a reference — 94 dB from a calibrator, say. `nil` means uncalibrated: the
     /// `loudnessA` stream is then relative, and says so.
     public var audioCalibrationDecibels: Double?
+    /// Other phones that recorded alongside this one, with how far their clocks were measured
+    /// to be apart. Their streams are in ``externalStreams`` already converted to this
+    /// recording's clock; the offset and its uncertainty are kept so the conversion can be
+    /// judged, and redone, afterwards. `nil` for a recording made on one phone.
+    public var peerDevices: [PeerDevice]?
 
     public init(
         id: UUID = UUID(),
@@ -72,7 +77,8 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         timeReference: TimeReference? = nil,
         reducedLocationAccuracy: Bool? = nil,
         externalStreams: [ExternalStreamInfo]? = nil,
-        audioCalibrationDecibels: Double? = nil
+        audioCalibrationDecibels: Double? = nil,
+        peerDevices: [PeerDevice]? = nil
     ) {
         self.id = id
         self.name = name
@@ -93,6 +99,7 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.reducedLocationAccuracy = reducedLocationAccuracy
         self.externalStreams = externalStreams
         self.audioCalibrationDecibels = audioCalibrationDecibels
+        self.peerDevices = peerDevices
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {
@@ -106,6 +113,20 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     public var totalSampleCount: Int {
         streams.reduce(0) { $0 + $1.sampleCount }
             + (externalStreams ?? []).reduce(0) { $0 + $1.sampleCount }
+    }
+}
+
+/// A second phone in a multi-device recording.
+public struct PeerDevice: Codable, Sendable, Hashable {
+    public var name: String
+    /// CoreBluetooth's identifier on this phone — not an address, and not the same on another.
+    public var identifier: String
+    public var clock: PeerClockEstimate
+
+    public init(name: String, identifier: String, clock: PeerClockEstimate) {
+        self.name = name
+        self.identifier = identifier
+        self.clock = clock
     }
 }
 

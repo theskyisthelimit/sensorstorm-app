@@ -160,3 +160,58 @@ struct RecordingExtenderTests {
         #expect(result.externalStreams == nil)
     }
 }
+
+@Suite("Peer clock")
+struct PeerClockTests {
+    @Test func symmetricExchangeGivesTheOffset() throws {
+        // The remote clock is 5 s ahead; the answer took 20 ms each way.
+        let samples = (0..<10).map { i -> PeerClockSample in
+            let asked = 100 + Double(i)
+            return PeerClockSample(asked: asked, remote: asked + 0.02 + 5, answered: asked + 0.04)
+        }
+        let estimate = try #require(PeerClock.estimate(samples))
+        #expect(abs(estimate.offset - 5) < 1e-9)
+        #expect(abs(estimate.uncertainty - 0.02) < 1e-9)
+        #expect(abs(PeerClock.local(from: 105.02, using: estimate) - 100.02) < 1e-9)
+    }
+
+    @Test func slowExchangesAreOutvoted() throws {
+        // Eight clean exchanges and two where the answer sat in a queue for 300 ms.
+        var samples = (0..<8).map { i -> PeerClockSample in
+            let asked = 10 + Double(i)
+            return PeerClockSample(asked: asked, remote: asked + 0.01 - 2, answered: asked + 0.02)
+        }
+        samples.append(PeerClockSample(asked: 30, remote: 30.01 - 2, answered: 30.32))
+        samples.append(PeerClockSample(asked: 40, remote: 40.01 - 2, answered: 40.32))
+        let estimate = try #require(PeerClock.estimate(samples))
+        #expect(abs(estimate.offset + 2) < 0.001)
+        #expect(estimate.bestRoundTrip < 0.03)
+    }
+
+    @Test func tooFewSamplesAreNoEstimate() {
+        let two = [PeerClockSample(asked: 1, remote: 2, answered: 1.1),
+                   PeerClockSample(asked: 2, remote: 3, answered: 2.1)]
+        #expect(PeerClock.estimate(two) == nil)
+    }
+}
+
+@Suite("Peer payload")
+struct PeerPayloadTests {
+    @Test func roundTrip() throws {
+        let data = PeerPayload.encode(time: 123_456.789, values: [1.5, -2.25, 0, 9.81])
+        #expect(data.count == 8 + 4 * 4)
+        let decoded = try #require(PeerPayload.decode(data))
+        #expect(decoded.time == 123_456.789)
+        #expect(decoded.values == [1.5, -2.25, 0, 9.81].map { Double(Float($0)) })
+    }
+
+    @Test func clockRoundTrip() {
+        #expect(PeerPayload.decodeClock(PeerPayload.clock(98_765.4321)) == 98_765.4321)
+        #expect(PeerPayload.decodeClock(Data([1, 2, 3])) == nil)
+    }
+
+    @Test func malformedPacketsAreRefused() {
+        #expect(PeerPayload.decode(Data(count: 5)) == nil)
+        #expect(PeerPayload.decode(Data(count: 10)) == nil)   // 8 + 2: half a float
+    }
+}

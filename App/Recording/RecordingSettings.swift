@@ -58,6 +58,12 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     var extraSourcesRaw: [String]?
     /// The iBeacon UUIDs to range, one per line as typed.
     var beaconUUIDs: [String]?
+    /// Offer the live values as a Bluetooth service other devices can subscribe to.
+    var offersBluetoothServiceFlag: Bool?
+    /// Let a device that connects to that service start, stop and mark this phone's recording.
+    var allowsBluetoothControlFlag: Bool?
+    /// Start and stop a connected second phone together with this one.
+    var startsPeersTogetherFlag: Bool?
     /// Blur faces and number plates in every photo that leaves the phone in an export or a
     /// report. The photos on the phone stay as they were taken.
     var anonymisesPhotosFlag: Bool?
@@ -161,6 +167,21 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         recordsNetworkQuality = profile.recordsNetworkQuality
         anonymisesPhotos = profile.anonymisesPhotos
         workProfile = profile
+    }
+
+    var offersBluetoothService: Bool {
+        get { offersBluetoothServiceFlag ?? false }
+        set { offersBluetoothServiceFlag = newValue }
+    }
+
+    var allowsBluetoothControl: Bool {
+        get { allowsBluetoothControlFlag ?? false }
+        set { allowsBluetoothControlFlag = newValue }
+    }
+
+    var startsPeersTogether: Bool {
+        get { startsPeersTogetherFlag ?? true }
+        set { startsPeersTogetherFlag = newValue }
     }
 
     func isOn(_ source: ExtraSource) -> Bool {
@@ -275,6 +296,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.recordsNetworkQualityFlag = nil
         mine.extraSourcesRaw = nil
         mine.beaconUUIDs = nil
+        mine.offersBluetoothServiceFlag = nil
+        mine.allowsBluetoothControlFlag = nil
+        mine.startsPeersTogetherFlag = nil
         mine.anonymisesPhotosFlag = nil
         mine.workProfileRaw = nil
         mine.webhookURL = nil
@@ -300,6 +324,9 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.recordsNetworkQualityFlag = nil
         theirs.extraSourcesRaw = nil
         theirs.beaconUUIDs = nil
+        theirs.offersBluetoothServiceFlag = nil
+        theirs.allowsBluetoothControlFlag = nil
+        theirs.startsPeersTogetherFlag = nil
         theirs.anonymisesPhotosFlag = nil
         theirs.workProfileRaw = nil
         theirs.webhookURL = nil

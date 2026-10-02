@@ -9303,6 +9303,9 @@
     "Als Beobachtung" : {
       "extractionState" : "manual"
     },
+    "Als Bluetooth-Sensor anbieten" : {
+      "extractionState" : "manual"
+    },
     "Als CSV exportieren" : {
       "localizations" : {
         "ar" : {
@@ -9796,6 +9799,9 @@
       "extractionState" : "manual"
     },
     "Alternative Namen" : {
+      "extractionState" : "manual"
+    },
+    "Andere Geräte — ein ESP32, ein Raspberry Pi, ein Mac, ein zweites iPhone — abonnieren die Messwerte per Bluetooth, ohne WLAN und ohne Server. Jeder Sensor ist ein eigenes Merkmal; eine Meldung enthält die Zeit auf der Uhr dieses Telefons und die Kanäle. Mit der Fernsteuerung kann jedes Gerät in Reichweite die Aufnahme starten, anhalten und markieren — nur einschalten, wenn das gewollt ist. Die App muss dafür offen sein." : {
       "extractionState" : "manual"
     },
     "Anderes" : {
@@ -10501,6 +10507,9 @@
       "extractionState" : "manual"
     },
     "Auf dem Telefon" : {
+      "extractionState" : "manual"
+    },
+    "Auf dem anderen Telefon muss Sensorstorm offen sein und „Als Bluetooth-Sensor anbieten“ laufen. Beide Uhren werden mit sechzehn Anfragen verglichen; der Versatz und seine Unsicherheit stehen in der Aufnahme, und die Ströme des anderen Telefons liegen auf der Zeit dieses Telefons. Mit „Gemeinsam starten“ braucht das andere Telefon die Fernsteuerung." : {
       "extractionState" : "manual"
     },
     "Auf diesem Gerät gibt es kein Bluetooth. Im Simulator lässt sich der Scanner nicht prüfen." : {
@@ -17379,10 +17388,19 @@
         }
       }
     },
+    "Bluetooth ist aus oder nicht erlaubt." : {
+      "extractionState" : "manual"
+    },
     "Bluetooth ist ausgeschaltet. Im Kontrollzentrum einschalten." : {
       "extractionState" : "manual"
     },
     "Bluetooth startet neu …" : {
+      "extractionState" : "manual"
+    },
+    "Bluetooth-Dienst" : {
+      "extractionState" : "manual"
+    },
+    "Bluetooth-Dienst und zweites iPhone" : {
       "extractionState" : "manual"
     },
     "Bluetooth-Rohdaten mitschreiben" : {
@@ -20008,6 +20026,9 @@
           }
         }
       }
+    },
+    "Das Gerät bietet keine Uhr an." : {
+      "extractionState" : "manual"
     },
     "Das Gerät führt aus, was es empfängt." : {
       "extractionState" : "manual"
@@ -24803,6 +24824,9 @@
     "Die Suche sendet die Koordinate an Apple, in der Schweiz zuerst an swisstopo." : {
       "extractionState" : "manual"
     },
+    "Die Uhr des Geräts liess sich nicht messen." : {
+      "extractionState" : "manual"
+    },
     "Die Uhr ist gekoppelt, aber Sensorstorm ist nicht darauf installiert. In der Apple-Watch-App unter „Verfügbare Apps“ installieren; die Uhr fragt beim ersten Start selbst nach dem Zugriff auf die Herzfrequenz." : {
       "localizations" : {
         "ar" : {
@@ -24962,6 +24986,9 @@
           }
         }
       }
+    },
+    "Die Verbindung wurde getrennt." : {
+      "extractionState" : "manual"
     },
     "Die Voreinstellung: Bewegung, Position, Höhe und Umgebung." : {
       "extractionState" : "manual"
@@ -30583,6 +30610,9 @@
     "Fenster" : {
       "extractionState" : "manual"
     },
+    "Fernsteuerung erlauben" : {
+      "extractionState" : "manual"
+    },
     "Fertig" : {
       "localizations" : {
         "ar" : {
@@ -33870,6 +33900,9 @@
       }
     },
     "Gemeinde-Kennung" : {
+      "extractionState" : "manual"
+    },
+    "Gemeinsam starten und stoppen" : {
       "extractionState" : "manual"
     },
     "Gemittelt aus %@, gemessene Streuung ±%@ m." : {
@@ -57891,6 +57924,9 @@
     "Suche beenden" : {
       "extractionState" : "manual"
     },
+    "Suche …" : {
+      "extractionState" : "manual"
+    },
     "Sucht die Geräte im lokalen Netz und nennt, wie viele es sind." : {
       "extractionState" : "manual"
     },
@@ -58892,7 +58928,13 @@
     "Traceroute" : {
       "extractionState" : "manual"
     },
+    "Trennen" : {
+      "extractionState" : "manual"
+    },
     "Typ" : {
+      "extractionState" : "manual"
+    },
+    "Uhrversatz" : {
       "extractionState" : "manual"
     },
     "Um den Schacht, flach." : {
@@ -60039,6 +60081,9 @@
     "Verbindbar" : {
       "extractionState" : "manual"
     },
+    "Verbinde mit %@ …" : {
+      "extractionState" : "manual"
+    },
     "Verbinde …" : {
       "extractionState" : "manual"
     },
@@ -60049,6 +60094,9 @@
       "extractionState" : "manual"
     },
     "Verbindung" : {
+      "extractionState" : "manual"
+    },
+    "Verbindung fehlgeschlagen." : {
       "extractionState" : "manual"
     },
     "Verbindung testen" : {
@@ -60223,6 +60271,9 @@
     "Verbunden" : {
       "extractionState" : "manual"
     },
+    "Verbunden mit %@" : {
+      "extractionState" : "manual"
+    },
     "Verbunden, aber der Broker antwortet nicht auf MQTT." : {
       "extractionState" : "manual"
     },
@@ -60386,10 +60437,16 @@
         }
       }
     },
+    "Verbundene Geräte" : {
+      "extractionState" : "manual"
+    },
     "Verfärbung" : {
       "extractionState" : "manual"
     },
     "Vergleich" : {
+      "extractionState" : "manual"
+    },
+    "Vergleiche die Uhr von %@ …" : {
       "extractionState" : "manual"
     },
     "Verlangte Rate" : {
@@ -67131,37 +67188,13 @@
         }
       }
     },
+    "Zweites iPhone" : {
+      "extractionState" : "manual"
+    },
+    "Zweites iPhone suchen" : {
+      "extractionState" : "manual"
+    },
     "Zwischenzertifikat %lld" : {
-      "extractionState" : "manual"
-    },
-    "accuracy" : {
-      "extractionState" : "manual"
-    },
-    "airquality" : {
-      "extractionState" : "manual"
-    },
-    "arrow.triangle.2.circlepath" : {
-      "extractionState" : "manual"
-    },
-    "arrow.triangle.merge" : {
-      "extractionState" : "manual"
-    },
-    "arrow.uturn.backward.circle" : {
-      "extractionState" : "manual"
-    },
-    "bench" : {
-      "extractionState" : "manual"
-    },
-    "bin" : {
-      "extractionState" : "manual"
-    },
-    "blocked" : {
-      "extractionState" : "manual"
-    },
-    "brain" : {
-      "extractionState" : "manual"
-    },
-    "branch" : {
       "extractionState" : "manual"
     },
     "brauchbar" : {
@@ -67486,15 +67519,6 @@
         }
       }
     },
-    "checkmark.circle" : {
-      "extractionState" : "manual"
-    },
-    "checkmark.shield" : {
-      "extractionState" : "manual"
-    },
-    "damaged" : {
-      "extractionState" : "manual"
-    },
     "deutlich" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -67655,9 +67679,6 @@
           }
         }
       }
-    },
-    "diagonal" : {
-      "extractionState" : "manual"
     },
     "eingehalten" : {
       "extractionState" : "manual"
@@ -67821,18 +67842,6 @@
           }
         }
       }
-    },
-    "exclamationmark.triangle" : {
-      "extractionState" : "manual"
-    },
-    "exclamationmark.triangle.fill" : {
-      "extractionState" : "manual"
-    },
-    "eye.slash" : {
-      "extractionState" : "manual"
-    },
-    "full" : {
-      "extractionState" : "manual"
     },
     "gemittelt" : {
       "extractionState" : "manual",
@@ -68002,9 +68011,6 @@
       "extractionState" : "manual"
     },
     "getrennt" : {
-      "extractionState" : "manual"
-    },
-    "globe.europe.africa.fill" : {
       "extractionState" : "manual"
     },
     "grob" : {
@@ -69306,9 +69312,6 @@
         }
       }
     },
-    "mappin" : {
-      "extractionState" : "manual"
-    },
     "mit Einschränkungen" : {
       "extractionState" : "manual"
     },
@@ -69640,15 +69643,6 @@
         }
       }
     },
-    "playground" : {
-      "extractionState" : "manual"
-    },
-    "plus.circle" : {
-      "extractionState" : "manual"
-    },
-    "point.topleft.down.to.point.bottomright.curvepath" : {
-      "extractionState" : "manual"
-    },
     "schlecht" : {
       "extractionState" : "manual"
     },
@@ -69813,12 +69807,6 @@
         }
       }
     },
-    "sign" : {
-      "extractionState" : "manual"
-    },
-    "stain" : {
-      "extractionState" : "manual"
-    },
     "unauffällig" : {
       "localizations" : {
         "ar" : {
@@ -69979,12 +69967,6 @@
         }
       }
     },
-    "vital" : {
-      "extractionState" : "manual"
-    },
-    "vitality" : {
-      "extractionState" : "manual"
-    },
     "wartet …" : {
       "localizations" : {
         "ar" : {
@@ -70144,15 +70126,6 @@
           }
         }
       }
-    },
-    "waveform" : {
-      "extractionState" : "manual"
-    },
-    "waveform.path" : {
-      "extractionState" : "manual"
-    },
-    "weak" : {
-      "extractionState" : "manual"
     },
     "Öffentliche Adresse abfragen" : {
       "extractionState" : "manual"

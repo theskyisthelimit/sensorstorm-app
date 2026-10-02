@@ -43,6 +43,13 @@ final class SensorHub {
     private(set) var lastFinishedRecording: RecordingMetadata?
     var errorMessage: String?
 
+    /// The phone as a Bluetooth sensor, and a second phone seen from this one. Both are
+    /// switched on in the settings and do nothing until then.
+    private(set) var bluetoothServiceSubscribers = 0
+    private(set) var peers: [PeerLink.Peer] = []
+    private(set) var peerStatus: PeerLink.Status = .idle
+    private(set) var peerConnection: PeerLink.Connection?
+
     var settings: RecordingSettings {
         didSet {
             guard settings != oldValue else { return }
@@ -56,6 +63,7 @@ final class SensorHub {
                 configureBluetoothDecoding(for: settings)
             }
             updateWebServer()
+            updatePeripheral()
         }
     }
 
@@ -83,6 +91,8 @@ final class SensorHub {
     let bluetoothSource: BluetoothSource
     private let networkQualitySource: NetworkQualitySource
     private let extraSources: ExtraSourcesController
+    private let peripheralService = BLEPeripheralService()
+    let peerLink: PeerLink
     private let watchLink: WatchLink
     let streamer: LiveStreamer
     let webServer: LocalWebServer
@@ -122,6 +132,7 @@ final class SensorHub {
         self.bluetoothSource = BluetoothSource(sink: sink)
         self.networkQualitySource = NetworkQualitySource(sink: sink)
         self.extraSources = ExtraSourcesController(sink: sink)
+        self.peerLink = PeerLink(sink: sink)
         self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
@@ -151,14 +162,52 @@ final class SensorHub {
             Task { @MainActor in await self?.handleWatchCommand(command) }
         }
         watchLink.activate()
+        peripheralService.onControl = { [weak self] command in
+            Task { @MainActor in await self?.handleRemoteCommand(command) }
+        }
+        peripheralService.onSubscribers = { [weak self] count in
+            Task { @MainActor in self?.bluetoothServiceSubscribers = count }
+        }
+        peerLink.onPeers = { [weak self] peers in
+            Task { @MainActor in self?.peers = peers }
+        }
+        peerLink.onStatus = { [weak self] status in
+            Task { @MainActor in self?.peerStatus = status }
+        }
+        peerLink.onConnection = { [weak self] connection in
+            Task { @MainActor in self?.peerConnection = connection }
+        }
         streamer.mqtt.onMessage = { [weak self] topic, payload in
             Task { @MainActor in self?.receive(topic: topic, payload: payload) }
         }
         refreshAvailability()
         updateWebServer()
+        updatePeripheral()
     }
 
     // MARK: - Web server
+
+    /// Tells the watch and anyone subscribed over Bluetooth whether this phone is recording.
+    private func announce(isRecording: Bool, since: Date? = nil, hostTime: Double = 0) {
+        watchLink.publishStatus(isRecording: isRecording, since: since)
+        peripheralService.publishState(isRecording: isRecording, since: hostTime)
+    }
+
+    private func updatePeripheral() {
+        if settings.offersBluetoothService {
+            peripheralService.start(allowsControl: settings.allowsBluetoothControl)
+        } else {
+            peripheralService.stop()
+        }
+    }
+
+    private func handleRemoteCommand(_ command: BLEPeripheralService.Command) async {
+        switch command {
+        case .start: await handleWatchCommand("start")
+        case .stop: await handleWatchCommand("stop")
+        case .mark: await handleWatchCommand("mark")
+        }
+    }
 
     private func updateWebServer() {
         if settings.isWebServerEnabled == true { webServer.start() } else { webServer.stop() }
@@ -566,6 +615,12 @@ final class SensorHub {
                 networkQualitySource.start()
             }
             extraSources.start(recordingSettings)
+            if peerConnection != nil {
+                // Measured again at the start, so the offset stored with the recording is
+                // seconds old, not as old as the connection.
+                peerLink.resync()
+                if recordingSettings.startsPeersTogether { peerLink.send(.start) }
+            }
 
             // Streaming rides along with the recording rather than running on its own: a
             // feed without a file behind it is a feed nobody can check afterwards.
@@ -603,7 +658,7 @@ final class SensorHub {
             UIApplication.shared.isIdleTimerDisabled = recordingSettings.keepsScreenAwake
             elapsed = 0
             phase = .recording
-            watchLink.publishStatus(isRecording: true, since: activeRecording?.startedAt)
+            announce(isRecording: true, since: activeRecording?.startedAt, hostTime: startHostTime)
         } catch {
             errorMessage = error.localizedDescription
             _ = sink.endRecording()
@@ -640,6 +695,7 @@ final class SensorHub {
         bluetoothSource.endLogging()
         networkQualitySource.stop()
         extraSources.stop()
+        if peerConnection != nil, active.settings.startsPeersTogether { peerLink.send(.stop) }
 
         let ended = sink.endRecordingWithExternals()
         let streams = ended.streams
@@ -664,7 +720,10 @@ final class SensorHub {
             reducedLocationAccuracy: isLocationAccuracyReduced && active.settings.isEnabled(.location)
                 ? true : nil,
             externalStreams: ended.external.filter { $0.sampleCount > 0 }.nilIfEmpty,
-            audioCalibrationDecibels: active.settings.isEnabled(.loudnessA) ? active.settings.audioCalibrationDecibels : nil
+            audioCalibrationDecibels: active.settings.isEnabled(.loudnessA) ? active.settings.audioCalibrationDecibels : nil,
+            peerDevices: peerConnection.map {
+                [PeerDevice(name: $0.name, identifier: $0.identifier.uuidString, clock: $0.clock)]
+            }
         )
 
         locationSource.setBackgroundUpdates(false)
@@ -684,7 +743,7 @@ final class SensorHub {
             metadata.name = ""
             activeRecording = nil
             phase = .idle
-            watchLink.publishStatus(isRecording: false, since: nil)
+            announce(isRecording: false)
             errorMessage = String(localized: "Es wurden keine Daten aufgezeichnet.")
             return nil
         }
@@ -694,7 +753,7 @@ final class SensorHub {
         elapsed = 0
         writtenSampleCount = 0
         phase = .idle
-        watchLink.publishStatus(isRecording: false, since: nil)
+        announce(isRecording: false)
         return metadata
     }
 
@@ -739,6 +798,7 @@ final class SensorHub {
 
     private func refreshLiveValues() {
         live = sink.snapshot()
+        if settings.offersBluetoothService { peripheralService.publish(live) }
         sink.dropExternal(olderThan: 30, now: HostClock.now)
         externalLive = sink.externalSnapshot().values.sorted {
             $0.info.title == $1.info.title ? $0.id < $1.id : $0.info.title < $1.info.title
