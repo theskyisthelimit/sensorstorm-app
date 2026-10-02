@@ -176,7 +176,11 @@ final class WatchRecorder: NSObject {
                 data.rotationRate.x, data.rotationRate.y, data.rotationRate.z,
                 attitude.roll, attitude.pitch, attitude.yaw,
             ]
-            Task { @MainActor in recorder?.append(Self.wristMotionStream, time: time, values: values) }
+            // A `let`, not the captured `weak var`: the variable is mutable state shared with
+            // the closure, and Swift 6.1 refuses to send that into a main-actor task. The
+            // recorder itself is main-actor isolated and therefore safe to hand over.
+            let target = recorder
+            Task { @MainActor in target?.append(Self.wristMotionStream, time: time, values: values) }
         }
     }
 

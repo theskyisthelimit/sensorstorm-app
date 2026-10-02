@@ -11,6 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # The release builds use the current Xcode — App Store uploads require the current SDK —
+      # and the runner's default is a year behind. Two compilers disagree about Swift 6
+      # concurrency: the watch fix for build 16 compiled locally and failed here. CI checks
+      # with the compiler that ships.
+      - name: Select the newest Xcode
+        run: |
+          latest=$(ls -d /Applications/Xcode_*.app | python3 -c 'import re, sys
+          paths = [l.strip() for l in sys.stdin if re.search(r"Xcode_[0-9.]+\.app$", l.strip())]
+          print(max(paths, key=lambda p: [int(n) for n in re.findall(r"[0-9]+", p.split("Xcode_")[1])]))')
+          echo "Using $latest"
+          sudo xcode-select -s "$latest"
+          xcodebuild -version
+
       - name: Install XcodeGen
         run: brew install xcodegen
 
