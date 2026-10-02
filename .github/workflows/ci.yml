@@ -39,6 +39,7 @@ jobs:
       # parsing is the only thing that can check it, and until now it only ran when
       # somebody remembered to run it by hand.
       - name: Check the Blender bundle contract
+        if: ${{ !cancelled() }}
         run: |
           SS_BUNDLE_OUT="${RUNNER_TEMP}/ss-bundle" swift test --filter bundleContents
           python3 Tools/blender/check_bundle.py "${RUNNER_TEMP}/ss-bundle"
@@ -47,27 +48,33 @@ jobs:
       # see a layout, but it catches the constructs that make one impossible — a screen
       # measured instead of a container, a bar that cannot move to the side, a fixed width.
       - name: Audit the adaptive layout
+        if: ${{ !cancelled() }}
         run: python3 Tools/adaptive_audit.py
 
       # Arabic ships. Hard-coded left and right survive a German build untouched.
       - name: Audit for right-to-left
+        if: ${{ !cancelled() }}
         run: python3 Tools/rtl_audit.py
 
       - name: The localisation locks
+        if: ${{ !cancelled() }}
         run: python3 Tools/l10n.py verify
 
       # Die Lücke vor dem Katalogabgleich: ein deutscher Text, den der Compiler gar
       # nicht erst als übersetzbar erkennt. Sechs davon standen in 26 Sprachen auf
       # Deutsch, einer auf dem Hauptbildschirm.
       - name: No German text the compiler never sees
+        if: ${{ !cancelled() }}
         run: python3 Tools/l10n_literals.py
 
       - name: Generate the Xcode project
+        if: ${{ !cancelled() }}
         run: xcodegen generate
 
       # Signing and upload stay local: the CI certificate's private key is not in
       # the repo and must not be.
       - name: Build the app
+        if: ${{ !cancelled() }}
         run: |
           set -o pipefail
           xcodebuild -quiet -project Sensorstorm.xcodeproj -scheme Sensorstorm \
@@ -80,6 +87,7 @@ jobs:
       # der nur zählt, was schon drinsteht. Genau so standen 61 Texte in 26 Sprachen
       # auf Deutsch, bis eines davon in einem arabischen Store-Screenshot auffiel.
       - name: Every localisable text is in the catalog
+        if: ${{ !cancelled() }}
         run: DERIVED_DATA=.derived-data python3 Tools/l10n_extract.py
 
       # Die Fehlerzeilen allein, am Ende des Protokolls: ein roter Lauf soll in einem Blick
