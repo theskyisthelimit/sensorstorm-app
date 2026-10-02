@@ -7,6 +7,7 @@ struct NetworkScanView: View {
     @Environment(SensorHub.self) private var hub
     @State private var search = ""
     @State private var showsOptions = false
+    @State private var showsLegend = false
     @State private var shareItem: ShareItem?
 
     var body: some View {
@@ -53,7 +54,7 @@ struct NetworkScanView: View {
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 if let latest = scanner.latest {
-                    ShareLink(item: latest.csv()) {
+                    ShareLink(item: latest.csv(vendor: { VendorLookup.registered($0) })) {
                         Label("Als Tabelle teilen", systemImage: "square.and.arrow.up")
                     }
                 }
@@ -65,6 +66,11 @@ struct NetworkScanView: View {
                     }
                 }
                 Button {
+                    showsLegend = true
+                } label: {
+                    Label("Kürzel", systemImage: "textformat.abc")
+                }
+                Button {
                     showsOptions = true
                 } label: {
                     Label("Optionen", systemImage: "slider.horizontal.3")
@@ -73,6 +79,9 @@ struct NetworkScanView: View {
         }
         .sheet(isPresented: $showsOptions) {
             ScanOptionsView()
+        }
+        .sheet(isPresented: $showsLegend) {
+            HostBadgeLegend()
         }
         .sheet(item: $shareItem) { item in ShareSheet(items: [item.url]) }
         .task { network.environment.start() }
@@ -175,7 +184,10 @@ struct NetworkScanView: View {
         guard !needle.isEmpty else { return hosts }
         return hosts.filter { host in
             let alias = network.inventory.annotation(address: host.address, subnet: subnet).alias ?? ""
-            let haystack = ([host.address, alias] + host.hostNames + host.services).joined(separator: " ").lowercased()
+            let mac = host.mac.flatMap { MACAddress($0) }
+            let vendor = mac.flatMap { VendorLookup.registered($0) } ?? ""
+            let haystack = ([host.address, alias, host.mac ?? "", vendor] + host.hostNames + host.services)
+                .joined(separator: " ").lowercased()
             return haystack.contains(needle)
         }
     }
@@ -186,6 +198,11 @@ struct HostRow: View {
     let annotation: HostAnnotation
     let isSelf: Bool
     let isGateway: Bool
+
+    /// The address the person typed wins over the one read from the neighbour table.
+    private var mac: MACAddress? {
+        MACAddress(annotation.mac ?? "") ?? host.mac.flatMap { MACAddress($0) }
+    }
 
     var body: some View {
         HStack(spacing: 12) {
@@ -203,6 +220,19 @@ struct HostRow: View {
                     else if host.guess != .unknown { Text(host.guess.title) }
                 }
                 .font(.footnote).foregroundStyle(.secondary)
+                if let mac {
+                    HStack(spacing: 6) {
+                        Text(verbatim: mac.formatted(uppercase: true)).monospaced()
+                        if let vendor = VendorLookup.name(mac) {
+                            Text(verbatim: vendor).lineLimit(1)
+                        } else if mac.isLocallyAdministered {
+                            Text("Zufällige Adresse")
+                        }
+                    }
+                    .font(.caption).foregroundStyle(.secondary)
+                }
+                let badges = HostBadge.badges(for: host, isGateway: isGateway)
+                if !badges.isEmpty { HostBadgeStrip(badges: badges).padding(.top, 2) }
             }
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 2) {
@@ -235,7 +265,7 @@ struct ScanOptionsView: View {
                 } header: {
                     Text("Wie gesucht wird")
                 } footer: {
-                    Text("Ein Gerät, das keinen Ping beantwortet, verrät sich meist durch eine abgelehnte oder angenommene Verbindung. Hardware-Adressen liest iOS nicht aus, deshalb gibt es keine Herstellerangabe.")
+                    Text("Ein Gerät, das keinen Ping beantwortet, verrät sich meist durch eine abgelehnte oder angenommene Verbindung. Hardware-Adressen und Hersteller zeigt die Liste, wenn iOS die Nachbartabelle herausgibt. Das hängt von der iOS-Version ab.")
                 }
                 Section {
                     Toggle("Ports der gefundenen Geräte prüfen", isOn: $scanner.options.scansPorts)

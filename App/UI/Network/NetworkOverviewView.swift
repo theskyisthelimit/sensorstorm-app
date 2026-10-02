@@ -27,6 +27,7 @@ struct NetworkOverviewView: View {
                 }
             }
             routerSection(environment)
+            resolverSection(environment)
             publicSection(environment)
         }
         .scrollContentBackground(.hidden)
@@ -106,7 +107,18 @@ struct NetworkOverviewView: View {
                         Text(verbatim: String(format: "%.0f %%", wifi.signalStrength * 100)).monospacedDigit()
                     }
                 }
-                LabeledContent("Verschlüsselt") { YesNo(value: wifi.isSecure) }
+                LabeledContent("Verschlüsselung") {
+                    switch wifi.security {
+                    case .open: Text("Offen")
+                    case .wep: Text("WEP, veraltet")
+                    case .personal: Text("WPA, Passwort")
+                    case .enterprise: Text("WPA, Unternehmen")
+                    case .unknown: YesNo(value: wifi.isSecure)
+                    }
+                }
+                if let vendor = wifi.accessPointVendor {
+                    LabeledContent("Hersteller") { Text(verbatim: vendor).multilineTextAlignment(.trailing) }
+                }
             } else if environment.wifiChecked {
                 Text("Kein WLAN-Name verfügbar.")
                     .foregroundStyle(.secondary)
@@ -136,10 +148,54 @@ struct NetworkOverviewView: View {
     }
 
     @ViewBuilder
+    private func resolverSection(_ environment: NetworkEnvironment) -> some View {
+        Section {
+            if environment.dnsServers.isEmpty {
+                Text("iOS nennt keine DNS-Server.").foregroundStyle(.secondary)
+            }
+            ForEach(environment.dnsServers, id: \.self) { server in
+                LabeledContent("DNS-Server") {
+                    Text(verbatim: server).monospaced().font(.footnote).multilineTextAlignment(.trailing)
+                        .textSelection(.enabled)
+                }
+            }
+            let proxy = environment.proxy
+            if proxy.isEmpty {
+                LabeledContent("Proxy") { Text("Keiner") }
+            }
+            if let http = proxy.http {
+                LabeledContent("HTTP-Proxy") { Text(verbatim: http).monospaced().font(.footnote) }
+            }
+            if let https = proxy.https {
+                LabeledContent("HTTPS-Proxy") { Text(verbatim: https).monospaced().font(.footnote) }
+            }
+            if let pac = proxy.autoConfigURL {
+                LabeledContent("Proxy-Skript") { Text(verbatim: pac).monospaced().font(.footnote).multilineTextAlignment(.trailing) }
+            }
+        } header: {
+            Text("Namensauflösung und Proxy")
+        } footer: {
+            Text("Die Server, die das Netz oder der VPN-Zugang dem System genannt hat, und ein eingerichteter Proxy. Beides erklärt, warum ein Name hier anders aufgelöst wird als anderswo.")
+        }
+    }
+
+    @ViewBuilder
     private func publicSection(_ environment: NetworkEnvironment) -> some View {
         Section {
             if let info = environment.publicAddress {
-                LabeledContent("Adresse") { Text(verbatim: info.address).monospaced() }
+                LabeledContent("Adresse") { Text(verbatim: info.address).monospaced().textSelection(.enabled) }
+                if let ipv6 = info.ipv6 {
+                    LabeledContent("IPv6") {
+                        Text(verbatim: ipv6).monospaced().font(.footnote).multilineTextAlignment(.trailing)
+                            .textSelection(.enabled)
+                    }
+                }
+                if let owner = info.owner {
+                    LabeledContent("Anbieter") {
+                        Text(verbatim: [owner.flag, owner.label].compactMap { $0 }.joined(separator: " "))
+                            .multilineTextAlignment(.trailing)
+                    }
+                }
                 if let country = info.country {
                     LabeledContent("Land") { Text(verbatim: country) }
                 }
@@ -166,7 +222,7 @@ struct NetworkOverviewView: View {
         } header: {
             Text("Internet")
         } footer: {
-            Text("Eine Anfrage an 1.1.1.1 (Cloudflare) zeigt, unter welcher Adresse das Telefon im Internet auftritt. Sie wird nur gesendet, wenn du auf den Knopf tippst.")
+            Text("Eine Anfrage an 1.1.1.1 (Cloudflare) zeigt, unter welcher Adresse das Telefon im Internet auftritt, je eine über IPv4 und über IPv6. Dazu kommen zwei Namensabfragen bei Team Cymru, wer das Netz betreibt. Gesendet wird nur, wenn du auf den Knopf tippst.")
         }
     }
 }

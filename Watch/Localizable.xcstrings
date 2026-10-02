@@ -342,6 +342,12 @@
             "value" : "Afslut optagelse"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ολοκλήρωση εγγραφής"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -655,6 +661,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "iPhonen kan ikke nås."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το iPhone δεν είναι προσβάσιμο."
           }
         },
         "en" : {
@@ -1130,6 +1142,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Markér tidspunkt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σήμανση χρονικής στιγμής"
           }
         },
         "en" : {

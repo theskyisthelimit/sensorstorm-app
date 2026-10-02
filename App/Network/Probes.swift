@@ -10,7 +10,8 @@ import SensorstormCore
 //
 // Everything here is written against what iOS allows an ordinary app: ICMP over an
 // unprivileged datagram socket, TCP and UDP through Network.framework. There is no raw
-// socket, no ARP table and no promiscuous mode — see docs/ANALYSE.md, chapter 6.
+// socket and no promiscuous mode, and the ARP table only where the OS release shares it — see
+// docs/ANALYSE.md, chapter 6.
 
 // MARK: - ICMP
 

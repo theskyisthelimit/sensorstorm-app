@@ -22,6 +22,12 @@
             "value" : "Afslut optagelse i ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ολοκλήρωση εγγραφής στο ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -175,6 +181,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Start optagelse i ${applicationName}"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Έναρξη εγγραφής στο ${applicationName}"
           }
         },
         "en" : {
@@ -332,6 +344,12 @@
             "value" : "Afslut optagelsen i ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ολοκλήρωσε την εγγραφή στο ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -485,6 +503,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Observation her i ${applicationName}"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Παρατήρηση εδώ στο ${applicationName}"
           }
         },
         "en" : {
@@ -642,6 +666,12 @@
             "value" : "Stop stien i ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σταμάτα την καταγραφή πορείας στο ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -795,6 +825,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Registrér en observation i ${applicationName}"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κατάγραψε μια παρατήρηση στο ${applicationName}"
           }
         },
         "en" : {
@@ -952,6 +988,12 @@
             "value" : "Markér et tidspunkt i ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σήμανε μια χρονική στιγμή στο ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1105,6 +1147,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Markering i ${applicationName}"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σήμανση στο ${applicationName}"
           }
         },
         "en" : {
@@ -1262,6 +1310,12 @@
             "value" : "Scan netværket i ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σάρωση δικτύου στο ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1415,6 +1469,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Start en optagelse i ${applicationName}"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ξεκίνα μια εγγραφή στο ${applicationName}"
           }
         },
         "en" : {
@@ -1572,6 +1632,12 @@
             "value" : "Scan netværket med ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Σάρωσε το δίκτυο με το ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1727,6 +1793,12 @@
             "value" : "Optag sti i ${applicationName}"
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Καταγραφή πορείας στο ${applicationName}"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1880,6 +1952,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Optag min sti i ${applicationName}"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Κατάγραψε την πορεία μου στο ${applicationName}"
           }
         },
         "en" : {

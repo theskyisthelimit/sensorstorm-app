@@ -1,3 +1,4 @@
+import CFNetwork
 import CoreTelephony
 import Foundation
 import Network
@@ -33,6 +34,42 @@ struct WiFiInfo: Sendable, Equatable {
     /// 0…1, the system's own scale. Not dBm: iOS does not hand an app the real value.
     var signalStrength: Double
     var isSecure: Bool
+    /// WEP, WPA/WPA2/WPA3 personal, enterprise or open, as the system classifies it. iOS does
+    /// not say which generation of WPA.
+    var security: SecurityKind
+    /// The hardware address of the access point, formatted; its manufacturer comes from
+    /// `VendorLookup`. `bssid` is kept as the system gave it.
+    var accessPointVendor: String? { VendorLookup.name(bssid) }
+
+    enum SecurityKind: Sendable, Equatable {
+        case open, wep, personal, enterprise, unknown
+    }
+}
+
+/// The HTTP proxy the system is configured with, if any. A proxy in the way is the answer to a
+/// surprising number of „the app cannot connect" reports.
+struct ProxyInfo: Sendable, Equatable {
+    var http: String?
+    var https: String?
+    var autoConfigURL: String?
+
+    var isEmpty: Bool { http == nil && https == nil && autoConfigURL == nil }
+
+    static func read() -> ProxyInfo {
+        guard let settings = CFNetworkCopySystemProxySettings()?.takeRetainedValue() as? [String: Any] else {
+            return ProxyInfo()
+        }
+        func endpoint(_ enable: String, _ host: String, _ port: String) -> String? {
+            guard (settings[enable] as? Int) == 1, let name = settings[host] as? String, !name.isEmpty else { return nil }
+            if let number = settings[port] as? Int { return "\(name):\(number)" }
+            return name
+        }
+        let pac: String? = (settings["ProxyAutoConfigEnable"] as? Int) == 1
+            ? settings["ProxyAutoConfigURLString"] as? String : nil
+        return ProxyInfo(http: endpoint("HTTPEnable", "HTTPProxy", "HTTPPort"),
+                         https: endpoint("HTTPSEnable", "HTTPSProxy", "HTTPSPort"),
+                         autoConfigURL: pac)
+    }
 }
 
 /// What a public-address lookup returned. Only ever asked for on a button press.
@@ -41,6 +78,10 @@ struct PublicAddressInfo: Sendable, Equatable {
     var country: String?
     var datacenter: String?
     var usesWarp: Bool
+    /// The IPv6 address the internet sees, when the network has IPv6 at all.
+    var ipv6: String?
+    /// Who runs the network the address belongs to.
+    var owner: ASNInfo?
 }
 
 /// What the phone knows about the network it is in, gathered in one place so every network
@@ -68,6 +109,8 @@ final class NetworkEnvironment {
     private(set) var wifiChecked = false
     private(set) var radioTechnologies: [String] = []
     private(set) var gateways: [IPv4Addr] = []
+    private(set) var dnsServers: [String] = []
+    private(set) var proxy = ProxyInfo()
     private(set) var publicAddress: PublicAddressInfo?
     private(set) var isQueryingPublicAddress = false
     private(set) var publicAddressFailed = false
@@ -139,6 +182,8 @@ final class NetworkEnvironment {
 
     func refreshInterfaces() {
         interfaces = Self.readInterfaces()
+        dnsServers = SystemDNS.servers()
+        proxy = ProxyInfo.read()
     }
 
     func refreshWiFi() async {
@@ -148,8 +193,17 @@ final class NetworkEnvironment {
             wifi = nil
             return
         }
+        let security: WiFiInfo.SecurityKind
+        switch network.securityType {
+        case .open: security = .open
+        case .WEP: security = .wep
+        case .personal: security = .personal
+        case .enterprise: security = .enterprise
+        case .unknown: security = .unknown
+        @unknown default: security = .unknown
+        }
         wifi = WiFiInfo(ssid: network.ssid, bssid: network.bssid,
-                        signalStrength: network.signalStrength, isSecure: network.isSecure)
+                        signalStrength: network.signalStrength, isSecure: network.isSecure, security: security)
     }
 
     private func refreshRadio() {
@@ -159,29 +213,44 @@ final class NetworkEnvironment {
             .map { Self.radioName($0.value) }
     }
 
-    /// One request to Cloudflare's trace endpoint, which answers with the caller's address
-    /// and the datacentre that handled it. Nothing is sent but the request itself.
+    /// Requests to Cloudflare's trace endpoint, which answers with the caller's address and the
+    /// datacentre that handled it: one over IPv4 and one over IPv6, so a network that has both
+    /// shows both. Then two name queries ask who runs the address. Nothing is sent but that.
     func queryPublicAddress() async {
-        guard !isQueryingPublicAddress, let url = URL(string: "https://1.1.1.1/cdn-cgi/trace") else { return }
+        guard !isQueryingPublicAddress,
+              let v4 = URL(string: "https://1.1.1.1/cdn-cgi/trace"),
+              let v6 = URL(string: "https://[2606:4700:4700::1111]/cdn-cgi/trace") else { return }
         isQueryingPublicAddress = true
         publicAddressFailed = false
         defer { isQueryingPublicAddress = false }
-        let report = await HTTPProbe.request(url, timeout: 8)
-        guard report.statusCode == 200, let text = report.bodyPreview else {
+        async let first = Self.trace(v4)
+        async let second = Self.trace(v6)
+        let (four, six) = await (first, second)
+        // On a network without IPv4 the first request is carried over IPv6 and says so.
+        guard let primary = four ?? six, let address = primary["ip"] else {
             publicAddressFailed = true
             return
         }
+        let ipv6 = [four?["ip"], six?["ip"]].compactMap { $0 }.first { $0.contains(":") }
+        var owner: ASNInfo?
+        if let ip = IPv4Addr(address) {
+            let resolver = dnsServers.first { IPv4Addr($0) != nil } ?? "1.1.1.1"
+            owner = await ASNCache.shared.lookup(ip, server: resolver)
+        }
+        publicAddress = PublicAddressInfo(address: address, country: primary["loc"],
+                                          datacenter: primary["colo"], usesWarp: primary["warp"] == "on",
+                                          ipv6: ipv6 == address ? nil : ipv6, owner: owner)
+    }
+
+    nonisolated private static func trace(_ url: URL) async -> [String: String]? {
+        let report = await HTTPProbe.request(url, timeout: 6)
+        guard report.statusCode == 200, let text = report.bodyPreview else { return nil }
         var fields: [String: String] = [:]
         for line in text.split(separator: "\n") {
             let pair = line.split(separator: "=", maxSplits: 1)
             if pair.count == 2 { fields[String(pair[0])] = String(pair[1]) }
         }
-        guard let address = fields["ip"] else {
-            publicAddressFailed = true
-            return
-        }
-        publicAddress = PublicAddressInfo(address: address, country: fields["loc"],
-                                          datacenter: fields["colo"], usesWarp: fields["warp"] == "on")
+        return fields["ip"] == nil ? nil : fields
     }
 
     // MARK: - Reading the system

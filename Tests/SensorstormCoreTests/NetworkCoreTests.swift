@@ -155,6 +155,7 @@ struct NetworkCoreTests {
         let response = try #require(DNSMessage.parse(Data(header + question() + cname + address)))
         #expect(response.id == 0xBEEF && response.isResponse && response.rcode == 0)
         #expect(response.rcodeLabel == "NOERROR")
+        #expect(response.flagNames == ["qr", "rd", "ra"] && !response.isAuthoritative)
         #expect(response.answers.count == 2)
         #expect(response.answers[0] == DNSRecord(name: "www.example.com", type: 5, ttl: 300,
                                                  value: "web.example.com"))
@@ -174,8 +175,9 @@ struct NetworkCoreTests {
             answer(type: 16, rdata: label("hello") + label("foo")),
             answer(type: 28, rdata: [0x20, 0x01, 0x0D, 0xB8] + [UInt8](repeating: 0, count: 10) + [0, 1]),
             answer(type: 33, rdata: [0, 1, 0, 5, 0x1F, 0x90] + label("srv") + [0xC0, 0x10]),
-            answer(type: 6, rdata: label("ns") + [0xC0, 0x10] + label("admin") + [0xC0, 0x10] + [0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+            answer(type: 6, rdata: label("ns") + [0xC0, 0x10] + label("admin") + [0xC0, 0x10] + [0, 0, 0, 42, 0, 0, 0x0E, 0x10, 0, 0, 0x02, 0x58, 0, 0x12, 0x75, 0x00, 0, 0, 0x01, 0x2C]),
             answer(type: 99, rdata: [0xAB, 0xCD]),
+            answer(type: 257, rdata: [0, 5] + Array("issue".utf8) + Array("letsencrypt.org".utf8)),
         ]
         let header: [UInt8] = [0, 1, 0x81, 0x80, 0, 1, 0, UInt8(records.count), 0, 0, 0, 0]
         let response = try #require(DNSMessage.parse(Data(header + question() + records.flatMap { $0 })))
@@ -184,8 +186,13 @@ struct NetworkCoreTests {
         #expect(values[1] == "hellofoo")
         #expect(values[2] == "2001:db8::1")
         #expect(values[3] == "1 5 8080 srv.example.com")
-        #expect(values[4] == "ns.example.com admin.example.com 42")
+        #expect(values[4] == "ns.example.com admin.example.com 42 3600 600 1209600 300")
         #expect(values[5] == "abcd")
+        let soa = try #require(response.answers[4].soa)
+        #expect(soa.primary == "ns.example.com" && soa.mailbox == "admin.example.com" && soa.serial == 42)
+        #expect(soa.refresh == 3600 && soa.retry == 600 && soa.expire == 1_209_600 && soa.minimum == 300)
+        #expect(response.answers[0].soa == nil)
+        #expect(values[6] == "0 issue \"letsencrypt.org\"" && response.answers[6].typeLabel == "CAA")
         #expect(response.answers[5].typeLabel == "TYPE99")
 
         #expect(DNSMessage.ipv6([UInt8](repeating: 0, count: 16)) == "::")
@@ -431,9 +438,9 @@ struct NetworkCoreTests {
             ])
         let lines = snapshot.csv().split(separator: "\n").map(String.init)
         #expect(lines.count == 3)
-        #expect(lines[0] == "address,name,guess,open_ports,services,round_trip_ms,sources")
-        #expect(lines[1] == "10.0.0.1,\"router, oben\",router,53 80,_http._tcp,1.20,ping dns")
-        #expect(lines[2] == "10.0.0.7,,unknown,,,,")
+        #expect(lines[0] == "address,name,guess,open_ports,services,round_trip_ms,sources,mac,vendor")
+        #expect(lines[1] == "10.0.0.1,\"router, oben\",router,53 80,_http._tcp,1.20,ping dns,,")
+        #expect(lines[2] == "10.0.0.7,,unknown,,,,,,")
     }
 }
 

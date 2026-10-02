@@ -154,7 +154,7 @@ final class NetworkScanner {
             let found = await NetworkScanEngine.run(addresses: addresses, gateway: gateway,
                                                     options: options, callbacks: callbacks)
             let cancelled = Task.isCancelled
-            await self?.finish(found, cancelled: cancelled, name: name, subnet: subnet,
+            await self?.finish(found, cancelled: cancelled, name: name, subnet: subnet, own: own,
                                gateway: gateway, inventory: inventory)
         }
     }
@@ -175,14 +175,33 @@ final class NetworkScanner {
         hosts.sort { (IPv4Addr($0.address)?.value ?? 0) < (IPv4Addr($1.address)?.value ?? 0) }
     }
 
+    /// The sweep has just made the phone talk to every host in the network, which is what fills
+    /// the neighbour table. Reading it then gives each host its hardware address — and finds the
+    /// hosts that answered nothing at all but did answer the question „who has this address".
+    private func attachHardwareAddresses(subnet: IPv4Subnet, own: IPv4Addr) {
+        let table = ARPCache.read()
+        guard !table.isEmpty else { return }
+        for (address, mac) in table {
+            guard let ip = IPv4Addr(address), ip != own, subnet.contains(ip) else { continue }
+            merge(HostRecord(address: address, sources: ["arp"], mac: mac.description))
+        }
+        for index in hosts.indices where hosts[index].guess == .unknown {
+            if let mac = hosts[index].mac.flatMap({ MACAddress($0) }), let vendor = VendorLookup.registered(mac),
+               let guess = DeviceClassifier.guess(vendor: vendor) {
+                hosts[index].guess = guess
+            }
+        }
+    }
+
     private func update(_ value: Double, _ phase: NetworkScanEngine.Phase) {
         progress = max(progress, value)
         self.phase = phase
     }
 
     private func finish(_ found: [HostRecord], cancelled: Bool, name: String, subnet: IPv4Subnet,
-                        gateway: IPv4Addr?, inventory: NetworkInventoryStore) {
+                        own: IPv4Addr, gateway: IPv4Addr?, inventory: NetworkInventoryStore) {
         for record in found { merge(record) }
+        attachHardwareAddresses(subnet: subnet, own: own)
         progress = 1
         state = .finished
         task = nil

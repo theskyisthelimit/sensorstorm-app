@@ -22,6 +22,12 @@
             "value" : "Sensorstorm læser NFC-mærkater på objekter, du kontrollerer, og indsætter id'et i observationen."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm διαβάζει αυτοκόλλητα NFC σε αντικείμενα που ελέγχεις και καταχωρίζει το αναγνωριστικό στην παρατήρηση."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -511,6 +517,12 @@
             "value" : "Sensorstorm læser efter ønske puls, vejrtrækning, ilt, skridt og løbemetrikker fra tidsrummet for en optagelse og lægger dem ved siden af de øvrige målinger. Der skrives intet i Sundhed."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm διαβάζει, όταν το ζητήσεις, καρδιακούς παλμούς, αναπνοή, οξυγόνο, βήματα και μετρικές τρεξίματος από τον χρόνο μιας εγγραφής και τα τοποθετεί δίπλα στις υπόλοιπες τιμές μέτρησης. Τίποτα δεν γράφεται στην Υγεία."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -669,6 +681,12 @@
             "value" : "Sensorstorm læser efter ønske temperatur, fugtighed, CO₂ og lys fra sensorerne i dit hjem, så længe en optagelse kører."
           }
         },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm διαβάζει, όταν το ζητήσεις, θερμοκρασία, υγρασία, CO₂ και φως από τους αισθητήρες του σπιτιού σου όσο τρέχει μια εγγραφή."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -822,6 +840,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm sender målingerne til den adresse, du angiver i Indstillinger, og søger efter ønske efter enheder på dit eget netværk. Begge dele kræver denne tilladelse."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm στέλνει τις τιμές μέτρησης στη διεύθυνση που καταχωρίζεις στις Ρυθμίσεις και, όταν το ζητήσεις, αναζητά συσκευές στο δικό σου δίκτυο. Και τα δύο χρειάζονται αυτή την άδεια."
           }
         },
         "en" : {
@@ -1645,6 +1669,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sensorstorm måler efter ønske med ultrabredbånd afstand og retning til en anden iPhone, som kører Sensorstorm."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Το Sensorstorm μετρά, όταν το ζητήσεις, με υπερευρεία ζώνη την απόσταση και την κατεύθυνση προς ένα δεύτερο iPhone στο οποίο τρέχει το Sensorstorm."
           }
         },
         "en" : {
