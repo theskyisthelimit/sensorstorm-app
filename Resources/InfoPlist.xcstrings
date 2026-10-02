@@ -357,6 +357,9 @@
         }
       }
     },
+    "NSHealthUpdateUsageDescription" : {
+      "comment" : "Privacy - Health Update Usage Description"
+    },
     "NSHomeKitUsageDescription" : {
       "comment" : "Privacy - HomeKit Usage Description",
       "localizations" : {

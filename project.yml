@@ -142,6 +142,11 @@ targets:
           Sensorstorm liest auf Wunsch Puls, Atmung, Sauerstoff, Schritte und Laufmetriken aus
           der Zeit einer Aufnahme und legt sie neben die übrigen Messwerte. Es wird nichts in
           Health geschrieben.
+        # Required as soon as the HealthKit entitlement is in the bundle, even when the app only
+        # reads: App Store validation rejects the upload otherwise (the watch app lost build 9 to it).
+        NSHealthUpdateUsageDescription: >-
+          Sensorstorm schreibt nichts in „Health". Gelesene Werte werden nur zusammen mit den
+          übrigen Messwerten in der Aufnahme abgelegt.
         NSHomeKitUsageDescription: >-
           Sensorstorm liest auf Wunsch Temperatur, Feuchte, CO₂ und Licht aus den Sensoren
           deines Zuhauses, solange eine Aufnahme läuft.
