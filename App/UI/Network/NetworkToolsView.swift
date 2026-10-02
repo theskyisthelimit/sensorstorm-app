@@ -495,7 +495,7 @@ final class DNSModel {
                     }
                 }
                 var collected: [DNSOutcome] = []
-                for await outcome in group { collected.append(outcome) }
+                for await outcome in group { if let outcome { collected.append(outcome) } }
                 return collected
             }
             guard let self else { return }

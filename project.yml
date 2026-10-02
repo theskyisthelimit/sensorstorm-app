@@ -50,6 +50,10 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: "NO"
         CODE_SIGN_ENTITLEMENTS: Resources/Sensorstorm.entitlements
+        # <resolv.h> is in no module the SDK ships for iOS; one small C file reads the system's
+        # DNS servers and the bridging header makes it visible to Swift.
+        SWIFT_OBJC_BRIDGING_HEADER: App/Bridging/Sensorstorm-Bridging-Header.h
+        OTHER_LDFLAGS: "$(inherited) -lresolv"
       # Nur Release, damit der Simulator-Build weiter ohne Signatur durchläuft. Je Ziel,
       # weil ein Profilname auf der Kommandozeile für alle Ziele gilt und die Uhr ihr
       # eigenes braucht. Steht er nirgends, archiviert xcodebuild ohne Berechtigungen

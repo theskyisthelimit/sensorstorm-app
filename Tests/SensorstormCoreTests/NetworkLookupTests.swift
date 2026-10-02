@@ -100,7 +100,7 @@ struct NetworkLookupTests {
     func arpMalformed() {
         #expect(ARPTable.parse([]).isEmpty)
         #expect(ARPTable.parse([UInt8](repeating: 0, count: 200)).isEmpty)
-        let good = message(ip: [10, 0, 0, 2], mac: [1, 2, 3, 4, 5, 6])
+        let good = message(ip: [10, 0, 0, 2], mac: [0x00, 0x1B, 0x63, 4, 5, 6])
         #expect(ARPTable.parse(good + [0xFF, 0xFF] + [UInt8](repeating: 0, count: 100)).count == 1)
         #expect(ARPTable.parse(Array(good.dropLast(5))).isEmpty)
     }

@@ -60,28 +60,14 @@ enum VendorLookup {
 
 enum SystemDNS {
     /// The resolvers the system is configured with: what the router or the carrier handed out.
+    /// Read by a small C function (`App/Bridging`), because `<resolv.h>` is not visible to Swift.
     static func servers() -> [String] {
-        var state = __res_9_state()
-        guard res_9_ninit(&state) == 0 else { return [] }
-        defer { res_9_ndestroy(&state) }
-        let capacity = 8
-        var found = [res_9_sockaddr_union](repeating: res_9_sockaddr_union(), count: capacity)
-        let count = Int(res_9_getservers(&state, &found, Int32(capacity)))
+        var buffer = [CChar](repeating: 0, count: 512)
+        guard sensorstorm_copy_dns_servers(&buffer, buffer.count) > 0 else { return [] }
+        let bytes = buffer.prefix { $0 != 0 }.map { UInt8(bitPattern: $0) }
         var servers: [String] = []
-        for index in 0..<min(count, capacity) {
-            var entry = found[index]
-            let length = entry.sin.sin_len == 0 ? socklen_t(MemoryLayout<sockaddr_in>.size)
-                                                 : socklen_t(entry.sin.sin_len)
-            var buffer = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-            let status = withUnsafePointer(to: &entry) { pointer in
-                pointer.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                    getnameinfo($0, length, &buffer, socklen_t(buffer.count), nil, 0, NI_NUMERICHOST)
-                }
-            }
-            if status == 0 {
-                let text = String(cString: buffer)
-                if !servers.contains(text) { servers.append(text) }
-            }
+        for line in String(decoding: bytes, as: UTF8.self).split(separator: "\n") where !servers.contains(String(line)) {
+            servers.append(String(line))
         }
         return servers
     }

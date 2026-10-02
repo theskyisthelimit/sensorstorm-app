@@ -35,6 +35,26 @@ public enum HexCoding {
         String(data.map { $0 >= 0x20 && $0 < 0x7F ? Character(UnicodeScalar($0)) : "." })
     }
 
+    /// A hex dump: an offset, `width` bytes in hex and the printable reading, one line each.
+    ///
+    ///     0000  48 65 6C 6C 6F 20 77 6F 72 6C 64 21 00 00 00 00  Hello world!....
+    ///
+    /// `firstOffset` shifts the offsets, so a window of a larger memory keeps its addresses.
+    public static func dump(_ data: Data, width: Int = 16, firstOffset: Int = 0) -> String {
+        let width = max(width, 1)
+        let bytes = [UInt8](data)
+        var lines: [String] = []
+        var start = 0
+        while start < bytes.count {
+            let row = Array(bytes[start..<min(start + width, bytes.count)])
+            let hex = row.map { String(format: "%02X", $0) }.joined(separator: " ")
+            let padding = String(repeating: "   ", count: width - row.count)
+            lines.append(String(format: "%04X  ", firstOffset + start) + hex + padding + "  " + ascii(Data(row)))
+            start += width
+        }
+        return lines.joined(separator: "\n")
+    }
+
     /// A number as the bytes a characteristic takes.
     public static func bytes(of value: UInt64, width: Int, bigEndian: Bool) -> Data {
         var out = (0..<max(width, 1)).map { UInt8(truncatingIfNeeded: value >> (8 * UInt64($0))) }
