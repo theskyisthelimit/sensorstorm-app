@@ -193,7 +193,7 @@ struct NFCToolView: View {
         } header: {
             Text("Speicher")
         } footer: {
-            Text("Der ganze Speicher des Chips, vier Byte je Seite. Seite 3 enthält die Größe, ab Seite 4 steht der Inhalt. Geschützte Bereiche fehlen.")
+            Text("Der ganze Speicher des Chips, vier Byte je Seite. Seite 3 enthält die Grösse, ab Seite 4 steht der Inhalt. Geschützte Bereiche fehlen.")
         }
     }
 }

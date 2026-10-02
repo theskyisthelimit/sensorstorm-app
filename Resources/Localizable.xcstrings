@@ -16086,6 +16086,9 @@
         }
       }
     },
+    "Alle Funde löschen?" : {
+      "extractionState" : "manual"
+    },
     "Alle Geräte in Reichweite mit Signal, Paketen und Diensten. Ein Tipp öffnet das Gerät, und wo es sich verbinden lässt, zeigt der Explorer, was es kann." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -18336,6 +18339,9 @@
         }
       }
     },
+    "Alles löschen" : {
+      "extractionState" : "manual"
+    },
     "Allgemein" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -18496,6 +18502,9 @@
           }
         }
       }
+    },
+    "Als" : {
+      "extractionState" : "manual"
     },
     "Als Beobachtung" : {
       "extractionState" : "manual",
@@ -33791,6 +33800,9 @@
         }
       }
     },
+    "Benachrichtigung nur verschlüsselt" : {
+      "extractionState" : "manual"
+    },
     "Benutzername" : {
       "localizations" : {
         "ar" : {
@@ -38125,6 +38137,12 @@
         }
       }
     },
+    "Bestätigte Benachrichtigung" : {
+      "extractionState" : "manual"
+    },
+    "Bestätigte Benachrichtigung nur verschlüsselt" : {
+      "extractionState" : "manual"
+    },
     "Betreff" : {
       "extractionState" : "manual"
     },
@@ -39735,6 +39753,9 @@
           }
         }
       }
+    },
+    "Binär" : {
+      "extractionState" : "manual"
     },
     "Bleiben auf diesem Telefon und gelten für dieses Netz. Liest iOS die Hardware-Adresse nicht aus, kann sie hier eingetragen werden, zum Beispiel für Wake-on-LAN." : {
       "extractionState" : "manual"
@@ -54877,7 +54898,7 @@
         }
       }
     },
-    "Der ganze Speicher des Chips, vier Byte je Seite. Seite 3 enthält die Größe, ab Seite 4 steht der Inhalt. Geschützte Bereiche fehlen." : {
+    "Der ganze Speicher des Chips, vier Byte je Seite. Seite 3 enthält die Grösse, ab Seite 4 steht der Inhalt. Geschützte Bereiche fehlen." : {
       "extractionState" : "manual"
     },
     "Details" : {
@@ -81445,6 +81466,9 @@
         }
       }
     },
+    "Funde mitschreiben" : {
+      "extractionState" : "manual"
+    },
     "Funk" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -83375,6 +83399,9 @@
           }
         }
       }
+    },
+    "Ganzzahl mit Vorzeichen" : {
+      "extractionState" : "manual"
     },
     "Gebiet der Route" : {
       "extractionState" : "manual",
@@ -103375,6 +103402,9 @@
         }
       }
     },
+    "Kein Fund passt zum Filter." : {
+      "extractionState" : "manual"
+    },
     "Kein Gurt, Leistungsmesser oder Laufsensor in Reichweite." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118511,6 +118541,9 @@
         }
       }
     },
+    "Mindestens" : {
+      "extractionState" : "manual"
+    },
     "Mindestens 3 Punkte antippen oder ablaufen" : {
       "localizations" : {
         "ar" : {
@@ -127700,6 +127733,9 @@
         }
       }
     },
+    "Noch keine Funde." : {
+      "extractionState" : "manual"
+    },
     "Noch nicht geprüft" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -129472,6 +129508,9 @@
           }
         }
       }
+    },
+    "Nur mit Namen" : {
+      "extractionState" : "manual"
     },
     "Nur offene" : {
       "extractionState" : "manual",
@@ -135180,6 +135219,9 @@
           }
         }
       }
+    },
+    "Position Quality" : {
+      "extractionState" : "manual"
     },
     "Position wird gesucht …" : {
       "localizations" : {
@@ -152233,6 +152275,12 @@
         }
       }
     },
+    "So nicht lesbar" : {
+      "extractionState" : "manual"
+    },
+    "Solange der Scanner offen ist, merkt sich die App jedes gehörte Gerät mit der Zeit des ersten und des letzten Pakets und mit der Signalstärke. Die Liste bleibt auf diesem Telefon." : {
+      "extractionState" : "manual"
+    },
     "Soll" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -153365,6 +153413,9 @@
           }
         }
       }
+    },
+    "Standard" : {
+      "extractionState" : "manual"
     },
     "Standort" : {
       "extractionState" : "manual",
@@ -166588,6 +166639,9 @@
           }
         }
       }
+    },
+    "Verlauf der Funde" : {
+      "extractionState" : "manual"
     },
     "Verlauf zurücksetzen" : {
       "extractionState" : "manual",

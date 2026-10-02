@@ -22,6 +22,23 @@ struct GATTCharacteristicInfo: Sendable, Identifiable, Equatable {
     enum Property: String, Sendable, CaseIterable {
         case broadcast, read, writeWithoutResponse, write, notify, indicate
         case authenticatedSignedWrites, extendedProperties
+        case notifyEncryptionRequired, indicateEncryptionRequired
+
+        /// The short mark BLE tools put on a characteristic: R, W, WWR, N, I and so on.
+        var badge: String {
+            switch self {
+            case .broadcast: "BC"
+            case .read: "R"
+            case .writeWithoutResponse: "WWR"
+            case .write: "W"
+            case .notify: "N"
+            case .indicate: "I"
+            case .authenticatedSignedWrites: "ASW"
+            case .extendedProperties: "EXT"
+            case .notifyEncryptionRequired: "NENC"
+            case .indicateEncryptionRequired: "IENC"
+            }
+        }
     }
 
     var name: String? { BluetoothNames.characteristic(uuid) }
@@ -51,6 +68,8 @@ struct GATTCharacteristicInfo: Sendable, Identifiable, Equatable {
         if raw.contains(.indicate) { result.append(.indicate) }
         if raw.contains(.authenticatedSignedWrites) { result.append(.authenticatedSignedWrites) }
         if raw.contains(.extendedProperties) { result.append(.extendedProperties) }
+        if raw.contains(.notifyEncryptionRequired) { result.append(.notifyEncryptionRequired) }
+        if raw.contains(.indicateEncryptionRequired) { result.append(.indicateEncryptionRequired) }
         return result
     }
 }
