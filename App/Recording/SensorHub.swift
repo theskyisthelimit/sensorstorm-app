@@ -56,7 +56,14 @@ final class SensorHub {
     private(set) var bluetoothServiceSubscribers = 0
     private(set) var peers: [PeerLink.Peer] = []
     private(set) var peerStatus: PeerLink.Status = .idle
-    private(set) var peerConnection: PeerLink.Connection?
+    private(set) var peerConnection: PeerLink.Connection? {
+        didSet {
+            // A phone just connected: swap ultra-wideband tokens if that was asked for.
+            guard peerConnection != nil, oldValue == nil, settings.isOn(.uwb),
+                  let token = nearbyLink.prepare() else { return }
+            peerLink.exchangeNearbyToken(token)
+        }
+    }
 
     var settings: RecordingSettings {
         didSet {
@@ -102,6 +109,7 @@ final class SensorHub {
     private let extraSources: ExtraSourcesController
     private let peripheralService = BLEPeripheralService()
     private let eventRecorder: EventRecorder
+    private let nearbyLink: NearbyLink
     let peerLink: PeerLink
     private let watchLink: WatchLink
     let streamer: LiveStreamer
@@ -144,6 +152,7 @@ final class SensorHub {
         self.extraSources = ExtraSourcesController(sink: sink)
         self.peerLink = PeerLink(sink: sink)
         self.eventRecorder = EventRecorder(store: store, device: Self.deviceInfo())
+        self.nearbyLink = NearbyLink(sink: sink)
         self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
@@ -196,6 +205,12 @@ final class SensorHub {
         peerLink.onConnection = { [weak self] connection in
             Task { @MainActor in self?.peerConnection = connection }
         }
+        peerLink.onNearbyToken = { [weak self] token in
+            Task { @MainActor in self?.startNearby(with: token) }
+        }
+        peripheralService.onNearbyToken = { [weak self] token in
+            Task { @MainActor in self?.startNearby(with: token) }
+        }
         streamer.mqtt.onMessage = { [weak self] topic, payload in
             Task { @MainActor in self?.receive(topic: topic, payload: payload) }
         }
@@ -220,7 +235,14 @@ final class SensorHub {
         eventRecorder.configure(active ? settings.eventConfiguration : nil)
     }
 
+    private func startNearby(with token: Data) {
+        guard settings.isOn(.uwb) else { return }
+        nearbyLink.start(peerToken: token, name: peerConnection?.name ?? "iPhone")
+    }
+
     private func updatePeripheral() {
+        peripheralService.setNearbyToken(settings.offersBluetoothService && settings.isOn(.uwb)
+                                         ? nearbyLink.prepare() : nil)
         if settings.offersBluetoothService {
             peripheralService.start(allowsControl: settings.allowsBluetoothControl)
         } else {

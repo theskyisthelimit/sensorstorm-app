@@ -21,6 +21,9 @@ final class BLEPeripheralService: NSObject, CBPeripheralManagerDelegate, @unchec
     static var stateUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000002") }
     static var controlUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000003") }
     static var clockUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000004") }
+    /// Ultra-wideband discovery token: read to get this phone's, write to hand over the
+    /// other's.
+    static var nearbyUUID: CBUUID { CBUUID(string: "53454E53-4F52-5354-4F52-4D5000000005") }
 
     /// A sensor's characteristic id: a hash of its name, so that adding a sensor to the app
     /// never renumbers the others. FNV-1a, 32 bit.
@@ -60,14 +63,29 @@ final class BLEPeripheralService: NSObject, CBPeripheralManagerDelegate, @unchec
     var onControl: (@Sendable (Command) -> Void)?
     /// How many different devices are subscribed to anything.
     var onSubscribers: (@Sendable (Int) -> Void)?
+    /// The other phone's ultra-wideband token, written to the nearby characteristic.
+    var onNearbyToken: (@Sendable (Data) -> Void)?
+
+    /// This phone's ultra-wideband token, served on read. Set before the service starts.
+    func setNearbyToken(_ token: Data?) {
+        queue.async { [self] in
+            // The service is rebuilt only when this really changed: every rebuild drops the
+            // connections, and this is called whenever any setting is written.
+            guard nearbyToken != token else { return }
+            nearbyToken = token
+            if manager?.state == .poweredOn, let manager { publishService(on: manager) }
+        }
+    }
+    private var nearbyToken: Data?
 
     func start(allowsControl: Bool) {
         queue.async { [self] in
+            let changed = self.allowsControl != allowsControl
             self.allowsControl = allowsControl
             if let manager {
-                // Settings changed while running: the service is rebuilt so the control
-                // characteristic appears or goes.
-                if manager.state == .poweredOn { publishService(on: manager) }
+                // The control characteristic appears or goes: the service is rebuilt, but only
+                // then — a rebuild drops every connection, and this runs on every settings write.
+                if changed, manager.state == .poweredOn { publishService(on: manager) }
                 return
             }
             manager = CBPeripheralManager(delegate: self, queue: queue)
@@ -144,6 +162,11 @@ final class BLEPeripheralService: NSObject, CBPeripheralManagerDelegate, @unchec
         if allowsControl {
             characteristics.append(CBMutableCharacteristic(type: Self.controlUUID, properties: [.write], value: nil,
                                                            permissions: [.writeable]))
+            if nearbyToken != nil {
+                characteristics.append(CBMutableCharacteristic(
+                    type: Self.nearbyUUID, properties: [.read, .write], value: nil,
+                    permissions: [.readable, .writeable]))
+            }
         }
         service.characteristics = characteristics
         valueCharacteristics = byID
@@ -175,6 +198,8 @@ final class BLEPeripheralService: NSObject, CBPeripheralManagerDelegate, @unchec
             value = Self.bytes(HostClock.now)
         case Self.stateUUID:
             value = stateData
+        case Self.nearbyUUID:
+            value = nearbyToken
         default:
             if let sensor = Self.sensor(for: request.characteristic.uuid) { value = latest[sensor] ?? Data() }
         }
@@ -196,8 +221,12 @@ final class BLEPeripheralService: NSObject, CBPeripheralManagerDelegate, @unchec
             peripheral.respond(to: first, withResult: .writeNotPermitted)
             return
         }
-        for request in requests where request.characteristic.uuid == Self.controlUUID {
-            if let code = request.value?.first, let command = Command(rawValue: code) { onControl?(command) }
+        for request in requests {
+            if request.characteristic.uuid == Self.controlUUID {
+                if let code = request.value?.first, let command = Command(rawValue: code) { onControl?(command) }
+            } else if request.characteristic.uuid == Self.nearbyUUID, let token = request.value {
+                onNearbyToken?(token)
+            }
         }
         peripheral.respond(to: first, withResult: .success)
     }

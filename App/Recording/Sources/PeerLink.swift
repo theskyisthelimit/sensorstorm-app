@@ -54,6 +54,8 @@ final class PeerLink: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, 
     var onPeers: (@Sendable ([Peer]) -> Void)?
     var onStatus: (@Sendable (Status) -> Void)?
     var onConnection: (@Sendable (Connection?) -> Void)?
+    /// The other phone's ultra-wideband token, read from its nearby characteristic.
+    var onNearbyToken: (@Sendable (Data) -> Void)?
 
     init(sink: SampleSink) {
         self.sink = sink
@@ -116,6 +118,16 @@ final class PeerLink: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, 
         queue.async { [self] in
             guard let peripheral, let control = characteristics[BLEPeripheralService.controlUUID] else { return }
             peripheral.writeValue(Data([command.rawValue]), for: control, type: .withResponse)
+        }
+    }
+
+    /// Swaps ultra-wideband tokens: writes this phone's and reads the other's. Needs the other
+    /// phone to allow control, which is also what lets it start a ranging session.
+    func exchangeNearbyToken(_ own: Data) {
+        queue.async { [self] in
+            guard let peripheral, let nearby = characteristics[BLEPeripheralService.nearbyUUID] else { return }
+            peripheral.writeValue(own, for: nearby, type: .withResponse)
+            peripheral.readValue(for: nearby)
         }
     }
 
@@ -219,6 +231,8 @@ final class PeerLink: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate, 
             } else {
                 finishSync(on: peripheral)
             }
+        } else if characteristic.uuid == BLEPeripheralService.nearbyUUID {
+            onNearbyToken?(data)
         } else if characteristic.uuid == BLEPeripheralService.stateUUID {
             peerRecording = data.first == 1
             publishConnection(peripheral)

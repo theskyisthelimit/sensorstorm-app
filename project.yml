@@ -145,6 +145,9 @@ targets:
         NSHomeKitUsageDescription: >-
           Sensorstorm liest auf Wunsch Temperatur, Feuchte, CO₂ und Licht aus den Sensoren
           deines Zuhauses, solange eine Aufnahme läuft.
+        NSNearbyInteractionUsageDescription: >-
+          Sensorstorm misst auf Wunsch mit Ultrabreitband Abstand und Richtung zu einem
+          zweiten iPhone, auf dem Sensorstorm läuft.
         NFCReaderUsageDescription: >-
           Sensorstorm liest NFC-Aufkleber an Objekten, die du kontrollierst, und trägt die
           Kennung in die Beobachtung ein.

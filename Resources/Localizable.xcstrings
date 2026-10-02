@@ -45599,6 +45599,9 @@
     "Misst Signal und Entfernung zu iBeacons mit den eingetragenen Kennungen. Nur im Vordergrund." : {
       "extractionState" : "manual"
     },
+    "Misst mit Ultrabreitband Abstand und Richtung zu einem zweiten iPhone, auf Zentimeter genau. Beide Telefone brauchen Ultrabreitband und die Verbindung unter „Bluetooth-Dienst und zweites iPhone“." : {
+      "extractionState" : "manual"
+    },
     "Misst mit dem LiDAR den Abstand zur Bildmitte, bis etwa fünf Meter. Braucht ein Gerät mit LiDAR und die Aufnahme mit ARKit." : {
       "extractionState" : "manual"
     },
@@ -59025,6 +59028,12 @@
       "extractionState" : "manual"
     },
     "Typ" : {
+      "extractionState" : "manual"
+    },
+    "UWB-Abstand zu %@" : {
+      "extractionState" : "manual"
+    },
+    "UWB-Abstand zum zweiten iPhone" : {
       "extractionState" : "manual"
     },
     "Uhrversatz" : {
