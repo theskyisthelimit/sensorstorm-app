@@ -23,6 +23,9 @@ struct RecordView: View {
                     if hub.phase == .recording {
                         annotationRow
                     }
+                    if hub.isLocationAccuracyReduced && hub.settings.isEnabled(.location) {
+                        ReducedAccuracyNotice()
+                    }
                     liveSection
                 }
                 .padding(.horizontal, 16)

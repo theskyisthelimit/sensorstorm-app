@@ -206,6 +206,67 @@ public enum PositionSource: String, Codable, Sendable, Hashable, CaseIterable {
     case manual
 }
 
+/// What has happened to a case since it was written down.
+///
+/// A list of damages is only half of what a works depot needs; the other half is which of
+/// them are dealt with. Four states rather than two: „planned“ is the one that stops the
+/// same pothole being sent out twice, and „no action“ is a decision that has to be visible
+/// as one, not hidden as „resolved“.
+public enum FindingStatus: String, Codable, Sendable, Hashable, CaseIterable {
+    case open
+    case scheduled
+    case resolved
+    case noAction
+
+    /// Whether the case still wants someone to go there.
+    public var isOutstanding: Bool {
+        self == .open || self == .scheduled
+    }
+}
+
+/// Where a case is in the terms an office assigns work in: street and number rather than
+/// a coordinate.
+///
+/// Looked up, never typed by hand, and only when the user switched the lookup on — it sends
+/// the coordinate to a third party. Which one is kept in ``source``, because Apple's
+/// geocoder and the Swiss federal building register do not always agree on a house number.
+public struct PostalAddress: Codable, Sendable, Hashable {
+    public var street: String?
+    public var houseNumber: String?
+    public var postcode: String?
+    public var locality: String?
+    /// ISO 3166 country code.
+    public var country: String?
+    /// Eidgenössischer Gebäudeidentifikator — the federal register's number for the nearest
+    /// building. Only from the swisstopo lookup, only in Switzerland.
+    public var egid: Int?
+    /// `apple` or `swisstopo`.
+    public var source: String
+
+    public init(street: String? = nil, houseNumber: String? = nil, postcode: String? = nil,
+                locality: String? = nil, country: String? = nil, egid: Int? = nil,
+                source: String) {
+        self.street = street
+        self.houseNumber = houseNumber
+        self.postcode = postcode
+        self.locality = locality
+        self.country = country
+        self.egid = egid
+        self.source = source
+    }
+
+    /// „Bahnhofstrasse 12, 3011 Bern“ — what goes into a list or a report heading.
+    public var singleLine: String {
+        let streetPart = [street, houseNumber].compactMap { $0 }.filter { !$0.isEmpty }
+            .joined(separator: " ")
+        let placePart = [postcode, locality].compactMap { $0 }.filter { !$0.isEmpty }
+            .joined(separator: " ")
+        return [streetPart, placePart].filter { !$0.isEmpty }.joined(separator: ", ")
+    }
+
+    public var isEmpty: Bool { singleLine.isEmpty && egid == nil }
+}
+
 /// One photo or one clip belonging to a case.
 ///
 /// A case is not one picture. A pothole gets an overview, a close-up, a shot with a ruler
@@ -225,16 +286,25 @@ public struct CaseMedia: Codable, Sendable, Hashable, Identifiable {
     /// Clip length in seconds; `nil` for photos.
     public var duration: TimeInterval?
     public var note: String
+    /// Before or after the repair. `nil` for everything taken while documenting — which is
+    /// every photo written before the field existed.
+    public var role: Role?
+
+    public enum Role: String, Codable, Sendable, Hashable, CaseIterable {
+        case before
+        case after
+    }
 
     public init(id: UUID = UUID(), kind: Kind, fileName: String,
                 capturedAt: Date = Date(), duration: TimeInterval? = nil,
-                note: String = "") {
+                note: String = "", role: Role? = nil) {
         self.id = id
         self.kind = kind
         self.fileName = fileName
         self.capturedAt = capturedAt
         self.duration = duration
         self.note = note
+        self.role = role
     }
 
     public static func fileName(for id: UUID, kind: Kind) -> String {
@@ -281,6 +351,14 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
     public var area: FindingArea?
     /// The recording this case was documented during, when there was one.
     public var recordingID: UUID?
+    /// Open until somebody says otherwise. See ``FindingStatus``.
+    public var status: FindingStatus
+    /// When ``status`` last changed. `nil` while the case is as it was captured.
+    public var statusChangedAt: Date?
+    /// What was done, or why nothing was — the line a supervisor reads next to „resolved“.
+    public var resolutionNote: String
+    /// Street and number, when the lookup was switched on and found one.
+    public var address: PostalAddress?
 
     public init(id: UUID = UUID(),
                 capturedAt: Date = Date(),
@@ -295,7 +373,11 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
                 note: String = "",
                 media: [CaseMedia] = [],
                 area: FindingArea? = nil,
-                recordingID: UUID? = nil) {
+                recordingID: UUID? = nil,
+                status: FindingStatus = .open,
+                statusChangedAt: Date? = nil,
+                resolutionNote: String = "",
+                address: PostalAddress? = nil) {
         self.id = id
         self.capturedAt = capturedAt
         self.hostTime = hostTime
@@ -310,6 +392,10 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
         self.media = media
         self.area = area
         self.recordingID = recordingID
+        self.status = status
+        self.statusChangedAt = statusChangedAt
+        self.resolutionNote = resolutionNote
+        self.address = address
     }
 
     /// Out-of-range severities are clamped rather than rejected: a file written by an older
@@ -336,6 +422,20 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
         media = try container.decodeIfPresent([CaseMedia].self, forKey: .media) ?? []
         area = try container.decodeIfPresent(FindingArea.self, forKey: .area)
         recordingID = try container.decodeIfPresent(UUID.self, forKey: .recordingID)
+        // Everything written before the status existed was, by definition, still open.
+        status = try container.decodeIfPresent(FindingStatus.self, forKey: .status) ?? .open
+        statusChangedAt = try container.decodeIfPresent(Date.self, forKey: .statusChangedAt)
+        resolutionNote = try container.decodeIfPresent(String.self, forKey: .resolutionNote) ?? ""
+        address = try container.decodeIfPresent(PostalAddress.self, forKey: .address)
+    }
+
+    // MARK: - Status
+
+    /// Changes the status and stamps the moment, unless nothing changed.
+    public mutating func setStatus(_ newStatus: FindingStatus, at date: Date = Date()) {
+        guard newStatus != status else { return }
+        status = newStatus
+        statusChangedAt = date
     }
 
     // MARK: - Media
@@ -466,6 +566,11 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
 
     public var worstSeverity: Int? {
         findings.map(\.severity).max()
+    }
+
+    /// Cases still waiting for someone — open or planned.
+    public var outstandingCount: Int {
+        findings.count { $0.status.isOutstanding }
     }
 
     public var averageSeverity: Double? {

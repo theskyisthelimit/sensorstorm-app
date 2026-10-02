@@ -53,7 +53,8 @@ final class MotionSource: SensorSource, @unchecked Sendable {
         if manager.isGyroAvailable { result.insert(.gyroscope) }
         if manager.isMagnetometerAvailable { result.insert(.magnetometer) }
         if manager.isDeviceMotionAvailable {
-            result.formUnion([.userAcceleration, .gravity, .rotationRate, .orientation, .magneticField])
+            result.formUnion([.userAcceleration, .gravity, .rotationRate, .orientation, .magneticField,
+                              .verticalAcceleration])
         }
         if CMAltimeter.isRelativeAltitudeAvailable() { result.insert(.barometer) }
         if CMPedometer.isStepCountingAvailable() { result.insert(.pedometer) }
@@ -173,7 +174,8 @@ final class MotionSource: SensorSource, @unchecked Sendable {
     // MARK: - Private
 
     private static let deviceMotionSensors: Set<SensorID> =
-        [.userAcceleration, .gravity, .rotationRate, .orientation, .magneticField]
+        [.userAcceleration, .gravity, .rotationRate, .orientation, .magneticField,
+         .verticalAcceleration]
 
     private func startDeviceMotionIfNeeded(wanted: Set<SensorID>, interval: TimeInterval) {
         let fused = wanted.intersection(Self.deviceMotionSensors)
@@ -213,6 +215,16 @@ final class MotionSource: SensorSource, @unchecked Sendable {
                     attitude.roll.degrees, attitude.pitch.degrees, attitude.yaw.degrees,
                     q.x, q.y, q.z, q.w
                 ])
+            }
+            if fused.contains(.verticalAcceleration) {
+                // From the same sample as the two inputs, so the split never mixes the
+                // acceleration of one instant with the gravity of the next.
+                let user = SIMD3(motion.userAcceleration.x, motion.userAcceleration.y,
+                                 motion.userAcceleration.z)
+                let down = SIMD3(motion.gravity.x, motion.gravity.y, motion.gravity.z)
+                let split = Kinematics.verticalHorizontal(user: user, gravity: down)
+                sink.ingest(.verticalAcceleration, time: time,
+                            values: [split.vertical, split.horizontal])
             }
             if fused.contains(.magneticField) {
                 let field = motion.magneticField

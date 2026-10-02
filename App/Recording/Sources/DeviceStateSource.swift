@@ -22,7 +22,7 @@ final class DeviceStateSource {
         self.sink = sink
     }
 
-    var availableSensors: Set<SensorID> { [.battery, .brightness, .network] }
+    var availableSensors: Set<SensorID> { [.battery, .brightness, .network, .thermal] }
 
     func start(sensors: Set<SensorID>) {
         active = sensors.intersection(availableSensors)
@@ -79,6 +79,15 @@ final class DeviceStateSource {
                .compactMap({ ($0 as? UIWindowScene)?.screen })
                .first {
             sink.ingest(.brightness, time: time, values: [Double(screen.brightness) * 100])
+        }
+        if active.contains(.thermal) {
+            // Sampled with the rest rather than on the notification: a curve that holds its
+            // value every second is what lines up with a dip in the frame rate afterwards.
+            let info = ProcessInfo.processInfo
+            sink.ingest(.thermal, time: time, values: [
+                Double(info.thermalState.rawValue),
+                info.isLowPowerModeEnabled ? 1 : 0
+            ])
         }
         if active.contains(.network) {
             let snapshot = pathState.snapshot()

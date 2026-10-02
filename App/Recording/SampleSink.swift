@@ -21,6 +21,8 @@ final class SampleSink: @unchecked Sendable {
     private var latest: [SensorID: LiveSample] = [:]
     private var rateEstimates: [SensorID: RateEstimator] = [:]
     private var isRecording = false
+    /// Smallest and largest value of every channel since ``drainExtremes()`` last ran.
+    private var extremes: [SensorID: ChannelRange] = [:]
 
     // MARK: - Ingest (hot path, any queue)
 
@@ -32,6 +34,12 @@ final class SampleSink: @unchecked Sendable {
         let rate = estimator.record(time: time)
         rateEstimates[sensor] = estimator
         latest[sensor] = LiveSample(values: values, hostTime: time, rateHz: rate)
+        if var range = extremes[sensor], range.minimum.count == values.count {
+            range.include(values)
+            extremes[sensor] = range
+        } else {
+            extremes[sensor] = ChannelRange(values)
+        }
         lock.unlock()
 
         // Outside the lock: the writer has its own, and file I/O must not block ingest of
@@ -56,6 +64,17 @@ final class SampleSink: @unchecked Sendable {
     func snapshot() -> [SensorID: LiveSample] {
         lock.lock(); defer { lock.unlock() }
         return latest
+    }
+
+    /// Smallest and largest value of every channel since the previous call, then starts over.
+    ///
+    /// What the rules read. The live dictionary keeps only the newest sample, and a spike of
+    /// 30 ms falls between two of the rules' 100 ms looks nine times out of ten.
+    func drainExtremes() -> [SensorID: ChannelRange] {
+        lock.lock(); defer { lock.unlock() }
+        let drained = extremes
+        extremes.removeAll(keepingCapacity: true)
+        return drained
     }
 
     func sample(for sensor: SensorID) -> LiveSample? {
@@ -104,6 +123,26 @@ final class SampleSink: @unchecked Sendable {
         let current = Array(writers.values)
         lock.unlock()
         return current.reduce(0) { $0 + $1.sampleCount }
+    }
+}
+
+/// Per-channel minimum and maximum over an interval. A channel that only delivered NaN so
+/// far stays NaN; the first finite value replaces it.
+struct ChannelRange: Sendable, Equatable {
+    var minimum: [Double]
+    var maximum: [Double]
+
+    init(_ values: [Double]) {
+        minimum = values
+        maximum = values
+    }
+
+    mutating func include(_ values: [Double]) {
+        for index in values.indices where values[index].isFinite {
+            let value = values[index]
+            minimum[index] = minimum[index].isFinite ? Swift.min(minimum[index], value) : value
+            maximum[index] = maximum[index].isFinite ? Swift.max(maximum[index], value) : value
+        }
     }
 }
 

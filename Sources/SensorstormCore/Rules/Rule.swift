@@ -66,14 +66,26 @@ public struct Rule: Codable, Sendable, Hashable, Identifiable {
 public struct RuleContext: Sendable {
     /// Newest value of every running stream.
     public var values: [SensorID: [Double]]
+    /// Smallest and largest value of every channel since the previous evaluation.
+    ///
+    /// Rules run ten times a second; a sensor at 100 Hz delivers ten samples in between, and
+    /// only the last of them is the "newest". A pothole is a spike of 20–60 ms — nine times
+    /// in ten it falls between two evaluations and the newest value never sees it. The
+    /// extremes do. A stream missing here falls back to ``values``.
+    public var minimum: [SensorID: [Double]]
+    public var maximum: [SensorID: [Double]]
     /// Seconds since the recording started.
     public var elapsed: Double
     /// Messages received since the previous evaluation.
     public var messages: [(topic: String, payload: String)]
 
     public init(values: [SensorID: [Double]], elapsed: Double,
-                messages: [(topic: String, payload: String)] = []) {
+                messages: [(topic: String, payload: String)] = [],
+                minimum: [SensorID: [Double]] = [:],
+                maximum: [SensorID: [Double]] = [:]) {
         self.values = values
+        self.minimum = minimum
+        self.maximum = maximum
         self.elapsed = elapsed
         self.messages = messages
     }
@@ -106,7 +118,12 @@ public struct RuleEngine: Sendable {
     public static func holds(_ condition: Rule.Condition, in context: RuleContext) -> Bool {
         switch condition {
         case let .value(sensor, channel, comparison, threshold):
-            guard let values = context.values[sensor], values.indices.contains(channel) else {
+            // "Above" asks whether the largest value since the last look crossed, "below"
+            // whether the smallest did — either way the question is about the interval,
+            // not about whichever sample happened to arrive last.
+            let extremes = comparison == .above ? context.maximum[sensor] : context.minimum[sensor]
+            let pool = extremes.flatMap { $0.indices.contains(channel) ? $0 : nil }
+            guard let values = pool ?? context.values[sensor], values.indices.contains(channel) else {
                 return false
             }
             let value = values[channel]

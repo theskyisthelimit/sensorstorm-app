@@ -214,6 +214,9 @@ public struct ArchiveExporter: Sendable {
             },
             manualOffsetMetres: finding.manualOffsetMetres,
             recordingID: finding.recordingID,
+            status: finding.status,
+            statusChangedAt: finding.statusChangedAt,
+            address: finding.address,
             area: finding.area.flatMap(area(for:)),
             media: finding.media.map { item in
                 ArchiveManifest.MediaEntry(
@@ -486,6 +489,9 @@ public struct ArchiveManifest: Codable, Sendable {
         public var gpsHorizontalAccuracy: Double?
         public var manualOffsetMetres: Double?
         public var recordingID: UUID?
+        public var status: FindingStatus
+        public var statusChangedAt: Date?
+        public var address: PostalAddress?
         public var area: AreaEntry?
         public var media: [MediaEntry]
     }

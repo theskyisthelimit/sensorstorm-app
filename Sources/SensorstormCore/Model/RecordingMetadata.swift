@@ -39,6 +39,10 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
     /// here so two devices that each recorded their own offset can be put on one timeline
     /// afterwards.
     public var timeReference: TimeReference?
+    /// `true` when only the approximate location was allowed while recording. The location
+    /// stream's accuracy column then reads in kilometres, and this says why. `nil` for a
+    /// recording with full accuracy, or one written before the field existed.
+    public var reducedLocationAccuracy: Bool?
 
     public init(
         id: UUID = UUID(),
@@ -56,7 +60,8 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         attitudeReferenceFrame: AttitudeReferenceFrame? = nil,
         geodeticAnchor: GeodeticAnchor? = nil,
         barometerReference: BarometerReference? = nil,
-        timeReference: TimeReference? = nil
+        timeReference: TimeReference? = nil,
+        reducedLocationAccuracy: Bool? = nil
     ) {
         self.id = id
         self.name = name
@@ -74,6 +79,7 @@ public struct RecordingMetadata: Codable, Sendable, Hashable, Identifiable {
         self.geodeticAnchor = geodeticAnchor
         self.barometerReference = barometerReference
         self.timeReference = timeReference
+        self.reducedLocationAccuracy = reducedLocationAccuracy
     }
 
     public func stream(_ sensor: SensorID) -> StreamInfo? {

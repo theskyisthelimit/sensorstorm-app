@@ -101,6 +101,53 @@ struct AutomationTests {
                                                             messages: [("other", "mark")])))
     }
 
+    @Test("Eine Spitze zwischen zwei Auswertungen löst die Regel aus")
+    func spikeBetweenLooks() {
+        let rule = Rule(name: "Schlag",
+                        conditions: [.value(sensor: .userAcceleration, channel: 2,
+                                            comparison: .above, threshold: 0.8)],
+                        actions: [.annotate(text: "")])
+        let quiet: [SensorID: [Double]] = [.userAcceleration: [0, 0, 0.02]]
+        var engine = RuleEngine()
+        // The newest sample is quiet; only the maximum since the last look saw the spike.
+        let spiked = RuleContext(values: quiet, elapsed: 1,
+                                 minimum: [.userAcceleration: [0, 0, -0.3]],
+                                 maximum: [.userAcceleration: [0.1, 0.1, 1.4]])
+        #expect(engine.evaluate([rule], context: spiked, now: 1).count == 1)
+
+        // Without extremes the newest value decides, as it always did.
+        var plain = RuleEngine()
+        #expect(plain.evaluate([rule], context: RuleContext(values: quiet, elapsed: 1), now: 1).isEmpty)
+
+        // "Below" looks at the minimum.
+        let dip = Rule(name: "Loch",
+                       conditions: [.value(sensor: .userAcceleration, channel: 2,
+                                           comparison: .below, threshold: -0.25)],
+                       actions: [.annotate(text: "")])
+        var other = RuleEngine()
+        #expect(other.evaluate([dip], context: spiked, now: 1).count == 1)
+    }
+
+    @Test("Die Vertikale hängt nicht davon ab, wie das Telefon gehalten wird")
+    func verticalSplit() {
+        // Lying flat, screen up: gravity points along -z.
+        let flat = Kinematics.verticalHorizontal(user: SIMD3(0, 0, 0.5), gravity: SIMD3(0, 0, -1))
+        #expect(abs(flat.vertical - 0.5) < 1e-12)
+        #expect(abs(flat.horizontal) < 1e-12)
+        // Upright in a holder: gravity along -y, the same upward push now arrives on y.
+        let upright = Kinematics.verticalHorizontal(user: SIMD3(0, 0.5, 0), gravity: SIMD3(0, -1, 0))
+        #expect(abs(upright.vertical - 0.5) < 1e-12)
+        // Tilted 30°: the push upwards and a sideways jolt separate cleanly.
+        let angle = Double.pi / 6
+        let gravity = SIMD3(0, -cos(angle), -sin(angle))
+        let push = SIMD3(0, cos(angle), sin(angle)) * 0.4 + SIMD3(0.3, 0, 0)
+        let tilted = Kinematics.verticalHorizontal(user: push, gravity: gravity)
+        #expect(abs(tilted.vertical - 0.4) < 1e-12)
+        #expect(abs(tilted.horizontal - 0.3) < 1e-12)
+        // No gravity reading is no answer.
+        #expect(Kinematics.verticalHorizontal(user: SIMD3(1, 0, 0), gravity: SIMD3(0, 0, 0)).vertical.isNaN)
+    }
+
     @Test("Regeln überstehen JSON")
     func rulesRoundTrip() throws {
         let rule = Rule(name: "x", conditions: [.mqtt(topic: "a", contains: "")],
@@ -159,6 +206,23 @@ struct AutomationTests {
         #expect(BLEDecoders.decode(.heartRate, Data([0x00, 72]))?.value("heartRate") == 72)
         let reading = BLEDecoders.decode(.heartRate, Data([0x10, 60, 0x00, 0x04]))
         #expect(reading?.value("rrInterval") == 1)
+    }
+
+    @Test("Jedes RR-Intervall eines Pakets bleibt erhalten, mit eigener Zeit")
+    func everyBeat() throws {
+        // 0x0400 = 1.0 s, 0x0200 = 0.5 s, 0x0300 = 0.75 s
+        let reading = try #require(BLEDecoders.decode(
+            .heartRate, Data([0x10, 80, 0x00, 0x04, 0x00, 0x02, 0x00, 0x03])))
+        #expect(reading.beats == [1.0, 0.5, 0.75])
+        #expect(reading.value("rrInterval") == 0.75)
+
+        let times = HeartBeats.times(receivedAt: 100, beats: reading.beats)
+        #expect(times.map { $0.time } == [98.75, 99.25, 100])
+        #expect(times.map { $0.interval } == [1.0, 0.5, 0.75])
+
+        #expect(HeartBeats.rmssd([1.0, 0.5]) == nil)
+        let rmssd = try #require(HeartBeats.rmssd([1.0, 0.5, 0.75]))
+        #expect(abs(rmssd - (0.3125 / 2).squareRoot()) < 1e-12)
     }
 
     @Test("Trittfrequenz aus zwei kumulativen CSC-Paketen")

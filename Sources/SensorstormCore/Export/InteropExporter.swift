@@ -99,6 +99,8 @@ public enum InteropExporter {
         case .heartRate: "HeartRate"
         case .wristMotion: "WristMotion"
         case .bluetooth: "Bluetooth"
+        case .verticalAcceleration: "VerticalAcceleration"
+        case .thermal: "ThermalState"
         }
         return "\(name).csv"
     }

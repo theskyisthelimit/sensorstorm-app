@@ -92,6 +92,8 @@ final class SurveyLocationProvider {
     /// Degrees from true north, or `nil` when the compass has nothing usable.
     private(set) var heading: Double?
     private(set) var authorization: CLAuthorizationStatus
+    /// Only the approximate location is allowed — every fix is a circle of kilometres.
+    private(set) var isAccuracyReduced = false
     private(set) var isRunning = false
 
     /// How many screens currently want the live position.
@@ -106,6 +108,7 @@ final class SurveyLocationProvider {
 
     init() {
         authorization = manager.authorizationStatus
+        isAccuracyReduced = manager.accuracyAuthorization == .reducedAccuracy
         manager.delegate = forwarder
         // The finding is a spot on the ground, not a track: best accuracy, no filtering.
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -121,6 +124,7 @@ final class SurveyLocationProvider {
         forwarder.onAuthorization = { [weak self] status in
             Task { @MainActor in
                 self?.authorization = status
+                self?.isAccuracyReduced = self?.manager.accuracyAuthorization == .reducedAccuracy
                 // Authorisation can land after start() already ran — pick the updates up then.
                 if self?.isRunning == true { self?.start() }
             }

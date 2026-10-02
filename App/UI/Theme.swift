@@ -69,6 +69,8 @@ extension SensorID {
         case .rotationRate: "Drehrate"
         case .orientation: "Orientierung"
         case .magneticField: "Magnetfeld"
+        case .verticalAcceleration: "Vertikalbeschleunigung"
+        case .thermal: "Wärmezustand"
         case .compass: "Kompass"
         case .barometer: "Barometer"
         case .location: "GPS"
@@ -107,6 +109,8 @@ extension SensorID {
         case .heartRate: "heart.fill"
         case .wristMotion: "applewatch"
         case .bluetooth: "dot.radiowaves.forward"
+        case .verticalAcceleration: "arrow.up.arrow.down"
+        case .thermal: "thermometer.medium"
         }
     }
 

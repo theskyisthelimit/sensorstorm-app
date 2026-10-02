@@ -30,6 +30,9 @@ final class SensorHub {
     private var timeReference: TimeReference?
     private(set) var live: [SensorID: LiveSample] = [:]
     private(set) var availableSensors: Set<SensorID> = []
+    /// Only the approximate location is allowed. Refreshed with the availability, which is
+    /// what an authorisation change triggers.
+    private(set) var isLocationAccuracyReduced = false
     private(set) var elapsed: TimeInterval = 0
     private(set) var writtenSampleCount = 0
     private(set) var isMonitoring = false
@@ -185,6 +188,7 @@ final class SensorHub {
         // exactly when there is a camera to write it.
         if isCameraAvailable { all.insert(.cameraPose) }
         availableSensors = all
+        isLocationAccuracyReduced = locationSource.isAccuracyReduced
     }
 
     /// The streams a recording should write: what the user armed, minus the ones the user
@@ -420,6 +424,9 @@ final class SensorHub {
         ruleLog = []
         ruleEngine = RuleEngine()
         inbox = []
+        // Spikes from the minutes the dashboard was open before the start are not this
+        // recording's business.
+        _ = sink.drainExtremes()
         await requestNotificationPermissionIfNeeded()
 
         await requestPermissions()
@@ -603,7 +610,9 @@ final class SensorHub {
             attitudeReferenceFrame: motionSource.activeReferenceFrame,
             geodeticAnchor: locationSource.geodeticAnchor,
             barometerReference: motionSource.barometerReference,
-            timeReference: timeReference
+            timeReference: timeReference,
+            reducedLocationAccuracy: isLocationAccuracyReduced && active.settings.isEnabled(.location)
+                ? true : nil
         )
 
         locationSource.setBackgroundUpdates(false)
@@ -674,8 +683,14 @@ final class SensorHub {
     private func evaluateRules() {
         let messages = inbox
         inbox.removeAll()
+        // Drained even when no rule is on, so switching one on mid-recording starts from the
+        // next interval rather than from everything since the recording began.
+        let extremes = sink.drainExtremes()
         guard rules.contains(where: \.isEnabled) else { return }
-        let context = RuleContext(values: live.mapValues(\.values), elapsed: elapsed, messages: messages)
+        let context = RuleContext(values: live.mapValues(\.values), elapsed: elapsed,
+                                  messages: messages,
+                                  minimum: extremes.mapValues(\.minimum),
+                                  maximum: extremes.mapValues(\.maximum))
         for rule in ruleEngine.evaluate(rules, context: context, now: HostClock.now) {
             for action in rule.actions {
                 perform(action, of: rule)

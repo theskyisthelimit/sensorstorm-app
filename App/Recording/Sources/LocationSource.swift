@@ -47,6 +47,13 @@ final class LocationSource: NSObject, SensorSource, CLLocationManagerDelegate, @
 
     var authorizationStatus: CLAuthorizationStatus { manager.authorizationStatus }
 
+    /// „Genauer Standort“ switched off for this app: fixes arrive with a radius of several
+    /// kilometres. Worth saying out loud — the accuracy column shows it, but nobody reads a
+    /// column before walking a street.
+    var isAccuracyReduced: Bool {
+        isAuthorized && manager.accuracyAuthorization == .reducedAccuracy
+    }
+
     var isAuthorized: Bool {
         switch authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways: true

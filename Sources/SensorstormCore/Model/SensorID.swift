@@ -14,6 +14,9 @@ public enum SensorID: String, CaseIterable, Sendable, Codable, Hashable {
     case rotationRate
     case orientation
     case magneticField
+    /// `userAcceleration` split along gravity: what goes up and down, and what goes sideways,
+    /// whatever angle the phone is mounted at. See ``Kinematics``.
+    case verticalAcceleration
 
     // Position & environment.
     case compass
@@ -32,6 +35,9 @@ public enum SensorID: String, CaseIterable, Sendable, Codable, Hashable {
     case brightness
     case network
     case bluetooth
+    /// `ProcessInfo.thermalState` and the low-power switch — the two things iOS throttles a
+    /// recording for, without saying so.
+    case thermal
 
     // Accessories.
     case headphoneOrientation
@@ -131,6 +137,16 @@ public enum SensorCatalog {
                          channels: ["x", "y", "z", "accuracy"],
                          channelUnits: ["µT", "µT", "µT", ""],
                          defaultEnabled: true, isEventDriven: false)
+        case .verticalAcceleration:
+            return .init(id: id, category: .motion, unit: "g",
+                         channels: ["vertical", "horizontal"], channelUnits: ["g", "g"],
+                         defaultEnabled: true, isEventDriven: false)
+        case .thermal:
+            // `state` is `ProcessInfo.ThermalState.rawValue`: 0 nominal, 1 fair, 2 serious,
+            // 3 critical. `lowPower` is 1 while Low Power Mode is on.
+            return .init(id: id, category: .device, unit: "",
+                         channels: ["state", "lowPower"], channelUnits: ["0–3", ""],
+                         defaultEnabled: true, isEventDriven: true)
         case .compass:
             return .init(id: id, category: .position, unit: "°",
                          channels: ["true", "magnetic", "accuracy"],

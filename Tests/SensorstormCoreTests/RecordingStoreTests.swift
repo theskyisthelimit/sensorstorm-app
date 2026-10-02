@@ -319,7 +319,9 @@ struct SensorCatalogTests {
         // A tripwire, not a fact: this line exists so that adding or removing a stream is a
         // deliberate act. A raw value is an on-disk file name, and renaming one silently
         // orphans every recording that already used it.
-        #expect(SensorID.allCases.count == 22)
+        #expect(SensorID.verticalAcceleration.rawValue == "verticalAcceleration")
+        #expect(SensorID.thermal.rawValue == "thermal")
+        #expect(SensorID.allCases.count == 24)
     }
 
     @Test("The camera pose stream carries a full pinhole camera per frame")

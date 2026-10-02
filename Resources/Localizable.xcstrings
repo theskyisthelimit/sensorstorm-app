@@ -23134,6 +23134,9 @@
         }
       }
     },
+    "Die Datei enthält keinen Decoder." : {
+      "extractionState" : "manual"
+    },
     "Die Daten bleiben in der Aufnahme" : {
       "localizations" : {
         "ar" : {
@@ -27621,6 +27624,9 @@
         }
       }
     },
+    "Einstellungen öffnen" : {
+      "extractionState" : "manual"
+    },
     "Einzelner GPS-Fix, festgehalten bei der ersten Aufnahme." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -28745,6 +28751,9 @@
           }
         }
       }
+    },
+    "Erhöht" : {
+      "extractionState" : "manual"
     },
     "Erkennt RuuviTag, BTHome (Shelly, ESPHome), Xiaomi-Thermometer mit ATC- oder pvvx-Firmware und alles, wofür eine eigene Decoder-Datei da ist. Die Werte landen während einer Aufnahme in bluetooth_sensors.csv. Läuft, solange der Aufnahme-Bildschirm offen ist." : {
       "extractionState" : "manual"
@@ -35481,6 +35490,9 @@
     "Herzfrequenzgurte, Leistungsmesser, Trittfrequenz- und Laufsensoren senden ihre Werte erst nach einer Verbindung. Ein gekoppeltes Gerät wird bei jedem Start wieder verbunden." : {
       "extractionState" : "manual"
     },
+    "Hoch" : {
+      "extractionState" : "manual"
+    },
     "Höhe" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -40947,6 +40959,9 @@
           }
         }
       }
+    },
+    "Kritisch" : {
+      "extractionState" : "manual"
     },
     "Käufe wiederherstellen" : {
       "localizations" : {
@@ -46585,6 +46600,9 @@
         }
       }
     },
+    "Normal" : {
+      "extractionState" : "manual"
+    },
     "Notiz" : {
       "localizations" : {
         "ar" : {
@@ -46744,6 +46762,9 @@
           }
         }
       }
+    },
+    "Nur ungefährer Standort" : {
+      "extractionState" : "manual"
     },
     "Nutzungsbedingungen" : {
       "localizations" : {
@@ -49871,6 +49892,9 @@
           }
         }
       }
+    },
+    "Positionen sind damit auf mehrere Kilometer ungenau. In den Einstellungen unter „Ort“ den genauen Standort einschalten." : {
+      "extractionState" : "manual"
     },
     "Pro freischalten" : {
       "localizations" : {
@@ -59510,6 +59534,9 @@
         }
       }
     },
+    "Vertikalbeschleunigung" : {
+      "extractionState" : "manual"
+    },
     "Video" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -62878,6 +62905,9 @@
           }
         }
       }
+    },
+    "Wärmezustand" : {
+      "extractionState" : "manual"
     },
     "Zeichnet zu jedem Bild Position, Blickrichtung und Brennweite auf. Das genügt, um die Bilder in Blender auf eine 3D-Karte zu legen. Das Video wird unrotiert gespeichert, damit die Brennweiten dazu passen." : {
       "localizations" : {
@@ -68494,13 +68524,10 @@
         }
       }
     },
-    "„Bei Änderung“ löst aus, sobald alle Bedingungen zutreffen, und danach erst wieder, wenn sie zwischendurch nicht mehr zutrafen – frühestens nach 5 Sekunden. „Jedes Mal“ löst aus, solange sie zutreffen, höchstens einmal pro Minute. Beides gilt je Regel." : {
-      "extractionState" : "manual"
-    },
-    "Die Datei enthält keinen Decoder." : {
-      "extractionState" : "manual"
-    },
     "„%@“ nennt weder manufacturerId noch serviceUuid noch namePrefix." : {
+      "extractionState" : "manual"
+    },
+    "„Bei Änderung“ löst aus, sobald alle Bedingungen zutreffen, und danach erst wieder, wenn sie zwischendurch nicht mehr zutrafen – frühestens nach 5 Sekunden. „Jedes Mal“ löst aus, solange sie zutreffen, höchstens einmal pro Minute. Beides gilt je Regel." : {
       "extractionState" : "manual"
     }
   },

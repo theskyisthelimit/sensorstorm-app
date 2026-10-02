@@ -29,10 +29,18 @@ public struct BLEReading: Sendable, Equatable {
 
     public var decoder: String
     public var fields: [Field]
+    /// Every RR interval the packet carried, in seconds, oldest first.
+    ///
+    /// A heart rate strap sends one notification a second, but the heart does not beat once
+    /// a second: below 60 bpm a packet holds no interval, above it often two or three. A
+    /// single "rrInterval" field can only keep one of them, and heart rate variability built
+    /// from every second beat is a different, wrong number.
+    public var beats: [Double]
 
-    public init(decoder: String, fields: [Field]) {
+    public init(decoder: String, fields: [Field], beats: [Double] = []) {
         self.decoder = decoder
         self.fields = fields
+        self.beats = beats
     }
 
     public func value(_ name: String) -> Double? {
@@ -253,11 +261,17 @@ public enum BLEDecoders {
         var fields = [BLEReading.Field("heartRate", wide ? Double(UInt16(b[2]) << 8 | UInt16(b[1])) : Double(b[1]))]
         var index = wide ? 3 : 2
         if flags & 0x08 != 0 { index += 2 }                       // energy expended
-        if flags & 0x10 != 0, b.count >= index + 2 {              // newest RR interval
-            let last = b.count - (b.count - index) % 2 - 2
-            fields.append(.init("rrInterval", Double(UInt16(b[last + 1]) << 8 | UInt16(b[last])) / 1024))
+        var beats: [Double] = []
+        if flags & 0x10 != 0 {                                    // RR intervals, oldest first
+            while index + 1 < b.count {
+                beats.append(Double(UInt16(b[index + 1]) << 8 | UInt16(b[index])) / 1024)
+                index += 2
+            }
+            // The newest one stays a field of its own, as before: live tiles and decoder
+            // files already read "rrInterval".
+            if let newest = beats.last { fields.append(.init("rrInterval", newest)) }
         }
-        return BLEReading(decoder: "Heart Rate", fields: fields)
+        return BLEReading(decoder: "Heart Rate", fields: fields, beats: beats)
     }
 
     static func cyclingPower(_ b: [UInt8]) -> BLEReading? {
@@ -304,6 +318,36 @@ public enum BLEDecoders {
             fields.append(.init("crankEventTime", Double(UInt16(b[index + 3]) << 8 | UInt16(b[index + 2]))))
         }
         return fields.isEmpty ? nil : BLEReading(decoder: "Cycling Speed and Cadence", fields: fields)
+    }
+}
+
+/// When each beat in a heart rate packet happened.
+///
+/// The packet arrives once per notification; the intervals inside it end at the newest beat,
+/// which is close enough to the moment the packet was received. Each earlier beat lies the
+/// sum of the later intervals before that. Off by the strap's own delay — tens of
+/// milliseconds, the same for every beat, so the intervals between them are exact.
+public enum HeartBeats {
+    public static func times(receivedAt time: Double, beats: [Double]) -> [(time: Double, interval: Double)] {
+        var result: [(time: Double, interval: Double)] = []
+        var end = time
+        for interval in beats.reversed() {
+            result.append((end, interval))
+            end -= interval
+        }
+        return result.reversed()
+    }
+
+    /// Root mean square of successive differences, in seconds — the standard short-term
+    /// heart rate variability figure. `nil` below three beats, where it says nothing.
+    public static func rmssd(_ intervals: [Double]) -> Double? {
+        guard intervals.count >= 3 else { return nil }
+        var sum = 0.0
+        for index in 1..<intervals.count {
+            let difference = intervals[index] - intervals[index - 1]
+            sum += difference * difference
+        }
+        return (sum / Double(intervals.count - 1)).squareRoot()
     }
 }
 

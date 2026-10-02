@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    # Work branches too: the only compiler for this project is the macOS runner, and a
+    # branch that was pushed unchecked is how `main` ended up red for four commits.
+    branches: [main, "claude/**"]
   pull_request:
 
 jobs:

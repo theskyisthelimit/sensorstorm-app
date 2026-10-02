@@ -111,6 +111,10 @@ enum Format {
             return value > 0.5 ? String(localized: "ja") : String(localized: "nein")
         case (.battery, 1):
             return BatteryStateLabel.label(for: Int(value))
+        case (.thermal, 0):
+            return ThermalStateLabel.label(for: Int(value))
+        case (.thermal, 1):
+            return value > 0.5 ? String(localized: "ja") : String(localized: "nein")
         case (.pedometer, 0):
             return value.isFinite ? String(format: "%.0f", value) : "—"
         default:
@@ -125,6 +129,20 @@ enum BatteryStateLabel {
         case 1: String(localized: "Entladen")
         case 2: String(localized: "Lädt")
         case 3: String(localized: "Voll")
+        default: String(localized: "Unbekannt")
+        }
+    }
+}
+
+/// `ProcessInfo.ThermalState` in words. The number stays in the stream; on the screen „2.000“
+/// says nothing, „Hoch“ says why the frame rate just dropped.
+enum ThermalStateLabel {
+    static func label(for raw: Int) -> String {
+        switch raw {
+        case 0: String(localized: "Normal")
+        case 1: String(localized: "Erhöht")
+        case 2: String(localized: "Hoch")
+        case 3: String(localized: "Kritisch")
         default: String(localized: "Unbekannt")
         }
     }

@@ -220,6 +220,20 @@ public struct SurveyExporter: Sendable {
         properties["lv95East"] = rounded(lv95.east)
         properties["lv95North"] = rounded(lv95.north)
 
+        properties["status"] = finding.status.rawValue
+        if let changed = finding.statusChangedAt {
+            properties["statusChangedAt"] = TrackExporter.iso8601(changed)
+        }
+        if !finding.resolutionNote.isEmpty { properties["resolutionNote"] = finding.resolutionNote }
+        if let address = finding.address {
+            if let street = address.street { properties["street"] = street }
+            if let number = address.houseNumber { properties["houseNumber"] = number }
+            if let postcode = address.postcode { properties["postcode"] = postcode }
+            if let locality = address.locality { properties["locality"] = locality }
+            if let egid = address.egid { properties["egid"] = egid }
+            properties["addressSource"] = address.source
+        }
+
         let geometry: [String: Any] = ["type": "Point", "coordinates": coordinates]
         return ["type": "Feature", "geometry": geometry, "properties": properties]
     }
@@ -238,6 +252,7 @@ public struct SurveyExporter: Sendable {
         ]
         if area.kind == .circle { properties["radius"] = rounded(area.radius) }
         if !finding.label.isEmpty { properties["label"] = finding.label }
+        properties["status"] = finding.status.rawValue
 
         let geometry: [String: Any] = ["type": "Polygon", "coordinates": [ring]]
         return ["type": "Feature", "geometry": geometry, "properties": properties]
@@ -257,7 +272,9 @@ public struct SurveyExporter: Sendable {
         var out = "id,time,latitude,longitude,altitude,ellipsoidalAltitude,horizontalAccuracy,"
         out += "positionSource,positionSpread,positionSampleCount,gpsLatitude,gpsLongitude,"
         out += "manualOffset,heading,severity,label,note,photos,videos,areaKind,areaRadius,"
-        out += "areaSquareMetres,lv95East,lv95North,recording\n"
+        // New columns go at the end: a script that reads by position keeps working.
+        out += "areaSquareMetres,lv95East,lv95North,recording,"
+        out += "status,statusChangedAt,resolutionNote,street,houseNumber,postcode,locality,egid\n"
 
         for finding in survey.findingsByTime {
             let location = finding.location
@@ -295,6 +312,15 @@ public struct SurveyExporter: Sendable {
             row.append(RecordingExporter.fixed(lv95.east))
             row.append(RecordingExporter.fixed(lv95.north))
             row.append(finding.recordingID?.uuidString ?? "")
+            row.append(finding.status.rawValue)
+            row.append(finding.statusChangedAt.map(TrackExporter.iso8601) ?? "")
+            row.append(RecordingExporter.csvEscape(finding.resolutionNote))
+            let address = finding.address
+            row.append(RecordingExporter.csvEscape(address?.street ?? ""))
+            row.append(RecordingExporter.csvEscape(address?.houseNumber ?? ""))
+            row.append(RecordingExporter.csvEscape(address?.postcode ?? ""))
+            row.append(RecordingExporter.csvEscape(address?.locality ?? ""))
+            row.append(address?.egid.map { "\($0)" } ?? "")
 
             out += row.joined(separator: ",")
             out += "\n"
@@ -330,7 +356,8 @@ public struct SurveyExporter: Sendable {
             if !finding.note.isEmpty {
                 out += "    <desc>\(TrackExporter.xmlEscape(finding.note))</desc>\n"
             }
-            out += "    <sym>Flag, Red</sym>\n"
+            out += "    <sym>\(finding.status.isOutstanding ? "Flag, Red" : "Flag, Green")</sym>\n"
+            out += "    <type>\(finding.status.rawValue)</type>\n"
             out += "  </wpt>\n"
         }
 
@@ -365,13 +392,25 @@ public struct SurveyExporter: Sendable {
             """
         }
 
+        // Dealt-with cases stay on the map, in grey: a client opening the file sees what was
+        // found and what is left, rather than a map that quietly got emptier.
+        out += """
+            <Style id="closed">
+              <IconStyle><color>ff9e9e9e</color><scale>0.9</scale></IconStyle>
+              <LineStyle><color>ff9e9e9e</color><width>1</width></LineStyle>
+              <PolyStyle><color>449e9e9e</color></PolyStyle>
+            </Style>
+
+        """
+
         for finding in survey.findingsByTime where finding.location.coordinate.isValid {
             let location = finding.location
             let height = location.altitude ?? 0
+            let style = finding.status.isOutstanding ? "severity\(finding.severity)" : "closed"
             out += """
                 <Placemark>
                   <name>\(TrackExporter.xmlEscape(waypointName(finding)))</name>
-                  <styleUrl>#severity\(finding.severity)</styleUrl>
+                  <styleUrl>#\(style)</styleUrl>
                   <TimeStamp><when>\(TrackExporter.iso8601(finding.capturedAt))</when></TimeStamp>
                   <description>\(TrackExporter.xmlEscape(placemarkDescription(of: finding, mediaPrefix: mediaPrefix)))</description>
                   <Point>
@@ -390,7 +429,7 @@ public struct SurveyExporter: Sendable {
             out += """
                 <Placemark>
                   <name>\(TrackExporter.xmlEscape(waypointName(finding))) · \(Int(area.squareMetres.rounded())) m²</name>
-                  <styleUrl>#severity\(finding.severity)</styleUrl>
+                  <styleUrl>#\(style)</styleUrl>
                   <Polygon>
                     <tessellate>1</tessellate>
                     <outerBoundaryIs><LinearRing><coordinates>\(coordinates)</coordinates></LinearRing></outerBoundaryIs>
@@ -410,8 +449,12 @@ public struct SurveyExporter: Sendable {
 
     private static func placemarkDescription(of finding: GroundFinding,
                                              mediaPrefix: String) -> String {
-        var parts = ["Bewertung \(finding.severity)/10"]
+        var parts = ["Bewertung \(finding.severity)/10", "Status \(finding.status.rawValue)"]
+        if let address = finding.address, !address.singleLine.isEmpty {
+            parts.append(address.singleLine)
+        }
         if !finding.note.isEmpty { parts.append(finding.note) }
+        if !finding.resolutionNote.isEmpty { parts.append(finding.resolutionNote) }
         if let area = finding.area, area.isValid {
             parts.append("Bereich \(Int(area.squareMetres.rounded())) m²")
         }
@@ -482,6 +525,11 @@ public struct SurveyExporter: Sendable {
         \(bundleMediaFolder)/            alle Fotos und Clips, benannt nach ihrer Medien-ID.
 
         Die Bewertung ist eine Zahl von 1 bis 10: 1 unauffällig, 10 so schlimm wie es geht.
+
+        status ist open (offen), scheduled (geplant), resolved (erledigt) oder noAction
+        (kein Handlungsbedarf); statusChangedAt sagt, wann er zuletzt geändert wurde.
+        street bis egid stehen nur, wenn die Adresssuche eingeschaltet war — egid ist der
+        eidgenössische Gebäudeidentifikator des nächsten Gebäudes.
 
         Zu jeder Beobachtung steht, woher ihre Position kommt:
           positionSource=gps       ein einzelner Fix, horizontalAccuracy ist der Radius,

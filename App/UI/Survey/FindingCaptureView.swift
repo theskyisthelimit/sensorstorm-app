@@ -49,6 +49,9 @@ struct FindingCaptureView: View {
                         mediaCard
                     }
                     if !isAddingToExistingCase {
+                        if model.location.isAccuracyReduced {
+                            ReducedAccuracyNotice()
+                        }
                         positionCard
                         SeverityPicker(severity: $draft.severity)
                             .padding(14)

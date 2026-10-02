@@ -29,13 +29,22 @@ public final class BLEReadingLog: @unchecked Sendable {
         let prefix = "\(Self.number(hostTime)),\(Self.number(hostTime - startHostTime)),"
             + "\(device.uuidString),\(RecordingExporter.csvEscape(name ?? "")),"
             + "\(RecordingExporter.csvEscape(reading.decoder)),"
-        let text = reading.fields.map {
+        var text = reading.fields.map {
             prefix + "\(RecordingExporter.csvEscape($0.name)),\(Self.number($0.value))\n"
         }.joined()
+        // One row per heartbeat, each at its own time, under the field name "rr". The
+        // packet's own rows keep the packet's time; the beats inside it did not all happen
+        // then.
+        let beats = HeartBeats.times(receivedAt: hostTime, beats: reading.beats)
+        for beat in beats {
+            text += "\(Self.number(beat.time)),\(Self.number(beat.time - startHostTime)),"
+                + "\(device.uuidString),\(RecordingExporter.csvEscape(name ?? "")),"
+                + "\(RecordingExporter.csvEscape(reading.decoder)),rr,\(Self.number(beat.interval))\n"
+        }
 
         let flush: String? = lock.withLock {
             pending += text
-            rows += reading.fields.count
+            rows += reading.fields.count + beats.count
             guard rows >= 256 else { return nil }
             rows = 0
             let out = pending
