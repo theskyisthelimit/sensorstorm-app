@@ -1,4 +1,5 @@
 import Foundation
+import SQLite3
 import Testing
 @testable import SensorstormCore
 
@@ -275,5 +276,329 @@ struct ExternalStreamTests {
         #expect(BLEUnits.unit(for: "cadence", decoder: "Running Speed and Cadence") == "spm")
         #expect(BLEUnits.unit(for: "cadence", decoder: "Cycling Speed and Cadence") == "rpm")
         #expect(BLEUnits.unit(for: "unbekannt") == "")
+    }
+}
+
+@Suite("Fremdströme in den Exporten")
+struct ExternalExportTests {
+
+    private func makeRecording() throws -> (RecordingStore, RecordingMetadata, ExternalStreamInfo) {
+        let root = FileManager.default.temporaryDirectory
+            .appendingPathComponent("sensorstorm-ext-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        let store = RecordingStore(root: root)
+
+        var metadata = RecordingMetadata(
+            name: "Fremd", startedAt: Date(timeIntervalSince1970: 1_700_000_000),
+            startHostTime: 1000, duration: 2,
+            device: DeviceInfo(model: "iPhone17,1", systemName: "iOS", systemVersion: "26.0",
+                               appVersion: "1.0.0"),
+            requestedRateHz: 10)
+        let directory = try store.prepareDirectory(for: metadata.id)
+
+        let motion = try StreamWriter(sensor: .userAcceleration, channelCount: 3, directory: directory)
+        for step in 0..<20 {
+            motion.append(time: 1000 + Double(step) / 10, values: [Double(step), 0, 0])
+        }
+        let info = ExternalStreamInfo(id: "ble.4f2a1c3d.ruuvitag", source: .bluetooth,
+                                      title: "Küche · RuuviTag",
+                                      channels: ["temperature", "humidity"],
+                                      channelUnits: ["°C", "%"])
+        let thermo = try StreamWriter(external: info, directory: directory)
+        thermo.append(time: 1000.5, values: [21.5, 40])
+        thermo.append(time: 1001.5, values: [21.7, .nan])
+
+        metadata.streams = [motion.close()]
+        metadata.externalStreams = [thermo.closeExternal()]
+        try store.save(metadata)
+        return (store, metadata, info)
+    }
+
+    @Test("Das CSV-Bündel enthält eine Datei je Fremdstrom, mit Kanälen als Kopfzeile")
+    func csvBundle() throws {
+        let (store, metadata, info) = try makeRecording()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+
+        let folder = store.root.appendingPathComponent("out", isDirectory: true)
+        try RecordingExporter(store: store).write(metadata, format: .csvBundle, into: folder)
+        let key = ExportStream.key(for: info)
+        #expect(key.hasPrefix("ext_ble_4f2a1c3d_ruuvitag_"))
+        #expect(key.count <= 31)
+
+        let csv = try String(contentsOf: folder.appendingPathComponent("\(key).csv"), encoding: .utf8)
+        let lines = csv.split(separator: "\n").map(String.init)
+        #expect(lines[0] == "time,epoch,temperature,humidity")
+        #expect(lines.count == 3)
+        #expect(lines[1].hasSuffix(",21.5,40"))
+        // A value that was not measured is an empty cell, not a zero.
+        #expect(lines[2].hasSuffix(",21.7,"))
+
+        let readme = try String(contentsOf: folder.appendingPathComponent("README.txt"), encoding: .utf8)
+        #expect(readme.contains("Küche · RuuviTag"))
+        #expect(readme.contains("temperature [°C]"))
+    }
+
+    @Test("JSON, Datenbank, Excel und Kombi-Tabelle führen den Fremdstrom mit")
+    func tables() throws {
+        let (store, metadata, info) = try makeRecording()
+        defer { try? FileManager.default.removeItem(at: store.root) }
+        let key = ExportStream.key(for: info)
+
+        let json = store.root.appendingPathComponent("r.json")
+        try JSONExporter(store: store).write(metadata, to: json)
+        let object = try #require(try JSONSerialization.jsonObject(
+            with: try Data(contentsOf: json)) as? [String: Any])
+        let streams = try #require(object["streams"] as? [[String: Any]])
+        let external = try #require(streams.first { $0["id"] as? String == info.id })
+        #expect(external["sensor"] as? String == key)
+        #expect(external["title"] as? String == "Küche · RuuviTag")
+        #expect(external["units"] as? [String] == ["°C", "%"])
+        let samples = try #require(external["samples"] as? [[Any]])
+        #expect(samples.count == 2)
+        // The built-in stream is untouched and has no `id`.
+        #expect(streams.first { $0["sensor"] as? String == "userAcceleration" }?["id"] == nil)
+
+        let combined = store.root.appendingPathComponent("c.csv")
+        try CombinedCSVExporter(store: store).write(metadata, to: combined)
+        let header = try String(contentsOf: combined, encoding: .utf8)
+            .split(separator: "\n").first.map(String.init) ?? ""
+        #expect(header.contains("\(key)_temperature"))
+        #expect(header.contains("\(key)_age"))
+
+        let database = store.root.appendingPathComponent("r.sqlite")
+        try SQLiteExporter(store: store).write(metadata, to: database)
+        var db: OpaquePointer?
+        #expect(sqlite3_open_v2(database.path, &db, SQLITE_OPEN_READONLY, nil) == SQLITE_OK)
+        defer { sqlite3_close(db) }
+        var statement: OpaquePointer?
+        #expect(sqlite3_prepare_v2(db, "SELECT COUNT(*), SUM(humidity IS NULL) FROM \"\(key)\"",
+                                   -1, &statement, nil) == SQLITE_OK)
+        #expect(sqlite3_step(statement) == SQLITE_ROW)
+        #expect(sqlite3_column_int(statement, 0) == 2)
+        // The NaN became NULL.
+        #expect(sqlite3_column_int(statement, 1) == 1)
+        sqlite3_finalize(statement)
+
+        let workbook = store.root.appendingPathComponent("r.xlsx")
+        try XLSXExporter(store: store).write(metadata, to: workbook)
+        let bytes = try Data(contentsOf: workbook)
+        #expect(bytes.starts(with: [0x50, 0x4B]))
+        #expect(String(decoding: bytes, as: UTF8.self).contains(key))
+    }
+
+    @Test("Der Gesamtexport führt den Fremdstrom mit Kennung, Titel und Einheiten")
+    func manifest() throws {
+        let (recordings, metadata, info) = try makeRecording()
+        let root = recordings.root.deletingLastPathComponent()
+        defer { try? FileManager.default.removeItem(at: recordings.root) }
+
+        let surveyRoot = root.appendingPathComponent("surveys-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: surveyRoot, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: surveyRoot) }
+        let exporter = ArchiveExporter(surveyStore: SurveyStore(root: surveyRoot),
+                                       recordingStore: recordings)
+
+        let payload = recordings.root.appendingPathComponent("payload", isDirectory: true)
+        try exporter.writeTree(into: payload,
+                               options: .init(includesSurveys: false, includesRecordings: true,
+                                              recordingFormat: .csvBundle))
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let manifest = try decoder.decode(
+            ArchiveManifest.self,
+            from: Data(contentsOf: payload.appendingPathComponent(ArchiveExporter.manifestFileName)))
+        let entry = try #require(manifest.recordings.first { $0.id == metadata.id })
+        let stream = try #require(entry.streams.first { $0.id == info.id })
+        #expect(stream.title == "Küche · RuuviTag")
+        #expect(stream.units == ["°C", "%"])
+        #expect(stream.sampleCount == 2)
+        let path = try #require(stream.path)
+        #expect(FileManager.default.fileExists(atPath: payload.appendingPathComponent(path).path))
+        // The phone's own sensor has neither field.
+        #expect(entry.streams.first { $0.sensor == "userAcceleration" }?.id == nil)
+    }
+}
+
+@Suite("Bluetooth: GATT, Beacons, Namen")
+struct BluetoothDecodingTests {
+
+    private func le(_ value: UInt32, bytes: Int) -> [UInt8] {
+        (0..<bytes).map { UInt8(truncatingIfNeeded: value >> (8 * UInt32($0))) }
+    }
+
+    @Test("Umweltsensor-Merkmale mit ihren Auflösungen")
+    func environmental() throws {
+        let temperature = try #require(GATTDecoding.decode(characteristic: "2A6E", Data(le(2150, bytes: 2))))
+        #expect(abs((temperature.value("temperature") ?? 0) - 21.5) < 1e-9)
+        // The full 128-bit form of the same UUID.
+        #expect(GATTDecoding.decode(characteristic: "00002A6E-0000-1000-8000-00805F9B34FB",
+                                    Data(le(2150, bytes: 2)))?.value("temperature") != nil)
+        let humidity = try #require(GATTDecoding.decode(characteristic: "2A6F", Data(le(4500, bytes: 2))))
+        #expect(abs((humidity.value("humidity") ?? 0) - 45) < 1e-9)
+        let pressure = try #require(GATTDecoding.decode(characteristic: "2A6D", Data(le(1_013_250, bytes: 4))))
+        #expect(abs((pressure.value("pressure") ?? 0) - 1013.25) < 1e-9)
+        // 0x8000 is „not known", not −327.68 °C.
+        #expect(GATTDecoding.decode(characteristic: "2A6E", Data(le(0x8000, bytes: 2))) == nil)
+        #expect(GATTDecoding.decode(characteristic: "2A19", Data([87]))?.value("batteryLevel") == 87)
+        #expect(GATTDecoding.decode(characteristic: "FFFF", Data([1, 2])) == nil)
+    }
+
+    @Test("IEEE-11073-Gleitkommazahlen")
+    func floats() throws {
+        // 36.4 °C: mantissa 364, exponent −1.
+        let thermometer = try #require(GATTDecoding.decode(
+            characteristic: "2A1C", Data([0x00, 0x6C, 0x01, 0x00, 0xFF])))
+        #expect(abs((thermometer.value("temperature") ?? 0) - 36.4) < 1e-9)
+        // The same body temperature in Fahrenheit is converted, not shown as 97.5 °C.
+        let fahrenheit = try #require(GATTDecoding.decode(
+            characteristic: "2A1C", Data([0x01]) + Data(le(975, bytes: 3)) + Data([0xFF])))
+        #expect(abs((fahrenheit.value("temperature") ?? 0) - 36.3889) < 0.001)
+        // Reserved mantissa: not a number.
+        #expect(GATTDecoding.decode(characteristic: "2A1C", Data([0x00, 0xFF, 0xFF, 0x7F, 0x00])) == nil)
+
+        let pressure = try #require(GATTDecoding.decode(
+            characteristic: "2A35", Data([0x00, 0x78, 0x00, 0x50, 0x00, 0x5D, 0x00])))
+        #expect(pressure.value("systolic") == 120)
+        #expect(pressure.value("diastolic") == 80)
+        #expect(pressure.value("meanArterialPressure") == 93)
+
+        // 98 % and 64 bpm, then a pulse oximeter that has no pulse rate: SFLOAT NaN is 0x07FF.
+        let oximeter = try #require(GATTDecoding.decode(
+            characteristic: "2A5F", Data([0x00, 0x62, 0x00, 0x40, 0x00])))
+        #expect(oximeter.value("spo2") == 98)
+        #expect(oximeter.value("pulseRate") == 64)
+        let partial = try #require(GATTDecoding.decode(
+            characteristic: "2A5F", Data([0x00, 0x62, 0x00, 0xFF, 0x07])))
+        #expect(partial.value("spo2") == 98)
+        #expect(partial.value("pulseRate") == nil)
+        // A negative exponent in the top nibble: 0xF0FF = mantissa 255, exponent −1 = 25.5.
+        #expect(abs((GATTDecoding.sfloat([0xFF, 0xF0], at: 0) ?? 0) - 25.5) < 1e-9)
+    }
+
+    @Test("Waage in Kilogramm und Pfund")
+    func weight() throws {
+        let kilograms = try #require(GATTDecoding.decode(
+            characteristic: "2A9D", Data([0x00]) + Data(le(14_000, bytes: 2))))
+        #expect(abs((kilograms.value("weight") ?? 0) - 70) < 1e-9)
+        let pounds = try #require(GATTDecoding.decode(
+            characteristic: "2A9D", Data([0x01]) + Data(le(15_432, bytes: 2))))
+        #expect(abs((pounds.value("weight") ?? 0) - 70) < 0.01)
+    }
+
+    @Test("Das Presentation-Format-Descriptor macht ein Merkmal ohne Decoder lesbar")
+    func presentationFormat() throws {
+        // sint16, exponent −2, unit 0x272F (°C)
+        let format = try #require(PresentationFormat(Data([0x0E, 0xFE, 0x2F, 0x27, 0x01, 0x00, 0x00])))
+        #expect(format.unitSymbol == "°C")
+        #expect(format.byteCount == 2)
+        let value = try #require(format.value(from: Data(le(2150, bytes: 2))))
+        #expect(abs(value - 21.5) < 1e-9)
+        #expect(abs((format.value(from: Data(le(UInt32(bitPattern: -150) & 0xFFFF, bytes: 2))) ?? 0) + 1.5) < 1e-9)
+        #expect(format.value(from: Data([1])) == nil)            // too short
+        #expect(PresentationFormat(Data([0x19, 0, 0, 0, 0, 0, 0]))?.value(from: Data([65])) == nil)  // text
+        #expect(PresentationFormat(Data([1, 2, 3])) == nil)
+    }
+
+    @Test("Eine eigene Vorlage liest Felder an ihren Stellen")
+    func template() throws {
+        let template = GATTTemplate(characteristic: "FFF1", name: "Meine Waage", fields: [
+            .init(name: "temperature", offset: 1, type: .int16, factor: 0.01, unit: "°C"),
+            .init(name: "counter", offset: 3, type: .uint16, bigEndian: true),
+            .init(name: "tooFar", offset: 9, type: .uint32),
+        ])
+        #expect(template.matches("fff1"))
+        #expect(template.matches("0000FFF1-0000-1000-8000-00805F9B34FB"))
+        // flag, 21.50 °C little endian, counter 0x0102 big endian
+        let reading = try #require(template.decode(Data([0x07, 0x66, 0x08, 0x01, 0x02])))
+        #expect(abs((reading.value("temperature") ?? 0) - 21.5) < 1e-9)
+        #expect(reading.value("counter") == 258)
+        // A field that would read past the end is left out, never read from garbage.
+        #expect(reading.value("tooFar") == nil)
+        #expect(template.decode(Data()) == nil)
+
+        let json = try JSONEncoder().encode(template)
+        #expect(try JSONDecoder().decode(GATTTemplate.self, from: json) == template)
+    }
+
+    @Test("Eddystone: TLM, UID und URL")
+    func eddystone() throws {
+        // battery 2840 mV, 19.0 °C, 5223 advertisements, 280291.6 s of uptime
+        let tlm = Data([0x20, 0x00, 0x0B, 0x18, 0x13, 0x00, 0x00, 0x00, 0x14, 0x67, 0x00, 0x2A, 0xC4, 0xE4])
+        let info = try #require(BeaconDecoder.decode(BLEAdvertisement(serviceData: ["FEAA": tlm])))
+        guard case let .eddystoneTLM(battery, temperature, count, uptime) = info else {
+            Issue.record("kein TLM"); return
+        }
+        #expect(battery == 2.84)
+        #expect(temperature == 19)
+        #expect(count == 5223)
+        #expect(abs(uptime - 280_291.6) < 1e-6)
+        #expect(info.reading?.value("batteryVoltage") == 2.84)
+        // A beacon without a sensor sends 0x8000 as the temperature and 0 mV when it has mains.
+        let bare = Data([0x20, 0x00, 0x00, 0x00, 0x80, 0x00, 0, 0, 0, 1, 0, 0, 0, 10])
+        guard case let .eddystoneTLM(noBattery, noTemperature, _, _)? =
+                BeaconDecoder.decode(BLEAdvertisement(serviceData: ["FEAA": bare])) else {
+            Issue.record("kein TLM"); return
+        }
+        #expect(noBattery == nil && noTemperature == nil)
+
+        let uid = Data([0x00, 0xE7] + Array(repeating: 0xAB, count: 10) + [1, 2, 3, 4, 5, 6])
+        guard case let .eddystoneUID(namespace, instance, power)? =
+                BeaconDecoder.decode(BLEAdvertisement(serviceData: ["FEAA": uid])) else {
+            Issue.record("keine UID"); return
+        }
+        #expect(namespace == String(repeating: "AB", count: 10))
+        #expect(instance == "010203040506")
+        #expect(power == -25)
+
+        // https://www.example.com/ : scheme 0x01, "example", expansion 0x00
+        let url = Data([0x10, 0xE7, 0x01] + Array("example".utf8) + [0x00])
+        guard case let .eddystoneURL(text, _)? =
+                BeaconDecoder.decode(BLEAdvertisement(serviceData: ["FEAA": url])) else {
+            Issue.record("keine URL"); return
+        }
+        #expect(text == "https://www.example.com/")
+        #expect(BeaconDecoder.decode(BLEAdvertisement(serviceData: ["FEAA": Data([0x30, 0])])) == nil)
+    }
+
+    @Test("AltBeacon und iBeacon")
+    func beacons() throws {
+        let id = Array(0..<16).map(UInt8.init)
+        let alt = Data([0x4C, 0x00, 0xBE, 0xAC] + id + [0x00, 0x07, 0x00, 0x09, 0xC5, 0x01])
+        guard case let .altBeacon(id1, id2, id3, rssi)? =
+                BeaconDecoder.decode(BLEAdvertisement(manufacturerData: alt)) else {
+            Issue.record("kein AltBeacon"); return
+        }
+        #expect(id1 == "00010203-0405-0607-0809-0A0B0C0D0E0F")
+        #expect(id2 == 7 && id3 == 9 && rssi == -59)
+
+        let ibeacon = Data([0x4C, 0x00, 0x02, 0x15] + id + [0x01, 0x00, 0x02, 0x00, 0xC5])
+        guard case let .iBeacon(_, major, minor, power)? =
+                BeaconDecoder.decode(BLEAdvertisement(manufacturerData: ibeacon)) else {
+            Issue.record("kein iBeacon"); return
+        }
+        #expect(major == 256 && minor == 512 && power == -59)
+        #expect(BeaconDecoder.decode(BLEAdvertisement(manufacturerData: Data([0x99, 0x04, 0x05]))) == nil)
+    }
+
+    @Test("Namen für Nummern, und eine Entfernung, die ihre Unsicherheit sagt")
+    func namesAndRange() {
+        #expect(BluetoothNames.company(in: Data([0x4C, 0x00, 0x10, 0x05]))?.name == "Apple, Inc.")
+        #expect(BluetoothNames.company(in: Data([0x99, 0x04]))?.name == "Ruuvi Innovations Ltd.")
+        #expect(BluetoothNames.company(in: Data([0xEF, 0xBE]))?.name == nil)        // unknown stays unnamed
+        #expect(BluetoothNames.company(in: Data([0x4C]))?.id == nil)
+        #expect(BluetoothNames.service("180D") == "Heart Rate")
+        #expect(BluetoothNames.service("0000180d-0000-1000-8000-00805f9b34fb") == "Heart Rate")
+        #expect(BluetoothNames.characteristic("2a37") == "Heart Rate Measurement")
+        #expect(BluetoothNames.service("ABCD") == nil)
+
+        // At the reference power the distance is one metre, whatever the environment.
+        #expect(abs(RangeEstimate.metres(rssi: -59, referencePower: -59, exponent: 3) - 1) < 1e-12)
+        // 20 dB weaker is ten times as far in free space (exponent 2) …
+        #expect(abs(RangeEstimate.metres(rssi: -79, referencePower: -59, exponent: 2) - 10) < 1e-9)
+        // … and the honest answer is the span between open and cluttered.
+        let range = RangeEstimate.range(rssi: -79)
+        #expect(range.near < range.far)
+        #expect(abs(range.near - 3.73) < 0.01 && abs(range.far - 10) < 1e-9)
+        #expect(RangeEstimate.metres(rssi: .nan, referencePower: -59).isNaN)
     }
 }

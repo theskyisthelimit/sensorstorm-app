@@ -21,13 +21,13 @@ public struct XLSXExporter: Sendable {
 
     public func write(_ metadata: RecordingMetadata, to url: URL,
                       progress: (@Sendable (Double) -> Void)? = nil) throws {
-        let streams = metadata.streams.filter { $0.sampleCount > 0 }
+        let streams = store.exportStreams(for: metadata)
         let zip = try ZipWriter(url: url)
         let epochAtStart = metadata.startedAt.timeIntervalSince1970
 
         var sheetNames: [String] = []
         for (index, stream) in streams.enumerated() {
-            guard let reader = store.reader(for: stream.sensor, recording: metadata.id) else { continue }
+            let reader = stream.reader
             let truncated = stream.sampleCount > Self.maximumRows - 1
             var header = ["time", "epoch"] + stream.channels.enumerated().map { $1.isEmpty ? "c\($0)" : $1 }
             if truncated { header.append("truncated to \(Self.maximumRows - 1) rows") }
@@ -49,7 +49,7 @@ public struct XLSXExporter: Sendable {
                 xml += "</row>"
             }
             xml += "</sheetData></worksheet>"
-            sheetNames.append(stream.sensor.rawValue)
+            sheetNames.append(stream.key)
             try zip.add("xl/worksheets/sheet\(sheetNames.count).xml", Data(xml.utf8))
             progress?(Double(index + 1) / Double(streams.count + 1))
         }

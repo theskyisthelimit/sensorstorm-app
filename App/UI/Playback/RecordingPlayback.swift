@@ -39,6 +39,22 @@ struct SensorChartData: Identifiable, Sendable {
     var id: SensorID { sensor }
 }
 
+/// A chart-ready view of one external stream — same decimation as ``SensorChartData``, but
+/// identified by the stream's own description rather than by a ``SensorID``.
+struct ExternalChartData: Identifiable, Sendable {
+    let info: ExternalStreamInfo
+    /// One decimated series per channel, in seconds relative to the recording start.
+    let series: [[SeriesPoint]]
+    let yDomain: ClosedRange<Double>
+
+    var id: String { info.id }
+}
+
+private struct ExternalChartInput: Sendable {
+    let info: ExternalStreamInfo
+    let reader: StreamReader
+}
+
 /// Everything one stream contributes to a chart build, snapshotted on the main actor so the
 /// background build never has to reach back into the observable object.
 private struct ChartInput: Sendable {
@@ -63,6 +79,7 @@ final class RecordingPlayback {
     let store: RecordingStore
 
     private(set) var charts: [SensorChartData] = []
+    private(set) var externalCharts: [ExternalChartData] = []
     private(set) var annotations: [Annotation] = []
     private(set) var isPlaying = false
     private(set) var player: AVPlayer?
@@ -72,6 +89,7 @@ final class RecordingPlayback {
     private(set) var visibleRange: ClosedRange<Double>
 
     private var readers: [SensorID: StreamReader] = [:]
+    private var externalReaders: [String: StreamReader] = [:]
     private var timeObserver: PlayerTimeObserver?
     private var tickTask: Task<Void, Never>?
     private var lastTickHostTime: Double = 0
@@ -98,6 +116,10 @@ final class RecordingPlayback {
 
         for stream in metadata.streams where stream.sampleCount > 0 {
             readers[stream.sensor] = store.reader(for: stream.sensor, recording: metadata.id)
+        }
+
+        for info in metadata.externalStreams ?? [] where info.sampleCount > 0 {
+            externalReaders[info.id] = store.reader(for: info, recording: metadata.id)
         }
 
         if let videoURL = store.videoURL(for: metadata) {
@@ -138,18 +160,28 @@ final class RecordingPlayback {
                                   names: channels.map { stream.channels[$0] })
             }
 
+        let externalInputs: [ExternalChartInput] = (metadata.externalStreams ?? [])
+            .filter { $0.sampleCount > 0 }
+            .compactMap { info in
+                externalReaders[info.id].map { ExternalChartInput(info: info, reader: $0) }
+            }
+
         chartTask = Task.detached(priority: .userInitiated) { [weak self] in
-            guard let built = buildCharts(inputs, start: start, in: hostRange) else { return }
-            await self?.apply(charts: built, generation: generation)
+            guard let built = buildCharts(inputs, start: start, in: hostRange),
+                  let builtExternal = buildExternalCharts(externalInputs, start: start,
+                                                          in: hostRange) else { return }
+            await self?.apply(charts: built, external: builtExternal, generation: generation)
         }
     }
 
     /// Cancellation is cooperative and the hop back to the main actor is a queue, so a build
     /// that was superseded mid-flight can still arrive after the one that replaced it. The
     /// generation, not the arrival order, decides which result is the current one.
-    private func apply(charts built: [SensorChartData], generation: Int) {
+    private func apply(charts built: [SensorChartData], external: [ExternalChartData],
+                       generation: Int) {
         guard generation == chartGeneration else { return }
         charts = built
+        externalCharts = external
     }
 
     /// GPS has ten columns; plotting all of them on one axis is unreadable. Sensors with a
@@ -187,6 +219,11 @@ final class RecordingPlayback {
         // milliseconds later. Showing the first sample beats showing dashes.
         return reader.sample(atOrBefore: metadata.startHostTime + playhead)
             ?? reader.sample(at: 0)
+    }
+
+    func externalValues(for id: String) -> [Double]? {
+        guard let reader = externalReaders[id], !reader.isEmpty else { return nil }
+        return reader.sample(atOrBefore: metadata.startHostTime + playhead) ?? reader.sample(at: 0)
     }
 
     // MARK: - Transport
@@ -330,6 +367,40 @@ private func buildCharts(_ inputs: [ChartInput], start: Double,
             series: series,
             yDomain: (low - padding)...(high + padding)
         ))
+    }
+    return result
+}
+
+/// The same decimation for streams that are not built-in sensors. Every channel is plotted:
+/// these streams have the few channels their device sends, not thirteen columns of pose.
+private func buildExternalCharts(_ inputs: [ExternalChartInput], start: Double,
+                                 in hostRange: ClosedRange<Double>) -> [ExternalChartData]? {
+    var result: [ExternalChartData] = []
+    for input in inputs {
+        if Task.isCancelled { return nil }
+
+        var series: [[SeriesPoint]] = []
+        var low = Double.greatestFiniteMagnitude
+        var high = -Double.greatestFiniteMagnitude
+        var hasFiniteValue = false
+
+        for channel in 0..<input.reader.channelCount {
+            let points = input.reader.series(channel: channel, maxPoints: 500, in: hostRange)
+                .map { SeriesPoint(time: $0.time - start, value: $0.value,
+                                   low: $0.low, high: $0.high) }
+            for point in points where point.value.isFinite {
+                hasFiniteValue = true
+                low = Swift.min(low, point.low.isFinite ? point.low : point.value)
+                high = Swift.max(high, point.high.isFinite ? point.high : point.value)
+            }
+            series.append(points)
+        }
+
+        guard hasFiniteValue, series.contains(where: { !$0.isEmpty }) else { continue }
+        if low == high { low -= 0.5; high += 0.5 }
+        let padding = (high - low) * 0.08
+        result.append(ExternalChartData(info: input.info, series: series,
+                                        yDomain: (low - padding)...(high + padding)))
     }
     return result
 }

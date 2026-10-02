@@ -252,15 +252,13 @@ public struct RecordingExporter: Sendable {
 
     private func writeCSVBundle(_ metadata: RecordingMetadata, into folder: URL,
                                 progress: (@Sendable (Double) -> Void)?) throws {
-        let streams = metadata.streams.filter { $0.sampleCount > 0 }
+        let streams = store.exportStreams(for: metadata)
         let steps = Double(streams.count + 3)
         var completed = 0.0
 
         for stream in streams {
-            if let reader = store.reader(for: stream.sensor, recording: metadata.id) {
-                try writeCSV(reader: reader, stream: stream, metadata: metadata,
-                             to: folder.appendingPathComponent("\(stream.sensor.rawValue).csv"))
-            }
+            try writeCSV(reader: stream.reader, channels: stream.channels, metadata: metadata,
+                         to: folder.appendingPathComponent("\(stream.key).csv"))
             completed += 1
             progress?(completed / steps)
         }
@@ -291,10 +289,10 @@ public struct RecordingExporter: Sendable {
         progress?(1)
     }
 
-    private func writeCSV(reader: StreamReader, stream: StreamInfo,
+    private func writeCSV(reader: StreamReader, channels: [String],
                           metadata: RecordingMetadata, to url: URL) throws {
         let epochAtStart = metadata.startedAt.timeIntervalSince1970
-        var out = "time,epoch," + stream.channels.joined(separator: ",") + "\n"
+        var out = "time,epoch," + channels.joined(separator: ",") + "\n"
         out.reserveCapacity(1 << 16)
 
         FileManager.default.createFile(atPath: url.path, contents: nil)
@@ -457,6 +455,20 @@ public struct RecordingExporter: Sendable {
                 .joined(separator: ", ")
             text += "  \(stream.sensor.rawValue): \(stream.sampleCount) samples "
             text += "@ \(String(format: "%.1f", stream.effectiveRateHz)) Hz — \(columns)\n"
+        }
+        // Streams from devices that are not the phone's own sensors: Bluetooth, network, MQTT.
+        // Named by what they are, and carrying the id that stays the same across recordings.
+        for stream in (metadata.externalStreams ?? []).sorted(by: { $0.id < $1.id })
+        where stream.sampleCount > 0 {
+            let columns = stream.channels.enumerated()
+                .map { index, name in
+                    let unit = stream.unit(forChannel: index)
+                    return unit.isEmpty ? name : "\(name) [\(unit)]"
+                }
+                .joined(separator: ", ")
+            text += "  \(ExportStream.key(for: stream)): \(stream.title) [\(stream.id)] — "
+            text += "\(stream.sampleCount) samples @ "
+            text += "\(String(format: "%.1f", stream.effectiveRateHz)) Hz — \(columns)\n"
         }
 
         if let video = metadata.video {

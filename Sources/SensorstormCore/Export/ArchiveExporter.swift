@@ -249,7 +249,7 @@ public struct ArchiveExporter: Sendable {
 
     private static func entry(for metadata: RecordingMetadata, at path: String,
                               format: RecordingExporter.Format) -> ArchiveManifest.RecordingEntry {
-        let streams = metadata.streams.map { stream in
+        var streams = metadata.streams.map { stream in
             ArchiveManifest.StreamEntry(
                 sensor: stream.sensor.rawValue,
                 channels: stream.channels,
@@ -260,6 +260,21 @@ public struct ArchiveExporter: Sendable {
                     ? "\(path)/\(stream.sensor.rawValue).csv"
                     : nil
             )
+        }
+        // Streams from devices that are not the phone's own sensors, with the stable id and
+        // the name a person gave them in `id` and `title`; `sensor` holds the file's key.
+        for info in (metadata.externalStreams ?? []).sorted(by: { $0.id < $1.id }) {
+            let key = ExportStream.key(for: info)
+            streams.append(ArchiveManifest.StreamEntry(
+                sensor: key,
+                channels: info.channels,
+                sampleCount: info.sampleCount,
+                unit: "",
+                rateHz: info.effectiveRateHz,
+                path: format == .csvBundle && info.sampleCount > 0 ? "\(path)/\(key).csv" : nil,
+                id: info.id,
+                title: info.title,
+                units: (0..<info.channels.count).map { info.unit(forChannel: $0) }))
         }
         return ArchiveManifest.RecordingEntry(
             id: metadata.id,
@@ -523,6 +538,24 @@ public struct ArchiveManifest: Codable, Sendable {
         /// Samples per second actually achieved, measured over the recording.
         public var rateHz: Double
         public var path: String?
+        /// Only for streams that are not the phone's own sensors.
+        public var id: String?
+        public var title: String?
+        public var units: [String]?
+
+        public init(sensor: String, channels: [String], sampleCount: Int, unit: String,
+                    rateHz: Double, path: String?, id: String? = nil, title: String? = nil,
+                    units: [String]? = nil) {
+            self.sensor = sensor
+            self.channels = channels
+            self.sampleCount = sampleCount
+            self.unit = unit
+            self.rateHz = rateHz
+            self.path = path
+            self.id = id
+            self.title = title
+            self.units = units
+        }
     }
 
     public struct RecordingEntry: Codable, Sendable {

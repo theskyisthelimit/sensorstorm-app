@@ -38,7 +38,7 @@ public struct JSONExporter: Sendable {
         }
 
         let epochAtStart = metadata.startedAt.timeIntervalSince1970
-        let streams = metadata.streams.filter { $0.sampleCount > 0 }
+        let streams = store.exportStreams(for: metadata)
 
         out += "{\n"
         out += "  \"schema\": \(Self.string(Self.schema)),\n"
@@ -66,16 +66,22 @@ public struct JSONExporter: Sendable {
         out += "  \"streams\": [\n"
 
         for (streamIndex, stream) in streams.enumerated() {
-            let descriptor = stream.sensor.descriptor
             out += "    {\n"
-            out += "      \"sensor\": \(Self.string(stream.sensor.rawValue)),\n"
+            out += "      \"sensor\": \(Self.string(stream.key)),\n"
+            if let id = stream.externalID {
+                // `sensor` stays the name every reader already uses; these two say what
+                // the stream is when it is not one of the phone's own.
+                out += "      \"id\": \(Self.string(id)),\n"
+                out += "      \"title\": \(Self.string(stream.title)),\n"
+            }
             out += "      \"channels\": [\(stream.channels.map(Self.string).joined(separator: ", "))],\n"
-            out += "      \"units\": [\(descriptor.channelUnits.map(Self.string).joined(separator: ", "))],\n"
+            out += "      \"units\": [\(stream.units.map(Self.string).joined(separator: ", "))],\n"
             out += "      \"sampleCount\": \(stream.sampleCount),\n"
             out += "      \"effectiveRateHz\": \(Self.number(stream.effectiveRateHz)),\n"
             out += "      \"samples\": ["
 
-            if let reader = store.reader(for: stream.sensor, recording: metadata.id) {
+            do {
+                let reader = stream.reader
                 var first = true
                 try reader.forEachSample { hostTime, values in
                     out += first ? "\n        [" : ",\n        ["

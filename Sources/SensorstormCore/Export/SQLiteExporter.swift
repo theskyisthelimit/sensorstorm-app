@@ -102,30 +102,27 @@ public struct SQLiteExporter: Sendable {
                 sample_count INTEGER, effective_rate_hz REAL)
             """)
 
-        let streams = metadata.streams.filter { $0.sampleCount > 0 }
+        let streams = store.exportStreams(for: metadata)
         let epochAtStart = metadata.startedAt.timeIntervalSince1970
 
         for (index, stream) in streams.enumerated() {
-            let descriptor = stream.sensor.descriptor
-            let table = Self.identifier(stream.sensor.rawValue)
+            let table = Self.identifier(stream.key)
             let columns = stream.channels.enumerated().map { position, name in
                 Self.identifier(name.isEmpty ? "c\(position)" : name)
             }
 
             try exec(db, """
                 INSERT INTO streams VALUES (
-                    \(Self.literal(stream.sensor.rawValue)), \(Self.literal(table)),
+                    \(Self.literal(stream.key)), \(Self.literal(table)),
                     \(Self.literal(stream.channels.joined(separator: ","))),
-                    \(Self.literal(descriptor.channelUnits.joined(separator: ","))),
+                    \(Self.literal(stream.units.joined(separator: ","))),
                     \(stream.sampleCount), \(RecordingExporter.number(stream.effectiveRateHz)))
                 """)
 
             let definition = columns.map { "\"\($0)\" REAL" }.joined(separator: ", ")
             try exec(db, "CREATE TABLE \"\(table)\" (time REAL, epoch REAL, \(definition))")
 
-            guard let reader = store.reader(for: stream.sensor, recording: metadata.id) else {
-                continue
-            }
+            let reader = stream.reader
             let placeholders = Array(repeating: "?", count: columns.count + 2).joined(separator: ", ")
             var statement: OpaquePointer?
             guard sqlite3_prepare_v2(db, "INSERT INTO \"\(table)\" VALUES (\(placeholders))",

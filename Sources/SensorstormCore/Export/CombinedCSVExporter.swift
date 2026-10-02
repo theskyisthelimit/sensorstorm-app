@@ -43,18 +43,15 @@ public struct CombinedCSVExporter: Sendable {
                       to url: URL,
                       progress: (@Sendable (Double) -> Void)? = nil) throws {
         let rate = rateHz ?? Self.defaultRate(for: metadata)
-        let streams = metadata.streams.filter { $0.sampleCount > 0 }
-        let readers = streams.compactMap { stream in
-            store.reader(for: stream.sensor, recording: metadata.id).map { (stream, $0) }
-        }
+        let readers = store.exportStreams(for: metadata).map { ($0, $0.reader) }
 
         var header = "time,epoch"
         for (stream, _) in readers {
             for channel in stream.channels {
-                header += "," + Self.column(stream.sensor, channel)
+                header += "," + Self.column(stream.key, channel)
             }
             if includesAge {
-                header += "," + Self.column(stream.sensor, "age")
+                header += "," + Self.column(stream.key, "age")
             }
         }
         header += "\n"
@@ -128,6 +125,10 @@ public struct CombinedCSVExporter: Sendable {
     /// A column name that survives a trip through pandas, R and a spreadsheet: letters,
     /// digits and underscores only.
     static func column(_ sensor: SensorID, _ channel: String) -> String {
+        column(sensor.rawValue, channel)
+    }
+
+    static func column(_ key: String, _ channel: String) -> String {
         var cleaned = ""
         for character in channel {
             if character.isLetter || character.isNumber {
@@ -137,7 +138,7 @@ public struct CombinedCSVExporter: Sendable {
             }
         }
         cleaned = cleaned.trimmingCharacters(in: CharacterSet(charactersIn: "_"))
-        return cleaned.isEmpty ? sensor.rawValue : "\(sensor.rawValue)_\(cleaned)"
+        return cleaned.isEmpty ? key : "\(key)_\(cleaned)"
     }
 
     static func fixed(_ value: Double) -> String {

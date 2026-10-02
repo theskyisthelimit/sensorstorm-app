@@ -60,6 +60,16 @@ struct RecordingDetailView: View {
                         }
                     }
                     hiddenChartsFooter
+                    ForEach(playback.externalCharts) { data in
+                        ExternalChartCard(
+                            data: data,
+                            playhead: playback.playhead,
+                            visibleRange: playback.visibleRange,
+                            currentValues: playback.externalValues(for: data.id),
+                            annotations: annotationTimes,
+                            onScrub: { playback.pause(); playback.seek(to: $0) }
+                        )
+                    }
                 }
 
                 infoCard
@@ -276,6 +286,14 @@ struct RecordingDetailView: View {
                     infoRow(stream.sensor.title,
                             "\(Format.sampleCount(stream.sampleCount)) · \(Format.rate(stream.effectiveRateHz))")
                 }
+                ForEach(recording.externalStreams ?? []) { stream in
+                    infoRow(verbatim: stream.title,
+                            "\(Format.sampleCount(stream.sampleCount)) · \(Format.rate(stream.effectiveRateHz))")
+                }
+                if recording.reducedLocationAccuracy == true {
+                    infoDivider
+                    infoRow("Standort", String(localized: "nur ungefähr"))
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -293,6 +311,22 @@ struct RecordingDetailView: View {
 
     /// Label left, value right. The value keeps the higher priority: a truncated measurement
     /// is worthless, whereas a wrapped label is still perfectly readable.
+    /// For labels that are not ours to translate — a device's own name.
+    private func infoRow(verbatim label: String, _ value: String) -> some View {
+        GridRow {
+            Text(verbatim: label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+            Text(value)
+                .font(.caption.monospacedDigit())
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .layoutPriority(1)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+
     private func infoRow(_ label: LocalizedStringKey, _ value: String) -> some View {
         GridRow {
             Text(label)

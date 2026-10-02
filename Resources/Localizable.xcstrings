@@ -55725,6 +55725,9 @@
         }
       }
     },
+    "Standort" : {
+      "extractionState" : "manual"
+    },
     "Start" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -67618,6 +67621,9 @@
           }
         }
       }
+    },
+    "nur ungefähr" : {
+      "extractionState" : "manual"
     },
     "ohne Einheit" : {
       "extractionState" : "manual",
