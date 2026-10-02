@@ -48,6 +48,22 @@ final class ARPoseRecorder: NSObject, @unchecked Sendable {
 
     private let state = OSAllocatedUnfairLock(initialState: State())
 
+    static let lightStream = ExternalStreamInfo(
+        id: "camera.light", source: .device,
+        title: String(localized: "Helligkeit (Schätzung der Kamera)"),
+        channels: ["intensity", "temperature"], channelUnits: ["lm", "K"])
+    static let depthStream = ExternalStreamInfo(
+        id: "camera.depth.centre", source: .device,
+        title: String(localized: "LiDAR-Abstand zur Bildmitte"),
+        channels: ["distance", "confidence"], channelUnits: ["m", ""])
+
+    /// Which extra readings of the frame are written, set before `start`. Both are off by
+    /// default: light estimation and scene depth cost frame time the odometry wants.
+    var recordsLight = false
+    var recordsDepth = false
+    private var lastLightTime = -Double.infinity
+    private var lastDepthTime = -Double.infinity
+
     init(sink: SampleSink) {
         self.sink = sink
         super.init()
@@ -84,7 +100,10 @@ final class ARPoseRecorder: NSObject, @unchecked Sendable {
         configuration.planeDetection = []
         configuration.environmentTexturing = .none
         // Nothing here renders anything, and both cost frame time that the odometry wants.
-        configuration.isLightEstimationEnabled = false
+        configuration.isLightEstimationEnabled = recordsLight
+        if recordsDepth, ARWorldTrackingConfiguration.supportsFrameSemantics(.sceneDepth) {
+            configuration.frameSemantics.insert(.sceneDepth)
+        }
 
         if let format = Self.videoFormat(for: quality) {
             configuration.videoFormat = format
@@ -210,6 +229,7 @@ extension ARPoseRecorder: ARSessionDelegate {
         // Pose is recorded whether or not a movie is being written: the live view wants it
         // too, and a pose without a frame is still a pose.
         ingestPose(from: frame)
+        ingestExtras(from: frame)
 
         guard let writer, let videoInput, let adaptor else { return }
 
@@ -260,6 +280,62 @@ extension ARPoseRecorder: ARSessionDelegate {
             trackingState.rawValue,
             reason.rawValue
         ])
+    }
+
+    /// Light about twice a second, the distance ten times: both change slowly compared with a
+    /// 60 Hz frame.
+    private func ingestExtras(from frame: ARFrame) {
+        let time = frame.timestamp
+        if recordsLight, time - lastLightTime >= 0.5, let estimate = frame.lightEstimate {
+            lastLightTime = time
+            sink.ingestExternal(Self.lightStream, time: time, values: [
+                Double(estimate.ambientIntensity),
+                Double(estimate.ambientColorTemperature)
+            ])
+        }
+        if recordsDepth, time - lastDepthTime >= 0.1, let depth = frame.sceneDepth {
+            lastDepthTime = time
+            if let (distance, confidence) = Self.centre(of: depth) {
+                sink.ingestExternal(Self.depthStream, time: time, values: [distance, confidence])
+            }
+        }
+    }
+
+    /// The median of the middle five-by-five pixels of the depth map, in metres, and the
+    /// confidence of the middle pixel (0 low, 1 medium, 2 high). One pixel of a LiDAR map is
+    /// noisy; twenty-five are not, and a median ignores the one that hit a gap.
+    private static func centre(of depth: ARDepthData) -> (Double, Double)? {
+        let map = depth.depthMap
+        CVPixelBufferLockBaseAddress(map, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(map, .readOnly) }
+        let width = CVPixelBufferGetWidth(map)
+        let height = CVPixelBufferGetHeight(map)
+        let rowBytes = CVPixelBufferGetBytesPerRow(map)
+        guard width > 8, height > 8, let base = CVPixelBufferGetBaseAddress(map) else { return nil }
+
+        var values: [Float] = []
+        for dy in -2...2 {
+            let row = base.advanced(by: (height / 2 + dy) * rowBytes).assumingMemoryBound(to: Float32.self)
+            for dx in -2...2 {
+                let value = row[width / 2 + dx]
+                if value.isFinite, value > 0 { values.append(value) }
+            }
+        }
+        guard !values.isEmpty else { return nil }
+        values.sort()
+
+        var confidence = Double.nan
+        if let confidenceMap = depth.confidenceMap {
+            CVPixelBufferLockBaseAddress(confidenceMap, .readOnly)
+            defer { CVPixelBufferUnlockBaseAddress(confidenceMap, .readOnly) }
+            let confidenceRow = CVPixelBufferGetBytesPerRow(confidenceMap)
+            if let confidenceBase = CVPixelBufferGetBaseAddress(confidenceMap) {
+                let pixel = confidenceBase.advanced(by: (CVPixelBufferGetHeight(confidenceMap) / 2) * confidenceRow)
+                    .assumingMemoryBound(to: UInt8.self)
+                confidence = Double(pixel[CVPixelBufferGetWidth(confidenceMap) / 2])
+            }
+        }
+        return (Double(values[values.count / 2]), confidence)
     }
 
     private static func tracking(

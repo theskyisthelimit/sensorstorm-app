@@ -84,6 +84,8 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, CBPeripheralDel
     /// Strong references: CoreBluetooth drops a peripheral nobody holds, connection and all.
     private var peripherals: [UUID: CBPeripheral] = [:]
     private var cadence: [UUID: CSCTracker] = [:]
+    /// A GNSS receiver's text arrives in pieces; each device keeps its own half-read sentence.
+    private var nmeaReceivers: [UUID: NMEAReceiver] = [:]
     /// Which stream a decoded packet belongs to. A decoder may return other names after a
     /// firmware update; a different set of names is a different stream, not a crooked row.
     private var registry = ExternalStreamRegistry()
@@ -701,12 +703,32 @@ final class BluetoothSource: NSObject, CBCentralManagerDelegate, CBPeripheralDel
                    streamBase: subscription.streamBase,
                    title: "\(subscription.deviceName) · \(subscription.characteristicName)",
                    unit: { subscription.unit(forField: $0, decoder: reading.decoder) })
+        } else if let subscription, NMEA.looksLikeText(data) {
+            recordNMEA(data, from: peripheral.identifier, deviceName: subscription.deviceName)
         }
 
         if lock.withLock({ explorerPeripheral?.identifier == peripheral.identifier }) {
             noteExplorerValue(of: characteristic)
             publishExplorer(peripheral)
         }
+    }
+
+    /// An external GNSS receiver on a Bluetooth serial service: NMEA text in, one row per
+    /// position sentence out — with the speed and the accuracy the receiver last reported.
+    private func recordNMEA(_ data: Data, from identifier: UUID, deviceName: String) {
+        let rows = lock.withLock { () -> [[Double]] in
+            var receiver = nmeaReceivers[identifier] ?? NMEAReceiver()
+            let rows = receiver.feed(data)
+            nmeaReceivers[identifier] = receiver
+            return rows
+        }
+        guard !rows.isEmpty else { return }
+        let time = HostClock.now
+        let info = ExternalStreamInfo(
+            id: "gnss.\(String(identifier.uuidString.prefix(8)).lowercased())", source: .accessory,
+            title: "\(deviceName) · GNSS",
+            channels: NMEAReceiver.channels, channelUnits: NMEAReceiver.units)
+        for row in rows { sink.ingestExternal(info, time: time, values: row) }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic,

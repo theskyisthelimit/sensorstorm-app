@@ -331,3 +331,45 @@ struct MLDatasetTests {
         }
     }
 }
+
+@Suite("Spectrum")
+struct SpectrumTests {
+    private func tone(_ frequency: Double, amplitude: Double = 0.5, rate: Double = 48_000, count: Int = 4_096) -> [Float] {
+        (0..<count).map { Float(amplitude * sin(2 * Double.pi * frequency * Double($0) / rate)) }
+    }
+
+    @Test func findsTheDominantFrequency() throws {
+        let result = try #require(Spectrum.analyse(tone(1_000), sampleRate: 48_000))
+        #expect(abs(result.dominantHz - 1_000) < 12)
+    }
+
+    @Test func amplitudeOfAUnitSineIsOne() {
+        // A sine exactly on bin 128 of 2048 samples.
+        let samples = (0..<2_048).map { Float(sin(2 * Double.pi * 128 * Double($0) / 2_048)) }
+        let amplitudes = Spectrum.magnitudes(of: samples)
+        let peak = amplitudes.max() ?? 0
+        #expect(abs(peak - 1) < 0.05)
+    }
+
+    @Test func theLoudestOctaveIsTheOneThatHoldsTheTone() throws {
+        let result = try #require(Spectrum.analyse(tone(1_000), sampleRate: 48_000))
+        let loudest = try #require(result.bandLevels.enumerated().max { $0.element < $1.element })
+        #expect(Spectrum.octaveCentres[loudest.offset] == 1_000)
+        // Two octaves away the tone is gone.
+        #expect(result.bandLevels[7] < result.bandLevels[5] - 40)
+    }
+
+    @Test func silenceHasNoSpectrum() {
+        #expect(Spectrum.analyse([Float](repeating: 0, count: 4_096), sampleRate: 48_000) == nil)
+        #expect(Spectrum.analyse([0.1, 0.2], sampleRate: 48_000) == nil)
+    }
+
+    @Test func twoTonesBothShowUp() throws {
+        let a = tone(250), b = tone(4_000)
+        let mixed = zip(a, b).map { $0 + $1 }
+        let result = try #require(Spectrum.analyse(mixed, sampleRate: 48_000))
+        #expect(result.bandLevels[3] > -20)   // 250 Hz band
+        #expect(result.bandLevels[7] > -20)   // 4 kHz band
+        #expect(result.bandLevels[5] < -50)   // nothing at 1 kHz
+    }
+}

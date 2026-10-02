@@ -549,6 +549,8 @@ extension ExternalStreamInfo.Source {
         case .homeKit: "homekit"
         case .accessory: "cable.connector"
         case .derived: "function"
+        case .health: "heart.text.square"
+        case .device: "iphone.gen3"
         }
     }
 }

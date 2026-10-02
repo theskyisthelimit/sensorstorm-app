@@ -39,9 +39,16 @@ WATCH_PROFILE_NAME = "Sensorstorm Watch CI Distribution"
 # kein iCloud-Container. Alles bleibt im App-Container des Geräts.
 #
 # (Bundle-ID, Profilname, Capabilities die beim Neuanlegen gesetzt werden).
-# Die App-ID selbst wird nie automatisch angelegt.
+# Die App-ID der Telefon-App existiert und wird nicht neu angelegt — ihre Capabilities aber
+# werden hier beschrieben und nachgezogen: was in Resources/Sensorstorm.entitlements steht,
+# muss das Profil kennen, sonst wirft codesign es beim Export weg.
 TARGETS = [
-    (BUNDLE_ID, PROFILE_NAME, None),
+    (BUNDLE_ID, PROFILE_NAME, [
+        "ACCESS_WIFI_INFORMATION",  # com.apple.developer.networking.wifi-info
+        "HEALTHKIT",                # Gesundheitsdaten zur Aufnahme importieren (nur lesen)
+        "HOMEKIT",                  # Sensoren im Zuhause
+        "NFC_TAG_READING",          # Kontrollpunkte
+    ]),
     # The watch app is its own bundle and needs its own profile; without it the
     # embedded binary ships unentitled and altool rejects the upload (90166).
     # HealthKit is the only capability it asks for — heart rate, read-only.

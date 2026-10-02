@@ -19,6 +19,8 @@ public struct ExternalStreamInfo: Codable, Sendable, Hashable, Identifiable {
         case homeKit
         case accessory
         case derived
+        case health
+        case device
     }
 
     /// Stable across recordings: `ble.<device>.<decoder>`, `net.rtt.<host>`, `mqtt.<topic>`.

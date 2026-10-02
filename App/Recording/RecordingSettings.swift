@@ -54,6 +54,10 @@ struct RecordingSettings: Codable, Sendable, Equatable {
     /// Ping the router and the internet once a second during a recording and write the round
     /// trips (and the Wi-Fi signal) as streams of their own.
     var recordsNetworkQualityFlag: Bool?
+    /// The extra sources switched on, by raw value of ``ExtraSource``.
+    var extraSourcesRaw: [String]?
+    /// The iBeacon UUIDs to range, one per line as typed.
+    var beaconUUIDs: [String]?
     /// Blur faces and number plates in every photo that leaves the phone in an export or a
     /// report. The photos on the phone stay as they were taken.
     var anonymisesPhotosFlag: Bool?
@@ -159,6 +163,19 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         workProfile = profile
     }
 
+    func isOn(_ source: ExtraSource) -> Bool {
+        (extraSourcesRaw ?? []).contains(source.rawValue)
+    }
+
+    mutating func setOn(_ on: Bool, for source: ExtraSource) {
+        var raw = Set(extraSourcesRaw ?? [])
+        if on { raw.insert(source.rawValue) } else { raw.remove(source.rawValue) }
+        extraSourcesRaw = raw.isEmpty ? nil : raw.sorted()
+    }
+
+    /// The sources that need the microphone tap even when no level is being metered.
+    var needsMicrophoneExtras: Bool { isOn(.spectrum) || isOn(.soundClasses) }
+
     var anonymisesPhotos: Bool {
         get { anonymisesPhotosFlag ?? false }
         set { anonymisesPhotosFlag = newValue }
@@ -256,6 +273,8 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         mine.collapsedCategories = nil
         mine.looksUpAddressesFlag = nil
         mine.recordsNetworkQualityFlag = nil
+        mine.extraSourcesRaw = nil
+        mine.beaconUUIDs = nil
         mine.anonymisesPhotosFlag = nil
         mine.workProfileRaw = nil
         mine.webhookURL = nil
@@ -279,6 +298,8 @@ struct RecordingSettings: Codable, Sendable, Equatable {
         theirs.collapsedCategories = nil
         theirs.looksUpAddressesFlag = nil
         theirs.recordsNetworkQualityFlag = nil
+        theirs.extraSourcesRaw = nil
+        theirs.beaconUUIDs = nil
         theirs.anonymisesPhotosFlag = nil
         theirs.workProfileRaw = nil
         theirs.webhookURL = nil

@@ -82,6 +82,7 @@ final class SensorHub {
     private let activitySource: ActivitySource
     let bluetoothSource: BluetoothSource
     private let networkQualitySource: NetworkQualitySource
+    private let extraSources: ExtraSourcesController
     private let watchLink: WatchLink
     let streamer: LiveStreamer
     let webServer: LocalWebServer
@@ -120,6 +121,7 @@ final class SensorHub {
         self.activitySource = ActivitySource(sink: sink)
         self.bluetoothSource = BluetoothSource(sink: sink)
         self.networkQualitySource = NetworkQualitySource(sink: sink)
+        self.extraSources = ExtraSourcesController(sink: sink)
         self.watchLink = WatchLink(sink: sink)
         // Identifies this phone to the user's own endpoint, nothing else. `identifierForVendor`
         // is scoped to this vendor and resets when the last of their apps is uninstalled —
@@ -364,10 +366,12 @@ final class SensorHub {
                                rateHz: settings.motionRateHz, wallToHostOffset: offset)
 
         if usesARKit(for: settings) {
+            poseRecorder.recordsLight = settings.isOn(.cameraLight)
+            poseRecorder.recordsDepth = settings.isOn(.depth)
             poseRecorder.start(quality: settings.videoQuality)
             // ARKit owns the camera and delivers no audio, so metering has to come from the
             // microphone tap rather than from a capture session's audio output.
-            if wanted.contains(.loudness) || wanted.contains(.loudnessA) || settings.recordsAudio {
+            if wanted.contains(.loudness) || wanted.contains(.loudnessA) || settings.recordsAudio || settings.needsMicrophoneExtras {
                 startAudioMetering()
             }
         } else if settings.isVideoEnabled, isCameraAvailable {
@@ -379,7 +383,7 @@ final class SensorHub {
             if settings.isVideoEnabled {
                 errorMessage = String(localized: "Keine Kamera verfügbar. Es werden nur Sensordaten aufgezeichnet.")
             }
-            if wanted.contains(.loudness) || wanted.contains(.loudnessA) || settings.recordsAudio {
+            if wanted.contains(.loudness) || wanted.contains(.loudnessA) || settings.recordsAudio || settings.needsMicrophoneExtras {
                 startAudioMetering()
             }
         }
@@ -407,8 +411,28 @@ final class SensorHub {
         }
     }
 
-    private func startAudioMetering() {
+    /// What the microphone tap does besides the level, from the settings in force. Set before
+    /// every `start`, because the tap is rebuilt whenever a recording begins or ends.
+    private func configureAudioExtras(_ settings: RecordingSettings) {
         audioSource.computesWeighted = settings.isEnabled(.loudnessA)
+        audioSource.computesSpectrum = settings.isOn(.spectrum)
+        audioSource.onSoundClass = settings.isOn(.soundClasses)
+            ? { [weak self] time, label, confidence in
+                Task { @MainActor in self?.noteSound(time: time, label: label, confidence: confidence) }
+            }
+            : nil
+    }
+
+    /// A heard sound becomes a note on the recording's timeline, at the moment it was heard.
+    private func noteSound(time: Double, label: String, confidence: Double) {
+        guard phase == .recording else { return }
+        let percent = Int((confidence * 100).rounded())
+        annotations.append(Annotation(hostTime: time,
+                                      text: String(localized: "Geräusch: \(label) (\(percent) %)")))
+    }
+
+    private func startAudioMetering() {
+        configureAudioExtras(settings)
         do {
             try audioSource.start(fileURL: nil)
         } catch {
@@ -496,7 +520,7 @@ final class SensorHub {
             if recordingSettings.recordsAudio, !carriesAudioInMovie {
                 // Metering is already running; restart it so the same tap also writes a file.
                 _ = audioSource.stop()
-                audioSource.computesWeighted = recordingSettings.isEnabled(.loudnessA)
+                configureAudioExtras(recordingSettings)
                 try audioSource.start(fileURL: directory.appendingPathComponent("audio.m4a"))
                 writesAudioFile = true
             }
@@ -541,6 +565,7 @@ final class SensorHub {
             if recordingSettings.recordsNetworkQuality {
                 networkQualitySource.start()
             }
+            extraSources.start(recordingSettings)
 
             // Streaming rides along with the recording rather than running on its own: a
             // feed without a file behind it is a feed nobody can check afterwards.
@@ -614,6 +639,7 @@ final class SensorHub {
 
         bluetoothSource.endLogging()
         networkQualitySource.stop()
+        extraSources.stop()
 
         let ended = sink.endRecordingWithExternals()
         let streams = ended.streams

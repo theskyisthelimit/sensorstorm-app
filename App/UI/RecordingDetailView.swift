@@ -76,6 +76,11 @@ struct RecordingDetailView: View {
 
                 analysisLink
 
+                HealthImportCard(recording: playback.metadata, store: library.store) { updated in
+                    playback.adopt(updated)
+                    library.refresh()
+                }
+
                 infoCard
             }
             .padding(.horizontal, 16)

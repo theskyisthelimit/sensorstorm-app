@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Name of the Wi-Fi network the phone is in, and its signal strength (network scanner). -->
+	<key>com.apple.developer.networking.wifi-info</key>
+	<true/>
+	<!-- Read-only. Sensorstorm writes nothing into Health. -->
+	<key>com.apple.developer.healthkit</key>
+	<true/>
+	<key>com.apple.developer.healthkit.access</key>
+	<array/>
+	<!-- Temperature, humidity and the like from the person's own home. -->
+	<key>com.apple.developer.homekit</key>
+	<true/>
+	<!-- Inspection points: NFC stickers on a hydrant, a manhole, a play-ground device. -->
+	<key>com.apple.developer.nfc.readersession.formats</key>
+	<array>
+		<string>NDEF</string>
+		<string>TAG</string>
+	</array>
+</dict>
+</plist>

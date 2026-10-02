@@ -75,7 +75,7 @@ private struct ChartInput: Sendable {
 @MainActor
 @Observable
 final class RecordingPlayback {
-    let metadata: RecordingMetadata
+    private(set) var metadata: RecordingMetadata
     let store: RecordingStore
 
     private(set) var charts: [SensorChartData] = []
@@ -107,6 +107,16 @@ final class RecordingPlayback {
         self.metadata = metadata
         self.store = store
         self.visibleRange = 0...max(metadata.duration, 0.001)
+    }
+
+    /// The recording after streams were added to it — Health data imported once the watch has
+    /// synced, say. The charts are rebuilt; the playhead stays where it is.
+    func adopt(_ updated: RecordingMetadata) {
+        metadata = updated
+        for info in updated.externalStreams ?? [] where info.sampleCount > 0 {
+            externalReaders[info.id] = store.reader(for: info, recording: updated.id)
+        }
+        rebuildCharts()
     }
 
     // MARK: - Loading

@@ -30,6 +30,7 @@ targets:
       - path: Resources
         excludes:
           - Info.plist
+          - Sensorstorm.entitlements
           # Test data for the simulator, wired into the Run action below. Shipping it
           # inside the app would be dead weight in every download.
           - Sensorstorm.storekit
@@ -48,6 +49,7 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         TARGETED_DEVICE_FAMILY: "1,2"
         GENERATE_INFOPLIST_FILE: "NO"
+        CODE_SIGN_ENTITLEMENTS: Resources/Sensorstorm.entitlements
       # Nur Release, damit der Simulator-Build weiter ohne Signatur durchläuft. Je Ziel,
       # weil ein Profilname auf der Kommandozeile für alle Ziele gilt und die Uhr ihr
       # eigenes braucht. Steht er nirgends, archiviert xcodebuild ohne Berechtigungen
@@ -136,6 +138,16 @@ targets:
         NSBluetoothAlwaysUsageDescription: >-
           Sensorstorm zählt, wie viele Bluetooth-Geräte in der Umgebung senden, und
           zeichnet die Signalstärke auf. Es wird keine Verbindung zu ihnen aufgebaut.
+        NSHealthShareUsageDescription: >-
+          Sensorstorm liest auf Wunsch Puls, Atmung, Sauerstoff, Schritte und Laufmetriken aus
+          der Zeit einer Aufnahme und legt sie neben die übrigen Messwerte. Es wird nichts in
+          Health geschrieben.
+        NSHomeKitUsageDescription: >-
+          Sensorstorm liest auf Wunsch Temperatur, Feuchte, CO₂ und Licht aus den Sensoren
+          deines Zuhauses, solange eine Aufnahme läuft.
+        NFCReaderUsageDescription: >-
+          Sensorstorm liest NFC-Aufkleber an Objekten, die du kontrollierst, und trägt die
+          Kennung in die Beobachtung ein.
         NSLocalNetworkUsageDescription: >-
           Sensorstorm sendet die Messwerte an die Adresse, die du in den Einstellungen
           einträgst und sucht auf Wunsch die Geräte im eigenen Netz. Beides braucht diese

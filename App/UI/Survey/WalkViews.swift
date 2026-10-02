@@ -7,6 +7,8 @@ import UniformTypeIdentifiers
 struct WalkCard: View {
     @Environment(SurveyModel.self) private var model
     let survey: Survey
+    @State private var isScanning = false
+    @State private var scanMessage: String?
 
     private var isTracking: Bool { model.trackingSurveyID == survey.id }
     private var tracksElsewhere: Bool { model.isTracking && !isTracking }
@@ -70,6 +72,20 @@ struct WalkCard: View {
             }
             .font(.footnote)
 
+            if survey.endedAt == nil, NFCCheckpointReader.isAvailable {
+                Button {
+                    Task { await scanCheckpoint() }
+                } label: {
+                    Label("Kontrollpunkt scannen", systemImage: "wave.3.right")
+                }
+                .buttonStyle(.bordered)
+                .font(.footnote)
+                .disabled(isScanning)
+            }
+            if let scanMessage {
+                Text(verbatim: scanMessage).font(.caption2).foregroundStyle(.secondary)
+            }
+
             if isTracking {
                 Text("Alle paar Meter ein Punkt, auch bei gesperrtem Bildschirm. iOS zeigt dafür den blauen Streifen an.")
                     .font(.caption2).foregroundStyle(.secondary)
@@ -84,6 +100,22 @@ struct WalkCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
         .card()
+    }
+
+    private func scanCheckpoint() async {
+        isScanning = true
+        scanMessage = nil
+        defer { isScanning = false }
+        do {
+            let code = try await NFCCheckpointReader().scan(prompt: String(localized: "Halte das iPhone an den Aufkleber."))
+            if await model.addCheckpoint(code: code, to: survey.id) != nil {
+                scanMessage = String(localized: "Kontrollpunkt \(code) gesichert.")
+            }
+        } catch NFCCheckpointReader.Failure.cancelled {
+            // The person closed the sheet; nothing to say.
+        } catch {
+            scanMessage = error.localizedDescription
+        }
     }
 
     private func metric(_ title: LocalizedStringKey, _ value: String) -> some View {

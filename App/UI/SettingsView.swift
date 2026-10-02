@@ -107,6 +107,11 @@ struct SettingsView: View {
                     } label: {
                         Label("Bluetooth-Sensoren", systemImage: "sensor")
                     }
+                    NavigationLink {
+                        ExtraSourcesView()
+                    } label: {
+                        Label("Weitere Quellen", systemImage: "puzzlepiece.extension")
+                    }
                 } header: {
                     Text("Automatisierung")
                 } footer: {

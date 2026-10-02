@@ -33,6 +33,29 @@ final class AudioSource: @unchecked Sendable {
     }
     private var _computesWeighted = false
 
+    static let spectrumStream = ExternalStreamInfo(
+        id: "audio.spectrum", source: .device,
+        title: String(localized: "Frequenzbänder"),
+        channels: ["dominant", "31.5", "63", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"],
+        channelUnits: ["Hz"] + Array(repeating: "dBFS", count: 10))
+
+    /// Ten octave bands and the dominant frequency, written as a stream of their own. Set before
+    /// `start`.
+    var computesSpectrum: Bool {
+        get { lock.lock(); defer { lock.unlock() }; return _computesSpectrum }
+        set { lock.lock(); _computesSpectrum = newValue; lock.unlock() }
+    }
+    private var _computesSpectrum = false
+    private var spectrumTick = 0
+
+    /// Names the sounds heard and hands each change to the handler. Set before `start`.
+    var onSoundClass: SoundClassifier.Handler? {
+        get { lock.lock(); defer { lock.unlock() }; return _onSoundClass }
+        set { lock.lock(); _onSoundClass = newValue; lock.unlock() }
+    }
+    private var _onSoundClass: SoundClassifier.Handler?
+    private var classifier: SoundClassifier?
+
     static var isMicrophoneAuthorized: Bool {
         AVAudioApplication.shared.recordPermission == .granted
     }
@@ -65,6 +88,16 @@ final class AudioSource: @unchecked Sendable {
         fileFormat = format
         firstFrameHostTime = nil
         writtenFrames = 0
+        spectrumTick = 0
+
+        if let handler = onSoundClass {
+            // A classifier that cannot start is not worth failing the recording over: the level
+            // and the audio track are what was asked for.
+            let created = try? SoundClassifier(format: format, handler: handler)
+            lock.lock()
+            classifier = created
+            lock.unlock()
+        }
 
         input.installTap(onBus: 0, bufferSize: 4096, format: format) { [weak self] buffer, when in
             self?.handle(buffer: buffer, when: when)
@@ -81,6 +114,12 @@ final class AudioSource: @unchecked Sendable {
 
         engine.inputNode.removeTap(onBus: 0)
         engine.stop()
+
+        lock.lock()
+        let finishing = classifier
+        classifier = nil
+        lock.unlock()
+        finishing?.finish()
 
         lock.lock()
         let file = audioFile
@@ -122,6 +161,12 @@ final class AudioSource: @unchecked Sendable {
         if computesWeighted, let weighted = weightedMeter.level(from: buffer) {
             sink.ingest(.loudnessA, time: time, values: [weighted.average, weighted.peak])
         }
+        if computesSpectrum { reportSpectrum(buffer, at: time) }
+
+        lock.lock()
+        let activeClassifier = classifier
+        lock.unlock()
+        activeClassifier?.analyze(buffer, atFrame: when.sampleTime)
 
         lock.lock()
         if firstFrameHostTime == nil { firstFrameHostTime = time }
@@ -137,6 +182,18 @@ final class AudioSource: @unchecked Sendable {
         } catch {
             RecordingLog.warn("audio write failed: \(error.localizedDescription)")
         }
+    }
+}
+
+extension AudioSource {
+    /// Every fourth buffer — about three times a second at 48 kHz and 4096 frames. The bands
+    /// change slowly and the transform is not free.
+    fileprivate func reportSpectrum(_ buffer: AVAudioPCMBuffer, at time: Double) {
+        spectrumTick += 1
+        guard spectrumTick % 4 == 0, let channel = buffer.floatChannelData?[0] else { return }
+        let samples = Array(UnsafeBufferPointer(start: channel, count: Int(buffer.frameLength)))
+        guard let result = Spectrum.analyse(samples, sampleRate: buffer.format.sampleRate) else { return }
+        sink.ingestExternal(Self.spectrumStream, time: time, values: [result.dominantHz] + result.bandLevels)
     }
 }
 

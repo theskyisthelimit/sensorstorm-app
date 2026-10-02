@@ -110,6 +110,7 @@ final class LocationSource: NSObject, SensorSource, CLLocationManagerDelegate, @
         for location in locations {
             let time = HostClock.hostSeconds(for: location.timestamp, offset: wallToHostOffset)
             captureAnchorIfNeeded(from: location, at: time)
+            reportOrigin(of: location, at: time)
             sink.ingest(.location, time: time, values: [
                 location.coordinate.latitude,
                 location.coordinate.longitude,
@@ -124,6 +125,26 @@ final class LocationSource: NSObject, SensorSource, CLLocationManagerDelegate, @
             ])
         }
     }
+
+    /// Where a fix came from, when that is not the phone's own receiver: a test app that
+    /// simulates a position, or an external GNSS receiver on a cable. A simulated fix is not a
+    /// measurement, and a track that contains one should say so rather than look like any other.
+    /// Also the building floor, where the venue has an indoor map. Nothing is written for an
+    /// ordinary outdoor fix.
+    private func reportOrigin(of location: CLLocation, at time: Double) {
+        let simulated = location.sourceInformation?.isSimulatedBySoftware ?? false
+        let accessory = location.sourceInformation?.isProducedByAccessory ?? false
+        let floor = location.floor?.level
+        guard simulated || accessory || floor != nil else { return }
+        sink.ingestExternal(Self.originStream, time: time, values: [
+            simulated ? 1 : 0, accessory ? 1 : 0, floor.map(Double.init) ?? .nan
+        ])
+    }
+
+    static let originStream = ExternalStreamInfo(
+        id: "location.origin", source: .device,
+        title: String(localized: "Herkunft der Position"),
+        channels: ["simulated", "accessory", "floor"], channelUnits: ["", "", ""])
 
     private func captureAnchorIfNeeded(from location: CLLocation, at hostTime: Double) {
         let accuracy = location.horizontalAccuracy

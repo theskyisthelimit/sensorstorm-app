@@ -4059,6 +4059,9 @@
     "%lld Themen gehört" : {
       "extractionState" : "manual"
     },
+    "%lld Verläufe hinzugefügt." : {
+      "extractionState" : "manual"
+    },
     "%lld ausgeblendet · alle einblenden" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6486,6 +6489,12 @@
         }
       }
     },
+    "90 % besser als" : {
+      "extractionState" : "manual"
+    },
+    "A95" : {
+      "extractionState" : "manual"
+    },
     "ALPN" : {
       "extractionState" : "manual"
     },
@@ -6827,7 +6836,16 @@
     "Abonnieren, z. B. befehle/#, ${userId}/cmd" : {
       "extractionState" : "manual"
     },
+    "Abschliessen" : {
+      "extractionState" : "manual"
+    },
     "Abschnitte" : {
+      "extractionState" : "manual"
+    },
+    "Absolute Höhe" : {
+      "extractionState" : "manual"
+    },
+    "Absolute Höhe (GPS und Barometer)" : {
       "extractionState" : "manual"
     },
     "Abtastrate" : {
@@ -9279,6 +9297,12 @@
         }
       }
     },
+    "Alles hier läuft nur während einer Aufnahme und schreibt eigene Ströme: sie stehen in der Wiedergabe und in jedem Export neben den übrigen Sensoren. Frequenzbänder und Geräuschklassen brauchen das Mikrofon und laufen nicht zusammen mit einer Videoaufnahme ohne ARKit." : {
+      "extractionState" : "manual"
+    },
+    "Als Beobachtung" : {
+      "extractionState" : "manual"
+    },
     "Als CSV exportieren" : {
       "localizations" : {
         "ar" : {
@@ -9935,7 +9959,13 @@
         }
       }
     },
+    "Anfahren" : {
+      "extractionState" : "manual"
+    },
     "Anhalten" : {
+      "extractionState" : "manual"
+    },
+    "Anteil unter 10 m" : {
       "extractionState" : "manual"
     },
     "Antwort" : {
@@ -9959,7 +9989,22 @@
     "Antwortzeit …" : {
       "extractionState" : "manual"
     },
+    "Anzeige jetzt" : {
+      "extractionState" : "manual"
+    },
+    "App" : {
+      "extractionState" : "manual"
+    },
     "Apple-Gerät" : {
+      "extractionState" : "manual"
+    },
+    "Arbeitsprofil" : {
+      "extractionState" : "manual"
+    },
+    "Archiv eingelesen" : {
+      "extractionState" : "manual"
+    },
+    "Archiv einlesen" : {
       "extractionState" : "manual"
     },
     "Archiv erstellen" : {
@@ -10283,6 +10328,12 @@
         }
       }
     },
+    "Art" : {
+      "extractionState" : "manual"
+    },
+    "Atemfrequenz (Health)" : {
+      "extractionState" : "manual"
+    },
     "Audio" : {
       "localizations" : {
         "ar" : {
@@ -10442,6 +10493,15 @@
           }
         }
       }
+    },
+    "Audio-Route" : {
+      "extractionState" : "manual"
+    },
+    "Auf dem Aufkleber steht kein Text und keine Adresse." : {
+      "extractionState" : "manual"
+    },
+    "Auf dem Telefon" : {
+      "extractionState" : "manual"
     },
     "Auf diesem Gerät gibt es kein Bluetooth. Im Simulator lässt sich der Scanner nicht prüfen." : {
       "extractionState" : "manual"
@@ -12374,10 +12434,16 @@
         }
       }
     },
+    "Aufschlag" : {
+      "extractionState" : "manual"
+    },
     "Aufwecken" : {
       "extractionState" : "manual"
     },
     "Aufzeichnen" : {
+      "extractionState" : "manual"
+    },
+    "Aufzugfahrten" : {
       "extractionState" : "manual"
     },
     "Aus" : {
@@ -12703,10 +12769,16 @@
         }
       }
     },
+    "Ausgangspunkt" : {
+      "extractionState" : "manual"
+    },
     "Ausgestellt für" : {
       "extractionState" : "manual"
     },
     "Ausgestellt von" : {
+      "extractionState" : "manual"
+    },
+    "Auslastung" : {
       "extractionState" : "manual"
     },
     "Auslösen" : {
@@ -12873,6 +12945,9 @@
       }
     },
     "Ausserhalb" : {
+      "extractionState" : "manual"
+    },
+    "Auswertung" : {
       "extractionState" : "manual"
     },
     "Automatisierung" : {
@@ -13220,6 +13295,18 @@
       "extractionState" : "manual"
     },
     "Beendet die laufende Aufnahme und speichert sie." : {
+      "extractionState" : "manual"
+    },
+    "Begangener Weg" : {
+      "extractionState" : "manual"
+    },
+    "Begehung wiederholen" : {
+      "extractionState" : "manual"
+    },
+    "Begehungsprotokoll" : {
+      "extractionState" : "manual"
+    },
+    "Beginn" : {
       "extractionState" : "manual"
     },
     "Bei Benachrichtigung" : {
@@ -14208,6 +14295,9 @@
           }
         }
       }
+    },
+    "Beobachtung hier" : {
+      "extractionState" : "manual"
     },
     "Beobachtung löschen" : {
       "localizations" : {
@@ -15651,6 +15741,9 @@
         }
       }
     },
+    "Bericht als PDF" : {
+      "extractionState" : "manual"
+    },
     "Beschleunigung" : {
       "localizations" : {
         "ar" : {
@@ -15987,6 +16080,12 @@
       "extractionState" : "manual"
     },
     "Beschädigt" : {
+      "extractionState" : "manual"
+    },
+    "Beurteilt" : {
+      "extractionState" : "manual"
+    },
+    "Beurteilte Strecke" : {
       "extractionState" : "manual"
     },
     "Bewegung" : {
@@ -17455,6 +17554,9 @@
     "Bluetooth-Sensoren auslesen" : {
       "extractionState" : "manual"
     },
+    "Bodenkontaktzeit (Health)" : {
+      "extractionState" : "manual"
+    },
     "Bonjour-Namen und -Dienste" : {
       "extractionState" : "manual"
     },
@@ -18259,6 +18361,9 @@
       }
     },
     "Breite" : {
+      "extractionState" : "manual"
+    },
+    "Bremsen" : {
       "extractionState" : "manual"
     },
     "Broadcast-Adresse" : {
@@ -20247,6 +20352,9 @@
           }
         }
       }
+    },
+    "Datensatz erzeugen" : {
+      "extractionState" : "manual"
     },
     "Datensatz für maschinelles Lernen" : {
       "extractionState" : "manual"
@@ -25024,6 +25132,9 @@
     "Die neue Route enthält alle Beobachtungen, Fotos und Wege der gewählten. Die ursprünglichen bleiben erhalten." : {
       "extractionState" : "manual"
     },
+    "Dienstcode" : {
+      "extractionState" : "manual"
+    },
     "Dienstdaten %@" : {
       "extractionState" : "manual"
     },
@@ -25995,6 +26106,9 @@
           }
         }
       }
+    },
+    "Dieses Gerät kann keine NFC-Aufkleber lesen." : {
+      "extractionState" : "manual"
     },
     "Dieses Gerät sendet gerade nicht." : {
       "extractionState" : "manual"
@@ -27497,6 +27611,9 @@
         }
       }
     },
+    "Eine UUID pro Zeile. iOS misst nur Beacons, deren UUID es kennt, und nur im Vordergrund." : {
+      "extractionState" : "manual"
+    },
     "Eine der Adressen ist ungültig." : {
       "extractionState" : "manual"
     },
@@ -28483,6 +28600,9 @@
     "Empfänger" : {
       "extractionState" : "manual"
     },
+    "Ende" : {
+      "extractionState" : "manual"
+    },
     "Entfernen" : {
       "localizations" : {
         "ar" : {
@@ -29292,6 +29412,9 @@
     "Erhöht" : {
       "extractionState" : "manual"
     },
+    "Erkennt Geräusche wie Sirene, Motor, Bohrer oder Hund mit Apples eingebautem Klassifikator und setzt sie als Notiz in die Aufnahme. Läuft auf dem Gerät." : {
+      "extractionState" : "manual"
+    },
     "Erkennt RuuviTag, BTHome (Shelly, ESPHome), Xiaomi-Thermometer mit ATC- oder pvvx-Firmware und alles, wofür eine eigene Decoder-Datei da ist. Die Werte landen während einer Aufnahme in bluetooth_sensors.csv. Läuft, solange der Aufnahme-Bildschirm offen ist." : {
       "extractionState" : "manual"
     },
@@ -29456,6 +29579,9 @@
       }
     },
     "Erledigt" : {
+      "extractionState" : "manual"
+    },
+    "Erledigung" : {
       "extractionState" : "manual"
     },
     "Erneut verbinden" : {
@@ -29635,6 +29761,9 @@
           }
         }
       }
+    },
+    "Etwa" : {
+      "extractionState" : "manual"
     },
     "Export fehlgeschlagen" : {
       "localizations" : {
@@ -30116,6 +30245,12 @@
         }
       }
     },
+    "Fahrkomfort" : {
+      "extractionState" : "manual"
+    },
+    "Fahrt" : {
+      "extractionState" : "manual"
+    },
     "Faktor" : {
       "extractionState" : "manual"
     },
@@ -30445,6 +30580,9 @@
     "Feld hinzufügen" : {
       "extractionState" : "manual"
     },
+    "Fenster" : {
+      "extractionState" : "manual"
+    },
     "Fertig" : {
       "localizations" : {
         "ar" : {
@@ -30605,7 +30743,13 @@
         }
       }
     },
+    "Feuchte" : {
+      "extractionState" : "manual"
+    },
     "Filter" : {
+      "extractionState" : "manual"
+    },
+    "Fixe" : {
       "extractionState" : "manual"
     },
     "Fixes" : {
@@ -31902,6 +32046,12 @@
     "Fragt den Server direkt über UDP Port 53. Der Vergleich zeigt, ob das Netz einen Namen anders auflöst als die öffentlichen Server — ein Hinweis auf Filter, Umleitungen und fehlerhafte Router." : {
       "extractionState" : "manual"
     },
+    "Freier Speicher" : {
+      "extractionState" : "manual"
+    },
+    "Freier Speicher und Lautstärke der Audio-Route. Erklärt Aussetzer, wenn der Speicher voll läuft oder ein Mikrofon abgezogen wird." : {
+      "extractionState" : "manual"
+    },
     "Freigeschaltet" : {
       "localizations" : {
         "ar" : {
@@ -32062,10 +32212,19 @@
         }
       }
     },
+    "Freitext" : {
+      "extractionState" : "manual"
+    },
     "Fremdgerät" : {
       "extractionState" : "manual"
     },
     "Fremdgeräte" : {
+      "extractionState" : "manual"
+    },
+    "Frequenz" : {
+      "extractionState" : "manual"
+    },
+    "Frequenzbänder" : {
       "extractionState" : "manual"
     },
     "Front" : {
@@ -32398,6 +32557,9 @@
       "extractionState" : "manual"
     },
     "Für Mängelmelder von Städten und Gemeinden, die Open311 GeoReport v2 sprechen. Die Adresse ist die des Servers; der Dienstcode benennt die Art der Meldung, wie ihn die Gemeinde festgelegt hat." : {
+      "extractionState" : "manual"
+    },
+    "Für diese Zeit liegen keine Gesundheitsdaten vor. Die Uhr überträgt sie erst nach einigen Minuten, und Sensorstorm braucht die Freigabe in der Health-App." : {
       "extractionState" : "manual"
     },
     "Für dieses Gerät ist keine Videoaufnahme möglich." : {
@@ -33707,6 +33869,9 @@
         }
       }
     },
+    "Gemeinde-Kennung" : {
+      "extractionState" : "manual"
+    },
     "Gemittelt aus %@, gemessene Streuung ±%@ m." : {
       "localizations" : {
         "ar" : {
@@ -34027,6 +34192,9 @@
           }
         }
       }
+    },
+    "Genauigkeit (Median)" : {
+      "extractionState" : "manual"
     },
     "Genauigkeit der Position" : {
       "extractionState" : "manual"
@@ -34529,6 +34697,12 @@
     "Geräte im Netz" : {
       "extractionState" : "manual"
     },
+    "Geräusch: %@ (%lld %%)" : {
+      "extractionState" : "manual"
+    },
+    "Geräuschklassen" : {
+      "extractionState" : "manual"
+    },
     "Gesamtexport" : {
       "localizations" : {
         "ar" : {
@@ -34708,6 +34882,9 @@
       "extractionState" : "manual"
     },
     "Gespeicherte Scans" : {
+      "extractionState" : "manual"
+    },
+    "Gesundheitsdaten holen" : {
       "extractionState" : "manual"
     },
     "Gewerbe und Industrie" : {
@@ -35375,6 +35552,9 @@
     "HTTP-Test" : {
       "extractionState" : "manual"
     },
+    "Halte das iPhone an den Aufkleber." : {
+      "extractionState" : "manual"
+    },
     "Handgelenk" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -35705,6 +35885,15 @@
         }
       }
     },
+    "Helligkeit (Schätzung der Kamera)" : {
+      "extractionState" : "manual"
+    },
+    "Helligkeit über die Kamera" : {
+      "extractionState" : "manual"
+    },
+    "Herkunft der Position" : {
+      "extractionState" : "manual"
+    },
     "Hersteller" : {
       "extractionState" : "manual"
     },
@@ -35871,6 +36060,9 @@
           }
         }
       }
+    },
+    "Herzfrequenz (Health)" : {
+      "extractionState" : "manual"
     },
     "Herzfrequenz und Handgelenkbewegung kommen von einer Apple Watch. Dieses Gerät kann keine koppeln." : {
       "localizations" : {
@@ -36195,6 +36387,9 @@
     "Herzfrequenzgurte, Leistungsmesser, Trittfrequenz- und Laufsensoren senden ihre Werte erst nach einer Verbindung. Ein gekoppeltes Gerät wird bei jedem Start wieder verbunden." : {
       "extractionState" : "manual"
     },
+    "Herzfrequenzvariabilität (Health)" : {
+      "extractionState" : "manual"
+    },
     "Hinführen" : {
       "extractionState" : "manual"
     },
@@ -36202,6 +36397,9 @@
       "extractionState" : "manual"
     },
     "Hoch" : {
+      "extractionState" : "manual"
+    },
+    "HomeKit-Sensoren" : {
       "extractionState" : "manual"
     },
     "Hält an der aktuellen Position eine Beobachtung fest, ohne die App zu öffnen — für die Aktionstaste." : {
@@ -36542,6 +36740,9 @@
           }
         }
       }
+    },
+    "Höhe über Meer aus GPS und Barometer zusammen, genauer als jede der beiden allein. Für Stockwerke und Gefälle." : {
+      "extractionState" : "manual"
     },
     "IPv4" : {
       "extractionState" : "manual"
@@ -37361,6 +37562,9 @@
         }
       }
     },
+    "In neuer Route" : {
+      "extractionState" : "manual"
+    },
     "Inhalt" : {
       "localizations" : {
         "ar" : {
@@ -37876,6 +38080,15 @@
       }
     },
     "Kabel oder Adapter" : {
+      "extractionState" : "manual"
+    },
+    "Kacheln" : {
+      "extractionState" : "manual"
+    },
+    "Kalibrierung" : {
+      "extractionState" : "manual"
+    },
+    "Kalibrierung entfernen" : {
       "extractionState" : "manual"
     },
     "Kamera" : {
@@ -39000,6 +39213,15 @@
         }
       }
     },
+    "Karte laden" : {
+      "extractionState" : "manual"
+    },
+    "Karte offline" : {
+      "extractionState" : "manual"
+    },
+    "Karte offline laden" : {
+      "extractionState" : "manual"
+    },
     "Karte unter das Fadenkreuz schieben. Der GPS-Fix und sein Genauigkeitskreis bleiben sichtbar und werden mitgespeichert." : {
       "localizations" : {
         "ar" : {
@@ -39159,6 +39381,9 @@
           }
         }
       }
+    },
+    "Katalog" : {
+      "extractionState" : "manual"
     },
     "Kein Abo, keine Verlängerung, kein Konto." : {
       "localizations" : {
@@ -40299,6 +40524,9 @@
         }
       }
     },
+    "Kein Zugriff aufs Mikrofon" : {
+      "extractionState" : "manual"
+    },
     "Kein lokales Netz gefunden. Verbinde das Telefon mit einem WLAN oder einem Ethernet-Adapter." : {
       "extractionState" : "manual"
     },
@@ -41123,6 +41351,9 @@
         }
       }
     },
+    "Komfortindex" : {
+      "extractionState" : "manual"
+    },
     "Kompass" : {
       "localizations" : {
         "ar" : {
@@ -41284,6 +41515,15 @@
       }
     },
     "Konsole" : {
+      "extractionState" : "manual"
+    },
+    "Kontakt" : {
+      "extractionState" : "manual"
+    },
+    "Kontrollpunkt" : {
+      "extractionState" : "manual"
+    },
+    "Kontrollpunkt scannen" : {
       "extractionState" : "manual"
     },
     "Kopfzeilen" : {
@@ -42097,6 +42337,9 @@
     "Land" : {
       "extractionState" : "manual"
     },
+    "Laufleistung (Health)" : {
+      "extractionState" : "manual"
+    },
     "Lautstärke" : {
       "localizations" : {
         "ar" : {
@@ -42424,6 +42667,18 @@
       "extractionState" : "manual"
     },
     "Lesen" : {
+      "extractionState" : "manual"
+    },
+    "LiDAR-Abstand" : {
+      "extractionState" : "manual"
+    },
+    "LiDAR-Abstand zur Bildmitte" : {
+      "extractionState" : "manual"
+    },
+    "Licht" : {
+      "extractionState" : "manual"
+    },
+    "Liest Temperatur, Feuchte, CO₂, Licht, Kontakt und Bewegung aus dem eigenen Zuhause, solange die Aufnahme läuft." : {
       "extractionState" : "manual"
     },
     "Lighting and street furniture" : {
@@ -42756,6 +43011,15 @@
       }
     },
     "Loopback" : {
+      "extractionState" : "manual"
+    },
+    "Luftbild laden" : {
+      "extractionState" : "manual"
+    },
+    "Luftdruck" : {
+      "extractionState" : "manual"
+    },
+    "Luftqualität" : {
       "extractionState" : "manual"
     },
     "Lädt" : {
@@ -44236,6 +44500,9 @@
     "Mediengerät" : {
       "extractionState" : "manual"
     },
+    "Mehr" : {
+      "extractionState" : "manual"
+    },
     "Mehr Ports heisst längere Suche. Die Liste mit 1–1024 braucht je Gerät einige Sekunden." : {
       "extractionState" : "manual"
     },
@@ -45052,6 +45319,9 @@
     "Methode" : {
       "extractionState" : "manual"
     },
+    "Mikrofon kalibrieren" : {
+      "extractionState" : "manual"
+    },
     "Mindestens 3 Punkte antippen oder ablaufen" : {
       "localizations" : {
         "ar" : {
@@ -45213,6 +45483,12 @@
       }
     },
     "Minimum" : {
+      "extractionState" : "manual"
+    },
+    "Misst Signal und Entfernung zu iBeacons mit den eingetragenen Kennungen. Nur im Vordergrund." : {
+      "extractionState" : "manual"
+    },
+    "Misst mit dem LiDAR den Abstand zur Bildmitte, bis etwa fünf Meter. Braucht ein Gerät mit LiDAR und die Aufnahme mit ARKit." : {
       "extractionState" : "manual"
     },
     "Misst, wie schnell das Telefon aus dem Internet lädt und dorthin sendet, und wie stark sich die Antwortzeit verschlechtert, solange die Leitung voll ist. Vier Verbindungen, je acht Sekunden. Standardmässig gegen die öffentlichen Messpunkte von Cloudflare; das verbraucht Datenvolumen." : {
@@ -46545,6 +46821,12 @@
     "Namensauflösung" : {
       "extractionState" : "manual"
     },
+    "Neigung" : {
+      "extractionState" : "manual"
+    },
+    "Neigung messen" : {
+      "extractionState" : "manual"
+    },
     "Neigung, Tiefe, Breite, Länge oder Stückzahl. Aus Fläche und Tiefe rechnet die App das Volumen aus." : {
       "extractionState" : "manual"
     },
@@ -46727,6 +47009,9 @@
       "extractionState" : "manual"
     },
     "Neu offen: %@" : {
+      "extractionState" : "manual"
+    },
+    "Neue Beobachtungen sofort senden" : {
       "extractionState" : "manual"
     },
     "Neue Regel" : {
@@ -48888,7 +49173,13 @@
     "Ohne diese Freigabe antwortet im eigenen Netz nichts. In den Einstellungen unter „Datenschutz & Sicherheit“ → „Lokales Netzwerk“ einschalten." : {
       "extractionState" : "manual"
     },
+    "Open311-Adresse" : {
+      "extractionState" : "manual"
+    },
     "Optionen" : {
+      "extractionState" : "manual"
+    },
+    "Organisation" : {
       "extractionState" : "manual"
     },
     "Orientierung" : {
@@ -49054,6 +49345,9 @@
     "Ort" : {
       "extractionState" : "manual"
     },
+    "Ort, Datum, Unterschrift" : {
+      "extractionState" : "manual"
+    },
     "Pakete" : {
       "extractionState" : "manual"
     },
@@ -49216,6 +49510,9 @@
           }
         }
       }
+    },
+    "Pegel jetzt" : {
+      "extractionState" : "manual"
     },
     "Persönlicher Hotspot" : {
       "extractionState" : "manual"
@@ -51417,6 +51714,9 @@
     "Prüfen" : {
       "extractionState" : "manual"
     },
+    "Puls, Atmung, Sauerstoff, Schritte und Laufmetriken aus der Zeit dieser Aufnahme" : {
+      "extractionState" : "manual"
+    },
     "Punkte" : {
       "extractionState" : "manual"
     },
@@ -51753,6 +52053,9 @@
         }
       }
     },
+    "Quer" : {
+      "extractionState" : "manual"
+    },
     "Radius" : {
       "localizations" : {
         "ar" : {
@@ -52076,6 +52379,9 @@
         }
       }
     },
+    "Rate" : {
+      "extractionState" : "manual"
+    },
     "Rechenzentrum" : {
       "extractionState" : "manual"
     },
@@ -52246,6 +52552,12 @@
       "extractionState" : "manual"
     },
     "Regeln reagieren während einer Aufnahme auf Messwerte, Ort, Dauer oder MQTT-Nachrichten: mit einer Benachrichtigung, einer Markierung oder dem Ende der Aufnahme." : {
+      "extractionState" : "manual"
+    },
+    "Richtwert" : {
+      "extractionState" : "manual"
+    },
+    "Richtwert (DIN 4150-3)" : {
       "extractionState" : "manual"
     },
     "Richtwert aus der Vertikalbeschleunigung, kein Messwert nach Norm." : {
@@ -53863,6 +54175,9 @@
     "Router des Netzes" : {
       "extractionState" : "manual"
     },
+    "Ruck" : {
+      "extractionState" : "manual"
+    },
     "Rück" : {
       "localizations" : {
         "ar" : {
@@ -54346,6 +54661,12 @@
         }
       }
     },
+    "Sauerstoffsättigung (Health)" : {
+      "extractionState" : "manual"
+    },
+    "Schallpegel" : {
+      "extractionState" : "manual"
+    },
     "Schallpegel in dB(A), mit Position." : {
       "extractionState" : "manual"
     },
@@ -54516,6 +54837,9 @@
       "extractionState" : "manual"
     },
     "Schickt während einer Aufnahme jede Sekunde einen Ping an den Router und an 1.1.1.1 und schreibt Antwortzeit und Verlust als eigene Ströme mit, dazu die WLAN-Signalstärke, soweit iOS sie herausgibt. Mit dem Standort zusammen zeigt die Aufnahme, wo im Gebäude das Netz schwach wird." : {
+      "extractionState" : "manual"
+    },
+    "Schlag" : {
       "extractionState" : "manual"
     },
     "Schlagloch" : {
@@ -54999,7 +55323,13 @@
         }
       }
     },
+    "Schlimmster Fall" : {
+      "extractionState" : "manual"
+    },
     "Schläge" : {
+      "extractionState" : "manual"
+    },
+    "Schnellnotizen" : {
       "extractionState" : "manual"
     },
     "Schreiben" : {
@@ -55165,6 +55495,15 @@
         }
       }
     },
+    "Schreibt zum Schallpegel zehn Oktavbänder und die vorherrschende Frequenz mit. Zeigt, ob ein Brummen tief oder ein Quietschen hoch ist." : {
+      "extractionState" : "manual"
+    },
+    "Schritte (Health)" : {
+      "extractionState" : "manual"
+    },
+    "Schrittlänge beim Laufen (Health)" : {
+      "extractionState" : "manual"
+    },
     "Schrittzähler" : {
       "localizations" : {
         "ar" : {
@@ -55328,6 +55667,12 @@
     "Schräg" : {
       "extractionState" : "manual"
     },
+    "Schweregrad" : {
+      "extractionState" : "manual"
+    },
+    "Schätzt die Helligkeit der Umgebung aus dem Kamerabild, in Lumen. Eine Schätzung, kein Luxmeter. Braucht die Aufnahme mit ARKit." : {
+      "extractionState" : "manual"
+    },
     "Screening mit dem Beschleunigungssensor eines Telefons, kein Gutachten." : {
       "extractionState" : "manual"
     },
@@ -55347,6 +55692,9 @@
       "extractionState" : "manual"
     },
     "Sender" : {
+      "extractionState" : "manual"
+    },
+    "Senkrecht" : {
       "extractionState" : "manual"
     },
     "Sensor" : {
@@ -56826,10 +57174,19 @@
     "Smart Home" : {
       "extractionState" : "manual"
     },
+    "Soll" : {
+      "extractionState" : "manual"
+    },
     "Sonstige" : {
       "extractionState" : "manual"
     },
+    "Sonstiges" : {
+      "extractionState" : "manual"
+    },
     "Sortieren" : {
+      "extractionState" : "manual"
+    },
+    "Speicher und Audio-Route" : {
       "extractionState" : "manual"
     },
     "Spielgerät defekt" : {
@@ -57346,6 +57703,9 @@
     "Strassen und Wege" : {
       "extractionState" : "manual"
     },
+    "Strassenzustand" : {
+      "extractionState" : "manual"
+    },
     "Streuung" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -57506,6 +57866,9 @@
           }
         }
       }
+    },
+    "Strom" : {
+      "extractionState" : "manual"
     },
     "Ströme" : {
       "extractionState" : "manual"
@@ -58013,6 +58376,12 @@
         }
       }
     },
+    "Temperatur" : {
+      "extractionState" : "manual"
+    },
+    "Tempo" : {
+      "extractionState" : "manual"
+    },
     "Test starten" : {
       "extractionState" : "manual"
     },
@@ -58185,6 +58554,12 @@
     "Thema, z. B. befehle/#" : {
       "extractionState" : "manual"
     },
+    "Tiefe" : {
+      "extractionState" : "manual"
+    },
+    "Tiefste Stufe" : {
+      "extractionState" : "manual"
+    },
     "Tippe auf die Karte, um den Mittelpunkt zu versetzen." : {
       "localizations" : {
         "ar" : {
@@ -58346,6 +58721,9 @@
       }
     },
     "Titel" : {
+      "extractionState" : "manual"
+    },
+    "Titelfoto mitschicken" : {
       "extractionState" : "manual"
     },
     "Ton" : {
@@ -59480,6 +59858,9 @@
         }
       }
     },
+    "Unter dem Richtwert" : {
+      "extractionState" : "manual"
+    },
     "Unter freiem Himmel dauert das ein paar Sekunden." : {
       "localizations" : {
         "ar" : {
@@ -60009,6 +60390,9 @@
       "extractionState" : "manual"
     },
     "Vergleich" : {
+      "extractionState" : "manual"
+    },
+    "Verlangte Rate" : {
       "extractionState" : "manual"
     },
     "Verlauf" : {
@@ -60830,6 +61214,9 @@
     "Vertikalbeschleunigung und Höhe für Fahrten im Aufzug." : {
       "extractionState" : "manual"
     },
+    "Vertikale Oszillation (Health)" : {
+      "extractionState" : "manual"
+    },
     "Vibration während der Fahrt (A95, Spitze–Spitze): %@ mg" : {
       "extractionState" : "manual"
     },
@@ -61642,6 +62029,9 @@
           }
         }
       }
+    },
+    "Volumen" : {
+      "extractionState" : "manual"
     },
     "Vom System anerkannt" : {
       "extractionState" : "manual"
@@ -62626,7 +63016,19 @@
     "Weakened" : {
       "extractionState" : "manual"
     },
+    "Webhook-Adresse" : {
+      "extractionState" : "manual"
+    },
     "Weg" : {
+      "extractionState" : "manual"
+    },
+    "Weg anhalten" : {
+      "extractionState" : "manual"
+    },
+    "Weg aufgezeichnet" : {
+      "extractionState" : "manual"
+    },
+    "Weg aufzeichnen" : {
       "extractionState" : "manual"
     },
     "Weitere" : {
@@ -62792,6 +63194,18 @@
           }
         }
       }
+    },
+    "Weitere Quellen" : {
+      "extractionState" : "manual"
+    },
+    "Weiterleiten" : {
+      "extractionState" : "manual"
+    },
+    "Weiterleitung: Open311" : {
+      "extractionState" : "manual"
+    },
+    "Weiterleitung: Webhook" : {
+      "extractionState" : "manual"
     },
     "Weiterleitungen" : {
       "extractionState" : "manual"
@@ -63780,6 +64194,9 @@
       }
     },
     "Wofür nutzt du Sensorstorm?" : {
+      "extractionState" : "manual"
+    },
+    "Wohnbauten" : {
       "extractionState" : "manual"
     },
     "Während der Aufnahme geht jede Messung als JSON an eine URL deiner Wahl, etwa an ein eigenes Dashboard, an Node-RED oder an Home Assistant. Das Format entspricht dem von Sensor Logger, ein bestehender Endpunkt funktioniert also unverändert." : {
@@ -65576,6 +65993,9 @@
     "Zu wenige Werte für eine Beurteilung." : {
       "extractionState" : "manual"
     },
+    "Zugangstoken (Bearer)" : {
+      "extractionState" : "manual"
+    },
     "Zugriff auf das lokale Netz fehlt" : {
       "extractionState" : "manual"
     },
@@ -66382,6 +66802,9 @@
         }
       }
     },
+    "Zusammenfassung" : {
+      "extractionState" : "manual"
+    },
     "Zusammenführen" : {
       "extractionState" : "manual"
     },
@@ -66712,6 +67135,9 @@
       "extractionState" : "manual"
     },
     "accuracy" : {
+      "extractionState" : "manual"
+    },
+    "airquality" : {
       "extractionState" : "manual"
     },
     "arrow.triangle.2.circlepath" : {
@@ -68064,6 +68490,12 @@
         }
       }
     },
+    "iBeacon-Kennungen" : {
+      "extractionState" : "manual"
+    },
+    "iBeacons" : {
+      "extractionState" : "manual"
+    },
     "iOS gibt den WLAN-Namen nur heraus, wenn die App mit WLAN verbunden ist, die Standortfreigabe hat und die Berechtigung „Zugriff auf WLAN-Informationen“ trägt. Die Signalstärke kommt als Wert von 0 bis 100 %, nicht in dBm, und Kanal, Bandbreite oder andere Netze in der Nähe liefert iOS an keine App." : {
       "extractionState" : "manual"
     },
@@ -69215,6 +69647,9 @@
       "extractionState" : "manual"
     },
     "point.topleft.down.to.point.bottomright.curvepath" : {
+      "extractionState" : "manual"
+    },
+    "schlecht" : {
       "extractionState" : "manual"
     },
     "schwer" : {
