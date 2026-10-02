@@ -192,6 +192,13 @@ public struct RecordingExporter: Sendable {
             let source = store.directory(for: metadata.id).appendingPathComponent(name)
             guard FileManager.default.fileExists(atPath: source.path) else { continue }
             try FileManager.default.copyItem(at: source, to: folder.appendingPathComponent(name))
+            // One row per device next to the one-row-per-packet log.
+            if name == AdvertisementLog.fileName,
+               let log = try? String(contentsOf: source, encoding: .utf8),
+               let summary = BluetoothDeviceSummary.csv(fromAdvertisementLog: log) {
+                try summary.write(to: folder.appendingPathComponent(BluetoothDeviceSummary.fileName),
+                                  atomically: true, encoding: .utf8)
+            }
         }
     }
 

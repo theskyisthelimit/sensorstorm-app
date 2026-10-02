@@ -244,3 +244,43 @@ struct EventBufferTests {
         #expect(trigger.check(time: 12.5, values: [3, 0, 0]) != nil)    // quiet period over
     }
 }
+
+@Suite("Bluetooth device summary")
+struct BluetoothDeviceSummaryTests {
+    private let log = """
+    time,seconds_elapsed,address,rssi,name,manufacturer_hex,services
+    100.000000,1.000000,AAAAAAAA-0000-0000-0000-000000000001,-60.000000,"Ruuvi, 4F2A",9904,181A
+    101.000000,2.000000,AAAAAAAA-0000-0000-0000-000000000001,-70.000000,"Ruuvi, 4F2A",9904,181A
+    102.000000,3.000000,BBBBBBBB-0000-0000-0000-000000000002,-90.000000,,,
+    """
+
+    @Test func oneRowPerDevice() throws {
+        let csv = try #require(BluetoothDeviceSummary.csv(fromAdvertisementLog: log))
+        let lines = csv.split(separator: "\n").map(String.init)
+        #expect(lines.count == 3)
+        #expect(lines[0] == BluetoothDeviceSummary.header)
+        let first = BluetoothDeviceSummary.parse(lines[1])
+        #expect(first[0] == "AAAAAAAA-0000-0000-0000-000000000001")
+        #expect(first[1] == "Ruuvi, 4F2A")
+        #expect(first[6] == "2")
+        #expect(first[7] == "-70.000")
+        #expect(first[8] == "-65.000")
+        #expect(first[9] == "-60.000")
+    }
+
+    @Test func manufacturerBecomesACompany() throws {
+        let csv = try #require(BluetoothDeviceSummary.csv(fromAdvertisementLog: log))
+        let fields = BluetoothDeviceSummary.parse(csv.split(separator: "\n").map(String.init)[1])
+        #expect(fields[2].contains("Ruuvi"))
+    }
+
+    @Test func emptyLogHasNoSummary() {
+        #expect(BluetoothDeviceSummary.csv(fromAdvertisementLog: BluetoothDeviceSummary.header) == nil)
+    }
+
+    @Test func hexReading() {
+        #expect(Data(hex: "9904") == Data([0x99, 0x04]))
+        #expect(Data(hex: "99f") == nil)
+        #expect(Data(hex: "zz") == nil)
+    }
+}
