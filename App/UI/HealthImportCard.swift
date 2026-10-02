@@ -8,11 +8,11 @@ struct HealthImportCard: View {
     let store: RecordingStore
     let onImported: (RecordingMetadata) -> Void
 
-    private enum State: Equatable {
+    private enum Outcome: Equatable {
         case idle, working, done(Int), failed(String)
     }
 
-    @State private var state: State = .idle
+    @State private var state: Outcome = .idle
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
