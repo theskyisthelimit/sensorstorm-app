@@ -146,6 +146,24 @@ public struct SurveyExporter: Sendable {
             }
         }
 
+        if survey.track.count >= 2 {
+            var properties: [String: Any] = [
+                "kind": "track",
+                "lengthMetres": rounded(survey.trackLength, decimals: 1),
+                "pointCount": survey.track.count,
+                "start": TrackExporter.iso8601(survey.track[0].time),
+            ]
+            if let last = survey.track.last { properties["end"] = TrackExporter.iso8601(last.time) }
+            let line: [[Double]] = survey.track.map { point in
+                var position = [point.longitude, point.latitude]
+                if let altitude = point.altitude { position.append(altitude) }
+                return position
+            }
+            features.append(["type": "Feature",
+                             "geometry": ["type": "LineString", "coordinates": line] as [String: Any],
+                             "properties": properties])
+        }
+
         var collection: [String: Any] = [
             "type": "FeatureCollection",
             "name": survey.name,
@@ -159,6 +177,9 @@ public struct SurveyExporter: Sendable {
         ]
         if !survey.notes.isEmpty { meta["notes"] = survey.notes }
         if let recordingID = survey.recordingID { meta["recording"] = recordingID.uuidString }
+        if let ended = survey.endedAt { meta["endedAt"] = TrackExporter.iso8601(ended) }
+        if let catalog = survey.catalogID { meta["catalog"] = catalog }
+        if let repeated = survey.repeatsSurveyID { meta["repeats"] = repeated.uuidString }
         collection["survey"] = meta
 
         guard let data = try? JSONSerialization.data(
@@ -225,6 +246,17 @@ public struct SurveyExporter: Sendable {
             properties["statusChangedAt"] = TrackExporter.iso8601(changed)
         }
         if !finding.resolutionNote.isEmpty { properties["resolutionNote"] = finding.resolutionNote }
+        if !finding.attributes.isEmpty { properties["attributes"] = finding.attributes }
+        if !finding.measurements.isEmpty {
+            properties["measurements"] = finding.measurements.map { item -> [String: Any] in
+                var entry: [String: Any] = ["kind": item.kind.rawValue, "value": rounded(item.value, decimals: 3),
+                                            "unit": item.unit]
+                if !item.note.isEmpty { entry["note"] = item.note }
+                return entry
+            }
+        }
+        if let volume = finding.volumeCubicMetres { properties["volumeCubicMetres"] = rounded(volume, decimals: 4) }
+        if let origin = finding.originID { properties["origin"] = origin.uuidString }
         if let address = finding.address {
             if let street = address.street { properties["street"] = street }
             if let number = address.houseNumber { properties["houseNumber"] = number }
@@ -274,7 +306,8 @@ public struct SurveyExporter: Sendable {
         out += "manualOffset,heading,severity,label,note,photos,videos,areaKind,areaRadius,"
         // New columns go at the end: a script that reads by position keeps working.
         out += "areaSquareMetres,lv95East,lv95North,recording,"
-        out += "status,statusChangedAt,resolutionNote,street,houseNumber,postcode,locality,egid\n"
+        out += "status,statusChangedAt,resolutionNote,street,houseNumber,postcode,locality,egid,"
+        out += "attributes,slopeDegrees,depthCentimetres,volumeCubicMetres,origin\n"
 
         for finding in survey.findingsByTime {
             let location = finding.location
@@ -321,6 +354,12 @@ public struct SurveyExporter: Sendable {
             row.append(RecordingExporter.csvEscape(address?.postcode ?? ""))
             row.append(RecordingExporter.csvEscape(address?.locality ?? ""))
             row.append(address?.egid.map { "\($0)" } ?? "")
+            row.append(RecordingExporter.csvEscape(finding.attributes.keys.sorted()
+                .map { "\($0)=\(finding.attributes[$0] ?? "")" }.joined(separator: ";")))
+            row.append(RecordingExporter.fixed(finding.measurement(.slope)?.value ?? .nan))
+            row.append(RecordingExporter.fixed(finding.measurement(.depth)?.value ?? .nan))
+            row.append(RecordingExporter.fixed(finding.volumeCubicMetres ?? .nan))
+            row.append(finding.originID?.uuidString ?? "")
 
             out += row.joined(separator: ",")
             out += "\n"
@@ -359,6 +398,17 @@ public struct SurveyExporter: Sendable {
             out += "    <sym>\(finding.status.isOutstanding ? "Flag, Red" : "Flag, Green")</sym>\n"
             out += "    <type>\(finding.status.rawValue)</type>\n"
             out += "  </wpt>\n"
+        }
+
+        if survey.track.count >= 2 {
+            out += "  <trk>\n    <name>\(TrackExporter.xmlEscape(survey.name))</name>\n    <trkseg>\n"
+            for point in survey.track {
+                out += "      <trkpt lat=\"\(TrackExporter.number(point.latitude))\""
+                out += " lon=\"\(TrackExporter.number(point.longitude))\">"
+                if let altitude = point.altitude { out += "<ele>\(TrackExporter.number(altitude))</ele>" }
+                out += "<time>\(TrackExporter.iso8601(point.time))</time></trkpt>\n"
+            }
+            out += "    </trkseg>\n  </trk>\n"
         }
 
         out += "</gpx>\n"
@@ -402,6 +452,23 @@ public struct SurveyExporter: Sendable {
             </Style>
 
         """
+
+        if survey.track.count >= 2 {
+            let line = survey.track
+                .map { "\(TrackExporter.number($0.longitude)),\(TrackExporter.number($0.latitude)),\(TrackExporter.number($0.altitude ?? 0))" }
+                .joined(separator: " ")
+            out += """
+                <Placemark>
+                  <name>\(TrackExporter.xmlEscape(survey.name))</name>
+                  <Style><LineStyle><color>ffef8c1f</color><width>3</width></LineStyle></Style>
+                  <LineString>
+                    <tessellate>1</tessellate>
+                    <coordinates>\(line)</coordinates>
+                  </LineString>
+                </Placemark>
+
+            """
+        }
 
         for finding in survey.findingsByTime where finding.location.coordinate.isValid {
             let location = finding.location

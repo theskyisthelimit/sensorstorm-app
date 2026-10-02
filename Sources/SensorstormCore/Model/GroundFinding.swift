@@ -315,6 +315,62 @@ public struct CaseMedia: Codable, Sendable, Hashable, Identifiable {
     }
 }
 
+/// A number taken at a case: how steep, how deep, how long.
+///
+/// Kept apart from the free-text note because a note cannot be summed, sorted or put in a
+/// column — and „4 cm deep" is exactly what a repair order is priced on.
+public struct CaseMeasurement: Codable, Sendable, Hashable, Identifiable {
+    public enum Kind: String, Codable, Sendable, Hashable, CaseIterable {
+        /// Degrees from horizontal. Percent is derived, never stored.
+        case slope
+        /// Centimetres.
+        case depth
+        /// Metres.
+        case length
+        /// Metres.
+        case width
+        /// Pieces: signs, trees, lamps.
+        case count
+        case other
+
+        public var defaultUnit: String {
+            switch self {
+            case .slope: "°"
+            case .depth: "cm"
+            case .length, .width: "m"
+            case .count: ""
+            case .other: ""
+            }
+        }
+    }
+
+    public var id: UUID
+    public var kind: Kind
+    public var value: Double
+    public var unit: String
+    public var note: String
+    public var measuredAt: Date
+
+    public init(id: UUID = UUID(), kind: Kind, value: Double, unit: String? = nil,
+                note: String = "", measuredAt: Date = Date()) {
+        self.id = id
+        self.kind = kind
+        self.value = value.isFinite ? value : 0
+        self.unit = unit ?? kind.defaultUnit
+        self.note = note
+        self.measuredAt = measuredAt
+    }
+
+    /// Grade in percent for a slope in degrees: 45° is 100 %.
+    public static func percent(fromDegrees degrees: Double) -> Double {
+        tan(degrees * .pi / 180) * 100
+    }
+
+    public static func degrees(fromPercent percent: Double) -> Double {
+        atan(percent / 100) * 180 / .pi
+    }
+}
+
 /// One documented damage: where it is, how well that is known, how bad it is, how far it
 /// reaches, and every photo and clip taken of it.
 ///
@@ -359,6 +415,12 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
     public var resolutionNote: String
     /// Street and number, when the lookup was switched on and found one.
     public var address: PostalAddress?
+    /// Answers to the catalog's questions, by the attribute's key: „Belag“ → „Asphalt“.
+    public var attributes: [String: String]
+    public var measurements: [CaseMeasurement]
+    /// The first case in a chain of repeat inspections this one descends from. `nil` for a
+    /// case that was written down fresh. See ``FindingHistory``.
+    public var originID: UUID?
 
     public init(id: UUID = UUID(),
                 capturedAt: Date = Date(),
@@ -377,7 +439,10 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
                 status: FindingStatus = .open,
                 statusChangedAt: Date? = nil,
                 resolutionNote: String = "",
-                address: PostalAddress? = nil) {
+                address: PostalAddress? = nil,
+                attributes: [String: String] = [:],
+                measurements: [CaseMeasurement] = [],
+                originID: UUID? = nil) {
         self.id = id
         self.capturedAt = capturedAt
         self.hostTime = hostTime
@@ -396,6 +461,9 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
         self.statusChangedAt = statusChangedAt
         self.resolutionNote = resolutionNote
         self.address = address
+        self.attributes = attributes
+        self.measurements = measurements
+        self.originID = originID
     }
 
     /// Out-of-range severities are clamped rather than rejected: a file written by an older
@@ -427,6 +495,23 @@ public struct GroundFinding: Codable, Sendable, Hashable, Identifiable {
         statusChangedAt = try container.decodeIfPresent(Date.self, forKey: .statusChangedAt)
         resolutionNote = try container.decodeIfPresent(String.self, forKey: .resolutionNote) ?? ""
         address = try container.decodeIfPresent(PostalAddress.self, forKey: .address)
+        attributes = try container.decodeIfPresent([String: String].self, forKey: .attributes) ?? [:]
+        measurements = try container.decodeIfPresent([CaseMeasurement].self, forKey: .measurements) ?? []
+        originID = try container.decodeIfPresent(UUID.self, forKey: .originID)
+    }
+
+    // MARK: - Measurements
+
+    /// The newest measurement of a kind.
+    public func measurement(_ kind: CaseMeasurement.Kind) -> CaseMeasurement? {
+        measurements.filter { $0.kind == kind }.max { $0.measuredAt < $1.measuredAt }
+    }
+
+    /// Area times depth, in cubic metres, when both were taken. A pothole of 0.8 m² and 5 cm
+    /// is 0.04 m³ of asphalt — the number a repair is ordered by.
+    public var volumeCubicMetres: Double? {
+        guard let area, area.isValid, let depth = measurement(.depth), depth.value > 0 else { return nil }
+        return area.squareMetres * depth.value / 100
     }
 
     // MARK: - Status
@@ -544,19 +629,50 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
     /// Sensorstorm recording that ran alongside this walk, when there was one.
     public var recordingID: UUID?
     public var findings: [GroundFinding]
+    /// When the walk was closed. `nil` while it is still open — and for every walk written
+    /// before the field existed, which is how an old one shows as „never closed".
+    public var endedAt: Date?
+    /// The path actually walked, a point every few metres. Empty unless the walk recorded one.
+    public var track: [TrackPoint]
+    /// The catalog whose entries and attributes this walk offers. `nil` is free text.
+    public var catalogID: String?
+    /// The walk this one repeats, when it was started as a repeat inspection.
+    public var repeatsSurveyID: UUID?
 
     public init(id: UUID = UUID(),
                 name: String,
                 startedAt: Date = Date(),
                 notes: String = "",
                 recordingID: UUID? = nil,
-                findings: [GroundFinding] = []) {
+                findings: [GroundFinding] = [],
+                endedAt: Date? = nil,
+                track: [TrackPoint] = [],
+                catalogID: String? = nil,
+                repeatsSurveyID: UUID? = nil) {
         self.id = id
         self.name = name
         self.startedAt = startedAt
         self.notes = notes
         self.recordingID = recordingID
         self.findings = findings
+        self.endedAt = endedAt
+        self.track = track
+        self.catalogID = catalogID
+        self.repeatsSurveyID = repeatsSurveyID
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        startedAt = try container.decode(Date.self, forKey: .startedAt)
+        notes = try container.decodeIfPresent(String.self, forKey: .notes) ?? ""
+        recordingID = try container.decodeIfPresent(UUID.self, forKey: .recordingID)
+        findings = try container.decodeIfPresent([GroundFinding].self, forKey: .findings) ?? []
+        endedAt = try container.decodeIfPresent(Date.self, forKey: .endedAt)
+        track = try container.decodeIfPresent([TrackPoint].self, forKey: .track) ?? []
+        catalogID = try container.decodeIfPresent(String.self, forKey: .catalogID)
+        repeatsSurveyID = try container.decodeIfPresent(UUID.self, forKey: .repeatsSurveyID)
     }
 
     /// Findings in the order they were captured — the order they were walked in.
@@ -603,7 +719,64 @@ public struct Survey: Codable, Sendable, Hashable, Identifiable {
     }
 
     public var bounds: GeoBounds? {
-        GeoBounds(coordinates: findings.flatMap(\.mapCoordinates))
+        GeoBounds(coordinates: findings.flatMap(\.mapCoordinates) + track.map(\.coordinate))
+    }
+
+    // MARK: - Track
+
+    /// Adds a point to the walked path unless it adds nothing: closer than `minimumDistance`
+    /// to the last one — except that a standing still is noted every `stationaryInterval`
+    /// seconds, so a stop shows as a stop — or from a fix too poor to trust. A phone held
+    /// still would otherwise write a thousand points on one spot.
+    @discardableResult
+    public mutating func appendTrackPoint(_ point: TrackPoint, minimumDistance: Double = 4,
+                                          stationaryInterval: TimeInterval = 30,
+                                          maximumAccuracy: Double = 50) -> Bool {
+        guard point.coordinate.isValid, point.horizontalAccuracy > 0,
+              point.horizontalAccuracy <= maximumAccuracy else { return false }
+        if let last = track.last {
+            let moved = last.coordinate.distance(to: point.coordinate)
+            let elapsed = point.time.timeIntervalSince(last.time)
+            guard elapsed >= 0 else { return false }
+            guard moved >= minimumDistance || elapsed >= stationaryInterval else { return false }
+        }
+        track.append(point)
+        return true
+    }
+
+    /// Length of the walked path in metres.
+    public var trackLength: Double {
+        zip(track, track.dropFirst()).reduce(0) { $0 + $1.0.coordinate.distance(to: $1.1.coordinate) }
+    }
+
+    public var trackDuration: TimeInterval {
+        guard let first = track.first?.time, let last = track.last?.time else { return 0 }
+        return max(last.timeIntervalSince(first), 0)
+    }
+
+    public var isOpen: Bool { endedAt == nil }
+}
+
+/// One point of the path a walk took.
+public struct TrackPoint: Codable, Sendable, Hashable {
+    public var time: Date
+    public var latitude: Double
+    public var longitude: Double
+    public var altitude: Double?
+    /// Metres; the fix's own claim. A negative value means there was no usable fix.
+    public var horizontalAccuracy: Double
+
+    public init(time: Date, latitude: Double, longitude: Double, altitude: Double? = nil,
+                horizontalAccuracy: Double) {
+        self.time = time
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude.flatMap { $0.isFinite ? $0 : nil }
+        self.horizontalAccuracy = horizontalAccuracy.isFinite ? horizontalAccuracy : -1
+    }
+
+    public var coordinate: Coordinate2D {
+        Coordinate2D(latitude: latitude, longitude: longitude)
     }
 }
 
