@@ -124,8 +124,33 @@ final class ZipWriter {
 
     func add(_ name: String, _ data: Data) throws {
         let crc = data.withUnsafeBytes { UInt32(crc32(0, $0.bindMemory(to: Bytef.self).baseAddress, uInt($0.count))) }
+        try writeHeaders(name, crc: crc, size: UInt32(data.count))
+        try handle.write(contentsOf: data)
+    }
+
+    /// A file from disk, read twice in 1 MB pieces — once for the checksum the header needs
+    /// before the data, once to copy — instead of once into memory. A KMZ with forty photos
+    /// would otherwise be a few hundred megabytes in RAM.
+    func addFile(_ name: String, from url: URL) throws {
+        let chunk = 1 << 20
+        var crc: uLong = 0
+        var size: UInt64 = 0
+        let reader = try FileHandle(forReadingFrom: url)
+        defer { try? reader.close() }
+        while let piece = try reader.read(upToCount: chunk), !piece.isEmpty {
+            crc = piece.withUnsafeBytes { crc32(crc, $0.bindMemory(to: Bytef.self).baseAddress, uInt($0.count)) }
+            size += UInt64(piece.count)
+        }
+        guard size < UInt64(UInt32.max) else { throw CocoaError(.fileReadTooLarge) }
+        try writeHeaders(name, crc: UInt32(truncatingIfNeeded: crc), size: UInt32(size))
+        try reader.seek(toOffset: 0)
+        while let piece = try reader.read(upToCount: chunk), !piece.isEmpty {
+            try handle.write(contentsOf: piece)
+        }
+    }
+
+    private func writeHeaders(_ name: String, crc: UInt32, size: UInt32) throws {
         let nameBytes = Data(name.utf8)
-        let size = UInt32(data.count)
 
         var local = Data()
         local.le32(0x04034B50); local.le16(20); local.le16(0x0800); local.le16(0)
@@ -134,7 +159,6 @@ final class ZipWriter {
         local.le16(UInt16(nameBytes.count)); local.le16(0)
         local.append(nameBytes)
         try handle.write(contentsOf: local)
-        try handle.write(contentsOf: data)
 
         central.le32(0x02014B50); central.le16(20); central.le16(20); central.le16(0x0800); central.le16(0)
         central.le16(0); central.le16(0x21)

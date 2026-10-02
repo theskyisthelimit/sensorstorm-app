@@ -1,4 +1,5 @@
 import Foundation
+import SQLite3
 import Testing
 @testable import SensorstormCore
 
@@ -262,5 +263,95 @@ private extension JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return decoder
+    }
+}
+
+@Suite("Kacheln, GeoPackage, Zip")
+struct MapAndPackageTests {
+
+    @Test("Kachelnummern stimmen mit dem Web-Mercator-Schema überein")
+    func tileNumbers() {
+        #expect(TileMath.tile(latitude: 46.948, longitude: 7.4474, zoom: 10) == MapTile(z: 10, x: 533, y: 360))
+        #expect(TileMath.tile(latitude: 46.948, longitude: 7.4474, zoom: 16) == MapTile(z: 16, x: 34123, y: 23064))
+        #expect(TileMath.tile(latitude: 0, longitude: 0, zoom: 1) == MapTile(z: 1, x: 1, y: 1))
+        // Beyond the poles and the date line the numbers stay on the map.
+        #expect(TileMath.tile(latitude: 89, longitude: -181, zoom: 2) == MapTile(z: 2, x: 0, y: 0))
+        #expect(TileMath.swisstopoURL(layer: "ch.swisstopo.pixelkarte-farbe", tile: MapTile(z: 16, x: 34123, y: 23064))?
+            .absoluteString == "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/16/34123/23064.jpeg")
+    }
+
+    @Test("Der Plan nimmt die tiefsten Stufen weg, bis es unter der Grenze liegt")
+    func plan() throws {
+        let bounds = try #require(GeoBounds(coordinates: [
+            Coordinate2D(latitude: 46.94, longitude: 7.43), Coordinate2D(latitude: 46.96, longitude: 7.46)]))
+        let small = TileMath.plan(bounds: bounds, zooms: 12...14, limit: 10_000)
+        #expect(small.deepest == 14 && small.tiles.contains { $0.z == 12 } && small.tiles.contains { $0.z == 14 })
+        #expect(small.tiles.count == Set(small.tiles).count)
+        let capped = TileMath.plan(bounds: bounds, zooms: 12...18, limit: 400)
+        #expect(capped.deepest < 18 && capped.tiles.count <= 400 && !capped.tiles.isEmpty)
+        // A box inside one tile is that one tile.
+        let tiny = try #require(GeoBounds(coordinates: [Coordinate2D(latitude: 46.9480, longitude: 7.4474)]))
+        #expect(TileMath.tiles(in: tiny, zoom: 10).count == 1)
+    }
+
+    @Test("Das GeoPackage hat die Pflichttabellen, drei Ebenen und lesbare Geometrie")
+    func geoPackage() throws {
+        var survey = Survey(name: "Paket")
+        var item = GroundFinding(location: FindingLocation(latitude: 46.9480, longitude: 7.4474, altitude: 540,
+                                                           horizontalAccuracy: 4),
+                                 severity: 6, label: "Schlagloch, \"gross\"")
+        item.area = .circle(center: Coordinate2D(latitude: 46.9480, longitude: 7.4474), radius: 1)
+        item.attributes = ["surface": "asphalt"]
+        survey.findings = [item]
+        survey.track = [
+            TrackPoint(time: Date(timeIntervalSince1970: 0), latitude: 46.9480, longitude: 7.4474, horizontalAccuracy: 3),
+            TrackPoint(time: Date(timeIntervalSince1970: 60), latitude: 46.9490, longitude: 7.4480, horizontalAccuracy: 3),
+        ]
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("test-\(UUID().uuidString).gpkg")
+        defer { try? FileManager.default.removeItem(at: url) }
+        try GeoPackageExporter().write(survey, to: url)
+
+        var db: OpaquePointer?
+        #expect(sqlite3_open_v2(url.path, &db, SQLITE_OPEN_READONLY, nil) == SQLITE_OK)
+        defer { sqlite3_close(db) }
+        func scalar(_ sql: String) -> String {
+            var statement: OpaquePointer?
+            defer { sqlite3_finalize(statement) }
+            guard sqlite3_prepare_v2(db, sql, -1, &statement, nil) == SQLITE_OK,
+                  sqlite3_step(statement) == SQLITE_ROW, let text = sqlite3_column_text(statement, 0) else { return "" }
+            return String(cString: text)
+        }
+        #expect(scalar("PRAGMA application_id") == "1196444487")
+        #expect(scalar("PRAGMA user_version") == "10300")
+        #expect(scalar("SELECT group_concat(table_name) FROM (SELECT table_name FROM gpkg_contents ORDER BY table_name)") == "areas,findings,track")
+        #expect(scalar("SELECT group_concat(geometry_type_name) FROM (SELECT geometry_type_name FROM gpkg_geometry_columns ORDER BY table_name)") == "POLYGON,POINT,LINESTRING")
+        #expect(scalar("SELECT COUNT(*) FROM gpkg_spatial_ref_sys WHERE srs_id IN (-1, 0, 4326)") == "3")
+        #expect(scalar("SELECT label FROM findings") == "Schlagloch, \"gross\"")
+        #expect(scalar("SELECT attributes FROM findings") == "{\"surface\":\"asphalt\"}")
+        // "GP", version 0, flags 1 (little-endian, no envelope), SRS 4326 = 0x000010E6.
+        #expect(scalar("SELECT hex(substr(geom, 1, 8)) FROM findings") == "47500001E6100000")
+        // The point's blob: header (8 bytes) + byte order + type 1 + two doubles.
+        #expect(scalar("SELECT length(geom) FROM findings") == "29")
+        #expect(scalar("SELECT length(geom) FROM track") == "\(8 + 1 + 4 + 4 + 2 * 16)")
+        // Polygon: header + order + type + one ring + points (a closed 48-gon is 49 points).
+        #expect(scalar("SELECT length(geom) FROM areas") == "\(8 + 1 + 4 + 4 + 4 + 49 * 16)")
+        #expect(abs((Double(scalar("SELECT length_m FROM track")) ?? 0) - survey.trackLength) < 0.01)
+    }
+
+    @Test("Ohne Weg und ohne Bereich gibt es nur die Ebene der Befunde")
+    func geoPackageMinimal() throws {
+        var survey = Survey(name: "Klein")
+        survey.findings = [GroundFinding(location: FindingLocation(latitude: 46.9, longitude: 7.4, horizontalAccuracy: 3))]
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("test-\(UUID().uuidString).gpkg")
+        defer { try? FileManager.default.removeItem(at: url) }
+        try GeoPackageExporter().write(survey, to: url)
+        var db: OpaquePointer?
+        #expect(sqlite3_open_v2(url.path, &db, SQLITE_OPEN_READONLY, nil) == SQLITE_OK)
+        defer { sqlite3_close(db) }
+        var statement: OpaquePointer?
+        sqlite3_prepare_v2(db, "SELECT COUNT(*) FROM gpkg_contents", -1, &statement, nil)
+        sqlite3_step(statement)
+        #expect(sqlite3_column_int(statement, 0) == 1)
+        sqlite3_finalize(statement)
     }
 }

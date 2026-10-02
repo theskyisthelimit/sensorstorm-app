@@ -421,7 +421,9 @@ public struct SurveyExporter: Sendable {
 
     // MARK: - KML
 
-    public static func kml(_ survey: Survey, mediaPrefix: String = "") -> String {
+    /// - Parameter embedsPhotos: put each photo into the placemark's balloon as an image, for
+    ///   a KMZ that carries them. A plain `.kml` only names them.
+    public static func kml(_ survey: Survey, mediaPrefix: String = "", embedsPhotos: Bool = false) -> String {
         var out = """
         <?xml version="1.0" encoding="UTF-8"?>
         <kml xmlns="http://www.opengis.net/kml/2.2">
@@ -479,7 +481,7 @@ public struct SurveyExporter: Sendable {
                   <name>\(TrackExporter.xmlEscape(waypointName(finding)))</name>
                   <styleUrl>#\(style)</styleUrl>
                   <TimeStamp><when>\(TrackExporter.iso8601(finding.capturedAt))</when></TimeStamp>
-                  <description>\(TrackExporter.xmlEscape(placemarkDescription(of: finding, mediaPrefix: mediaPrefix)))</description>
+                  <description>\(TrackExporter.xmlEscape(placemarkDescription(of: finding, mediaPrefix: mediaPrefix, embedsPhotos: embedsPhotos)))</description>
                   <Point>
                     <coordinates>\(TrackExporter.number(location.longitude)),\(TrackExporter.number(location.latitude)),\(TrackExporter.number(height))</coordinates>
                   </Point>
@@ -515,7 +517,7 @@ public struct SurveyExporter: Sendable {
     }
 
     private static func placemarkDescription(of finding: GroundFinding,
-                                             mediaPrefix: String) -> String {
+                                             mediaPrefix: String, embedsPhotos: Bool = false) -> String {
         var parts = ["Bewertung \(finding.severity)/10", "Status \(finding.status.rawValue)"]
         if let address = finding.address, !address.singleLine.isEmpty {
             parts.append(address.singleLine)
@@ -529,7 +531,15 @@ public struct SurveyExporter: Sendable {
         for item in finding.media {
             parts.append(mediaPrefix + item.fileName)
         }
-        return parts.joined(separator: " · ")
+        var text = parts.joined(separator: " · ")
+        if embedsPhotos {
+            // Plain HTML in a description is what Google Earth renders; the whole string is
+            // escaped once by the caller.
+            for item in finding.photos {
+                text += "<br/><img src=\"\(mediaPrefix + item.fileName)\" width=\"320\"/>"
+            }
+        }
+        return text
     }
 
     /// The position and what is known about its error, in one line.

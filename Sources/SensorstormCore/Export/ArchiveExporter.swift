@@ -23,15 +23,21 @@ public struct ArchiveExporter: Sendable {
         public var includesSurveyMedia: Bool
         public var includesRecordings: Bool
         public var recordingFormat: RecordingExporter.Format
+        /// Every recording as it lies on the phone — `.ssbin` streams, metadata, video — under
+        /// `recordings-raw/`. The only form a recording can be imported from again; the table
+        /// formats cannot be turned back. Gigabytes, hence off by default.
+        public var includesRawRecordings: Bool
 
         public init(includesSurveys: Bool = true,
                     includesSurveyMedia: Bool = true,
                     includesRecordings: Bool = false,
-                    recordingFormat: RecordingExporter.Format = .csvBundle) {
+                    recordingFormat: RecordingExporter.Format = .csvBundle,
+                    includesRawRecordings: Bool = false) {
             self.includesSurveys = includesSurveys
             self.includesSurveyMedia = includesSurveyMedia
             self.includesRecordings = includesRecordings
             self.recordingFormat = recordingFormat
+            self.includesRawRecordings = includesRawRecordings
         }
     }
 
@@ -40,6 +46,7 @@ public struct ArchiveExporter: Sendable {
     public static let manifestFileName = "manifest.json"
     public static let surveysFolder = "surveys"
     public static let recordingsFolder = "recordings"
+    public static let rawRecordingsFolder = "recordings-raw"
 
     private let surveyStore: SurveyStore
     private let recordingStore: RecordingStore
@@ -133,6 +140,16 @@ public struct ArchiveExporter: Sendable {
                                                format: options.recordingFormat))
             completed += 1
             progress?(completed / steps)
+        }
+
+        if options.includesRawRecordings {
+            let raw = payload.appendingPathComponent(Self.rawRecordingsFolder, isDirectory: true)
+            try FileManager.default.createDirectory(at: raw, withIntermediateDirectories: true)
+            for metadata in recordingStore.allRecordings() {
+                try FileManager.default.copyItem(
+                    at: recordingStore.directory(for: metadata.id),
+                    to: raw.appendingPathComponent(metadata.id.uuidString, isDirectory: true))
+            }
         }
 
         try Data(Self.readme(surveys: surveyEntries.count,
