@@ -80,7 +80,7 @@ public struct CertificateSummary: Sendable, Equatable {
                     case 0x82:  // dNSName
                         alternativeNames.append(String(decoding: bytes[general.start..<general.end], as: UTF8.self))
                     case 0x87 where general.end - general.start == 4:  // iPAddress
-                        alternativeNames.append(IPv4Address(octets: Array(bytes[general.start..<general.end])).description)
+                        alternativeNames.append(IPv4Addr(octets: Array(bytes[general.start..<general.end])).description)
                     default:
                         break
                     }

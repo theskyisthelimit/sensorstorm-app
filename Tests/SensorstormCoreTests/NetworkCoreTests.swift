@@ -9,39 +9,39 @@ struct NetworkCoreTests {
 
     @Test("Adressen werden streng gelesen und gedruckt")
     func addresses() throws {
-        let address = try #require(IPv4Address("192.168.1.10"))
+        let address = try #require(IPv4Addr("192.168.1.10"))
         #expect(address.value == 0xC0A8010A)
         #expect(address.description == "192.168.1.10")
         #expect(address.reverseName == "10.1.168.192.in-addr.arpa")
         #expect(address.isPrivate && !address.isLinkLocal && !address.isLoopback)
-        #expect(IPv4Address("172.16.0.1")?.isPrivate == true)
-        #expect(IPv4Address("172.32.0.1")?.isPrivate == false)
-        #expect(IPv4Address("169.254.3.4")?.isLinkLocal == true)
-        #expect(IPv4Address("100.100.1.1")?.isSharedAddressSpace == true)
+        #expect(IPv4Addr("172.16.0.1")?.isPrivate == true)
+        #expect(IPv4Addr("172.32.0.1")?.isPrivate == false)
+        #expect(IPv4Addr("169.254.3.4")?.isLinkLocal == true)
+        #expect(IPv4Addr("100.100.1.1")?.isSharedAddressSpace == true)
         for bad in ["", "1.2.3", "1.2.3.4.5", "256.1.1.1", "1.2.3.-4", "+1.2.3.4", "1..3.4", "a.b.c.d", "1.2.3.4 "] {
-            #expect(IPv4Address(bad) == nil, "\(bad)")
+            #expect(IPv4Addr(bad) == nil, "\(bad)")
         }
-        #expect(IPv4Address("0.0.0.0")?.value == 0)
+        #expect(IPv4Addr("0.0.0.0")?.value == 0)
     }
 
     @Test("Teilnetze: Maske, Rechnen, Hosts und das Fenster um das eigene Gerät")
     func subnets() throws {
-        let own = try #require(IPv4Address("192.168.1.20"))
-        let subnet = try #require(IPv4Subnet(address: own, netmask: IPv4Address("255.255.255.0")!))
+        let own = try #require(IPv4Addr("192.168.1.20"))
+        let subnet = try #require(IPv4Subnet(address: own, netmask: IPv4Addr("255.255.255.0")!))
         #expect(subnet.prefix == 24)
         #expect(subnet.network.description == "192.168.1.0")
         #expect(subnet.broadcast.description == "192.168.1.255")
         #expect(subnet.hostCount == 254)
-        #expect(subnet.contains(IPv4Address("192.168.1.99")!))
-        #expect(!subnet.contains(IPv4Address("192.168.2.1")!))
+        #expect(subnet.contains(IPv4Addr("192.168.1.99")!))
+        #expect(!subnet.contains(IPv4Addr("192.168.2.1")!))
         let hosts = subnet.hosts(excluding: [own])
         #expect(hosts.count == 253)
         #expect(hosts.first?.description == "192.168.1.1" && hosts.last?.description == "192.168.1.254")
         #expect(!hosts.contains(own))
 
         // A mask that is not a run of ones is refused.
-        #expect(IPv4Subnet(address: own, netmask: IPv4Address("255.0.255.0")!) == nil)
-        #expect(IPv4Subnet(address: own, netmask: IPv4Address("0.0.0.0")!)?.prefix == 0)
+        #expect(IPv4Subnet(address: own, netmask: IPv4Addr("255.0.255.0")!) == nil)
+        #expect(IPv4Subnet(address: own, netmask: IPv4Addr("0.0.0.0")!)?.prefix == 0)
 
         #expect(IPv4Subnet(address: own, prefix: 30)?.hostCount == 2)
         #expect(IPv4Subnet(address: own, prefix: 31)?.hostCount == 2)
@@ -49,15 +49,15 @@ struct NetworkCoreTests {
         #expect(IPv4Subnet(address: own, prefix: 33) == nil)
 
         // A /16 is cut to a window of the requested size around the phone's own address.
-        let large = try #require(IPv4Subnet(address: IPv4Address("10.0.77.5")!, prefix: 16))
+        let large = try #require(IPv4Subnet(address: IPv4Addr("10.0.77.5")!, prefix: 16))
         let window = large.hosts(limit: 100)
         #expect(window.count == 100)
-        #expect(window.first! <= IPv4Address("10.0.77.5")! && IPv4Address("10.0.77.5")! <= window.last!)
+        #expect(window.first! <= IPv4Addr("10.0.77.5")! && IPv4Addr("10.0.77.5")! <= window.last!)
         #expect(window.map(\.value) == Array(window.first!.value..<(window.first!.value + 100)))
         // At the edge of the subnet the window is pushed back inside it.
-        let edge = try #require(IPv4Subnet(address: IPv4Address("10.0.0.2")!, prefix: 16))
+        let edge = try #require(IPv4Subnet(address: IPv4Addr("10.0.0.2")!, prefix: 16))
         #expect(edge.hosts(limit: 100).first?.description == "10.0.0.1")
-        let top = try #require(IPv4Subnet(address: IPv4Address("10.0.255.250")!, prefix: 16))
+        let top = try #require(IPv4Subnet(address: IPv4Addr("10.0.255.250")!, prefix: 16))
         #expect(top.hosts(limit: 100).last?.description == "10.0.255.254")
         #expect(top.hosts(limit: 100).count == 100)
     }
@@ -137,7 +137,7 @@ struct NetworkCoreTests {
         #expect(DNSMessage.query(id: 1, name: "a..b", type: .a) == nil)
         #expect(DNSMessage.query(id: 1, name: String(repeating: "a", count: 64) + ".com", type: .a) == nil)
         #expect(DNSMessage.query(id: 1, name: "ok.example", type: .mx)?.suffix(4) == Data([0, 15, 0, 1]))
-        #expect(DNSMessage.ptrName(for: IPv4Address("1.2.3.4")!) == "4.3.2.1.in-addr.arpa")
+        #expect(DNSMessage.ptrName(for: IPv4Addr("1.2.3.4")!) == "4.3.2.1.in-addr.arpa")
     }
 
     private func label(_ text: String) -> [UInt8] { [UInt8(text.utf8.count)] + Array(text.utf8) }
@@ -404,5 +404,19 @@ struct NetworkCoreTests {
         #expect(abs(Iperf3.megabits(bytes: 125_000_000, seconds: 10) - 100) < 1e-9)
         #expect(Iperf3.megabits(bytes: 1, seconds: 0) == 0)
         #expect(Iperf3.State.exchangeResults.rawValue == 13 && Iperf3.State.accessDenied.rawValue == -1)
+    }
+
+    @Test("Wake-on-LAN: Hardware-Adresse lesen und das Paket bauen")
+    func wakeOnLAN() throws {
+        let mac = try #require(WakeOnLAN.parseMAC("AA-bb:cc.dd ee:0f"))
+        #expect(mac == [0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0x0F])
+        #expect(WakeOnLAN.format(mac) == "aa:bb:cc:dd:ee:0f")
+        #expect(WakeOnLAN.parseMAC("aa:bb:cc:dd:ee") == nil)
+        #expect(WakeOnLAN.parseMAC("gg:bb:cc:dd:ee:ff") == nil)
+        let packet = try #require(WakeOnLAN.magicPacket(mac: mac))
+        #expect(packet.count == 102)
+        #expect(packet.prefix(6).allSatisfy { $0 == 0xFF })
+        #expect(Array(packet.suffix(6)) == mac)
+        #expect(WakeOnLAN.magicPacket(mac: [1, 2, 3]) == nil)
     }
 }

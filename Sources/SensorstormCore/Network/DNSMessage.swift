@@ -101,7 +101,7 @@ public enum DNSMessage {
     }
 
     /// `4.3.2.1.in-addr.arpa` for 1.2.3.4.
-    public static func ptrName(for address: IPv4Address) -> String { address.reverseName }
+    public static func ptrName(for address: IPv4Addr) -> String { address.reverseName }
 
     public static func parse(_ data: Data) -> DNSResponse? {
         let b = [UInt8](data)
@@ -172,7 +172,7 @@ public enum DNSMessage {
         let end = start + length
         switch type {
         case 1 where length == 4:
-            return IPv4Address(octets: Array(b[start..<end])).description
+            return IPv4Addr(octets: Array(b[start..<end])).description
         case 28 where length == 16:
             return ipv6(Array(b[start..<end]))
         case 2, 5, 12:

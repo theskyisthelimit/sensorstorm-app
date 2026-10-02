@@ -47,7 +47,7 @@ public enum ICMPPacket {
 
         public var kind: Kind
         /// Who sent this packet: the target for an echo reply, a router for the others.
-        public var source: IPv4Address?
+        public var source: IPv4Addr?
         public var identifier: UInt16?
         public var sequence: UInt16?
         public var ttl: Int?
@@ -63,13 +63,13 @@ public enum ICMPPacket {
         guard b.count >= 8 else { return nil }
 
         var offset = 0
-        var source: IPv4Address?
+        var source: IPv4Addr?
         var ttl: Int?
         if b[0] >> 4 == 4 {
             let headerLength = Int(b[0] & 0x0F) * 4
             guard headerLength >= 20, b.count >= headerLength + 8 else { return nil }
             ttl = Int(b[8])
-            source = IPv4Address(octets: Array(b[12..<16]))
+            source = IPv4Addr(octets: Array(b[12..<16]))
             offset = headerLength
         }
         let type = Int(b[offset])

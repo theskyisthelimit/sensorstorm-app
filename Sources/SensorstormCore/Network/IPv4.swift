@@ -1,7 +1,7 @@
 import Foundation
 
 /// An IPv4 address as the number it is, so that a subnet is arithmetic and not string work.
-public struct IPv4Address: Hashable, Comparable, Sendable, CustomStringConvertible {
+public struct IPv4Addr: Hashable, Comparable, Sendable, CustomStringConvertible {
     public let value: UInt32
 
     public init(_ value: UInt32) {
@@ -35,7 +35,7 @@ public struct IPv4Address: Hashable, Comparable, Sendable, CustomStringConvertib
         octets.map(String.init).joined(separator: ".")
     }
 
-    public static func < (lhs: IPv4Address, rhs: IPv4Address) -> Bool {
+    public static func < (lhs: IPv4Addr, rhs: IPv4Addr) -> Bool {
         lhs.value < rhs.value
     }
 
@@ -67,12 +67,12 @@ public struct IPv4Address: Hashable, Comparable, Sendable, CustomStringConvertib
 
 /// A subnet, from an address and its netmask.
 public struct IPv4Subnet: Hashable, Sendable, CustomStringConvertible {
-    public let address: IPv4Address
+    public let address: IPv4Addr
     public let prefix: Int
 
     /// `nil` when the mask is not a run of ones followed by a run of zeros — which is how an
     /// interface list occasionally reports a broken one.
-    public init?(address: IPv4Address, netmask: IPv4Address) {
+    public init?(address: IPv4Addr, netmask: IPv4Addr) {
         let mask = netmask.value
         let ones = mask.nonzeroBitCount
         guard mask == (ones == 0 ? 0 : UInt32.max << UInt32(32 - ones)) else { return nil }
@@ -80,7 +80,7 @@ public struct IPv4Subnet: Hashable, Sendable, CustomStringConvertible {
         self.prefix = ones
     }
 
-    public init?(address: IPv4Address, prefix: Int) {
+    public init?(address: IPv4Addr, prefix: Int) {
         guard (0...32).contains(prefix) else { return nil }
         self.address = address
         self.prefix = prefix
@@ -88,8 +88,8 @@ public struct IPv4Subnet: Hashable, Sendable, CustomStringConvertible {
 
     private var mask: UInt32 { prefix == 0 ? 0 : UInt32.max << UInt32(32 - prefix) }
 
-    public var network: IPv4Address { IPv4Address(address.value & mask) }
-    public var broadcast: IPv4Address { IPv4Address(address.value | ~mask) }
+    public var network: IPv4Addr { IPv4Addr(address.value & mask) }
+    public var broadcast: IPv4Addr { IPv4Addr(address.value | ~mask) }
 
     /// Addresses a host can have: everything but the network and broadcast address. A /31 and
     /// a /32 have no such waste.
@@ -101,7 +101,7 @@ public struct IPv4Subnet: Hashable, Sendable, CustomStringConvertible {
         }
     }
 
-    public func contains(_ other: IPv4Address) -> Bool {
+    public func contains(_ other: IPv4Addr) -> Bool {
         other.value & mask == network.value
     }
 
@@ -110,7 +110,7 @@ public struct IPv4Subnet: Hashable, Sendable, CustomStringConvertible {
     /// A subnet larger than `limit` hosts is cut down to the window around the phone's own
     /// address: a ping sweep of a /16 is sixty-five thousand packets and a quarter of an hour,
     /// and the neighbours are the ones that answer.
-    public func hosts(excluding: Set<IPv4Address> = [], limit: Int = 1_024) -> [IPv4Address] {
+    public func hosts(excluding: Set<IPv4Addr> = [], limit: Int = 1_024) -> [IPv4Addr] {
         guard hostCount > 0, limit > 0 else { return [] }
         let first = prefix >= 31 ? network.value : network.value + 1
         let last = prefix >= 31 ? broadcast.value : broadcast.value - 1
@@ -125,7 +125,7 @@ public struct IPv4Subnet: Hashable, Sendable, CustomStringConvertible {
             low = start
             high = start + UInt32(limit) - 1
         }
-        return (low...high).map(IPv4Address.init).filter { !excluding.contains($0) }
+        return (low...high).map(IPv4Addr.init).filter { !excluding.contains($0) }
     }
 
     public var description: String { "\(network)/\(prefix)" }

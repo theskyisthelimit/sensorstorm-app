@@ -8,6 +8,7 @@ struct SensorstormApp: App {
     @State private var library: RecordingLibrary
     @State private var surveys: SurveyModel
     @State private var pro = ProEntitlement()
+    @State private var network = NetworkHub()
 
     init() {
         let store = (try? RecordingStore.makeDefault())
@@ -35,6 +36,7 @@ struct SensorstormApp: App {
                 .environment(library)
                 .environment(surveys)
                 .environment(pro)
+                .environment(network)
                 .preferredColorScheme(.dark)
         }
     }

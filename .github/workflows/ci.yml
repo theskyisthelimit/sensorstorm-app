@@ -30,7 +30,9 @@ jobs:
         run: brew install xcodegen
 
       - name: Test the core package
-        run: swift test
+        run: |
+          set -o pipefail
+          swift test 2>&1 | tee "${RUNNER_TEMP}/swift-test.log"
 
       # The column order in frames.csv and the key names in scene.json are a contract
       # between Swift and Python that neither compiler can see. The Blender importer's own
@@ -66,11 +68,12 @@ jobs:
       # Signing and upload stay local: the CI certificate's private key is not in
       # the repo and must not be.
       - name: Build the app
-        run: >-
-          xcodebuild -quiet -project Sensorstorm.xcodeproj -scheme Sensorstorm
-          -destination 'generic/platform=iOS Simulator'
-          -derivedDataPath .derived-data
-          CODE_SIGNING_ALLOWED=NO build
+        run: |
+          set -o pipefail
+          xcodebuild -quiet -project Sensorstorm.xcodeproj -scheme Sensorstorm \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath .derived-data \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee "${RUNNER_TEMP}/xcodebuild.log"
 
       # Ein `LocalizedStringKey`, den niemand in den Katalog getragen hat, fällt in
       # jeder Sprache auf Deutsch zurück — und `l10n.py doctor` sieht ihn nie, weil
@@ -78,3 +81,17 @@ jobs:
       # auf Deutsch, bis eines davon in einem arabischen Store-Screenshot auffiel.
       - name: Every localisable text is in the catalog
         run: DERIVED_DATA=.derived-data python3 Tools/l10n_extract.py
+
+      # Die Fehlerzeilen allein, am Ende des Protokolls: ein roter Lauf soll in einem Blick
+      # sagen, was kaputt ist, statt in zweihundert Zeilen „bestanden" zu versinken.
+      - name: What failed
+        if: failure()
+        run: |
+          for name in swift-test xcodebuild; do
+            file="${RUNNER_TEMP}/${name}.log"
+            if [ -f "$file" ]; then
+              echo "== ${name}"
+              grep -E "recorded an issue|error:" "$file" | sort -u | head -60 || true
+            fi
+          done
+          true
